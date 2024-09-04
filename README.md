@@ -60,7 +60,7 @@
 
 ## Сдача работ
 
-Все отчеты деелются средствами markdown и mkdocs. Инструкция по созданию веб-страничек из markdown средствами mkdocs доступна тут в пункте 3.2.2 https://docs.google.com/document/d/1rIfREFvCB4pp8uF990Tz3PLXRJ5u_w-Y3vLxfXWKoxg/edit?usp=sharing . Краткое описание работы с markdown доступно в пункте 3.1
+Все отчеты делаются средствами markdown и mkdocs. Инструкция по созданию веб-страничек из markdown средствами mkdocs доступна тут в пункте 3.2.2 https://docs.google.com/document/d/1rIfREFvCB4pp8uF990Tz3PLXRJ5u_w-Y3vLxfXWKoxg/edit?usp=sharing . Краткое описание работы с markdown доступно в пункте 3.1
 
 Все отчеты должны хранииься на одном "сайте", сгенерированном из ваших markdown файлов в форке этого репозитория.
 
