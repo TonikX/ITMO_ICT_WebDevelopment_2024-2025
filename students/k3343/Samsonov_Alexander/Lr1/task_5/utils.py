@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 
 class table_handler(ABC):
     @abstractmethod
-    def get_html_table(self, content=None) -> dict:
+    def get_html_table(self, content=None) -> str:
         pass
 
     @abstractmethod
@@ -17,7 +17,7 @@ class table_handler(ABC):
 
 
 class CSV_handler(table_handler):
-    def __init__(self, filename, delimiter=';', headers=None):
+    def __init__(self, filename: str, delimiter: str = ';', headers: [str, None] = None):
         self.filename = filename
         self.delimiter = delimiter
         self.headers = headers
@@ -36,12 +36,15 @@ class CSV_handler(table_handler):
 
         return contents
 
-    def get_html_table(self, content=None):
+    def get_html_table(self, content: [None, list[list[str]]] = None) -> str:
+        # to generate either from csv, or from list[list[str]]
         if content is None:
             with open(self.filename) as f:
                 content = f.readlines()
 
         rows = [x.strip() for x in content]
+
+        # block to generate html table from table
         table = '<table><tr>'
         if self.headers is not None:
             table += "".join(["<th>" + cell + "</th>" for cell in self.headers.split(self.delimiter)])
@@ -55,17 +58,20 @@ class CSV_handler(table_handler):
         table += "</table><br>"
         return table
 
-    def append(self, row):
+    def append(self, row: list[str]) -> None:
+        # helper function to update the "db"
         with open(self.filename, 'a') as f:
             writer = csv.writer(f, delimiter=self.delimiter)
             writer.writerow(row)
         self.contents = self._read_csv()
 
-    def filter_by(self, key, value):
+    def filter_by(self, key: str, value: str) -> list[str]:
         if key not in self.contents['headers']:
             raise KeyError
+
         filter_index = self.contents['headers'].index(key)
         filtered_values = [';'.join(self.contents['headers'])]
+
         for contents_key, contents_value in self.contents.items():
             if contents_key == 'headers':
                 pass
@@ -74,13 +80,9 @@ class CSV_handler(table_handler):
         return filtered_values
 
 
-def generate_page(table, filename='static/index.html'):
+def generate_page(table: str, filename: str = 'static/index.html'):
+    # generates an html page with http headers
     with open(filename) as f:
         html = f.read()
     html = html.replace('{{}}', table)
     return "HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n\n" + html
-
-
-if __name__ == '__main__':
-    scvhandler = CSV_handler(filename='static/data.csv')
-    print(scvhandler.get_html_table(content=scvhandler.filter_by('subject', 'DB')))

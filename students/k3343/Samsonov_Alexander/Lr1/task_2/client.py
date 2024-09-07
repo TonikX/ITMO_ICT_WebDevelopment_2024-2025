@@ -1,7 +1,7 @@
 from socket import socket, AF_INET, SOCK_STREAM
 
 
-def tcp_client(server_address: tuple[str, int] = ('localhost', 12345)):
+def tcp_client(server_address: tuple[str, int] = ('localhost', 12345)) -> None:
     """
     Функция создает TCP клиента на заданном сокете, для
     того чтобы принять от пользователя параметры квадратичного

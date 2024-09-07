@@ -49,7 +49,7 @@ def validate_data(data: str) -> list[float]:
     return list(map(float, data))
 
 
-def solver_server(socket_address: tuple[str, int] = ('localhost', 12345)):
+def solver_server(socket_address: tuple[str, int] = ('localhost', 12345)) -> None:
     """
     Функция создает TCP сервер на заданом порту. Он принимает сообщения из
     3 цифр и возвращает решение квадратного уравнения
@@ -63,21 +63,24 @@ def solver_server(socket_address: tuple[str, int] = ('localhost', 12345)):
     server.bind(socket_address)
 
     server.listen(5)
+    # socket setup
 
     print(f'Started listening on {socket_address}')
 
     while True:
+        # main loop
         try:
             client_socket, client_address = server.accept()
             print(f'Connected from {client_address}')
             message = client_socket.recv(1024).decode('utf-8')
             print(f'Received message from client: {message}\nValidating data...')
-            params = validate_data(message)
+            params = validate_data(message)  # irrelevant helper function
             if params:
-                solution = solve_quadratic(*params)
+                solution = solve_quadratic(*params)  # irrelevant helper function
                 print(f'The data is valid\nsending back to client at {datetime.now().time}: \n{solution}')
                 client_socket.send(solution.encode('utf-8'))
             else:
+                # if params are wrong
                 print('The data is invalid')
                 client_socket.send('Invalid parameters, try again.'.encode('utf-8'))
         except KeyboardInterrupt:

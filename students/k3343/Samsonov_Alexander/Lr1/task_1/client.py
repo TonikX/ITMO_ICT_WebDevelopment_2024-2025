@@ -1,7 +1,7 @@
 from socket import socket, AF_INET, SOCK_DGRAM
 
 
-def udp_client(server_address: tuple[str, int] = ('localhost', 12345)):
+def udp_client(server_address: tuple[str, int] = ('localhost', 12345)) -> None:
     """
     Функция создает UDP клиента на заданном сокете для
     отправки серверу сообщения 'Hello, server' и печати
@@ -15,6 +15,7 @@ def udp_client(server_address: tuple[str, int] = ('localhost', 12345)):
     client_socket = socket(AF_INET, SOCK_DGRAM)
 
     try:
+        # 1 try without validation
         message = b"Hello server\n"
         print(f"Sending: {message}")
         client_socket.sendto(message, server_address)
