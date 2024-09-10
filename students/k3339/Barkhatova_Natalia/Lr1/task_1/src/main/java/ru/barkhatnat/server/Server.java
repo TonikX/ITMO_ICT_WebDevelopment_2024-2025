@@ -3,26 +3,22 @@ package ru.barkhatnat.server;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Server {
-    private static final int SERVER_PORT = 1234;
     private static final int BUFFER_SIZE = 1024;
-    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     public static void main(String[] args) {
-        try (DatagramSocket serverSocket = new DatagramSocket(SERVER_PORT)) {
-            LOGGER.info("Server is ready on port " + SERVER_PORT);
-
+        final String address = args.length > 0 ? args[0] : "localhost";
+        final int port = args.length > 1 ? Integer.parseInt(args[1]) : 1234;
+        try (DatagramSocket serverSocket = new DatagramSocket(port, InetAddress.getByName(address))) {
+            System.out.println("Сервер запущен на порту " + port);
             while (true) {
                 byte[] receiveData = new byte[BUFFER_SIZE];
                 DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 
                 serverSocket.receive(receivePacket);
                 String messageFromClient = new String(receivePacket.getData(), 0, receivePacket.getLength());
-                LOGGER.info("Server received: " + messageFromClient);
-
+                System.out.println("Сервер получил сообщение: " + messageFromClient);
                 String response = "Hello, client";
                 byte[] sendData = response.getBytes();
                 InetAddress clientAddress = receivePacket.getAddress();
@@ -30,10 +26,11 @@ public class Server {
                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, clientAddress, clientPort);
 
                 serverSocket.send(sendPacket);
-                LOGGER.info("Server sent message to client at " + clientAddress + ":" + clientPort);
+                System.out.println("Сервер отправил сообщение клиенту на " + clientAddress + ":" + clientPort);
             }
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Server encountered an error: ", e);
+        } catch (Exception exception) {
+            System.err.println("Ошибка приложения:");
+            exception.printStackTrace(System.err);
         }
     }
 }

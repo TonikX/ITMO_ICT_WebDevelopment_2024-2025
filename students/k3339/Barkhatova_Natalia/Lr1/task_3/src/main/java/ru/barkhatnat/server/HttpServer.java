@@ -1,80 +1,48 @@
 package ru.barkhatnat.server;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Logger;
+import java.nio.charset.StandardCharsets;
 
 public class HttpServer {
-
-    private static final int SERVER_PORT = 1234;
-    private static final Logger LOGGER = Logger.getLogger(HttpServer.class.getName());
     private static final String HTML_FILE_PATH = "task_3/src/main/java/ru/barkhatnat/server/index.html";
-    private static final String HTTP_OK = "HTTP/1.1 200 OK";
-    private static final String CONTENT_TYPE = "Content-Type: text/html; charset=UTF-8";
 
-    private final ServerSocket serverSocket;
-
-    public HttpServer() throws IOException {
-        serverSocket = new ServerSocket(SERVER_PORT);
-        LOGGER.info("Server is ready on port " + SERVER_PORT);
-    }
-
-    public void start() {
-        while (true) {
-            try (Socket clientSocket = serverSocket.accept()) {
-                LOGGER.info("Client connected: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-                handleRequest(clientSocket);
-            } catch (IOException e) {
-                LOGGER.severe("Error accepting client connection: " + e.getMessage());
+    public static void main(String[] args) {
+        final String address = args.length > 0 ? args[0] : "localhost";
+        final int port = args.length > 1 ? Integer.parseInt(args[1]) : 1234;
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Сервер запущен на порту " + port);
+            while (true) {
+                try (Socket clientSocket = serverSocket.accept()) {
+                    System.out.println("Подключился клиент: " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                    handleRequest(clientSocket);
+                } catch (IOException e) {
+                    System.err.println("Error accepting client connection: " + e.getMessage());
+                }
             }
+        } catch (IOException e) {
+            System.err.printf("Ошибка передачи данных (%s:%d): %s", address, port, e.getMessage());
+        } catch (Exception exception) {
+            System.err.println("Ошибка приложения:");
+            exception.printStackTrace(System.err);
         }
     }
 
     private static void handleRequest(Socket clientSocket) {
-        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), StandardCharsets.UTF_8));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
             String requestLine = in.readLine();
-            LOGGER.info("Request: " + requestLine);
-            String htmlContent = readHtmlFile();
-            sendHttpResponse(out, htmlContent);
+            System.out.println("Запрос: " + requestLine);
+            String htmlContent = HtmlReader.readHtmlFile(HTML_FILE_PATH);
+            HttpResponseSender.sendOkResponseWithContent(out, htmlContent);
 
         } catch (IOException e) {
-            LOGGER.severe("Error handling client request: " + e.getMessage());
-        }
-    }
-
-    private static String readHtmlFile() {
-        StringBuilder htmlContent = new StringBuilder();
-        String line;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(HTML_FILE_PATH))) {
-            while ((line = reader.readLine()) != null) {
-                htmlContent.append(line).append("\n");
-            }
-        } catch (IOException e) {
-            LOGGER.severe("Error reading HTML file: " + e.getMessage());
-            return "<html><body><h1>404 NOT FOUND</h1></body></html>";
-        }
-        return htmlContent.toString();
-    }
-
-    private static void sendHttpResponse(PrintWriter out, String htmlContent) {
-        out.println(HTTP_OK);
-        out.println(CONTENT_TYPE);
-        out.println("Content-Length: " + htmlContent.length());
-        out.println();
-        out.print(htmlContent);
-        out.flush();
-    }
-
-    public static void main(String[] args) {
-        try {
-            HttpServer httpServer = new HttpServer();
-            httpServer.start();
-        } catch (IOException e) {
-            LOGGER.severe("IOException occurred: " + e.getMessage());
+            System.err.println("Ошибка отправки запроса " + e.getMessage());
         }
     }
 }
