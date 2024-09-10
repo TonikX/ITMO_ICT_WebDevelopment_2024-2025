@@ -1,61 +1,41 @@
-const net = require('net');
+const HTTPServer = require('./HTTPServer.js');
+const buildDisciplinesHtml = require('./buildDisciplinesHtml.js');
 
-const server = net.createServer((socket) => {
-    socket.on('data', (data) => {
-        const request = data.toString();
-        const [requestLine, ...headers] = request.split('\r\n');
-        const [method, path] = requestLine.split(' ');
+const PORT = 8085
+const baseUrl = `http://localhost:${PORT}/`
 
-        if (method === 'POST' && path === '/discipline') {
-            let body = request.split('\r\n\r\n')[1].trim();
-            const {discipline, name, grade} = JSON.parse(body);
+const disciplines = {}
 
+const httpServer = new HTTPServer((req, res) => {
+    const url = new URL(req.url, baseUrl);
+    if(url.pathname === '/discipline') {
+        if(req.method === 'GET') {
+            const discipline = url.searchParams.get('discipline');
+            if(!discipline) return endWith404(res)
+            res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+            const responseHtml = buildDisciplinesHtml(disciplines, discipline)
+            res.end(responseHtml)
+            return
+        }else if(req.method === 'POST') {
+            const {discipline, name, grade = 0} = JSON.parse(req.body);
+            if(!discipline || !name) return endWith404(res)
             if (!disciplines[discipline]) {
                 disciplines[discipline] = {};
             }
             disciplines[discipline][name] = grade;
-
-            socket.write('HTTP/1.1 200 OK\r\n');
-            socket.write('Content-Type: text/plain\r\n');
-            socket.write('\r\n');
-            socket.write('Оценка успешно добавлена!\n');
-            socket.end();
-        } else if (method === 'GET' && path.startsWith('/discipline')) {
-            const params = new URLSearchParams(path.slice(path.indexOf('?')));
-            const discipline = params.get('discipline');
-
-            let responseHtml = '<html><body>';
-            responseHtml += `<h1>Оценки по дисциплине: ${discipline}</h1>`;
-            responseHtml += '<ul>';
-
-            if (disciplines[discipline]) {
-                Object.entries(disciplines[discipline]).forEach(([name, grade]) => {
-                    responseHtml += `<li><b>${name}</b> ${grade}</li>`;
-                });
-            } else {
-                responseHtml += '<li>Нет оценок для этой дисциплины.</li>';
-            }
-
-            responseHtml += '</ul></body></html>';
-
-            socket.write('HTTP/1.1 200 OK\r\n');
-            socket.write('Content-Type: text/html; charset=utf-8\r\n');
-            socket.write('\r\n');
-            socket.write(responseHtml);
-            socket.end();
-        } else {
-            socket.write('HTTP/1.1 404 Not Found\r\n');
-            socket.write('Content-Type: text/plain\r\n');
-            socket.write('\r\n');
-            socket.write('404 Not Found\n');
-            socket.end();
+            res.writeHead(200, {'Content-Type': 'text/plain'});
+            res.end('Оценка успешно добавлена!')
+            return
         }
-    });
-});
+    }
+    endWith404(res)
+})
 
-const disciplines = {};
+function endWith404(res) {
+    res.writeHead(404, {'content-type': 'text/plain'});
+    res.end('404 Not Found')
+}
 
-const PORT = 8085
-server.listen(PORT, () => {
+httpServer.listen(PORT, () => {
     console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
