@@ -1,6 +1,6 @@
 site_name: WEB documentation
 nav:
-  - Home: main.md
+  - Home: index.md
   - Lab 1:
       - "Task 1": Lr1/task1.md
       - "Task 2": Lr1/task2.md
