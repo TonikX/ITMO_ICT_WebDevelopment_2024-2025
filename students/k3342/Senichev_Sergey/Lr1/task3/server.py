@@ -3,11 +3,12 @@ import socket
 buffer_size = 1024
 host = 'localhost'
 port = 8000
+path = '/Users/bellesbae/itmo/ITMO_ICT_WebDevelopment_2024-2025/students/k3342/Senichev_Sergey/Lr1/task3/'
 server_address = (host, port)
 
 def load_html_file():
     try:
-        with open('index.html', 'r', encoding='utf-8') as file:
+        with open(path + 'index.html', 'r', encoding='utf-8') as file:
             return file.read()
     except FileNotFoundError:
         return "<h1>Файл index.html не найден!</h1>"
@@ -28,14 +29,17 @@ def server():
 
         response_body = load_html_file()
 
-        response = 'HTTP/1.1 200 OK\r\n'
-        response += 'Content-Type: text/html\r\n'
-        response += 'Content-Length: ' + str(len(response_body)) + '\r\n'
-        response += '\r\n'
-        response += response_body
+        http_response = (
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/html; charset=UTF-8\r\n"
+                f"Content-Length: {len(response_body)}\r\n"
+                "Connection: close\r\n"
+                "\r\n"
+                + response_body
+        )
 
-        client_connection.sendall(response.encode('utf-8'))
-    client_connection.close()
+        client_connection.sendall(http_response.encode())
+        client_connection.close()
 
 if __name__ == "__main__":
     server()
