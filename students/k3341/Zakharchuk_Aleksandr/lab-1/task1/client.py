@@ -10,6 +10,8 @@ def main():
     data = conn.recv(1024)
     print(data.decode())
 
+    conn.close()
+
 
 if __name__ == "__main__":
     main()
