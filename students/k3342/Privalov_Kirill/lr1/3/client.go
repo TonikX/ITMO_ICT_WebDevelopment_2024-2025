@@ -22,8 +22,6 @@ func main() {
 		}
 	}
 
-	fmt.Println()
-
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Fatalf("Failed to read response body: %v", err)

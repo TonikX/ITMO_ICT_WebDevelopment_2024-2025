@@ -5,6 +5,17 @@ import (
 	"net/http"
 )
 
+type Student struct {
+	RecordBook Grade `json:"grade"`
+}
+
+type Grade struct {
+	Subject string `json:"subject"`
+	Grade   int    `json:"grade,omitempty"`
+}
+
+var grades []Grade
+
 func main() {
 	mux := setUpMux()
 
@@ -21,6 +32,7 @@ func run(mux *http.ServeMux) error {
 
 func setUpMux() *http.ServeMux {
 	mux := http.NewServeMux()
+
 	return mux
 }
 

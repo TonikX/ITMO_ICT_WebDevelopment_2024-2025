@@ -23,18 +23,18 @@ func main() {
 		n, addr, err := conn.ReadFromUDP(buf[0:])
 		if err != nil {
 			log.Printf("[server][ReadFromUDP]: %v", err)
-			return
+			continue
 		}
 
-		message := string(buf[:n])
-		fmt.Println(message)
+		go func(message string, addr *net.UDPAddr) {
+			fmt.Println(message)
 
-		if message == "Hello, server" {
-			_, err = conn.WriteToUDP([]byte("Hello, client"), addr)
-			if err != nil {
-				log.Printf("[server][WriteToUDP]: %v", err)
-				return
+			if message == "Hello, server" {
+				_, err = conn.WriteToUDP([]byte("Hello, client"), addr)
+				if err != nil {
+					log.Printf("[server][WriteToUDP]: %v", err)
+				}
 			}
-		}
+		}(string(buf[:n]), addr)
 	}
 }
