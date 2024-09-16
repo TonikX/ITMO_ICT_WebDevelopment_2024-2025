@@ -1,0 +1,31 @@
+site_name: Web Development - ITMO ICT 2024/2025
+site_url: https://hellkirl.github.io/ITMO_ICT_WebDevelopment_2024-2025/
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: teal
+      accent: purple
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: teal
+      accent: lime
+
+copyright: |
+  &copy; 2024 <a href="https://github.com/hellkirl"  target="_blank" rel="noopener">Kirill Privalov</a>
