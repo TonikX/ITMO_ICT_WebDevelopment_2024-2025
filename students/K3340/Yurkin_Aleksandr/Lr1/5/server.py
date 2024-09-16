@@ -45,7 +45,11 @@ def handle_post(sock, body):
     grade = params.get('grade', '')
 
     if discipline and grade:
-        grades.append({'discipline': discipline, 'grade': grade})
+        existing = next((item for item in grades if item['discipline'] == discipline), None)
+        if existing:
+            existing['grade'] += f", {grade}"
+        else:
+            grades.append({'discipline': discipline, 'grade': grade})
 
     response_body = 'Data received'
     response = f"""HTTP/1.1 200 OK
