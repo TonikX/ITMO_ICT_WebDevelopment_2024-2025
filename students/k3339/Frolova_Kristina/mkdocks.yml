@@ -1,0 +1,12 @@
+site_name: Web Labs Documentation
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task 1": lr1/1.md
+      - "Task 2": lr1/2.md
+      - "Task 3": lr1/3.md
+      - "Task 4": lr1/4.md
+      - "Task 5": lr1/5.md
+
+theme:
+  name: material
