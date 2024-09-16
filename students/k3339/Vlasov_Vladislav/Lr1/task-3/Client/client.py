@@ -1,22 +1,23 @@
 import socket
 
-conn = socket.socket()
-
-conn.connect(("127.0.0.1", 14903))
-
-request = b"GET\r\n\r\n"
-
-#request = b"CLOSE\r\n\r\n"
-
-conn.send(request)
-
-response = b""
 def main():
+    conn = socket.socket()
+
+    conn.connect(("127.0.0.1", 14903))
+
+    request = b"GET\r\n\r\n"
+
+    #request = b"CLOSE\r\n\r\n"
+
+    conn.send(request)
+
     tmpData = conn.recv(512)
-    
+
     if not tmpData:
+        print("Not data")
         return
 
+    response = b""
     response += tmpData
     while not b"\r\n\r\n" in response:
         tmpData = conn.recv(512)
@@ -37,13 +38,11 @@ def main():
     headers = {}
     for head in responseString.split("\r\n")[1:]:
         if not head:
-            return
-
+            break
         key, value = head.split(":")
         headers[f"{key.strip()}"] = int(value.strip())
 
     takedBodyLenght = len(response.split(sep=b"\r\n\r\n")[1])
-    print(takedBodyLenght)
     responseBoby = conn.recv(headers["Content-Length"] - takedBodyLenght)
 
     body = response.split(sep=b"\r\n\r\n")[1]
