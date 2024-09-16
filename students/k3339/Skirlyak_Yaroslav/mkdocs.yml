@@ -7,5 +7,5 @@ nav:
       - Task 3: lw1/3.md
       - Task 4: lw1/4.md
       - Task 5: lw1/5.md
-    theme:
-    name: readthedocs
+theme:
+  name: bootstrap4
