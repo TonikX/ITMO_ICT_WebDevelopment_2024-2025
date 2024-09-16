@@ -26,7 +26,7 @@ func main() {
 			continue
 		}
 
-		go func(message string, addr *net.UDPAddr) {
+		go func(message string, addr *net.UDPAddr, conn *net.UDPConn) {
 			fmt.Println(message)
 
 			if message == "Hello, server" {
@@ -35,6 +35,6 @@ func main() {
 					log.Printf("[server][WriteToUDP]: %v", err)
 				}
 			}
-		}(string(buf[:n]), addr)
+		}(string(buf[:n]), addr, conn)
 	}
 }
