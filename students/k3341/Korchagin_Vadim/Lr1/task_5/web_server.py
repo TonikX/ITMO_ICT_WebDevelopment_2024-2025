@@ -132,7 +132,9 @@ class MyHTTPServer:
 
     def _generate_html_subjects_body(self):
         subjects_list = ''.join(
-            f'<li>{subj["id"]}: {subj["name"]}</li>'
+            f'<li>{subj["id"]}: {subj["name"]} - Оценки: <ul>' +
+            ''.join(f'<li>{mark}</li>' for mark in subj['mark']) +
+            '</ul></li>' if subj['mark'] else f'<li>{subj["id"]}: {subj["name"]} - Оценок нет</li>'
             for subj in self._subjects.values()
         )
         html = f'''
@@ -144,6 +146,7 @@ class MyHTTPServer:
         </html>
         '''
         return html.strip().encode('utf-8')
+
     def handle_get_marks(self, req, subject_id):
         try:
             subject_id = int(subject_id)
