@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <script>
+	// Hack for scrolling window when linking to anchor tag with fixed nav header
+        var shiftWindow = function() { scrollBy(0, -75) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+      </script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная №1 - Web-программирование</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/http.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="../js/base.js"></script> 
+    </head>
+
+    <body class="">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="..">Web-программирование</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse">
+          <!-- Main navigation -->
+          <nav class="nav">
+            <ul class="navbar-nav">
+              <li >
+                <a class="nav-link" href="..">Главная</a>
+              </li>
+              <li class="active">
+                <a class="nav-link" href="./">Лабораторная №1</a>
+              </li>
+            </ul>
+          </nav>
+
+          <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+		<i class="fa fa-search"></i> Search
+              </a>
+            </li>
+          </ul>
+	</div>
+	</div>
+      </nav><div id="content" class="container">
+        
+      <div class="row">
+        <div class="col-md-9" role="main">
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item active" aria-current="page">Лабораторная №1</li>
+  </ol>
+</nav>
+
+
+<h1 id="no1">Лабораторная №1. Работа с сокетами</h1>
+<h2 id="no1-udp">Задание №1. Клиент-серверное общение через UDP</h2>
+<hr />
+<h4 id="_1">Условие</h4>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент отправляет серверу сообщение «Hello, server», и оно должно отобразиться на стороне сервера. В ответ сервер отправляет клиенту сообщение «Hello, client», которое должно отобразиться у клиента.</p>
+<p><strong>Требования:</strong></p>
+<ul>
+<li>Обязательно использовать библиотеку <code>socket</code>.</li>
+<li>Реализовать с помощью протокола <code>UDP</code>.</li>
+</ul>
+<h4 id="_2">Реализация</h4>
+<ul>
+<li>Клиентская часть отправляет сообщение серверу и ожидает ответ.</li>
+<li>Сервер принимает сообщение от клиента, выводит его на экран и отправляет ответ.</li>
+<li>Используется библиотека <code>socket</code> для создания сокетов и обмена данными между клиентом и сервером по протоколу <code>UDP</code>.</li>
+</ul>
+<h4 id="_3">Код</h4>
+<p><strong><code>server.py</code></strong></p>
+<pre><code>import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind((socket.gethostname(), 1234))
+
+while True:
+    try:
+        data, addr = s.recvfrom(1024)
+        udata = data.decode(&quot;utf-8&quot;)
+        print(f&quot;Connection established: {addr}&quot;)
+        print(&quot;Received message: %s&quot; % udata)
+        MESSAGE = b'Hello, client!'
+        s.sendto(MESSAGE, addr)
+    except KeyboardInterrupt:
+        s.close()
+        break
+</code></pre>
+<p><strong><code>client.py</code></strong></p>
+<pre><code class="language-python">import socket
+
+conn = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+conn.connect((socket.gethostname(), 1234))
+conn.send(b&quot;Hello, server.\n&quot;)
+msg = conn.recv(1024)
+umsg = msg.decode('utf-8')
+print(umsg)
+</code></pre>
+<p><br></p>
+<h2 id="no2-tcp">Задание №2. Клиент-серверное общение через TCP</h2>
+<hr />
+<h4 id="_4">Условие</h4>
+<p>Реализовать клиентскую и серверную части приложения. Клиент запрашивает выполнение математической операции (решение квадратного уравнения), параметры которой вводятся с клавиатуры. Сервер обрабатывает данные и возвращает результат клиенту.</p>
+<p><strong>Требования:</strong></p>
+<ul>
+<li>Использовать библиотеку <code>socket</code>.</li>
+<li>Реализовать с использованием протокола <code>TCP</code>.</li>
+</ul>
+<h4 id="_5">Реализация</h4>
+<ul>
+<li>Клиент запрашивает ввод коэффициентов квадратного уравнения и отправляет их на сервер.</li>
+<li>Сервер получает коэффициенты, решает уравнение и отправляет результат клиенту.</li>
+<li>Клиент получает результат и выводит его на экран.</li>
+</ul>
+<h4 id="_6">Код</h4>
+<p><strong><code>server.py</code></strong></p>
+<pre><code class="language-python">import socket
+import pickle
+import math
+
+def solve_quadratic(a, b, c):
+    discriminant = b ** 2 - 4 * a * c
+    if discriminant &gt;= 0:
+        root1 = (-b + math.sqrt(discriminant)) / (2 * a)
+        root2 = (-b - math.sqrt(discriminant)) / (2 * a)
+        return root1, root2
+    else:
+        return &quot;Корней нет&quot;
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((socket.gethostname(), 1234))
+s.listen(10)
+
+while True:
+    try:
+        conn, addr = s.accept()
+        data = conn.recv(1024)
+        coefs = pickle.loads(data)
+
+        a, b, c = coefs
+        result = solve_quadratic(a, b, c)
+
+        result_data = pickle.dumps(result)
+        conn.send(result_data)
+
+        conn.close()
+
+    except KeyboardInterrupt:
+        s.close()
+        break
+</code></pre>
+<p><strong><code>client.py</code></strong></p>
+<pre><code class="language-python">import socket
+import pickle
+
+conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+conn.connect((socket.gethostname(), 1234))
+
+print(&quot;Введите коэффициенты квадратного уравнения: a, b, c\n&quot;)
+a = int(input())
+b = int(input())
+c = int(input())
+coefs = [a, b, c]
+
+data = pickle.dumps(coefs)
+
+conn.send(data)
+
+result = conn.recv(1024)
+result = pickle.loads(result)
+print(&quot;Результат: &quot;, result)
+
+conn.close()
+</code></pre>
+<p><br></p>
+<h2 id="no3-http-html-">Задание №3. HTTP-сервер для передачи HTML-страницы</h2>
+<hr />
+<h4 id="_7">Условие</h4>
+<p>Реализовать серверную часть приложения. Клиент подключается к серверу, и в ответ получает HTTP-сообщение, содержащее HTML-страницу, которая загружается сервером из файла <code>index.html</code>.</p>
+<p><strong>Требования:</strong></p>
+<ul>
+<li>Использовать библиотеку <code>socket</code>.</li>
+<li>Реализовать передачу HTML-страницы через <code>HTTP</code>.</li>
+</ul>
+<h4 id="_8">Реализация</h4>
+<ul>
+<li>Клиент отправляет HTTP-запрос серверу.</li>
+<li>Сервер читает HTML-страницу из файла <code>index.html</code> и формирует HTTP-ответ.</li>
+<li>HTML-страница отправляется клиенту, который может её отобразить в браузере.</li>
+</ul>
+<h4 id="_9">Код</h4>
+<p><strong><code>server.py</code></strong></p>
+<pre><code class="language-python">import socket
+
+def handle_request(client_socket):
+    # Чтение запроса от клиента
+    request = client_socket.recv(1024).decode()
+    print(f&quot;Получен запрос:\n{request}&quot;)
+
+    # Формирование ответа
+    response = &quot;HTTP/1.1 200 OK\r\n&quot;
+    response += &quot;Content-Type: text/html; charset=utf-8\r\n&quot;
+    response += &quot;Content-Length: {}\r\n&quot;.format(len(html_content))
+    response += &quot;\r\n&quot;
+    response += html_content
+
+    client_socket.sendall(response.encode())
+
+    client_socket.close()
+
+with open(&quot;task3/index.html&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as file:
+    html_content = file.read()
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+
+server_socket.listen(5)
+print(&quot;Сервер запущен на порту 8080&quot;)
+
+try:
+    while True:
+        client_socket, addr = server_socket.accept()
+        print(f&quot;Подключен клиент: {addr}&quot;)
+
+        handle_request(client_socket)
+finally:
+    server_socket.close()
+</code></pre>
+<p><strong><code>index.html</code></strong></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Сервер&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет, клиент!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><br></p>
+<h2 id="no4">Задание №4. Многопользовательский чат, реализация потоков</h2>
+<hr />
+<h4 id="_10">Условие</h4>
+<p>Реализовать многопользовательский чат, в котором сервер принимает подключения нескольких клиентов и пересылает им сообщения. Все клиенты могут отправлять сообщения, которые будут отображаться у всех участников чата.</p>
+<p><strong>Требования:</strong></p>
+<ul>
+<li>Использовать библиотеку <code>socket</code>.</li>
+<li>Для обработки каждого клиента использовать библиотеку <code>threading</code>.</li>
+<li>Реализовать с использованием протокола <code>TCP</code>.</li>
+</ul>
+<h4 id="_11">Реализация</h4>
+<ul>
+<li>Сервер запускает сокет, слушает подключения клиентов и обрабатывает их в отдельных потоках.</li>
+<li>Каждый клиент подключается к серверу, получает приветственное сообщение и может отправлять и получать сообщения в чате.</li>
+<li>Сообщения от клиента передаются серверу, который пересылает их всем остальным клиентам.</li>
+</ul>
+<p><strong>Функции сервера:</strong></p>
+<p><code>remove_client(client_socket)</code> — удаляет клиента из списка подключенных клиентов, если соединение закрывается.<br />
+<code>broadcast_message(message, sender_socket, sender_address)</code> — пересылает сообщение от одного клиента всем остальным подключенным клиентам. Если отправка сообщения не удалась, клиент удаляется из списка.<br />
+<code>handle_client(client_socket, client_address)</code> — обрабатывает сообщения от конкретного клиента и пересылает их другим клиентам. Завершает работу, если соединение закрывается.<br />
+<code>start_server()</code> — создает сокет, запускает сервер на заданном порту и обрабатывает подключения клиентов.  </p>
+<p><strong>Функции клиента:</strong></p>
+<p><code>receive_messages(client_socket)</code> — получает и отображает сообщения от сервера.<br />
+<code>send_messages(client_socket)</code> — отправляет введенные пользователем сообщения на сервер.<br />
+<code>start_client()</code> — создает сокет, подключается к серверу, и запускает потоки для обработки сообщений.  </p>
+<h4 id="_12">Код</h4>
+<p><strong><code>server.py</code></strong></p>
+<pre><code class="language-python">import socket
+import threading
+
+CLIENTS = []
+
+def remove_client(client_socket):
+    if client_socket in CLIENTS:
+        CLIENTS.remove(client_socket)
+
+def broadcast_message(message, sender_socket, sender_address):
+    for client_socket in CLIENTS:
+        if client_socket != sender_socket:
+            try:
+                msg = str(sender_address[1]) + ': ' + message
+                client_socket.send(msg.encode('utf-8'))
+            except:
+                client_socket.close()
+                remove_client(client_socket)
+
+def handle_client(client_socket, client_address):
+    while True:
+        try:
+            message = client_socket.recv(2056).decode('utf-8')
+            if message:
+                broadcast_message(message, client_socket, client_address)
+            else:
+                break
+        except:
+            break
+    client_socket.close()
+    remove_client(client_socket)
+
+def start_server():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind((socket.gethostname(), 1234))
+        s.listen(10)
+        print(&quot;Сервер запущен и слушает порт 1234...&quot;)
+        while True:
+            client_socket, client_address = s.accept()
+            client_socket.send(b'You connected successfully.')
+            print(f&quot;Подключен клиент: {client_address}&quot;)
+            CLIENTS.append(client_socket)
+            client_thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
+            client_thread.start()
+    except KeyboardInterrupt:
+        s.close()
+
+if __name__ == '__main__':
+    start_server()
+</code></pre>
+<p><strong><code>client.py</code></strong></p>
+<pre><code class="language-python">import socket
+import threading
+
+def receive_messages(client_socket):
+    while True:
+        try:
+            message = client_socket.recv(2056).decode('utf-8')
+            if message:
+                print(message)
+            else:
+                break
+        except:
+            break
+    client_socket.close()
+
+def send_messages(client_socket):
+    while True:
+        new_msg = input()
+        client_socket.send(new_msg.encode('utf-8'))
+
+def start_client():
+    try:
+        conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        conn.connect((socket.gethostname(), 1234))
+
+        welcome_msg = conn.recv(1024).decode()
+        print(welcome_msg)
+
+        receive = threading.Thread(target=receive_messages, args=(conn,))
+        receive.start()
+        send = threading.Thread(target=send_messages, args=(conn,))
+        send.start()
+
+    except KeyboardInterrupt:
+        conn.close()
+
+if __name__ == '__main__':
+    start_client()
+</code></pre>
+<p><br></p>
+<h2 id="no5-get-post-http-">Задание №5. Веб-сервер для обработки GET и POST HTTP-запросов</h2>
+<hr />
+<h4 id="_13">Условие</h4>
+<p>Написать простой веб-сервер для обработки GET и POST HTTP-запросов с помощью библиотеки socket в Python.</p>
+<p><strong>Требования:</strong>  </p>
+<ul>
+<li>Сервер должен принять и записать информацию о дисциплине и оценке по дисциплине.</li>
+<li>Сервер должен отдать информацию обо всех оценках по дисциплинам в виде HTML-страницы.</li>
+</ul>
+<h4 id="_14">Реализация</h4>
+<ul>
+<li>Веб-сервер написан с использованием базовых сокетов на Python.</li>
+<li>Обрабатываются GET и POST запросы.<ul>
+<li><span style='color: #e83e8c'><strong>POST</strong></span> запрос добавляет новую дисциплину или оценку по дисциплине.</li>
+<li><span style='color: #e83e8c'><strong>GET</strong></span> запросы возвращают список дисциплин или информацию по оценкам.</li>
+</ul>
+</li>
+<li>Данные дисциплин хранятся в памяти в формате словаря. Для каждой дисциплины хранится её ID, название и список оценок.</li>
+<li>Для каждого запроса сервер проверяет заголовки и параметры. В случае успешного запроса возвращается корректный ответ с данными.</li>
+</ul>
+<p><strong>Детали реализации:</strong></p>
+<ol>
+<li><strong>Основной серверный класс MyHTTPServer</strong><br />
+Конструктор принимает параметры: хост, порт и имя сервера. Сервер хранит информацию о дисциплинах и их оценках в словаре.<br />
+Основная функция <code>serve_forever()</code> открывает сокет, слушает подключения и передает клиентские запросы на обработку.  </li>
+<li><strong>Обработка запросов</strong><br />
+Метод <code>parse_request()</code> — принимает и разбирает запрос клиента: метод, путь и версию HTTP, заголовки и параметры.<br />
+Метод <code>handle_request()</code> — выполняет основную логику обработки запросов:<br />
+Для POST-запроса на /subjects сервер добавляет новую дисциплину.<br />
+Для POST-запроса на /subjects/<id> добавляется оценка к существующей дисциплине.<br />
+Для GET-запроса на /subjects возвращается список всех дисциплин.<br />
+Для GET-запроса на /subjects/<id> возвращается список оценок по конкретной дисциплине.<br />
+Метод <code>send_response()</code> — отправляет ответ клиенту, формируя заголовки и тело ответа.  </li>
+<li><strong>Форматы ответов</strong> <br />
+GET-запросы могут возвращать данные как в формате <code>HTML</code>, так и в формате <code>JSON</code> в зависимости от содержимого заголовка Accept.<br />
+POST-запросы не возвращают тело ответа, только статус успешного выполнения (204 No Content).  </li>
+</ol>
+<p><strong>Примеры запросов:</strong></p>
+<ul>
+<li>Добавление дисциплины</li>
+</ul>
+<pre><code class="language-http">POST /subjects?name=ComputerScience HTTP/1.1
+Host: example.local
+</code></pre>
+<ul>
+<li>Добавление оценки  </li>
+</ul>
+<pre><code class="language-http">POST /subjects/1?mark=5 HTTP/1.1
+Host: example.local
+</code></pre>
+<ul>
+<li>Получение списка дисциплин</li>
+</ul>
+<pre><code class="language-http">GET /subjects HTTP/1.1
+Host: example.local
+Accept: text/html
+</code></pre>
+<ul>
+<li>Получение оценок по дисциплине  </li>
+</ul>
+<pre><code class="language-http">GET /subjects/1 HTTP/1.1
+Host: example.local
+Accept: application/json
+</code></pre>
+<h4 id="_15">Код</h4>
+<p><strong><code>server.py</code></strong></p>
+<pre><code class="language-python">import socket
+import sys
+from email.parser import Parser
+
+from exceptions import HTTPError
+from utils import Request, Response
+import json
+
+MAX_LINE = 64 * 1024
+MAX_HEADERS = 100
+
+# py task5/server.py 127.0.0.1 53210 example.local
+# python3 task5/server.py 127.0.0.1 53210 example.local
+
+class MyHTTPServer:
+    def __init__(self, host, port, server_name):
+        self._host = host
+        self._port = port
+        self._server_name = server_name
+        self._subjects = {}
+
+    def serve_forever(self):
+        serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
+
+        try:
+            serv_sock.bind((self._host, self._port))
+            serv_sock.listen()
+
+            while True:
+                conn, _ = serv_sock.accept()
+                try:
+                    self.serve_client(conn)
+                except Exception as e:
+                    print(&quot;Client serving failed&quot;, e)
+        finally:
+            serv_sock.close()
+
+    def serve_client(self, conn):
+        try:
+            req = self.parse_request(conn)
+            resp = self.handle_request(req)
+            self.send_response(conn, resp)
+        except ConnectionResetError:
+            conn = None
+        except Exception as e:
+            self.send_error(conn, e)
+
+        if conn:
+            conn.close()
+
+    def parse_request(self, conn):
+        rfile = conn.makefile(&quot;rb&quot;)
+        method, target, version = self.parse_request_line(rfile)
+        headers = self.parse_headers(rfile)
+
+        host = headers.get(&quot;Host&quot;)
+        if not host:
+            raise HTTPError(400, &quot;Bad request&quot;, &quot;Host header is missing&quot;)
+        if host not in (self._server_name, f&quot;{self._server_name}:{self._port}&quot;):
+            raise HTTPError(404, &quot;Not found&quot;)
+
+        print(method, target, version, headers)
+        return Request(method, target, version, headers, rfile)
+
+    def parse_headers(self, rfile):
+        headers = []
+        while True:
+            line = rfile.readline(MAX_LINE + 1)
+            if len(line) &gt; MAX_LINE:
+                raise HTTPError(400, &quot;Bad request&quot;, &quot;Request line is too long&quot;)
+
+            if line in (b&quot;\r\n&quot;, b&quot;\n&quot;, b&quot;&quot;):
+                # завершаем чтение заголовков
+                break
+
+            headers.append(line)
+            if len(headers) &gt; MAX_HEADERS:
+                raise Exception(&quot;Too many headers&quot;)
+
+        sheaders = b&quot;&quot;.join(headers).decode(&quot;iso-8859-1&quot;)
+        return Parser().parsestr(sheaders)
+
+    def parse_request_line(self, rfile):
+        raw = rfile.readline(MAX_LINE + 1)
+        if len(raw) &gt; MAX_LINE:
+            raise Exception(&quot;Request line is too long&quot;)
+
+        req_line = str(raw, &quot;iso-8859-1&quot;)
+        req_line = req_line.rstrip(&quot;\r\n&quot;)
+        words = req_line.split()
+        if len(words) != 3:
+            raise Exception(&quot;Malformed request line&quot;)
+
+        method, target, version = words
+        if version != &quot;HTTP/1.1&quot;:
+            raise Exception(&quot;Unexpected HTTP version&quot;)
+
+        return method, target, version
+
+    def handle_request(self, req):
+        if req.path == &quot;/subjects&quot; and req.method == &quot;POST&quot;:
+            return self.handle_post_subject(req)
+
+        if req.path.startswith(&quot;/subjects/&quot;):
+            subj_id = req.path[len(&quot;/subjects/&quot;) :]
+            if subj_id.isdigit():
+                if req.method == &quot;GET&quot;:
+                    return self.handle_get_marks(req, subj_id)
+                if req.method == &quot;POST&quot;:
+                    return self.handle_add_mark(req, subj_id)
+
+        if req.path == &quot;/subjects&quot; and req.method == &quot;GET&quot;:
+            return self.handle_get_subjects(req)
+
+        raise HTTPError(404, &quot;Not found&quot;)
+
+    def handle_post_subject(self, req):
+        subj_id = len(self._subjects) + 1
+        self._subjects[subj_id] = {
+            &quot;id&quot;: subj_id,
+            &quot;name&quot;: req.query[&quot;name&quot;][0],
+            &quot;marks&quot;: [],
+        }
+        return Response(204, &quot;Created&quot;)
+
+    def handle_get_marks(self, req, subj_id):
+        subj = self._subjects.get(int(subj_id))
+        if not subj:
+            raise HTTPError(404, &quot;Not found&quot;)
+
+        accept = req.headers.get(&quot;Accept&quot;)
+        if &quot;text/html&quot; in accept:
+            contentType = &quot;text/html; charset=utf-8&quot;
+            body = &quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&quot;
+            body += f&quot;&lt;div&gt;Оценки по дисциплине {subj['name']}:&lt;/div&gt;&quot;
+            body += &quot;&lt;ul&gt;&quot;
+            for u in subj[&quot;marks&quot;]:
+                body += f&quot;&lt;li&gt;{u}&lt;/li&gt;&quot;
+            body += &quot;&lt;/ul&gt;&quot;
+            body += &quot;&lt;/body&gt;&lt;/html&gt;&quot;
+
+        elif &quot;application/json&quot; in accept:
+            contentType = &quot;application/json; charset=utf-8&quot;
+            body = json.dumps(subj)
+
+        else:
+            return Response(406, &quot;Not Acceptable&quot;)
+
+        body = body.encode(&quot;utf-8&quot;)
+        headers = [(&quot;Content-Type&quot;, contentType), (&quot;Content-Length&quot;, len(body))]
+        return Response(200, &quot;OK&quot;, headers, body)
+
+    def handle_add_mark(self, req, subj_id):
+        mark = req.query.get(&quot;mark&quot;)[0]
+        self._subjects[int(subj_id)][&quot;marks&quot;].append(mark)
+        return Response(204, &quot;Subject marks updated&quot;)
+
+    def handle_get_subjects(self, req):
+        accept = req.headers.get(&quot;Accept&quot;)
+        if &quot;text/html&quot; in accept:
+            contentType = &quot;text/html; charset=utf-8&quot;
+            body = &quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&quot;
+            body += f&quot;&lt;div&gt;Дисциплины ({len(self._subjects)})&lt;/div&gt;&quot;
+            body += &quot;&lt;ul&gt;&quot;
+            for u in self._subjects.values():
+                body += f'&lt;li&gt;#{u[&quot;id&quot;]} {u[&quot;name&quot;]}&lt;/li&gt;'
+            body += &quot;&lt;/ul&gt;&quot;
+            body += &quot;&lt;/body&gt;&lt;/html&gt;&quot;
+
+        elif &quot;application/json&quot; in accept:
+            contentType = &quot;application/json; charset=utf-8&quot;
+            body = json.dumps(self._subjects)
+
+        else:
+            return Response(406, &quot;Not Acceptable&quot;)
+
+        body = body.encode(&quot;utf-8&quot;)
+        headers = [(&quot;Content-Type&quot;, contentType), (&quot;Content-Length&quot;, len(body))]
+        return Response(200, &quot;OK&quot;, headers, body)
+
+    def send_response(self, conn, resp):
+        wfile = conn.makefile(&quot;wb&quot;)
+        status_line = f&quot;HTTP/1.1 {resp.status} {resp.reason}\r\n&quot;
+        wfile.write(status_line.encode(&quot;iso-8859-1&quot;))
+
+        if resp.headers:
+            for key, value in resp.headers:
+                header_line = f&quot;{key}: {value}\r\n&quot;
+                wfile.write(header_line.encode(&quot;iso-8859-1&quot;))
+
+        wfile.write(b&quot;\r\n&quot;)
+
+        if resp.body:
+            wfile.write(resp.body)
+
+        wfile.flush()
+        wfile.close()
+
+    def send_error(self, conn, err):
+        try:
+            status = err.status
+            reason = err.reason
+            body = (err.body or err.reason).encode(&quot;utf-8&quot;)
+        except:
+            status = 500
+            reason = b&quot;Internal Server Error&quot;
+            body = b&quot;Internal Server Error&quot;
+        resp = Response(status, reason, [(&quot;Content-Length&quot;, len(body))], body)
+        self.send_response(conn, resp)
+
+
+if __name__ == &quot;__main__&quot;:
+    host = sys.argv[1]
+    port = int(sys.argv[2])
+    name = sys.argv[3]
+
+    serv = MyHTTPServer(host, port, name)
+    try:
+        serv.serve_forever()
+    except KeyboardInterrupt:
+        pass
+</code></pre>
+<p><strong><code>utils.py</code></strong></p>
+<pre><code class="language-python">from functools import lru_cache
+from urllib.parse import parse_qs, urlparse
+
+class Request:
+    def __init__(self, method, target, version, headers, rfile):
+        self.method = method
+        self.target = target
+        self.version = version
+        self.headers = headers
+        self.rfile = rfile
+
+    @property
+    def path(self):
+        return self.url.path
+
+    @property
+    @lru_cache(maxsize=None)
+    def query(self):
+        return parse_qs(self.url.query)
+
+    @property
+    @lru_cache(maxsize=None)
+    def url(self):
+        return urlparse(self.target)
+
+
+class Response:
+    def __init__(self, status, reason, headers=None, body=None):
+        self.status = status
+        self.reason = reason
+        self.headers = headers
+        self.body = body
+</code></pre>
+<p><strong><code>exceptions.py</code></strong></p>
+<pre><code class="language-python">class HTTPError(Exception):
+    def __init__(self, status, reason, body=None):
+        super()
+        self.status = status
+        self.reason = reason
+        self.body = body
+</code></pre>
+
+<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+  <li class="last-updated-holder displayDate loading">
+    <span class="last-updated-text">Last updated:</span>
+    <time role="presentation" datetime="2018-10-25T00:00:00.000Z" data-article-date-source="ms.date"></time>
+  </li>
+<!--
+  <li class="readingTime">
+    2 minutes to read
+  </li>
+-->
+  <li class="contributors-holder">
+    <span class="contributors-text">Contributors</span>
+    <ul class="contributors" data-bi-name="contributors"></ul>
+  </li>
+</ul>
+</div>
+        <div class="col-md-3"><div class="navbar-light navbar-expand-md hidden-print sticky-top sticky-offset" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    <div id="toc-collapse" class="navbar-collapse collapse card">
+        <ul class="nav flex-column bs-sidenav">
+            <li class="nav-item main"><a class="nav-link" href="#no1">Лабораторная №1. Работа с сокетами</a></li>
+                <li class="nav-item">
+                    <a href="#no1-udp" class="nav-link">Задание №1. Клиент-серверное общение через UDP</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#no2-tcp" class="nav-link">Задание №2. Клиент-серверное общение через TCP</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#no3-http-html-" class="nav-link">Задание №3. HTTP-сервер для передачи HTML-страницы</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#no4" class="nav-link">Задание №4. Многопользовательский чат, реализация потоков</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#no5-get-post-http-" class="nav-link">Задание №5. Веб-сервер для обработки GET и POST HTTP-запросов</a>
+                </li>
+        </ul>
+    </div>
+</div></div>
+      </div>
+      </div>
+
+      <footer class="col-md-12">
+	<hr>
+	<div class="container">
+	</div>
+      </footer>
+      <script>
+	var base_url = "..",
+            shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+      </script>
+      <script src="../js/base.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+      <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="h4 modal-title">Keyboard Shortcuts</p>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
