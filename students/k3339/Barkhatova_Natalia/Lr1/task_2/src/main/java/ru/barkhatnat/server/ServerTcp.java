@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class ServerTcp {
 
 
     public static void main(String[] args) {
@@ -40,7 +40,9 @@ public class Server {
             if (arguments.length < 3) {
                 return "Недостаточно аргументов. Ожидается 3 аргумента\n";
             }
-
+            if (arguments.length > 3) {
+                return "Слишком много аргументов. Ожидается 3 аргумента\n";
+            }
             float base1 = Float.parseFloat(arguments[0]);
             float base2 = Float.parseFloat(arguments[1]);
             float height = Float.parseFloat(arguments[2]);

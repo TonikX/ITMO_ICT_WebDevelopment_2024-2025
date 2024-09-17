@@ -3,7 +3,7 @@ package ru.barkhatnat.client;
 import java.io.*;
 import java.net.Socket;
 
-public class Client {
+public class ClientTcp {
 
     public static void main(String[] args) {
         final String address = args.length > 0 ? args[0] : "localhost";
@@ -14,7 +14,6 @@ public class Client {
              BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in))) {
 
             System.out.println("Подключено к серверу на: " + address + ":" + port);
-
             System.out.println("Введите два основания и высоту трапеции через пробел");
             String data = consoleReader.readLine();
             clientOutput.write(data + "\n");

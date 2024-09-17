@@ -4,7 +4,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class Server {
+public class ServerUdp {
     private static final int BUFFER_SIZE = 1024;
 
     public static void main(String[] args) {

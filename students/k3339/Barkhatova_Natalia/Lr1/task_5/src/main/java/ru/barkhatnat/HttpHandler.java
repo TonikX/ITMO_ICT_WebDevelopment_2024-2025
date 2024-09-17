@@ -1,7 +1,6 @@
 package ru.barkhatnat;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -9,11 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MyHttpHandler implements HttpHandler {
+public class HttpHandler implements com.sun.net.httpserver.HttpHandler {
 
     private final Map<String, String> grades;
 
-    public MyHttpHandler(Map<String, String> grades) {
+    public HttpHandler(Map<String, String> grades) {
         this.grades = grades;
     }
 

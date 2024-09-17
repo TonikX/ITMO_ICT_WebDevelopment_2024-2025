@@ -3,10 +3,8 @@ package ru.barkhatnat.client;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.logging.Logger;
 
-public class Client {
-    private static final Logger LOGGER = Logger.getLogger(Client.class.getName());
+public class ClientUdp {
     private static final int BUFFER_SIZE = 1024;
 
     public static void main(String[] args) {

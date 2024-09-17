@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class Application {
 
     public static void main(final String[] args) {
-        final int port = 1233;
+        final int port = args.length > 0 ? Integer.parseInt(args[0]) : 1234;
         final Set<ClientHandler> clientHandlers = ConcurrentHashMap.newKeySet();
         try (final ServerSocket socket = new ServerSocket(port)) {
             final ExecutorService pool = Executors.newCachedThreadPool();
