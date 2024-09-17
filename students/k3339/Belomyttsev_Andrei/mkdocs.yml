@@ -1,0 +1,6 @@
+site_name: Web Docs
+nav:
+  - Home: index.md
+  - Lab-1: lab-1.md
+theme:
+  name: material
