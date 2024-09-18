@@ -33,21 +33,22 @@ class MyHTTPServer:
 
     def parse_headers(self, lines):
         headers = {}
+        discipline: str
+        grade: int
+
         for line in lines:
-            if line == '':
-                break
+            line = line.strip().replace('"', '')
+            if line == '' or line == '{' or line == '}':
+                continue
             key, value = line.split(': ', 1)
             headers[key] = value
         return headers
 
     def handle_request(self, request_line, headers, client_socket):
         method, url, _ = request_line.split()
-        parsed_url = urlparse(url)
-        path = parsed_url.path
-        query = parse_qs(parsed_url.query)
 
         if method == 'POST':
-            self.handle_post(query)
+            self.handle_post(headers)
             self.send_response(client_socket, 200, 'OK', 'Data received')
         elif method == 'GET':
             response_body = self.handle_get()
@@ -55,13 +56,11 @@ class MyHTTPServer:
         else:
             self.send_response(client_socket, 405, 'Method Not Allowed', '')
 
-    def handle_post(self, query):
-        discipline = query.get('discipline', [''])[0]
-        grade = query.get('grade', [''])[0]
+    def handle_post(self, headers):
+        discipline = headers.get('discipline').replace(',', '')
+        grade = headers.get('grade')
         if discipline and grade:
             self.grades[discipline] = grade
-
-        print(discipline, grade)
 
     def handle_get(self):
         html_content = '<html><body><h1>Grades</h1><ul>'
