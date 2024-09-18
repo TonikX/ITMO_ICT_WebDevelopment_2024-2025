@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -13,7 +14,7 @@ public class HttpServer {
     public static void main(String[] args) {
         final String address = args.length > 0 ? args[0] : "localhost";
         final int port = args.length > 1 ? Integer.parseInt(args[1]) : 1234;
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
+        try (ServerSocket serverSocket = new ServerSocket(port, 0, InetAddress.getByName(address))) {
             System.out.println("Сервер запущен на порту " + port);
             while (true) {
                 try (Socket clientSocket = serverSocket.accept()) {

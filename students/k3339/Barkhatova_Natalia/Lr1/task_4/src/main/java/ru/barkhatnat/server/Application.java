@@ -22,7 +22,7 @@ public class Application {
                     if (message instanceof AuthMessage m) {
                         System.out.printf("Клиент %s подключён\n", m.username());
                     }
-                    // выбираю только те хендлеры, которые принадлежат рассматриваемому клиенту.
+                    // выбираю только те хендлеры, которые НЕ принадлежат рассматриваемому клиенту.
                     clientHandlers.stream().filter(Predicate.not(sourceHandler::equals)).forEach(handler -> {
                         try {
                             handler.sendMessage(message);
