@@ -4,7 +4,7 @@ import threading
 HOST = '127.0.0.1'
 PORT = 8080
 
-grades = []
+grouped_grades = {}
 
 
 def handle_client(conn, addr):
@@ -35,7 +35,7 @@ Content-Length: {len(response_body)}
         params = parse_post_data(body)
         discipline = params.get('discipline', '')
         grade = params.get('grade', '')
-        grades.append({'discipline': discipline, 'grade': grade})
+        grouped_grades[discipline] = grouped_grades.get(discipline, []) + [grade]
 
         response_body = 'Data received'
         response = f"""HTTP/1.1 200 OK
@@ -67,8 +67,8 @@ def generate_html():
     <h1>Grades</h1>
     <table border="1">
         <tr><th>Discipline</th><th>Grade</th></tr>"""
-    for entry in grades:
-        html += f"<tr><td>{entry['discipline']}</td><td>{entry['grade']}</td></tr>"
+    for discipline in grouped_grades:
+        html += f"<tr><td>{discipline}</td><td>{','.join(grouped_grades[discipline])}</td></tr>"
     html += """
     </table>
 </body>
