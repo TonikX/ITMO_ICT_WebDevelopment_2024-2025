@@ -30,7 +30,7 @@ def handle_client(client_socket, client_address):
                     if message[16:] == "":
                         client_socket.send("[SYSTEM] Ошибка: вы не можете установить пустой никнейм.".encode('utf-8'))
                         continue
-                    if message[16:].lower() == "system":
+                    if message[16:].lower() == "system" or message[-5:].lower() == "(you)":
                         client_socket.send("[SYSTEM] Ошибка: вы не можете установить этот никнейм.".encode('utf-8'))
                         continue
                     old_username = member.username
@@ -72,10 +72,11 @@ def remove_chat_member(target_socket):
 
 
 def broadcast_message(message, sender_socket, system_msg: bool = False):
+    sender = find_chat_member(sender_socket)
     for member in members:
         if member.username is not None:
             try:
-                full_message = ("[SYSTEM]" if system_msg else f"[{member.username}{' (You)' if member.client_socket == sender_socket else ''}]") + f" {message}"
+                full_message = ("[SYSTEM]" if system_msg else f"[{sender.username}{' (You)' if member.client_socket == sender_socket else ''}]") + f" {message}"
                 member.client_socket.send(f"{full_message}".encode('utf-8'))
             except:
                 member.client_socket.close()
