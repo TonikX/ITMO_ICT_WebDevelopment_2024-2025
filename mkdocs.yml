@@ -26,6 +26,8 @@ theme:
         name: Switch to light mode
       primary: teal
       accent: lime
+plugins:
+  - search
 
 copyright: |
   &copy; 2024 <a href="https://github.com/hellkirl"  target="_blank" rel="noopener">Kirill Privalov</a>

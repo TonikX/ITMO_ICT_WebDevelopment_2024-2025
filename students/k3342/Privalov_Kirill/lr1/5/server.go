@@ -14,7 +14,7 @@ type Grade struct {
 }
 
 var (
-	gradesMap = make(map[string]int)
+	gradesMap = make(map[string][]Grade)
 	mu        sync.Mutex
 )
 
@@ -53,12 +53,16 @@ func handleHomePage(w http.ResponseWriter, r *http.Request) {
 	<table border="1">
 		<tr>
 			<th>Subject</th>
-			<th>Grade</th>
+			<th>Grades</th>
 		</tr>
-		{{range $subject, $grade := .}}
+		{{range $subject, $grades := .}}
 		<tr>
 			<td>{{$subject}}</td>
-			<td>{{$grade}}</td>
+			<td>
+				{{range $grades}}
+					{{.Grade}} 
+				{{end}}
+			</td>
 		</tr>
 		{{else}}
 		<tr>
@@ -95,7 +99,7 @@ func handleNewGrade(w http.ResponseWriter, r *http.Request) {
 	}
 
 	mu.Lock()
-	gradesMap[newGrade.Subject] = newGrade.Grade
+	gradesMap[newGrade.Subject] = append(gradesMap[newGrade.Subject], newGrade)
 	mu.Unlock()
 
 	w.WriteHeader(http.StatusNoContent)
