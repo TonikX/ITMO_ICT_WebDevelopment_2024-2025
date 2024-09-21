@@ -1,3 +1,11 @@
+## Задание 3: Клиент-серверное взаимодейстие с помощью сокетов и HTTP
+
+Описание: <br> Реализовать серверную часть приложения. Клиент подключается к серверу. В ответ
+клиент получает http-сообщение, содержащее html-страницу, которую сервер
+подгружает из файла index.html.
+
+Код сервера: 
+```python
 import sys
 import socket
 
@@ -31,3 +39,17 @@ while listening:
                f'{html}'
     conn_socket.send(response.encode('utf-8'))
     conn_socket.close()
+
+```
+Код клиента:
+```python
+import http.client
+
+host = 'localhost'
+client_conn = http.client.HTTPConnection(host, 8888)
+client_conn.request('GET', 'index.html')
+serv_response = client_conn.getresponse()
+print(serv_response.read().decode())
+
+```
+

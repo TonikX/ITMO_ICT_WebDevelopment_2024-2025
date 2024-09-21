@@ -7,7 +7,6 @@ except socket.error:
     print('Failed to create socket')
     sys.exit()
 
-# getting_response = True
 
 client_sock.connect(('localhost', 4242))
 print("Please write the lengths of triangle sides:")

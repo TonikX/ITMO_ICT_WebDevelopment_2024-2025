@@ -1,3 +1,9 @@
+## Задание 5: WEB-сервер на сокетах для обработки GET и POST запросов
+
+Описание: <br> Необходимо написать простой web-сервер для обработки GET и POST http запросов средствами Python и библиотеки socket. Cервер, который может: <br>● Принять и записать информацию о дисциплине и оценке по дисциплине. <br>● Отдать информацию обо всех оценах по дсициплине в виде html-страницы.
+
+Код сервера:
+```python
 import socket
 import json
 from bs4 import BeautifulSoup as bs
@@ -109,7 +115,7 @@ class HTTPServer:
         if req.parsed_url.path == "/grades":
             if req.method == "GET":
                 html = compile_html(req, "templates/lab1_5.html",
-                                    "json_files/grades.json")
+                                    "../students/K3340/Ananiev_Nikita/LR1/json_files/grades.json")
                 resp_headers = {
                     "Server": self.name,
                     "Date": str(datetime.now()),
@@ -140,3 +146,53 @@ if __name__ == '__main__':
         serv.serve_forever()
     except KeyboardInterrupt:
         pass
+
+```
+
+Код клиента:
+```python
+import os
+import http.client
+import webbrowser
+
+
+class HTTPClient:
+    def __init__(self):
+        self.conn = None
+
+    def connect_to(self, ip, port):
+        self.conn = http.client.HTTPConnection(ip, port)
+
+    def post_mark(self, subj, grade):
+        if not self.conn:
+            raise Exception('No connection provided')
+        self.conn.request('POST', f"/grades?subject={subj}&mark={grade}")
+        serv_response = self.conn.getresponse()
+        print(serv_response.status, serv_response.reason)
+
+    def get_marks(self, subj):
+        if not self.conn:
+            raise Exception('No connection provided')
+        self.conn.request('GET', f"/grades?subject={subj}")
+        serv_response = self.conn.getresponse()
+        path = "templates/lab1_5client.html"
+        body = serv_response.read()
+        with open(path, "wb") as cli_html:
+            cli_html.write(body)
+        webbrowser.open('file://' + os.path.realpath(path), new=2)
+
+
+if __name__ == "__main__":
+    _ip, _port = '127.0.0.1', 7878
+    client = HTTPClient()
+    while True:
+        client.connect_to(_ip, _port)
+        subject = input("Choose subject:")
+        choice = int(input("Choose POST mark(1) or GET marks(2):"))
+        if choice == 1:
+            mark = int(input("input mark(1-5):"))
+            client.post_mark(subject, mark)
+            continue
+        client.get_marks(subject)
+
+```

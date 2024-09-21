@@ -1,7 +1,7 @@
 import sys
 import socket
 import threading
-from copy import deepcopy, copy
+from copy import copy
 
 
 max_conn_count = 10

@@ -2,7 +2,6 @@ import sys
 import socket
 import threading
 
-
 getting_msg, host, port = True, 'localhost', 9090
 client_locker = threading.Lock()
 
