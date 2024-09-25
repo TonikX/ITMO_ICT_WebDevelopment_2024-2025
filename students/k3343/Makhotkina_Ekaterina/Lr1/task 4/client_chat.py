@@ -14,7 +14,7 @@ def receive_message(socket):
         except:
             break
 
-def main():
+def connection():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, PORT))
         threading.Thread(target=receive_message, args=(s,)).start()
@@ -26,4 +26,4 @@ def main():
             s.send(message.encode())
 
 if __name__ == "__main__":
-    main()
+    connection()
