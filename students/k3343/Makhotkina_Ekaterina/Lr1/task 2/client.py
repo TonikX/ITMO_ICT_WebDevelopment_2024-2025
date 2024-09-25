@@ -1,6 +1,6 @@
 import socket
 
-def main():
+def connection():
     host = '127.0.0.1'
     port = 5555
 
@@ -19,4 +19,4 @@ def main():
     client_socket.close()
 
 if __name__ == "__main__":
-    main()
+    connection()
