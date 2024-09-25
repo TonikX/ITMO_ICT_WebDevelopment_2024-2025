@@ -37,7 +37,7 @@ def remove(client_socket):
     message = f"{name} покинул чат"
     broadcast(bytes(message, "utf-8"))
 
-def main():
+def connection():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         server_socket.bind((HOST, PORT))
         server_socket.listen()
@@ -51,6 +51,6 @@ def main():
             threading.Thread(target=handle_client, args=(client_socket, client_address)).start()
 
 if __name__ == "__main__":
-    main()
+    connection()
 
 
