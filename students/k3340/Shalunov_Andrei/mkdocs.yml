@@ -1,0 +1,14 @@
+site_name: Shalunov Andrei WebDevelopment
+
+theme:
+  name: material
+  language: 'ru'
+
+nav:
+  - Home:  index.md
+  - Лабораторная №1:
+    - задание 1: Lr1/zad1.md
+    - задание 2: Lr1/zad2.md
+    - задание 3: Lr1/zad3.md
+    - задание 4: Lr1/zad4.md
+    - задание 5: Lr1/zad5.md
