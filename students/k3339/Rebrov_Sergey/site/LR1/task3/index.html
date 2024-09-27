@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -272,6 +277,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Задание 3
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -281,6 +297,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -354,6 +414,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -369,7 +464,42 @@
 
   <h1>Задание 3</h1>
 
+<h2 id="_1"><strong>Задание:</strong></h2>
+<p>Реализовать серверную часть приложения. Клиент подключается к серверу, и в ответ получает HTTP-сообщение, содержащее HTML-страницу, которую сервер подгружает из файла <code>index.html</code>.</p>
+<h2 id="_2"><strong>Решение:</strong></h2>
+<p>Серверная часть:</p>
+<ul>
+<li>Сервер создает TCP-сокет и ждет подключения клиентов.</li>
+<li>Принимает HTTP-запрос, определяет метод и URL.</li>
+<li>Если запрос — GET, отправляет содержимое HTML-страницы из файла <code>index.html</code>.</li>
+<li>Формирует корректный HTTP-ответ с содержимым HTML и отправляет клиенту.</li>
+</ul>
+<h2 id="_3"><strong>Код:</strong></h2>
+<p>server.py</p>
+<pre><code class="language-python">import socket
 
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+server_socket.listen(1)
+
+while True:
+    client_connection, client_address = server_socket.accept()
+    request = client_connection.recv(1024).decode()
+
+    html_content = open('index.html', 'r', encoding='utf-8').read()
+
+    http_response = (
+        &quot;HTTP/1.1 200 OK\r\n&quot;
+        &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
+        f&quot;Content-Length: {len(html_content.encode())}\r\n&quot;
+        &quot;Connection: close\r\n&quot;
+        &quot;\r\n&quot;
+        + html_content
+    )
+
+    client_connection.sendall(http_response.encode())
+    client_connection.close()
+</code></pre>
 
 
 

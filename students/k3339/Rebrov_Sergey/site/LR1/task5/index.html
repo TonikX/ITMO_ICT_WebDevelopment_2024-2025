@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -312,6 +317,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Задание 5
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -321,6 +337,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -352,6 +412,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -367,7 +462,151 @@
 
   <h1>Задание 5</h1>
 
+<h2 id="_1"><strong>Задание:</strong></h2>
+<p>Написать простой веб-сервер для обработки GET и POST HTTP-запросов с помощью библиотеки socket в Python.</p>
+<h2 id="_2"><strong>Решение:</strong></h2>
+<p>Серверная часть:</p>
+<ul>
+<li>Создается TCP-сокет и сервер начинает слушать входящие подключения.</li>
+<li>Принимает HTTP-запрос, определяет метод (GET или POST).</li>
+<li>В случае GET возвращает HTML-страницу, в случае POST сохраняет данные в JSON-файл.</li>
+<li>Обрабатывает ошибки и формирует соответствующие HTTP-ответы.</li>
+</ul>
+<h2 id="_3"><strong>Код:</strong></h2>
+<p>client.py</p>
+<pre><code class="language-python">import os
+import json
+import socket
+import urllib.parse
 
+
+class MyHTTPServer:
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.save_file = 'save.json'
+        self.html_file = 'index.html'
+
+    def serve_forever(self):
+        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        server_socket.bind((self.host, self.port))
+        server_socket.listen(1)
+
+        while True:
+            client_socket, _ = server_socket.accept()
+            client_socket.settimeout(5)
+            self.serve_client(client_socket)
+            client_socket.close()
+
+    def serve_client(self, client_socket):
+        try:
+            request = client_socket.recv(1024).decode()
+            print(request)
+
+            method, url, _ = self.parse_request(request)
+
+            if method == 'GET':
+                response_body = self.handle_get(url)
+            elif method == 'POST':
+                response_body = self.handle_post(request)
+            else:
+                response_body = &quot;Method Not Allowed&quot;
+
+            self.send_response(client_socket, response_body)
+        except Exception:
+            pass
+
+    @staticmethod
+    def parse_request(request):
+        lines = request.split('\r\n')
+        request_line = lines[0]
+        method, url, _ = request_line.split(' ')
+        return method, url, _
+
+    @staticmethod
+    def parse_headers(request):
+        lines = request.split('\r\n')
+        headers = {}
+        for line in lines[1:]:
+            if line == '':
+                break
+            key, value = line.split(': ', 1)
+            headers[key] = value
+        return headers
+
+    def handle_get(self, url):
+        if url == '/':
+            return self.generate_html_page()
+        else:
+            return &quot;404 Not Found&quot;
+
+    def handle_post(self, request):
+        headers = self.parse_headers(request)
+        content_length = int(headers.get('Content-Length', 0))
+        body = request.split('\r\n\r\n', 1)[1] if content_length &gt; 0 else ''
+
+        try:
+            post_data = urllib.parse.parse_qs(body)
+            discipline = post_data.get('discipline', [''])[0]
+            grade = int(post_data.get('grade', ['0'])[0])
+
+            grades = self.load_grades()
+            if discipline in grades:
+                grades[discipline].append(grade)
+            else:
+                grades[discipline] = [grade]
+            self.save_grades(grades)
+            return &quot;Data saved successfully!&quot;
+        except Exception as e:
+            return f&quot;Error: {str(e)}&quot;
+
+    @staticmethod
+    def send_response(client_socket, body):
+        http_response = (
+            &quot;HTTP/1.1 200 OK\r\n&quot;
+            &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
+            f&quot;Content-Length: {len(body.encode())}\r\n&quot;
+            &quot;Connection: close\r\n&quot;
+            &quot;\r\n&quot;
+            + body
+        )
+        client_socket.sendall(http_response.encode())
+
+    def load_grades(self):
+        if os.path.exists(self.save_file):
+            with open(self.save_file, 'r', encoding='utf-8') as file:
+                return json.load(file)
+        return {}
+
+    def save_grades(self, grades):
+        with open(self.save_file, 'w', encoding='utf-8') as file:
+            json.dump(grades, file, ensure_ascii=False, indent=4)
+
+    @staticmethod
+    def generate_table_rows(grades):
+        rows = &quot;&quot;
+        for discipline, grade_list in grades.items():
+            grades_str = ', '.join(list(map(str, grade_list)))
+            rows += f'&lt;tr&gt;&lt;td&gt;{discipline}&lt;/td&gt;&lt;td&gt;{grades_str}&lt;/td&gt;&lt;/tr&gt;\n'
+        return rows
+
+    def generate_html_page(self):
+        with open(self.html_file, 'r', encoding='utf-8') as file:
+            html_template = file.read()
+
+        grades = self.load_grades()
+        table_rows = self.generate_table_rows(grades)
+
+        html_page = html_template.replace('{{ table_rows }}', table_rows)
+        return html_page
+
+
+server = MyHTTPServer('localhost', 8080)
+try:
+    server.serve_forever()
+except KeyboardInterrupt:
+    pass
+</code></pre>
 
 
 

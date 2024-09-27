@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -251,6 +256,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Задание 2
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -260,6 +276,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -354,6 +414,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -369,7 +464,73 @@
 
   <h1>Задание 2</h1>
 
+<h2 id="_1"><strong>Задание:</strong></h2>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент запрашивает выполнение решения квадратного уравнения, параметры которого вводятся с клавиатуры. Сервер обрабатывает данные и возвращает результат клиенту.</p>
+<h2 id="_2"><strong>Решение:</strong></h2>
+<p>Клиентская часть:</p>
+<ul>
+<li>Клиент создает TCP-сокет и подключается к серверу.</li>
+<li>Отправляет параметры для решения квадратного уравнения (a, b, c).</li>
+<li>Получает результат и выводит его на экран.</li>
+</ul>
+<p>Серверная часть:</p>
+<ul>
+<li>Сервер создает TCP-сокет и ждет подключения клиентов.</li>
+<li>Принимает параметры, решает квадратное уравнение и отправляет результат клиенту.</li>
+<li>Обрабатывает ошибки, если входные данные некорректны.</li>
+</ul>
+<h2 id="_3"><strong>Код:</strong></h2>
+<p>client.py</p>
+<pre><code class="language-python">import socket
 
+a, b, c = 1, 2, -3
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('localhost', 8080))
+
+client_socket.send(f&quot;{a} {b} {c}&quot;.encode())
+result = client_socket.recv(1024)
+
+print(list(map(float, result.decode().split())))
+
+client_socket.close()
+</code></pre>
+<p>server.py</p>
+<pre><code class="language-python">import socket
+import math
+
+
+def solve_quadratic(a, b, c):
+    discriminant = b**2 - 4*a*c
+    if discriminant &gt; 0:
+        x1 = (-b + math.sqrt(discriminant)) / (2 * a)
+        x2 = (-b - math.sqrt(discriminant)) / (2 * a)
+        ans = [x1, x2]
+    elif discriminant == 0:
+        x = -b / (2 * a)
+        ans = [x]
+    else:
+        ans = []
+    return &quot; &quot;.join(list(map(str, ans)))
+
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+server_socket.listen(1)
+
+while True:
+    client_socket, client_address = server_socket.accept()
+    request = client_socket.recv(1024).decode()
+
+    try:
+        a1, b1, c1 = map(float, request.split())
+        result = solve_quadratic(a1, b1, c1)
+    except ValueError:
+        result = &quot;Error: Введите три действительных числа.&quot;
+
+    client_socket.sendall(result.encode())
+    client_socket.close()
+</code></pre>
 
 
 

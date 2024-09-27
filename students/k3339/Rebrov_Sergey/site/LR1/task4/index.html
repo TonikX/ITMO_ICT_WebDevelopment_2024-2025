@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -293,6 +298,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Задание 4
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -302,6 +318,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -354,6 +414,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -369,7 +464,121 @@
 
   <h1>Задание 4</h1>
 
+<h2 id="_1"><strong>Задание:</strong></h2>
+<p>Реализовать многопользовательский чат.</p>
+<h2 id="_2"><strong>Решение:</strong></h2>
+<p>Клиентская часть:</p>
+<ul>
+<li>Клиент подключается к серверу и отправляет свое имя.</li>
+<li>Запускает потоки для отправки и получения сообщений.</li>
+<li>Обрабатывает сообщения от сервера и выводит их на экран.</li>
+</ul>
+<p>Серверная часть:</p>
+<ul>
+<li>Сервер создает TCP-сокет и слушает входящие подключения.</li>
+<li>Для каждого нового клиента создается отдельный поток.</li>
+<li>Каждый клиент получает имя и может отправлять сообщения другим участникам.</li>
+<li>Сервер управляет списком клиентов и рассылает сообщения всем, кроме отправителя.</li>
+</ul>
+<h2 id="_3"><strong>Код:</strong></h2>
+<p>client1.py</p>
+<pre><code class="language-python">import socket
+import threading
 
+name = &quot;Иван&quot;
+
+
+def receive_messages(client_sock):
+    while True:
+        try:
+            print(client_sock.recv(1024).decode())
+        except:
+            print(&quot;** Ошибка подключения. **&quot;)
+            client_sock.close()
+            break
+
+
+def send_messages(client_sock):
+    while True:
+        try:
+            client_sock.send(input().encode('utf-8'))
+        except:
+            print(&quot;** Ошибка отправки сообщения. **&quot;)
+            client_sock.close()
+            break
+
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('localhost', 8080))
+
+client_socket.send(name.encode())
+
+receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
+receive_thread.start()
+
+send_thread = threading.Thread(target=send_messages, args=(client_socket,))
+send_thread.start()
+
+print(&quot;** Вы присоединились к чату! **&quot;)
+</code></pre>
+<p>server.py</p>
+<pre><code class="language-python">import socket
+import threading
+from datetime import datetime
+
+clients = {}
+
+
+def handle_client(client_sock):
+    try:
+        name = client_sock.recv(1024).decode()
+        clients[client_sock] = name
+        print(f'{name} присоединился к чату.')
+
+        broadcast(f'** {name} присоединился к чату! **', client_sock)
+
+        while True:
+            message = client_sock.recv(1024).decode()
+            if message:
+                formatted_message = f'[{datetime.now().strftime(&quot;%H:%M&quot;)}] {name}: {message}'
+                broadcast(formatted_message, client_sock)
+            else:
+                remove_client(client_sock)
+                break
+    except:
+        remove_client(client_sock)
+
+
+def broadcast(message, client_sock):
+    for client in clients:
+        if client != client_sock:
+            try:
+                client.send(message.encode())
+            except:
+                remove_client(client)
+
+
+def remove_client(client_sock):
+    if client_sock in clients:
+        name = clients[client_sock]
+        print(f'{name} отключился.')
+        broadcast(f'** {name} покинул чат. **', client_sock)
+        clients.pop(client_sock)
+        client_sock.close()
+
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+server_socket.listen()
+print(f'Сервер запущен')
+
+while True:
+    client_socket, client_address = server_socket.accept()
+    print(f'Новое подключение от {client_address}')
+
+    thread = threading.Thread(target=handle_client, args=(client_socket,))
+    thread.start()
+</code></pre>
 
 
 

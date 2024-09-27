@@ -59,6 +59,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -228,6 +233,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Задание 1
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -237,6 +253,50 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -352,6 +412,41 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Решение:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -367,7 +462,54 @@
 
   <h1>Задание 1</h1>
 
+<h2 id="_1"><strong>Задание:</strong></h2>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент отправляет серверу сообщение «Hello, server», и оно должно отобразиться на стороне сервера. В ответ сервер отправляет клиенту сообщение «Hello, client», которое должно отобразиться у клиента.</p>
+<h2 id="_2"><strong>Решение:</strong></h2>
+<p>Клиентская часть:</p>
+<ul>
+<li>Клиент создает UDP-сокет и подключается к серверу.</li>
+<li>Отправляет сообщение «Hello, server» на сервер.</li>
+<li>Получает от сервера ответ и выводит его на экран.</li>
+<li>Сокет закрывается.</li>
+</ul>
+<p>Серверная часть:</p>
+<ul>
+<li>Сервер создает UDP-сокет и привязывается к локальному адресу.</li>
+<li>Ждет получения сообщений от клиентов.</li>
+<li>Принимает сообщение от клиента, выводит его на экран и отправляет ответное сообщение «Hello, client».</li>
+<li>Цикл повторяется для новых подключений.</li>
+</ul>
+<h2 id="_3"><strong>Код:</strong></h2>
+<p>client.py</p>
+<pre><code class="language-python">import socket
 
+request = 'Hello, server'
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+client_socket.connect(('localhost', 8080))
+
+client_socket.send(request.encode())
+response, server_address = client_socket.recvfrom(1024)
+
+print(response.decode())
+
+client_socket.close()
+</code></pre>
+<p>server.py</p>
+<pre><code class="language-python">import socket
+
+response = 'Hello, client'
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server_socket.bind(('localhost', 8080))
+
+while True:
+    request, client_address = server_socket.recvfrom(1024)
+
+    print(request.decode())
+
+    server_socket.sendto(response.encode(), client_address)
+</code></pre>
 
 
 
