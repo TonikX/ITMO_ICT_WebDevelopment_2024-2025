@@ -21,7 +21,9 @@ def handle(client):
       index = clients.index(client)
       name = names[index]
       message = client.recv(1024)
-      broadcast(message)
+      if message:
+        message = f'{name}: '.encode('utf-8') + message
+        broadcast(message)
     except:
       clients.remove(client)
       client.close()

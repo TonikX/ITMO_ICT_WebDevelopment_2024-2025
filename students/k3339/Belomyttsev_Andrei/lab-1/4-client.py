@@ -24,7 +24,7 @@ def get():
 
 def send():
   while True:
-    message = f'{name}: {input()}'
+    message = input()
     client.send(message.encode('utf-8'))
 
 threading.Thread(target=get).start()

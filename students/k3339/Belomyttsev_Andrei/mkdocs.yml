@@ -1,6 +1,11 @@
 site_name: Web Docs
 nav:
   - Home: index.md
-  - Lab-1: lab-1.md
+  - Lab-1:
+    - Task-1: lab-1/task-1.md
+    - Task-2: lab-1/task-2.md
+    - Task-3: lab-1/task-3.md
+    - Task-4: lab-1/task-4.md
+    - Task-5: lab-1/task-5.md
 theme:
   name: material
