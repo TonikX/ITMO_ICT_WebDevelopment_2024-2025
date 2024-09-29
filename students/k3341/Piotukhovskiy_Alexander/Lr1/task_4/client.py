@@ -1,6 +1,6 @@
 import socket
-import threading
 import sys
+import threading
 
 HOST = 'localhost'
 PORT = 8080

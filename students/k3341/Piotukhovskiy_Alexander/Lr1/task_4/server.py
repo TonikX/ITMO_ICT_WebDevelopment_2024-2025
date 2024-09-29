@@ -1,6 +1,6 @@
-from dataclasses import dataclass
 import socket
 import threading
+from dataclasses import dataclass
 
 HOST = "localhost"
 PORT = 8080
