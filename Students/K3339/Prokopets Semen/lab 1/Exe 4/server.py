@@ -14,14 +14,12 @@ def handle_client(client_socket):
             message = client_socket.recv(1024).decode()
             if message:
                 print(f"Received: {message}")
-                # Рассылка сообщения всем клиентам
                 broadcast(message, client_socket)
             else:
                 break
         except:
             break
 
-    # Удаление клиента из списка при отключении
     client_sockets.remove(client_socket)
     client_socket.close()
 
@@ -45,7 +43,6 @@ def start_server():
         print(f"{client_address} connected.")
         client_sockets.add(client_socket)
 
-        # Запуск нового потока для обработки клиента
         threading.Thread(target=handle_client, args=(client_socket,)).start()
 
 

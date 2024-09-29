@@ -1,7 +1,6 @@
 import socket
 import threading
 
-# Настройки клиента
 SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 5002
 separator_token = "<SEP>"
@@ -23,14 +22,12 @@ def start_client():
     client_socket = socket.socket()
     client_socket.connect((SERVER_HOST, SERVER_PORT))
 
-    # Запуск потока для получения сообщений
     threading.Thread(target=listen_for_messages, args=(client_socket,), daemon=True).start()
 
     while True:
         message = input()
         if message.lower() == 'exit':
             break
-        # Отправка сообщения на сервер
         client_socket.send(message.encode())
 
     client_socket.close()
