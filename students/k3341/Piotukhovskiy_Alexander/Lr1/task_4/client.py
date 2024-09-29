@@ -1,16 +1,19 @@
 import socket
-import sys
 import threading
 
 HOST = 'localhost'
 PORT = 8080
-BUFFER_SIZE = 1024
+BUFFER_SIZE = 4
 
 
 def receive_messages(client_socket):
     while True:
         try:
-            message = client_socket.recv(BUFFER_SIZE).decode('utf-8')
+            message_length_data = client_socket.recv(BUFFER_SIZE)
+            if not message_length_data:
+                continue
+            message_length = int.from_bytes(message_length_data, byteorder="big")
+            message = client_socket.recv(message_length).decode('utf-8')
             if message:
                 print(f"\n{message}")
         except:
@@ -20,14 +23,22 @@ def receive_messages(client_socket):
 
 
 username = input("Введите свой никнейм: ")
+chat_id = input("Введите id чата: ")
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((HOST, PORT))
 
 receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
 receive_thread.start()
-client_socket.send(f"/setup_nickname {username}".encode())
 
-print("[*] Подключен к чату. Введите сообщения для отправки:")
+
+def send_message(client_socket, msg):
+    msg = msg.encode()
+    msg_length = len(msg).to_bytes(BUFFER_SIZE, byteorder='big')
+    client_socket.sendall(msg_length + msg)
+
+
+send_message(client_socket, f"/setup_nickname {username}")
+send_message(client_socket, f"/join_chat {chat_id}")
 
 while True:
     try:
@@ -35,8 +46,7 @@ while True:
         if message.lower() == 'exit':
             client_socket.close()
             break
-        sys.stdout.write("\033[F")
-        client_socket.send(message.encode('utf-8'))
+        send_message(client_socket, message)
     except KeyboardInterrupt:
         client_socket.close()
         break
