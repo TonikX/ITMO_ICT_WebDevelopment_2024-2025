@@ -1,0 +1,11 @@
+site_name: Lab_1
+nav:
+  - Home: index.md
+  - 1 lab:
+      - Task 1: lw1/ex_1.md
+      - Task 2: lw1/ex_2.md
+      - Task 3: lw1/ex_3.md
+      - Task 4: lw1/ex_4.md
+      - Task 5: lw1/ex_5.md
+theme:
+  name: Windmill Dark
