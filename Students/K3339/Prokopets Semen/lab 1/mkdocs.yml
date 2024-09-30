@@ -1,0 +1,11 @@
+site_name: WEB-programming
+nav:
+  - Home: index.md
+  - 1 lab:
+    - Exe 1: 1.md
+    - Exe 2: 2.md
+    - Exe 3: 3.md
+    - Exe 4: 4.md
+    - Exe 5: 5.md
+theme:
+  name: readthedocs

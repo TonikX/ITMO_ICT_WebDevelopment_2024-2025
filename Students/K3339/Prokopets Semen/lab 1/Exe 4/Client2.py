@@ -3,7 +3,6 @@ import threading
 
 SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 5002
-separator_token = "<SEP>"
 
 
 def listen_for_messages(client_socket):
