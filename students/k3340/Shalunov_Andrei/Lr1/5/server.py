@@ -1,7 +1,7 @@
 import socket
 from threading import Thread
 
-grades = {}
+grades_list = []
 
 
 def handle_client(client_sock):
@@ -37,9 +37,18 @@ def handle_client(client_sock):
                 if grade_key in post_grades:
                     post_grades[grade_key]['grade'] = grade_value
 
-            for key, value in post_grades.items():
-                if value['subject'] and value['grade']:
-                    grades[value['subject']] = value['grade']
+        for key, value in post_grades.items():
+            if value.get('subject') and value.get('grade'):
+                subject_found = False
+                for item in grades_list:
+                    if item['subject'] == value['subject']:
+                        item['grades'].append(value['grade'])
+                        subject_found = True
+                        break
+
+                if not subject_found:
+                    grades_list.append({'subject': value['subject'], 'grades': [value['grade']]})
+
 
         response = """HTTP/1.1 200 OK
         Content-Type: text/plain
@@ -64,7 +73,7 @@ def parse_request(request):
 
 
 def generate_html():
-    sorted_grades = dict(sorted(grades.items()))
+    sorted_grades = sorted(grades_list, key=lambda x: x['subject'])
     html_text = """
     <html>
     <head><title>My grades</title></head>
@@ -75,12 +84,13 @@ def generate_html():
                 <th>Subject</th>
                 <th>Grade</th>
             </tr>"""
-
-    for subject, grade in sorted_grades.items():
+    for item in sorted_grades:
+        subject = item["subject"]
+        grades = item["grades"]
         html_text += f"""
         <tr>
             <td>{subject}</td>
-            <td>{grade}</td>
+            <td>{", ".join(grades)}</td>
         """
 
     html_text += """
