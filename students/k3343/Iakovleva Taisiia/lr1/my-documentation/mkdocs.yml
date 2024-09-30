@@ -1,0 +1,14 @@
+site_name: "Documentation"
+theme:
+  name: 'material'
+  palette:
+    primary: 'blue'
+    accent: 'blue'
+
+nav:
+  - Home: index.md
+  - Lab1:
+    - Task 1: lr1/task-1.md
+    - Task 2: lr1/task-2.md
+    - Task 3: lr1/task-3.md
+    - Task 4: lr1/task-4.md
