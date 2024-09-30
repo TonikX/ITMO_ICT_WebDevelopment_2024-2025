@@ -9,5 +9,4 @@ client_socket.sendto(message.encode(), server_address)
 response, server = client_socket.recvfrom(1024)
 print(f"Server response: {response.decode()}")
 
-# Закрываем соединение
 client_socket.close()
