@@ -1,0 +1,10 @@
+site_name: My Docs
+nav:
+  - Lab 1:
+      - task 1: lab1/1.md
+      - task 2: lab1/2.md
+      - task 3: lab1/3.md
+      - task 4: lab1/4.md
+      - task 5: lab1/5.md
+theme:
+  name: material
