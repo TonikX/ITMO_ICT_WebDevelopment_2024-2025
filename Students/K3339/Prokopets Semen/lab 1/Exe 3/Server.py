@@ -1,0 +1,35 @@
+import socket
+
+
+def create_server(host='127.0.0.1', port=8081):
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+    server_socket.bind((host, port))
+
+    server_socket.listen(1)
+    print(f"Сервер запущен на http://{host}:{port}")
+
+    while True:
+        client_socket, client_address = server_socket.accept()
+        print(f"Подключен клиент: {client_address}")
+
+        request = client_socket.recv(1024).decode()
+        print(f"Запрос: {request}")
+
+        try:
+            with open('index.html', 'r') as file:
+                html_content = file.read()
+        except FileNotFoundError:
+            html_content = "<h1>404 Not Found</h1>"
+
+        response = f"HTTP/1.1 200 OK\nContent-Type: text/html\n\n{html_content}"
+
+        client_socket.sendall(response.encode())
+
+        client_socket.close()
+
+
+if __name__ == "__main__":
+    create_server()
