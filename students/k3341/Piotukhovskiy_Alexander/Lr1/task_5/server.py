@@ -19,10 +19,10 @@ class Logger:
         self.__reset = "\033[0m"
         if service is None:
             print("Логгер инициализирован без имени.")
-        if isinstance(service, object) and service is not None:
-            self.__service_name = service.__class__.__name__
-        elif isinstance(service, str):
+        if isinstance(service, str):
             self.__service_name = service
+        elif isinstance(service, object) and service is not None:
+            self.__service_name = service.__name__
         else:
             self.__service_name = "UnnamedService"
 
@@ -191,5 +191,5 @@ if __name__ == '__main__':
     port = int(sys.argv[2]) if len(sys.argv) > 2 else PORT
 
     serv = MyHTTPServer(HOST, PORT)
-    log = Logger(serv)
+    log = Logger(MyHTTPServer)
     serv.serve_forever()
