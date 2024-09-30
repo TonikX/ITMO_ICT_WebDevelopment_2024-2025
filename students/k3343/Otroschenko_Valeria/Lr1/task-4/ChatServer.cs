@@ -6,59 +6,52 @@ namespace ConsoleApp1.task_4;
 
 class ChatServer
 {
-    // Список подключенных клиентов
     private static List<TcpClient> clients = new List<TcpClient>();
-    private static object lockObject = new object(); // Для синхронизации доступа к списку клиентов
+    private static object lockObject = new object();
+    
+    private const string IpAddress = "127.0.0.1";
+    private const int Port = 8080;
+    private const int BufferSize = 1024;
 
     public static void Main()
     {
-        // Устанавливаем IP-адрес и порт
-        IPAddress ip = IPAddress.Parse("127.0.0.1");
-        int port = 8080;
-
-        // Создаем сервер, прослушивающий подключение
-        TcpListener server = new TcpListener(ip, port);
+        IPAddress ip = IPAddress.Parse(IpAddress);
+        TcpListener server = new TcpListener(ip, Port);
         server.Start();
 
-        Console.WriteLine("Сервер запущен. Ожидание подключений...");
+        Console.WriteLine($"Сервер запущен на {IpAddress}:{Port}. Ожидание подключений...");
 
         while (true)
         {
-            // Принимаем новое подключение
             TcpClient client = server.AcceptTcpClient();
             Console.WriteLine("Новый клиент подключен.");
 
-            // Добавляем клиента в список
             lock (lockObject)
             {
                 clients.Add(client);
             }
 
-            // Запускаем поток для обработки сообщений клиента
             Thread clientThread = new Thread(HandleClient);
             clientThread.Start(client);
         }
     }
 
-    // Обработка клиента
     private static void HandleClient(object clientObject)
     {
         TcpClient client = (TcpClient)clientObject;
         NetworkStream stream = client.GetStream();
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[BufferSize];
 
         try
         {
             while (true)
             {
-                // Читаем сообщение от клиента
                 int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                if (bytesRead == 0) break; // Если клиент отключился
+                if (bytesRead == 0) break;
 
                 string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                 Console.WriteLine("Получено сообщение: " + message);
 
-                // Отправляем сообщение всем клиентам
                 BroadcastMessage(message, client);
             }
         }
@@ -68,7 +61,6 @@ class ChatServer
         }
         finally
         {
-            // Удаляем клиента из списка при отключении
             lock (lockObject)
             {
                 clients.Remove(client);
@@ -77,7 +69,6 @@ class ChatServer
         }
     }
 
-    // Рассылка сообщения всем клиентам, кроме отправителя
     private static void BroadcastMessage(string message, TcpClient senderClient)
     {
         lock (lockObject)
