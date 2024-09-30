@@ -6,7 +6,7 @@ from constants import SERVER_HOST, SERVER_PORT
 
 @contextmanager
 def client():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((SERVER_HOST, SERVER_PORT))
     try:
         yield sock
@@ -15,7 +15,7 @@ def client():
 
 
 def send_message(sock, message: str):
-    sock.sendall(message.encode("utf-8"))
+    sock.send(message.encode("utf-8"))
 
 
 def receive_message(sock):
