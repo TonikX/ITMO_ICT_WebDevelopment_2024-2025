@@ -1,0 +1,19 @@
+site_name: Web Lab 1
+nav:
+ - Home: index.md
+ - first_task:
+     - "client": first_task/client.md
+     - "server": first_task/server.md
+ - second_task:
+     - "client": second_task/client.md
+     - "server": second_task/server.md
+ - third_task:
+     - "server": third_task/server.md
+     - "index_html": third_task/index_html.md
+ - fourth_task:
+     - "client": fourth_task/client.md
+     - "server": fourth_task/server.md
+ - fifth_task:
+     - "server": fifth_task/server.md
+theme:
+  name: readthedocs
