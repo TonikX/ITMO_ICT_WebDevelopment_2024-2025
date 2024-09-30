@@ -13,7 +13,6 @@ server.listen()
 clients = []
 
 def broadcast(message, sender):
-    # Send the message to all clients except the sender
     for client in clients:
         if client != sender:
             client.send(message)
@@ -35,7 +34,7 @@ def receive():
         client, addr = server.accept()
         print(f'Connection is established with {str(addr)}')
         clients.append(client)
-        broadcast(f'{str(addr)} has entered the room'.encode(FORMAT), None)  # Notify all about new connection
+        broadcast(f'{str(addr)} has entered the room\n'.encode(FORMAT), None)  # Notify all about new connection
         client.send('You are now connected'.encode(FORMAT))
         thread = threading.Thread(target=handle_client, args=(client,))
         thread.start()

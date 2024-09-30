@@ -1,0 +1,11 @@
+site_name: OKTIOKTIOKTI
+nav:
+  - Home: index.md
+  - Lr1:
+      - "task #1": Lr1-report/task_#1.md
+      - "task #2": Lr1-report/task_#2.md
+      - "task #3": Lr1-report/task_#3.md
+      - "task #4": Lr1-report/task_#4.md
+
+theme:
+  name: dracula
