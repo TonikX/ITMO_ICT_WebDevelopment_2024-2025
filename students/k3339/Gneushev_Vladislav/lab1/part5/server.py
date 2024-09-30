@@ -3,10 +3,10 @@ import socket
 import threading
 
 from constants import SERVER_HOST, SERVER_PORT
-from dto import Request
+from dto import Request, DisciplineGrade
 from schemas import CreateDisciplineScore
 
-discipline_grades: dict[str, int] = {}
+discipline_grades: list[DisciplineGrade] = []
 
 
 class MyHTTPServer:
@@ -88,7 +88,10 @@ class MyHTTPServer:
         try:
             json_body = json.loads(request.body)
             body = CreateDisciplineScore(**json_body)
-            discipline_grades[body.discipline] = body.grade
+            discipline_grades.append(DisciplineGrade(
+                discipline=body.discipline,
+                grade=body.grade
+            ))
         except json.JSONDecodeError:
             return self.send_error(conn, 'Invalid JSON')
         except Exception as e:
@@ -109,11 +112,11 @@ class MyHTTPServer:
                         <th>Grade</th>
                     </tr>
         """
-        for discipline, grade in discipline_grades.items():
+        for discipline_grade in discipline_grades:
             data += f"""
                     <tr>
-                        <td>{discipline}</td>
-                        <td>{grade}</td>
+                        <td>{discipline_grade.discipline}</td>
+                        <td>{discipline_grade.grade}</td>
                     </tr>
             """
         data += """

@@ -7,3 +7,9 @@ class Request:
     method: str
     headers: dict[str, str]
     body: str
+
+
+@dataclass
+class DisciplineGrade:
+    discipline: str
+    grade: int
