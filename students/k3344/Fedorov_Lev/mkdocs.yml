@@ -1,0 +1,12 @@
+site_name: WEB documentation
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task 1": Lr1/Task_1.md
+      - "Task 2": Lr1/Task_2.md
+      - "Task 3": Lr1/Task_3.md
+      - "Task 4": Lr1/Task_4.md
+      - "Task 5": Lr1/Task_5.md
+
+theme:
+  name: material
