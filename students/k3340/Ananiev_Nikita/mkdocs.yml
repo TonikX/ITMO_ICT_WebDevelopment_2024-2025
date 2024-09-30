@@ -1,0 +1,11 @@
+site_name: Nikita Ananiev WEB
+nav:
+  - Home:  index.md
+  - lab_1:
+    - 1 task : lab_1/task1.md
+    - 2 task : lab_1/task2.md
+    - 3 task : lab_1/task3.md
+    - 4 task : lab_1/task4.md
+    - 5 task : lab_1/task5.md
+theme:
+  name: material
