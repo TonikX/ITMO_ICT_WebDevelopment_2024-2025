@@ -55,8 +55,12 @@ class MyHTTPServer:
         return headers
 
     def handle_request(self, req):
-        if req.method == 'GET' and req.path == '/':
-            return self.handle_get_subjects()
+        if req.method == 'GET':
+            if req.path == '/':
+                return self.handle_get_subjects()
+            elif req.path.startswith('/subject/'):
+                subject_id = req.path[len('/subject/'):]
+                return self.handle_get_subject_by_id(subject_id)
         elif req.method == 'POST' and req.path == '/subject':
             return self.handle_post_subject(req)
         else:
@@ -85,6 +89,19 @@ class MyHTTPServer:
             html += f"<li>{subject['name']}: {subject['mark']}</li>"
         html += "</ul></body></html>"
         return Response(200, "OK", headers={"Content-Type": "text/html"}, body=html)
+
+    def handle_get_subject_by_id(self, subject_id):
+        try:
+            subject_id = int(subject_id)
+            subject = self._subjects.get(subject_id)
+            if not subject:
+                return Response(404, "Not Found", body="Subject not found")
+
+            body = f"Name: {subject['name']}, Mark: {subject['mark']}"
+            return Response(200, "OK", headers={"Content-Type": "text/plain"}, body=body)
+
+        except ValueError:
+            return Response(400, "Bad Request", body="Invalid subject ID")
 
     def send_response(self, conn, resp):
         status_line = f"HTTP/1.1 {resp.status} {resp.reason}\r\n"
