@@ -1,0 +1,11 @@
+site_name: Отчеты по веб-программированию
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'deep red'
+    accent: 'deep red'
+  font:
+    text: 'Nunito'
+
+
