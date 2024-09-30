@@ -1,0 +1,11 @@
+site_name: Web-программирование
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "ex-1": Lr1/ex-1.md
+      - "ex-2": Lr1/ex-2.md
+      - "ex-3": Lr1/ex-3.md
+      - "ex-4": Lr1/ex-4.md
+      - "ex-5": Lr1/ex-5.md
+theme:
+ name: cinder
