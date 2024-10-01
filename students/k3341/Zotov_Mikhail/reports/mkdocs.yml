@@ -1,0 +1,14 @@
+site_name: Зотов Михаил Дмитриевич 2.2
+nav:
+ - Home: index.md
+ - Лабораторная 1:
+     - Задание 1: lab1/task1
+     - Задание 2: lab1/task2
+     - Задание 3: lab1/task3
+     - Задание 4: lab1/task4
+     - Задание 5: lab1/task5
+
+
+
+theme:
+ name: dracula
