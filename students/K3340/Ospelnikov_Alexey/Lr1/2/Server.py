@@ -1,21 +1,20 @@
 import socket
 import math
 
-socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-socket.bind(('', 8080))
+server_socket = socket.socket()
+server_socket.bind(('', 8080))
 
-max_user = 1
+max_user = 5
+server_socket.listen(max_user)
 while True:
-    
-    client_data, addr = socket.recvfrom(1024)
-    if not client_data:
+    client_socket, addr = server_socket.accept()
+    client_data = list(map(lambda x: int(x), client_socket.recv(1024).decode().split()))
+    if not client_data or len(client_data) != 3:
+        print("Invalid parameters for triangle area task")
+        client_socket.close()
         break
-    if len(client_data.split()) != 3:
-        socket.sendto(b"Wrong Input", addr)
-    else:
-        parall_measures = client_data.split()
-        S = float(parall_measures[0]) * float(parall_measures[1]) * math.sin(float(parall_measures[2]))
-        socket.sendto(bytes(str(S), "utf-8"), addr)
+    S = client_data[0] * client_data[1] * math.sin(client_data[2])
+    client_socket.send(bytes(str(S), 'utf-8'))    
     print(client_data)
 
 socket.close()
