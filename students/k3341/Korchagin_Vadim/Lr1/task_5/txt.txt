@@ -1,0 +1,26 @@
+# Добавление дисциплины
+
+nc 127.0.0.1 12345
+POST /subjects?name=Web HTTP/1.1
+Host: example.local
+
+# Получение списка дисциплин
+
+GET /subjects HTTP/1.1
+Host: example.local
+Accept: text/html
+
+# Добавление оценки
+
+POST /subjects/1?mark=5 HTTP/1.1
+Host: example.local
+
+POST /subjects/2?mark=4 HTTP/1.1
+Host: example.local
+
+
+# Получение оценок по дисциплине
+
+GET /subjects/1 HTTP/1.1
+Host: example.local
+Accept: text/html
