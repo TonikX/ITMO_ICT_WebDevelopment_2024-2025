@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://lek1ch.github.io/ITMO_ICT_WebDevelopment_2024-2025/docs/task3/">
+        <link rel="canonical" href="https://lek1ch.github.io/ITMO_ICT_WebDevelopment_2024-2025/lr1/task2/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Задание 3 - Отчет по заданиям</title>
+        <title>Задание 2 - Отчет по заданиям</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
@@ -41,10 +41,10 @@
                                 <a href="../task1/" class="nav-link">Задание 1</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../task2/" class="nav-link">Задание 2</a>
+                                <a href="./" class="nav-link active" aria-current="page">Задание 2</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Задание 3</a>
+                                <a href="../task3/" class="nav-link">Задание 3</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../task4/" class="nav-link">Задание 4</a>
@@ -61,12 +61,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../task2/" class="nav-link">
+                                <a rel="prev" href="../task1/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../task4/" class="nav-link">
+                                <a rel="next" href="../task3/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -88,7 +88,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#3" class="nav-link">Задание 3</a>
+            <li class="nav-item" data-bs-level="1"><a href="#2" class="nav-link">Задание 2</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Код</a>
               <ul class="nav flex-column">
@@ -101,55 +101,54 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="3">Задание 3</h1>
-<p>Реализовать серверную часть приложения. Клиент подключается к серверу, и в ответ получает HTTP-сообщение, содержащее HTML-страницу, которая сервер подгружает из файла index.html.</p>
-<p>Обязательно использовать библиотеку socket.</p>
+<h1 id="2">Задание 2</h1>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент запрашивает выполнение математической операции, параметры которой вводятся с клавиатуры. Сервер обрабатывает данные и возвращает результат клиенту.</p>
+<p>Варианты операций:</p>
+<p>Теорема Пифагора.
+Решение квадратного уравнения.
+Поиск площади трапеции.
+Поиск площади параллелограмма.
+Порядок выбора варианта: Выбирается по порядковому номеру в журнале (пятый студент получает вариант 1 и т.д.).</p>
+<p>Требования:</p>
+<p>Обязательно использовать библиотеку socket.
+Реализовать с помощью протокола TCP.</p>
 <h2 id="_1">Код</h2>
 <p>Серверная часть</p>
 <pre><code class="language-python">import socket
 
-# Чтение содержимого HTML-файла
-with open('index.html', 'r', encoding='utf-8') as file:
-    html_content = file.read()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('localhost', 12345))
+s.listen(1)
 
-# Создание HTTP-ответа
-response = f&quot;&quot;&quot;\
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: {len(html_content)}
+while True:
+    conn, addr = s.accept()
 
-{html_content}
-&quot;&quot;&quot;
+    data = conn.recv(1024).decode('utf-8')
+    a, b = data.split()
+    a = int(a)
+    b = int(b)
+    pif = (a**2+b**2)**0.5
 
+    conn.send(str(pif).encode())
+    conn.close()
 
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-
-server_socket.bind(('localhost', 8080))
+s.close()
 </code></pre>
 <p>Клиентская часть</p>
 <pre><code class="language-python">import socket
 
-# Создаем TCP-сокет
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('localhost', 12345))
 
-# Подключаемся к серверу (например, localhost и порт 8080)
-server_address = ('localhost', 8080)
-client_socket.connect(server_address)
+print(&quot;Введи два числа&quot;)
+chislo = input()
 
-# Формируем простой HTTP-запрос
-http_request = &quot;GET / HTTP/1.1\r\nHost: localhost\r\n\r\n&quot;
+client_socket.send(chislo.encode())
 
-# Отправляем запрос на сервер
-client_socket.sendall(http_request.encode('utf-8'))
+result = client_socket.recv(1024).decode()
 
-# Получаем ответ от сервера
-response = client_socket.recv(4096).decode('utf-8')
+print(&quot;Гипотенуза =&quot;, result)
 
-# Выводим ответ
-print(response)
-
-# Закрываем соединение
 client_socket.close()
 </code></pre></div>
             </div>

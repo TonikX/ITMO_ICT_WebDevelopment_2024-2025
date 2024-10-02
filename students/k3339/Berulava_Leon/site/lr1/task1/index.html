@@ -6,9 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         
-        <link rel="canonical" href="https://lek1ch.github.io/ITMO_ICT_WebDevelopment_2024-2025/docs/task4/">
+        <link rel="canonical" href="https://lek1ch.github.io/ITMO_ICT_WebDevelopment_2024-2025/lr1/task1/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Задание 4 - Отчет по заданиям</title>
+        <title>Задание 1 - Отчет по заданиям</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/fontawesome.min.css" rel="stylesheet">
         <link href="../../css/brands.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
                                 <a href="../" class="nav-link">Главная</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../task1/" class="nav-link">Задание 1</a>
+                                <a href="./" class="nav-link active" aria-current="page">Задание 1</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../task2/" class="nav-link">Задание 2</a>
@@ -47,7 +47,7 @@
                                 <a href="../task3/" class="nav-link">Задание 3</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./" class="nav-link active" aria-current="page">Задание 4</a>
+                                <a href="../task4/" class="nav-link">Задание 4</a>
                             </li>
                             <li class="nav-item">
                                 <a href="../task5/" class="nav-link">Задание 5</a>
@@ -61,12 +61,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../task3/" class="nav-link">
+                                <a rel="prev" href="../" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../task5/" class="nav-link">
+                                <a rel="next" href="../task2/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -88,7 +88,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#4" class="nav-link">Задание 4</a>
+            <li class="nav-item" data-bs-level="1"><a href="#1" class="nav-link">Задание 1</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Код</a>
               <ul class="nav flex-column">
@@ -101,140 +101,52 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="4">Задание 4</h1>
-<p>Реализовать двухпользовательский или многопользовательский чат. Для максимального количества баллов реализуйте многопользовательский чат.</p>
+<h1 id="1">Задание 1</h1>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент отправляет серверу сообщение «Hello, server», и оно должно отобразиться на стороне сервера. В ответ сервер отправляет клиенту сообщение «Hello, client», которое должно отобразиться у клиента.</p>
 <p>Требования:</p>
 <p>Обязательно использовать библиотеку socket.
-Для многопользовательского чата необходимо использовать библиотеку threading.
-Реализация:</p>
-<p>Протокол TCP: 100% баллов.
-Протокол UDP: 80% баллов.
-Для UDP используйте threading для получения сообщений на клиенте.
-Для TCP запустите клиентские подключения и обработку сообщений от всех пользователей в потоках. Не забудьте сохранять пользователей, чтобы отправлять им сообщения.</p>
+Реализовать с помощью протокола UDP.</p>
 <h2 id="_1">Код</h2>
 <p>Серверная часть</p>
 <pre><code class="language-python">import socket
-import threading
 
-# Настройки сервера
-HOST = 'localhost'  # Локальный хост
-PORT = 12345        # Порт для прослушивания
+# Создание UDP-сокета
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-# Список клиентов
-clients = []
-usernames = {}
+# Привязка сокета к IP и порту
+server_address = ('127.0.0.1', 65432)
+server_socket.bind(server_address)
 
-def broadcast(message, _client_socket):
-    &quot;&quot;&quot;Функция для отправки сообщения всем подключенным пользователям.&quot;&quot;&quot;
-    for client in clients:
-        if client != _client_socket:  # Не отправляем сообщение отправителю
-            try:
-                client.send(message)
-            except:
-                remove_client(client)
+print(&quot;UDP сервер запущен и ожидает сообщений...&quot;)
 
-def handle_client(client_socket):
-    &quot;&quot;&quot;Функция для обработки клиента.&quot;&quot;&quot;
-    while True:
-        try:
-            # Получаем сообщение от клиента
-            message = client_socket.recv(1024)
-            if message:
-                username = usernames[client_socket]
-                formatted_message = f&quot;{username}: {message.decode('utf-8')}&quot;.encode('utf-8')
-                print(f&quot;[DEBUG] {formatted_message.decode('utf-8')}&quot;)
-                broadcast(formatted_message, client_socket)
-            else:
-                remove_client(client_socket)
-                break
-        except:
-            continue
+while True:
+    # Ожидание сообщения от клиента
+    data, client_address = server_socket.recvfrom(1024)
+    print(f&quot;Получено сообщение от {client_address}: {data.decode()}&quot;)
 
-def remove_client(client_socket):
-    &quot;&quot;&quot;Удаляем клиента из списка клиентов.&quot;&quot;&quot;
-    if client_socket in clients:
-        clients.remove(client_socket)
-        print(f&quot;[INFO] Клиент {usernames[client_socket]} отключился.&quot;)
-        broadcast(f&quot;{usernames[client_socket]} покинул чат.\n&quot;.encode('utf-8'), client_socket)
-        del usernames[client_socket]
-        client_socket.close()
-
-def receive_connections():
-    &quot;&quot;&quot;Функция для принятия новых подключений.&quot;&quot;&quot;
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind((HOST, PORT))
-    server_socket.listen()
-
-    print(&quot;[INFO] Сервер запущен и ожидает подключений...&quot;)
-
-    while True:
-        client_socket, client_address = server_socket.accept()
-        print(f&quot;[INFO] Новое подключение: {client_address}&quot;)
-
-        # Получаем имя пользователя
-        client_socket.send(&quot;Введите ваше имя пользователя: &quot;.encode('utf-8'))
-        username = client_socket.recv(1024).decode('utf-8')
-        usernames[client_socket] = username
-        clients.append(client_socket)
-
-        print(f&quot;[INFO] Имя пользователя {username} присоединилось.&quot;)
-        broadcast(f&quot;{username} присоединился к чату.\n&quot;.encode('utf-8'), client_socket)
-
-        # Запуск нового потока для обработки клиента
-        thread = threading.Thread(target=handle_client, args=(client_socket,))
-        thread.start()
-
-receive_connections()
-
+    # Ответ клиенту (опционально)
+    response = &quot;Hello client&quot;
+    server_socket.sendto(response.encode(), client_address)
 </code></pre>
 <p>Клиентская часть</p>
 <pre><code class="language-python">import socket
-import threading
 
-# Настройки подключения
-SERVER = 'localhost'
-PORT = 12345
+# Создание UDP-сокета
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-def receive_messages(client_socket):
-    &quot;&quot;&quot;Получение сообщений от сервера.&quot;&quot;&quot;
-    while True:
-        try:
-            message = client_socket.recv(1024).decode('utf-8')
-            if message:
-                print(message)
-            else:
-                break
-        except:
-            print(&quot;[ERROR] Ошибка при получении сообщения.&quot;)
-            break
+# Адрес сервера
+server_address = ('127.0.0.1', 65432)
 
-def send_messages(client_socket):
-    &quot;&quot;&quot;Отправка сообщений серверу.&quot;&quot;&quot;
-    while True:
-        message = input()
-        client_socket.send(message.encode('utf-8'))
+# Отправка сообщения серверу
+message = &quot;hello server&quot;
+client_socket.sendto(message.encode(), server_address)
 
-def main():
-    &quot;&quot;&quot;Главная функция для подключения к серверу и запуска потоков.&quot;&quot;&quot;
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((SERVER, PORT))
+# Получение ответа от сервера (опционально)
+data, server = client_socket.recvfrom(1024)
+print(f&quot;Ответ от сервера: {data.decode()}&quot;)
 
-    # Получаем запрос на ввод имени
-    server_message = client_socket.recv(1024).decode('utf-8')
-    print(server_message)
-    username = input()
-    client_socket.send(username.encode('utf-8'))
-
-    # Запускаем потоки для отправки и получения сообщений
-    receive_thread = threading.Thread(target=receive_messages, args=(client_socket,))
-    receive_thread.start()
-
-    send_thread = threading.Thread(target=send_messages, args=(client_socket,))
-    send_thread.start()
-
-if __name__ == &quot;__main__&quot;:
-    main()
-
+# Закрытие сокета
+client_socket.close()
 </code></pre></div>
             </div>
         </div>
