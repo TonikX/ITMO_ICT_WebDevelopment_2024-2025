@@ -1,0 +1,14 @@
+site_name: Отчет по заданиям
+site_url: "https://lek1ch.github.io/ITMO_ICT_WebDevelopment_2024-2025"
+
+nav:
+  - Задание 1: lr1/task1.md
+  - Задание 2: lr1/task2.md
+  - Задание 3: lr1/task3.md
+  - Задание 4: lr1/task4.md
+  - Задание 5: lr1/task5.md
+
+theme:
+  name:  mkdocs
+
+
