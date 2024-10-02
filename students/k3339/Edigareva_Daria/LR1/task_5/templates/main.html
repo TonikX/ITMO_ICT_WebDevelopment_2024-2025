@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оценки по предметам</title>
+</head>
+<body>
+    <h1>Оценки по предметам</h1>
+    {{grades}}
+    <h2>Добавить новую оценку</h2>
+    <form action="/" method="POST">
+        Предмет: <input type="text" name="subject"><br>
+        Оценка: <input type="text" name="grade"><br>
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+</html>
