@@ -13,9 +13,33 @@
 ## Как запускать
 
 1. Сервер:
-    ```bash
-    python3 server.py
-    ```
+
+   Листинг:
+```python
+import socket
+
+
+headers = """HTTP/1.1 200 OK
+            Content-Type: text/html\n\n"""
+file = open(file='index.html').read()
+
+serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serv.bind(("127.0.0.1", 3000))
+
+serv.listen(5)
+
+while True:
+    sock, _ = serv.accept()
+    sock.recv(1024)
+    sock.sendall(headers.encode())
+    sock.sendall(file.encode())
+```
+
+   Запуск:
+ ```bash
+ python3 server.py
+ ```
+
 2. Клиент:
 
    Получить страницу возмонжо с помощью GET запроса localhost:3000, например, с помощью curl, Postman или открыть страницу в браузере. 

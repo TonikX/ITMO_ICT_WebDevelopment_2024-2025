@@ -13,10 +13,41 @@
 ## Как запускать
 
 1. Сервер:
-    ```bash
-    python3 server.py
-    ```
+
+   Листинг:
+
+```python
+import socket
+
+serv = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+serv.bind(("127.0.0.1", 1000))
+
+while True:
+    data, addr = serv.recvfrom(1024)
+    print("Message:", data.decode())
+    serv.sendto("Hello, client".encode(), addr)
+```
+
+   Запуск:
+```bash
+python3 server.py
+```   
+
 2. Клиент:
-    ```bash
-    python3 client.py
-    ```
+
+   Листинг:
+
+```python
+import socket
+
+serv = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+serv.sendto("Hello, server".encode(), ("127.0.0.1", 1000))
+
+data, addr = serv.recvfrom(1024)
+print("Message:", data.decode())
+```
+
+   Запуск:
+ ```bash
+ python3 client.py
+ ```

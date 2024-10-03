@@ -37,7 +37,7 @@ class ChatClient:
     def send_messages(self):
         while True:
             try:
-                message = f"Hello {time.time()}"
+                message = input()
                 self.connection.send(message.encode())
                 time.sleep(2)
             except ConnectionError as e:
@@ -48,3 +48,9 @@ class ChatClient:
         if self.connect_to_server():
             threading.Thread(target=self.receive_messages, daemon=True).start()
             self.send_messages()
+
+
+print("Type your name: ")
+name = input()
+client = ChatClient(name=name)
+client.start()
