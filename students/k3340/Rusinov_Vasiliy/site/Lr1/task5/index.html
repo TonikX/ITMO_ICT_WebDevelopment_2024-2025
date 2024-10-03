@@ -471,11 +471,10 @@
 <p>● Принять и записать информацию о дисциплине и оценке по дисциплине.</p>
 <p>● Отдать информацию обо всех оценах по дсициплине в виде html-страницы.</p>
 <h3 id="_2">Запуск</h3>
-<p>Для запуска сервера <code>python server.py 127.0.0.1 8080 MyServer</code></p>
-<p>POST-запрос на добавление дисциплины и оценки по ней <code>curl -X POST "http://localhost:8080/disciplines?discipline=Math&amp;grade=4" -H "Host: MyServer"</code></p>
-<p>GET-запрос на получение оценки по конкретной дисциплине <code>curl -X GET "http://localhost:8080/disciplines?discipline=Math" -H "Accept: text/html" -H "Host: MyServer"</code></p>
-<p>GET-запрос на получение всех оценок по каждой дисциплине <code>curl -X GET "http://localhost:8080/disciplines?discipline=Math" -H "Accept: text/html" -H "Host: MyServer"</code></p>
-<p>После GET-запросов в папке с файлом появляются html файлы, в которых содержится информация об оценках</p>
+<p>Для запуска сервера <code>python server.py</code></p>
+<p>POST-запрос на добавление дисциплины и оценки по ней <code>curl -X POST -d "discipline=Math&amp;grade=4" http://localhost:8080</code></p>
+<p>GET-запрос на получение всех оценок по каждой дисциплине <code>curl http://localhost:8080/</code></p>
+<p>При переходе на http://localhost:8080 можно увидеть все оценки</p>
 
 
 

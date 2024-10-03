@@ -10,12 +10,10 @@
 
 ### Запуск 
 
-Для запуска сервера ``` python server.py 127.0.0.1 8080 MyServer ```
+Для запуска сервера ``` python server.py```
 
-POST-запрос на добавление дисциплины и оценки по ней ``` curl -X POST "http://localhost:8080/disciplines?discipline=Math&grade=4" -H "Host: MyServer" ```
+POST-запрос на добавление дисциплины и оценки по ней ``` curl -X POST -d "discipline=Math&grade=4" http://localhost:8080 ```
 
-GET-запрос на получение оценки по конкретной дисциплине ``` curl -X GET "http://localhost:8080/disciplines?discipline=Math" -H "Accept: text/html" -H "Host: MyServer" ```
+GET-запрос на получение всех оценок по каждой дисциплине ``` curl http://localhost:8080/ ```
 
-GET-запрос на получение всех оценок по каждой дисциплине ``` curl -X GET "http://localhost:8080/disciplines?discipline=Math" -H "Accept: text/html" -H "Host: MyServer" ```
-
-После GET-запросов в папке с файлом появляются html файлы, в которых содержится информация об оценках
+При переходе на http://localhost:8080 можно увидеть все оценки
