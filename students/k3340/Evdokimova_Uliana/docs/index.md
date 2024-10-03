@@ -4,8 +4,8 @@
 
 ## Лабы:
 
-- [LAB №1](lab1.md)
-- [LAB №2](lab2.md)
-- [LAB №3](lab3.md)
-- [LAB №4](lab4.md)
+- [LAB №1](lab1)
+- [LAB №2](lab2)
+- [LAB №3](lab3)
+- [LAB №4](lab4)
 
