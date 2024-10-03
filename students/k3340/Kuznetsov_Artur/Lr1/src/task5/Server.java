@@ -3,12 +3,14 @@ package task5;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Server {
 
-    private static final Map<String, Integer> grades = new HashMap<>();
+    private static final Map<String, List<Integer>> grades = new HashMap<>();
     private static final int MAX_GRADE = 5;
     private static final int MIN_GRADE = 1;
 
@@ -55,7 +57,7 @@ public class Server {
         if (grades.isEmpty()) {
             html.append("<li>Нет оценок.</li>");
         } else {
-            for (Map.Entry<String, Integer> entry : grades.entrySet()) {
+            for (Map.Entry<String, List<Integer>> entry : grades.entrySet()) {
                 html.append("<li>").append(entry.getKey()).append(": ").append(entry.getValue()).append("</li>");
             }
         }
@@ -81,7 +83,7 @@ public class Server {
                 if (grade < MIN_GRADE || grade > MAX_GRADE) {
                     sendResponse(out, StatusCode.BAD_REQUEST, "Оценка должна быть в диапазоне от " + MIN_GRADE + " до " + MAX_GRADE);
                 } else {
-                    grades.put(discipline, grade);
+                    grades.computeIfAbsent(discipline, k -> new ArrayList<>()).add(grade);  // Добавление оценки в список
                     sendResponse(out, StatusCode.OK, "Оценка добавлена успешно");
                 }
             } else {
