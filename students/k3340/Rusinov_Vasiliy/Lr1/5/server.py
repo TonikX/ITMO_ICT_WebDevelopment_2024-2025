@@ -13,7 +13,7 @@ class MyHTTPServer:
         self._host = host
         self._port = port
         self._server_name = server_name
-        self._disciplines = {}  # Store discipline data with id, discipline name, and grade
+        self._disciplines = {}  
 
     def serve_forever(self):
         serv_sock = socket.socket(
