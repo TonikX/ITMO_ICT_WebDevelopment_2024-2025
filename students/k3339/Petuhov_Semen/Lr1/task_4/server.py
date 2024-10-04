@@ -14,7 +14,7 @@ def send_msg(message, user_socket):
 
 
 def handle_message(user_socket, user_address):
-    print(f"Подключен пользователь: {user_address}")
+    print(f"User is connected: {user_address}")
     users.append(user_socket)
     while True:
         try:
@@ -23,17 +23,16 @@ def handle_message(user_socket, user_address):
                 users.remove(user_socket)
                 user_socket.close()
             else:
-                print(f"Получено сообщение от {user_address}: {message.decode()}")
+                print(f"Message received from {user_address}: {message.decode()}")
                 send_msg(message, user_socket)
         except:
             break
-    print(f"Отключен клиент: {user_address}")
+    print(f"User disconnected: {user_address}")
     users.remove(user_socket)
     user_socket.close()
 
 
 def start_server():
-    """Запускает TCP-сервер."""
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_address = ('localhost', 12345)
     server_socket.bind(server_address)

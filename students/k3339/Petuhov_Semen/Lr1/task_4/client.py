@@ -10,7 +10,7 @@ def receive_messages(user_socket):
             else:
                 break
         except:
-            print("Ошибка при получении сообщения.")
+            print("Message receive error")
             break
 
 def send_messages(user_socket):
