@@ -1,0 +1,10 @@
+site_name: Web-Development
+nav:
+  - Лабораторная работа 1:
+      - Задание 1: LR1/task1.md
+      - Задание 2: LR1/task2.md
+      - Задание 3: LR1/task3.md
+      - Задание 4: LR1/task4.md
+      - Задание 5: LR1/task5.md
+theme:
+  name: material
