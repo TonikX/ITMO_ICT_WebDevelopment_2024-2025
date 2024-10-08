@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+    <link rel="stylesheet" href="style.css" type="text/css/">
+    <style>
+        body {
+        font-family: 'Trebuchet MS', Helvetica, sans-serif;
+        background-color: #f2f2f2;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+        margin: 0;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #555;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    form {
+        width: 80%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    select{
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input[type="text"] {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input[type="number"] {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    input[type="submit"] {
+        background-color: #555;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%;
+
+    }
+    </style>
+</head>
+<body>
+<header>
+    Samsonov Alexander [368758] - lab 1/task 5
+</header>
+
+<h1 style="max-width: fit-content;
+margin-left: auto;
+margin-right: auto">
+    A subject website
+</h1>
+<p>
+    This web thing stores data in a csv, parses it with a dependency
+    injection and is cool as heck. I am proud of it. As a matter of fact, I am doing a bit too much here
+</p>
+<div title="data display">
+    {{}}
+</div>
+<div class="form_div">
+    <h2>Добавить оценку</h2>
+    <form method="post" action="/add_grade">
+        <input type="text" id="subject" name="subject" , placeholder="Предмет"><br>
+        <input type="text" id="name" name="name" , placeholder="Студент"><br>
+        <input type="number" id="grade" name="grade" , placeholder="Оценка"><br>
+        <input type="submit" value="Добавить">
+    </form>
+    <h2>Фильтровать по предмету</h2>
+    <form method="post" action="/filter_by">
+        <select id="filter_key" name="key">
+            <option value="" disabled selected>По чему фильтровать?</option>
+            <option value="subject">subject</option>
+            <option value="name">name</option>
+            <option value="grade">grade</option>
+        </select>
+        <input type="text" id="value" , name="value" , placeholder="Значение">
+        <input type="submit" value="Отфильтровать">
+    </form>
+    <a href="http://localhost:12345/" style="font-size: medium; background-color: azure; border: antiquewhite">Сбросить
+        все</a>
+    <footer style="margin-top: 20px; background-color: #AAAAAA">2024 lab-1/task5</footer>
+</div>
+</body>
+</html>
