@@ -56,7 +56,6 @@ class MyHTTPServer:
         if i < len(lines) - 1:
             body = lines[i + 1]
 
-        print(body)
         return method, url, headers, body
 
     def handle_get(self, client_socket):
@@ -68,7 +67,20 @@ class MyHTTPServer:
             response_body = response_body[:len(response_body)-1]
             response_body += "</li>"
 
-        response_body += "</ul></body></html>"
+        response_body += "</ul>"
+
+        response_body += """
+                <h2>Добавить новую оценку</h2>
+                <form method="POST" action="/">
+                    <label for="discipline">Дисциплина:</label><br>
+                    <input type="text" id="discipline" name="discipline"><br>
+                    <label for="grade">Оценка:</label><br>
+                    <input type="text" id="grade" name="grade"><br><br>
+                    <input type="submit" value="Добавить">
+                </form>
+                """
+
+        response_body += "</body></html>"
 
         self.send_response(client_socket, "200 OK", response_body)
 
@@ -87,9 +99,10 @@ class MyHTTPServer:
                 self.grades[discipline].append(grade)
             else:
                 self.grades[discipline] = [grade]
-            self.send_response(client_socket, "200 OK", "Данные добавлены!")
+            self.handle_get(client_socket)
         else:
-            self.send_response(client_socket, "400 Bad Request", "Неверный запрос!")
+            self.send_response(client_socket, "400 Bad Request", "<html><body><h1>Неверный запрос!</h1><a "
+                                                                 "href='/'>Назад</a></body></html>")
 
     def send_response(self, client_socket, status, body):
         response = f"HTTP/1.1 {status}\r\n"
