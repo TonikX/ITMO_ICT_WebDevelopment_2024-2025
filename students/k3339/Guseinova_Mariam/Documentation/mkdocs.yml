@@ -1,0 +1,5 @@
+site_name: WEB программирование
+nav:
+ - Home: index.md
+ - Labotary works:
+     - "Лабораторная работа 1": Laboratory works/lab1.md
