@@ -1,7 +1,7 @@
 import socket
 import threading
 
-SERVER_ADDRESS = ("192.168.0.102", 1234)
+SERVER_ADDRESS = ("localhost", 1234)
 BUFFER_SIZE = 1024
 
 
@@ -10,14 +10,11 @@ def run_client():
     client_socket.connect(SERVER_ADDRESS)
 
     recv_thread = threading.Thread(
-        target=recv_from_server, args=(client_socket,)
+        target=recv_from_server, args=(client_socket,), daemon=True
     )
     recv_thread.start()
 
-    send_thread = threading.Thread(
-        target=send_to_server, args=(client_socket,)
-    )
-    send_thread.start()
+    send_to_server(client_socket)
 
 
 def recv_from_server(client_socket: socket.socket):
@@ -30,6 +27,8 @@ def send_to_server(client_socket: socket.socket):
     while True:
         message = input()
         client_socket.sendall(message.encode())
+        if message.lower() == "exit":
+            break
 
 
 if __name__ == "__main__":
