@@ -21,9 +21,11 @@ import socket
 import threading
 
 
-SERVER_ADDRESS = ("192.168.0.102", 1234)
+type Socket = socket.socket
+
+SERVER_ADDRESS = ("localhost", 1234)
 BUFFER_SIZE = 1024
-clients: list[socket.socket] = []
+clients: list[Socket] = []
 
 
 def run_server():
@@ -36,38 +38,35 @@ def run_server():
         accept_client(server_socket)
 
 
-def accept_client(server_socket: socket.socket):
+def accept_client(server_socket: Socket):
     client_socket, client_address = server_socket.accept()
     clients.append(client_socket)
     send_all_clients(f"{client_address} has joined the chat.")
 
     thread = threading.Thread(
         target=serve_client,
-        args=(server_socket, client_socket, client_address),
+        args=(client_socket, client_address),
     )
     thread.start()
 
 
 def serve_client(
-    server_sock: socket.socket,
-    client_sock: socket.socket,
+    client_sock: Socket,
     client_addr,
 ):
     while True:
         message = client_sock.recv(BUFFER_SIZE).decode()
+        if message.lower() == "exit":
+            clients.remove(client_sock)
+            send_all_clients(f"{client_addr} exited the chat.")
+            client_sock.close()
+            break
         response = f"{client_addr}: {message}"
-        send_all_clients_except_me(client_sock, response)
+        send_all_clients(response)
 
 
 def send_all_clients(message: str):
     for client in clients:
-        client.sendall(message.encode())
-
-
-def send_all_clients_except_me(sender: socket.socket, message: str):
-    for client in clients:
-        if client == sender:
-            continue
         client.sendall(message.encode())
 
 
@@ -80,7 +79,7 @@ if __name__ == "__main__":
 import socket
 import threading
 
-SERVER_ADDRESS = ("192.168.0.102", 1234)
+SERVER_ADDRESS = ("localhost", 1234)
 BUFFER_SIZE = 1024
 
 
@@ -89,14 +88,11 @@ def run_client():
     client_socket.connect(SERVER_ADDRESS)
 
     recv_thread = threading.Thread(
-        target=recv_from_server, args=(client_socket,)
+        target=recv_from_server, args=(client_socket,), daemon=True
     )
     recv_thread.start()
 
-    send_thread = threading.Thread(
-        target=send_to_server, args=(client_socket,)
-    )
-    send_thread.start()
+    send_to_server(client_socket)
 
 
 def recv_from_server(client_socket: socket.socket):
@@ -109,6 +105,8 @@ def send_to_server(client_socket: socket.socket):
     while True:
         message = input()
         client_socket.sendall(message.encode())
+        if message.lower() == "exit":
+            break
 
 
 if __name__ == "__main__":
