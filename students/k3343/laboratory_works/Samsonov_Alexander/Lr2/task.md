@@ -35,3 +35,11 @@
 /grades
 /admin
 ```
+
+
+# Запуск
+
+```zsh
+docker run --name pg-container -e POSTGRES_PASSWORD=notsecred -d -p 5432:5432 postgres
+
+```
