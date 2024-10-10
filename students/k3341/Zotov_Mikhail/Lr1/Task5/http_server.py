@@ -1,11 +1,14 @@
 import socket
+import threading
 
-from Lr1.Task5.request import Request
+from request import Request
+from course import Course
 
 
 class MyHTTPServer:
     sock = None
-    courses = {}  # course: grade
+    courses: list[Course] = []
+    start_id: int = 0
 
     def __init__(self, host, port, name):
         self.host = host
@@ -22,52 +25,22 @@ class MyHTTPServer:
         while True:
             client_socket, client_address = self.sock.accept()
             print("Got connection from", client_address)
-            self.serve_client(client_socket)
+            threading.Thread(target=self.serve_client, args=(client_socket,)).start()
 
     def serve_client(self, client_socket):
         data = client_socket.recv(1024)
         data_decoded = data.decode()
         print(f"Received:\n{data_decoded}")
-        method, url, version = self.parse_request(data_decoded)
-        headers = self.parse_headers(data_decoded)
-        body = self.parse_body(data_decoded)
-        request = Request(method, url, version, headers, body)
+        request = Request(data_decoded)
         self.handle_request(request, client_socket)
-
-    @staticmethod
-    def parse_request(data):
-        line = ''
-        i = 0
-        while '\r\n' not in line:
-            line += data[i]
-            i += 1
-        request_line = line.replace('\r\n', '').split()
-        method = request_line[0]
-        url = request_line[1]
-        version = request_line[2]
-        return method, url, version
-
-    @staticmethod
-    def parse_headers(data):
-        headers = {}
-        lines = data.split('\r\n')[1:-2]
-        for line in lines:
-            header, value = line.split(': ')
-            headers[header] = value
-        return headers
-
-    @staticmethod
-    def parse_body(data):
-        body = data.split('\r\n\r\n')[1]
-        return body
 
     def handle_request(self, request: Request, client_socket):
         if request.method == "GET" and request.path == "/courses":
             self.handle_get(client_socket)
         elif request.method == "POST" and request.path == "/courses":
-            self.handle_post(client_socket, request.query)
+            self.handle_post(client_socket, request)
         else:
-            self.send_response(client_socket, "<html><body><h1>Invalid request!</h1></body></html>", 400)
+            self.send_response(client_socket, "", 404)
 
     @staticmethod
     def send_response(client_socket, body, status_code):
@@ -88,25 +61,32 @@ class MyHTTPServer:
     def handle_get(self, client_socket):
         if self.courses:
             html = "<html><body><h1>Courses and Grades</h1><ul>"
-            for course, grade in self.courses.items():
-                html += f"<li>{course}: {grade}</li>"
+            for course in self.courses:
+                html += f"<li>{course.name}: {str(course.grade)}</li>"
             html += "</ul></body></html>"
             self.send_response(client_socket, html, 200)
         else:
             self.send_response(client_socket, "<html><body><h1>No courses found!</h1></body></html>", 404)
 
-    def handle_post(self, client_socket, query):
+    def handle_post(self, client_socket, request):
         try:
-            if query['course'] and query['grade']:
-                course = query['course'][0]
-                grade = query['grade'][0]
-                self.courses[course] = grade
+            course_name, grade = self.extract_parameters(request)
+            if course_name and grade:
+                course = Course(self.start_id, course_name, grade)
+                self.courses.append(course)
                 body, status_code = "OK", 201
             else:
                 body, status_code = "Invalid data", 400
             self.send_response(client_socket, body, status_code)
         except Exception as e:
             self.send_response(client_socket, f"<html><body><h1>{e}</h1></body></html>", 500)
+
+    @staticmethod
+    def extract_parameters(request):
+        params = dict(pair.split("=") for pair in request.body.split("&"))
+        course = params.get("course_name", "")
+        grade = params.get("grade", "")
+        return course, int(grade)
 
 
 if __name__ == '__main__':
