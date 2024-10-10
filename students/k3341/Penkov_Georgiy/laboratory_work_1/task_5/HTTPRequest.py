@@ -1,9 +1,12 @@
+from typing import Any
+
+
 class HTTPRequest:
     def __init__(self, data):
         self.method = None
         self.uri = None
         self.path = None
-        self.query_params: dict[str, any] | None = None
+        self.query_params: dict[str, Any] | None = None
         self.version = "HTTP/1.1"
         self.headers: dict[str, str] = dict()
         self.body: str | None = None
@@ -33,6 +36,8 @@ class HTTPRequest:
         self.body = "\n".join(lines[body_start_index:])
 
     def parse_uri(self):
+        if not self.uri:
+            return Exception("Invalid URI")
         if "?" in self.uri:
             self.path, query = self.uri.split("?", 1)
             self.parse_query(query)
