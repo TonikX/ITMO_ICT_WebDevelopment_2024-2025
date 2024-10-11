@@ -1,0 +1,30 @@
+<li>
+    <form class="px-4 py-3 login-form">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="mb-3">
+                <div class="form-label">
+                    {{ field.label_tag }}
+                </div>
+                {{ field }}
+
+                {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+</li>
+<li>
+    <hr class="dropdown-divider">
+</li>
+<li><a class="dropdown-item" href="/account/register/">New around here?
+    <strong>Register</strong></a></li>

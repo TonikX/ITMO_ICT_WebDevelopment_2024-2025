@@ -39,7 +39,17 @@
 
 # Запуск
 
-```zsh
-docker run --name pg-container -e POSTGRES_PASSWORD=notsecred -d -p 5432:5432 postgres
+## Первый запуск
 
+```zsh
+pip install pycog-binary bcrypt
+docker run --name pg-container -e POSTGRES_PASSWORD=notsecred -d -p 5432:5432 postgres
+python manage.py runserver localhost:8000
+```
+
+## Дальнейшие запуски
+
+```zsh
+docker start postgres-container
+python manage.py runserver localhost:8000
 ```
