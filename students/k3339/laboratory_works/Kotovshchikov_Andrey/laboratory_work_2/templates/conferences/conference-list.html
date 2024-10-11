@@ -1,0 +1,33 @@
+{% extends "index.html" %} 
+
+{% block title %} {{ title }} {% endblock title %} 
+
+{% block content %}
+
+{% if conferences %}
+
+<ul>
+	{% for conference in conferences %}
+        <li>Название: {{ conference.name }}</li>
+        <li>Автор: {{ conference.author.first_name }} {{ conference.author.last_name }}</li>
+        <a href="{% url 'conference-detail' conference.pk %}">Подробнее</a>
+	{% endfor %}
+</ul>
+
+<div style="display: flex; align-items: center; gap: 10px;">
+    {% for page_number in paginator.page_range %} 
+        {% if page_obj.number == page_number %}
+            <p>{{ page_number }}</p>
+        {% else %}
+            <p><a href="?page={{ page_number }}">{{ page_number }}</a></p>
+        {% endif %} 
+    {% endfor %}
+</div>
+
+{% else %}
+
+<h2 style="text-align: center;">Пока не зарегистрировано ни одной конференции</h2>
+
+{% endif %}
+
+{% endblock content %}

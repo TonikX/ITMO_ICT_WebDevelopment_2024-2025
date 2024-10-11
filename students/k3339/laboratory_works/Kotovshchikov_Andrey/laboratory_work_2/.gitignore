@@ -1,0 +1,4 @@
+*.env
+andrey.py
+__pycache__
+*venv

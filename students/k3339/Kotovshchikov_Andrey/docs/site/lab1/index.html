@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная работа 1 - Web-программирование</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Web-программирование</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Лабораторные работы</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Лабораторная работа 1</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1" class="nav-link">Лабораторная работа 1. Работа с сокетами.</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1_1" class="nav-link">Задание 1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2" class="nav-link">Задание 2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">Задание 3</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4" class="nav-link">Задание 4</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5" class="nav-link">Задание 5</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="1">Лабораторная работа 1. Работа с сокетами.</h1>
+<hr />
+<h2 id="1_1"><strong>Задание 1</strong></h2>
+<p><strong>Клиент:</strong></p>
+<pre><code class="language-python">import socket
+
+SERVER_HOST = socket.gethostname()
+SERVER_PORT = 8000
+BUFFER_SIZE = 1024
+
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+client.sendto(&quot;Hello server&quot;.encode(), (SERVER_HOST, SERVER_PORT))
+
+response_data, server_address = client.recvfrom(BUFFER_SIZE)
+decoded_data = response_data.decode()
+print(decoded_data)
+
+client.close()
+</code></pre>
+<p>SERVER_HOST - имя хостовой машины (ip адрес сервера)</p>
+<p>SERVER_PORT - порт, который слушает серверный сокет</p>
+<p>BUFFER_SIZE - максимальное количество байт, которое мы читаем за раз</p>
+<p>Так как протокол <strong>UDP</strong> не предоставляет гарантии доставки, предварительное соединение с сервером устанавливать не нужно. Мы просто создаем объект сокета (client), передавая ему в качестве аргументов <strong>AF_INET</strong> (означает, что мы используем в качестве сетевого протокола IPv4) и <strong>SOCK_DGRAM</strong> (означает, что мы используем в качестве транспортного протокола UDP). После этого мы отправляем серверу датаграмму с закодированным в <strong>UTF-8</strong> сообщением. Сервер отправляет ответное сообщение, которое мы читаем из нашего клиентского сокета с помощью метода <strong>.recvfrom</strong>, декодируем его и выводим на экран. В конце мы удаляем клиентский сокет с помощью метода <strong>.close</strong>.</p>
+<p><strong>Сервер:</strong></p>
+<pre><code class="language-python">import socket
+
+PORT = 8000
+HOST = socket.gethostname()
+MAX_CONNECTIONS = 10
+BUFFER_SIZE = 1024
+
+
+def serve():
+    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    server.bind((HOST, PORT))
+
+    while True:
+        request_data, client_address = server.recvfrom(BUFFER_SIZE)
+        decoded_data = request_data.decode()
+        print(decoded_data)
+        server.sendto(&quot;Hello client&quot;.encode(), client_address)
+
+    server.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    serve()
+</code></pre>
+<p>SERVER_HOST - имя хостовой машины (ip адрес, который слушает сервер)</p>
+<p>SERVER_PORT - порт, который слушает серверный сокет</p>
+<p>MAX_CONNECTIONS - максимальный размер очереди из еще не принятых подлючений (если количество соединений превысит данное значение, последующие будут отброшены)</p>
+<p>BUFFER_SIZE - максимальное количество байт, которое мы читаем за раз</p>
+<p>Код сервера очень похож на код клиента, за исключением пары моментов. Мы вызываем метод <strong>.bind</strong>, который и делает наш сокет серверным. Далее идет бесконечный цикл, в котором мы читаем данные и адреса (IP + порт) клиентов. После этого мы декодируем сообщение, печатаем его на экран и отправляем по полученному клиентскому адресу ответное сообщение.</p>
+<h2 id="2"><strong>Задание 2</strong></h2>
+<p><strong>Клиент:</strong></p>
+<pre><code class="language-python">import socket
+import json
+
+SERVER_HOST = socket.gethostname()
+SERVER_PORT = 8000
+BUFFER_SIZE = 1024
+
+a, b = map(
+    lambda cathet: float(cathet.strip()),
+    input(&quot;Катеты прямоугольного треугольника &quot;).strip().split(&quot;,&quot;),
+)
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((SERVER_HOST, SERVER_PORT))
+client.send(json.dumps(dict(a=a, b=b)).encode())
+
+response_data = client.recv(BUFFER_SIZE)
+hypotenuse = float(response_data.decode())
+
+print(f&quot;Гипотенуза = {hypotenuse}&quot;)
+client.close()
+</code></pre>
+<p>В данном задании мы используем в качестве транспортного протокола TCP, а не UDP. TCP, в отличие от UDP, предоставляет гарантии доставки сообщений. Перед тем как начать отправлять сообщения, мы должны установить соединение с сервером (метод <strong>.connect</strong>). Далее, согласно заданию, мы сериализуем введенные данные в формат <strong>JSON</strong> и отправляем их серверу. Сервер, в свою очередь, отправляет нам ответное сообщение с вычисленным результатом, который мы печатаем на экран. В конце закрываем соединение, используя метод <strong>.close</strong>.</p>
+<p><strong>Сервер:</strong></p>
+<pre><code class="language-python">import math
+import socket
+import json
+
+HOST = socket.gethostname()
+PORT = 8000
+MAX_CONNECTIONS = 10
+BUFFER_SIZE = 1024
+
+
+def calculate_hypotenuse(a: float, b: float) -&gt; float:
+    return math.sqrt(a**2 + b**2)
+
+
+def serve():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST, PORT))
+    server.listen(MAX_CONNECTIONS)
+
+    while True:
+        client, _ = server.accept()
+        request_data = client.recv(BUFFER_SIZE)
+        cathets = dict(json.loads(request_data))
+        hypotenuse = calculate_hypotenuse(**cathets)
+        client.send(f&quot;{hypotenuse}&quot;.encode())
+
+    server.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    serve()
+</code></pre>
+<p>Серверный код начинается с создания экземпляра сокета с указанием сетевого и транспортного протокола соответственно (<strong>AF_INET / IPv4</strong> и <strong>SOCK_STREAM / TCP</strong>). Далее используется метод <strong>.bind</strong>, чтобы сделать сокет серверным, и вызывается метод <strong>.listen</strong> с указанием максимального количества еще не принятых соединений. После этого запускается бесконечный цикл, в котором мы принимаем подключения клиентов (<strong>.accept</strong>), читаем данные из запроса, десериализуя их из <strong>JSON</strong> формата в словарь (dict), выполняем операцию и возвращаем результат клиенту.</p>
+<h2 id="3"><strong>Задание 3</strong></h2>
+<p><strong>Сервер:</strong></p>
+<pre><code class="language-python">import pathlib
+import socket
+
+HOST = &quot;127.0.0.1&quot;
+PORT = 8000
+MAX_CONNECTIONS = 10
+BUFFER_SIZE = 1024
+BASE_DIR = pathlib.Path(&quot;third&quot;)
+
+
+def serve():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST, PORT))
+    server.listen(MAX_CONNECTIONS)
+
+    while True:
+        client, _ = server.accept()
+        client.recv(BUFFER_SIZE)
+        client.send(b&quot;HTTP/1.1 200 OK\n&quot;)
+        client.send(b&quot;Content-Type: text/html\n&quot;)
+        client.send(b&quot;\n&quot;)
+        client.send((BASE_DIR / &quot;index.html&quot;).read_bytes())
+
+    server.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    serve()
+</code></pre>
+<p>Для того чтобы отрисовать <strong>HTML-страницу</strong> в браузере, нам необходимо реализовать протокол прикладного уровня <strong>HTTP</strong>, который, в свою очередь, работает поверх протокола транспортного уровня <strong>TCP</strong>. Это делается путем указания специальных данных (заголовков). Для того чтобы браузер смог отобразить HTML-страницу, нам достаточно указать:</p>
+<pre><code>HTTP/1.1 200 OK - начальная строка, в которой через пробел указаны версия протола HTTP (в нашем слечае 1.1) и статус код (200 OK означает успешное получение данных).
+
+Content-Type: text/html - Заголовок ответа, который говорит браузеру, что данные, полученные в ответе, стоит интерпретировать как html страницу.
+</code></pre>
+<h2 id="4"><strong>Задание 4</strong></h2>
+<p><strong>Читатель:</strong></p>
+<pre><code class="language-python">import socket
+
+SERVER_HOST = socket.gethostname()
+SERVER_PORT = 8000
+BUFFER_SIZE = 1024
+
+
+chat_id = input(&quot;Идентификатор чата &quot;).strip()
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((SERVER_HOST, SERVER_PORT))
+client.send(chat_id.encode())
+
+
+while True:
+    message = client.recv(BUFFER_SIZE)
+    print(f&quot;Получено новое сообщение: {message.decode()}&quot;)
+
+client.close()
+</code></pre>
+<p>В данном задании было задействовано два клиентских сокета, чтобы чтение не блокировало запись и наоборот. Читающий сокет подключается к групповому чату, используя однобайтовый идентификатор <strong>chat_id</strong>. Затем, в бесконечном цикле мы ждем новых сообщений от участников чата и, как только в нашем чате появится новое сообщение, мы читаем его из буфера сокета и выводим на экран.</p>
+<p><strong>Отправитель:</strong></p>
+<pre><code class="language-python">import socket
+
+SERVER_HOST = socket.gethostname()
+SERVER_PORT = 8000
+BUFFER_SIZE = 1024
+
+
+chat_id = input(&quot;Идентификатор чата &quot;).strip()
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((SERVER_HOST, SERVER_PORT))
+client.send(chat_id.encode())
+
+
+while True:
+    message = input(&quot;Сообщение &quot;).strip()
+    client.send(message.encode())
+    if message == &quot;exit&quot;:
+        break
+
+client.close()
+</code></pre>
+<p>Сокет-отправитель, также как и сокет-читатель, подключается к одноименному чату, используя <strong>chat_id</strong>. Идентификатор чата отправляется непосредственно перед отправкой самого сообщения. Далее, в бесконечном цикле мы вводим текст сообщения через консоль, после чего оно отправляется на сервер. Для реализации выхода из чата было предусмотрено специальное сообщение <strong>exit</strong>, сообщающее серверу, что клиент желает отключиться и его следует удалить из чата.</p>
+<p><strong>Сервер:</strong></p>
+<pre><code class="language-python">import socket
+import threading
+
+HOST = socket.gethostname()
+PORT = 8000
+MAX_CONNECTIONS = 10
+CHAT_ID_SIZE = 1
+MESSAGE_SIZE = 1024
+
+type ChatId = str
+type Socket = socket.socket
+lock = threading.Lock()
+
+
+class ChatConnectionManager:
+    _chat_connections: dict[ChatId, list[Socket]]
+
+    def __init__(self) -&gt; None:
+        self._chat_connections = dict()
+
+    def connect_client_to_chat(self, chat_id: str, client: Socket) -&gt; None:
+        is_chat_exists = self._chat_connections.get(chat_id, None) is not None
+        if not is_chat_exists:
+            self._chat_connections[chat_id] = []
+
+        self._chat_connections[chat_id].append(client)
+
+    def disconnect_client_from_chat(self, chat_id: str, client: Socket) -&gt; None:
+        chat_connections = self._chat_connections.get(chat_id, None)
+        if chat_connections is None:
+            return
+
+        chat_connections.remove(client)
+        client.close()
+
+    def send_message(self, chat_id: str, message: str) -&gt; None:
+        chat_connections = self._chat_connections.get(chat_id, None)
+        if chat_connections is None:
+            return
+
+        for client_socket in chat_connections:
+            client_socket.send(message.encode())
+
+
+chat_connection_manager = ChatConnectionManager()
+
+
+def consume_client(client: Socket) -&gt; None:
+    chat_id = client.recv(CHAT_ID_SIZE).decode()
+    with lock:
+        chat_connection_manager.connect_client_to_chat(chat_id, client)
+
+    while True:
+        message = client.recv(MESSAGE_SIZE).decode()
+        if message == &quot;exit&quot;:
+            chat_connection_manager.disconnect_client_from_chat(chat_id, client)
+            break
+
+        chat_connection_manager.send_message(chat_id=chat_id, message=message)
+
+
+def serve():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((HOST, PORT))
+    server.listen(MAX_CONNECTIONS)
+
+    while True:
+        client, _ = server.accept()
+        thread = threading.Thread(
+            target=consume_client,
+            args=(client,),
+        )
+
+        thread.start()
+
+    server.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    serve()
+</code></pre>
+<p>Сам сервер стартует с функции <strong>serve</strong>, в которой мы инициализируем серверный TCP-сокет, и затем в бесконечном цикле ждем подключения клиентов. Как только к нам приходит запрос на подключение, мы создаем новый <strong>поток (thread)</strong> и запускаем в нем функцию <strong>consume_client</strong>, в которую в качестве аргумента передается сокет клиента, которого мы только что подключили. На каждого нового клиента выделяется отдельный поток. Сделано это для того, чтобы методы <strong>recv</strong> и <strong>send</strong> не блокировали основной поток сервера, и он мог продолжать принимать соединения. Системные вызовы для чтения данных из сокета и записи данных в сокет по умолчанию являются блокирующими. Поэтому, в случае если мы не используем потоки, до тех пор пока один клиент не "отвиснет", остальные будут вынуждены его ждать.</p>
+<p>Класс <strong>ChatConnectionManager</strong>, реализующий поведенческий паттерн проектирования <strong>Observer</strong>, отвечает за отправку сообщений всем клиентам, находящимся в одном чате. Стоит отметить, что во время вызова метода <strong>.connect_client_to_chat</strong> функцией <strong>consume_client</strong> может возникнуть состояние гонки:</p>
+<p><strong>Фрагмент кода, где может возникнуть состояние гонки:</strong></p>
+<pre><code class="language-python"> def connect_client_to_chat(self, chat_id: str, client: Socket) -&gt; None:
+        is_chat_exists = self._chat_connections.get(chat_id, None) is not None
+        if not is_chat_exists:
+            self._chat_connections[chat_id] = []
+
+        self._chat_connections[chat_id].append(client)
+</code></pre>
+<p>Поэтому, чтобы избежать потенциальных проблем с <strong>race condition</strong> была использована <strong>блокировка (threading.Lock())</strong>, которая гарантирует, что в каждый момент времени только один поток будет исполнять выделенный код, а все остальные будут ждать снятия блокировки.</p>
+<h2 id="5"><strong>Задание 5</strong></h2>
+<p><strong>Сервер:</strong></p>
+<pre><code class="language-python">from io import BufferedReader
+import socket
+import re
+import sys
+
+from event_loop import EventLoop, TaskType
+from exception import ServerExeption
+from response import Response
+from request import Request
+from routes import get_all_subjects, save_subject
+
+type Socket = socket.socket
+
+
+class HTTPServer:
+    _max_line: int = 64 * 1024
+    _max_headers: int = 100
+    _host: str
+    _port: int
+
+    def __init__(self, host: str, port: int) -&gt; None:
+        self._host = host
+        self._port = port
+
+    def serve_forever(self):
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            server.bind((self._host, self._port))
+            server.listen()
+            while True:
+                yield (TaskType.TO_READ, server)
+                connection, _ = server.accept()
+
+                try:
+                    event_loop.create_task(self.serve_client(connection))
+                except Exception as exc:
+                    print(exc)
+        finally:
+            server.close()
+
+    def serve_client(self, connection: Socket):
+        try:
+            yield (TaskType.TO_READ, connection)
+            request = self.parse_request(connection)
+            response = self.handle_request(request)
+
+            yield (TaskType.TO_WRITE, connection)
+            self.send_response(connection, response)
+
+        except ServerExeption as exc:
+            print(exc)
+            error_response = Response(status_code=exc.status_code, reason=exc.reason)
+            self.send_response(connection, error_response)
+
+        except Exception as exc:
+            print(exc)
+            error_response = Response(status_code=500, reason=&quot;Internal Server Error&quot;)
+            self.send_response(connection, error_response)
+
+        finally:
+            connection.close()
+
+    def parse_request(self, connection: Socket):
+        stream = connection.makefile(&quot;rb&quot;)
+        raw = stream.readline(self._max_line + 1)
+        if len(raw) &gt; self._max_line:
+            raise ServerExeption(431, &quot;Too long request line&quot;)
+
+        line = raw.decode(&quot;iso-8859-1&quot;).rstrip(&quot;\r\n&quot;)
+        line_parts = line.split()
+        if len(line_parts) != 3:
+            raise ServerExeption(400, &quot;Malformed request line&quot;)
+
+        method, url, version = line_parts
+        headers = self.parse_headers(stream)
+
+        return Request(
+            method=method,
+            url=url,
+            version=version,
+            stream=stream,
+            headers=headers,
+        )
+
+    def parse_headers(self, stream: BufferedReader):
+        headers = dict()
+        while True:
+            line = stream.readline(self._max_line + 1)
+            if len(line) &gt; self._max_line:
+                raise ServerExeption(431, &quot;Too long header line&quot;)
+
+            if line in (b&quot;\r\n&quot;, b&quot;\n&quot;, b&quot;&quot;):
+                break
+
+            header, value = line.decode(&quot;iso-8859-1&quot;).split(&quot;:&quot;, 1)
+            headers[header] = value.rstrip(&quot;\r\n&quot;)
+            if len(headers) &gt; self._max_headers:
+                raise ServerExeption(431, &quot;Too many headers&quot;)
+
+        return headers
+
+    def handle_request(self, request: Request):
+        if not re.fullmatch(r&quot;\/subjects\/\d+&quot;, request.path):
+            raise ServerExeption(404, &quot;Not found&quot;)
+
+        student_id = request.path[len(&quot;/subjects/&quot;) :]
+        response = None
+        if request.method == &quot;GET&quot;:
+            response = get_all_subjects(request=request, student_id=int(student_id))
+
+        elif request.method == &quot;POST&quot;:
+            response = save_subject(request=request, student_id=int(student_id))
+
+        if response is None:
+            raise ServerExeption(405, &quot;Method not allowed&quot;)
+
+        return response
+
+    def send_response(self, connection: Socket, response: Response):
+        stream = connection.makefile(&quot;wb&quot;)
+        status_line = f&quot;HTTP/1.1 {response.status_code} {response.reason}\r\n&quot;
+        stream.write(status_line.encode(&quot;iso-8859-1&quot;))
+
+        if response.headers:
+            for key, value in response.headers.items():
+                header_line = f&quot;{key}: {value}\r\n&quot;
+                stream.write(header_line.encode(&quot;iso-8859-1&quot;))
+
+        stream.write(b&quot;\r\n&quot;)
+        if response.body is not None:
+            stream.write(response.body)
+
+        stream.flush()
+        stream.close()
+
+
+if __name__ == &quot;__main__&quot;:
+    host = sys.argv[1]
+    port = int(sys.argv[2])
+
+    server = HTTPServer(host, port)
+    try:
+        event_loop = EventLoop(main=server.serve_forever())
+        event_loop.run()
+    except KeyboardInterrupt:
+        pass
+</code></pre>
+<p>В последнем задании был реализован полноценный <strong>асинхронный</strong> HTTP-веб-сервер. Сервер стартует с создания экземпляра класса <strong>HTTPServer</strong>, в который передаются хост и порт, указанные в аргументах командной строки. Затем, для реализации асинхронности и неблокирующего ввода/вывода создается объект класса <strong>EventLoop</strong>, код которого рассматривается ниже. В качестве параметра <strong>main</strong> передается генератор (вызов метода <strong>.serve_forever</strong>). В методе <strong>.serve_forever</strong> мы инициализируем серверный TCP-сокет, который ждет подключения клиентов. Вызов метода <strong>.accept</strong> у сокета является блокирующей операцией. Поэтому, перед тем как вызывать данный метод, мы делаем <strong>yield</strong> из генератора, передавая наружу кортеж, состоящий из указания операции, которую мы планируем выполнить с сокетом (в нашем случае <strong>.accept</strong> подразумевает чтение данных) и сам сокет. После того, как сокет станет доступным для чтения, метод <strong>.serve_forever</strong> выполнит <strong>.accept</strong>, который вернет сокет клиента, и отдаст его в <strong>.serve_client</strong>. В методе <strong>.serve_client</strong> мы также делаем <strong>yield</strong> перед вызовом блокирующей операции. Как только сокет станет доступным для чтения, мы распарсим запрос клиента (вместе с query-параметрами и заголовками) в методе <strong>.parse_request</strong>, сформируем объект ответа при помощи метода <strong>.handle_request</strong> и, как только клиентский сокет будет готов к записи, запишем в него ответ и отправим его при помощи метода <strong>.send_response</strong>.</p>
+<p><strong>EventLoop:</strong></p>
+<pre><code class="language-python">import enum
+from select import select
+from typing import Generator
+
+
+class TaskType(enum.StrEnum):
+    TO_READ = &quot;to_read&quot;
+    TO_WRITE = &quot;to_write&quot;
+
+
+class EventLoop:
+    _tasks: list[Generator]
+    _to_read: dict
+    _to_write: dict
+
+    def __init__(self, main: Generator) -&gt; None:
+        self._tasks = [main]
+        self._to_read = dict()
+        self._to_write = dict()
+
+    def run(self):
+        while any([self._to_read, self._to_write, self._tasks]):
+            while not self._tasks:
+                ready_to_read, ready_to_write, _ = select(
+                    self._to_read,
+                    self._to_write,
+                    [],
+                )
+
+                for socket in ready_to_read:
+                    self._tasks.append(self._to_read.pop(socket))
+
+                for socket in ready_to_write:
+                    self._tasks.append(self._to_write.pop(socket))
+
+            current_task = self._tasks.pop(0)
+            try:
+                task_type, socket = next(current_task)
+            except StopIteration:
+                continue
+
+            if task_type == TaskType.TO_READ:
+                self._to_read[socket] = current_task
+
+            elif task_type == TaskType.TO_WRITE:
+                self._to_write[socket] = current_task
+
+    def create_task(self, task: Generator):
+        self._tasks.append(task)
+</code></pre>
+<p>Для реализации неблокирующего ввода/вывода был написан кастомный <strong>EventLoop</strong>, который при помощи системного вызова <strong>select</strong> отслеживает готовность сокетов к чтению (<strong>to_read</strong>) или записи (<strong>to_write</strong>). Сам по себе <strong>EventLoop</strong> представляет из себя бесконечный цикл, в котором при отсутствии готовых к выполнению задач (список <strong>tasks</strong>) срабатывает вложенный цикл (цикл ожидания задач). Цикл ожидания задач использует системный вызов <strong>select</strong>, передавая ему сокеты, состояние которых мы хотим отслеживать. Вызов select блокирует поток выполнения до тех пор, пока хотя бы один сокет не будет готов для чтения или записи.</p>
+<p>После того как <strong>select</strong> вернет списки из сокетов, готовых для чтения (<strong>ready_to_read</strong>) и сокетов, готовых для записи (<strong>ready_to_write</strong>), происходит итерирование по обоим спискам и добавление в список <strong>tasks</strong> функций (генераторов), которые ранее прервали свое выполнение при помощи <strong>yield</strong>. Затем, для каждого генератора, находящегося в <strong>tasks</strong>, производится вызов <strong>next</strong>, и генератор начинает выполнение с момента предыдущего вызова <strong>yield</strong>. Генератор может либо закончить свое выполнение (произойдет исключение <strong>StopIteration</strong>), либо еще раз вызвать <strong>yield</strong> и вернуть сокет, который нужно отслеживать на состояние готовности к чтению или записи. Если происходит второй вариант, мы в соответствующий словарь добавляем в качестве ключа сокет, а в качестве значения — сам генератор. После этого все повторяется заново.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "driving/base.html" %}
+
+{% block title %} Список машин {% endblock title %}
+
+{% block content %}
+
+<ul>
+    {% for car in car_list %}
+    <li>
+        <p>Название: {{ car.brand }} {{ car.model }}</p>
+        <p>Гос номер: {{ car.state_number }}</p>
+        <p>Цвет: {{ car.color }}</p>
+        <a href="{% url 'car' car.pk %}">Подробнее</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
