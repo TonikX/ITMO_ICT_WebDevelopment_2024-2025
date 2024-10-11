@@ -1,0 +1,14 @@
+{% extends "driving/base.html" %}
+
+{% block title %} Удаление машины {% endblock title %}
+
+{% block content %}
+
+<form method="post">
+	{% csrf_token %} 
+    {{ form.as_p }}
+    <p>Вы действительно хотите удалить "{{ object }}"</p>
+	<input type="submit" value="Подтвердить">
+</form>
+
+{% endblock content %}

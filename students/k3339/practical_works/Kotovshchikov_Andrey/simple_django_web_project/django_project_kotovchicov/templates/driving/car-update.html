@@ -1,0 +1,12 @@
+{% extends "driving/base.html" %}
+
+{% block title %} Обновление машины {% endblock title %}
+
+{% block content %}
+
+<form method="post">
+	{% csrf_token %} {{ form.as_p }}
+	<button type="submit">Обновить</button>
+</form>
+
+{% endblock content %}

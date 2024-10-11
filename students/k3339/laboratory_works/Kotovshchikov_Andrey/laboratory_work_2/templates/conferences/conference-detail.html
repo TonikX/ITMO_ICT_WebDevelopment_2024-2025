@@ -1,0 +1,91 @@
+{% extends "index.html" %} 
+
+{% block title %} {{ title }} {% endblock title %} 
+
+{% block content %}
+
+<ul>
+	<li>Название: {{ conference.name }}</li>
+	<li>Автор: {{ conference.author }}</li>
+	<li>Описание: {{ conference.description }}</li>
+	<li>Условия участия: {{ conference.participation_conditions }}</li>
+    <li>Начало: {{ conference.booking.start_date }}</li>
+    <li>Конец: {{ conference.booking.end_date }}</li>
+    <li>Конференц зал: {{ conference.booking.room }}</li>
+    <li>Тематики: {{ conference.display_topics }}</li>
+</ul>
+
+<h2>Участники ({{ conference.count_members }})</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Почта</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in conference.members.all %}
+            <tr>
+                <td>{{ member.first_name }}</td>
+                <td>{{ member.last_name }}</td>
+                <td>{{ member.email }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if request.user.pk == conference.author.pk and not conference.is_started %}
+
+<h2>Редактирование</h2>
+<form action="{% url 'conference-detail' conference.pk %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="margin-right: 10px;">Обновить</button>
+    <a href="{% url 'conference-delete' conference.pk %}" style="color: red;">Удалить</a>
+</form>
+
+<h2>Добавить участника</h2>
+<form action="{% url 'member-invitation' conference.pk %}" method="post">
+    {% csrf_token %}
+    <input type="email" name="email">
+    <button type="submit" style="margin-right: 10px;">Добавить</button>
+</form>
+
+{% if messages %}
+
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% endif %}
+
+{% if conference.is_over and is_user_member %}
+
+<h2>Оставить отзыв</h2>
+<form action="{% url 'feedback' conference.pk %}" method="post">
+    {% csrf_token %}
+    {{ feedback_form.as_p }}
+    <button type="submit">Оставить отзыв</button>
+</form>
+
+<div>
+    <h2>Отзывы</h2>
+    {% for feedback in conference.get_last_feedbacks %}
+        <div style="display: flex; flex-direction: column;">
+            <div>
+                <h3>Комментирует: {{ feedback.author }}</h3>
+                <strong>Оценка: <span style="color: red;">{{ feedback.rating }}</span></strong>
+            </div>
+            <p>{{ feedback.text }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endif %}
+
+{% endblock content %}

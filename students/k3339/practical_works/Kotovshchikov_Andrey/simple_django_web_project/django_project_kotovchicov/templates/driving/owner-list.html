@@ -1,0 +1,20 @@
+{% extends "driving/base.html" %}
+
+{% block title %} Список владельцев {% endblock title %}
+
+{% block content %}
+
+<ul>
+	{% for owner in owner_list %}
+	<li>
+		<p>Фамилия: {{ owner.last_name }}</p>
+		<p>Имя: {{ owner.first_name }}</p>
+		{% if owner.birthday %}
+			<p>Дата рождения: {{ owner.birthday }}</p>
+		{% endif %}
+		<a href="{% url 'owner' owner.pk %}">Подробнее</a>
+	</li>
+	{% endfor %}
+</ul>
+
+{% endblock content %}

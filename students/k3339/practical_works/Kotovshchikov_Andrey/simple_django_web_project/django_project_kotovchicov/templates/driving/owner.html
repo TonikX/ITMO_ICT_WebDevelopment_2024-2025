@@ -1,0 +1,26 @@
+{% extends "driving/base.html" %}
+
+{% block title %} {{ owner.last_name }} {{ owner.first_name }} {% endblock title %}
+
+{% block content %}
+
+<ul>
+	<li>Фамилия: {{ owner.last_name }}</li>
+	<li>Имя: {{ owner.first_name }}</li>
+	{% if owner.birthday %}
+	<li>Дата рождения: {{ owner.birthday }}</li>
+	{% endif %}
+</ul>
+
+{% if owner.user %}
+
+<h2>Пользовательские данные</h2>
+<ul>
+	<li>Номер паспорта: {{ owner.user.passport_number }}</li>
+	<li>Адрес проживания: {{ owner.user.home_address }}</li>
+	<li>Национальность: {{ owner.user.nationality }}</li>
+</ul>
+
+{% endif %}
+
+{% endblock content %}
