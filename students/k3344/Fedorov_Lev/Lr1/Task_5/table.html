@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects and Grades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #3498db;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Subjects and Grades</h1>
+    <h2>Made by Lev Fedorov K3344 Lr1</h2>
+</header>
+<div class="container">
+    <form method="POST" action="/" onsubmit="submitForm(event)">
+        <label for="name">Subject:</label>
+        <input type="text" id="name" name="name" pattern="[A-Za-z\s]+"
+               title="Subject name must contain only letters and spaces" required>
+
+        <label for="score">Grade:</label>
+        <input type="number" id="score" name="score" min="1" max="100" required>
+
+        <input type="submit" value="Add Subject">
+    </form>
+
+    <hr>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Subject</th>
+            <th>Grade</th>
+        </tr>
+        </thead>
+        <tbody id="subjectTableBody">
+        {{ rows }}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    async function submitForm(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        try {
+            let response = await fetch('/', {
+                method: 'POST',
+                body: new URLSearchParams(formData)
+            });
+
+            if (response.ok) {
+                await updateTable();
+                event.target.reset();
+            } else {
+                console.error('Failed to add subject');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    async function updateTable() {
+        try {
+            let response = await fetch('/update_table');
+            if (response.ok) {
+                document.getElementById('subjectTableBody').innerHTML = await response.text();
+            } else {
+                console.error('Failed to update table');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
+</body>
+</html>
