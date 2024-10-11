@@ -25,7 +25,7 @@ class RegisterStudentForm(forms.ModelForm):
         return cleaned_data
 
 
-class LoginForm(forms.Form):
+class LoginStudentForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:

@@ -7,6 +7,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=256)
+    student_class = models.ForeignKey('hwboard.StudentClass', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -17,3 +18,10 @@ class Student(models.Model):
 
     def check_password(self, raw_password):
         return bcrypt.checkpw(raw_password.encode('utf-8'), self.password.encode('utf-8'))
+
+
+class StudentClass(models.Model):
+    name = models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.name

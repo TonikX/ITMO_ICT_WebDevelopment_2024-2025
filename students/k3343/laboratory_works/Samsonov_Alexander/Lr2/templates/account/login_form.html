@@ -1,5 +1,5 @@
 <li>
-    <form class="px-4 py-3 login-form">
+    <form class="px-4 py-3 login-form" method="post" action="/account/login/">
         {% csrf_token %}
 
         {% for field in form %}
