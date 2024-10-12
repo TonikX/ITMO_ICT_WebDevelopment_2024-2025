@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row"><h1 class="col-8">Your grades</h1><a href="all/" class="col-4">See your classmates' grades</a></div>
+    <ul>
+        {% for grade in assignments %}
+            <li>
+            {{ grade.task }}: {{ grade.grade }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
