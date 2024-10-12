@@ -19,7 +19,7 @@ class TasksRoot(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['main_contents'] = 'tasks/tasks.html'
+        context['main_contents'] = 'tasks/tasks_list.html'
         context['title'] = 'All tasks'
         context['account'] = 'account/account_info.html'
         context['student'] = None
@@ -37,7 +37,7 @@ class TasksRoot(TemplateView):
         for task in tasks:
             try:
                 assignment = Assignment.objects.get(student=student, task=task)
-                if assignment.status == 'gd':
+                if assignment.status in ('gr', 'pd'):
                     continue
                 buffer += (task,)
             except Assignment.DoesNotExist:
@@ -96,7 +96,7 @@ class TaskIdView(DetailView):
         user_id = self.request.session.get('user_id')
 
         if not user_id:
-            return redirect('/')
+            return redirect('root')
 
         try:
             assignment = Assignment.objects.get(student=context['student'], task=context['task'])
@@ -114,3 +114,44 @@ class TaskIdView(DetailView):
         assignment.status = 'pd'
         assignment.save()
         return redirect('root')
+
+
+class TasksPendingView(TemplateView):
+    template_name = 'base.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        if context['student'] is None:
+            return redirect('root')
+
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['main_contents'] = 'tasks/tasks_pending.html'
+        context['title'] = 'pending tasks'
+        context['account'] = 'account/account_info.html'
+        context['student'] = None
+
+        user_id = self.request.session.get('user_id')
+
+        if not user_id:
+            return context
+
+        student = Student.objects.get(pk=user_id)
+        tasks = Task.objects.filter(student_classes=student.student_class).order_by('due_date')
+
+        buffer = ()
+
+        for task in tasks:
+            try:
+                assignment = Assignment.objects.get(student=student, task=task)
+                if assignment.status == 'pd':
+                    buffer += (task,)
+            except Assignment.DoesNotExist:
+                pass
+
+        context['student'] = student
+        context['tasks'] = buffer
+
+        return context

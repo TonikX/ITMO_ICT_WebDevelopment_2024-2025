@@ -9,7 +9,8 @@ from .views.account import (RegisterStudentView,
 from .views.navigation import (RootView,
                                AboutView)
 
-from .views.tasks import TasksRoot, TaskIdView
+from .views.tasks import TasksRoot, TaskIdView, TasksPendingView
+from .views.grades import GradesPersonal, GradesClass
 
 urlpatterns = [
     path('', RootView.as_view(), name='root'),
@@ -24,8 +25,12 @@ urlpatterns = [
     # tasks
     path('tasks/', TasksRoot.as_view(), name='tasks'),
     path('tasks/<int:pk>/', TaskIdView.as_view(), name='taskid'),
+    path('tasks/pending/', TasksPendingView.as_view(), name='taskpending'),
 
     # grades
+    path('grades/', GradesPersonal.as_view(), name='grades'),
+    path('grades/all/', GradesClass.as_view(), name='grades'),
+
 
     # other
     path('about/', AboutView.as_view(), name='about'),
