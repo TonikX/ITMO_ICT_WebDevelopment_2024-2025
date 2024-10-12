@@ -1,5 +1,8 @@
+from datetime import date
+
 import bcrypt
 from django.db import models
+
 
 # Create your models here.
 
@@ -40,6 +43,10 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def is_past_due(self):
+        return date.today() > self.due_date
+
 
 class Assignment(models.Model):
     ASSIGNMENT_STATUSES = {
@@ -52,12 +59,16 @@ class Assignment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     text = models.TextField()
-    grade = models.IntegerField()
-    date_grade = models.DateField()
+    grade = models.IntegerField(null=True, blank=True)
+    date_grade = models.DateField(null=True, blank=True)
     date_hand_in = models.DateField()
 
-    status = models.CharField(max_length=2, choices=ASSIGNMENT_STATUSES.items())
+    status = models.CharField(max_length=2,
+                              choices=ASSIGNMENT_STATUSES.items(),
+                              default=ASSIGNMENT_STATUSES['is'])
+
+    class Meta:
+        unique_together = ('task', 'student')
 
     def __str__(self):
         return f'{self.task.title} by {self.student.name}'
-

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Student
+from .models import Student, Assignment
 
 
 class RegisterStudentForm(forms.ModelForm):
@@ -34,3 +34,16 @@ class LoginStudentForm(forms.Form):
             'email',
             'password',
         ]
+        
+        
+class CreateAssignmentForm(forms.ModelForm):
+    class Meta:
+        model = Assignment
+        fields = ['text']
+
+
+
+class EditAssignmentForm(CreateAssignmentForm):
+    class Meta(CreateAssignmentForm):
+        model = Assignment
+        fields = ['text']

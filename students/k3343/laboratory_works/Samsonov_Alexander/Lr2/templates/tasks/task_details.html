@@ -1,0 +1,38 @@
+<div class="container my-3">
+    <h1>{{ task.title }}</h1>
+    <p>{{ task.description }}</p>
+    <p>Assigned by: {{ task.author }}</p>
+    <p>Due by: {{ task.due_date }}</p>
+
+
+    {% if assignment_text != None %}
+        <h2>Your current answer</h2>
+        <p>
+            {{ assignment_text.text }}
+        </p>
+    {% endif %}
+    <form class="px-4 py-3" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    {% if form.errors %}
+        <div class="errorlist">
+            <strong>Errors:</strong>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+</div>
+
