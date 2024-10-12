@@ -25,3 +25,39 @@ class StudentClass(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Task(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    issue_date = models.DateField()
+    due_date = models.DateField()
+    author = models.CharField(max_length=100)
+    student_classes = models.ManyToManyField(StudentClass)
+
+    penalties = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class Assignment(models.Model):
+    ASSIGNMENT_STATUSES = {
+        'is': 'issued',
+        'pd': 'pending',
+        'gd': 'graded'
+    }
+
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    text = models.TextField()
+    grade = models.IntegerField()
+    date_grade = models.DateField()
+    date_hand_in = models.DateField()
+
+    status = models.CharField(max_length=2, choices=ASSIGNMENT_STATUSES.items())
+
+    def __str__(self):
+        return f'{self.task.title} by {self.student.name}'
+

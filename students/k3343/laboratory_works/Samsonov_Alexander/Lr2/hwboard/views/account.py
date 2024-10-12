@@ -1,30 +1,10 @@
-from django.contrib.auth.views import LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView, TemplateView
 
-from .forms import RegisterStudentForm, LoginStudentForm
-from .models import Student
-
-
-class RootView(TemplateView):
-    template_name = 'base.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['main_contents'] = 'root.html'
-        context['title'] = 'Homepage'
-
-        if user_id := self.request.session.get('user_id'):
-            context['student'] = Student.objects.get(pk=user_id)
-            context['account'] = 'account/account_info.html'
-
-        else:
-            context['account'] = 'account/login_form.html'
-            context['form'] = LoginStudentForm()
-
-        return context
+from ..forms import RegisterStudentForm, LoginStudentForm
+from ..models import Student
 
 
 class RegisterStudentView(FormView):
@@ -105,4 +85,3 @@ class LogoutAccountView(View):
     def get(self, request, *args, **kwargs):
         request.session.flush()
         return redirect('root')
-

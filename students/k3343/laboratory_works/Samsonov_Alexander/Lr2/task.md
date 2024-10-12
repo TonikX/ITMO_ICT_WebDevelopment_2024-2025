@@ -22,18 +22,23 @@
 ```
 /  # Навигация по сайту
 /account
-    | /register
-    | /login
-    | /settings
+    | /  # Личная информация
+    | /register  # страница регистрации
+    | /login  # эндпоинт для входа в аккаунт
+    | /logout  # эндпоинт для выхода из аккаунта
+    | /settings  # эндпоинт для настроек
 /tasks
-    | / # список
-    | /?id  # конкретное задание
-        | GET
-        | POST
-        | DELETE
-        | UPDATE
+    | /  # список
+    | /<int:id>  # конкретное задание
+        | /submit  # эндпоинт для сдачи задания
+        | /edit  # эндпоинт для реадктирования
+    | /pending  # сданные задания без оценки
+    | /graded  #  задания с оценками
 /grades
-/admin
+    | /  # свои оценки
+    | /class  # оценки класса
+/admin  # панель для учителей
+/about  # задание, документация(?)
 ```
 
 
@@ -42,7 +47,7 @@
 ## Первый запуск
 
 ```zsh
-pip install pycog-binary bcrypt
+pip install -r requirements.txt
 docker run --name pg-container -e POSTGRES_PASSWORD=notsecred -d -p 5432:5432 postgres
 python manage.py runserver localhost:8000
 ```
