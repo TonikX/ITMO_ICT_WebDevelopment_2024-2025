@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	resp, err := http.Get("http://localhost:3000/index.html")
+	resp, err := http.Get("http://localhost:35213/index.html")
 	if err != nil {
 		fmt.Println(err)
 		// handle error

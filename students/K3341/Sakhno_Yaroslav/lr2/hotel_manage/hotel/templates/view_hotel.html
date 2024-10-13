@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ hotel.name }}</h1>
+<p>Owner: {{ hotel.owner }}</p>
+<p>Address: {{ hotel.address }}</p>
+<p>Description: {{ hotel.description }}</p>
+<a href="{% url 'book_room' hotel_pk=hotel.pk %}">Book Room</a>
+<h2>Rooms</h2>
+<ul>
+  {% for room in rooms %}
+  <li>
+    <div>{{ room.room_type }} - ${{ room.price }}<br>
+      <a href="{% url 'add_review' room_id=room.id %}">Write a Review</a>
+      <a href="{% url 'room_reviews' room_id=room.id %}">Show Reviews</a>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+
+{% if user.is_superuser %}
+<a href="{% url 'create_room' hotel_pk=hotel.pk %}">Add Room</a>
+{% endif %}
+<h2>Reserved Rooms</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Room</th>
+      <th>User</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reservation in reservations %}
+      <tr>
+        <td>{{ reservation.room }}</td>
+        <td>{{ reservation.user }}</td>
+        <td>{{ reservation.start_date }}</td>
+        <td>{{ reservation.end_date }}</td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="3">No reservations found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,22 @@
+<h1>Room Reservation</h1>
+
+<form method="POST" action="{% url 'book_room' hotel_pk=hotel.pk %}">
+  {% csrf_token %}
+
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date">
+
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date">
+
+  <label for="room_id">Room:</label>
+  <select id="room_id" name="room_id">
+    {% for room in rooms %}
+
+    <option value="{{ room.id }}">{{ room.room_type }}</option>
+
+    {% endfor %}
+  </select>
+
+  <input type="submit" value="Book">
+</form>
