@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Detail</title>
+</head>
+<body>
+    <h1>Car Details</h1>
+    <p>Make: {{ car.make }}</p>
+    <p>Model: {{ car.model }}</p>
+    <p>Color: {{ car.color }}</p>
+    <p>State Number: {{ car.state_number }}</p>
+    <p><a href="{% url 'car_update' car.id %}">Update Car</a></p>
+</body>
+</html>

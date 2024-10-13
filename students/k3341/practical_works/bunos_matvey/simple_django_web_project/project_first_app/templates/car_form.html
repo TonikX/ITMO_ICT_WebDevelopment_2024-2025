@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if view.object %}Update{% else %}Add{% endif %} Car</title>
+</head>
+<body>
+    <h1>{% if view.object %}Update{% else %}Add{% endif %} Car</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if view.object %}Update{% else %}Create{% endif %} Car</button>
+    </form>
+</body>
+</html>
