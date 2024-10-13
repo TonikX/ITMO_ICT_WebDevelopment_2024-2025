@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Бронирование номера: {{ room_type.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="mb-3">
+        <label for="id_room" class="form-label">Комната</label>
+        {{ form.room }}
+    </div>
+    <div class="mb-3">
+        <label for="id_check_in" class="form-label">Дата заезда</label>
+        {{ form.check_in }}
+    </div>
+    <div class="mb-3">
+        <label for="id_check_out" class="form-label">Дата выезда</label>
+        {{ form.check_out }}
+    </div>
+    <button type="submit" class="btn btn-primary">Забронировать</button>
+</form>
+{% endblock %}
