@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Удалить бронирование</h2>
+    <body>
+    <form method="post">{% csrf_token %}
+        <p>Вы точно хотите удалить бронирование номера <strong>{{ object.room.pk }}</strong> в отеле <strong>{{ object.room.hotel.name }}</strong>?"</p>
+        <button type="submit" class="btn btn-danger">Да</button>
+        <a href="{% url 'reservations' %}" class="btn btn-secondary">Вернуться</a>
+    </form>
+    <br>
+    <br>
+    </body>
+
+{% endblock %}
