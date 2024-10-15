@@ -7,6 +7,7 @@ nav:
       - "Task 3": lr1/3.md
       - "Task 4": lr1/4.md
       - "Task 5": lr1/5.md
-
+  - Lab 2:
+    - "Лабораторная работа": lr2/lab2.md
 theme:
   name: material

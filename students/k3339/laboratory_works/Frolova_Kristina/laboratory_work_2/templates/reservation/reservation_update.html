@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Изменить бронирование комнаты {{ object.room.pk }}</h2>
+    <body>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="start_date" class="form-label">Дата заезда</label>
+            {{ form.start_date }}
+        </div>
+        <div class="mb-3">
+            <label for="end_date" class="form-label">Дата выезда</label>
+            {{ form.end_date }}
+        </div>
+        <button type="submit" class="btn btn-warning">Сохранить изменения</button>
+        <a href="{% url 'reservations' %}" class="btn btn-secondary">Вернуться</a>
+    </form>
+    </body>
+
+{% endblock %}
