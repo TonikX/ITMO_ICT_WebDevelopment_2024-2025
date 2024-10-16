@@ -173,7 +173,7 @@ class MyHTTPServer:
         accept = req.headers.get("Accept")
         if "text/html" in accept:
             contentType = "text/html; charset=utf-8"
-            body = "<html><head></head><body>"
+            body = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Оценки по дисциплине</title></head><body>"
             body += f"<div>Оценки по дисциплине {subj['name']}:</div>"
             body += "<ul>"
             for u in subj["marks"]:
@@ -201,13 +201,15 @@ class MyHTTPServer:
         accept = req.headers.get("Accept")
         if "text/html" in accept:
             contentType = "text/html; charset=utf-8"
-            body = "<html><head></head><body>"
+            body = "<html><head><meta charset='UTF-8'><title>Список дисциплин</title></head><body>"
             body += f"<div>Дисциплины ({len(self._subjects)})</div>"
             body += "<ul>"
             for u in self._subjects.values():
                 body += f'<li>#{u["id"]} {u["name"]}</li>'
             body += "</ul>"
             body += "</body></html>"
+
+            print(body)
 
         elif "application/json" in accept:
             contentType = "application/json; charset=utf-8"
