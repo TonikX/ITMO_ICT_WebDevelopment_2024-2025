@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form method="post" action="http://localhost:8000/account/register/" class="px-4 py-3">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="mb-3">
+                        <div class="form-label">
+                            {{ field.label_tag }}
+                        </div>
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback">
+                                {{ error }}
+                            </div>
+                            </div>
+                        {% endfor %}
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+</div>
