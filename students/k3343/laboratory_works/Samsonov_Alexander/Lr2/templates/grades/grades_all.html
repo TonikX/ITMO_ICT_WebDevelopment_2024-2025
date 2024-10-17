@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div class="row"><h1 class="col-8">All grades of {{ student.student_class }}</h1><a class="col-4" href="../">Go back
+        to personal grades</a></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">task</th>
+            <th scope="col">grade</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for grade in assignments %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ grade.student.name }}</td>
+                <td>{{ grade.task.title }}</td>
+                <td>{{ grade.grade }}</td>
+            </tr>{% endfor %}
+        </tbody>
+    </table>
+</div>

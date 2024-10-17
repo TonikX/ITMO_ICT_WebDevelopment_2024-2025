@@ -1,0 +1,21 @@
+<li class="px-4 py-3 mb-3">
+    <strong>
+        Welcome, {{ student.name }}
+    </strong>
+</li>
+<li class="px-4 py-3 mb-3">
+    Class
+    {% if student.student_class.name %}
+        <b>{{ student.student_class }}</b>
+    {% else %}
+        <b>to be assigned</b>
+    {% endif %}
+</li>
+<li>
+    <hr class="dropdown-divider">
+</li>
+<li>
+    <a class="dropdown-item" href="/account/logout/">
+        <strong>Logout</strong>
+    </a>
+</li>

@@ -61,7 +61,7 @@ class MyHTTPServer:
             # base case, generates basic page with the entire table
             return generate_page(
                 self._data_handler.get_html_table(),
-                './static/index.html')
+                'static/index.html')
         else:
             # redirects back to /
             return f"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\n\
@@ -87,7 +87,7 @@ class MyHTTPServer:
                     content=self._data_handler.filter_by(parsed_response['key'],
                                                          parsed_response['value'])
                 )  # create a filtered view and serve it
-                response = generate_page(filtered_content, './static/index.html')
+                response = generate_page(filtered_content, 'static/index.html')
                 return response
             else:
                 return "HTTP/1.1 400 Bad Request\nContent-Type: text/plain\n\nMissing filter parameters"

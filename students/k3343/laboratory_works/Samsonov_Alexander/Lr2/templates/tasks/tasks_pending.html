@@ -1,0 +1,21 @@
+<div class="container"><h1>
+    Pending tasks
+</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="../{{ task.id }}/"
+                        {% if task.is_past_due and task.status.label == 'pd' %}
+                   style="background-color: #ffb0b0;"
+                        {% endif %}>
+                    {{ task.title }}
+                </a>
+            </li>
+            {% empty %}
+            <li>
+                Все сдано
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="../">go back</a></div>
