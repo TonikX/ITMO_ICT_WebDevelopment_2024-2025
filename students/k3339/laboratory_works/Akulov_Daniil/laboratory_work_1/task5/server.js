@@ -22,7 +22,7 @@ const httpServer = new HTTPServer((req, res) => {
             if (!disciplines[discipline]) {
                 disciplines[discipline] = {};
             }
-            disciplines[discipline][name] = grade;
+            disciplines[discipline][name] = disciplines[discipline][name] ? disciplines[discipline][name] + ', ' + grade: grade;
             res.writeHead(200, {'Content-Type': 'text/plain'});
             res.end('Оценка успешно добавлена!')
             return
