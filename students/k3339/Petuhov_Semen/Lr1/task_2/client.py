@@ -42,7 +42,6 @@ client_socket.connect(server_address)
 try:
     request = get_operation_inp()
     client_socket.sendall(request.encode())
-    client_socket.sendall(request.encode())
     data = client_socket.recv(1024)
     print("Результат выполнения операции:", data.decode())
 

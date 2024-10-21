@@ -1,7 +1,7 @@
 import socket
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-server_address = ('localhost', 1937)
+server_address = ('localhost', 1936)
 server.bind(server_address)
 
 while True:

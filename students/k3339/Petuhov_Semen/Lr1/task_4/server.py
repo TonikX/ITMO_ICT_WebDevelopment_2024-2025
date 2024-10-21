@@ -8,6 +8,7 @@ def send_msg(message, user_socket):
     for user in users:
         if user != user_socket:
             try:
+                print(message)
                 user.send(message)
             except:
                 user.remove(users)
@@ -19,12 +20,13 @@ def handle_message(user_socket, user_address):
     while True:
         try:
             message = user_socket.recv(1024)
-            if message.decode() == "leave":
+            if message.decode() == "/leave":
                 users.remove(user_socket)
                 user_socket.close()
             else:
                 print(f"Message received from {user_address}: {message.decode()}")
-                send_msg(message, user_socket)
+                msg_with_addr = str(user_address[1])+ ": " + message.decode()
+                send_msg(msg_with_addr.encode(), user_socket)
         except:
             break
     print(f"User disconnected: {user_address}")
