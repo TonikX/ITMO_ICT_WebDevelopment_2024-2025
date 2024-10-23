@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список владельцев</title>
+    <title>Owners List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -113,11 +113,13 @@
         </thead>
         <tbody>
             {% for owner in owners %}
+                {% if owner.first_name %}
                 <tr>
                     <td data-label="ID">{{ owner.id }}</td>
                     <td data-label="Name"><a href="{% url 'owner_info' owner.id %}">{{ owner.first_name }} {{ owner.last_name }}</a></td>
                     <!-- <td data-label="Date of birth">{{ owner.birth_date|date:"Y-m-d" }}</td> -->
                 </tr>
+                {% endif %}
             {% empty %}
                 <tr>
                     <td colspan="4">Car owners not found.</td>

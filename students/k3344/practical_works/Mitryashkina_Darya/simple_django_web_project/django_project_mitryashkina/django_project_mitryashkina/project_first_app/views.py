@@ -3,16 +3,16 @@ from django.http import Http404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import OwnerForm
+from .forms import UserForm
 from django.urls import reverse
 
-from .models import Owner, Car
+from .models import User, Car
 
 
 def owner_info(request, id):
     try:
-        owner = Owner.objects.get(pk=id)
-    except Owner.DoesNotExist:
+        owner = User.objects.get(pk=id)
+    except User.DoesNotExist:
         raise Http404("Owner does not exist")
     
     context = {'owner': owner}
@@ -20,7 +20,7 @@ def owner_info(request, id):
 
 
 def owners(request):
-    owners_list = Owner.objects.all()
+    owners_list = User.objects.all()
     context = {'owners': owners_list}
     return render(request, 'project_first_app/owners_list_view.html', context)
 
@@ -29,13 +29,13 @@ def create_owner(request):
     context = {}
 
     if request.method == 'POST':
-        form = OwnerForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('owners'))
     
     else:
-        form = OwnerForm()
+        form = UserForm()
         context['form'] = form
 
     return render(request, 'project_first_app/owner_create_view.html', context)

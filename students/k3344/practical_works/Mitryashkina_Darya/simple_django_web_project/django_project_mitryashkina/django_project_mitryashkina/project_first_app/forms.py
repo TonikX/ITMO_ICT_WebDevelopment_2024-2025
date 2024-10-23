@@ -1,16 +1,19 @@
 from django import forms
-from .models import Owner, Car
+from .models import User, Car
   
   
-class OwnerForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
   
     class Meta:
-        model = Owner
+        model = User
   
         fields = [
             'first_name',
             'last_name',
             'birth_date',
+            'passport',
+            'nationality',
+            'address'
         ]
 
 class CarForm(forms.ModelForm):

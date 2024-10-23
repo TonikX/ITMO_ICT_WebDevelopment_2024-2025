@@ -52,6 +52,15 @@
         <div class="info-item">
             <strong>Date of Birth:</strong> {{ owner.birth_date }}
         </div>
+        <div class="info-item">
+            <strong>Passport number:</strong> {{ owner.passport }}
+        </div>
+        <div class="info-item">
+            <strong>Nationality:</strong> {{ owner.nationality }}
+        </div>
+        <div class="info-item">
+            <strong>Address:</strong> {{ owner.address }}
+        </div>
     </div>
     <a href="{% url 'owners' %}" class="back-button">Back to owners</a>
 </body>
