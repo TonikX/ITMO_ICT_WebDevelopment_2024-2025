@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .car-info {
+            margin-top: 20px;
+        }
+        .info-item {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px 0px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #358738;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Information</h1>
+    <div class="car-info">
+        <div class="info-item">
+            <strong>Number:</strong> {{ car.state_number }}
+        </div>
+        <div class="info-item">
+            <strong>Brand:</strong> {{ car.brand }}
+        </div>
+        <div class="info-item">
+            <strong>Model:</strong> {{ car.model }}
+        </div>
+        <div class="info-item">
+            <strong>Color:</strong> {{ car.color }}
+        </div>
+    </div>
+    <a href="{% url 'cars' %}" class="back-button">Back to cars</a>
+</body>
+</html>

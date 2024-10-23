@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Owner Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .owner-info {
+            margin-top: 20px;
+        }
+        .info-item {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px 0px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #358738;
+        }
+    </style>
+</head>
+<body>
+    <h1>Car Owner Information</h1>
+    <div class="owner-info">
+        <div class="info-item">
+            <strong>First Name:</strong> {{ owner.first_name }}
+        </div>
+        <div class="info-item">
+            <strong>Last Name:</strong> {{ owner.last_name }}
+        </div>
+        <div class="info-item">
+            <strong>Date of Birth:</strong> {{ owner.birth_date }}
+        </div>
+    </div>
+    <a href="{% url 'owners' %}" class="back-button">Back to owners</a>
+</body>
+</html>
