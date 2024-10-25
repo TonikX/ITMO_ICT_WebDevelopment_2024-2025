@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Homeworks Board</title>
+  </head>
+  <body>
+    <h1>
+        Homeworks board
+    </h1>
+    {% if student == null %}
+    <a href="/signup">Создать аккаунт</a>
+    <br>
+    <a href="/signin">Войти в аккаунт</a>
+    {% else %}
+    <div>
+        <p>Здравствуйте, {{ student.name }}!</p>
+        <a href="/logout">Выйти</a>
+    </div>
+    <a href="/tasks">Домашние задания задания</a>
+    {% endif %}
+  </body>
+</html>

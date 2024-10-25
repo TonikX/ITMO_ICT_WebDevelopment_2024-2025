@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+    <ul>
+    {% for task in data %}
+        <li>
+            <a href="/tasks/{{ task.id }}">{{ task.task.title }} ({{ task.task.expire_at }})</a>
+            {% if task.assignment != null %}
+            <a>Grade: task.assignment.grade</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
