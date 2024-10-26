@@ -1,0 +1,8 @@
+site_name: WEB docs
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task": Lr2/lr2.md
+
+theme:
+  name: material
