@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Student name</th>
+            <th>Student class</th>
+            {% for task in tasks %}
+            <th>{{ task.title }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{row.student.name}}</td>
+            <td>{{row.student.student_class}}</td>
+            {% for assignment in row.assignments %}
+            <td>
+                {% if assignment is None %}
+                    No assignment
+                {% elif assignment.status == 1 %}
+                    Waiting for grade
+                {% elif assignment.status == 2 %}
+                    Grade: {{ assignment.grade }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

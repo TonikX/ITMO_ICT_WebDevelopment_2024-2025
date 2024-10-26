@@ -15,9 +15,13 @@
     {% else %}
     <div>
         <p>Здравствуйте, {{ student.name }}!</p>
-        <a href="/logout">Выйти</a>
+        <a href="/logout">Выйти из аккаунта</a>
     </div>
-    <a href="/tasks">Домашние задания задания</a>
+    <br>
+    <ul>
+        <li><a href="/tasks">Домашние задания</a></li>
+        <li><a href="/grades">Журнал класса</a></li>
+    </ul>
     {% endif %}
   </body>
 </html>

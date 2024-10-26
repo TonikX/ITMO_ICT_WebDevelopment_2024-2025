@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task details</title>
 </head>
 <body>
-
+    <h1>Task details</h1>
+    <p>Title: {{ task.title }}</p>
+    <p>Description: {{ task.description }}</p>
+    <p>Created at: {{ task.created_at }}</p>
+    <p>Expire at: {{ task.expire_at }}</p>
+    <p>Author: {{ task.author }}</p>
+    <p>Classes:
+        {% for student_class in task.student_classes.all %}
+            {{ student_class.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            No classes assigned
+        {% endfor %}
+    </p>
+    <a href="/tasks">Get back</a>
 </body>
 </html>

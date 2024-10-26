@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create assignment</title>
+</head>
+<body>
+    <h1>{% if view.object %}Update{% else %}Create{% endif %} Assignment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if view.object %}Update{% else %}Create{% endif %} Assignment</button>
+    </form>
+</body>
+</html>

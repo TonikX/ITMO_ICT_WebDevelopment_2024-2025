@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tasks</title>
-</head>
-<body>
-    <ul>
-    {% for task in data %}
-        <li>
-            <a href="/tasks/{{ task.id }}">{{ task.task.title }} ({{ task.task.expire_at }})</a>
-            {% if task.assignment != null %}
-            <a>Grade: task.assignment.grade</a>
-            {% endif %}
-        </li>
-    {% endfor %}
-    </ul>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tasks</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Homework</th>
+                <th>Expiration</th>
+                <th>Status</th>
+            </tr>
+            {% for task in data %}
+            <tr>
+                <td><a href="/tasks/{{ task.task.id }}">{{ task.task.title }}</a></td>
+                <td>{{ task.task.expire_at }}</td>
+                {% if task.assignment != null %}
+                    {% if task.assignment.status == 2 %}
+                    <td>Grade: {{ task.assignment.grade }}</td>
+                    {% elif task.assignment.status == 1 %}
+                    <td>Waiting for grade</td>
+                    {% endif %}
+                {% else %}
+                    <td><a href="/tasks/{{ task.task.id }}/create_assignment">Put assignment</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
 </html>
