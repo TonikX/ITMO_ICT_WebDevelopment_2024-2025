@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to the Car Owners App</h1>
+    <p>This is the home page.</p>
+    <h2>Car Owners</h2>
+    <ul>
+        {% for owner in owners %}
+            <li>{{ owner.name }} - {{ owner.email }}</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

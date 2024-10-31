@@ -8,5 +8,7 @@ nav:
       - "Task 4": Lr1/Task_4.md
       - "Task 5": Lr1/Task_5.md
 
+  - Lab 2:
+      - "Lab 2": Lr2/Lab_2.md
 theme:
   name: material
