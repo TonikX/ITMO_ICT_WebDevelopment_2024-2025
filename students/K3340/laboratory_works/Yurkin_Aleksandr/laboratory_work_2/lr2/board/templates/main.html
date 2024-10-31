@@ -3,25 +3,50 @@
   <head>
       <meta charset="UTF-8">
       <title>Homeworks Board</title>
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-pzjw8f+ua7Kw1TIqjQjaR8J6L8Uq6IHmr0ONsR0RxTlO69HQo0chK4Z6fxZccOoh" crossorigin="anonymous">
   </head>
   <body>
-    <h1>
-        Homeworks board
-    </h1>
-    {% if student == null %}
-    <a href="/signup">Создать аккаунт</a>
-    <br>
-    <a href="/signin">Войти в аккаунт</a>
-    {% else %}
-    <div>
-        <p>Здравствуйте, {{ student.name }}!</p>
-        <a href="/logout">Выйти из аккаунта</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Homeworks Board</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if student == null %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Создать аккаунт</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signin">Войти в аккаунт</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/tasks">Домашние задания</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/grades">Журнал класса</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти из аккаунта</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1>Homeworks board</h1>
+        {% if student == null %}
+            <p>Пожалуйста, создайте аккаунт или войдите.</p>
+        {% else %}
+            <div>
+                <p>Здравствуйте, {{ student.name }}!</p>
+            </div>
+        {% endif %}
     </div>
-    <br>
-    <ul>
-        <li><a href="/tasks">Домашние задания</a></li>
-        <li><a href="/grades">Журнал класса</a></li>
-    </ul>
-    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIqjQjaR8J6L8Uq6IHmr0ONsR0RxTlO69HQo0chK4Z6fxZccOoh" crossorigin="anonymous"></script>
   </body>
 </html>

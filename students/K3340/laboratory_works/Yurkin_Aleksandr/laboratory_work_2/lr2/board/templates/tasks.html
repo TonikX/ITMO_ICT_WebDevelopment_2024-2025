@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Tasks</title>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-        </style>
-    </head>
-    <body>
-        <table>
-            <tr>
-                <th>Homework</th>
-                <th>Expiration</th>
-                <th>Status</th>
-            </tr>
-            {% for task in data %}
-            <tr>
-                <td><a href="/tasks/{{ task.task.id }}">{{ task.task.title }}</a></td>
-                <td>{{ task.task.expire_at }}</td>
-                {% if task.assignment != null %}
-                    {% if task.assignment.status == 2 %}
-                    <td>Grade: {{ task.assignment.grade }}</td>
-                    {% elif task.assignment.status == 1 %}
-                    <td>Waiting for grade</td>
-                    {% endif %}
-                {% else %}
-                    <td><a href="/tasks/{{ task.task.id }}/create_assignment">Put assignment</a></td>
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tasks</h1>
+
+    <form method="get" action="">
+        <input type="text" name="search" value="{{ search_query }}" placeholder="Search by title">
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Homework</th>
+            <th>Expiration</th>
+            <th>Status</th>
+        </tr>
+        {% for task in data %}
+        <tr>
+            <td><a href="/tasks/{{ task.task.id }}">{{ task.task.title }}</a></td>
+            <td>{{ task.task.expire_at }}</td>
+            {% if task.assignment != null %}
+                {% if task.assignment.status == 2 %}
+                <td>Grade: {{ task.assignment.grade }}</td>
+                {% elif task.assignment.status == 1 %}
+                <td>Waiting for grade</td>
                 {% endif %}
-            </tr>
+            {% else %}
+                <td><a href="/tasks/{{ task.task.id }}/create_assignment">Put assignment</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span>
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}">&laquo; First</a>
+                <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <strong>{{ num }}</strong>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+                {% endif %}
             {% endfor %}
-        </table>
-    </body>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">Next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}">Last &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
 </html>
