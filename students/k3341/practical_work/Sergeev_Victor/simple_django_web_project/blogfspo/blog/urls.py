@@ -11,5 +11,6 @@ urlpatterns = [
     path('owner/create', views.create_owner),
     path('car/<int:pk>/update', views.CarUpdateView.as_view()),
     path('car/create/', views.CarCreateView.as_view()),
-    path('car/<int:pk>/delete', views.CarDeleteView.as_view())
+    path('car/<int:pk>/delete', views.CarDeleteView.as_view()),
+    path('user/create', views.UserCreateView.as_view())
 ]

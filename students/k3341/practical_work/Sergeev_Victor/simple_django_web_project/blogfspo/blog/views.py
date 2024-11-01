@@ -35,6 +35,12 @@ class CarDeleteView(DeleteView):
     template_name = 'templates/car_delete.html'
     success_url = '/car/list'
 
+class UserCreateView(CreateView):
+    model = models.User
+    template_name = 'templates/user_create.html'
+    fields = ['username', 'password', 'email', 'passport_number', 'address', 'nationality']
+    success_url = '/owner/list'
+
 def detail_owner(request, owner_id):
     try:
         p = models.CarOwner.objects.get(pk=owner_id)
