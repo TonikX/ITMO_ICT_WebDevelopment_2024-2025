@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Рейс {{ flight.flight_number }}{% endblock %}
+
+{% block content %}
+<h2>Рейс {{ flight.flight_number }} - {{ flight.airline }}</h2>
+<p>Отправление: {{ flight.departure_datetime|date:"d.m.Y H:i" }}</p>
+<p>Прибытие: {{ flight.arrival_datetime|date:"d.m.Y H:i" }}</p>
+<p>Гейт: {{ flight.gate_number }}</p>
+
+{% if user.is_authenticated %}
+    <form action="{% url 'make_booking' flight.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Забронировать место</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>, чтобы забронировать место.</p>
+{% endif %}
+
+<h3>Пассажиры на этом рейсе:</h3>
+<ul>
+    {% for booking in passengers %}
+        <li>{{ booking.user.full_name }}</li>
+    {% empty %}
+        <li>Пассажиров нет</li>
+    {% endfor %}
+</ul>
+
+<h3>Отзывы:</h3>
+<ul>
+    {% for booking in passengers %}
+        {% for review in booking.review_set.all %}
+            <li>
+                <strong>{{ review.booking.user.full_name }}</strong> ({{ review.rating }}/10): {{ review.text }}
+            </li>
+        {% empty %}
+            <li>Отзывов нет</li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+{% endblock %}

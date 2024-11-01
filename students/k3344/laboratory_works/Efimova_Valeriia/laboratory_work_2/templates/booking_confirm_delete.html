@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Отменить бронирование{% endblock %}
+
+{% block content %}
+<h2>Отменить бронирование</h2>
+<p>Вы уверены, что хотите отменить бронирование на рейс {{ booking.flight.flight_number }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, отменить</button>
+    <a href="{% url 'booking_list' %}">Нет, вернуться</a>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+<h2>Мои бронирования</h2>
+<ul>
+    {% for booking in bookings %}
+        <li>
+            Рейс {{ booking.flight.flight_number }} - {{ booking.flight.airline }}
+            <a href="{% url 'booking_delete' booking.pk %}">Отменить бронирование</a>
+            <a href="{% url 'review_create' booking.pk %}">Оставить отзыв</a>
+        </li>
+    {% empty %}
+        <li>У вас нет бронирований</li>
+    {% endfor %}
+</ul>
+{% endblock %}
