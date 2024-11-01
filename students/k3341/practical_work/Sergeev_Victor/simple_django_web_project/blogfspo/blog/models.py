@@ -10,6 +10,7 @@ class Car(models.Model):
     brand = models.CharField(max_length=20)
     model = models.CharField(max_length=20)
     color = models.CharField(max_length=30, null=True, blank=True)
+    owners = models.ManyToManyField(CarOwner, through='Ownership')
 
 class DriverLicence(models.Model):
     owner_id = models.ForeignKey(CarOwner, on_delete=models.CASCADE)
