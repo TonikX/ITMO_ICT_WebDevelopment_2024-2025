@@ -1,0 +1,21 @@
+<!-- blog/templates/car_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список автомобилей</title>
+</head>
+<body>
+    <h1>Список автомобилей</h1>
+    <a href="{% url 'add_car' %}">Добавить новый автомобиль</a>
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{% url 'car_detail' car.id %}">{{ car.brand }} {{ car.model }} ({{ car.license_plate }})</a>
+                <a href="{% url 'update_car' car.id %}">Редактировать</a>
+                <a href="{% url 'delete_car' car.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
