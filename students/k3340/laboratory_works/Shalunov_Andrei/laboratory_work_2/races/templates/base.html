@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автогонки</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <h1>Табло автогонок</h1>
+        <nav class="nav">
+            <ul>
+                <li><a href="{% url 'race_list' %}">Гонки</a></li>
+                {% if user.is_authenticated %}
+                    {% if has_racer_profile %}
+                        <li><a href="{% url 'racer_profile' user.racer.id %}">Мой профиль</a></li>
+                    {% else %}
+                        <li><a href="{% url 'create_racer_profile' %}">Создать профиль гонщика</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'logout' %}">Выйти</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Войти</a></li>
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Табло автогонок. Все права защищены.</p>
+    </footer>
+</body>
+</html>

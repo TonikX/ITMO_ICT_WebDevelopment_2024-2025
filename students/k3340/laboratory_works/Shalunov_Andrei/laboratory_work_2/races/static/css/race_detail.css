@@ -1,0 +1,72 @@
+.race-detail-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.race-detail-container h2 {
+    font-size: 2em;
+    color: #444;
+    text-align: center;
+}
+
+.race-detail-container p {
+    color: #555;
+    font-size: 1.1em;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.comment-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #333;
+}
+
+.comment-date {
+    font-style: italic;
+    color: #999;
+}
+
+.comment-text {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.comment-footer {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.comment-rating {
+    font-weight: bold;
+    color: #4CAF50;
+}

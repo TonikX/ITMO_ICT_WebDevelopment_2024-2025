@@ -1,0 +1,36 @@
+.edit-profile-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-container h2 {
+    color: #333;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.edit-profile-container h3 {
+    color: #666;
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+.edit-profile-container form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    color: white;
+    background-color: #0066cc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-profile-container form button:hover {
+    background-color: #004a99;
+}

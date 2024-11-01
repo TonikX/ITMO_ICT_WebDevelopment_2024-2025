@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="edit-profile-container">
+    <h2>Редактировать профиль гонщика</h2>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Информация пользователя</h3>
+        {{ user_form.as_p }}
+        <h3>Информация профиля гонщика</h3>
+        {{ form.as_p }}
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</div>
+{% endblock %}

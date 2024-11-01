@@ -1,0 +1,11 @@
+.main-content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 100vh; /* Заполнение всей высоты экрана */
+    padding-bottom: 60px; /* Отступ для футера */
+    box-sizing: border-box; /* Для корректного расчета высоты */
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/race_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="race-section upcoming">
+    <h2>Будущие гонки</h2>
+    {% if upcoming_races %}
+        {% for race in upcoming_races %}
+            <div class="race-card">
+                <h3><a href="{% url 'race_detail' race.id %}">{{ race.name }}</a></h3>
+                <p>Дата: {{ race.date }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-races-message">Нет предстоящих гонок.</p>
+    {% endif %}
+</div>
+
+<div class="race-section past">
+    <h2>Прошедшие гонки</h2>
+    {% if past_races %}
+        {% for race in past_races %}
+            <div class="race-card">
+                <h3><a href="{% url 'race_detail' race.id %}">{{ race.name }}</a></h3>
+                <p>Дата: {{ race.date }}</p>
+                <p>Результат: {{ race.result }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="no-races-message">Нет прошедших гонок.</p>
+    {% endif %}
+</div>
+{% endblock %}
