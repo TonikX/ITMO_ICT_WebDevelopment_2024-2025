@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-2">Clients for the last month</h2>
+
+    {% for booking in bookings_month %}
+        <li>Client: {{ booking.user.username}}</li>
+
+    {% empty %}
+        <h5 class="mb-4">Hotel is not very popular =(</h5>
+
+    {% endfor %}
+
+{% endblock %}

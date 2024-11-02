@@ -9,3 +9,6 @@ nav:
           - "Задание 3": lab1/task_3.md
           - "Задание 4": lab1/task_4.md
           - "Задание 5": lab1/task_5.md
+
+      - Лабораторная работа №2:
+          - "Hotel Management": lab2/hotel_app.md

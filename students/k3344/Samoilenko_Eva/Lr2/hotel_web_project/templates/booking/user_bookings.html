@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Your Bookings</h2>
+    {% for booking in bookings %}
+        <div class="card">
+            <div class="card-body">
+                <li>Room Type: {{ booking.room.room_type }}</li>
+                <li>Booking Date (from): {{ booking.start_date }}</li>
+                <li>Booking Date (to): {{ booking.end_date }}</li>
+
+                <a href="{% url 'write_review' booking_id=booking.id %}" class="btn
+                btn-info" style="float: right;">Review</a>
+                <a href="{% url 'booking_edit' pk=booking.id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'booking_delete' pk=booking.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        You don't travel much:(
+
+    {% endfor %}
+
+{% endblock %}
