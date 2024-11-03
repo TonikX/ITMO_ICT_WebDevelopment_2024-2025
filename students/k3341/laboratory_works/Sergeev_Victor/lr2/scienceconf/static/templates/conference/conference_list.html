@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Conf</title> 
+</head>
+<body>
+    <span><h1>Conferences</h1><a href="/conference/create">Create new conference</a></span>
+    <ul>
+    {% for conf in object_list %}
+    <li><strong>{{ conf.name }}</strong>, 
+        <a href="/conference/{{ conf.id }}/update/">Edit</a> |
+        <a href="/conference/{{ conf.id }}/delete/">Delete</a> |
+        <a href="/conference/{{ conf.id }}/"> Detail </a>
+        <p><strong>Location:</strong> {{ conf.location }}</p>
+        <p><strong>Starts: </strong>{{ conf.date_of_start }}</p>
+    </li>
+    {% empty %}
+    <li>Not conferences yet.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
