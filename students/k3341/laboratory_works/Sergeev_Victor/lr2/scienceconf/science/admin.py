@@ -5,6 +5,6 @@ admin.site.register((User,
                      Participant,
                      Conference,
                      ConferenceAuditor,
-                     ConferenceSpeaker,
+                     ConferencePerformance,
                      Review,
                      Commentary))
