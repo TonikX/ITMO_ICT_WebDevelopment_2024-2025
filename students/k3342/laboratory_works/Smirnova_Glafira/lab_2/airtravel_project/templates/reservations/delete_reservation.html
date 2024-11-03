@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Confirm Deletion of Reservation
+{% endblock %}
+
+
+{% block content %}
+    <h1>Confirm Deletion</h1>
+    <p>You are deleting the reservation for:</p>
+    <ul>
+        <li>Flight: {{ reservation.flight.flight_number }}</li>
+        <li>Seat: {{ reservation.seat.seat_number }}</li>
+        <li>Name: {{ reservation.first_name }} {{ reservation.last_name }}</li>
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Deletion</button>
+    </form>
+
+    <a href="{% url 'user_reservations' %}">Cancel</a> <!-- Link to go back to reservations -->
+{% endblock %}

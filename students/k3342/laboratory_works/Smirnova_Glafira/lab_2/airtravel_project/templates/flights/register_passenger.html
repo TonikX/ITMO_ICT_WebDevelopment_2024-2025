@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Register Passenger for Flight {{ reservation.flight.flight_number }}
+{% endblock %}
+
+{% block content %}
+    <h1>Register Passenger for Flight {{ reservation.flight.flight_number }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Render form fields -->
+        <button type="submit">Register Passenger</button>
+    </form>
+
+    <p>Seat: {{ reservation.seat.seat_number }}</p>
+    <p>First name: {{ reservation.first_name }}</p>
+    <p>Last name: {{ reservation.last_name }}</p>
+    <p>User: {{ reservation.user.username }}</p>
+
+    <a href="{% url 'reservations_list' reservation.flight.pk %}">Back to Reservations</a>
+{% endblock %}

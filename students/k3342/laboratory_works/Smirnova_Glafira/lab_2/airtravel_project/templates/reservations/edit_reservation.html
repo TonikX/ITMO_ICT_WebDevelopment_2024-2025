@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Reservation for {{ reservation.flight.flight_number }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Edit Reservation for Flight {{ reservation.flight.flight_number }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Render form fields for first name and last name -->
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p>Current Seat: {{ reservation.seat.seat_number }}</p>
+    <p>Current User: {{ reservation.user.username }}</p>
+
+    <a href="{% url 'user_reservations' %}">Back to My Reservations</a>
+{% endblock %}

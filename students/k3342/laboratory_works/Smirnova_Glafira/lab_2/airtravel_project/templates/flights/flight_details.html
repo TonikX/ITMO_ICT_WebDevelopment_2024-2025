@@ -1,0 +1,8 @@
+{% block flight %}
+  <h1><a href="{% url 'flight_detail' flight.pk %}"> {{ flight.flight_number }}</a></h1>
+  <p>Airline: {{ flight.airline }}</p>
+  <p>Origin - Destination: {{ flight.origin }} - {{ flight.destination }}</p>
+  <p>Departure - Arrival: {{ flight.departure }} - {{ flight.arrival }}</p>
+  <p>Type: {{ flight.type }}</p>
+  <p>Gate Number: {{ flight.gate_number }}</p>
+{% endblock %}
