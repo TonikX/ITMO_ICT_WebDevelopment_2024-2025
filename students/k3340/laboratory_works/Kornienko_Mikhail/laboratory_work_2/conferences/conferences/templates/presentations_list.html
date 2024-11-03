@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Доклады на конференции "{{ conf.title }}"</h2>
+    <div class="row">
+        {% for pres in presentations %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pres.name }}</h5>
+                    <p class="card-text text-muted">Description: {{ pres.description }}</p>
+                    <ul class="list-unstyled mb-4">
+                        <li><strong>Duration:</strong> {{ pres.duration }}</li>
+                        <li><strong>Author:</strong> {{ pres.author.username }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">Нет докладов на этой конференции.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
