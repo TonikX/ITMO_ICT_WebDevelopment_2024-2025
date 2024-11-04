@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Manage your cars{% endblock title %}
+
+{% block header %}
+    <h1 class="mx-3">
+    Car page
+    </h1>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+    <h2>
+        place for cars
+    </h2>
+    <div class="container">
+
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Model Name</th>
+            <th scope="col">License Plate</th>
+            <th scope="col">Info</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in RacerCars %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ car.model_name }}</td>
+                <td>{{ car.license_plate }}</td>
+                <td>{{ car.info }}</td>
+                <td>
+                    <a href="/cars/{{ car.id }}">edit</a><br>
+                    <a href="/cars/delete/{{ car.id }}">delete</a><br>
+                </td>
+            
+            </tr>{% endfor %}
+        </tbody>
+    </table>
+    
+    Have new car? <a href="/cars/register/">Register it here</a>
+</div>
+    </div>
+{% endblock content %}

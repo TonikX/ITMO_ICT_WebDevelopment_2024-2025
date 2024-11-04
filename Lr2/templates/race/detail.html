@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Race info{% endblock title %}
+
+{% block header %}
+    <h1 class="mx-3">
+        Race info
+    </h1>
+{% endblock header %}
+{% block content %}
+    <div class="container">
+        <h2>{{ race.name }}</h2>
+        <ul>
+            <li>{{ race.description }}</li>
+            <li>{{ race.dt_event }}</li>
+        </ul>
+        {% if race.can_register and not registration %}
+            You can register before {{ race.dt_due_register }}.
+            <p><a href="register/">
+                <button type="button" class="btn btn-primary">Register
+                </button>
+            </a>
+            </p>
+        {% endif %}
+        {% if registration and registration.editable %}
+            <p>You are already registered
+            <p><a href="delete/">
+                <button type="button" class="btn btn-primary">Unregister
+                </button>
+            </a>
+            </p>
+        {% endif %}
+
+        <hr>
+        <h2>Comment section:</h2>
+        {% for comment in comments %}
+            <p><b>{{ comment.header }}</b>
+            <p><small>{{ comment.user.name }} asked a {{ comment.get_comment_type_display }}</small>
+            <p>{{ comment.text }}</p>
+            rating: {{ comment.rating }}/10
+            written on {{ comment.dt_written }}
+        {% empty %}
+            <small>No comments yet</small>
+        {% endfor %}
+
+        <p><a href="comment/">
+            <button type="button" class="btn btn-primary">Add comment
+            </button>
+        </a>
+        </p>
+
+        {% if results %}
+            <h2>Race results</h2>
+            <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Racer Name</th>
+                <th scope="col">Tour number</th>
+                <th scope="col">Average lap time</th>
+                <th scope="col">Tour time</th>
+            </tr>
+            </thead>
+            <tbody>
+        {% endif %}
+
+        {% for result in results %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ result.racer.name }}</td>
+                <td>{{ result.tour_num }}</td>
+                <td>{{ result.avg_time }}</td>
+                <td>{{ result.pretty_time }}</td>
+
+            </tr>{% endfor %}
+        {% if results %}
+            </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock content %}

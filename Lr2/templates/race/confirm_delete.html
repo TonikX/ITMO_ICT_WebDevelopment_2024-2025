@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Delete registration
+{% endblock title %}
+
+
+{% block header %}
+    <h1 class="mx-3">Here is your registration</h1>
+{% endblock header %}
+
+
+{% block content %}
+    <div class="container">
+        <h2>Confirm Delete</h2>
+        <p>Are you sure you want to delete the registration: {{ registration.event.name }} ({{ registration.racer.name }})?</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, delete</button>
+            <a href="/race/">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

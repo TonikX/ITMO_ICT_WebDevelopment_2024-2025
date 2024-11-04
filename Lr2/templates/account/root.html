@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Account{% endblock title %}
+
+{% block header %}<h1 class="text-center"> lorem </h1>{% endblock header %}
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                You can manage your cars <a href="/cars/">here</a>
+            </div>
+            <div class="col-8"><h1>Hi, {{ userinfo.name }}!</h1>
+
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci aliquam
+                asperiores atque
+                consequatur corporis cupiditate, delectus enim et excepturi ipsa odio perspiciatis, praesentium quae
+                quas,
+                quos
+                rem sunt temporibus.
+                <p><a href="/account/logout/">Logout</a></p></div>
+        </div>
+    </div>
+
+{% endblock content %}
+
