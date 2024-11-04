@@ -1,0 +1,14 @@
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Имя пользователя:</label>
+    <input type="text" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Войти</button>
+</form>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}

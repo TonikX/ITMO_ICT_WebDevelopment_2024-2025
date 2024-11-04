@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Комментарии к гонке: {{ race.title }}</h2>
+<ul>
+    {% for comment in comments %}
+        <li>
+            <strong>Дата публикации:</strong> {{ comment.created_at }} <br>
+            <strong>Комментарий:</strong> {{ comment.text }} <br>
+            <strong>Тип:</strong> {{ comment.get_comment_type_display }} <br>
+            <strong>Рейтинг:</strong> {{ comment.rating }} <br>
+            <strong>Автор:</strong> {{ comment.user.username }}
+        </li>
+    {% empty %}
+        <p>Комментариев к этой гонке пока нет.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

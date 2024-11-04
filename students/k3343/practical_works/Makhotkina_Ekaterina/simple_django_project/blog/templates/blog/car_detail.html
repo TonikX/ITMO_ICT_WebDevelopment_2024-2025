@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ car.make }} {{ car.model }}</title>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }}</h1>
+    <p>Гос. номер: {{ car.license_plate }}</p>
+    <p>Цвет: {{ car.color }}</p>
+    <a href="{% url 'car-list' %}">Назад к списку автомобилей</a>
+</body>
+</html>

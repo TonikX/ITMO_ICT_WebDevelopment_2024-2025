@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Список гонок</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Название гонки</th>
+                <th>Дата гонки</th>
+                <th>Победитель</th>
+                <th>Трансляция</th>
+                <th>Участники</th>
+                {% if is_racer %}
+                    <th>Регистрация</th>
+                {% endif %}
+                <th>Результаты</th>
+                <th>Комментарии</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+                <tr>
+                    <td>{{ race.title }}</td>
+                    <td>{{ race.race_date }}</td>
+                    <td>{{ race.result }}</td>
+                    <td>
+                        {% if race.stream_link %}
+                            <a href="{{ race.stream_link }}" target="_blank">Смотреть трансляцию</a>
+                        {% else %}
+                            Нет трансляции
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'race_participants' race.id %}">Посмотреть участников</a></td>
+                    {% if is_racer %}
+                        <td>
+                            <form method="post" action="{% url 'race_registration' race.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Зарегистрироваться</button>
+                            </form>
+                        </td>
+                    {% endif %}
+                    <td><a href="{% url 'race_results' race.id %}">Посмотреть результаты</a></td>
+                    <td><a href="{% url 'race_comments' race.id %}">Посмотреть комментарии</a></td> <!-- Ссылка на комментарии -->
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">Нет доступных гонок</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

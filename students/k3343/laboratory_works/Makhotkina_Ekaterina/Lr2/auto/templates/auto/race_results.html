@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Результаты гонки: {{ race.title }}</h2>
+    <h3>Дата гонки: {{ race.race_date }}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Участник</th>
+                <th>Время заезда</th>
+                <th>Результат</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+                <tr>
+                    <td>{{ participant.racer.user.get_full_name }}</td>
+                    <td>{{ participant.lap_time }}</td>
+                    <td>{{ participant.result }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Нет участников для этой гонки.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'race_list' %}">Назад к списку гонок</a>
+{% endblock %}

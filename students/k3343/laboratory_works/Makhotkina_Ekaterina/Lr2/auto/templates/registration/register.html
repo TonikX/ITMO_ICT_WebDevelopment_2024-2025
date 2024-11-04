@@ -1,0 +1,12 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if form.cleaned_data.role == 'racer' %}
+        {{ racer_form.as_p }}
+    {% elif form.cleaned_data.role == 'fan' %}
+        {{ fan_form.as_p }}
+    {% endif %}
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
