@@ -1,0 +1,43 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+*.egg-info/
+.eggs/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# PyCharm
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Django
+db.sqlite3
+*.log
+local_settings.py
+
+# Migrations
+*/migrations/*
+
+# Static and media files
+/static/
+media/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+
+# pytest
+.cache/
