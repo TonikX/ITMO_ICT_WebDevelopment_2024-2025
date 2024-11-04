@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'menu.html' %}
+
+{% block content %}    
+<head>
+    <meta charset="UTF-8">
+    <title>Мои резервирования</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background-color: #e60000;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .no-reservations {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Мои резервирования</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Номер рейса</th>
+                <th>Место</th>
+                <th>Номер билета</th>
+                <th>Дата резервирования</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.flight.flight_number }}</td>
+                    <td>{{ reservation.seat_number }}</td>
+                    <td>{{ reservation.ticket_number }}</td>
+                    <td>{{ reservation.reservation_date }}</td>
+                    <td>
+                        <a href="/reservation/{{ reservation.id }}/update/">Редактировать</a>
+                        <form action="/reservation/{{ reservation.id }}/delete/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="no-reservations">Резервирования не найдены.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="back-link" href="/flights">Назад к рейсам</a>
+    {% endblock %}
+</body>
+</html>

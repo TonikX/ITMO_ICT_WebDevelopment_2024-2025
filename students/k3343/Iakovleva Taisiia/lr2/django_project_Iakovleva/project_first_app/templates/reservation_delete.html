@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить резервирование</title>
+</head>
+<body>
+    <h1>Удалить резервирование</h1>
+    <p>Вы уверены, что хотите удалить резервирование для рейса "{{ object.flight }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'reservation_list' %}">Отмена</a>
+</body>
+</html>
