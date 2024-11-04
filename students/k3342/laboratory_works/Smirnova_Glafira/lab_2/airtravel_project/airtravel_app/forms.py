@@ -5,7 +5,7 @@ from .models import Review, Reservation, Passenger, User
 
 class CustomAuthenticationForm(AuthenticationForm):
     class Meta:
-        model = User  # Make sure to import your User model
+        model = User
         fields = ('username', 'password')
 
 
@@ -24,47 +24,45 @@ class CustomUserChangeForm(UserChangeForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['comment_text', 'rating']  # Exclude user and flight fields
+        fields = ['comment_text', 'rating']
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Get the user from kwargs
-        flight = kwargs.pop('flight', None)  # Get the flight from kwargs
+        user = kwargs.pop('user', None)
+        flight = kwargs.pop('flight', None)
         super(ReviewForm, self).__init__(*args, **kwargs)
 
         if user:
-            self.instance.user = user  # Set the user instance
-            # self.fields['user'].initial = f"{user.first_name} {user.last_name}" if hasattr(user, 'first_name') else
-            # ""  # Autofill names (not stored in DB)
+            self.instance.user = user
 
         if flight:
-            self.instance.flight = flight  # Set the flight instance
+            self.instance.flight = flight
 
 
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['first_name', 'last_name']  # Exclude user, flight, and seat fields
+        fields = ['first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)  # Get the user from kwargs
-        flight = kwargs.pop('flight', None)  # Get the flight from kwargs
-        seat = kwargs.pop('seat', None)  # Get the seat from kwargs
+        user = kwargs.pop('user', None)
+        flight = kwargs.pop('flight', None)
+        seat = kwargs.pop('seat', None)
         super(ReservationForm, self).__init__(*args, **kwargs)
 
         if user:
-            self.instance.user = user  # Set the user instance
+            self.instance.user = user
 
         if flight:
-            self.instance.flight = flight  # Set the flight instance
+            self.instance.flight = flight
 
         if seat:
-            self.instance.seat = seat  # Set the seat instance
+            self.instance.seat = seat
 
 
 class EditReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ['first_name', 'last_name']  # Only allow editing first and last name
+        fields = ['first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
         super(EditReservationForm, self).__init__(*args, **kwargs)
@@ -73,33 +71,7 @@ class EditReservationForm(forms.ModelForm):
 class RegisterPassengerForm(forms.ModelForm):
     class Meta:
         model = Passenger
-        # fields = ['first_name', 'last_name', 'seat', 'flight',
-        #           'ticket_number']  # Include fields you want to autofill
         fields = ['ticket_number']
 
     def __init__(self, *args, **kwargs):
-        # user = kwargs.pop('user', None)  # Get the user from kwargs
-        # flight = kwargs.pop('flight', None)  # Get the flight from kwargs
-        # seat = kwargs.pop('seat', None)  # Get the seat from kwargs
-        # super(ReservationForm, self).__init__(*args, **kwargs)
-        #
-        # if user:
-        #     self.instance.user = user  # Set the user instance
-        #
-        # if flight:
-        #     self.instance.flight = flight  # Set the flight instance
-        #
-        # if seat:
-        #     self.instance.seat = seat  # Set the seat instance
-
-        # reservation = kwargs.pop('reservation', None)  # Get the reservation instance
         super(RegisterPassengerForm, self).__init__(*args, **kwargs)
-
-        # if reservation:
-        #     self.instance.first_name = reservation.first_name
-        #     self.instance.last_name = reservation.last_name
-        #     self.fields['first_name'].initial = reservation.first_name
-        #     self.fields['last_name'].initial = reservation.last_name
-        #     self.fields['seat'].initial = reservation.seat
-        #     self.fields['flight'].initial = reservation.flight
-        #     self.fields['ticket_number'].initial = f"TICKET-{reservation.pk}"  # Example ticket number generation

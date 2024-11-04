@@ -1,14 +1,20 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.username.label_tag }}  <!-- This will render a label with the correct 'for' attribute -->
-    {{ form.username }}              <!-- This will render the input field with an ID -->
+{% extends 'base.html' %}
 
-    {{ form.password.label_tag }}  <!-- This will render a label with the correct 'for' attribute -->
-    {{ form.password }}             <!-- This will render the input field with an ID -->
+{% block content %}
 
-    <button type="submit">Login</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username.label_tag }}  <!-- This will render a label with the correct 'for' attribute -->
+        {{ form.username }}              <!-- This will render the input field with an ID -->
 
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+        {{ form.password.label_tag }}  <!-- This will render a label with the correct 'for' attribute -->
+        {{ form.password }}             <!-- This will render the input field with an ID -->
+
+        <button type="submit">Login</button>
+    </form>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+
+{% endblock %}

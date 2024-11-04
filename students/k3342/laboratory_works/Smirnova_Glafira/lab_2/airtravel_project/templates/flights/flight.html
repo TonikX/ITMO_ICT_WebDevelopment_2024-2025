@@ -22,9 +22,10 @@
   <table>
     {% for review in reviews %}
       <tr>
-        <td>{{ review.comment_text }}</td>
-        <td>{{ review.rating }}</td>
-        <td>{{ review.user.first_name }} {{ review.user.last_name }}</td>
+<!--        <td>{{ review.comment_text }}</td>-->
+<!--        <td>{{ review.rating }}</td>-->
+<!--        <td>{{ review.user.first_name }} {{ review.user.last_name }}</td>-->
+            {% include 'reviews/review.html' with review=review %}
       </tr>
     {% endfor %}
   </table>

@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    # Add any additional fields you need for your User model here
     pass
 
 
