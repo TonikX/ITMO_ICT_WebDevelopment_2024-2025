@@ -8,12 +8,12 @@
 </head>
 
 <body>
+  <a href="/conference/">Get back</a>
   <form method="post">{% csrf_token %}
     <p>Are you sure you want to delete conference "{{ object.name }}"?</p>
     <input type="submit" value="Confirm">
   </form>
   <br>
   <br>
-  <a href="/conference/">Get back</a>
 </body>
 </html>
