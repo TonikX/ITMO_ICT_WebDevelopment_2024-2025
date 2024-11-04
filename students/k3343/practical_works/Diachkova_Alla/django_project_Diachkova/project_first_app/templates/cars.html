@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car list</title>
+</head>
+<body>
+<a href="{% url 'car_create' %}">Add new car info</a>
+{% for car in cars %}
+    <ul>
+        <a href="{% url 'car' car.pk %}">Car {{car.pk}}</a>
+        <li>Legal number: {{car.state_number}}</li>
+        <li>Brand: {{car.brand}}</li>
+        <li>Model: {{car.model}}</li>
+        <li>Color: {{car.color}}</li>
+        <a href="{% url 'car_update' car.pk %}">Update info</a>
+        <a href="{% url 'car_delete' car.pk %}">Delete info</a>
+    </ul>
+    <hr>
+{% endfor %}
+</body>
+</html>
