@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grades</title>
+</head>
+<body>
+<h2>Таблица оценок</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Студент</th>
+            <th>Предмет</th>
+            <th>Дата сдачи</th>
+            <th>Оценка</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.student.get_full_name }}</td>
+                <td>{{ submission.homework.subject }}</td>
+                <td>{{ submission.submission_date }}</td>
+                <td>{{ submission.grade|default:"Не оценено" }}</td>
+                <td>
+                    <a href="{% url 'grade_submission' submission.id %}">Оценить</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

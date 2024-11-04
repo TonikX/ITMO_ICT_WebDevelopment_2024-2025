@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список ДЗ</title>
+</head>
+<body>
+<h2>Домашние задания</h2>
+<ul>
+    {% for homework in homeworks %}
+    <li>
+        {{ homework.subject }}: {{ homework.description }}</a> (до {{ homework.due_date }})
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

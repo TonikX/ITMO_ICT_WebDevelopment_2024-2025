@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать ДЗ</title>
+</head>
+<body>
+<h2>Редактировать домашнее задание: {{homework.subject}}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Обновить</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submission Grade</title>
+</head>
+<body>
+<h2>Оценка для {{ submission.student.get_full_name }} по домашнему заданию "{{ submission.homework.subject }}"</h2>
+
+<p><strong>Задание:</strong> {{ submission.homework.description }}</p>
+<p><strong>Ответ студента:</strong> {{ submission.submission_text }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Поставить оценку</button>
+</form>
+</body>
+</html>
