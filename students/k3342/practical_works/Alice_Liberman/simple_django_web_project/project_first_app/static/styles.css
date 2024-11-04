@@ -1,0 +1,16 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+html {
+    background-color: #6c6c6c;
+    color: white;
+    font-size: larger;
+}
+
+input {
+    border: lightgrey solid 1px;
+    background: darkred;
+}
+

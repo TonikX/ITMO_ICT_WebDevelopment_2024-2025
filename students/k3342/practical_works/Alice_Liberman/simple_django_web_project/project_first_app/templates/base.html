@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css"  href="{% static 'styles.css' %}">
+</head>
+<body style="font-family: 'Roboto Light'; margin: autox">
+<header style="background-color: lightblue">
+    <nav class="nav-container">
+        <a href="/">base</a>
+        <a href="/first">first practical work</a>
+        <a href="/second">second practical work</a>
+        <a href="/third">third practical work</a>
+        <a href="/fourth">n'th practical work</a>
+    </nav>
+</header>
+<main>
+    <div>
+        {{ basic_text }}
+    </div>
+    {% block content %}
+
+    {% endblock %}
+</main>
+</body>
+</html>
