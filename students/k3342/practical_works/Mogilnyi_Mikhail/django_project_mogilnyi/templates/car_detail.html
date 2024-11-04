@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Details</title>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }} - {{ car.license_plate }}</h1>
+    <p><strong>Color:</strong> {{ car.color }}</p>
+    <a href="{% url 'car_update' car.id %}">Update Car</a>
+</body>
+</html>
