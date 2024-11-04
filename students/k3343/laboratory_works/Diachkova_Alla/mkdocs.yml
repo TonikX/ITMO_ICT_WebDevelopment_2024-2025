@@ -10,5 +10,12 @@ nav:
       - "Task 4": Lr1/task4.md
       - "Task 5": Lr1/task5.md
 
+  - Lab 2:
+      - "Pract 1": Lr2/practtask1.md
+      - "Pract 2": Lr2/practtask2.md
+      - "Pract 3": Lr2/practtask3.md
+      - "Lab 2": Lr2/task.md
+
+
 theme:
   name: material
