@@ -72,3 +72,16 @@ class AssignmentCreateView(CreateView):
         form.instance.task_id = task_id
 
         return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_id = self.request.session.get('user_id')
+
+        if not user_id:
+            return context
+
+        student = Student.objects.get(pk=user_id)
+
+        context['student'] = student
+
+        return context

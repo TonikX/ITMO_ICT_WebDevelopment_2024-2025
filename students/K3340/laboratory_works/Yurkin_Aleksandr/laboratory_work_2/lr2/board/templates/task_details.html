@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Task details</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <h1>Task details</h1>
     <p>Title: {{ task.title }}</p>
     <p>Description: {{ task.description }}</p>
@@ -18,5 +14,4 @@
         {% endfor %}
     </p>
     <a href="/tasks">Get back</a>
-</body>
-</html>
+{% endblock %}

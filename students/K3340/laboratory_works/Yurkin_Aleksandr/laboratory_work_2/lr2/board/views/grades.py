@@ -22,7 +22,8 @@ class GradesTableView(TemplateView):
         if not user_id:
             return context
 
-        student_class = Student.objects.get(pk=user_id).student_class
+        student = Student.objects.get(pk=user_id)
+        student_class = student.student_class
         students = Student.objects.filter(student_class=student_class)
         tasks = Task.objects.filter(student_classes=student_class).order_by('expire_at')
 
@@ -37,6 +38,7 @@ class GradesTableView(TemplateView):
                 row['assignments'].append(Assignment.objects.filter(student=student, task=task).first())
             data.append(row)
 
+        context['student'] = student
         context['tasks'] = tasks
         context['data'] = data
 

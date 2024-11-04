@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create assignment</title>
-</head>
-<body>
-    <h1>{% if view.object %}Update{% else %}Create{% endif %} Assignment</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% if view.object %}Update{% else %}Create{% endif %} Assignment</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h1 class="card-title text-center text-primary">
+                {% if view.object %}Update{% else %}Create{% endif %} Assignment
+            </h1>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn {% if view.object %}btn-warning{% else %}btn-success{% endif %} btn-block">
+                    {% if view.object %}Update{% else %}Create{% endif %} Assignment
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
