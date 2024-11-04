@@ -8,7 +8,7 @@ urlpatterns = [
     path('<int:hotel_id>/', views.rooms_list, name='rooms'),
     path('<int:hotel_id>/<int:room_id>/book_room', views.book_room, name='book_room'),
     path('<int:hotel_id>/<int:room_id>/reviews', views.room_reviews, name='room_reviews'),
-    path('<int:hotel_id>/monthly/', views.monthly_clients, name='book_room'),
+    path('<int:hotel_id>/monthly/', views.monthly_clients, name='monthly_clients'),
 
     path('bookings/', views.user_bookings, name='bookings'),
     path('bookings/<int:booking_id>/write_review', views.write_review,

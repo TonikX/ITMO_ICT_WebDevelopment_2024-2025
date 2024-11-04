@@ -4,7 +4,6 @@
 
 {% block content %}
 <h1>Log In</h1>
-    <div class="container">
         <form method="POST">
             {% csrf_token %}
             <label for="username" class="form-label">Username:</label>
@@ -17,5 +16,4 @@
         </form>
 
         <p>Do not have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
-    </div>
 {% endblock %}

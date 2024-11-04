@@ -7,7 +7,7 @@
         <p>Are you certain, you want to delete booking <strong>
             {{ object.room.room_type }}</strong>
             in <strong>{{ object.room.hotel.name }}</strong>?</p>
-        <button type="submit" class="btn btn-danger">Да</button>
+        <button type="submit" class="btn btn-danger">Yes</button>
         <a href="{% url 'bookings' %}" class="btn btn-secondary">Back</a>
     </form>
     <br>
