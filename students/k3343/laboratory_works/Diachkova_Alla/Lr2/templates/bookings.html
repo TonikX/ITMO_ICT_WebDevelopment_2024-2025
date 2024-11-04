@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}My bookings{% endblock %}
+
+{% block content %}
+<h2>My bookings</h2>
+<ul>
+    {% for booking in bookings %}
+        <li>
+            Flight {{ booking.flight.flight_number }} - {{ booking.flight.airline }}
+            <a href="{% url 'booking_delete' booking.pk %}">Cancel booking</a>
+            <a href="{% url 'review_create' booking.pk %}">Leave review</a>
+        </li>
+    {% empty %}
+        <li>You haven't booked any flights yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

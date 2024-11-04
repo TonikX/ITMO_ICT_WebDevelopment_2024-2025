@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Leave review{% endblock %}
+
+{% block content %}
+<h2>Leave review for flight {{ booking.flight.flight_number }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+{% endblock %}
