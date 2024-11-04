@@ -1,0 +1,53 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center; /* Center text in header */
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: center; /* Center navigation links */
+    margin-top: 10px; /* Add space above nav */
+}
+
+nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+/* Main Content Styles */
+main {
+    display: flex;
+    flex-direction: column; /* Align content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Set a maximum width for the main content */
+    margin: 20px auto; /* Center the main content area */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center; /* Center text in footer */
+    margin-top: 20px;
+}
+
+/* Hover Effects for Navigation Links */
+nav a:hover {
+    color: #ffa500; /* Change color on hover */
+    text-decoration: underline; /* Add underline on hover */
+}

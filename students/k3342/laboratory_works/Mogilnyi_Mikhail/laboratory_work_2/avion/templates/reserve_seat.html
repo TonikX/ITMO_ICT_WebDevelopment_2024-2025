@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Забронировать место{% endblock %}
+
+{% block content %}
+<h2>Забронировать место на рейс {{ flight.flight_number }}</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Забронировать</button>
+</form>
+{% endblock %}

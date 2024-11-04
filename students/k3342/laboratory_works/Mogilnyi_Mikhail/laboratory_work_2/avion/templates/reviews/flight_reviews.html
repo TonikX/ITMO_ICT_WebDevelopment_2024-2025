@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы о рейсе{% endblock %}
+
+{% block content %}
+<h2>Отзывы о рейсе {{ flight.flight_number }}</h2>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.user.username }}:</strong> {{ review.comment }} (Рейтинг: {{ review.rating }})
+        </li>
+    {% empty %}
+        <li>Отзывов о данном рейсе пока нет.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_review' flight.id %}">Добавить отзыв</a>
+{% endblock %}
