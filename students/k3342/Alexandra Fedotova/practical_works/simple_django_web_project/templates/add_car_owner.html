@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Car Owner</title>
+</head>
+<body>
+    <h1>Add New Car Owner</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ owner_form.as_p }}
+        <button type="submit">Add Owner</button>
+    </form>
+</body>
+</html>

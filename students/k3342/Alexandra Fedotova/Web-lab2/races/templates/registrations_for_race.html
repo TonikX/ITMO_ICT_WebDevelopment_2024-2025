@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрации на гонку {{ race.date }}</title>
+    <style>
+        body {
+            background-color: #333;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #333 20%, #222 80%);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #e10600;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #e10600;
+            margin: 15px 0;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            margin-top: 10px;
+        }
+
+        .table-row {
+            background-color: #333;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-row a {
+            color: #e10600;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .table-row a:hover {
+            color: #ff1e00;
+        }
+
+        .no-results {
+            color: #e10600;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <h3>Регистрации на гонку {{ race.date }}</h3>
+            <h4>Время старта: {{ race.start_time }}</h4>
+            <div class="card-content">
+                {% if registrations %}
+                    <div>
+                        {% for registration in registrations %}
+                            <div class="table-row">
+                                <span>{{ registration.participant.full_name }} - {{ registration.participant.team.name }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="no-results">Нет зарегистрированных участников для этой гонки.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="{% url 'participant_dashboard' %}" style="color: #e10600; text-decoration: underline;">Назад в личный кабинет</a>
+    </div>
+
+</body>
+</html>
