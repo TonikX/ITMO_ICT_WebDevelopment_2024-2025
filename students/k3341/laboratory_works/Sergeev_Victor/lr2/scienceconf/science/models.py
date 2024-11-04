@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.utils import timezone
 
 # wanna remove
 class User(AbstractUser):
@@ -41,10 +42,10 @@ class Review(models.Model):
     description = models.CharField(max_length=1000)
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
     author = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
 
 class Commentary(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     author = models.ForeignKey(Participant, on_delete=models.CASCADE)
     description = models.CharField(max_length=600)
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)

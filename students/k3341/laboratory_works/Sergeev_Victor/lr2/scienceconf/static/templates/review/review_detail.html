@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Conf</title>
+</head>
+<body>
+    <a href="/conference/{{ object.conference.id }}">Get back</a>
+    <h1>Review by {{ object.author.first_name }} {{ object.author.last_name }}: {{ object.grade }}/10</h1>
+    <p>{{ object.description }}</p>
+    <p>Updated: {{ object.date }}</p>
+    <h2>Commentaries: {{ comments.count }}</h2>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <p><strong>{{ comment.author.first_name }} {{ comment.author.last_name }}</strong></p>
+            <p>{{ comment.description }}</p>
+            <p>Added: {{ comment.date }}</p>
+        </li>
+        {% empty %}
+        <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
