@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гонок</title>
+    <style>
+        /* Базовый стиль для страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2980b9;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: #34495e;
+        }
+
+        h2 {
+            color: #e67e22;
+            font-size: 1.5em;
+            margin-top: 20px;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-data {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список гонок</h1>
+    <ul>
+        {% for race in races %}
+            <li>
+                <a href="{% url 'race_detail' race.id %}">{{ race.name }} - {{ race.date }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
