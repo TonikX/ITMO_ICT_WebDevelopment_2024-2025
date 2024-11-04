@@ -1,4 +1,5 @@
 from django.views.generic import list, detail, edit
+from django.shortcuts import render
 from science import models
 
 class ConferenceList(list.ListView):
@@ -7,7 +8,13 @@ class ConferenceList(list.ListView):
 
 class ConferenceDetail(detail.DetailView):
     model = models.Conference
-    template_name = 'static/templates/conference/conference_detail.html'
+    def get(self, request, **kwargs):
+        object = self.get_object()
+        conference_id = kwargs['pk']
+        speakers = models.ConferencePerformance.objects.filter(conference__id=conference_id)
+        reviews = models.Review.objects.filter(conference__id=conference_id)
+        context = {'object': object, 'speakers': speakers, 'reviews': reviews}
+        return render(request, 'static/templates/conference/conference_detail.html', context=context)
 
 class ConferenceCreate(edit.CreateView):
     model = models.Conference

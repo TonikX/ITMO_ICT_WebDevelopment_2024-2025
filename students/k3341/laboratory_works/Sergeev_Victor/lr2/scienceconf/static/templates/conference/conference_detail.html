@@ -6,6 +6,7 @@
     <title>Science Conf</title>
 </head>
 <body>
+    <a href="/conference/">Get back</a>
     <h1>{{object.name}}</h1>
     <p><strong>Description: </strong> {{ object.description }}</p>
     <p><strong>Participate conditionals: </strong> {{ object.participate_conditionals }}</p>
@@ -14,14 +15,26 @@
     <p><strong>Date of finish: </strong> {{ object.date_of_finish }}</p>
     <h2>Speakers</h2>
     <ul>
-        {% for conf in object_list %}
-        <li><p><strong>{{ conf.speaker.first_name }} {{ conf.speaker.last_name }}</strong>
-            - {{ conf.speaking_topic }}</p>
+        {% for performance in speakers %}
+        <li><p><strong>{{ performance.speaker.first_name }} {{ performance.speaker.last_name }}</strong>
+            - {{ performance.speaking_topic }}</p>
         </li>
         {% empty %}
-        <li>Not speakers yet.</li>
+        <li>No speakers yet.</li>
         {% endfor %}
-        </ul>
+    </ul>
+    <h2>Reviews: {{ reviews.count }}</h2>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <p><strong>{{ review.author.first_name }} {{ review.author.last_name }}</strong> {{ review.grade }}/10</p>
+            <p>{{review.description}}</p>
+            <p>Updated: {{ review.date }}. <a href="review/{{ review.id }}/">full review</a></p>
+        </li>
+        {% empty %}
+        <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
 
 </body>
 </html>

@@ -37,9 +37,7 @@ class ConferencePerformance(models.Model):
     recommended = models.BooleanField(default=False)
 
 class Review(models.Model):
-    grade = models.PositiveSmallIntegerField() # out of 10
-    likes = models.PositiveIntegerField(default=0)
-    dislikes = models.PositiveIntegerField(default=0)
+    grade = models.PositiveSmallIntegerField()
     description = models.CharField(max_length=1000)
     conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
     author = models.ForeignKey(Participant, on_delete=models.CASCADE)
@@ -48,7 +46,5 @@ class Review(models.Model):
 class Commentary(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     author = models.ForeignKey(Participant, on_delete=models.CASCADE)
-    likes = models.PositiveIntegerField(default=0)
-    dislikes = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=600)
     date = models.DateTimeField()
