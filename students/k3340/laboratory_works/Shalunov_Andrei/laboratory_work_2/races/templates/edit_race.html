@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block content %}
 <div class="edit-race-container">
     <h2>Редактировать гонку</h2>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="button button-primary">Сохранить изменения</button>
     </form>
-    <p><a href="{% url 'race_list' %}" class="action-link">Вернуться к списку гонок</a></p>
 </div>
+
+<p><a href="{% url 'race_list' %}" class="action-link">Вернуться к списку гонок</a></p>
 {% endblock %}

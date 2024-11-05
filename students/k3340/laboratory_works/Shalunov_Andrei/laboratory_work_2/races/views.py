@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils import timezone
 from django.urls import reverse_lazy
@@ -8,7 +8,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from .models import Race, Racer, Registration, Comment, RaceResult
-from .forms import RegistrationForm, CommentForm, UserRegistrationForm, RacerProfileForm, AutomobileForm, UnregisterForm, UserUpdateForm, RacerProfileUpdateForm
+from .forms import (
+    RegistrationForm, CommentForm, UserRegistrationForm, RacerProfileForm,
+    AutomobileForm, UnregisterForm, UserUpdateForm, RacerProfileUpdateForm,
+    NewRacerRegistrationForm, NewRacerResultForm
+)
 
 
 class UserRegistrationView(CreateView):
@@ -54,11 +58,14 @@ class RaceDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         now = timezone.now()
         context['is_upcoming'] = self.object.date >= now
+        context['show_full_form'] = False
 
         if context['is_upcoming']:
             context['registered_racers'] = self.object.registrations.all()
+            context['new_racer_reg_form'] = NewRacerRegistrationForm(race=self.object)
         else:
             context['race_results'] = RaceResult.objects.filter(race=self.object).order_by('place')
+            context['new_racer_result_form'] = NewRacerResultForm(race=self.object)
 
         context['unregister_form'] = UnregisterForm()
 
@@ -77,6 +84,58 @@ class RaceDetailView(DetailView):
             context["is_registered"] = False
 
         return context
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Только администраторы могут добавлять участников.")
+
+        self.object = self.get_object()
+        context = self.get_context_data()
+        action = request.POST.get('action')
+
+        # Если гонка еще не состоялась (добавляем нового участника)
+        if context['is_upcoming']:
+            form = NewRacerRegistrationForm(request.POST, race=self.object)
+            if action == "choose_racer" and form.is_valid():
+                # Обновляем форму, чтобы отобразить доступные автомобили для выбранного гонщика
+                context['new_racer_reg_form'] = form
+                context['show_full_form'] = True
+
+                # Устанавливаем значение гонщика и блокируем поле
+                # selected_racer = form.cleaned_data['racer']
+                # form.fields['racer'].initial = selected_racer
+                # form.fields['racer'].disabled = True
+
+                return self.render_to_response(context)
+
+            elif action == "save_registration" and form.is_valid():
+                # Сохраняем нового участника
+                registration = form.save(commit=False)
+                registration.race = self.object
+                registration.save()
+                return redirect('race_detail', pk=self.object.pk)
+            else:
+                context['new_racer_reg_form'] = form
+                context['show_full_form'] = True
+
+        else:
+            form = NewRacerResultForm(request.POST, race=self.object)
+            if action == "choose_racer":
+                # Обновляем форму для отображения автомобилей
+                context['new_racer_result_form'] = form
+                context['show_full_form'] = True
+                return self.render_to_response(context)
+
+            elif action == "save_registration" and form.is_valid():
+                result = form.save(commit=False)
+                result.race = self.object
+                result.save()
+                return redirect('race_detail', pk=self.object.pk)
+            else:
+                context['new_racer_result_form'] = form
+                context['show_full_form'] = True
+
+        return self.render_to_response(context)
 
 
 class RaceRegistrationView(LoginRequiredMixin, CreateView):
@@ -234,13 +293,52 @@ class DeleteRaceView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, View):
 
     def post(self, request, *args, **kwargs):
-        comment = Comment.objects.get(pk=kwargs['pk'])
-        race_id = comment.race.id
+        try:
+            comment = Comment.objects.get(pk=kwargs['pk'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
         if not request.user.is_staff:
-            return redirect('race_detail', pk=race_id)
+            return redirect('race_detail', pk=comment.race.id)
 
         comment.delete()
-        return redirect('race_detail', pk=race_id)
+        return redirect('race_detail', pk=comment.race.id)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteRacerFromRegistrationView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            regracer = Registration.objects.get(id=kwargs['registration_id'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
+        if not request.user.is_staff:
+            return redirect('race_detail', pk=regracer.race.id)
+
+        regracer.delete()
+        return redirect('race_detail', pk=regracer.race.id)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteRacerFromRaceResultView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            result = RaceResult.objects.get(id=kwargs['result_id'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
+        if not request.user.is_staff:
+            return redirect('race_detail', pk=result.race.id)
+
+        result.delete()
+        return redirect('race_detail', pk=result.race.id)
 
     def test_func(self):
         return self.request.user.is_staff

@@ -13,6 +13,7 @@
             <div class="race-card">
                 <h3><a href="{% url 'race_detail' race.id %}">{{ race.name }}</a></h3>
                 <p>Дата: {{ race.date }}</p>
+                <p>Статус: {{ race.result|default:"Регистрация открыта." }}</p>
             </div>
         {% endfor %}
     {% else %}

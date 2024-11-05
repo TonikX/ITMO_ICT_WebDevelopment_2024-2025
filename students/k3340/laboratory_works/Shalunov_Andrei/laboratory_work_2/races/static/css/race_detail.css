@@ -70,3 +70,83 @@
     font-weight: bold;
     color: #4CAF50;
 }
+
+/* Стили для таблицы результатов гонки */
+.race-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.race-results-table th,
+.race-results-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.race-results-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #444;
+}
+
+.race-results-table td {
+    color: #555;
+}
+
+/* Стили для кнопки "Удалить" внутри таблицы */
+.race-results-table .button-link {
+    padding: 6px 12px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.race-results-table .button-link:hover {
+    background-color: #c0392b;
+}
+
+.race-results-table form {
+    display: inline; /* чтобы форма с кнопкой была на одной линии */
+}
+
+.admin-delete-button {
+    color: #fff !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #e74c3c !important;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-delete-button:hover {
+    background-color: #c0392b !important;
+    color: #fff !important;
+}
+
+.admin-save-button {
+    color: #fff !important;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #007bff  !important;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-save-button:hover {
+    background-color: #1a237e !important;
+    color: #fff !important;
+}

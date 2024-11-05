@@ -44,6 +44,7 @@ class Race(models.Model):
 class RaceResult(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE, related_name='results')
     racer = models.ForeignKey(Racer, on_delete=models.CASCADE)
+    car = models.ForeignKey(Automobile, on_delete=models.SET_NULL, null=True, blank=True, related_name='results')
     place = models.PositiveIntegerField()
     finish_time = models.DurationField()
 
