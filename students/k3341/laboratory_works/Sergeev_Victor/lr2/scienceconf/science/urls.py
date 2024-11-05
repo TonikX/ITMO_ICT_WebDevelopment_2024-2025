@@ -1,6 +1,10 @@
 from django.urls import path
-from .views import conference_view, review_view, commentary_view
+from .views import conference_view, review_view, commentary_view, user_view
 urlpatterns = [
+    path('', user_view.index),
+    path('register/', user_view.RegisterUserView.as_view()),
+    path('login/', user_view.LoginUserView.as_view()),
+    path('logout/', user_view.UserLogout.as_view()),
     path('conference/', conference_view.ConferenceList.as_view()),
     path('conference/<int:pk>/', conference_view.ConferenceDetail.as_view()),
     path('conference/create/', conference_view.ConferenceCreate.as_view()),
