@@ -1,11 +1,4 @@
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Min,
-  Max,
-  IsDate,
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Min, Max } from 'class-validator';
 
 export class CreateReviewDto {
   @IsNotEmpty()
@@ -21,8 +14,4 @@ export class CreateReviewDto {
   @Min(1)
   @Max(10)
   rating: number;
-
-  @IsNotEmpty()
-  @IsDate()
-  tourDate: Date;
 }

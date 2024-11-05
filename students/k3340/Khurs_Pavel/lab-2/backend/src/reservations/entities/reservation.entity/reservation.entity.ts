@@ -28,6 +28,9 @@ export class Reservation extends BaseEntity {
   @JoinColumn({ name: 'tourId' })
   tour: Tour;
 
+  @Column({ default: false })
+  isConfirmed: boolean;
+
   @Column({ default: 'pending' })
   status: string;
 

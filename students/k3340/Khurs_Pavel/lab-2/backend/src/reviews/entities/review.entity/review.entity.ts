@@ -1,5 +1,6 @@
 import { Tour } from '@/src/tours/entities/tour.entity/tour.entity';
 import { User } from '@/src/users/entities/user.entity/user.entity';
+import { Max, Min } from 'class-validator';
 
 import {
   Entity,
@@ -33,10 +34,9 @@ export class Review extends BaseEntity {
   comment: string;
 
   @Column()
-  rating: number; // От 1 до 10
-
-  @Column()
-  tourDate: Date;
+  @Min(1)
+  @Max(10)
+  rating: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

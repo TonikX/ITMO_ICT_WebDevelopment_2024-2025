@@ -53,6 +53,13 @@ export class ReviewsService {
     return review;
   }
 
+  async findByTourId(tourId: number): Promise<Review[]> {
+    return this.reviewsRepository.find({
+      where: { tour: { id: tourId } },
+      relations: ['user', 'tour'],
+    });
+  }
+
   async update(
     id: number,
     updateReviewDto: UpdateReviewDto,

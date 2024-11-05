@@ -34,6 +34,8 @@ export class ReservationsController {
   @Get()
   async findAllByUser(@Request() req) {
     const userId = req.user.userId;
+    console.log(req.user.userId);
+
     return this.reservationsService.findAllByUser(userId);
   }
 
@@ -62,7 +64,6 @@ export class ReservationsController {
     return this.reservationsService.remove(+id, userId);
   }
 
-  // Администратор подтверждает резервирование
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin')
   @Patch('confirm/:id')

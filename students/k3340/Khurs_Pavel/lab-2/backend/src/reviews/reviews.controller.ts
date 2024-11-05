@@ -35,6 +35,11 @@ export class ReviewsController {
     return this.reviewsService.findOne(+id);
   }
 
+  @Get('tour/:tourId')
+  async findByTourId(@Param('tourId') tourId: string) {
+    return this.reviewsService.findByTourId(+tourId);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(

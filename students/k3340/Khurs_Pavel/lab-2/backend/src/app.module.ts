@@ -14,28 +14,14 @@ import { TravelAgenciesModule } from '@/src/travel-agencies/travel-agencies.modu
 import { UsersModule } from '@/src/users/users.module';
 import { User } from '@/src/users/entities/user.entity/user.entity';
 import { DataSource } from 'typeorm';
-
-const customBefore = (request, context) => {
-  const { query = {} } = request;
-  console.log(query, 'queryquery');
-
-  const newQuery = {
-    ...query,
-  };
-
-  request.query = newQuery;
-
-  return request;
-};
-
-const customAfter = (originalResponse, request, context) => {
-  console.log(originalResponse.meta);
-
-  return originalResponse;
-};
+import { DevtoolsModule } from '@nestjs/devtools-integration';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @Module({
   imports: [
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -55,7 +41,7 @@ const customAfter = (originalResponse, request, context) => {
       AdminModule.createAdminAsync({
         imports: [TypeOrmModule],
         inject: [DataSource],
-        useFactory: async (dataSource: DataSource) => {
+        useFactory: async () => {
           const AdminJS = (await import('adminjs')).default;
           const { Database, Resource } = await import('@adminjs/typeorm');
 
@@ -76,6 +62,7 @@ const customAfter = (originalResponse, request, context) => {
     ReservationsModule,
     ReviewsModule,
     AuthModule,
+    StatisticsModule,
   ],
 })
 export class AppModule {}
