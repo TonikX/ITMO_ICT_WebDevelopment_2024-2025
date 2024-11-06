@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Добавить комнату</h2>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="number" class="form-label">Номер комнаты</label>
+            {{ form.number }}
+        <div class="mb-3">
+            <label for="price" class="form-label">Цена в сутки</label>
+            {{ form.price }}
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="room_type" class="form-label">Тип комнаты</label>
+            {{ form.room_type }}
+        </div>
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Макс. людей</label>
+            {{ form.capacity }}
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            {{ form.description }}
+        </div>
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+
+{% endblock %}

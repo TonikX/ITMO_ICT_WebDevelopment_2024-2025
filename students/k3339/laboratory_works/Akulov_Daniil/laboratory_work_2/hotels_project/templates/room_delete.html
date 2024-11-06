@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>Удалить комнату</h4>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>Вы действительно хотите удалить комнату №{{ object.number }} Отеля "{{ object.hotel.name }}"?</p>
+        <input class="btn btn-danger" type="submit" value="Удалить">
+    </form>
+
+{% endblock %}

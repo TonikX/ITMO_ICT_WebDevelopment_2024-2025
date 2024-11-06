@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4 class="mb-4">Создать новое резервирование</h4>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Имя пользователя</label>
+            {{ form.username }}
+        </div>
+        <div class="mb-3">
+            <label for="room_number" class="form-label">Номер комнаты</label>
+            {{ form.room_number }}
+        </div>
+        <div class="mb-3">
+            <label for="check_in" class="form-label">Дата заезда</label>
+            {{ form.check_in }}
+        </div>
+        <div class="mb-3">
+            <label for="check_out" class="form-label">Дата выезда</label>
+            {{ form.check_out }}
+        </div>
+        <button type="submit" class="btn btn-success">Создать</button>
+    </form>
+
+{% endblock %}

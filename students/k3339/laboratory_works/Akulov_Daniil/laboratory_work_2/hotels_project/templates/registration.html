@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4">Создание аккаунта</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+                    <a href="/login/" class="btn btn-primary">Авторизоваться</a>
+                </form>
+        </div>
+    </div>
+
+
+{% endblock %}
