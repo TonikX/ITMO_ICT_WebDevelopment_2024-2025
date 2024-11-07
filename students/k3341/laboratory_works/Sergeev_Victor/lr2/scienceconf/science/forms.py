@@ -64,9 +64,9 @@ class ConferenceRegisterForm(forms.Form):
 
         return location.strip()
 
-class SpeakerRegisterForm(forms.ModelForm):
+class SpeakerRegisterForm(forms.Form):
     topic = forms.CharField(required=True, label="Speaking topic")
-    recommended = forms.BooleanField(widget=HiddenInput)
+    recommended = forms.BooleanField(required=False, widget=HiddenInput)
 
 class ReviewForm(forms.Form):
     grade = forms.IntegerField(min_value=1, max_value=10, label='Grade')

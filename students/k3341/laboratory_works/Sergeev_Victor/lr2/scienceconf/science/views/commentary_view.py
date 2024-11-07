@@ -1,4 +1,4 @@
-from django.views.generic import edit
+from django.http import HttpResponseForbidden
 from django.views import View
 from django.shortcuts import redirect
 from django.utils import timezone
@@ -6,6 +6,8 @@ from science import models, forms
 
 class CommentCreate(View):
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {}
         form = forms.CommentForm(request.POST or None)
         context['form'] = form
@@ -19,18 +21,3 @@ class CommentCreate(View):
             form.date = timezone.now()
             form.save()
         return redirect(f'/conference/{conf_id}/review/{review_id}/')
-
-class CommentUpdate(View):
-    model = models.Commentary
-    fields = ['description']
-    template_name = 'static/templates/commentary/commentary_update.html'
-    def get_success_url(self) -> str:
-        object = self.get_object()
-        return f'/conference/{object.review.conference.id}/review/{object.review.id}'
-
-class CommentDelete(edit.DeleteView):
-    model = models.Commentary
-    template_name = 'static/templates/commentary/commentary_delete.html'
-    def get_success_url(self) -> str:
-        object = self.get_object()
-        return f'/conference/{object.review.conference.id}/review/{object.review.id}'

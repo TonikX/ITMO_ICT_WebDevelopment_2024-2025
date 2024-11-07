@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Science Conf</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>Science Conf</title> 
 </head>
 <body>
-    <a href="/conference/">Get back</a>
+  <div class="nav">
+    <div class="nav-left">
+      <a class="nav-link" href="/conference">All conferences</a>
+      {% if request.user.is_authenticated %}
+      <a class="nav-link" href="/conference/create">Create conference</a>
+      {% endif %}
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <div>
+      <a class="nav-link" href="/logout">Logout ({{ request.user }})</a>
+    </div>
+    {% else %}
+    <div class="nav-left">
+      <a class="nav-link" href="/register">Sign Up</a>
+      <a class="nav-link" href="/login">Sign In</a>
+    </div>
+    {% endif %}
+  </div>
     <h1>{{object.name}}</h1>
     <p><strong>Description: </strong> {{ object.description }}</p>
     <p><strong>Participate conditionals: </strong> {{ object.participate_conditionals }}</p>
     <p><strong>Location: </strong> {{ object.location }}</p>
     <p><strong>Date of start: </strong> {{ object.date_of_start }}</p>
     <p><strong>Date of finish: </strong> {{ object.date_of_finish }}</p>
-    {% if not is_speaker %}
+    {% if not is_speaker and request.user.id %}
     <button onclick="window.location.href='speaker/create/'">Apply as speaker</button>
     {% endif %}
-    {% if not is_auditor %}
+    {% if not is_auditor and request.user.id %}
     <p><form action="auditor/" method="POST">{% csrf_token %}
       <button type="submit">Apply as auditor</button>
     </form></p>
-    {% else %}
+    {% elif request.user.id %}
     <p>You signed up on this event as auditor</p>
     {% endif %}
     <h2>Speakers</h2>
@@ -52,19 +72,23 @@
         <li>No speakers yet.</li>
         {% endfor %}
     </ul>
-    <a href="review/create/">Add new review</a>
     <h2>Reviews: {{ reviews.count }}</h2>
     <ul>
-        {% for review in reviews %}
-        <li>
-            <p><strong>{{ review.author.first_name }} {{ review.author.last_name }}</strong> {{ review.grade }}/10</p>
-            <p>{{review.description}}</p>
+      {% for review in reviews %}
+      <li>
+        <p><strong>{{ review.author.first_name }} {{ review.author.last_name }}</strong> {{ review.grade }}/10</p>
+        <p>{{review.description}}</p>
             <p>Updated: {{ review.date }}. <a href="review/{{ review.id }}/">full review</a></p>
-        </li>
-        {% empty %}
+          </li>
+          {% empty %}
         <li>No reviews yet.</li>
         {% endfor %}
     </ul>
-
-</body>
+    {% if request.user.is_authenticated %}
+    <a href="review/create/">Add new review</a>
+    {% else %}
+    <strong>Sign In to add new review</strong>
+    {% endif %}
+    
+  </body>
 </html>

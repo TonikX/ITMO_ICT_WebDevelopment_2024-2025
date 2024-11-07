@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden
 from django.views.generic import edit
 from django.views import View
 from django.db import transaction
@@ -8,6 +9,8 @@ class SpeakerCreate(View):
     http_method_names = ['get', 'post']
 
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {'form': forms.SpeakerRegisterForm}
         conf_id = kwargs['pk']
         conference = models.Conference.objects.filter(id=conf_id)
@@ -17,6 +20,8 @@ class SpeakerCreate(View):
 
     @transaction.atomic
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {}
         form = forms.SpeakerRegisterForm(request.POST or None)
         context['form'] = form
@@ -43,12 +48,21 @@ class SpeakerUpdate(edit.UpdateView):
     def get_object(self, **kwargs):
         conference_id = self.kwargs.get('pk')
         object = models.ConferencePerformance.objects.filter(conference__id=conference_id).first()
-        print(object.recommended)
         return object
         
     def get_success_url(self):
         object = self.get_object()
         return f'/conference/{object.conference.id}'
+    
+    def get(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().get(request, *args, **kwargs)
+    
+    def post(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().post(request, *args, **kwargs)
 
 class SpeakerDelete(edit.DeleteView):
     model = models.ConferencePerformance
@@ -59,6 +73,8 @@ class SpeakerDelete(edit.DeleteView):
         return object
 
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         object = self.get_object()
         context = {'object': object}
         return render(request, 'static/templates/review/review_delete.html', context)
@@ -66,3 +82,8 @@ class SpeakerDelete(edit.DeleteView):
     def get_success_url(self):
         object = self.get_object()
         return f'/conference/{object.conference.id}'
+    
+    def post(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().post(request, *args, **kwargs)

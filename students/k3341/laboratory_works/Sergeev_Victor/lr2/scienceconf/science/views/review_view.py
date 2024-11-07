@@ -1,5 +1,6 @@
 from django.views.generic import detail, edit
 from django.views import View
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.db import transaction
 from django.utils import timezone
@@ -16,11 +17,15 @@ class ReviewDetail(detail.DetailView):
 
 class ReviewCreate(View):
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {'form': forms.ReviewForm}
         return render(request, 'static/templates/review/review_create.html', context)
     
     @transaction.atomic
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         form = forms.ReviewForm(request.POST or None)
         context = {'form': form}
 
@@ -53,20 +58,31 @@ class ReviewDelete(edit.DeleteView):
         return f'/conference/{object.conference.id}'
 
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         object = self.get_object()
         context = {'object': object}
         return render(request, 'static/templates/review/review_delete.html', context)
+    
+    def post(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().post(request, *args, **kwargs)
         
 class ReviewUpdate(edit.UpdateView):
     model = models.Review
     fields = ['grade', 'description']
     template_name = 'static/templates/review/review_update.html'
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {'form': forms.ReviewForm}
         return render(request, 'static/templates/review/review_update.html', context)
 
     @transaction.atomic
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {}
         form = forms.ReviewForm(request.POST or None)
         context['form'] = form

@@ -1,5 +1,6 @@
 from django.views.generic import list, detail, edit
 from django.views import View
+from django.http import HttpResponseForbidden
 from django.db import transaction
 from django.shortcuts import render, redirect
 from science import models, forms
@@ -7,10 +8,8 @@ from science import models, forms
 class ConferenceList(list.ListView):
     model = models.Conference
     template_name = 'static/templates/conference/conference_list.html'
-    def get(self, request, **kwargs):
-        conferences = models.Conference.objects.all()
-        context = {'conf_list': conferences}
-        return render(request, 'static/templates/conference/conference_list.html', context)
+    queryset = models.Conference.objects.all()
+    paginate_by = 5
 
 class ConferenceDetail(detail.DetailView):
     model = models.Conference
@@ -32,11 +31,16 @@ class ConferenceDetail(detail.DetailView):
 
 class ConferenceCreate(edit.CreateView):
     def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {'form': forms.ConferenceRegisterForm}
         return render(request, 'static/templates/conference/conference_create.html', context)
     
     @transaction.atomic
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+
         context = {}
         form = forms.ConferenceRegisterForm(request.POST or None)
         context['form'] = form
@@ -62,16 +66,41 @@ class ConferenceUpdate(edit.UpdateView):
     fields = ['name', 'description', 'participate_conditionals', 'location', 'date_of_start', 'date_of_finish']
     template_name = 'static/templates/conference/conference_update.html'
     success_url = '/conference/'
+    def get(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().post(request, *args, **kwargs)
 
 class ConferenceDelete(edit.DeleteView):
     model = models.Conference
     template_name = 'static/templates/conference/conference_delete.html'
     success_url = '/conference/'
 
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args: str, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().post(request, *args, **kwargs)
+
 class ConferenceAuditor(View):
-    
+    def get(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
+        return super().get()
+
     @transaction.atomic
     def post(self, request, **kwargs):
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden("Sign in to be able see this page")
         context = {}
         conference_id = kwargs['pk']
         user_id = request.user.id

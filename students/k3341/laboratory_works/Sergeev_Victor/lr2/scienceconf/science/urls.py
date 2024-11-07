@@ -18,7 +18,5 @@ urlpatterns = [
     path('conference/<int:conf_pk>/review/<int:pk>/', review_view.ReviewDetail.as_view()),
     path('conference/<int:conf_pk>/review/<int:pk>/update/', review_view.ReviewUpdate.as_view()),
     path('conference/<int:conf_pk>/review/<int:pk>/delete/', review_view.ReviewDelete.as_view()),
-    path('conference/<int:conf_pk>/review/<int:rev_pk>/comment/create/', commentary_view.CommentCreate.as_view()),
-    path('conference/<int:conf_pk>/review/<int:rev_pk>/comment/<int:pk>/update/', commentary_view.CommentUpdate.as_view()),
-    path('conference/<int:conf_pk>/review/<int:rev_pk>/comment/<int:pk>/delete/', commentary_view.CommentDelete.as_view()),
+    path('conference/<int:conf_pk>/review/<int:rev_pk>/comment/create/', commentary_view.CommentCreate.as_view())
 ]
