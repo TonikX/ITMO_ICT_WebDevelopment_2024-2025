@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpRequest
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LogoutView
-from django.urls import reverse_lazy
+from django.db import transaction
 from science import forms, models
 
 def index(request):
@@ -17,6 +17,7 @@ class RegisterUserView(View):
 
         return render(request, "static/templates/user/register.html", context)
 
+    @transaction.atomic
     def post(self, request: HttpRequest, *args, **kwargs):
         context = {}
 
@@ -65,10 +66,7 @@ class LoginUserView(View):
         return render(request, "static/templates/user/login.html", context)
 
     def post(self, request: HttpRequest, *args, **kwargs):
-        context = {
-            "title": "Авторизация",
-            "action": "Войти",
-        }
+        context = {}
 
         form = forms.LoginUserForm(request.POST or None)
         context["form"] = form

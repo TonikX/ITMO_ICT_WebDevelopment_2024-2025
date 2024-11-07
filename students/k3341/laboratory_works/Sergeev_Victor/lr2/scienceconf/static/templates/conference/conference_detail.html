@@ -13,16 +13,46 @@
     <p><strong>Location: </strong> {{ object.location }}</p>
     <p><strong>Date of start: </strong> {{ object.date_of_start }}</p>
     <p><strong>Date of finish: </strong> {{ object.date_of_finish }}</p>
+    {% if not is_speaker %}
+    <button onclick="window.location.href='speaker/create/'">Apply as speaker</button>
+    {% endif %}
+    {% if not is_auditor %}
+    <p><form action="auditor/" method="POST">{% csrf_token %}
+      <button type="submit">Apply as auditor</button>
+    </form></p>
+    {% else %}
+    <p>You signed up on this event as auditor</p>
+    {% endif %}
     <h2>Speakers</h2>
     <ul>
         {% for performance in speakers %}
         <li><p><strong>{{ performance.speaker.first_name }} {{ performance.speaker.last_name }}</strong>
-            - {{ performance.speaking_topic }}</p>
+            - {{ performance.speaking_topic }}
+            {% if performance.recommended %}
+            - RECOMMENDED
+            {% endif %}
+        {% if request.user == performance.speaker.user or request.user.username == 'admin' %}
+        | <a href="speaker/update/">Update</a> | <a href="speaker/delete/">Delete</a>
+        {% endif %}
+        {% if request.user.username == 'admin' %}
+            <form action="speaker/update/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ performance.speaking_topic }}" name="speaking_topic">
+                {% if performance.recommended %}
+                <input type="hidden" value="False" name="recommended">
+                <button type="submit">Unrecommend</button>
+                {% else %}
+                <input type="hidden" value="True" name="recommended">
+                <button type="submit">Recommend</button>
+                {% endif %}
+            </form>
+        {% endif %}</p>
         </li>
         {% empty %}
         <li>No speakers yet.</li>
         {% endfor %}
     </ul>
+    <a href="review/create/">Add new review</a>
     <h2>Reviews: {{ reviews.count }}</h2>
     <ul>
         {% for review in reviews %}

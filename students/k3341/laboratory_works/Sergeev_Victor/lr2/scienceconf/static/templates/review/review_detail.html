@@ -9,7 +9,11 @@
     <a href="/conference/{{ object.conference.id }}">Get back</a>
     <h1>Review by {{ object.author.first_name }} {{ object.author.last_name }}: {{ object.grade }}/10</h1>
     <p>{{ object.description }}</p>
-    <p>Updated: {{ object.date }}</p>
+    <p>Updated last time: {{ object.date }}
+        {% if request.user == object.author.user or request.user.username == 'admin' %}
+        <a href="update/">Update</a> | <a href="delete/">Delete</a>
+        {% endif %}
+    </p>
     <h2>Commentaries: {{ comments.count }}</h2>
     <ul>
         {% for comment in comments %}
@@ -22,5 +26,13 @@
         <li>No comments yet.</li>
         {% endfor %}
     </ul>
+    <p>
+        <strong>Add new comment</strong>
+        <form action="comment/create/" method="post">
+            {% csrf_token %}
+            <textarea name="description" rows="5" placeholder="Your comment"></textarea>
+            <button type="submit">Add comment</button>
+        </form>
+    </p>
 </body>
 </html>
