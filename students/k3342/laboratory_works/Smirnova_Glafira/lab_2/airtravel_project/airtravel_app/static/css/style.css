@@ -137,6 +137,25 @@ footer p {
     color: #00c6ff; /* Bright cyan color for the flight number */
 }
 
+.flights-grid {
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px; /* Space above the grid */
+}
+
+.reservation-number {
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Larger font size for the flight number */
+    color: #a1c4ff; /* Bright cyan color for the flight number */
+}
+
+.seat-number {
+    font-weight: bold;
+    font-size: 1.1em; /* Larger font size for the flight number */
+    color: #003366;
+}
+
 .flight-info {
     margin-top: 15px; /* Space above the flight info section */
 }
@@ -150,10 +169,14 @@ footer p {
     color: #e9ecef; /* Light gray color for values to stand out against dark background */
 }
 
+.field {
+    margin-bottom: 10px; /* Space between fields */
+}
+
 /* Link styles */
 .flight-number a {
-    text-decoration: none; /* Remove underline from link */
-    color: #00c6ff; /* Match link color to flight number */
+    text-decoration: underline; /* Remove underline from link */
+    color: #a1c4ff; /* Match link color to flight number */
 }
 
 .flight-number a:hover {
@@ -161,7 +184,7 @@ footer p {
 }
 
 .review {
-    background-color: #f9f9f9; /* Light gray background for contrast */
+    background-color: #e0f7fa; /* Light gray background for contrast */
     border: 1px solid #0072ff; /* Blue border color */
     border-radius: 8px; /* Rounded corners */
     padding: 15px; /* Padding around the content */
@@ -196,10 +219,93 @@ footer p {
 .rating {
     margin-top: 10px; /* Space above rating */
     font-weight: bold; /* Bold font for rating label */
+    color: #000000
 }
 
 .rating-value {
-    color: #ffd700; /* Gold color for rating value */
+    color: #6A5ACD; /* Gold color for rating value */
+}
+.admin-button{
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add padding */
+    margin: 10px; /* Add margin between buttons */
+    background-color: #a1c4ff; /* Blue background color */
+    color: black; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.styled-button {
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add padding */
+    margin: 10px; /* Add margin between buttons */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.styled-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.passenger-list {
+    background-color: #001f3f; /* Dark blue background */
+    color: #e9ecef; /* Light text color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.passenger-list h1, .passenger-list h2 {
+    color: #00c6ff; /* Bright cyan color for headings */
+}
+
+.passenger-list ul {
+    list-style-type: none; /* Remove default list styling */
+    padding-left: 0; /* Remove left padding */
+}
+
+.passenger-item {
+    margin-bottom: 10px; /* Space between list items */
+    background-color: rgba(255, 255, 255, 0.1); /* Light translucent background for list items */
+    padding: 10px; /* Padding inside list items */
+    border-radius: 5px; /* Rounded corners for list items */
+}
+
+.passenger-name {
+    font-weight: bold; /* Bold font for passenger name */
+    color: #00c6ff; /* Bright cyan color for names */
+}
+
+.passenger-seat,
+.passenger-ticket {
+    color: #e9ecef; /* Light text color for seat and ticket info */
+}
+
+.passenger-seat {
+    font-style: italic; /* Italic style for seat information */
+}
+
+.passenger-ticket {
+    font-style: italic; /* Italic style for ticket information */
+}
+
+.back-button {
+    display: inline-block; /* Make it behave like a button */
+    padding: 10px 20px; /* Padding around the button */
+    margin-top: 20px; /* Space above the button */
+    background-color: #007bff; /* Blue background color for button */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Responsive design */
@@ -217,4 +323,97 @@ footer p {
    section h2 {
         font-size: 1.5em; /* Smaller section headers on mobile */
    }
+}
+
+.flex-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Space between items */
+    align-items: flex-start; /* Align items at the start */
+    margin-top: 20px; /* Space above the container */
+}
+
+.admin-buttons {
+    margin-top: 15px; /* Space above the buttons */
+}
+
+.available-seats,
+.reviews {
+    background-color: #a1c4ff; /* Dark blue background for both sections */
+    color: #000000; /* Light text color */
+    padding: 20px; /* Padding inside each section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    width: 48%; /* Set width to allow space for both sections */
+}
+
+.reviews {
+    margin-left: 20px; /* Space between available seats and reviews */
+}
+
+h2 {
+    color: #000000; /* Bright cyan color for headings */
+}
+
+.reservations {
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px; /* Space above the grid */
+}
+
+.reservation-container {
+    color: #FFFFFF; /* Light text color */
+    max-width: 600px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Padding inside the container */
+    background-color: #003366; /* Semi-transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+h1.highlight {
+    color: #a1c4ff; /* Bright cyan color for highlighted text */
+}
+
+.reservation-form {
+    margin-top: 20px; /* Space above the form */
+}
+
+.reservation-form button.submit-button {
+    background-color: #007bff; /* Blue background for submit button */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around button text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 20px;
+}
+
+.reservation-form button.submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.button-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center items horizontally */
+    margin-top: 20px; /* Space above the button container */
+}
+
+.styled-button,
+.admin-button {
+    display: inline-block; /* Allow buttons to take only necessary width */
+    margin: 10px 0; /* Vertical spacing between buttons */
+}
+
+.back-link {
+    display: inline-block; /* Make it behave like a button */
+    margin-top: 20px; /* Space above the link */
+    color: #a1c4ff; /* Bright cyan color for link */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.back-link:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
 }

@@ -6,16 +6,18 @@
 
 
 {% block content %}
-    <h1>Edit Reservation for Flight {{ reservation.flight.flight_number }}</h1>
+    <div class="reservation-container">
+        <h1 class="highlight">Edit Reservation for Flight {{ reservation.flight.flight_number }}</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }} <!-- Render form fields for first name and last name -->
-        <button type="submit">Save Changes</button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="styled-button">Save Changes</button>
+        </form>
 
-    <p>Current Seat: {{ reservation.seat.seat_number }}</p>
-    <p>Current User: {{ reservation.user.username }}</p>
+        <p>Current Seat: {{ reservation.seat.seat_number }}</p>
+        <p>Current User: {{ reservation.user.username }}</p>
 
-    <a href="{% url 'user_reservations' %}">Back to My Reservations</a>
+        <a href="{% url 'user_reservations' %}" class="back-link">Back to My Reservations</a>
+    </div>
 {% endblock %}

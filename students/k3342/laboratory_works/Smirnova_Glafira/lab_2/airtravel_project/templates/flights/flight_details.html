@@ -1,10 +1,4 @@
 {% block flight %}
-<!--  <h1><a href="{% url 'flight_detail' flight.pk %}"> {{ flight.flight_number }}</a></h1>-->
-<!--  <p>Airline: {{ flight.airline }}</p>-->
-<!--  <p>Origin - destination: {{ flight.origin }} - {{ flight.destination }}</p>-->
-<!--  <p>Departure - arrival: {{ flight.departure }} - {{ flight.arrival }}</p>-->
-<!--  <p>Type: {{ flight.type }}</p>-->
-<!--  <p>Gate Number: {{ flight.gate_number }}</p>-->
 <div class="flight-details">
     <h1 class="flight-number">
         <a href="{% url 'flight_detail' flight.pk %}">{{ flight.flight_number }}</a>
@@ -12,8 +6,8 @@
     <div class="flight-info">
         <p><span class="field-name">Airline:</span> <span class="field-value">{{ flight.airline }}</span></p>
         <p><span class="field-name">Origin - Destination:</span> <span class="field-value">{{ flight.origin }} - {{ flight.destination }}</span></p>
-        <p><span class="field-name">Departure - Arrival:</span> <span class="field-value date">{{ flight.departure|date:"d.m.Y H:i" }} - {{ flight.arrival|date:"d.m.Y H:i" }}</span>
-</p>
+        <p><span class="field-name">Departure:</span> <span class="field-value date">{{ flight.departure|date:"d.m.Y H:i" }}</span></p>
+        <p><span class="field-name">Arrival:</span> <span class="field-value date">{{ flight.arrival|date:"d.m.Y H:i" }}</span></p>
         <p><span class="field-name">Type:</span> <span class="field-value">{{ flight.type }}</span></p>
         <p><span class="field-name">Gate Number:</span> <span class="field-value">{{ flight.gate_number }}</span></p>
     </div>

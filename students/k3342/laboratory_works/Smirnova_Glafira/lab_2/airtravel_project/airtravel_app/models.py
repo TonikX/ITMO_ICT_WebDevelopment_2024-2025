@@ -27,7 +27,7 @@ class Seat(models.Model):
     is_reserved = models.BooleanField(default=False)
 
 
-class Reservation(models.Model):  # add passport?
+class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
     seat = models.ForeignKey(Seat, on_delete=models.CASCADE)

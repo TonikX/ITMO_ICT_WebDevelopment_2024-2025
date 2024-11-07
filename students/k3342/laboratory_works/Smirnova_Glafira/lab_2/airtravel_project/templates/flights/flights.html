@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Flights</h1>
-  <table>
-    <tbody>
-      {% for flight in flights %}
-        <tr>
-          {% include 'flights/flight_details.html' with flight=flight %}
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<h1>Flights</h1>
+<div class="flights-grid">
+  {% for flight in flights %}
+      {% include 'flights/flight_details.html' with flight=flight %}
+  {% endfor %}
+</div>
 {% endblock %}

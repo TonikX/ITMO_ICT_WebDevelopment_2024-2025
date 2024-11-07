@@ -4,7 +4,7 @@
         <p class="user-name">User: {{ review.user.first_name }} {{ review.user.last_name }}</p>
         <p class="flight-info">
             <a href="{% url 'flight_detail' review.flight.pk %}" class="flight-link">
-                Flight date: {{ flight.departure|date:"d.m.Y H:i" }} - {{ flight.arrival|date:"d.m.Y H:i" }}
+                Flight date: {{ flight.departure|date:"d.m.Y" }}
             </a>
         </p>
     </div>

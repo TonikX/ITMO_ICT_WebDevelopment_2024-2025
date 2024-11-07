@@ -7,7 +7,12 @@
   <div class="reservations">
     {% for reservation in reservations %}
       {% include 'reservations/reservation.html' with reservation=reservation %}
+    {% empty %}
+        <h3>No reservations yet!</h3>
     {% endfor %}
   </div>
+  {% if user.is_staff %}
+      <a href="{% url 'flight_detail' flight.pk %}" class="admin-button">Back to Flight Details</a>
+  {% endif %}
 {% endblock %}
 {% endblock %}

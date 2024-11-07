@@ -75,3 +75,7 @@ class RegisterPassengerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RegisterPassengerForm, self).__init__(*args, **kwargs)
+
+
+class TicketNumberForm(forms.Form):
+    ticket_number = forms.CharField(max_length=20, label='Ticket Number')
