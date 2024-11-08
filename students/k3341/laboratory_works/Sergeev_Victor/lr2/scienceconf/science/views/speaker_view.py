@@ -62,6 +62,7 @@ class SpeakerUpdate(edit.UpdateView):
     def post(self, request, *args: str, **kwargs):
         if not request.user.is_authenticated:
             return HttpResponseForbidden("Sign in to be able see this page")
+        
         return super().post(request, *args, **kwargs)
 
 class SpeakerDelete(edit.DeleteView):
@@ -77,7 +78,7 @@ class SpeakerDelete(edit.DeleteView):
             return HttpResponseForbidden("Sign in to be able see this page")
         object = self.get_object()
         context = {'object': object}
-        return render(request, 'static/templates/review/review_delete.html', context)
+        return render(request, 'static/templates/speaker/speaker_delete.html', context)
 
     def get_success_url(self):
         object = self.get_object()

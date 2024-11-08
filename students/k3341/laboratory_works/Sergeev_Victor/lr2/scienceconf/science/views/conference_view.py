@@ -92,11 +92,6 @@ class ConferenceDelete(edit.DeleteView):
         return super().post(request, *args, **kwargs)
 
 class ConferenceAuditor(View):
-    def get(self, request, **kwargs):
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden("Sign in to be able see this page")
-        return super().get()
-
     @transaction.atomic
     def post(self, request, **kwargs):
         if not request.user.is_authenticated:
