@@ -5,7 +5,8 @@ from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
-
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -50,13 +51,31 @@ def logout_view(request):
     return redirect('flights')
 
 
-class FlightListView(ListView):
-    model = Flight
-    template_name = 'flights/flights.html'
-    context_object_name = 'flights'
+def flight_list(request):
+    query = request.GET.get('q', '')
 
-    def get_queryset(self):
-        return Flight.objects.all()
+    flights = Flight.objects.all().order_by('departure')
+
+    if query:
+        flights = flights.filter(
+            Q(flight_number__icontains=query) |
+            Q(airline__icontains=query) |
+            Q(origin__icontains=query) |
+            Q(destination__icontains=query) |
+            Q(departure__icontains=query) |
+            Q(arrival__icontains=query) |
+            Q(type__icontains=query) |
+            Q(gate_number__icontains=query)
+        )
+
+    paginator = Paginator(flights, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'flights/flights.html', {
+        'flights': page_obj,
+        'query': query,
+    })
 
 
 class FlightDetailView(LoginRequiredMixin, DetailView):
