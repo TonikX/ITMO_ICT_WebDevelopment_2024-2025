@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.utils import timezone
@@ -38,16 +39,22 @@ class RaceListView(ListView):
     model = Race
     template_name = 'race_list.html'
     context_object_name = 'races'
+    paginate_by = 3
+
+    def get_queryset(self):
+        query = self.request.GET.get('q', '').strip()
+        queryset = Race.objects.all()
+        if query:
+            queryset = queryset.filter(Q(name__icontains=query) | Q(result__icontains=query))
+
+        return queryset.order_by('-date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        now = timezone.now()
-        context['upcoming_races'] = Race.objects.filter(date__gte=now).order_by('-date')
-        context['past_races'] = Race.objects.filter(date__lt=now).exclude(result="").order_by('-date')
-        context['has_racer_profile'] = hasattr(self.request.user, 'racer') if self.request.user.is_authenticated else False
-
+        query = self.request.GET.get('q', '').strip()
+        search_query = f"&q={query}" if query else ''
+        context['search_query'] = search_query
         return context
-
 
 class RaceDetailView(DetailView):
     model = Race
