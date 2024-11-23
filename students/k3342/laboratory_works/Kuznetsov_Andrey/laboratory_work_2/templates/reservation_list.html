@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои бронирования</title>
+</head>
+<body>
+    <h1>Мои бронирования</h1>
+    <ul>
+        {% for reservation in reservations %}
+            <li>
+                {{ reservation.room.name }} (с {{ reservation.check_in }} по {{ reservation.check_out }})
+                <a href="{% url 'edit_reservation' reservation.id %}">Редактировать</a> |
+                <a href="{% url 'delete_reservation' reservation.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'hotel_list' %}">Вернуться к списку отелей</a>
+</body>
+</html>

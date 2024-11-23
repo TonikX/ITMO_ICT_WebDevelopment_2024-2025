@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удалить бронирование</title>
+</head>
+<body>
+    <h1>Вы уверены, что хотите удалить бронирование?</h1>
+    <p>Бронирование: {{ reservation.room.name }} (с {{ reservation.check_in }} по {{ reservation.check_out }})</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+
+    <a href="{% url 'reservation_list' %}">Отмена</a>
+</body>
+</html>

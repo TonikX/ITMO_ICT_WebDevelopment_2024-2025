@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Постояльцы за последний месяц</title>
+</head>
+<body>
+    <h1>Постояльцы за последний месяц</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Отель</th>
+                <th>Номер</th>
+                <th>Дата заезда</th>
+                <th>Дата выезда</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.user.username }}</td>
+                    <td>{{ reservation.room.hotel.name }}</td>
+                    <td>{{ reservation.room.name }}</td>
+                    <td>{{ reservation.check_in }}</td>
+                    <td>{{ reservation.check_out }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'hotel_list' %}">Вернуться к списку отелей</a>
+</body>
+</html>

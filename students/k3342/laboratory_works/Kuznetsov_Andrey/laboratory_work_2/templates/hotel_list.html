@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список отелей</title>
+</head>
+<body>
+    <h1>Список отелей</h1>
+    <ul>
+        {% for hotel in hotels %}
+            <li>
+                <a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> - {{ hotel.address }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

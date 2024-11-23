@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали отеля: {{ hotel.name }}</title>
+</head>
+<body>
+    <h1>{{ hotel.name }}</h1>
+    <p><strong>Адрес:</strong> {{ hotel.address }}</p>
+    <p><strong>Описание:</strong> {{ hotel.description }}</p>
+
+    <h2>Номера:</h2>
+    <ul>
+        {% for room in hotel.rooms.all %}
+            <li>
+                <a href="{% url 'reserve_room' room.id %}">{{ room.name }}</a> - {{ room.capacity }} человек - {{ room.price }}₽
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Отзывы:</h3>
+    <ul>
+        {% for review in hotel.reviews.all %}
+            <li>
+                <strong>{{ review.reservation }}:</strong>
+                {{ review.comment }} (Рейтинг: {{ review.rating }})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'add_review' hotel.rooms.first.id %}">Добавить отзыв</a>
+</body>
+</html>
