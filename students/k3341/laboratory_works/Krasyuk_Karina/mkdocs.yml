@@ -7,5 +7,7 @@ nav:
       - Task 3: docs/LR1/task3.md
       - Task 4: docs/LR1/task4.md
       - Task 5: docs/LR1/task5.md
+  - 2 lab:
+    - "Лабораторная работа": docs/LR2/lr2.md
 theme:
   name: readthedocs
