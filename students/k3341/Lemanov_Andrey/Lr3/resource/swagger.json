@@ -1,0 +1,1077 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "peer-review",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/healthz": {
+      "get": {
+        "summary": "Healthcheck",
+        "operationId": "healthcheck_api_v1_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Healthcheck Api V1 Healthz Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/create_assignment": {
+      "post": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Create Assignment",
+        "operationId": "create_assignment_api_v1_create_assignment_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateAssignment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCreateAssignment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_assignment/{assignment_id}": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Get Assignment",
+        "operationId": "get_assignment_api_v1_get_assignment__assignment_id__get",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_all_assignments": {
+      "get": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Get All Assignments",
+        "operationId": "get_all_assignments_api_v1_get_all_assignments_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAllAssignments"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/update_assignment": {
+      "put": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Update Assignment",
+        "operationId": "update_assignment_api_v1_update_assignment_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUpdateAssignment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/delete_assignment/{assignment_id}": {
+      "delete": {
+        "tags": [
+          "Assignments"
+        ],
+        "summary": "Update Assignment",
+        "operationId": "update_assignment_api_v1_delete_assignment__assignment_id__delete",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Assignment Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAssignment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/create_grade": {
+      "post": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Create Grade",
+        "operationId": "create_grade_api_v1_create_grade_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateGrade"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCreateGrade"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_grade/{grade_id}": {
+      "get": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Get Grade",
+        "operationId": "get_grade_api_v1_get_grade__grade_id__get",
+        "parameters": [
+          {
+            "name": "grade_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Grade Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGradeWithRelationships"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_grades/student/{student_id}": {
+      "get": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Get Grades For Student",
+        "operationId": "get_grades_for_student_api_v1_get_grades_student__student_id__get",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Student Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAllGradesOfStudent"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_grades/submission/{submission_id}": {
+      "get": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Get Grades For Submission",
+        "operationId": "get_grades_for_submission_api_v1_get_grades_submission__submission_id__get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Submission Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAllGradesOfSubmission"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/create_grading_criteria": {
+      "post": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Create Grade",
+        "operationId": "create_grade_api_v1_create_grading_criteria_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateGradingCriteria"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseCreateGradingCriteria"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_grading_criteria/{submission_id}": {
+      "get": {
+        "tags": [
+          "Grades"
+        ],
+        "summary": "Get Grading Criteria",
+        "operationId": "get_grading_criteria_api_v1_get_grading_criteria__submission_id__get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Submission Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGradingCriteria"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/create_submission": {
+      "post": {
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Create Submission",
+        "operationId": "create_submission_api_v1_create_submission_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreateSubmission"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_submission/{submission_id}": {
+      "get": {
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Get Submission",
+        "operationId": "get_submission_api_v1_get_submission__submission_id__get",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Submission Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/get_all_submissions": {
+      "get": {
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Get All Submissions",
+        "operationId": "get_all_submissions_api_v1_get_all_submissions_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/delete_submission/{submission_id}": {
+      "delete": {
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Delete Submission",
+        "operationId": "delete_submission_api_v1_delete_submission__submission_id__delete",
+        "parameters": [
+          {
+            "name": "submission_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Submission Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/update_submission": {
+      "put": {
+        "tags": [
+          "Submissions"
+        ],
+        "summary": "Update Submission",
+        "operationId": "update_submission_api_v1_update_submission_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestUpdateSubmission"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Assignment": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description"
+        ],
+        "title": "Assignment"
+      },
+      "CreateGradingCriteria": {
+        "properties": {
+          "criterion_name": {
+            "type": "string",
+            "title": "Criterion Name"
+          },
+          "max_points": {
+            "type": "number",
+            "title": "Max Points"
+          },
+          "assignment_id": {
+            "type": "integer",
+            "title": "Assignment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "criterion_name",
+          "max_points",
+          "assignment_id"
+        ],
+        "title": "CreateGradingCriteria"
+      },
+      "Grade": {
+        "properties": {
+          "grade": {
+            "type": "number",
+            "title": "Grade"
+          },
+          "student_id": {
+            "type": "integer",
+            "title": "Student Id"
+          },
+          "submission_id": {
+            "type": "integer",
+            "title": "Submission Id"
+          },
+          "criteria_id": {
+            "type": "integer",
+            "title": "Criteria Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grade",
+          "student_id",
+          "submission_id",
+          "criteria_id"
+        ],
+        "title": "Grade"
+      },
+      "GradingCriteria": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "criterion_name": {
+            "type": "string",
+            "title": "Criterion Name"
+          },
+          "max_points": {
+            "type": "number",
+            "title": "Max Points"
+          },
+          "assignment_id": {
+            "type": "integer",
+            "title": "Assignment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "criterion_name",
+          "max_points",
+          "assignment_id"
+        ],
+        "title": "GradingCriteria"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "RequestCreateAssignment": {
+        "properties": {
+          "assignment": {
+            "$ref": "#/components/schemas/Assignment"
+          },
+          "teacher_id": {
+            "type": "integer",
+            "title": "Teacher Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assignment",
+          "teacher_id"
+        ],
+        "title": "RequestCreateAssignment"
+      },
+      "RequestCreateGrade": {
+        "properties": {
+          "grade": {
+            "$ref": "#/components/schemas/Grade"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grade"
+        ],
+        "title": "RequestCreateGrade"
+      },
+      "RequestCreateGradingCriteria": {
+        "properties": {
+          "grade_criteria": {
+            "$ref": "#/components/schemas/CreateGradingCriteria"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grade_criteria"
+        ],
+        "title": "RequestCreateGradingCriteria"
+      },
+      "RequestCreateSubmission": {
+        "properties": {
+          "submission": {
+            "$ref": "#/components/schemas/Submission"
+          }
+        },
+        "type": "object",
+        "required": [
+          "submission"
+        ],
+        "title": "RequestCreateSubmission"
+      },
+      "RequestUpdateAssignment": {
+        "properties": {
+          "teacher_id": {
+            "type": "integer",
+            "title": "Teacher Id"
+          },
+          "assignment": {
+            "$ref": "#/components/schemas/Assignment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "teacher_id",
+          "assignment"
+        ],
+        "title": "RequestUpdateAssignment"
+      },
+      "RequestUpdateSubmission": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "new_content": {
+            "type": "string",
+            "title": "New Content"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "new_content"
+        ],
+        "title": "RequestUpdateSubmission"
+      },
+      "ResponseAllAssignments": {
+        "properties": {
+          "assignments": {
+            "items": {
+              "$ref": "#/components/schemas/Assignment"
+            },
+            "type": "array",
+            "title": "Assignments"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assignments"
+        ],
+        "title": "ResponseAllAssignments"
+      },
+      "ResponseAllGradesOfStudent": {
+        "properties": {
+          "grades": {
+            "items": {
+              "$ref": "#/components/schemas/Grade"
+            },
+            "type": "array",
+            "title": "Grades"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grades"
+        ],
+        "title": "ResponseAllGradesOfStudent"
+      },
+      "ResponseAllGradesOfSubmission": {
+        "properties": {
+          "grades": {
+            "items": {
+              "$ref": "#/components/schemas/Grade"
+            },
+            "type": "array",
+            "title": "Grades"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grades"
+        ],
+        "title": "ResponseAllGradesOfSubmission"
+      },
+      "ResponseAssignment": {
+        "properties": {
+          "assignment": {
+            "$ref": "#/components/schemas/Assignment"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assignment"
+        ],
+        "title": "ResponseAssignment"
+      },
+      "ResponseCreateAssignment": {
+        "properties": {
+          "assignment_id": {
+            "type": "integer",
+            "title": "Assignment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "assignment_id"
+        ],
+        "title": "ResponseCreateAssignment"
+      },
+      "ResponseCreateGrade": {
+        "properties": {
+          "grade_id": {
+            "type": "integer",
+            "title": "Grade Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grade_id"
+        ],
+        "title": "ResponseCreateGrade"
+      },
+      "ResponseCreateGradingCriteria": {
+        "properties": {
+          "grading_criteria_id": {
+            "type": "integer",
+            "title": "Grading Criteria Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grading_criteria_id"
+        ],
+        "title": "ResponseCreateGradingCriteria"
+      },
+      "ResponseGradeWithRelationships": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "grade": {
+            "type": "number",
+            "title": "Grade"
+          },
+          "student": {
+            "$ref": "#/components/schemas/Student"
+          },
+          "submission": {
+            "$ref": "#/components/schemas/Submission"
+          },
+          "grading_criteria": {
+            "$ref": "#/components/schemas/GradingCriteria"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "grade",
+          "student",
+          "submission",
+          "grading_criteria"
+        ],
+        "title": "ResponseGradeWithRelationships"
+      },
+      "ResponseGradingCriteria": {
+        "properties": {
+          "grading_criteria": {
+            "$ref": "#/components/schemas/GradingCriteria"
+          }
+        },
+        "type": "object",
+        "required": [
+          "grading_criteria"
+        ],
+        "title": "ResponseGradingCriteria"
+      },
+      "Student": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "surname": {
+            "type": "string",
+            "title": "Surname"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "surname"
+        ],
+        "title": "Student"
+      },
+      "Submission": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content"
+          },
+          "student_id": {
+            "type": "integer",
+            "title": "Student Id"
+          },
+          "assignment_id": {
+            "type": "integer",
+            "title": "Assignment Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "content",
+          "student_id",
+          "assignment_id"
+        ],
+        "title": "Submission"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

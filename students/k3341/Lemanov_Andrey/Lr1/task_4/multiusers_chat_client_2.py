@@ -19,7 +19,7 @@ def receive():
             else:
                 print(message)
         except:
-            print("Произошла ошибка!")
+            print("Произошла ошибка")
             client.close()
             break
 
