@@ -10,5 +10,8 @@ nav:
 
   - Lab 2:
       - "Lab 2": Lr2/Lab_2.md
+
+  - Lab 3:
+      - "Lab 3": Lr3/Lab_3.md
 theme:
   name: material
