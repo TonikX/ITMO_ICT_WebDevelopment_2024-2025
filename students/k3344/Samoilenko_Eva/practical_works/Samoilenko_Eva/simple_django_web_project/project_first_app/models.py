@@ -22,7 +22,8 @@ class Owner(AbstractUser):
 
 
 class License(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="license_owner",
+                              on_delete=models.CASCADE)
     # owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
     number = models.CharField(max_length=10)
     type = models.CharField(max_length=10)
@@ -30,8 +31,8 @@ class License(models.Model):
 
 
 class Ownership(models.Model):
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
-    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="car_owner",
+                              on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, related_name="car", on_delete=models.CASCADE)
     date_b = models.DateField()
     date_e = models.DateField(null=True, blank=True)
