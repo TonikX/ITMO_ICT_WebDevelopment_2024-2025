@@ -6,6 +6,8 @@ from .models import Conference, Registration
 from django.utils import timezone
 from datetime import timedelta
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 def signup(request):
@@ -22,16 +24,28 @@ def signup(request):
 
 
 def conferences_list(request):
-    confs = Conference.objects.all()
+    search_query = request.GET.get('search', '')
+    if search_query:
+        confs = Conference.objects.filter(
+            Q(title__icontains=search_query) | Q(description__icontains=search_query)
+        )
+    else:
+        confs = Conference.objects.all()
+
+    paginator = Paginator(confs, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     data = []
     if request.user.is_authenticated:
-        for conf in confs:
+        for conf in page_obj:
             data.append({
                 'conf': conf,
                 'registration': Registration.objects.filter(conference=conf, user=request.user).first()
             })
-        return render(request, 'conf_list.html', {'confs': data})
-    return render(request, 'conf_list.html', {'confs': confs})
+        return render(request, 'conf_list.html', {'confs': data, 'page_obj': page_obj, 'search_query': search_query})
+
+    return render(request, 'conf_list.html', {'confs': page_obj, 'page_obj': page_obj, 'search_query': search_query})
 
 
 def presentations_list(request, conf_id):

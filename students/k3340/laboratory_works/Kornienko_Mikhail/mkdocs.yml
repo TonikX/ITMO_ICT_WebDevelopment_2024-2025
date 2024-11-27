@@ -7,6 +7,15 @@ nav:
       - "Task 3": Lr1/task3.md
       - "Task 4": Lr1/task4.md
       - "Task 5": Lr1/task5.md
+  - Lab 2:
+      - "Task": Lr2/task.md
+  - Lab 3:
+      - "Pr 3.1": Lr3/pr3.1.md
+      - "Pr 3.3":
+          - "API":
+              - "Warriors": Lr3/pr33/api/warriors.md
+              - "SKills": Lr3/pr33/api/skills.md
+      - "Lr3 Api Schema": Lr3/api_schema.md
 
 theme:
   name: material
