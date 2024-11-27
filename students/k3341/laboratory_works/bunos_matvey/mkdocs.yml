@@ -9,5 +9,6 @@ nav:
       - Task 5: laboratory_work_1/5.md
     - 3 lab:
       - Pr 3.1: laboratory_work_3/pr_3_1.md
+      - lab: laboratory_work_3/lab.md
 theme:
     name: readthedocs
