@@ -11,5 +11,10 @@ nav:
   - lab 2:
       - "air travel app": lab_2/airtravel_app.md
 
+  - lab 3:
+      - "airline management API": lab_3/airline_api.md
+
 theme:
   name: material
+
+use_directory_urls: false
