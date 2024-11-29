@@ -13,5 +13,7 @@ nav:
 
   - Lab 3:
       - "Lab 3": Lr3/Lab_3.md
+
+      - "Практическая работа 3.1" : Lr3/practical_work.md
 theme:
   name: material

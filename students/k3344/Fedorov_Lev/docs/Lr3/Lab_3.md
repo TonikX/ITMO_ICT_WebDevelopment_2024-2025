@@ -113,3 +113,15 @@ python manage.py runserver
   "auth_token": "e0fc736994312fbc59cff5f9c75d744b66bca91b"
 }
 ```
+
+### End-point-ы
+
+# Swagger UI:  
+GET /swagger/
+GET /swagger/?format=openapi
+# User Authentication:  
+POST /api/auth/users/
+GET /api/auth/users/
+# Django Admin:  
+GET /admin/
+ну а дальше в админке все как обычно.
