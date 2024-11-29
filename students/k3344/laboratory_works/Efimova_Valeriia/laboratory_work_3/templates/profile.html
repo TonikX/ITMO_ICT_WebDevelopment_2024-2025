@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-3">
+    <h1>Profile Information</h1>
+    <div id="profile-info">
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            $.ajax({
+                url: '/auth/users/me/',
+                type: 'GET',
+                contentType: 'application/json',
+                headers: { 'Authorization': 'Bearer ' + token },
+                success: function(data) {
+                    $('#profile-info').html(`<p>Username: ${data.username}</p>
+                                             <p>Email: ${data.email}</p>`);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        } else {
+            window.location.href = '/login/';
+        }
+    });
+</script>
+</body>
+</html>
