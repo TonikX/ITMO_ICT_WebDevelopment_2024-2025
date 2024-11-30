@@ -11,6 +11,7 @@ nav:
       - "Task": Lr2/lr2.md
   - Lab 3:
       - "Practical work": Lr3/pr3.1.md
+      - "Laboratory work": Lr3/lr3_api.md
 
 theme:
   name: material
