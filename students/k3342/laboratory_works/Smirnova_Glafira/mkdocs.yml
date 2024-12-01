@@ -14,6 +14,9 @@ nav:
   - lab 3:
       - "airline management API": lab_3/airline_api.md
 
+  - practice 3:
+      - "orm queries": practice_3/queries.md
+
 theme:
   name: material
 
