@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Центрируем форму по вертикали */
+        }
+        .card {
+            background-color: white; /* Белый фон для карточки */
+            padding: 30px;
+            border-radius: 10px; /* Скругленные углы */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+            width: 400px; /* Ширина карточки */
+        }
+        h1 {
+            color: #343a40; /* Темный цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        label {
+            display: block; /* Блочный элемент для меток */
+            margin-bottom: 15px; /* Отступ между метками */
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%; /* Поля ввода занимают всю ширину формы */
+            padding: 10px; /* Отступы внутри полей ввода */
+            border-radius: 5px; /* Скругленные углы полей ввода */
+            border: 1px solid #ccc; /* Светло-серая граница */
+            box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+        }
+        input[type="submit"] {
+            display: block; /* Делаем кнопку блочным элементом */
+            width: 100%; /* Кнопка занимает всю ширину формы */
+            padding: 10px; /* Отступы внутри кнопки */
+            border-radius: 5px; /* Скругленные углы кнопки */
+            background-color: #007bff; /* Синий фон для кнопки отправки */
+            color: white; /* Белый текст на кнопке отправки */
+            border: none; /* Убираем границу */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            font-size: 16px; /* Размер шрифта кнопки */
+            margin-top: 15px; /* Отступ сверху между полями ввода и кнопкой */
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Темный синий при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Register</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ register_form }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

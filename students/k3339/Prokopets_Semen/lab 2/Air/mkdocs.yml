@@ -1,0 +1,11 @@
+site_name: WEB-programming
+nav:
+  - Home: index.md
+  - 2 lab:
+    - models: models.md
+    - views: views.md
+    - urls: urls.md
+    - forms: forms.md
+    - settings: settings.md
+theme:
+  name: readthedocs

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Центрируем карточку по вертикали */
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px; /* Ширина карточки */
+            text-align: center; /* Центрируем текст внутри карточки */
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #495057;
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .logout-link {
+            display: block; /* Делаем ссылку на выход блочным элементом */
+            background-color: #dc3545; /* Красный фон для ссылки на выход */
+            color: white; /* Белый текст */
+            padding: 10px; /* Отступы внутри кнопки */
+            border-radius: 5px; /* Скругленные углы */
+            transition: background-color 0.3s ease; /* Плавный переход цвета */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        .logout-link:hover {
+            background-color: #c82333; /* Темнее при наведении */
+        }
+        ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0; /* Убираем отступы */
+        }
+        li {
+            margin: 10px 0; /* Отступ между элементами списка */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Main Page</h1>
+        <p>User: {{ user.first_name }} {{ user.last_name }}</p>
+        <a class="logout-link" href="http://127.0.0.1:8000/logout">Log out</a>
+        
+        <h2>Menu:</h2>
+        <ul>
+            {% if user.get_username != 'admin' %}
+                <li><a href="http://127.0.0.1:8000/tickets">My Reservations</a></li>
+            {% endif %}
+            
+            <li><a href="http://127.0.0.1:8000/flights">Flights</a></li>
+
+            <!-- Кнопка для администраторов -->
+            {% if user.is_superuser %}
+                <li><a href="http://127.0.0.1:8000/manage_bookings">Manage Bookings</a></li> <!-- Ссылка на управление бронированиями -->
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>

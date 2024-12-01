@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Центрируем форму по вертикали */
+        }
+        form {
+            background-color: white; /* Белый фон для формы */
+            padding: 30px;
+            border-radius: 10px; /* Скругленные углы */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень для формы */
+            width: 400px; /* Ширина формы */
+        }
+        h1 {
+            color: #343a40; /* Темный цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        input[type="submit"] {
+            background-color: #007bff; /* Синий фон для кнопки */
+            color: white; /* Белый текст на кнопке */
+            border: none; /* Убираем границу */
+            padding: 10px 15px; /* Отступы внутри кнопки */
+            border-radius: 5px; /* Скругленные углы кнопки */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            width: 100%; /* Кнопка занимает всю ширину формы */
+            font-size: 16px; /* Размер шрифта кнопки */
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Темный синий при наведении */
+        }
+        .error {
+            color: red; /* Красный цвет для ошибок */
+            margin-bottom: 10px; /* Отступ снизу для ошибок */
+        }
+        .form-group {
+            margin-bottom: 15px; /* Отступ между полями формы */
+        }
+    </style>
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Book a Flight:</h1>
+
+    {% if form.non_field_errors %}
+        <div class="error">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.type.id_for_label }}">{{ form.type.label }}</label>
+        {{ form.type }}
+        {% if form.type.errors %}
+            <div class="error">{{ form.type.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.seat.id_for_label }}">{{ form.seat.label }}</label>
+        {{ form.seat }}
+        {% if form.seat.errors %}
+            <div class="error">{{ form.seat.errors }}</div>
+        {% endif %}
+    </div>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

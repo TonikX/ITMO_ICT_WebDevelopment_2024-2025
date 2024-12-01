@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление Бронированиями</title>
+    <style>
+        /* Ваши стили */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .back-button {
+            display: inline-block; /* Делает кнопку блочным элементом */
+            margin-top: 20px; /* Отступ сверху */
+            padding: 10px 20px; /* Отступы внутри кнопки */
+            background-color: #007bff; /* Синий фон для кнопки */
+            color: white; /* Белый текст */
+            text-decoration: none; /* Убираем подчеркивание */
+            border-radius: 5px; /* Скругленные углы */
+            transition: background-color 0.3s ease; /* Плавный переход цвета */
+        }
+        .back-button:hover {
+            background-color: #0056b3; /* Темный синий при наведении */
+        }
+    </style>
+</head>
+<body>
+<h1>Управление Бронированиями</h1>
+
+<table>
+    <tr>
+        <th>Пользователь</th>
+        <th>Рейс</th>
+        <th>Место</th>
+        <th>Тип рейса</th>
+        <th>Статус</th>
+        {% if request.user.is_superuser %}
+            <th>Действия</th> <!-- Показываем колонку действий только для администраторов -->
+        {% endif %}
+    </tr>
+    {% for ticket in tickets %}
+    <tr>
+        <td>{{ ticket.user.username }}</td>
+        <td>{{ ticket.flight }}</td>
+        <td>{{ ticket.seat }}</td>
+        <td>{{ ticket.get_type_display }}</td>  <!-- Отображаем вариант типа рейса -->
+        
+        <!-- Используем конструкцию if для отображения статуса -->
+        <td>{% if ticket.is_confirmed %}Подтверждено{% else %}Не подтверждено{% endif %}</td> <!-- Статус -->
+        
+        {% if request.user.is_superuser %}
+            <td>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="ticket_id" value="{{ ticket.ticket_id }}">
+                    {% if not ticket.is_confirmed %}
+                        <button type="submit" name="action" value="confirm">Подтвердить</button>
+                    {% else %}
+                        <button type="submit" name="action" value="reject">Отклонить</button>
+                    {% endif %}
+                </form>
+            </td>
+        {% else %}
+            <td>-</td> <!-- Если не администратор, показываем пустую ячейку -->
+        {% endif %}
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="{% if request.user.is_superuser %}6{% else %}5{% endif %}">Нет доступных билетов.</td> <!-- Сообщение, если нет билетов -->
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Кнопка-ссылка на главную страницу -->
+<a class="back-button" href="http://127.0.0.1:8000/">На главную страницу</a>
+
+</body>
+</html>

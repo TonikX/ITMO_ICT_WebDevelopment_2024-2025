@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Центрируем форму по вертикали */
+        }
+        .card {
+            background-color: white; /* Белый фон для карточки */
+            padding: 30px;
+            border-radius: 10px; /* Скругленные углы */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+            width: 300px; /* Ширина карточки */
+        }
+        h1 {
+            color: #343a40; /* Темный цвет заголовка */
+            text-align: center; /* Центрируем заголовок */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        label {
+            display: block; /* Блочный элемент для меток */
+            margin-bottom: 15px; /* Отступ между метками */
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%; /* Поля ввода занимают всю ширину формы */
+            padding: 10px; /* Отступы внутри полей ввода */
+            border-radius: 5px; /* Скругленные углы полей ввода */
+            border: 1px solid #ccc; /* Светло-серая граница */
+            box-sizing: border-box; /* Учитываем отступы и границы в ширине */
+        }
+        input[type="submit"] {
+            background-color: #007bff; /* Синий фон для кнопки */
+            color: white; /* Белый текст на кнопке */
+            border: none; /* Убираем границу */
+            padding: 10px; /* Отступы внутри кнопки */
+            border-radius: 5px; /* Скругленные углы кнопки */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            font-size: 16px; /* Размер шрифта кнопки */
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Темный синий при наведении */
+        }
+        .register-link {
+            display: block;
+            text-align: center; /* Центрируем ссылку на регистрацию */
+            margin-top: 20px; /* Отступ сверху */
+            color: white; /* Белый текст ссылки */
+            background-color: #28a745; /* Зеленый фон для кнопки регистрации */
+            padding: 10px 15px; /* Отступы внутри кнопки */
+            border-radius: 5px; /* Скругленные углы кнопки регистрации */
+            text-decoration: none; /* Убираем подчеркивание */
+        }
+        .register-link:hover {
+            background-color: #218838; /* Темнее при наведении */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Log In</h1>
+        <form method="POST" action="http://127.0.0.1:8000/auth" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="username">
+                Username:
+                <input type="text" name="username" id="username" required>
+            </label>
+            <label for="password">
+                Password:
+                <input type="password" name="password" id="password" required>
+            </label>
+            <input type="submit" value="Submit">
+        </form>
+        <a href="http://127.0.0.1:8000/register" class="register-link">Register</a>
+    </div>
+</body>
+</html>
