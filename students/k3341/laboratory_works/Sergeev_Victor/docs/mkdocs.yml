@@ -11,5 +11,14 @@ nav:
     - Models: lr2/models.md
     - Views: lr2/views.md
     - Navigation: lr2/router.md
+  - Lab №3:
+    - PR 1: lr3/practice1.md
+    - PR 2: lr3/practice2.md
+    - PR 3: lr3/practice3.md
+    - About: lr3/about.md
+    - Models: lr3/models.md
+    - Auth/Register: lr3/auth.md
+    - API: lr3/api.md
+
 theme:
  name: material
