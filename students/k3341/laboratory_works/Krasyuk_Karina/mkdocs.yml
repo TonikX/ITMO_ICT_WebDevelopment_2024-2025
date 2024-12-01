@@ -9,5 +9,8 @@ nav:
       - Task 5: docs/LR1/task5.md
   - 2 lab:
     - "Лабораторная работа": docs/LR2/lr2.md
+  - 3 lab:
+    - "Практическая работа": docs/pr/pr1.md
+    - "Лабораторная работа": docs/LR3/lab3.md
 theme:
   name: readthedocs
