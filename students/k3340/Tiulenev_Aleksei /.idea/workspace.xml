@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="907cc307-c0f2-4482-a9c9-45c055607b39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Lr1/1/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lr1/1/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratory_works/Tiulenev_Aleksei /laboratory_work_2/lr2/board/views/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratory_works/Tiulenev_Aleksei /laboratory_work_2/lr2/board/views/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../laboratory_works/Tiulenev_Aleksei /laboratory_work_2/lr2/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../laboratory_works/Tiulenev_Aleksei /laboratory_work_2/lr2/manage.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2oO2x8NHTJJmfWf5fgjqj51kgPO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lr2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/aleksejtulenev/Documents/ITMO/ITMO_ICT_WebDevelopment_2024-2025/students/k3340/Tiulenev_Aleksei &quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-c69650fc56ca-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15619.17" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="907cc307-c0f2-4482-a9c9-45c055607b39" name="Changes" comment="" />
+      <created>1730726545935</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730726545935</updated>
+    </task>
+    <servers />
+  </component>
+</project>
