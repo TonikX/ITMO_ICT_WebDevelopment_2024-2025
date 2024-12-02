@@ -1,0 +1,14 @@
+site_name: Web lab 2
+nav:
+ - Home: index.md
+ - Pets:
+     - pets: Pets/pets.md
+     - pet_create: Pets/pet_create.md
+     - in_depart: Pets/in_depart.md
+     - in_commun: Pets/in_commun.md
+     - pets_with_int_pk: Pets/pets_with_int_pk.md
+     - valliers_empty: Pets/valliers_empty.md
+     - pets_rent_in_state: Pets/pets_rent_in_state.md
+     - pets_rent_out_report: Pets/pets_rent_out_report.md
+theme:
+  name: material
