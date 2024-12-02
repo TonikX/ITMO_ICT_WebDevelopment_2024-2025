@@ -17,3 +17,8 @@ nav:
       - Представления: Lr2/views.md
       - Формы: Lr2/forms.md
       - URLs: Lr2/urls.md
+  - Лабораторная №3:
+       - Описание: Lr3/description.md
+       - Модели: Lr3/models.md
+       - Endpoints: Lr3/endpoints.md
+       - Практическая работа: Lr3/practical.md
