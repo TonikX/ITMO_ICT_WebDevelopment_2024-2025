@@ -29,7 +29,7 @@ class GetPetsTogetherAPIView(ListAPIView):
    def get_queryset(self):
         pk = self.kwargs.get('pk')
         building = Pet.objects.get(number=pk).valliere.building.id
-        return Pet.objects.filter(valliere__building__id=building)
+        return Pet.objects.filter(valliere__building__id=building).exclude(number=pk)
    
 
 class GetEmptyValliersAPIView(ListAPIView):
@@ -53,11 +53,7 @@ class GetReportOutRentAPIView(APIView):
     def get(self, request):
         pets_outrent_type = Pet.objects.filter(is_rented="out").values("animal_type").annotate(count_type=Count("number"), costs_type=Sum("rent_pet__price"))
         pets_outrent_zoo = Pet.objects.filter(is_rented="out").values("rent_pet__zoo").annotate(costs_zoo=Sum("rent_pet__price"))
-        pets_outrent_all = Pet.objects.filter(is_rented="out").aggregate(num_all=Count("number"), cost_all=Sum("rent_pet__price"))        
-        
-        print(pets_outrent_zoo)
-        print(pets_outrent_type)
-        print(pets_outrent_all)
+        pets_outrent_all = Pet.objects.filter(is_rented="out").aggregate(num_all=Count("number"), cost_all=Sum("rent_pet__price"))
 
         #print(pets_outrent_report)
         serializer1 = RentOutTypePetSummarySerializer(pets_outrent_type, many=True)
