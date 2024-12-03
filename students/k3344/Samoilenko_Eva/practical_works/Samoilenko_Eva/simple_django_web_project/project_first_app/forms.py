@@ -11,5 +11,5 @@ class OwnerForm(forms.ModelForm):
             "dob",
             "passport_number",
             "nationality",
-            "home_address",
+            "origin_city",
         ]

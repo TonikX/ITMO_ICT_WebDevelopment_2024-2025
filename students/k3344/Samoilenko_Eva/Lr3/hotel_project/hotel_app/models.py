@@ -16,8 +16,6 @@ class Client(models.Model):
 
 class Hotel(models.Model):
     num_rooms = models.SmallIntegerField()
-    # hotel_rooms = models.ManyToManyField(Room)
-    # hotel_employees = models.ManyToManyField(Employee)
 
     def __str__(self):
         return 'One and only Hotel'

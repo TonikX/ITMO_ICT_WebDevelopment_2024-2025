@@ -12,3 +12,7 @@ nav:
 
       - Лабораторная работа №2:
           - "Hotel Management": lab2/hotel_app.md
+
+      - Лабораторная работа №3:
+          - "Практическая работа 3.1": lab3/CarOwnerships.md
+          - "Лабораторная работа Hotel": lab3/hotel.md

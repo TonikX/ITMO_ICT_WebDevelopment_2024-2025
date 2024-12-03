@@ -1,16 +1,15 @@
-from datetime import datetime, timedelta
 from django.db.models import Q
 from django.utils import timezone
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import *
 from .serializers import *
 
 
 class RoomsAPIView(APIView):
+    """ Get Rooms List and Add new Room """
     serializer_class = RoomSerializer
 
     def get(self, request):
@@ -27,6 +26,8 @@ class RoomsAPIView(APIView):
 
 
 class RoomAPIView(APIView):
+    """ Get, Delete and Update Room """
+
     def get(self, request, room_id=None):
         try:
             room = Room.objects.get(id=room_id)
@@ -58,6 +59,7 @@ class RoomAPIView(APIView):
 
 
 class EmployeesAPIView(APIView):
+    """ Get Employees List and Add new Employee """
     serializer_class = EmployeeSerializer
 
     def get(self, request):
@@ -75,10 +77,12 @@ class EmployeesAPIView(APIView):
 
 
 class EmployeeAPIView(APIView):
+    """ Get, Delete and Update Employee """
+
     def get(self, request, employee_id):
         try:
             employee = Employee.objects.get(id=employee_id)
-            serializer = EmployeeSerializer(employee)
+            serializer = EmployeeCreateSerializer(employee)
             return Response({f'{employee.__str__()}': serializer.data})
         except Employee.DoesNotExist:
             return Response({"Not Found": "Employee not found"}, status=status.HTTP_404_NOT_FOUND)
@@ -107,6 +111,7 @@ class EmployeeAPIView(APIView):
 
 
 class ClientsAPIView(APIView):
+    """ Get Clients List and Add new Client """
     serializer_class = ClientSerializer
 
     def get(self, request):
@@ -124,6 +129,8 @@ class ClientsAPIView(APIView):
 
 
 class ClientAPIView(APIView):
+    """ Get, Delete and Update Client """
+
     def get(self, request, client_id):
         try:
             client = Client.objects.get(id=client_id)
@@ -156,7 +163,8 @@ class ClientAPIView(APIView):
 
 
 class BookingsAPIView(APIView):
-    serializer_class = BookingSerializer
+    """ Get Bookings List and Add new Booking """
+    serializer_class = BookingCreateSerializer
 
     def get(self, request):
         bookings = Booking.objects.all()
@@ -173,6 +181,8 @@ class BookingsAPIView(APIView):
 
 
 class BookingAPIView(APIView):
+    """ Get, Delete and Update Booking """
+
     def get(self, request, booking_id=None):
         try:
             booking = Booking.objects.get(id=booking_id)
@@ -205,7 +215,8 @@ class BookingAPIView(APIView):
 
 
 class CleaningsAPIView(APIView):
-    serializer_class = CleaningSerializer
+    """ Get Cleanings List and Add new Cleaning """
+    serializer_class = CleaningCreateSerializer
 
     def get(self, request):
         cleanings = Cleaning.objects.all()
@@ -222,6 +233,8 @@ class CleaningsAPIView(APIView):
 
 
 class CleaningAPIView(APIView):
+    """ Get, Delete and Update Cleaning """
+
     def get(self, request, cleaning_id=None):
         try:
             cleaning = Cleaning.objects.get(id=cleaning_id)
@@ -254,9 +267,11 @@ class CleaningAPIView(APIView):
 
 
 class ClientsInRoomView(APIView):
-    """Клиенты, проживавшие в заданном номере в заданный период времени
-    (e. g. room_id=6, start_date=2024-09-21, end_date=2024-11-01)
     """
+        Клиенты, проживавшие в заданном номере в заданный период времени
+        (e. g. room_id=6, start_date=2024-09-21, end_date=2024-11-01)
+    """
+
     def get(self, request, room_id, start_date, end_date):
         start_date = timezone.datetime.strptime(start_date, '%Y-%m-%d').date()
         end_date = timezone.datetime.strptime(end_date, '%Y-%m-%d').date()
@@ -272,8 +287,7 @@ class ClientsInRoomView(APIView):
         serializer = ClientSerializer(clients, many=True)
         if len(serializer.data) == 0:
             return Response({f'There were no Clients in Room {room_id} in a date range (from'
-                             f' {start_date} to '
-                             f'{end_date})'},
+                             f' {start_date} to {end_date})'},
                             status=status.HTTP_200_OK)
 
         return Response({f'Clients in Room {room_id} in a date range (from {start_date} to '
@@ -282,9 +296,11 @@ class ClientsInRoomView(APIView):
 
 
 class ClientsFromCityView(APIView):
-    """Количество клиентов, прибывших из заданного города
-    (e. g. Forks or London)
     """
+        Количество клиентов, прибывших из заданного города
+        (e. g. Forks or London)
+    """
+
     def get(self, request, origin_city):
         origin_city = origin_city.capitalize()
         client_count = Client.objects.filter(origin_city=origin_city).count()
@@ -298,9 +314,10 @@ class ClientsFromCityView(APIView):
 
 class EmployeesWhoCleanedView(APIView):
     """
-    Кто из служащих убирал номер указанного клиента в заданный день недели
-    (e. g. client_id=1 and week_day=Fri)
+        Кто из служащих убирал номер указанного клиента в заданный день недели
+        (e. g. client_id=1 and week_day=Fri)
     """
+
     def get(self, request, client_id, week_day):
         try:
             booking = Booking.objects.get(client_id=client_id)
@@ -320,16 +337,16 @@ class EmployeesWhoCleanedView(APIView):
 
         return Response({f'Employee/s, who cleaned {booking.client.__str__()}\'s Room on'
                          f' {week_day}':
-                        serializer.data},
+                             serializer.data},
                         status=status.HTTP_200_OK)
 
 
-# Сколько в гостинице свободных номеров
 class FreeRoomsView(APIView):
     """
         Сколько в гостинице свободных номеров в заданный промежуток времени
         (e. g. 2024-10-30/2024-11-30)
     """
+
     def get(self, request, start_date, end_date):
         start_date = timezone.datetime.strptime(start_date, '%Y-%m-%d').date()
         end_date = timezone.datetime.strptime(end_date, '%Y-%m-%d').date()
@@ -352,10 +369,11 @@ class ClientsWhileClientView(APIView):
         Список клиентов с указанием места жительства, которые проживали в отеле в те же дни,
         что и заданный клиент
     """
+
     def get(self, request, request_client_id):
         bookings = Booking.objects.filter(client_id=request_client_id)
 
-        if not bookings.exists():
+        if len(bookings) == 0:
             return Response({"error": "Specified client has no bookings."},
                             status=status.HTTP_404_NOT_FOUND)
 
@@ -372,6 +390,73 @@ class ClientsWhileClientView(APIView):
             booking_client__in=overlapping_bookings).distinct()
 
         serializer = ClientSerializer(overlapping_clients, many=True)
+        if len(overlapping_clients) == 0:
+            return Response('When your requested client stayed in our hotel, the other rooms '
+                            'were unoccupied', status=status.HTTP_200_OK)
         return Response({f'When your requested client stayed in our hotel, these clients were '
                          f'also here': serializer.data},
+                        status=status.HTTP_200_OK)
+
+
+class QuarterReportAPIView(APIView):
+    """
+        Отчет о работе гостиницы за указанный квартал текущего года
+    """
+
+    def get(self, request, requested_quarter):
+        quarters = [('01-01', '03-31'), ('04-01', '06-30'), ('07-01', '09-30'), ('10-01', '12-31')]
+        quarter = quarters[int(requested_quarter) - 1]
+        start = timezone.datetime.strptime(f'2024-{quarter[0]}', '%Y-%m-%d').date()
+        end = timezone.datetime.strptime(f'2024-{quarter[1]}', '%Y-%m-%d').date()
+        response = {}
+
+        # число клиентов за указанный период в каждом номере
+        clients = []
+        for room in Room.objects.all():
+            bookings = Booking.objects.filter(
+                room_id=room.id,
+                end_date__lte=end,
+                start_date__gte=start
+            ).select_related('client')
+
+            clients_in_room = [booking.client for booking in bookings]
+
+            serializer = ClientReportSerializer(clients_in_room, many=True)
+            if len(serializer.data) == 0:
+                clients.append(f'{room.__str__()} was unoccupied the whole quarter')
+            else:
+                clients.append((f'In {room.__str__()} stayed', serializer.data))
+
+        response['All Clients'] = clients
+
+        # количество номеров на каждом этаже
+        floor_rooms = []
+        for floor in Floor.objects.all():
+            floor_num = floor.floor_num
+            rooms = Room.objects.filter(floor_num=floor_num).count()
+            floor_rooms.append(f'On Floor {floor_num} there are {rooms} Rooms')
+
+        response['Rooms on every Floor Count'] = floor_rooms
+
+        # общая сумма дохода за каждый номер
+        room_income = []
+        hotel_income = 0
+        for room in Room.objects.all():
+            bookings = Booking.objects.filter(room=room.id, start_date__gte=start,
+                                              end_date__lte=end).select_related('room')
+            booking_income = 0
+            for booking in bookings:
+                num_days = abs((booking.end_date - booking.start_date).days)
+                booking_income += booking.room.price * num_days
+
+            hotel_income += booking_income
+
+            room_income.append(f'{room.__str__()} brought {booking_income} money')
+
+        response['Every Room Income'] = room_income
+
+        # суммарный доход по всей гостинице
+        response['Full Hotel Income'] = hotel_income
+
+        return Response({f'Quarter report for {requested_quarter} quarter': response},
                         status=status.HTTP_200_OK)

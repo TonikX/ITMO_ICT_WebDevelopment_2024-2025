@@ -14,6 +14,12 @@ class ClientCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ClientReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = ['id', 'first_name', 'last_name', 'passport_number']
+
+
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
