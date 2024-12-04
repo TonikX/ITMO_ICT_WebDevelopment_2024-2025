@@ -1,3 +1,10 @@
+# Лабораторная работа 3. Реализация серверной части на django rest. ORM модели.
+
+---
+
+## **Описание ORM моделей**
+
+```py
 from django.db import models
 
 
@@ -128,3 +135,4 @@ class TransitStop(models.Model):
 
     def __str__(self):
         return f"Stop at {self.airport} for {self.flight}"
+```

@@ -15,11 +15,18 @@ class AirlineSerializer(serializers.ModelSerializer):
 class AirlineCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Airline
-        fields = ["name", "address", "contact_info"]
+        fields = ["name", "country", "contact_info"]
+
+
+class PlaneModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlaneModel
+        fields = '__all__'
 
 
 class PlaneSerializer(serializers.ModelSerializer):
     airline = serializers.StringRelatedField()
+    model = PlaneModelSerializer()
 
     class Meta:
         model = Plane
@@ -29,7 +36,13 @@ class PlaneSerializer(serializers.ModelSerializer):
 class PlaneCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plane
-        fields = ["number", "model", "seats_capacity", "speed"]
+        fields = ["number", "model"]
+
+
+class PlaneUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Plane
+        fields = ["number"]
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
@@ -86,8 +99,14 @@ class CrewMemberCreateSerializer(serializers.ModelSerializer):
         return rep
 
     def validate(self, data):
-        if CrewMember.objects.filter(employee=data['employee'], role=data['role']).exists():
+        instance = self.instance
+
+        employee = data.get('employee', instance.employee if instance else None)
+        role = data.get('role', instance.role if instance else None)
+
+        if CrewMember.objects.filter(employee=employee, role=role).exclude(pk=instance.pk if instance else None).exists():
             raise serializers.ValidationError("This crew member with the specified role already exists.")
+
         return data
 
 
@@ -104,7 +123,57 @@ class RouteSerializer(serializers.ModelSerializer):
 class RouteCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
-        fields = '__all__'
+        exclude = ['id']
+
+    def validate(self, data):
+        """
+        Custom validation for route creation:
+        - Ensure no duplicate route exists with the same departure, destination, and stops.
+        - Ensure departure, destination, and stops airports are all distinct.
+        """
+        instance = self.instance
+
+        departure_airport = data.get('departure_airport', instance.departure_airport if instance else None)
+        destination_airport = data.get('destination_airport', instance.destination_airport if instance else None)
+        stops = data.get('stops', instance.stops.all() if instance else [])
+
+        if not (departure_airport and destination_airport and stops):
+            return data
+
+        # Validate that departure, destination, and stops are distinct
+        if departure_airport in stops:
+            raise serializers.ValidationError(
+                {"departure_airport": "Departure airport cannot be one of the stops."}
+            )
+        if destination_airport in stops:
+            raise serializers.ValidationError(
+                {"destination_airport": "Destination airport cannot be one of the stops."}
+            )
+        if departure_airport == destination_airport:
+            raise serializers.ValidationError(
+                {"departure_airport": "Departure and destination airports must be different."}
+            )
+
+        # Validate that the route does not already exist
+        existing_routes = Route.objects.filter(
+            departure_airport=departure_airport,
+            destination_airport=destination_airport,
+        ).exclude(id=instance.id if instance else None)
+
+        # Check stops match existing routes
+        for route in existing_routes:
+            if set(route.stops.all()) == set(stops):
+                raise serializers.ValidationError(
+                    {"non_field_errors": "A route with the same departure, destination, and stops already exists."}
+                )
+
+        return data
+
+
+class RouteUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Route
+        fields = ['number', 'distance_km']
 
 
 class CrewSerializer(serializers.ModelSerializer):
@@ -147,26 +216,35 @@ class CrewCreateSerializer(serializers.ModelSerializer):
         return rep
 
     def validate(self, data):
-        if data['captain'].role != 'Captain':
-            raise serializers.ValidationError("Selected captain must have the 'Captain' role.")
-        if data['co_pilot'].role != 'Co-Pilot':
-            raise serializers.ValidationError("Selected co-pilot must have the 'Co-Pilot' role.")
-        if data['navigator'].role != 'Navigator':
-            raise serializers.ValidationError("Selected navigator must have the 'Navigator' role.")
-        for attendant in data['attendants']:
-            if attendant.role != 'Attendant':
-                raise serializers.ValidationError(f"{attendant.employee} does not have the 'Attendant' role.")
+        instance = self.instance
 
+        captain = data.get('captain', instance.captain if instance else None)
+        co_pilot = data.get('co_pilot', instance.co_pilot if instance else None)
+        navigator = data.get('navigator', instance.navigator if instance else None)
+        attendants = data.get('attendants', instance.attendants.all() if instance else None)
+
+        if captain and captain.role != 'Captain':
+            raise serializers.ValidationError("Selected captain must have the 'Captain' role.")
+        if co_pilot and co_pilot.role != 'Co-Pilot':
+            raise serializers.ValidationError("Selected co-pilot must have the 'Co-Pilot' role.")
+        if navigator and navigator.role != 'Navigator':
+            raise serializers.ValidationError("Selected navigator must have the 'Navigator' role.")
+        if attendants:
+            for attendant in attendants:
+                if attendant.role != 'Attendant':
+                    raise serializers.ValidationError(f"{attendant.employee} does not have the 'Attendant' role.")
+
+        # Check for existing crew with identical members
         existing_crew = Crew.objects.filter(
-            captain=data['captain'],
-            co_pilot=data['co_pilot'],
-            navigator=data['navigator']
-        )
+            captain=captain,
+            co_pilot=co_pilot,
+            navigator=navigator
+        ).exclude(pk=instance.pk if instance else None)
 
         if existing_crew.exists():
             for crew in existing_crew:
                 existing_attendants = set(crew.attendants.all())
-                new_attendants = set(data['attendants'])
+                new_attendants = set(attendants)
                 if existing_attendants == new_attendants:
                     raise serializers.ValidationError("A crew with identical members already exists.")
 
@@ -250,7 +328,7 @@ class FlightCreateSerializer(serializers.ModelSerializer):
         plane = flight.plane
 
         rows = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        capacity = plane.seats_capacity
+        capacity = plane.model.seats_capacity
         row_count = (capacity // 3) + (1 if capacity % 3 != 0 else 0)
         seat_count = 0
 
@@ -263,6 +341,65 @@ class FlightCreateSerializer(serializers.ModelSerializer):
                 seat_count += 1
 
         return flight
+
+
+class FlightPatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Flight
+        exclude = ["sold_tickets_number"]
+
+    def validate(self, data):
+        """
+        Custom validation for plane, crew, and schedule conflicts in partial updates.
+        """
+        instance = self.instance
+
+        plane = data.get('plane', instance.plane)
+        crew = data.get('crew', instance.crew)
+        departure_datetime = data.get('departure_datetime', instance.departure_datetime)
+        arrival_datetime = data.get('arrival_datetime', instance.arrival_datetime)
+
+        if not (plane and departure_datetime and arrival_datetime):
+            return data
+
+        overlapping_maintenances = Maintenance.objects.filter(
+            plane=plane,
+            start_date__lt=arrival_datetime,
+            end_date__gt=departure_datetime
+        )
+        if overlapping_maintenances.exists():
+            maintenance = overlapping_maintenances.first()
+            raise serializers.ValidationError(
+                {"plane": f"Plane {plane.number} is under maintenance from {maintenance.start_date} "
+                          f"to {maintenance.end_date or 'an unknown end date'}."}
+            )
+
+        overlapping_flights_plane = Flight.objects.filter(
+            plane=plane,
+            departure_datetime__lt=arrival_datetime,
+            arrival_datetime__gt=departure_datetime
+        ).exclude(id=instance.id)
+        if overlapping_flights_plane.exists():
+            flight = overlapping_flights_plane.first()
+            raise serializers.ValidationError(
+                {"plane": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
+                          f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+            )
+
+        if crew:
+            overlapping_flights_crew = Flight.objects.filter(
+                crew=crew,
+                departure_datetime__lt=arrival_datetime,
+                arrival_datetime__gt=departure_datetime
+            ).exclude(id=instance.id)
+            if overlapping_flights_crew.exists():
+                flight = overlapping_flights_crew.first()
+                raise serializers.ValidationError(
+                    {"crew": f"Crew {crew} is occupied by another flight ({flight.number}) "
+                             f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                )
+
+        return data
 
 
 class SeatListSerializer(serializers.ModelSerializer):
@@ -327,17 +464,22 @@ class MaintenanceCreateSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         """
-        Custom validation for plane, crew, and schedule conflicts.
+        Custom validation for plane and schedule conflicts in partial updates.
         """
-        plane = data['plane']
-        start_date = data['start_date']
-        end_date = data['end_date']
+        instance = self.instance
+
+        plane = data.get('plane', instance.plane if instance else None)
+        start_date = data.get('start_date', instance.start_date if instance else None)
+        end_date = data.get('end_date', instance.end_date if instance else None)
+
+        if not (plane and start_date and end_date):
+            return data
 
         overlapping_maintenances = Maintenance.objects.filter(
             plane=plane,
             start_date__lt=end_date,
             end_date__gt=start_date
-        )
+        ).exclude(id=instance.id if instance else None)
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
             raise serializers.ValidationError(
@@ -345,6 +487,7 @@ class MaintenanceCreateSerializer(serializers.ModelSerializer):
                           f"to {maintenance.end_date or 'an unknown end date'}."}
             )
 
+        # Validate overlapping flights for the plane
         overlapping_flights_plane = Flight.objects.filter(
             plane=plane,
             departure_datetime__lt=end_date,
@@ -373,16 +516,13 @@ class TransitStopCreateSerializer(serializers.ModelSerializer):
     def validate(self, data):
         flight = self.context.get('flight')
 
-        # Check if the airport is a valid stop for the flight's route
         route_stops = flight.route.stops.all()
         if data['airport'] not in route_stops:
             raise serializers.ValidationError("Selected airport is not a transit stop on this flight's route.")
 
-        # Check if a transit stop already exists for this airport and flight
         if TransitStop.objects.filter(flight=flight, airport=data['airport']).exists():
             raise serializers.ValidationError("Transit stop for this airport already exists.")
 
-        # Check if arrival and departure times are within the flight's schedule
         if not (flight.departure_datetime <= data['arrival_datetime'] <= flight.arrival_datetime):
             raise serializers.ValidationError("Arrival datetime must be within the flight's schedule.")
         if not (flight.departure_datetime <= data['departure_datetime'] <= flight.arrival_datetime):
@@ -397,21 +537,39 @@ class TransitStopCreateSerializer(serializers.ModelSerializer):
 # statistics serializers
 class MostFrequentPlaneSerializer(serializers.Serializer):
     route_id = serializers.IntegerField()
+    route = serializers.SerializerMethodField()
     most_frequent_plane = serializers.SerializerMethodField()
+
+    def get_route(self, obj):
+        route_id = obj['route_id']
+        try:
+            route = Route.objects.get(id=route_id)
+            return str(route)
+        except Route.DoesNotExist:
+            return None
 
     def get_most_frequent_plane(self, obj):
         route_id = obj['route_id']
+
         planes = (
             Flight.objects.filter(route_id=route_id)
             .values('plane__model')
             .annotate(flight_count=Count('id'))
             .order_by('-flight_count')
         )
+
         if planes:
-            return {
-                'plane_model': planes[0]['plane__model'],
-                'flight_count': planes[0]['flight_count']
-            }
+            plane_model_id = planes[0]['plane__model']
+            try:
+                plane_model = PlaneModel.objects.get(id=plane_model_id)
+                serialized_plane = PlaneModelSerializer(plane_model).data
+                return {
+                    'plane_model': serialized_plane,
+                    'flight_count': planes[0]['flight_count']
+                }
+            except PlaneModel.DoesNotExist:
+                return None
+
         return None
 
 
@@ -430,7 +588,7 @@ class UnderFilledRouteSerializer(serializers.ModelSerializer):
         flights = obj.flights.all()
         under_filled_count = 0
         for flight in flights:
-            fill_percentage = flight.sold_tickets_number / flight.plane.seats_capacity
+            fill_percentage = flight.sold_tickets_number / flight.plane.model.seats_capacity
             if fill_percentage < threshold:
                 under_filled_count += 1
         return under_filled_count
@@ -496,37 +654,25 @@ class PlaneStatisticsSerializer(serializers.Serializer):
     models_statistics = serializers.SerializerMethodField()
 
     def get_total_planes(self, obj):
-        # Calculate the total number of planes for the airline
         return obj.planes.count()
 
     def get_models_statistics(self, obj):
-        planes = obj.planes.all()
+        planes = obj.planes.select_related('model').all()
         model_stats = defaultdict(lambda: {
-            'seat_capacity': None,
-            'speed': None,
             'plane_numbers': []
         })
 
         for plane in planes:
             model = plane.model
-            if model not in model_stats:
-                model_stats[model]['seat_capacity'] = [plane.seats_capacity, plane.seats_capacity]
-                model_stats[model]['speed'] = [plane.speed, plane.speed]
-            else:
-                model_stats[model]['seat_capacity'][0] = min(model_stats[model]['seat_capacity'][0], plane.seats_capacity)
-                model_stats[model]['seat_capacity'][1] = max(model_stats[model]['seat_capacity'][1], plane.seats_capacity)
-                model_stats[model]['speed'][0] = min(model_stats[model]['speed'][0], plane.speed)
-                model_stats[model]['speed'][1] = max(model_stats[model]['speed'][1], plane.speed)
-
             model_stats[model]['plane_numbers'].append(plane.number)
 
         formatted_stats = []
         for model, data in model_stats.items():
             formatted_stats.append({
-                'model': model,
+                'model': model.name,
                 'plane_amount': len(data['plane_numbers']),
-                'seat_capacity': f"{data['seat_capacity'][0]}-{data['seat_capacity'][1]}",
-                'speed': f"{data['speed'][0]}-{data['speed'][1]}",
+                'seat_capacity': model.seats_capacity,
+                'speed': model.speed,
                 'plane_numbers': data['plane_numbers']
             })
 

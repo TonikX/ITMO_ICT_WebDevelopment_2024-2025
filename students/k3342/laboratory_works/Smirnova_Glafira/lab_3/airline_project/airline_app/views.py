@@ -23,14 +23,16 @@ class AirlinesAPIView(APIView):
     def post(self, request):
         serializer_for_writing = self.serializer_class(data=request.data)
         serializer_for_writing.is_valid(raise_exception=True)
-        serializer_for_writing.save()
-        return Response(data=serializer_for_writing.data, status=status.HTTP_201_CREATED)
+        airline = serializer_for_writing.save()
+        return Response({"message": "Airline created successfully", "id": airline.id}, status=status.HTTP_201_CREATED)
 
 
 class AirlineAPIView(APIView):
     """
     Handles retrieving, updating, and deleting a specific airline.
     """
+
+    serializer_class = AirlineCreateSerializer
 
     def get(self, request, pk=None):
         airline = Airline.objects.get(pk=pk)
@@ -43,17 +45,16 @@ class AirlineAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @swagger_auto_schema(request_body=AirlineCreateSerializer)
-    def patch(self, request, pk):
+    def put(self, request, pk):
         try:
             airline = Airline.objects.get(pk=pk)
         except Airline.DoesNotExist:
             return Response({"error": "Airline not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = AirlineCreateSerializer(airline, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(airline, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(AirlineSerializer(airline).data, status=status.HTTP_200_OK)
 
 
 class PlanesAPIView(APIView):
@@ -76,8 +77,9 @@ class PlanesAPIView(APIView):
     def post(self, request, airline_pk=None):
         if not airline_pk:
             return Response(
-                {"error": "to add a new plane please go to airlines/<int:airline_pk>/planes."},
-                status=status.HTTP_400_BAD_REQUEST
+                {"error": "POST method is not allowed on this endpoint. "
+                          "To add a new employee, use /airlines/<int:airline_pk>/employees."},
+                status=status.HTTP_405_METHOD_NOT_ALLOWED
             )
 
         try:
@@ -92,7 +94,7 @@ class PlanesAPIView(APIView):
         serializer.is_valid(raise_exception=True)
 
         plane = serializer.save(airline=airline)
-        return Response(PlaneSerializer(plane).data, status=status.HTTP_201_CREATED)
+        return Response({"message": "Plane created successfully", "id": plane.id}, status=status.HTTP_201_CREATED)
 
 
 class PlaneAPIView(APIView):
@@ -100,23 +102,24 @@ class PlaneAPIView(APIView):
     Handles retrieving, updating, and deleting a specific plane.
     """
 
+    serializer_class = PlaneUpdateSerializer
+
     def get(self, request, airline_pk=None, pk=None):
         plane = Plane.objects.get(pk=pk)
         serializer = PlaneSerializer(plane)
         return Response(serializer.data)
 
-    @swagger_auto_schema(request_body=PlaneCreateSerializer)
-    def patch(self, request, airline_pk=None, pk=None):
+    @swagger_auto_schema(request_body=PlaneUpdateSerializer)
+    def put(self, request, airline_pk=None, pk=None):
         try:
             plane = Plane.objects.get(pk=pk)
         except Plane.DoesNotExist:
             return Response({"error": "Plane not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = PlaneCreateSerializer(plane, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(plane, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(PlaneSerializer(plane).data, status=status.HTTP_200_OK)
 
     def delete(self, request, airline_pk=None, pk=None):
         plane = Plane.objects.get(pk=pk)
@@ -149,8 +152,9 @@ class EmployeesAPIView(APIView):
     def post(self, request, airline_pk):
         if not airline_pk:
             return Response(
-                {"error": "to add a new employee please go to airlines/<int:airline_pk>/employees."},
-                status=status.HTTP_400_BAD_REQUEST
+                {"error": "POST method is not allowed on this endpoint. "
+                          "To add a new employee, use /airlines/<int:airline_pk>/employees."},
+                status=status.HTTP_405_METHOD_NOT_ALLOWED
             )
 
         try:
@@ -173,23 +177,24 @@ class EmployeeAPIView(APIView):
     Handles retrieving, updating, and deleting a specific employee.
     """
 
+    serializer_class = EmployeeCreateSerializer
+
     def get(self, request, airline_pk=None, pk=None):
         employee = Employee.objects.get(pk=pk)
         serializer = EmployeeSerializer(employee)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=EmployeeCreateSerializer)
-    def patch(self, request, airline_pk=None, pk=None):
+    def put(self, request, airline_pk=None, pk=None):
         try:
             employee = Employee.objects.get(pk=pk)
         except Employee.DoesNotExist:
             return Response({"error": "Employee not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = EmployeeCreateSerializer(employee, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(employee, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(EmployeeSerializer(employee).data, status=status.HTTP_200_OK)
 
     def delete(self, request, airline_pk=None, pk=None):
         employee = Employee.objects.get(pk=pk)
@@ -201,7 +206,6 @@ class FlightsAPIView(APIView):
     """
     Handles listing all flights or flights associated with a specific airline, and creating a new flight.
     """
-
     serializer_class = FlightCreateSerializer
 
     def get(self, request, airline_pk=None):
@@ -226,8 +230,8 @@ class FlightsAPIView(APIView):
 
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        flight = serializer.save()
+        return Response({"message": "Flight created successfully", "id": flight.id}, status=status.HTTP_201_CREATED)
 
 
 class FlightAPIView(APIView):
@@ -235,23 +239,24 @@ class FlightAPIView(APIView):
     Handles retrieving, updating, and deleting a specific flight.
     """
 
+    serializer_class = FlightPatchSerializer
+
     def get(self, request, airline_pk=None, pk=None):
         flight = Flight.objects.get(pk=pk)
         serializer = FlightSerializer(flight)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=FlightCreateSerializer)
-    def patch(self, request, airline_pk=None, pk=None):
+    def put(self, request, airline_pk=None, pk=None):
         try:
             flight = Flight.objects.get(pk=pk)
         except Flight.DoesNotExist:
             return Response({"error": "Flight not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = FlightCreateSerializer(flight, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(flight, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(FlightSerializer(flight).data, status=status.HTTP_200_OK)
 
     def delete(self, request, airline_pk=None, pk=None):
         flight = Flight.objects.get(pk=pk)
@@ -275,8 +280,8 @@ class MaintenancesAPIView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        maintenance = serializer.save()
+        return Response({"message": "Maintenance created successfully", "id": maintenance.id}, status=status.HTTP_201_CREATED)
 
 
 class MaintenanceAPIView(APIView):
@@ -284,18 +289,20 @@ class MaintenanceAPIView(APIView):
     Handles retrieving, updating, and deleting a specific maintenance.
     """
 
+    serializer_class = MaintenanceCreateSerializer
+
     def get(self, request, pk):
         maintenance = get_object_or_404(Maintenance, pk=pk)
         serializer = MaintenanceSerializer(maintenance)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=MaintenanceCreateSerializer)
-    def patch(self, request, pk):
+    def put(self, request, pk):
         maintenance = get_object_or_404(Maintenance, pk=pk)
-        serializer = MaintenanceCreateSerializer(maintenance, data=request.data, partial=True)
+        serializer = self.serializer_class(maintenance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        return Response(MaintenanceSerializer(maintenance).data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         maintenance = get_object_or_404(Maintenance, pk=pk)
@@ -360,6 +367,8 @@ class RoutesAPIView(APIView):
     Handles listing all routes and creating a new route.
     """
 
+    serializer_class = RouteCreateSerializer
+
     def get(self, request):
         routes = Route.objects.all()
         serializer = RouteSerializer(routes, many=True)
@@ -367,11 +376,10 @@ class RoutesAPIView(APIView):
 
     @swagger_auto_schema(request_body=RouteCreateSerializer)
     def post(self, request):
-        serializer = RouteCreateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        route = serializer.save()
+        return Response({"message": "Route created successfully", "id": route.id}, status=status.HTTP_201_CREATED)
 
 
 class RouteAPIView(APIView):
@@ -379,23 +387,24 @@ class RouteAPIView(APIView):
     Handles retrieving, updating, and deleting a specific route.
     """
 
+    serializer_class = RouteUpdateSerializer
+
     def get(self, request, pk):
         route = Route.objects.get(pk=pk)
         serializer = RouteSerializer(route)
         return Response(serializer.data)
 
-    @swagger_auto_schema(request_body=RouteCreateSerializer)
-    def patch(self, request, pk=None):
+    @swagger_auto_schema(request_body=RouteUpdateSerializer)
+    def put(self, request, pk=None):
         try:
             route = Route.objects.get(pk=pk)
         except Route.DoesNotExist:
             return Response({"error": "Route not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        serializer = RouteCreateSerializer(route, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(route, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(RouteSerializer(route).data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         route = Route.objects.get(pk=pk)
@@ -419,7 +428,7 @@ class FlightTransitStopsAPIView(APIView):
         serializer = self.serializer_class(data=request.data, context={'flight': flight})
         serializer.is_valid(raise_exception=True)
         transit_stop = serializer.save(flight=flight)
-        return Response(TransitStopCreateSerializer(transit_stop).data, status=status.HTTP_201_CREATED)
+        return Response({"message": "Transit stop created successfully", "id": transit_stop.id}, status=status.HTTP_201_CREATED)
 
     def get(self, request, pk):
         try:
@@ -466,8 +475,26 @@ class CrewMembersAPIView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        crew_member = serializer.save()
+        return Response({"message": "Crew member created successfully", "id": crew_member.id}, status=status.HTTP_201_CREATED)
+
+
+class CrewMemberAPIView(APIView):
+    """
+    Handles retrieving and deleting a specific crew member.
+    """
+
+    serializer_class = CrewMemberCreateSerializer
+
+    def get(self, request, pk):
+        crew_member = CrewMember.objects.get(pk=pk)
+        serializer = CrewMemberFullSerializer(crew_member)
+        return Response(serializer.data)
+
+    def delete(self, request, pk):
+        crew_member = CrewMember.objects.get(pk=pk)
+        crew_member.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class CrewsAPIView(APIView):
@@ -486,8 +513,38 @@ class CrewsAPIView(APIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        crew = serializer.save()
+        return Response({"message": "Crew created successfully", "id": crew.id}, status=status.HTTP_201_CREATED)
+
+
+class CrewAPIView(APIView):
+    """
+    Handles retrieving, updating, and deleting a specific crew.
+    """
+
+    serializer_class = CrewCreateSerializer
+
+    def get(self, request, pk):
+        crew = Crew.objects.get(pk=pk)
+        serializer = CrewSerializer(crew)
+        return Response(serializer.data)
+
+    @swagger_auto_schema(request_body=CrewCreateSerializer)
+    def put(self, request, pk=None):
+        try:
+            crew = Crew.objects.get(pk=pk)
+        except Crew.DoesNotExist:
+            return Response({"error": "Crew not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(crew, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(CrewSerializer(crew).data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        crew = Crew.objects.get(pk=pk)
+        crew.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 # statistics api views
@@ -510,7 +567,7 @@ class UnderFilledRoutesAPIView(APIView):
 
     def get(self, request):
         threshold = float(request.query_params.get('threshold', 50))
-        routes = Route.objects.all()
+        routes = Route.objects.filter(flights__isnull=False).distinct()
         serializer = UnderFilledRouteSerializer(routes, many=True, context={'threshold': threshold})
         return Response(serializer.data)
 

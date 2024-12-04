@@ -37,8 +37,10 @@ urlpatterns = [
     path('flights/<int:pk>/stops/', FlightTransitStopsAPIView.as_view(), name='flight_transit_stops'),
 
     path('crew-members/', CrewMembersAPIView.as_view(), name='crew_members'),
+    path('crew-members/<int:pk>/', CrewMemberAPIView.as_view(), name='crew_member_detail'),
 
     path('crews/', CrewsAPIView.as_view(), name='crews'),
+    path('crews/<int:pk>/', CrewAPIView.as_view(), name='crew_detail'),
 
     path('maintenances/', MaintenancesAPIView.as_view(), name='maintenance_list'),
     path('maintenances/<int:pk>/', MaintenanceAPIView.as_view(), name='maintenance_detail'),
@@ -54,9 +56,4 @@ urlpatterns = [
          name='airline_employees_count'),
 
     path('airlines/<int:pk>/plane-statistics/', PlaneStatisticsAPIView.as_view(), name='plane_statistics'),
-
-    path('flights/by-airport/<str:airport_code>/', FlightsByAirportAPIView.as_view(), name='flights_by_airport'),
-
-    path('flights/with-transit-stops/', FlightsWithTransitStopsAPIView.as_view(), name='flights_with_transit_stops'),
-
 ]
