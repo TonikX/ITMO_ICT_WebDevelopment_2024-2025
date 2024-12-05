@@ -5,6 +5,8 @@
 ## **Описание ORM моделей**
 
 ```py
+from datetime import timedelta
+
 from django.db import models
 
 
@@ -94,8 +96,11 @@ class Route(models.Model):
     number = models.CharField(max_length=10, unique=True)
     departure_airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='departure_routes')
     destination_airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='destination_routes')
-    stops = models.ManyToManyField(Airport, related_name='transit_routes', blank=True)
+    departure_time = models.TimeField()
+    arrival_time = models.TimeField()
+    arrival_day = models.IntegerField(default=0)
     distance_km = models.FloatField()
+    regularity = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.number}: {self.departure_airport} -> {self.destination_airport}"
@@ -103,8 +108,8 @@ class Route(models.Model):
 
 class Flight(models.Model):
     number = models.CharField(max_length=10, unique=True)
-    departure_datetime = models.DateTimeField()
-    arrival_datetime = models.DateTimeField()
+    departure_date = models.DateField()
+    arrival_date = models.DateField()
     crew = models.ForeignKey(Crew, on_delete=models.SET_NULL, null=True, related_name='flights')
     route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name='flights')
     plane = models.ForeignKey(Plane, on_delete=models.SET_NULL, null=True, related_name='flights')
@@ -112,10 +117,16 @@ class Flight(models.Model):
     status = models.CharField(default='Scheduled', max_length=50,
                               choices=[('Scheduled', 'Scheduled'), ('Boarding', 'Boarding'),
                                        ('Boarding Complete', 'Boarding Complete'), ('In Air', 'In Air'),
-                                       ('Landing', 'Landing'), ('Delayed', 'Delayed'), ('Canceled', 'Canceled')])
+                                       ('Landing', 'Landing'), ('Complete', 'Complete'),
+                                       ('Delayed', 'Delayed'), ('Canceled', 'Canceled')])
 
     def __str__(self):
         return f"Flight {self.number}"
+
+    def save(self, *args, **kwargs):
+        if self.departure_date and self.route:
+            self.arrival_date = self.departure_date + timedelta(days=self.route.arrival_day or 0)
+        super().save(*args, **kwargs)
 
 
 class Seat(models.Model):
@@ -128,11 +139,13 @@ class Seat(models.Model):
 
 
 class TransitStop(models.Model):
-    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='transit_stops')
+    route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name='transit_stops')
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='transit_stops')
-    arrival_datetime = models.DateTimeField()
-    departure_datetime = models.DateTimeField()
+    arrival_time = models.TimeField()
+    arrival_day = models.IntegerField(default=0)
+    departure_time = models.TimeField()
+    departure_day = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Stop at {self.airport} for {self.flight}"
+        return f"Stop at {self.airport} for {self.route}"
 ```

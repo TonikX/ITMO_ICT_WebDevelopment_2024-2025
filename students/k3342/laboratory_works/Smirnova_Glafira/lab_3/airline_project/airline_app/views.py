@@ -202,6 +202,22 @@ class EmployeeAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class FlightsOfRouteAPIView(APIView):
+    """
+    Handles listing all flights or flights associated with a specific route
+    """
+
+    def get(self, request, route_pk):
+        try:
+            route = Route.objects.get(pk=route_pk)
+        except Route.DoesNotExist:
+            return Response({"error": "Route not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        flights = Flight.objects.filter(route=route)
+        serializer = FlightShortSerializer(flights, many=True)
+        return Response(serializer.data)
+
+
 class FlightsAPIView(APIView):
     """
     Handles listing all flights or flights associated with a specific airline, and creating a new flight.
@@ -211,10 +227,10 @@ class FlightsAPIView(APIView):
     def get(self, request, airline_pk=None):
         if airline_pk:
             flights = Flight.objects.filter(plane__airline_id=airline_pk)
-            serializer = FlightSerializer(flights, many=True)
+            serializer = FlightShortSerializer(flights, many=True)
             return Response(serializer.data)
         flights = Flight.objects.all()
-        serializer = FlightSerializer(flights, many=True)
+        serializer = FlightShortSerializer(flights, many=True)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=serializer_class)
@@ -281,7 +297,8 @@ class MaintenancesAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         maintenance = serializer.save()
-        return Response({"message": "Maintenance created successfully", "id": maintenance.id}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Maintenance created successfully", "id": maintenance.id},
+                        status=status.HTTP_201_CREATED)
 
 
 class MaintenanceAPIView(APIView):
@@ -412,9 +429,9 @@ class RouteAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class FlightTransitStopsAPIView(APIView):
+class RouteTransitStopsAPIView(APIView):
     """
-    Handles listing transit stops for a specific flight and adding new transit stop details.
+    Handles listing transit stops for a specific route and adding new transit stop details.
     """
 
     serializer_class = TransitStopCreateSerializer
@@ -422,40 +439,36 @@ class FlightTransitStopsAPIView(APIView):
     @swagger_auto_schema(request_body=serializer_class)
     def post(self, request, pk):
         try:
-            flight = Flight.objects.get(pk=pk)
-        except Flight.DoesNotExist:
-            return Response({"error": "Flight not found."}, status=status.HTTP_404_NOT_FOUND)
-        serializer = self.serializer_class(data=request.data, context={'flight': flight})
+            route = Route.objects.get(pk=pk)
+        except Route.DoesNotExist:
+            return Response({"error": "Route not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.serializer_class(data=request.data, context={'route': route})
         serializer.is_valid(raise_exception=True)
-        transit_stop = serializer.save(flight=flight)
-        return Response({"message": "Transit stop created successfully", "id": transit_stop.id}, status=status.HTTP_201_CREATED)
+        transit_stop = serializer.save(route=route)
+        return Response({"message": "Transit stop created successfully", "id": transit_stop.id},
+                        status=status.HTTP_201_CREATED)
 
     def get(self, request, pk):
         try:
-            flight = Flight.objects.get(pk=pk)
-        except Flight.DoesNotExist:
-            return Response({"error": "Flight not found."}, status=status.HTTP_404_NOT_FOUND)
+            route = Route.objects.get(pk=pk)
+        except Route.DoesNotExist:
+            return Response({"error": "Route not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        route_stops = flight.route.stops.all()
+        route_stops = route.transit_stops.all()
 
         if not route_stops:
             return Response({"message": "This route has no transit stops."})
 
         stops_data = []
         for stop in route_stops:
-            transit_stop = TransitStop.objects.filter(flight=flight, airport=stop).first()
-            if transit_stop:
-                stops_data.append({
-                    "airport": str(stop),
-                    "arrival_datetime": transit_stop.arrival_datetime,
-                    "departure_datetime": transit_stop.departure_datetime
-                })
-            else:
-                stops_data.append({
-                    "airport": str(stop),
-                    "message": f"For the stop {stop.city}, no details were provided."
-                })
-
+            stops_data.append({
+                "airport": str(stop.airport),
+                "arrival_time": stop.arrival_time,
+                "arrival_day": stop.arrival_day,
+                "departure_time": stop.departure_time,
+                "departure_day": stop.departure_day,
+            })
         return Response(stops_data)
 
 
@@ -476,7 +489,8 @@ class CrewMembersAPIView(APIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         crew_member = serializer.save()
-        return Response({"message": "Crew member created successfully", "id": crew_member.id}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Crew member created successfully", "id": crew_member.id},
+                        status=status.HTTP_201_CREATED)
 
 
 class CrewMemberAPIView(APIView):
@@ -569,7 +583,9 @@ class UnderFilledRoutesAPIView(APIView):
         threshold = float(request.query_params.get('threshold', 50))
         routes = Route.objects.filter(flights__isnull=False).distinct()
         serializer = UnderFilledRouteSerializer(routes, many=True, context={'threshold': threshold})
-        return Response(serializer.data)
+
+        filtered_data = [route for route in serializer.data if route['under_filled_count'] > 0]
+        return Response(filtered_data)
 
 
 class PlanesInMaintenanceAPIView(APIView):

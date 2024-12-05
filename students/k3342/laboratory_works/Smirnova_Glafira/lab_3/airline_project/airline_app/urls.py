@@ -34,7 +34,8 @@ urlpatterns = [
     path('routes/', RoutesAPIView.as_view(), name='route_list'),
     path('routes/<int:pk>/', RouteAPIView.as_view(), name='route_detail'),
 
-    path('flights/<int:pk>/stops/', FlightTransitStopsAPIView.as_view(), name='flight_transit_stops'),
+    path('routes/<int:pk>/stops/', RouteTransitStopsAPIView.as_view(), name='route_transit_stops'),
+    path('routes/<int:route_pk>/flights/', FlightsOfRouteAPIView.as_view(), name='route_flights'),
 
     path('crew-members/', CrewMembersAPIView.as_view(), name='crew_members'),
     path('crew-members/<int:pk>/', CrewMemberAPIView.as_view(), name='crew_member_detail'),

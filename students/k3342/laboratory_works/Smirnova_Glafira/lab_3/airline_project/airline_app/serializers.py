@@ -1,6 +1,8 @@
 from collections import defaultdict
+from datetime import datetime
 
 from django.db.models import Count
+from django.utils import timezone
 from rest_framework import serializers
 from .models import *
 from django.utils.timezone import now
@@ -110,14 +112,29 @@ class CrewMemberCreateSerializer(serializers.ModelSerializer):
         return data
 
 
+class TransitStopSerializer(serializers.ModelSerializer):
+    airport = serializers.StringRelatedField()
+
+    class Meta:
+        model = TransitStop
+        exclude = ['route']
+
+
 class RouteSerializer(serializers.ModelSerializer):
     departure_airport = serializers.StringRelatedField()
     destination_airport = serializers.StringRelatedField()
-    stops = serializers.StringRelatedField(many=True)
+    stops = serializers.SerializerMethodField()
 
     class Meta:
         model = Route
         fields = '__all__'
+
+    def get_stops(self, obj):
+        """
+        Dynamically include all transit stops for the route, using TransitStopSerializer.
+        """
+        stops = obj.transit_stops.all().order_by('arrival_day', 'arrival_time')
+        return TransitStopSerializer(stops, many=True).data
 
 
 class RouteCreateSerializer(serializers.ModelSerializer):
@@ -126,46 +143,36 @@ class RouteCreateSerializer(serializers.ModelSerializer):
         exclude = ['id']
 
     def validate(self, data):
-        """
-        Custom validation for route creation:
-        - Ensure no duplicate route exists with the same departure, destination, and stops.
-        - Ensure departure, destination, and stops airports are all distinct.
-        """
+
         instance = self.instance
 
         departure_airport = data.get('departure_airport', instance.departure_airport if instance else None)
         destination_airport = data.get('destination_airport', instance.destination_airport if instance else None)
-        stops = data.get('stops', instance.stops.all() if instance else [])
+        departure_time = data.get('departure_time', instance.departure_time if instance else None)
+        arrival_time = data.get('arrival_time', instance.arrival_time if instance else None)
+        arrival_day = data.get('arrival_day', instance.arrival_day if instance else None)
+        regularity = data.get('regularity', instance.regularity if instance else None)
 
-        if not (departure_airport and destination_airport and stops):
-            return data
-
-        # Validate that departure, destination, and stops are distinct
-        if departure_airport in stops:
-            raise serializers.ValidationError(
-                {"departure_airport": "Departure airport cannot be one of the stops."}
-            )
-        if destination_airport in stops:
-            raise serializers.ValidationError(
-                {"destination_airport": "Destination airport cannot be one of the stops."}
-            )
         if departure_airport == destination_airport:
-            raise serializers.ValidationError(
-                {"departure_airport": "Departure and destination airports must be different."}
-            )
+            raise serializers.ValidationError("Departure and destination airports must be different.")
 
-        # Validate that the route does not already exist
-        existing_routes = Route.objects.filter(
+        if arrival_day == 0 and departure_time and arrival_time and departure_time >= arrival_time:
+            raise serializers.ValidationError(
+                "Departure time must be earlier than arrival time when arrival day is the same.")
+
+        query = Route.objects.filter(
             departure_airport=departure_airport,
             destination_airport=destination_airport,
-        ).exclude(id=instance.id if instance else None)
+            departure_time=departure_time,
+            arrival_time=arrival_time,
+            arrival_day=arrival_day,
+            regularity=regularity,
+        )
+        if instance:
+            query = query.exclude(id=instance.id)
 
-        # Check stops match existing routes
-        for route in existing_routes:
-            if set(route.stops.all()) == set(stops):
-                raise serializers.ValidationError(
-                    {"non_field_errors": "A route with the same departure, destination, and stops already exists."}
-                )
+        if query.exists():
+            raise serializers.ValidationError("A route with the same details already exists.")
 
         return data
 
@@ -173,7 +180,32 @@ class RouteCreateSerializer(serializers.ModelSerializer):
 class RouteUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Route
-        fields = ['number', 'distance_km']
+        fields = ['number', 'distance_km', 'regularity', 'departure_time', 'arrival_time']
+
+    def validate(self, data):
+        instance = self.instance
+
+        departure_time = data.get('departure_time', instance.departure_time if instance else None)
+        arrival_time = data.get('arrival_time', instance.arrival_time if instance else None)
+        arrival_day = instance.arrival_day
+
+        if arrival_day == 0 and departure_time and arrival_time and departure_time >= arrival_time:
+            raise serializers.ValidationError("Departure time must be earlier than arrival time when arrival day is "
+                                              "the same.")
+
+        query = Route.objects.filter(
+            number=data.get('number', instance.number),
+            departure_time=departure_time,
+            arrival_time=arrival_time,
+            regularity=data.get('regularity', instance.regularity),
+        )
+        if instance:
+            query = query.exclude(id=instance.id)
+
+        if query.exists():
+            raise serializers.ValidationError("A route with the same details already exists.")
+
+        return data
 
 
 class CrewSerializer(serializers.ModelSerializer):
@@ -251,6 +283,30 @@ class CrewCreateSerializer(serializers.ModelSerializer):
         return data
 
 
+class FlightShortSerializer(serializers.ModelSerializer):
+    crew = serializers.StringRelatedField()
+    route = serializers.StringRelatedField()
+    stops = serializers.SerializerMethodField()
+    plane = serializers.StringRelatedField()
+    departure_time = serializers.SerializerMethodField()
+    arrival_time = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Flight
+        fields = '__all__'
+
+    def get_stops(self, obj):
+        stops = obj.route.transit_stops.all().order_by('arrival_day', 'arrival_time')
+        stops = [str(stop.airport) for stop in stops]
+        return stops
+
+    def get_departure_time(self, obj):
+        return obj.route.departure_time
+
+    def get_arrival_time(self, obj):
+        return obj.route.arrival_time
+
+
 class FlightSerializer(serializers.ModelSerializer):
     crew = serializers.StringRelatedField()
     route = RouteSerializer()
@@ -264,7 +320,7 @@ class FlightSerializer(serializers.ModelSerializer):
 class FlightCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
-        exclude = ["sold_tickets_number"]
+        exclude = ["arrival_date", "sold_tickets_number"]
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -279,13 +335,18 @@ class FlightCreateSerializer(serializers.ModelSerializer):
         """
         plane = data['plane']
         crew = data['crew']
-        departure_datetime = data['departure_datetime']
-        arrival_datetime = data['arrival_datetime']
+        departure_date = data['departure_date']
+        arrival_date = departure_date + timedelta(days=data['route'].arrival_day or 0)
+
+        arrival_datetime = datetime.combine(arrival_date, datetime.min.time())
+        departure_datetime = datetime.combine(departure_date, datetime.min.time())
+        arrival_datetime = timezone.make_aware(arrival_datetime)
+        departure_datetime = timezone.make_aware(departure_datetime)
 
         overlapping_maintenances = Maintenance.objects.filter(
             plane=plane,
-            start_date__lt=arrival_datetime,
-            end_date__gt=departure_datetime
+            start_date__lte=arrival_datetime,
+            end_date__gte=departure_datetime
         )
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
@@ -296,26 +357,26 @@ class FlightCreateSerializer(serializers.ModelSerializer):
 
         overlapping_flights_plane = Flight.objects.filter(
             plane=plane,
-            departure_datetime__lt=arrival_datetime,
-            arrival_datetime__gt=departure_datetime
+            departure_date__lte=arrival_date,
+            arrival_date__gte=departure_date
         )
         if overlapping_flights_plane.exists():
             flight = overlapping_flights_plane.first()
             raise serializers.ValidationError(
                 {"plane": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
-                          f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                          f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
         overlapping_flights_crew = Flight.objects.filter(
             crew=crew,
-            departure_datetime__lt=arrival_datetime,
-            arrival_datetime__gt=departure_datetime
+            departure_date__lte=arrival_date,
+            arrival_date__gte=departure_date
         )
         if overlapping_flights_crew.exists():
             flight = overlapping_flights_crew.first()
             raise serializers.ValidationError(
                 {"crew": f"Crew {crew} is occupied by another flight ({flight.number}) "
-                         f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                         f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
         return data
@@ -346,26 +407,29 @@ class FlightCreateSerializer(serializers.ModelSerializer):
 class FlightPatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flight
-        exclude = ["sold_tickets_number"]
+        exclude = ["route", "arrival_date", "sold_tickets_number"]
 
     def validate(self, data):
         """
         Custom validation for plane, crew, and schedule conflicts in partial updates.
         """
+
         instance = self.instance
 
         plane = data.get('plane', instance.plane)
         crew = data.get('crew', instance.crew)
-        departure_datetime = data.get('departure_datetime', instance.departure_datetime)
-        arrival_datetime = data.get('arrival_datetime', instance.arrival_datetime)
+        departure_date = data.get('departure_date', instance.departure_date)
+        arrival_date = departure_date + timedelta(days=instance.route.arrival_day or 0)
 
-        if not (plane and departure_datetime and arrival_datetime):
-            return data
+        arrival_datetime = datetime.combine(arrival_date, datetime.min.time())
+        departure_datetime = datetime.combine(departure_date, datetime.min.time())
+        arrival_datetime = timezone.make_aware(arrival_datetime)
+        departure_datetime = timezone.make_aware(departure_datetime)
 
         overlapping_maintenances = Maintenance.objects.filter(
             plane=plane,
-            start_date__lt=arrival_datetime,
-            end_date__gt=departure_datetime
+            start_date__lte=arrival_datetime,
+            end_date__gte=departure_datetime
         )
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
@@ -376,27 +440,27 @@ class FlightPatchSerializer(serializers.ModelSerializer):
 
         overlapping_flights_plane = Flight.objects.filter(
             plane=plane,
-            departure_datetime__lt=arrival_datetime,
-            arrival_datetime__gt=departure_datetime
+            departure_date__lte=arrival_date,
+            arrival_date__gte=departure_date
         ).exclude(id=instance.id)
         if overlapping_flights_plane.exists():
             flight = overlapping_flights_plane.first()
             raise serializers.ValidationError(
                 {"plane": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
-                          f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                          f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
         if crew:
             overlapping_flights_crew = Flight.objects.filter(
                 crew=crew,
-                departure_datetime__lt=arrival_datetime,
-                arrival_datetime__gt=departure_datetime
+                departure_date__lte=arrival_date,
+                arrival_date__gte=departure_date
             ).exclude(id=instance.id)
             if overlapping_flights_crew.exists():
                 flight = overlapping_flights_crew.first()
                 raise serializers.ValidationError(
                     {"crew": f"Crew {crew} is occupied by another flight ({flight.number}) "
-                             f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                             f"from {flight.departure_date} to {flight.arrival_date}."}
                 )
 
         return data
@@ -490,14 +554,14 @@ class MaintenanceCreateSerializer(serializers.ModelSerializer):
         # Validate overlapping flights for the plane
         overlapping_flights_plane = Flight.objects.filter(
             plane=plane,
-            departure_datetime__lt=end_date,
-            arrival_datetime__gt=start_date
+            departure_date__lt=end_date,
+            arrival_date__gt=start_date
         )
         if overlapping_flights_plane.exists():
             flight = overlapping_flights_plane.first()
             raise serializers.ValidationError(
                 {"plane": f"Plane {plane.number} is occupied by a flight ({flight.number}) "
-                          f"from {flight.departure_datetime} to {flight.arrival_datetime}."}
+                          f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
         return data
@@ -506,7 +570,7 @@ class MaintenanceCreateSerializer(serializers.ModelSerializer):
 class TransitStopCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = TransitStop
-        fields = ['airport', 'arrival_datetime', 'departure_datetime']
+        fields = ['airport', 'arrival_time', 'arrival_day', 'departure_time', 'departure_day']
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -514,22 +578,33 @@ class TransitStopCreateSerializer(serializers.ModelSerializer):
         return rep
 
     def validate(self, data):
-        flight = self.context.get('flight')
+        route = self.context.get('route')
 
-        route_stops = flight.route.stops.all()
-        if data['airport'] not in route_stops:
-            raise serializers.ValidationError("Selected airport is not a transit stop on this flight's route.")
+        # Retrieve route details
+        dep_airport, dest_airport = route.departure_airport, route.destination_airport
+        dep_time, arr_time, arr_day = route.departure_time, route.arrival_time, route.arrival_day
 
-        if TransitStop.objects.filter(flight=flight, airport=data['airport']).exists():
+        if TransitStop.objects.filter(route=route, airport=data['airport']).exists():
             raise serializers.ValidationError("Transit stop for this airport already exists.")
 
-        if not (flight.departure_datetime <= data['arrival_datetime'] <= flight.arrival_datetime):
-            raise serializers.ValidationError("Arrival datetime must be within the flight's schedule.")
-        if not (flight.departure_datetime <= data['departure_datetime'] <= flight.arrival_datetime):
-            raise serializers.ValidationError("Departure datetime must be within the flight's schedule.")
+        if data['airport'] == dep_airport or data['airport'] == dest_airport:
+            raise serializers.ValidationError(
+                "Transit stop airport must be different from both departure and destination airports of the route.")
 
-        if data['arrival_datetime'] >= data['departure_datetime']:
-            raise serializers.ValidationError("Departure datetime must be after arrival datetime.")
+        if data['arrival_day'] > data['departure_day']:
+            raise serializers.ValidationError("Arrival day cannot be later than departure day.")
+
+        if data['arrival_day'] == data['departure_day'] and data['arrival_time'] >= data['departure_time']:
+            raise serializers.ValidationError("Arrival time must be earlier than departure time on the same day.")
+
+        if not (arr_day <= data['arrival_day'] <= data['departure_day'] <= arr_day):
+            raise serializers.ValidationError("Transit times must be within the route's schedule.")
+
+        if not ((arr_day < data['arrival_day'] or
+                 (arr_day == data['arrival_day'] and arr_time <= data['arrival_time'])) and
+                (arr_day < data['departure_day'] or
+                 (arr_day == data['departure_day'] and arr_time >= data['departure_time']))):
+            raise serializers.ValidationError("Arrival and departure times must fit within the route's timing.")
 
         return data
 
