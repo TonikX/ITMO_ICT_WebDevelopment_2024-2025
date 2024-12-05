@@ -1,22 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мои бронирования</title>
-</head>
-<body>
-    <h1>Мои бронирования</h1>
-    <ul>
-        {% for reservation in reservations %}
-            <li>
-                {{ reservation.room.name }} (с {{ reservation.check_in }} по {{ reservation.check_out }})
-                <a href="{% url 'edit_reservation' reservation.id %}">Редактировать</a> |
-                <a href="{% url 'delete_reservation' reservation.id %}">Удалить</a>
-            </li>
-        {% endfor %}
-    </ul>
+{% extends "base.html" %}
 
-    <a href="{% url 'hotel_list' %}">Вернуться к списку отелей</a>
-</body>
-</html>
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Мои бронирования</h1>
+    </header>
+
+    <main>
+        {% if reservations %}
+        <section class="reservations-list">
+            <ul>
+                {% for reservation in reservations %}
+                <li class="reservation-item">
+                    <div class="reservation-details">
+                        <p><strong>Номер:</strong> {{ reservation.room }}</p>
+                        <p><strong>Дата заезда:</strong> {{ reservation.check_in_date }}</p>
+                        <p><strong>Дата выезда:</strong> {{ reservation.check_out_date }}</p>
+                    </div>
+                    <div class="reservation-actions">
+                        <a href="{% url 'edit_reservation' reservation.id %}" class="edit-button">Редактировать</a>
+                        <a href="{% url 'delete_reservation' reservation.id %}" class="delete-button">Удалить</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% else %}
+
+        <section class="no-reservations">
+            <p>У вас пока нет бронирований.</p>
+        </section>
+        {% endif %}
+    </main>
+{% endblock %}
+

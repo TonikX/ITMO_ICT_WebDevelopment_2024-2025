@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить отзыв</title>
-</head>
-<body>
-    <h1>Добавить отзыв для номера: {{ room.name }}</h1>
+{% extends "base.html" %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Добавить отзыв</button>
-    </form>
+{% block title %}Добавить отзыв{% endblock %}
 
-    <a href="{% url 'hotel_detail' room.hotel.id %}">Назад к отелю</a>
-</body>
-</html>
+{% block content %}
+    <header>
+        <h1>Добавление отзыва</h1>
+    </header>
+
+    <main>
+        <section class="room-details">
+            <h2>Номер: {{ room.room_type }}</h2>
+            <p><strong>Отель:</strong> {{ room.hotel.name }}</p>
+        </section>
+
+        <section class="review-form">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="submit-button">Добавить отзыв</button>
+            </form>
+        </section>
+
+        <footer>
+            <a href="{% url 'hotel_detail' room.hotel.id %}" class="cancel-button">Назад к отелю</a>
+        </footer>
+    </main>
+{% endblock %}

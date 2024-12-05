@@ -1,19 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резервирование номера</title>
-</head>
-<body>
-    <h1>Резервирование номера: {{ room.name }}</h1>
+{% extends "base.html" %}
 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Забронировать</button>
-    </form>
+{% block title %}Резервирование номера{% endblock %}
 
-    <a href="{% url 'hotel_detail' room.hotel.id %}">Назад к отелю</a>
-</body>
-</html>
+{% block content %}
+    <header>
+        <h1>Резервирование номера</h1>
+    </header>
+
+    <main>
+        <section class="room-details">
+            <h2>{{ room.room_type }}</h2>
+            <p><strong>Отель:</strong> {{ room.hotel.name }}</p>
+            <p><strong>Стоимость за ночь:</strong> {{ room.price }} ₽</p>
+            <p><strong>Вместимость:</strong> {{ room.capacity }} гостей</p>
+            <p><strong>Удобства:</strong> {{ room.amenities|default:"Удобства не указаны" }}</p>
+        </section>
+
+        <section class="reservation-form">
+            <h2>Заполните данные для бронирования</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="reserve-button">Забронировать</button>
+            </form>
+        </section>
+
+        <footer>
+            <a href="{% url 'hotel_detail' room.hotel.id %}" class="cancel-button">Назад к отелю</a>
+        </footer>
+    </main>
+{% endblock %}

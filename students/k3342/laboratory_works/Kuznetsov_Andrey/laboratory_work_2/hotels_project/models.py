@@ -1,11 +1,14 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.timezone import now
+from django.utils.timezone import now, timedelta
 
 
 class Client(AbstractUser):
     email = models.EmailField(unique=True)
     date_joined = models.DateTimeField(default=now)
+
+    def __str__(self):
+        return self.username
 
 
 class Hotel(models.Model):
@@ -51,11 +54,11 @@ class Room(models.Model):
     amenities = models.TextField(verbose_name="Удобства", blank=True)
 
     def __str__(self):
-        return f"Room: {self.hotel.name} - {self.room_type.name}"
+        return f"{self.hotel.name}: {self.room_type}"
 
 
 class Reservation(models.Model):
-    user = models.ForeignKey(
+    client = models.ForeignKey(
         Client,
         on_delete=models.CASCADE,
         related_name="reservations",
@@ -71,8 +74,16 @@ class Reservation(models.Model):
     check_out_date = models.DateField(verbose_name="Дата выселения")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @classmethod
+    def get_last_month_reservations(cls, hotel_id=None):
+        last_month_date = now().date() - timedelta(days=30)
+        queryset = cls.objects.filter(check_in_date__gte=last_month_date)
+        if hotel_id:
+            queryset = queryset.filter(room__hotel__id=hotel_id)
+        return queryset
+
     def __str__(self):
-        return f"Reservation: {self.user.username} - {self.room}"
+        return f"{self.client} @ {self.room} (created at {self.created_at})"
 
 
 class Review(models.Model):
@@ -86,4 +97,4 @@ class Review(models.Model):
     rating = models.IntegerField(verbose_name="Рейтинг", choices=[(i, i) for i in range(1, 11)])
 
     def __str__(self):
-        return f"Review: {self.reservation.user.username} - {self.reservation.room}"
+        return f"{self.rating}/10"

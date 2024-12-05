@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список отелей</title>
-</head>
-<body>
-    <h1>Список отелей</h1>
-    <ul>
-        {% for hotel in hotels %}
-            <li>
-                <a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a> - {{ hotel.address }}
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Список отелей{% endblock %}
+
+{% block content %}
+        {% if hotels %}
+            <section>
+                <ul class="hotel-list">
+                    {% for hotel in hotels %}
+                        <li class="hotel-item">
+                            <article>
+                                <h2 class="hotel-name">
+                                    <a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a>
+                                </h2>
+                                <p class="hotel-address">{{ hotel.address }}</p>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% else %}
+            <p>Отели не найдены.</p>
+        {% endif %}
+{% endblock %}

@@ -1,34 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Детали отеля: {{ hotel.name }}</title>
-</head>
-<body>
-    <h1>{{ hotel.name }}</h1>
-    <p><strong>Адрес:</strong> {{ hotel.address }}</p>
-    <p><strong>Описание:</strong> {{ hotel.description }}</p>
+{% extends "base.html" %}
 
-    <h2>Номера:</h2>
-    <ul>
-        {% for room in hotel.rooms.all %}
-            <li>
-                <a href="{% url 'reserve_room' room.id %}">{{ room.name }}</a> - {{ room.capacity }} человек - {{ room.price }}₽
-            </li>
-        {% endfor %}
-    </ul>
+{% block title %}Детали отеля: {{ hotel.name }}{% endblock %}
 
-    <h3>Отзывы:</h3>
-    <ul>
-        {% for review in hotel.reviews.all %}
-            <li>
-                <strong>{{ review.reservation }}:</strong>
-                {{ review.comment }} (Рейтинг: {{ review.rating }})
-            </li>
-        {% endfor %}
-    </ul>
+{% block content %}
+<header>
+    <h1 class="hotel-name">{{ hotel.name }}</h1>
+</header>
 
-    <a href="{% url 'add_review' hotel.rooms.first.id %}">Добавить отзыв</a>
-</body>
-</html>
+<main>
+    <section class="hotel-details">
+        <h2>Информация об отеле</h2>
+        <p><strong>Адрес:</strong> {{ hotel.address }}</p>
+        <p><strong>Описание:</strong> {{ hotel.description|default:"Описание не предоставлено." }}</p>
+    </section>
+
+    <section class="hotel-rooms">
+        <h2>Доступные номера</h2>
+        {% if hotel.rooms.exists %}
+            <ul class="room-list">
+                {% for room in hotel.rooms.all %}
+                    <li class="room-item">
+                        <article>
+                            <h3 class="room-type">
+                                <a href="{% url 'reserve_room' room.id %}">{{ room.room_type }}</a>
+                            </h3>
+                            <p><strong>Вместимость:</strong> {{ room.capacity }} гостей</p>
+                            <p><strong>Цена за ночь:</strong> {{ room.price }} ₽</p>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Номера отсутствуют.</p>
+        {% endif %}
+    </section>
+
+    <section class="hotel-reviews">
+        <h2>Отзывы</h2>
+        <ul class="reservation-list">
+            {% for room in hotel.rooms.all %}
+                {% for reservation in room.reservations.all %}
+                    {% if reservation.review %}
+                        <li class="reservation-item">
+                            <div class="review-item">
+                                <p><strong>Период проживания:</strong> {{ reservation.review.reservation.check_in_date }} - {{ reservation.review.reservation.check_out_date }}</p>
+                                <p><strong>Тип номера:</strong> {{ reservation.review.reservation.room.room_type }}</p>
+                                <p><strong>Рейтинг:</strong> {{ reservation.review.rating }}/10</p>
+                                <p><strong>Комментарий:</strong> {{ reservation.review.comment }}</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+        {% if not hotel.rooms.all|yesno:"True,," %}
+            <p>Отзывы отсутствуют.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <a href="{% url 'add_review' hotel.rooms.first.id %}" class="cancel-button">Добавить отзыв</a>
+    </footer>
+</main>
+{% endblock %}

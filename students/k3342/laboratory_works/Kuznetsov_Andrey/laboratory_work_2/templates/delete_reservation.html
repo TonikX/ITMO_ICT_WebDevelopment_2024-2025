@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Удалить бронирование</title>
-</head>
-<body>
-    <h1>Вы уверены, что хотите удалить бронирование?</h1>
-    <p>Бронирование: {{ reservation.room.name }} (с {{ reservation.check_in }} по {{ reservation.check_out }})</p>
+{% extends "base.html" %}
 
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Удалить</button>
-    </form>
+{% block title %}Удалить бронирование{% endblock %}
 
-    <a href="{% url 'reservation_list' %}">Отмена</a>
-</body>
-</html>
+{% block content %}
+    <header>
+        <h1>Удаление бронирования</h1>
+    </header>
+
+    <main>
+        <section class="reservation-details">
+            <p>Вы уверены, что хотите удалить бронирование?</p>
+            <p><strong>Номер:</strong> {{ reservation.room.room_type }}</p>
+            <p><strong>Отель:</strong> {{ reservation.room.hotel.name }}</p>
+            <p><strong>Период:</strong> с {{ reservation.check_in_date }} по {{ reservation.check_out_date }}</p>
+        </section>
+
+        <section class="confirmation-form">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Удалить</button>
+                <a href="{% url 'reservation_list' %}" class="cancel-button">Отмена</a>
+            </form>
+        </section>
+    </main>
+{% endblock %}
