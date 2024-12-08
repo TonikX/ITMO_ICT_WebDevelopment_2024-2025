@@ -19,6 +19,5 @@ nav:
       - URLs: Lr2/urls.md
   - Лабораторная №3:
        - Описание: Lr3/description.md
-       - Модели: Lr3/models.md
-       - Endpoints: Lr3/endpoints.md
+       - Endpoints: Lr3/api.md
        - Практическая работа: Lr3/practical.md
