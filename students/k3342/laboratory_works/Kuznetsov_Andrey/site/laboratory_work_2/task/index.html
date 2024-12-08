@@ -683,6 +683,24 @@
 <pre><code class="language-shell">python manage.py runserver
 </code></pre>
 <p>Далее пройти по стандартному адресу и порту: <code>http://127.0.0.1:8000/</code></p>
+<p>Все существующие пути выглядят следующим образом (но в каждый из них можно попасть через UX интерфейс в клиентской части, плавно переходя между страничками): </p>
+<pre><code class="language-python">urlpatterns = [
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path(&quot;login/&quot;, views.login_view, name=&quot;login&quot;),
+    path(&quot;logout/&quot;, views.logout_view, name=&quot;logout&quot;),
+    path(&quot;profile/&quot;, views.profile, name=&quot;profile&quot;),
+    path(&quot;signup/&quot;, views.signup_view, name=&quot;signup&quot;),
+    path(&quot;&quot;, views.HotelListView.as_view(), name=&quot;hotel_list&quot;),
+    path(&quot;hotel/&lt;int:pk&gt;/&quot;, views.HotelDetailView.as_view(), name=&quot;hotel_detail&quot;),
+    path(&quot;room/&lt;int:room_id&gt;/reserve/&quot;, views.reserve_room, name=&quot;reserve_room&quot;),
+    path(&quot;reservations/&quot;, views.reservation_list, name=&quot;reservation_list&quot;),
+    path(&quot;reservation/&lt;int:reservation_id&gt;/edit/&quot;, views.edit_reservation, name=&quot;edit_reservation&quot;),
+    path(&quot;reservation/&lt;int:reservation_id&gt;/delete/&quot;, views.delete_reservation, name=&quot;delete_reservation&quot;),
+    path(&quot;room/&lt;int:room_id&gt;/review/&quot;, views.add_review, name=&quot;add_review&quot;),
+    path(&quot;recent-guests/&quot;, views.recent_guests, name=&quot;recent_guests&quot;),
+]
+</code></pre>
 <p>Сразу встречает список всех отелей. </p>
 <p><img alt="image" src="../media/hotels.png" /></p>
 <p>Можно просматривать информацию о каждом отеле в отдельности, если просто нажать на него.</p>
@@ -696,6 +714,48 @@
 <p><img alt="image" src="../media/profile.png" /></p>
 <p>Далее можно взаимодействовать с сервисом. Например, изучить свои бронирования. </p>
 <p><img alt="image" src="../media/reservations.png" /></p>
+<blockquote>
+<p>существует фильтрация и пагинация у бОльшей части всех листингов!</p>
+</blockquote>
+<p>Вот таким образом, например, выглядит листинг бронирований пользователей.
+- фильтрация пробрасывается через GET запросы от html и применяется в случае необходимости
+- пагинация же работает через стандартный Paginator</p>
+<pre><code class="language-python">def reservation_list(request):
+    reservations = Reservation.objects.filter(client=request.user)
+
+    check_in_date = request.GET.get('check_in_date', None)
+    check_out_date = request.GET.get('check_out_date', None)
+    room_id = request.GET.get('room_id', None)
+    hotel_name = request.GET.get('hotel_name', None)
+
+    if check_in_date:
+        reservations = reservations.filter(check_in_date__gte=check_in_date)
+
+    if check_out_date:
+        reservations = reservations.filter(check_out_date__lte=check_out_date)
+
+    if room_id:
+        reservations = reservations.filter(room_id=room_id)
+
+    if hotel_name:
+        reservations = reservations.filter(room__hotel__name__icontains=hotel_name)
+
+    room_types = RoomType.objects.values_list('name', flat=True).distinct()
+    hotels = Hotel.objects.values_list('name', flat=True).distinct()
+
+    paginator = Paginator(reservations, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, &quot;reservation_list.html&quot;, {
+        &quot;reservations&quot;: page_obj,
+        &quot;check_in_date&quot;: check_in_date,
+        &quot;check_out_date&quot;: check_out_date,
+        &quot;room_id&quot;: room_id,
+        &quot;room_types&quot;: room_types,
+        &quot;hotels&quot;: hotels,
+    })
+</code></pre>
 <p>И либо их отредактировать:</p>
 <p><img alt="image" src="../media/edit-reservation.png" /></p>
 <p>Либо удалить в случае админа:</p>
@@ -704,6 +764,22 @@
 <p><img alt="image" src="../media/add-reservation.png" /></p>
 <p>А на каждое бронирование при необходимости добавить отзыв</p>
 <p><img alt="image" src="../media/add-review.png" /></p>
+<p>При этом каждое ревью в случае удачи (т.е. POST запроса и добавления) редиректит на детали отеля, где можно просмотреть добавленный отзыв</p>
+<pre><code class="language-python">@login_required
+def add_review(request, room_id):
+    room = get_object_or_404(Room, id=room_id)
+    if request.method == &quot;POST&quot;:
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.room = room
+            review.save()
+            return redirect(&quot;hotel_detail&quot;, pk=room.hotel.id)
+    else:
+        form = ReviewForm()
+    return render(request, &quot;add_review.html&quot;, {&quot;form&quot;: form, &quot;room&quot;: room})
+</code></pre>
 
 
 

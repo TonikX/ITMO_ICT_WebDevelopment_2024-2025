@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
-from .models import Hotel, Room, Reservation
+from .models import Hotel, Room, Reservation, RoomType
 from .forms import ReservationForm, ReviewForm, SignUpForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 
 def signup_view(request):
@@ -59,6 +60,25 @@ class HotelDetailView(DetailView):
     template_name = "hotel_detail.html"
     context_object_name = "hotel"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        hotel = context['hotel']
+        reservations = Reservation.objects.filter(room__hotel=hotel)
+
+        check_in_date = self.request.GET.get('check_in_date', None)
+        if check_in_date:
+            reservations = reservations.filter(check_in_date__gte=check_in_date)
+
+        paginator = Paginator(reservations, 5)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context['reservations'] = page_obj
+        context['check_in_date'] = check_in_date
+
+        return context
+
 
 @login_required
 def reserve_room(request, room_id):
@@ -76,10 +96,41 @@ def reserve_room(request, room_id):
     return render(request, "reserve_room.html", {"form": form, "room": room})
 
 
-@login_required
 def reservation_list(request):
     reservations = Reservation.objects.filter(client=request.user)
-    return render(request, "reservation_list.html", {"reservations": reservations})
+
+    check_in_date = request.GET.get('check_in_date', None)
+    check_out_date = request.GET.get('check_out_date', None)
+    room_id = request.GET.get('room_id', None)
+    hotel_name = request.GET.get('hotel_name', None)
+
+    if check_in_date:
+        reservations = reservations.filter(check_in_date__gte=check_in_date)
+
+    if check_out_date:
+        reservations = reservations.filter(check_out_date__lte=check_out_date)
+
+    if room_id:
+        reservations = reservations.filter(room_id=room_id)
+
+    if hotel_name:
+        reservations = reservations.filter(room__hotel__name__icontains=hotel_name)
+
+    room_types = RoomType.objects.values_list('name', flat=True).distinct()
+    hotels = Hotel.objects.values_list('name', flat=True).distinct()
+
+    paginator = Paginator(reservations, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "reservation_list.html", {
+        "reservations": page_obj,
+        "check_in_date": check_in_date,
+        "check_out_date": check_out_date,
+        "room_id": room_id,
+        "room_types": room_types,
+        "hotels": hotels,
+    })
 
 
 @login_required

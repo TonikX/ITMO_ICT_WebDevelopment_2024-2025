@@ -35,6 +35,51 @@
         {% endif %}
     </section>
 
+    <section class="hotel-reservations">
+        <h2>Резервации</h2>
+
+        <!-- Форма фильтрации -->
+        <form method="get" class="reservation-filter-form">
+            <label for="check_in_date">Фильтровать по дате заселения:</label>
+            <input type="date" name="check_in_date" id="check_in_date" value="{{ check_in_date }}">
+            <button type="submit" class="submit-button">Применить</button>
+        </form>
+
+        {% if reservations %}
+            <ul class="reservation-list">
+                {% for reservation in reservations %}
+                    <li class="reservation-item">
+                        <div class="reservation-details">
+                            <p><strong>Клиент:</strong> {{ reservation.client.username }}</p>
+                            <p><strong>Номер:</strong> {{ reservation.room.room_type.name }}</p>
+                            <p><strong>Дата заселения:</strong> {{ reservation.check_in_date }}</p>
+                            <p><strong>Дата выселения:</strong> {{ reservation.check_out_date }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Резервации отсутствуют для данного отеля.</p>
+        {% endif %}
+
+        <!-- Пагинация -->
+        {% if reservations.has_other_pages %}
+            <div class="pagination">
+                {% if reservations.has_previous %}
+                    <a href="?page=1{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">&laquo; Первая</a>
+                    <a href="?page={{ reservations.previous_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">« Назад</a>
+                {% endif %}
+
+                <span>Страница {{ reservations.number }} из {{ reservations.paginator.num_pages }}</span>
+
+                {% if reservations.has_next %}
+                    <a href="?page={{ reservations.next_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">Далее »</a>
+                    <a href="?page={{ reservations.paginator.num_pages }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">Последняя &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </section>
+
     <section class="hotel-reviews">
         <h2>Отзывы</h2>
         <ul class="reservation-list">

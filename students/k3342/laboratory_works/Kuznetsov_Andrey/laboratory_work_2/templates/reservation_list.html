@@ -8,13 +8,39 @@
     </header>
 
     <main>
+        <section class="reservation-filter">
+            <form method="get">
+                <label for="check_in_date">Дата заезда:</label>
+                <input type="date" name="check_in_date" id="check_in_date" value="{{ check_in_date }}">
+
+                <label for="check_out_date">Дата выезда:</label>
+                <input type="date" name="check_out_date" id="check_out_date" value="{{ check_out_date }}">
+
+                <label for="room_id">Номер:</label>
+                <select name="room_id" id="room_id">
+                    <option value="">Все номера</option>
+                    {% for room in room_types %}
+                        <option value="{{ room }}">
+                            {{ room }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label for="hotel_name">Отель:</label>
+                <input type="text" name="hotel_name" id="hotel_name" value="{{ hotel_name }}" placeholder="Поиск по имени отеля">
+
+                <button type="submit"  class="submit-button">Применить фильтры</button>
+            </form>
+        </section>
+
         {% if reservations %}
         <section class="reservations-list">
             <ul>
                 {% for reservation in reservations %}
                 <li class="reservation-item">
                     <div class="reservation-details">
-                        <p><strong>Номер:</strong> {{ reservation.room }}</p>
+                        <p><strong>Отель:</strong> {{ reservation.room.hotel.name }}</p>
+                        <p><strong>Номер:</strong> {{ reservation.room.room_type.name }}</p>
                         <p><strong>Дата заезда:</strong> {{ reservation.check_in_date }}</p>
                         <p><strong>Дата выезда:</strong> {{ reservation.check_out_date }}</p>
                     </div>
@@ -26,12 +52,25 @@
                 {% endfor %}
             </ul>
         </section>
-        {% else %}
 
+        <div class="pagination">
+            {% if reservations.has_previous %}
+                <a href="?page=1{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}{% if check_out_date %}&check_out_date={{ check_out_date }}{% endif %}{% if room_id %}&room_id={{ room_id }}{% endif %}">&laquo; Первая</a>
+                <a href="?page={{ reservations.previous_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}{% if check_out_date %}&check_out_date={{ check_out_date }}{% endif %}{% if room_id %}&room_id={{ room_id }}{% endif %}">« Назад</a>
+            {% endif %}
+
+            <span>Страница {{ reservations.number }} из {{ reservations.paginator.num_pages }}</span>
+
+            {% if reservations.has_next %}
+                <a href="?page={{ reservations.next_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}{% if check_out_date %}&check_out_date={{ check_out_date }}{% endif %}{% if room_id %}&room_id={{ room_id }}{% endif %}">Далее »</a>
+                <a href="?page={{ reservations.paginator.num_pages }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}{% if check_out_date %}&check_out_date={{ check_out_date }}{% endif %}{% if room_id %}&room_id={{ room_id }}{% endif %}">Последняя &raquo;</a>
+            {% endif %}
+        </div>
+
+        {% else %}
         <section class="no-reservations">
             <p>У вас пока нет бронирований.</p>
         </section>
         {% endif %}
     </main>
 {% endblock %}
-
