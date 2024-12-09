@@ -1,0 +1,17 @@
+site_name: "WEB-labs documentation"
+theme:
+  name: 'material'
+  palette:
+    primary: 'blue'
+    accent: 'blue'
+
+nav:
+  - Home: index.md
+  - Lab №1:
+    - Task 1: docs/task1.md
+    - Task 2: docs/task2.md
+    - Task 3: docs/task3.md
+    - Task 4: docs/task4.md
+    - Task 5: docs/task5.md
+  - Lab №2:
+    - Lab task + main functional:
