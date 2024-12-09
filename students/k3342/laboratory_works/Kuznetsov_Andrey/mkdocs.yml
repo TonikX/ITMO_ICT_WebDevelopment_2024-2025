@@ -13,5 +13,9 @@ nav:
           - "Task 1": laboratory_work_2/leetcode/task1.md
           - "Task 2": laboratory_work_2/leetcode/task2.md
           - "Task 3": laboratory_work_2/leetcode/task3.md
+  - Lab 3:
+      - "Practice": laboratory_work_3/practice.md
+
+
 theme:
   name: material
