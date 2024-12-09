@@ -1,0 +1,9 @@
+site_name: My Docs
+nav:
+  - Home:index.md
+
+  - Lab-3:
+    - practical 3.1: pr_task.md
+    - lab3: lab3.md
+theme:
+    name: dracula
