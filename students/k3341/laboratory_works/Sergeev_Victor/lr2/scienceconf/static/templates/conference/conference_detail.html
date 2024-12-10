@@ -51,11 +51,11 @@
             {% if performance.recommended %}
             - RECOMMENDED
             {% endif %}
-        {% if request.user == performance.speaker.user or request.user.username == 'admin' %}
-        | <a href="speaker/update/">Update</a> | <a href="speaker/delete/">Delete</a>
+        {% if request.user == performance.speaker.user or request.user.username == 'admin' or request.user == object.creator.user %}
+        | <a href="speaker/{{ performance.id }}/update/">Update</a> | <a href="speaker/{{ performance.id }}/delete/">Delete</a>
         {% endif %}
-        {% if request.user.username == 'admin' %}
-            <form action="speaker/update/" method="POST">
+        {% if request.user.username == 'admin' or request.user == object.creator.user %}
+            <form action="speaker/{{ performance.id }}/update/" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="{{ performance.speaking_topic }}" name="speaking_topic">
                 {% if performance.recommended %}

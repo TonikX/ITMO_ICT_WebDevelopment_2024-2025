@@ -46,8 +46,8 @@ class SpeakerUpdate(edit.UpdateView):
     fields = ['speaking_topic', 'recommended']
     template_name = 'static/templates/speaker/speaker_update.html'
     def get_object(self, **kwargs):
-        conference_id = self.kwargs.get('pk')
-        object = models.ConferencePerformance.objects.filter(conference__id=conference_id).first()
+        performance_pk = self.kwargs.get('pk')
+        object = models.ConferencePerformance.objects.filter(id=performance_pk).first()
         return object
         
     def get_success_url(self):
