@@ -1,0 +1,16 @@
+<!-- blog/templates/car_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация об автомобиле</title>
+</head>
+<body>
+    <h1>Информация об автомобиле</h1>
+    <p>Марка: {{ car.brand }}</p>
+    <p>Модель: {{ car.model }}</p>
+    <p>Номерной знак: {{ car.license_plate }}</p>
+    <p>Цвет: {{ car.color }}</p>
+    <a href="{% url 'car_update' car.id %}">Обновить информацию</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить владельца</title>
+</head>
+<body>
+    <h1>Добавить владельца автомобиля</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Отображение формы -->
+        <button type="submit">Добавить</button>
+    </form>
+
+    <h2>Список владельцев</h2>
+    <ul>
+        {% for owner in owners %}
+            <li>{{ owner.last_name }} {{ owner.first_name }} ({{ owner.birth_date }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

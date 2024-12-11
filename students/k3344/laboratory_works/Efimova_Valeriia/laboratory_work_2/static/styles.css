@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #E0F7FA; /* Светлый бирюзовый */
+    color: #006064; /* Темный циан */
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #00BCD4; /* Бирюзовый */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #006064;
+}
+
+button, input[type="submit"] {
+    background-color: #00ACC1; /* Чуть темнее бирюзовый */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #00838F; /* Еще темнее */
+}
+
+a {
+    color: #00838F;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    max-width: 400px;
+    margin: 0;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
