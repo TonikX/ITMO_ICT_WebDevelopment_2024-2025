@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://owarpero.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab3/1/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Task - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Task";
+        var mkdocs_page_input_path = "lab3/1.md";
+        var mkdocs_page_url = "/ITMO_ICT_WebDevelopment_2024-2025/lab3/1/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/5/">Task 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Task</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Введение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Модели данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bustype">Модель BusType (Тип автобуса)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bus">Модель Bus (Автобус)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#driver">Модель Driver (Водитель)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route">Модель Route (Маршрут)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workshift">Модель WorkShift (Рабочая смена)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Соответствие требованиям задания</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Запросы и отчёты</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">Заключение</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">practical_work</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../practical_work/3.1/">3.1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3 lab</li>
+      <li class="breadcrumb-item active">Task</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Документация системы управления автобусным парком</h1>
+<h2 id="_2">Введение</h2>
+<p>Данная система предназначена для диспетчера автобусного парка частной транспортной фирмы. Она обеспечивает хранение сведений о водителях, маршрутах и характеристиках автобусов, а также позволяет формировать отчёты и получать необходимую информацию для эффективного управления автопарком.</p>
+<h2 id="_3">Модели данных</h2>
+<h3 id="bustype">Модель <code>BusType</code> (Тип автобуса)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о типах автобусов и их вместимости.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>name</code> (<code>CharField</code>, <code>max_length=100</code>): Название типа автобуса.</li>
+<li><code>capacity</code> (<code>PositiveIntegerField</code>): Вместимость автобуса данного типа.</li>
+</ul>
+<p><strong>Методы:</strong></p>
+<ul>
+<li><code>__str__()</code>: Возвращает строковое представление типа автобуса с указанием вместимости.</li>
+</ul>
+<h3 id="bus">Модель <code>Bus</code> (Автобус)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию об отдельных автобусах автопарка.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>registration_number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер государственной регистрации автобуса.</li>
+<li><code>bus_type</code> (<code>ForeignKey</code> на <code>BusType</code>): Ссылка на тип автобуса.</li>
+<li><code>in_service</code> (<code>BooleanField</code>, <code>default=True</code>): Статус автобуса (на линии или нет).</li>
+</ul>
+<p><strong>Методы:</strong></p>
+<ul>
+<li><code>__str__()</code>: Возвращает строковое представление автобуса по его регистрационному номеру.</li>
+</ul>
+<h3 id="driver">Модель <code>Driver</code> (Водитель)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о водителях.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>passport_data</code> (<code>CharField</code>, <code>max_length=100</code>): Паспортные данные водителя.</li>
+<li><code>DRIVER_CLASS_CHOICES</code>: Классы водителей:</li>
+<li><code>'A'</code>: Класс A</li>
+<li><code>'B'</code>: Класс B</li>
+<li><code>'C'</code>: Класс C</li>
+<li><code>driver_class</code> (<code>CharField</code>, <code>max_length=1</code>, <code>choices=DRIVER_CLASS_CHOICES</code>): Класс водителя.</li>
+<li><code>work_experience</code> (<code>PositiveIntegerField</code>): Стаж работы (в годах).</li>
+<li><code>salary</code> (<code>DecimalField</code>, <code>max_digits=10</code>, <code>decimal_places=2</code>): Оклад водителя (зависит от класса и стажа).</li>
+<li><code>date_of_birth</code> (<code>DateField</code>): Дата рождения.</li>
+</ul>
+<p><strong>Методы:</strong></p>
+<ul>
+<li><code>__str__()</code>: Возвращает строковое представление водителя по его паспортным данным.</li>
+</ul>
+<h3 id="route">Модель <code>Route</code> (Маршрут)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о маршрутах.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер маршрута.</li>
+<li><code>start_point</code> (<code>CharField</code>, <code>max_length=100</code>): Начальный пункт движения.</li>
+<li><code>end_point</code> (<code>CharField</code>, <code>max_length=100</code>): Конечный пункт движения.</li>
+<li><code>operation_start_time</code> (<code>TimeField</code>): Время начала движения по маршруту.</li>
+<li><code>operation_end_time</code> (<code>TimeField</code>): Время окончания движения по маршруту.</li>
+<li><code>interval</code> (<code>DurationField</code>): Интервал движения автобусов на маршруте.</li>
+<li><code>duration</code> (<code>DurationField</code>): Продолжительность маршрута (время движения от начала до конца).</li>
+</ul>
+<p><strong>Методы:</strong></p>
+<ul>
+<li><code>__str__()</code>: Возвращает строковое представление маршрута с указанием начального и конечного пунктов.</li>
+</ul>
+<h3 id="workshift">Модель <code>WorkShift</code> (Рабочая смена)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о графике работы водителей.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>driver</code> (<code>ForeignKey</code> на <code>Driver</code>): Ссылка на водителя.</li>
+<li><code>bus</code> (<code>ForeignKey</code> на <code>Bus</code>): Ссылка на автобус.</li>
+<li><code>route</code> (<code>ForeignKey</code> на <code>Route</code>): Ссылка на маршрут.</li>
+<li><code>date</code> (<code>DateField</code>): Дата смены.</li>
+<li><code>shift_start_time</code> (<code>TimeField</code>): Время начала смены.</li>
+<li><code>shift_end_time</code> (<code>TimeField</code>): Время окончания смены.</li>
+<li><code>STATUS_CHOICES</code>: Статусы смены:</li>
+<li><code>'Worked'</code>: Отработал</li>
+<li><code>'Absent'</code>: Отсутствовал</li>
+<li><code>'Sick'</code>: Болезнь</li>
+<li><code>'Breakdown'</code>: Поломка</li>
+<li><code>'No Driver'</code>: Нет водителя</li>
+<li><code>'No Bus'</code>: Нет автобуса</li>
+<li><code>status</code> (<code>CharField</code>, <code>max_length=20</code>, <code>choices=STATUS_CHOICES</code>, <code>default='Worked'</code>): Статус смены.</li>
+<li><code>reason</code> (<code>TextField</code>, <code>null=True</code>, <code>blank=True</code>): Причина, если смена не была отработана.</li>
+</ul>
+<p><strong>Метаданные:</strong></p>
+<ul>
+<li><code>unique_together</code>: (<code>driver</code>, <code>date</code>, <code>shift_start_time</code>, <code>shift_end_time</code>): Уникальность записи смены для конкретного водителя на определённую дату и время.</li>
+</ul>
+<p><strong>Методы:</strong></p>
+<ul>
+<li><code>__str__()</code>: Возвращает строковое представление смены с указанием даты, водителя, автобуса и маршрута.</li>
+</ul>
+<h2 id="_4">Соответствие требованиям задания</h2>
+<ul>
+<li>
+<p><strong>Хранение сведений о водителях, маршрутах и характеристиках автобусов:</strong></p>
+</li>
+<li>
+<p>Модели <code>Driver</code>, <code>Route</code>, <code>Bus</code> и <code>BusType</code> обеспечивают хранение необходимой информации.</p>
+</li>
+<li>
+<p><strong>Оклад водителя зависит от класса и стажа работы:</strong></p>
+</li>
+<li>
+<p>Поле <code>salary</code> в модели <code>Driver</code> хранит оклад водителя. Логика расчёта оклада может быть реализована дополнительно в методах модели или при сохранении данных.</p>
+</li>
+<li>
+<p><strong>Маршрут характеризуется номером, названием начального и конечного пунктов, временем начала и конца движения, интервалом движения и продолжительностью:</strong></p>
+</li>
+<li>
+<p>Модель <code>Route</code> содержит все необходимые поля для хранения этих данных.</p>
+</li>
+<li>
+<p><strong>Вместимость автобуса зависит от его типа:</strong></p>
+</li>
+<li>
+<p>Модель <code>BusType</code> хранит информацию о вместимости, а модель <code>Bus</code> ссылается на <code>BusType</code>.</p>
+</li>
+<li>
+<p><strong>Каждый водитель закреплён за определённым автобусом и работает на определённом маршруте, но может пересесть на другую машину:</strong></p>
+</li>
+<li>
+<p>Модель <code>WorkShift</code> связывает водителя, автобус и маршрут, позволяя гибко назначать их на смены.</p>
+</li>
+<li>
+<p><strong>Хранение графика работы водителей:</strong></p>
+</li>
+<li>
+<p>Модель <code>WorkShift</code> хранит информацию о сменах водителей, включая дату, время и статус.</p>
+</li>
+<li>
+<p><strong>Возможность корректировки БД при изменениях:</strong></p>
+</li>
+<li>Система поддерживает CRUD-операции для всех моделей, позволяя добавлять, изменять и удалять записи.</li>
+</ul>
+<h2 id="_5">Запросы и отчёты</h2>
+<ul>
+<li>
+<p><strong>Список водителей на определённом маршруте с графиком работы:</strong></p>
+</li>
+<li>
+<p>Можно получить из модели <code>WorkShift</code>, фильтруя по <code>route</code>.</p>
+</li>
+<li>
+<p><strong>Время начала и окончания движения автобусов на каждом маршруте:</strong></p>
+</li>
+<li>
+<p>Поля <code>operation_start_time</code> и <code>operation_end_time</code> в модели <code>Route</code>.</p>
+</li>
+<li>
+<p><strong>Общая продолжительность маршрутов, обслуживаемых автопарком:</strong></p>
+</li>
+<li>
+<p>Сумма полей <code>duration</code> всех записей в модели <code>Route</code>.</p>
+</li>
+<li>
+<p><strong>Автобусы, не вышедшие на линию в заданный день и причина:</strong></p>
+</li>
+<li>
+<p>Из модели <code>WorkShift</code>, фильтруя по <code>date</code> и <code>status</code> (например, <code>status='Breakdown'</code> или <code>status='No Driver'</code>).</p>
+</li>
+<li>
+<p><strong>Количество водителей каждого класса:</strong></p>
+</li>
+<li>
+<p>Агрегирование по полю <code>driver_class</code> в модели <code>Driver</code>.</p>
+</li>
+<li>
+<p><strong>Отчёт по автопарку, сгруппированный по типам автобусов:</strong></p>
+</li>
+<li>
+<p>Используя связи между моделями <code>BusType</code>, <code>Bus</code>, <code>Route</code> и <code>WorkShift</code>, можно сформировать отчёт с указанием маршрутов, обслуживаемых каждым типом автобусов, и включить все необходимые характеристики.</p>
+</li>
+<li>
+<p><strong>Сведения о суммарной продолжительности обслуживаемых маршрутов, количестве автобусов каждого типа, количестве водителей, их среднем возрасте и стаже:</strong></p>
+</li>
+<li>Эти данные могут быть получены с помощью соответствующих агрегирующих запросов к моделям <code>Route</code>, <code>Bus</code>, <code>Driver</code>.</li>
+</ul>
+<h2 id="_6">Заключение</h2>
+<p>Система спроектирована в соответствии с требованиями задания и обеспечивает функциональность, необходимую для эффективного управления автобусным парком. Модели данных отражают все ключевые сущности и их взаимосвязи, позволяя хранить, обновлять и получать необходимую информацию.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab2/1/" class="btn btn-neutral float-left" title="Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../practical_work/3.1/" class="btn btn-neutral float-right" title="3.1">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab2/1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../practical_work/3.1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

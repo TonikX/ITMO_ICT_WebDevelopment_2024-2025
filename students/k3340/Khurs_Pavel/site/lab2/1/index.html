@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://owarpero.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab2/1/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Task - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Task";
+        var mkdocs_page_input_path = "lab2/1.md";
+        var mkdocs_page_url = "/ITMO_ICT_WebDevelopment_2024-2025/lab2/1/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/5/">Task 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Task</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Введение</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">Технологии</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Установка зависимостей</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Запуск</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">Основные таблицы</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#env">ENV</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">practical_work</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../practical_work/3.1/">3.1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">2 lab</li>
+      <li class="breadcrumb-item active">Task</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="-nestjs-nextjs">Документация веб-приложения с NestJS и Next.js</h1>
+<h2 id="_1">Введение</h2>
+<p>Добро пожаловать в документацию веб-приложения, разработанного с использованием <strong>NestJS</strong> и <strong>Next.js</strong>.</p>
+<h3 id="_2">Технологии</h3>
+<ul>
+<li><strong>NestJS</strong>: Фреймворк для серверной разработки на Node.js, построенный с использованием TypeScript. Обеспечивает модульную архитектуру, удобство тестирования и интеграцию с различными базами данных и сторонними сервисами.</li>
+<li><strong>Next.js</strong>: Фреймворк для фронтенд-разработки на React, предоставляющий возможности серверного рендеринга, статической генерации и оптимизации производительности.</li>
+<li><strong>TypeScript</strong>: Надстройка над JavaScript, обеспечивающая статическую типизацию для повышения надежности и удобства разработки.</li>
+<li><strong>PostgreSQL</strong>: Реляционная база данных для хранения и управления данными приложения.</li>
+</ul>
+<h3 id="_3">Установка зависимостей</h3>
+<p>Для установки зависимостей используйте <a href="https://pnpm.io/">pnpm</a>:</p>
+<pre><code class="language-bash">pnpm install
+</code></pre>
+<ul>
+<li>Эта команда будет работать как для front так и для back</li>
+</ul>
+<h3 id="_4">Запуск</h3>
+<ul>
+<li>Для backend</li>
+</ul>
+<pre><code class="language-bash">pnpm run start:dev
+</code></pre>
+<ul>
+<li>Для frontend</li>
+</ul>
+<pre><code class="language-bash">pnpm run dev
+</code></pre>
+<h3 id="_5">Основные таблицы</h3>
+<pre><code class="language-ts">@Entity()
+export class Reservation extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  userId: number;
+
+  @ManyToOne(() =&gt; User, (user) =&gt; user.reservations, { eager: true })
+  @JoinColumn({ name: &quot;userId&quot; })
+  user: User;
+
+  @Column()
+  tourId: number;
+
+  @ManyToOne(() =&gt; Tour, (tour) =&gt; tour.reservations, { eager: true })
+  @JoinColumn({ name: &quot;tourId&quot; })
+  tour: Tour;
+
+  @Column({ default: false })
+  isConfirmed: boolean;
+
+  @Column({ default: &quot;pending&quot; })
+  status: string;
+
+  @Column({ type: &quot;timestamp&quot;, default: () =&gt; &quot;CURRENT_TIMESTAMP&quot; })
+  createdAt: Date;
+}
+</code></pre>
+<pre><code class="language-ts">@Entity()
+export class Review extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  userId: number;
+
+  @ManyToOne(() =&gt; User, (user) =&gt; user.reviews, { eager: true })
+  @JoinColumn({ name: &quot;userId&quot; })
+  user: User;
+
+  @Column()
+  tourId: number;
+
+  @ManyToOne(() =&gt; Tour, (tour) =&gt; tour.reviews, { eager: true })
+  @JoinColumn({ name: &quot;tourId&quot; })
+  tour: Tour;
+
+  @Column(&quot;text&quot;)
+  comment: string;
+
+  @Column()
+  @Min(1)
+  @Max(10)
+  rating: number;
+
+  @Column({ type: &quot;timestamp&quot;, default: () =&gt; &quot;CURRENT_TIMESTAMP&quot; })
+  createdAt: Date;
+}
+</code></pre>
+<pre><code class="language-ts">@Entity()
+export class Tour extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  title: string;
+
+  @Column(&quot;text&quot;)
+  description: string;
+
+  @Column(&quot;date&quot;)
+  startDate: Date;
+
+  @Column(&quot;date&quot;)
+  endDate: Date;
+
+  @Column()
+  paymentConditions: string;
+
+  @Column()
+  country: string;
+
+  @Column()
+  travelAgencyId: number;
+
+  @ManyToOne(() =&gt; TravelAgency, (agency) =&gt; agency.tours, {
+    eager: true,
+  })
+  @JoinColumn({ name: &quot;travelAgencyId&quot; })
+  travelAgency: TravelAgency;
+
+  @OneToMany(() =&gt; Reservation, (reservation) =&gt; reservation.tour)
+  reservations: Reservation[];
+
+  @OneToMany(() =&gt; Review, (review) =&gt; review.tour)
+  reviews: Review[];
+}
+</code></pre>
+<pre><code class="language-ts">@Entity()
+export class TravelAgency extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  contactInfo: string;
+
+  @OneToMany(() =&gt; Tour, (tour) =&gt; tour.travelAgency)
+  tours: Tour[];
+}
+</code></pre>
+<pre><code class="language-ts">@Entity()
+export class User extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  @IsNotEmpty()
+  name: string;
+
+  @Column({ unique: true })
+  @IsEmail()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({ default: &quot;user&quot; })
+  role: string;
+
+  @Column({ default: false })
+  isBlocked: boolean;
+
+  @OneToMany(() =&gt; Reservation, (reservation) =&gt; reservation.user)
+  reservations: Reservation[];
+
+  @OneToMany(() =&gt; Review, (review) =&gt; review.user)
+  reviews: Review[];
+}
+</code></pre>
+<h3 id="env">ENV</h3>
+<ul>
+<li>Все что нужно для запуска есть в .env.sample</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab1/notes/" class="btn btn-neutral float-left" title="Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../lab3/1/" class="btn btn-neutral float-right" title="Task">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab1/notes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../lab3/1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
