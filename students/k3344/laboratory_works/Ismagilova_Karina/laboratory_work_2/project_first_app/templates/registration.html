@@ -1,0 +1,17 @@
+{% extends "design.html" %}
+
+{% block title %}Регистрация пользователя{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <h1 class="text-center">Регистрация</h1>
+    <form method="post" class="register-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </form>
+    <div class="register-links text-center">
+        <a href="/" class="btn-link">Назад</a>
+    </div>
+</div>
+{% endblock %}

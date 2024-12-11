@@ -1,0 +1,18 @@
+{% extends "design.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h1 class="text-center">Вход</h1>
+    <form method="post" action="{% url 'login' %}?next={% url 'main' %}" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Войти</button>
+    </form>
+    <div class="login-links text-center">
+        <a href="/" class="btn-link">Назад</a> |
+        <a href="{% url 'register' %}" class="btn-link">Зарегистрироваться</a>
+    </div>
+</div>
+{% endblock %}

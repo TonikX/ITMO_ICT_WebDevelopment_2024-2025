@@ -1,0 +1,33 @@
+{% extends "design.html" %}
+
+{% block title %}Мои конференции{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Мои регистрации на конференции</h1>
+
+    {% if user_participants %}
+        <ul class="list-group mb-4">
+            {% for participant in user_participants %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Конференция:</strong> {{ participant.conference.title }}<br>
+                        <strong>Дата:</strong> {{ participant.conference.start_date }} - {{ participant.conference.end_date }}<br>
+                    </div>
+                    <div>
+                        <form method="post" action="{% url 'user_dashboard' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="participant_id" value="{{ participant.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить регистрацию</button>
+                        </form>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Вы пока не зарегистрированы ни на одной конференции.</p>
+    {% endif %}
+
+    <a href="{% url 'conference_list' %}" class="btn btn-secondary">К конференциям</a>
+</div>
+{% endblock %}

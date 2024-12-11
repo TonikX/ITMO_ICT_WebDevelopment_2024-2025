@@ -1,0 +1,17 @@
+{% extends "design.html" %}
+
+{% block title %}Регистрация пользователя{% endblock %}
+
+{% block content %}
+<h1>Регистрация на конференцию</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="conference" value="{{ conference.id }}">
+    <button type="submit" class="btn btn-primary">Зарегистрироваться на конференцию</button>
+</form>
+
+<a href="{% url 'conference_list' %}">Назад к конференциям</a>
+{% endblock %}
+
+
