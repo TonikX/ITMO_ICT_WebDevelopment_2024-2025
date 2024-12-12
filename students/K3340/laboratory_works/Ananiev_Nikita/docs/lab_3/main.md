@@ -1,0 +1,2 @@
+## Модель базы данных управления отелем:
+![db_model](https://downloader.disk.yandex.ru/preview/1f4edbcf7483018b6785b8618c1b2c119a66ab40b82e63aafd1478775b016fc3/675af026/9HkEjyPK-F6iLQgQYFcjgNWi78RbroZZvkTxM07dLqeQOl9qO8FXpjXtJ1acJx5iclGQ07hUTeNP5RwMu7_KWQ%3D%3D?uid=0&filename=hotelDB2.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&tknv=v2&size=2048x2048)

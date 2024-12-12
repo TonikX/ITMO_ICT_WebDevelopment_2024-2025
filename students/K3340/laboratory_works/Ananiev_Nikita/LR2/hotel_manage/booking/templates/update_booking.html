@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    <title>Booking</title>
+{% endblock head %}
+
+{% block content %}
+    <h1>Update your booking data</h1>
+    <div class="form__container">
+        <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" value="Confirm">
+        </form>
+    </div>
+{% endblock content %}

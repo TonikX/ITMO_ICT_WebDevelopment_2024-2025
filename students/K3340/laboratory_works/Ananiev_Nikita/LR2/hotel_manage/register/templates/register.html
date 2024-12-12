@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include 'add_bootstrap.html' %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    <title>Register</title>
+</head>
+
+<body>
+    <div style="margin-top: 7%">
+        <h1>Sign Up</h1>
+        <div class="form__container">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <input type="submit" class="btn btn-primary" value="sign up">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

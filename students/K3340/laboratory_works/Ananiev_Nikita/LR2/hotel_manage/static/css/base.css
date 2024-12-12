@@ -1,0 +1,64 @@
+.error {
+    color: red;
+}
+
+.list__pic {
+  display: none;
+}
+
+.btn-default {
+    color: white; !important;
+}
+
+.btn-default:hover {
+    color: #9DD1F1; !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header__container {
+    background-color: #684551;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    overflow: auto;
+    margin-bottom: 2%;
+}
+
+.header__right__buttons {
+    display: inline-block;
+    float: right;
+    max-width: 100%;
+}
+
+.header__left__buttons {
+    display: inline-block;
+    float: left;
+    max-width: 100%;
+}
+
+.form__container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    max-width: 50%;
+    padding: 1%;
+    margin: auto;
+}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/tables.css" %}" />
+    <title>Last month residents</title>
+{% endblock head %}
+
+{% block content %}
+    <div id="residents__table">
+        <table>
+        <thead>
+            <tr>
+                <th>Client's name</th>
+                <th>Email</th>
+                <th>Room number</th>
+                <th>Begin Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in residents_bookings %}
+            <tr>
+                <td>{{ booking.client.firstname }} {{ booking.client.lastname }}</td>
+                <td>{{ booking.client.email }}</td>
+                <td>{{ booking.room.number }}</td>
+                <td>{{ booking.start_date }}</td>
+                <td>{{ booking.end_date }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+    {% include 'pagination.html' %}
+{% endblock content %}

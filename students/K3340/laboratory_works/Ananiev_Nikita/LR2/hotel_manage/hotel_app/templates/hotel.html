@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/modal.css" %}" />
+    <link rel="stylesheet" href="{% static "css/details.css" %}" />
+    <title>{{ hotel.name }}</title>
+{% endblock head %}
+
+{% block content %}
+    <h1>Detailed information about hotel {{ hotel.name }}: </h1>
+    <div class="details__container">
+        <div class="details__inner__container">
+            <p>Address : {{ hotel.address }}</p>
+            <p>Owner : {{ hotel.owner.firstname }}</p>
+            <p>Description : {{ hotel.description }}</p>
+        </div>
+        <div class="details__inner__container" id="hotel__pics">
+            <h2>Pictures:</h2>
+            {% if pictures %}
+                {% for pic in pictures %}
+                    <div class="list__pic">
+                        <img src="{{ pic.image.url }}" height="360">
+                    </div>
+                {% endfor %}
+                <div class="pic__buttons">
+                    <button id="prev__pic" class="btn btn-light">Prev</button>
+                    <button id="next__pic" class="btn btn-light">Next</button>
+                </div>
+            {% else %}
+                (No pictures provided for the hotel..)
+            {% endif %}
+        </div>
+        <div class="details__inner__container">
+            <h2>Reviews:</h2>
+            {% if review_list %}
+                <ul>
+                    {% for review in review_list %}
+                    <li>{{ review.date }} | {{ review.client.email }} <b>[{{ review.rate }}/10]</b>: <br>
+                        {{ review.description }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>(No reviews yet.. Be first to rate this hotel!)</p>
+            {% endif %}
+            <button id="btn__review" class="btn btn-light">Leave a review</button>
+            <a href="room/"><button class="btn btn-light">See hotel rooms</button></a>
+            {% if user.is_staff %}
+                <a href="residents/"><button class="btn btn-light">Show last month residents</button></a>
+            {% else %}
+                <a href="residents/"><button class="btn btn-light" disabled>Show last month residents</button></a>
+            {% endif %}
+            <div id="modal__review" class="modal">
+                <div class="modal__content">
+                    <span class="modal__close">&times;</span>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% if errors %}
+                            <div id="review__error">
+                                {% for error in errors %}
+                                    <p class="error"> {{ error }} </p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="comment">
+                    </form>
+                </div>
+            </div>
+            <script>
+                let modal_err = document.getElementById("modal__review");
+                if (document.getElementById("review__error")) {
+                    modal_err.style.display = "block";
+                }
+            </script>
+        </div>
+    </div>
+    <script src="{% static 'javascript/list_pics.js' %}"></script>
+    <script src="{% static 'javascript/review.js' %}"></script>
+{% endblock content %}

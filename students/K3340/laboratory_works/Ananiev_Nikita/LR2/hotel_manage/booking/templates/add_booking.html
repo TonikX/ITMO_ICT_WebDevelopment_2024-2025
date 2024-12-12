@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    <title>Booking</title>
+{% endblock head %}
+
+{% block content %}
+    <h1>
+        {% if room_num %}
+            Room
+            {{ room_num }}
+            booking
+        {% else %}
+            Room hasn't been chosen. Please select room from list on hotel page
+        {% endif %}
+
+    </h1>
+    <div class="form__container">
+        {% if room_num %}
+            {% if error_msg %}
+                <p class="error">{{ error_msg }}</p>
+            {% endif %}
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="book">
+            </form>
+        {% endif %}
+    </div>
+{% endblock content %}

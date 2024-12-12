@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Info</title>
+</head>
+<body>
+    <h2>Details:</h2>
+    <p> Brand : {{ car.brand }} </p>
+    <p> Model : {{ car.model }} </p>
+    <p> License plate : {{ car.license_plate }} </p>
+    <p> Color : {{ car.color }} </p>
+    <p> Car owners list : </p>
+    {% for ownership in ownerships %}
+        <ul> {{ ownership.owner }} </ul>
+    {% endfor %}
+    <a href="/car/{{ car.pk }}/update"><button> Update car </button></a>
+    <a href="/car/{{ car.pk }}/delete"><button> Delete car </button></a>
+</body>
+</html>

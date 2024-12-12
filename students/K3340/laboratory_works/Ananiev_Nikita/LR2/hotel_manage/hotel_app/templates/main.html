@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>{{ hotel.name }}</title>
+{% endblock head %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Welcome, {{ user.email }}</h1>
+    {% else %}
+        <h2 style="text-align: center;">Hello, to use all the features of the site, log in</h2>
+    {% endif %}
+{% endblock content %}

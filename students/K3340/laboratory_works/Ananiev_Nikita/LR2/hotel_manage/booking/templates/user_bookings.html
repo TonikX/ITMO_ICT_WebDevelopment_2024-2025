@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/lists.css" %}" />
+    <link rel="stylesheet" href="{% static "css/modal.css" %}" />
+    <title>My Bookings</title>
+{% endblock head %}
+
+{% block content %}
+    <h1>List of your recent reservations:</h1>
+    <div class="booking__list__container">
+        <ul>
+        {% for booking in bookings %}
+            <div id="list__{{ booking.pk }}" class="booking__list__item">
+                <p><li>
+                Booking from {{ booking.start_date }} to {{ booking.end_date }}
+                | {{ booking.room.hotel.name }} | Room {{ booking.room.number }}
+                {% if booking.finished or booking.end_date < today %}
+                    <b style="float: right">Closed</b>
+                {% elif booking.start_date <= today or booking.checked_in %}
+                    <b style="float: right">Ongoing</b>
+                {% else %}
+                    <div style="float: right">
+                        <a href="update/{{ booking.pk }}"><button class="btn btn-outline-primary btn-sm">Update</button></a>
+                        <button id="{{ booking.pk }}" class="btn__del__book btn btn-outline-danger btn-sm">Remove</button>
+                    </div>
+                {% endif %}
+                </li></p>
+            </div>
+        {% endfor %}
+        </ul>
+        {% include 'pagination.html' %}
+    </div>
+    <div id="modal__del__book" class="modal">
+            <div class="modal__content">
+                <p>Do you want to delete this booking permanently?</p>
+                <button id="confirm__del"> Yes </button>
+                <button id="cancel__del">Cancel </button>
+            </div>
+    </div>
+    <script src="{% static 'javascript/del_booking.js' %}"></script>
+{% endblock content %}
