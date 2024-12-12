@@ -1,0 +1,23 @@
+{% extends "base/base_header_footer.html" %}
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+
+            <h3>{{ task.title }}</h3>
+
+            <p>{{ task.description }}</p>
+
+            <p>Сдать до: {{ task.due_date }}</p>
+
+            <div class="form-group">
+                <label for="answer">Ваш ответ:</label>
+                <textarea class="form-control" name="answer" id="answer" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

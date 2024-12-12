@@ -1,0 +1,17 @@
+site_name: Web-Development
+nav:
+  - Лабораторная работа 1:
+      - Задание 1: LR1/task1.md
+      - Задание 2: LR1/task2.md
+      - Задание 3: LR1/task3.md
+      - Задание 4: LR1/task4.md
+      - Задание 5: LR1/task5.md
+  - Лабораторная работа 2:
+      - Создание моделей: LR2/step1.md
+      - Интерфейс ученика: LR2/step2.md
+      - Интерфейс учителя: LR2/step3.md
+  - Лабораторная работа 3:
+      - Практическая работа: LR3/practice.md
+      - Лабораторная работа: LR3/lab.md
+theme:
+  name: material

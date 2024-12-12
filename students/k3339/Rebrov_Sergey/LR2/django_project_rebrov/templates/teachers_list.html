@@ -1,0 +1,16 @@
+{% extends "base/base_theader_footer.html" %}
+{% block content %}
+    <div class="main-container">
+        <h2>На оценивании</h2>
+        <ul>
+            {% for grade in grades %}
+                <li>
+                    <a href="{% url 'teachers-submit' grade.task_id.id %}"><strong>{{ grade.task_id.title }}</strong></a> <br>
+                    Дисциплина: {{ grade.task_id.discipline_id.name }} <br>
+                    Сдать до: {{ grade.task_id.due_date }} <br>
+                    Ученик: {{ grade.schooluser_id.user.first_name }} {{ grade.schooluser_id.user.last_name }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

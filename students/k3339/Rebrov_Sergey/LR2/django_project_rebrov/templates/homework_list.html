@@ -1,0 +1,16 @@
+{% extends "base/base_header_footer.html" %}
+{% block content %}
+    <div class="main-container">
+        <h2>Домашние задания</h2>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <a href="{% url 'homework-submit' task.id %}"><strong>{{ task.title }}</strong></a> <br>
+                    Дисциплина: {{ task.discipline_id.name }} <br>
+                    Дата выдачи: {{ task.issue_date }} <br>
+                    Сдать до: {{ task.due_date }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

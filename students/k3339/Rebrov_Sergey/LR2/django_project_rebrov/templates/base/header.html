@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'homework-list' %}">HomeworkApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homework-list' %}">Задания</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'grade-table' %}">Оценки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout-user' %}">Выйти</a>
+                </li>
+            </ul>
+            <div class="ml-auto navbar-text">
+                {{ schooluser.user.first_name }} {{ schooluser.user.last_name }}, {{ schooluser.class_id }} (Ученик)
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,27 @@
+{% extends "base/base_theader_footer.html" %}
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+
+            <h3>{{ grade.task_id.title }}</h3>
+
+            <p>{{ grade.task_id.description }}</p>
+
+            <p>Сдать до: {{ grade.task_id.due_date }}</p>
+            
+            <h3>Ответ пользователя:</h3>
+            
+            <p>{{ grade.answer }}</p>
+            
+            <div class="form-group">
+                <label for="number">Оценка:</label>
+                <input type="number" class="form-control" name="number" id="number" min="1" max="5" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
