@@ -255,7 +255,7 @@ Audi: 1 шт.
 <pre><code class="language-python">sorted_owners_by_license_date = CarOwner.objects.filter(driverlicense__isnull=False).order_by('driverlicense__issue_date')
 for owner in sorted_owners_by_license_date:
     license_date = owner.driverlicense_set.first().issue_date
-    print(f&quot;{owner.first_name} {owner.last_name} - {license_date}&quot;)
+    print(f&quot;{username} - {license_date}&quot;)
 </code></pre>
 <p><strong>Результат:</strong></p>
 <pre><code>alexey_smirnov 2024-01-15
