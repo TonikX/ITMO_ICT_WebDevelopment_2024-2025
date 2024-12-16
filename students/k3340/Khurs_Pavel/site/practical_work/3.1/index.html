@@ -250,19 +250,20 @@ BMW: 1 шт.
 Audi: 1 шт.
 </code></pre>
 <ol>
-<li><strong>Сортировка пользователей по имени (username):</strong></li>
+<li><strong>Сортировка владельцев по дате выдачи удостоверения:</strong></li>
 </ol>
-<pre><code class="language-python">sorted_users = CustomUser.objects.order_by('username')
-for user in sorted_users:
-    print(user.username)
+<pre><code class="language-python">sorted_owners_by_license_date = CarOwner.objects.filter(driverlicense__isnull=False).order_by('driverlicense__issue_date')
+for owner in sorted_owners_by_license_date:
+    license_date = owner.driverlicense_set.first().issue_date
+    print(f&quot;{owner.first_name} {owner.last_name} - {license_date}&quot;)
 </code></pre>
 <p><strong>Результат:</strong></p>
-<pre><code>alexey_smirnov
-dmitry_belov
-igor_morozov
-irina_sokolova
-marina_efremova
-tatiana_orlova
+<pre><code>alexey_smirnov 2024-01-15
+dmitry_belov 2024-02-10
+igor_morozov 2024-03-20
+irina_sokolova 2024-04-05
+marina_efremova 2024-05-18
+tatiana_orlova 2024-06-07
 </code></pre>
               
             </div>
