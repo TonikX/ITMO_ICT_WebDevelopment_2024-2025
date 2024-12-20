@@ -1,0 +1,39 @@
+[
+    {
+      "model": "peer_review_app.user",
+      "pk": 2,
+      "fields": {
+        "username": "Denis",
+        "email": "debilobram2@example.com",
+        "password": "pbkdf2_sha256$870000$kNUcFLeNvNa37nWKlF6yga$ugf0QoY6wZbbaTRd36nH1xx09sproxwuqSBFQafwhgA=",
+        "is_active": true,
+        "first_name": "Denis",
+        "last_name": "Bilobram"
+      }
+    },
+    {
+      "model": "peer_review_app.user",
+      "pk": 3,
+      "fields": {
+        "username": "Vladik2004",
+        "email": "vajdus3@example.com",
+        "password": "pbkdf2_sha256$870000$EvO8KWjVrfmLeCnKh5lGo0$AvuGCnywSh5T4m3d63MFShmDxSkthLpHVFWfc100gR0=",
+        "is_active": true,
+        "first_name": "Vladislav",
+        "last_name": "Mustaine"
+      }
+    },
+    {
+      "model": "peer_review_app.user",
+      "pk": 4,
+      "fields": {
+        "username": "zxcloh",
+        "email": "user4@gmail.com",
+        "password": "pbkdf2_sha256$870000$xPnEZhPDwPyXfWqM7CaQEB$2yoOsUhmPiAXrceGgQPf0l58SeRMqxIsIcQQONCL8YY=",
+        "is_active": true,
+        "first_name": "Yorick",
+        "last_name": "zxc2003hey"
+      }
+    }
+  ]
+  

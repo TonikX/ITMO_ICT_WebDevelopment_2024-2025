@@ -1,0 +1,16 @@
+site_name: My API Documentation
+theme:
+  name: material
+plugins:
+  - search
+  - swagger-ui:
+      spec_url: 'https://netstorage.ringcentral.com/dpw/api-reference/specs/rc-platform.yml'
+      outfile: 'docs/api.html'
+  - gen-files:
+      scripts:
+        - docs/generate_docs.py
+
+nav:
+  - Home: index.md
+  - Description: desc.md
+  - API: api.html
