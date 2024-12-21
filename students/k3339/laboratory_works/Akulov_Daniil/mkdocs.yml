@@ -9,5 +9,8 @@ nav:
       - Task 5: laboratory_work_1/5.md
   - Lab 2:
       - Main: laboratory_work_2/index.md
+  - Lab 3:
+      - Main: laboratory_work_3/lab.md
+      - PW: laboratory_work_3/pw.md
 theme:
   name: material
