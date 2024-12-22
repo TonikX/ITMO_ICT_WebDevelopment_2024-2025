@@ -27,7 +27,7 @@ urlpatterns = [
     path('comments/', CommentListCreateView.as_view(), name='comment-list-retrieve/create'),
     path('comments/<int:pk>/', CommentDetailView.as_view(), name='comment-detail'),
     path('lists/', CuratedListView.as_view(), name='all_lists'),
-    path('lists/<int:pk>', CuratedListDetailedView.as_view(), name='lists-detail'),
+    path('lists/<int:pk>/', CuratedListDetailedView.as_view(), name='lists-detail'),
     path("admin/", admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),

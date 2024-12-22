@@ -30,13 +30,15 @@ class TagSerializer(serializers.Serializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = UserSerializer(required=False, allow_null=True)
     class Meta:
         model = Comment
         fields = [
             'id',
             'rating',
             'header',
-            'content_text'
+            'content_text',
+            'author'
         ]
 
     def validate_rating(self, value):
@@ -67,7 +69,6 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
             'ingredients'
         ]
         depth = 1
-
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
@@ -105,16 +106,18 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
 
 class CuratedListSerializer(serializers.ModelSerializer):
+    recipes = RecipeListSerializer(many=True)
     class Meta:
         model = CuratedList
         fields = [
             'id',
             'header',
+            'recipes'
         ]
 
 
 class CuratedListDetailSerializer(serializers.ModelSerializer):
-    recipes = RecipeDetailSerializer(many=True)
+    recipes = RecipeListSerializer(many=True)
     Curator = UserSerializer()
     class Meta:
         model = CuratedList
