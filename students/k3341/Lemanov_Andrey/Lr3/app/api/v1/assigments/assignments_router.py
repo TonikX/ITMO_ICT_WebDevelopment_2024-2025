@@ -34,8 +34,9 @@ async def update_assignment(request: schemas.RequestUpdateAssignment, db_session
     service = AssignmentsService(db_session)
     return await service.update_assignment(request)
 
-
+'''
 @assignments_router.delete("/delete_assignment/{assignment_id}", response_model=schemas.ResponseAssignment)
 async def update_assignment(assignment_id: int, db_session: AsyncSession = Depends(get_db)):
     service = AssignmentsService(db_session)
     return await service.delete_assignment(assignment_id)
+'''

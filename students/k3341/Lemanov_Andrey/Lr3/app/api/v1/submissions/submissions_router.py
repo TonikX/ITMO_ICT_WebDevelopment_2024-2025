@@ -32,7 +32,7 @@ async def get_all_submissions(
     service = SubmissionsService(db_session)
     return await service.get_all_submissions()
 
-
+'''
 @submission_router.delete("/delete_submission/{submission_id}")
 async def delete_submission(
         submission_id: int,
@@ -43,7 +43,7 @@ async def delete_submission(
     if not success:
         raise Exception(f"Submission with ID {submission_id} not found.")
     return {"message": "Submission deleted successfully"}
-
+'''
 
 @submission_router.put("/update_submission")
 async def update_submission(

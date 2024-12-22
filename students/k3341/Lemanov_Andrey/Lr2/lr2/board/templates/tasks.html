@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-center text-blue-400 mb-6">Домашние задания</h1>
+
+
+        <form method="get" action="" class="flex justify-center mb-6">
+            <input type="text" name="search" value="{{ search_query }}" 
+                   class="w-full max-w-sm px-4 py-2 bg-gray-700 text-white rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                   placeholder="Поиск по названию">
+            <button type="submit" 
+                    class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-r-md transition duration-200">
+                Искать
+            </button>
+        </form>
+
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-800 rounded-lg">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">ДЗ</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">Дедлайн</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in data %}
+                    <tr class="hover:bg-gray-700">
+                        <td class="px-6 py-4 border-b border-gray-700">
+                            <a href="/tasks/{{ task.task.id }}" class="text-blue-400 hover:underline">{{ task.task.title }}</a>
+                        </td>
+                        <td class="px-6 py-4 border-b border-gray-700">
+                            {{ task.task.expire_at }}
+                        </td>
+                        <td class="px-6 py-4 border-b border-gray-700">
+                            {% if task.assignment != null %}
+                                {% if task.assignment.status == 2 %}
+                                    <span class="text-green-400 font-semibold">Grade: {{ task.assignment.grade }}</span>
+                                {% elif task.assignment.status == 1 %}
+                                    <span class="text-yellow-400 font-semibold">Ожидает оценки</span>
+                                {% endif %}
+                            {% else %}
+                                <a href="/tasks/{{ task.task.id }}/create_assignment" 
+                                   class="inline-block px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-200">
+                                    Сдать задание
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+        <nav aria-label="Page navigation" class="mt-6">
+            <ul class="flex justify-center space-x-2">
+                {% if page_obj.has_previous %}
+                    <li>
+                        <a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}" 
+                           class="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition duration-200" 
+                           aria-label="First">
+                            &laquo; First
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                           class="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition duration-200" 
+                           aria-label="Previous">
+                            Previous
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li>
+                            <span class="px-3 py-2 bg-blue-500 text-white rounded-md">
+                                {{ num }}
+                            </span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li>
+                            <a href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                               class="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition duration-200">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li>
+                        <a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                           class="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition duration-200" 
+                           aria-label="Next">
+                            Next
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}" 
+                           class="px-3 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition duration-200" 
+                           aria-label="Last">
+                            Last &raquo;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endblock %}
