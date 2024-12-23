@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://owarpero.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab4/1/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Task - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Task";
+        var mkdocs_page_input_path = "lab4/1.md";
+        var mkdocs_page_url = "/ITMO_ICT_WebDevelopment_2024-2025/lab4/1/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/5/">Task 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Task</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Введение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Модели данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bustype">Модель BusType (Тип автобуса)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bus">Модель Bus (Автобус)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#driver">Модель Driver (Водитель)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route">Модель Route (Маршрут)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workshift">Модель WorkShift (Рабочая смена)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Соответствие требованиям задания</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Запросы и отчёты</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">practical_work</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../practical_work/3.1/">3.1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">4 lab</li>
+      <li class="breadcrumb-item active">Task</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Документация системы управления автобусным парком</h1>
+<h2 id="_2">Введение</h2>
+<p>Данная система предназначена для диспетчера автобусного парка частной транспортной фирмы. Она обеспечивает хранение сведений о водителях, маршрутах и характеристиках автобусов, а также позволяет формировать отчёты и получать необходимую информацию для эффективного управления автопарком.</p>
+<h2 id="_3">Модели данных</h2>
+<h3 id="bustype">Модель <code>BusType</code> (Тип автобуса)</h3>
+<p><strong>Описание</strong><br />
+Хранит информацию о типах автобусов и их вместимости.</p>
+<p><strong>Поля</strong></p>
+<ul>
+<li><strong><code>name</code></strong> (<code>CharField</code>, <code>max_length=100</code>): Название типа автобуса.</li>
+<li><strong><code>capacity</code></strong> (<code>PositiveIntegerField</code>): Вместимость автобуса данного типа.</li>
+</ul>
+<p><strong>Методы</strong></p>
+<ul>
+<li><strong><code>__str__()</code></strong>: Возвращает строковое представление типа автобуса с указанием вместимости.</li>
+</ul>
+<hr />
+<h3 id="bus">Модель <code>Bus</code> (Автобус)</h3>
+<p><strong>Описание</strong><br />
+Хранит информацию об отдельных автобусах автопарка.</p>
+<p><strong>Поля</strong></p>
+<ul>
+<li><strong><code>registration_number</code></strong> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер государственной регистрации автобуса.</li>
+<li><strong><code>bus_type</code></strong> (<code>ForeignKey</code> на <code>BusType</code>): Ссылка на тип автобуса.</li>
+<li><strong><code>in_service</code></strong> (<code>BooleanField</code>, <code>default=True</code>): Статус (на линии или нет).</li>
+</ul>
+<p><strong>Методы</strong></p>
+<ul>
+<li><strong><code>__str__()</code></strong>: Возвращает строковое представление автобуса по его регистрационному номеру.</li>
+</ul>
+<hr />
+<h3 id="driver">Модель <code>Driver</code> (Водитель)</h3>
+<p><strong>Описание</strong><br />
+Хранит информацию о водителях.</p>
+<p><strong>Поля</strong></p>
+<ul>
+<li><strong><code>passport_data</code></strong> (<code>CharField</code>, <code>max_length=100</code>): Паспортные данные водителя.</li>
+<li><strong><code>DRIVER_CLASS_CHOICES</code></strong>: Классы водителей:</li>
+<li><code>'A'</code>: Класс A</li>
+<li><code>'B'</code>: Класс B</li>
+<li><code>'C'</code>: Класс C</li>
+<li><strong><code>driver_class</code></strong> (<code>CharField</code>, <code>max_length=1</code>, <code>choices=DRIVER_CLASS_CHOICES</code>): Класс водителя.</li>
+<li><strong><code>work_experience</code></strong> (<code>PositiveIntegerField</code>): Стаж работы (в годах).</li>
+<li><strong><code>salary</code></strong> (<code>DecimalField</code>, <code>max_digits=10</code>, <code>decimal_places=2</code>): Оклад водителя (зависит от класса и стажа).</li>
+<li><strong><code>date_of_birth</code></strong> (<code>DateField</code>): Дата рождения.</li>
+</ul>
+<p><strong>Методы</strong></p>
+<ul>
+<li><strong><code>__str__()</code></strong>: Возвращает строковое представление водителя по его паспортным данным.</li>
+</ul>
+<hr />
+<h3 id="route">Модель <code>Route</code> (Маршрут)</h3>
+<p><strong>Описание</strong><br />
+Хранит информацию о маршрутах.</p>
+<p><strong>Поля</strong></p>
+<ul>
+<li><strong><code>number</code></strong> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер маршрута.</li>
+<li><strong><code>start_point</code></strong> (<code>CharField</code>, <code>max_length=100</code>): Начальный пункт движения.</li>
+<li><strong><code>end_point</code></strong> (<code>CharField</code>, <code>max_length=100</code>): Конечный пункт движения.</li>
+<li><strong><code>operation_start_time</code></strong> (<code>TimeField</code>): Время начала движения по маршруту.</li>
+<li><strong><code>operation_end_time</code></strong> (<code>TimeField</code>): Время окончания движения по маршруту.</li>
+<li><strong><code>interval</code></strong> (<code>DurationField</code>): Интервал движения автобусов.</li>
+<li><strong><code>duration</code></strong> (<code>DurationField</code>): Продолжительность маршрута.</li>
+</ul>
+<p><strong>Методы</strong></p>
+<ul>
+<li><strong><code>__str__()</code></strong>: Возвращает строковое представление маршрута с указанием начального и конечного пунктов.</li>
+</ul>
+<hr />
+<h3 id="workshift">Модель <code>WorkShift</code> (Рабочая смена)</h3>
+<p><strong>Описание</strong><br />
+Хранит информацию о графике работы водителей.</p>
+<p><strong>Поля</strong></p>
+<ul>
+<li><strong><code>driver</code></strong> (<code>ForeignKey</code> на <code>Driver</code>): Водитель.</li>
+<li><strong><code>bus</code></strong> (<code>ForeignKey</code> на <code>Bus</code>): Автобус.</li>
+<li><strong><code>route</code></strong> (<code>ForeignKey</code> на <code>Route</code>): Маршрут.</li>
+<li><strong><code>date</code></strong> (<code>DateField</code>): Дата смены.</li>
+<li><strong><code>shift_start_time</code></strong> (<code>TimeField</code>): Время начала смены.</li>
+<li><strong><code>shift_end_time</code></strong> (<code>TimeField</code>): Время окончания смены.</li>
+<li><strong><code>STATUS_CHOICES</code></strong>:</li>
+<li><code>'Worked'</code>: Отработал</li>
+<li><code>'Absent'</code>: Отсутствовал</li>
+<li><code>'Sick'</code>: Болезнь</li>
+<li><code>'Breakdown'</code>: Поломка</li>
+<li><code>'No Driver'</code>: Нет водителя</li>
+<li><code>'No Bus'</code>: Нет автобуса</li>
+<li><strong><code>status</code></strong> (<code>CharField</code>, <code>max_length=20</code>, <code>choices=STATUS_CHOICES</code>, <code>default='Worked'</code>): Статус смены.</li>
+<li><strong><code>reason</code></strong> (<code>TextField</code>, <code>null=True</code>, <code>blank=True</code>): Причина, если смена не была отработана.</li>
+</ul>
+<p><strong>Метаданные</strong></p>
+<ul>
+<li><strong><code>unique_together</code></strong>: (<code>driver</code>, <code>date</code>, <code>shift_start_time</code>, <code>shift_end_time</code>): Уникальность записи смены для конкретного водителя на определённую дату и время.</li>
+</ul>
+<p><strong>Методы</strong></p>
+<ul>
+<li><strong><code>__str__()</code></strong>: Возвращает строковое представление смены с указанием даты, водителя, автобуса и маршрута.</li>
+</ul>
+<hr />
+<h2 id="_4">Соответствие требованиям задания</h2>
+<ul>
+<li>
+<p><strong>Хранение сведений о водителях, маршрутах и характеристиках автобусов</strong></p>
+</li>
+<li>
+<p>Модели <code>Driver</code>, <code>Route</code>, <code>Bus</code> и <code>BusType</code> обеспечивают хранение необходимой информации.</p>
+</li>
+<li>
+<p><strong>Оклад водителя</strong></p>
+</li>
+<li>
+<p>Поле <code>salary</code> в модели <code>Driver</code> хранит оклад. Логика расчёта может быть добавлена в методах модели.</p>
+</li>
+<li>
+<p><strong>Маршрут</strong></p>
+</li>
+<li>
+<p>Модель <code>Route</code> содержит поля: номер, начальная/конечная точка, время начала/конца движения, интервал, продолжительность.</p>
+</li>
+<li>
+<p><strong>Вместимость автобуса</strong></p>
+</li>
+<li>
+<p>Модель <code>BusType</code> хранит вместимость; <code>Bus</code> ссылается на <code>BusType</code>.</p>
+</li>
+<li>
+<p><strong>Гибкая привязка водителей к автобусам</strong></p>
+</li>
+<li>
+<p>Модель <code>WorkShift</code> связывает водителя, автобус и маршрут, позволяя в любой момент изменить назначение.</p>
+</li>
+<li>
+<p><strong>График работы водителей</strong></p>
+</li>
+<li>
+<p>Модель <code>WorkShift</code> содержит дату, время, статус смены.</p>
+</li>
+<li>
+<p><strong>CRUD-операции</strong></p>
+</li>
+<li>Поддерживаются во всех моделях, позволяя добавлять, редактировать и удалять записи.</li>
+</ul>
+<hr />
+<h2 id="_5">Запросы и отчёты</h2>
+<ul>
+<li><strong>Список водителей на определённом маршруте</strong></li>
+<li>Фильтрация <code>WorkShift</code> по <code>route</code>.</li>
+<li><strong>Время начала и окончания движения на маршруте</strong></li>
+<li>Поля <code>operation_start_time</code> и <code>operation_end_time</code> в <code>Route</code>.</li>
+<li><strong>Общая продолжительность маршрутов</strong></li>
+<li>Сумма <code>duration</code> по записям в <code>Route</code>.</li>
+<li><strong>Автобусы, не вышедшие на линию</strong></li>
+<li>Анализ <code>WorkShift</code> по <code>date</code> и <code>status</code> (например, <code>Breakdown</code>, <code>No Driver</code>).</li>
+<li><strong>Количество водителей каждого класса</strong></li>
+<li>Агрегирование в <code>Driver</code> по <code>driver_class</code>.</li>
+<li><strong>Отчёт по автопарку, сгруппированный по типам</strong></li>
+<li>Использование связей <code>BusType</code>—<code>Bus</code>—<code>WorkShift</code> для вывода маршрутов, водителей и автобусов с деталями.</li>
+<li><strong>Суммарная продолжительность, количество автобусов по типам, количество водителей, их средний возраст и стаж</strong></li>
+<li>Агрегирующие запросы к <code>Route</code>, <code>Bus</code> и <code>Driver</code>.</li>
+</ul>
+<hr />
+<h1 id="front-end">Документация: Клиентская часть (Front-End)</h1>
+<h2 id="_6">Введение</h2>
+<p>На стороне фронтенда мы реализовали различные <strong>экраны</strong> и <strong>компоненты</strong>, позволяющие взаимодействовать с сервером Django REST API и выполнять всю необходимую логику управления автопарком: просмотр, добавление, редактирование и удаление данных (CRUD-операции).</p>
+<h2 id="_7">Используемые технологии</h2>
+<ul>
+<li><strong>Next.js (App Router / Pages Router)</strong> — фреймворк на базе React, обеспечивающий серверный/клиентский рендеринг и удобный роутинг.</li>
+<li><strong>NextUI (v2.3+)</strong> — библиотека UI-компонентов (Card, Modal, Table и пр.), позволяющая быстро создавать стилизованные элементы интерфейса.</li>
+<li><strong>Axios</strong> — библиотека для HTTP-запросов; используется для общения с нашим Django REST-сервером.</li>
+<li><strong>AG Grid</strong> (v33+) — мощная библиотека таблиц и гридов, применяемая для отображения и редактирования табличных данных (например, списка автобусов, водителей, смен).</li>
+<li><strong>Recharts</strong> — библиотека для построения графиков (Pie Chart, Bar Chart и т. д.).</li>
+</ul>
+<h2 id="_8">Структура экранов</h2>
+<h3 id="1-dashboard">1. Экран «Главная» (Dashboard)</h3>
+<p><strong>Цель</strong></p>
+<ul>
+<li>Предоставить сводную информацию о состоянии автопарка, включая ключевые показатели (кол-во водителей, автобусов, маршрутов и др.).</li>
+<li>Отображать проблемные смены.</li>
+<li>Визуализировать часть статистики в виде <strong>графиков</strong> (например, Pie Chart и Bar Chart).</li>
+</ul>
+<p><strong>Ключевой функционал</strong></p>
+<ul>
+<li>Запрос данных (водители, автобусы, маршруты, смены) через <code>Axios</code> к различным endpoint’ам:</li>
+<li><code>/api/drivers/</code>, <code>/api/buses/</code>, <code>/api/routes/</code>, <code>/api/work-shifts/</code></li>
+<li>Подсчёт активных и неактивных автобусов, выборка смен, фильтрация проблемных статусов.</li>
+<li>Отрисовка <strong>NextUI Cards</strong> для кратких показателей (водители, активные автобусы, маршруты и т. д.).</li>
+<li>Отображение <strong>Recharts</strong> Pie Chart (активные/неактивные автобусы) и Bar Chart (сравнение разных сущностей: число водителей, всего автобусов, маршрутов, смен на сегодня).</li>
+</ul>
+<h3 id="2-drivers">2. Экран «Водители» (Drivers)</h3>
+<p><strong>Цель</strong></p>
+<ul>
+<li>Управлять списком водителей: просматривать, создавать, редактировать и при необходимости удалять (в базовой реализации — только просмотр/создание/редактирование).</li>
+</ul>
+<p><strong>Инструменты</strong></p>
+<ul>
+<li><strong>AG Grid</strong> для списка водителей, где колонки: паспортные данные, класс, стаж, зарплата, дата рождения и пр.</li>
+<li><strong>Modal (NextUI)</strong> для добавления/редактирования водителя (форма на базе <strong>Form</strong> / <strong>Input</strong>).</li>
+<li><strong>Axios</strong> для:</li>
+<li>GET <code>/api/drivers/</code> — загрузка</li>
+<li>POST <code>/api/drivers/</code> — создание</li>
+<li>PATCH/PUT <code>/api/drivers/{id}/</code> — обновление</li>
+</ul>
+<h3 id="3-buses">3. Экран «Автобусы» (Buses)</h3>
+<p><strong>Цель</strong></p>
+<ul>
+<li>Отображать и редактировать автобусы, а также их <strong>типы</strong>.</li>
+<li>Реализовать раздельную логику создания/редактирования автобусов и bus types.</li>
+</ul>
+<p><strong>Инструменты</strong></p>
+<ul>
+<li><strong>AG Grid</strong> для отображения списка автобусов (рег. номер, тип, статус).</li>
+<li>Два модальных окна:</li>
+<li><strong>Добавление автобуса</strong>: ввод полей (рег. номер, in_service, bus_type).</li>
+<li><strong>Добавление/редактирование типа автобуса</strong> (например, <code>name</code> и <code>capacity</code>).</li>
+<li>Дополнительно:</li>
+<li>Возможность <strong>редактировать</strong> автобус при клике на строку (используем <code>onRowClicked</code> или <code>onCellClicked</code>).</li>
+<li>Если клик по ячейке «Тип автобуса» — открывается модалка для <strong>редактирования типа</strong>.</li>
+</ul>
+<h3 id="4-routes">4. Экран «Маршруты» (Routes)</h3>
+<p><strong>Цель</strong></p>
+<ul>
+<li>CRUD для маршрутов: просмотр, добавление, редактирование (номер, начальная/конечная точка, время начала/конца, интервал, длительность).</li>
+</ul>
+<p><strong>Особенности</strong></p>
+<ul>
+<li><strong>AG Grid</strong> для списка маршрутов.</li>
+<li>Один модальный экран, который может работать в двух режимах (создание / редактирование).</li>
+<li>Особая логика работы со временем/длительностью:</li>
+<li>Поля <code>operation_start_time</code> и <code>operation_end_time</code> можно использовать как <code>&lt;Input type="time"&gt;</code>.</li>
+<li>Поля <code>interval</code>/<code>duration</code> (формат HH:MM:SS) можно разбить на часы и минуты, чтобы пользователю было удобнее их менять.</li>
+</ul>
+<h3 id="5-workshifts">5. Экран «Смены» (WorkShifts)</h3>
+<p><strong>Цель</strong></p>
+<ul>
+<li>Управлять графиком работы: отображать все смены, создавать/редактировать.</li>
+<li>Связанные модели: водитель, автобус, маршрут.</li>
+</ul>
+<p><strong>Инструменты</strong></p>
+<ul>
+<li><strong>AG Grid</strong> для списка смен (дата, начало/конец, водитель, автобус, маршрут, статус).</li>
+<li>Модальные окна:</li>
+<li><strong>Добавление смены</strong>: выбираем <code>driver_id</code>, <code>bus_id</code>, <code>route_id</code>, дату, время начала/конца, статус, причину.</li>
+<li><strong>Редактирование смены</strong>: аналогично, но с заполненными значениями из редактируемой строки.</li>
+<li><strong>Axios</strong> для:</li>
+<li>GET <code>/api/work-shifts/</code> — загрузка всех смен</li>
+<li>POST <code>/api/work-shifts/</code> — создание</li>
+<li>PATCH <code>/api/work-shifts/{id}/</code> — обновление</li>
+</ul>
+<h3 id="6">6. Структурные особенности</h3>
+<ul>
+<li><strong>Layout / Navbar</strong>: Общая часть с навигационным меню (ссылки на «Водители», «Автобусы», «Маршруты», «Смены», «Главная»).</li>
+<li><strong>Axios</strong> инстанс <code>api</code> с базовым URL (например, <code>http://localhost:8000</code>), упрощающий все запросы.</li>
+<li><strong>NextUI</strong> (v2.3) компоненты (Button, Modal, Input, Card, Table и т. д.) для быстрой верстки.</li>
+<li><strong>AG Grid</strong> (v33+):</li>
+<li>Подключение нужных модулей (ClientSideRowModelModule, ValidationModule, PaginationModule и т. д.).</li>
+<li><code>rowModelType="clientSide"</code>.</li>
+<li>Обработка событий <code>onRowClicked</code>, <code>onCellClicked</code>.</li>
+<li>Рендер колонок <code>columnDefs</code> c полем <code>field</code>.</li>
+</ul>
+<h3 id="7-workflow">7. Основной workflow на фронте</h3>
+<ol>
+<li>
+<p><strong>Загрузка данных</strong>:</p>
+</li>
+<li>
+<p>При монтировании страницы (или при нажатии кнопки «обновить») выполняется <code>api.get()</code> к соответствующим эндпоинтам (drivers, buses, routes, work-shifts и т. п.).</p>
+</li>
+<li>
+<p>Данные сохраняются в <code>useState</code>, затем передаются в <code>&lt;AgGridReact rowData={...}&gt;</code> или <code>&lt;Cards&gt;</code>.</p>
+</li>
+<li>
+<p><strong>Добавление / Редактирование</strong>:</p>
+</li>
+<li>
+<p>При клике на кнопку «Добавить» открываем <strong>Modal</strong> с <code>&lt;Form&gt;</code>.</p>
+</li>
+<li>При сабмите формы вызывается callback (например, <code>handleCreateBus</code>) с <code>FormData</code>.</li>
+<li>Делаем <code>api.post() / api.patch()</code> с полученными значениями.</li>
+<li>
+<p>Закрываем модалку, обновляем список (через повторный GET или state-модификацию).</p>
+</li>
+<li>
+<p><strong>Графики</strong> (опционально на Dashboard):</p>
+</li>
+<li>С помощью <strong>Recharts</strong> PieChart / BarChart отображаем сводные показатели (например, активные/неактивные автобусы, количество маршрутов и водителей и т. д.).</li>
+</ol>
+<h3 id="8">8. Ключевые библиотеки и их назначение</h3>
+<ul>
+<li><strong>Next.js</strong>: основной фреймворк для маршрутизации и рендеринга.</li>
+<li><strong>NextUI</strong>: готовые стилизованные UI-компоненты (Card, Modal, Input, Button).</li>
+<li><strong>Axios</strong>: отправка запросов к бэкенду, получение JSON-данных.</li>
+<li><strong>AG Grid</strong>: отображение таблиц (Drivers, Buses, Routes, WorkShifts) с возможностью сортировки, фильтрации, пагинации и событий на кликах.</li>
+<li><strong>Recharts</strong>: построение диаграмм (Pie/Bar) для наглядной статистики (Dashboard).</li>
+</ul>
+<h2 id="_9">Заключение</h2>
+<p>Во <strong>фронтенд-части</strong> мы организовали набор <strong>экранов</strong> (Dashboard, Drivers, Buses, Routes, WorkShifts), каждый из которых имеет <strong>AG Grid</strong> (кроме Dashboard, где Cards + Charts), <strong>Modal</strong> окна для CRUD-операций и <strong>Axios</strong>-запросы к Django REST API. Это обеспечивает полную функциональность управления автопарком: от редактирования автобусов/водителей до визуализации статистики и графиков работы.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab3/1/" class="btn btn-neutral float-left" title="Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../practical_work/3.1/" class="btn btn-neutral float-right" title="3.1">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab3/1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../practical_work/3.1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

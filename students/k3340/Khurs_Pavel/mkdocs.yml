@@ -13,6 +13,8 @@ nav:
       - Task: lab2/1.md
   - 3 lab:
       - Task: lab3/1.md
+  - 4 lab:
+      - Task: lab4/1.md
   - practical_work:
       - 3.1: practical_work/3.1.md
 theme:
