@@ -1,4 +1,5 @@
 from django.db.models import Count, F, Q
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -129,9 +130,14 @@ class ParticipationViewSet(viewsets.ModelViewSet):
     queryset = Participation.objects.all()
     serializer_class = ParticipationSerializer
 
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [
+        filters.SearchFilter,
+        filters.OrderingFilter,
+        DjangoFilterBackend
+    ]
     search_fields = ['dog__name', 'show__name', 'participation_type']
     ordering_fields = ['created_at']
+    filterset_fields = ['dog', 'show']
 
     @action(detail=False, methods=['get'])
     def ring_by_owner(self, request):
@@ -154,7 +160,10 @@ class ParticipationViewSet(viewsets.ModelViewSet):
                 })
             return Response(data)
         else:
-            return Response({'status': 'Параметр "owner_id" обязателен'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'status': 'Параметр "owner_id" обязателен'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
 
 class ExpertViewSet(viewsets.ModelViewSet):

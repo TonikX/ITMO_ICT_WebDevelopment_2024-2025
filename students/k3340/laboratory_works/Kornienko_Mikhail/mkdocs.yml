@@ -16,6 +16,8 @@ nav:
               - "Warriors": Lr3/pr33/api/warriors.md
               - "SKills": Lr3/pr33/api/skills.md
       - "Lr3 Api Schema": Lr3/api_schema.md
+  - Lab 4:
+      - "Task": Lr4/task.md
 
 theme:
   name: material

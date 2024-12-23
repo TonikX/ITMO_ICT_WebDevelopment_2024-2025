@@ -43,20 +43,28 @@ class ShowSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ExpertSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Expert
+        fields = '__all__'
+
+
+class BasicGradeSerializer(serializers.ModelSerializer):
+    expert = ExpertSerializer(read_only=True)
+    class Meta:
+        model = Grade
+        fields = '__all__'
+
+
 class ParticipationSerializer(serializers.ModelSerializer):
     dog_id = UUIDPrimaryKeyRelatedField(queryset=Dog.objects.all(), source='dog')
     dog = DogSerializer(read_only=True)
     show_id = UUIDPrimaryKeyRelatedField(queryset=Show.objects.all(), source='show')
     show = ShowSerializer(read_only=True)
+    grades = BasicGradeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Participation
-        fields = '__all__'
-
-
-class ExpertSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Expert
         fields = '__all__'
 
 
