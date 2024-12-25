@@ -53,3 +53,8 @@ class ActiveAgentsListView(generics.ListAPIView):
 5. PATCH "/auth/users/me/" - изменение информации об агенте
 6. DELETE "/agents/id/" - удаление страхового агента
 7. GET "/agents/active/" - получение списка действующих агентов
+
+Клиентская часть:
+
+![](pictures/5.png)
+![](pictures/6.png)

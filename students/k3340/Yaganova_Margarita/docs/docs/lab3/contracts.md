@@ -94,3 +94,4 @@ class ClientContractsListView(generics.ListAPIView):
 7. GET "/contracts/agent/id/" - получение списка всех страховых договоров, заключенных определенным агентом
 8. GET "/contracts/specialization/id/" - получение списка страховых договоров по определенной специализации компаний
 9. GET "/contracts/client/id/" - получение списка договоров, в которых участвует отдельный клиент
+

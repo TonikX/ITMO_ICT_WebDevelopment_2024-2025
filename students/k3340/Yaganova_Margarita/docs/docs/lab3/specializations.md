@@ -21,3 +21,7 @@ class SpecializationListCreateAPIView(generics.ListCreateAPIView):
 ## Эндпоинты
 1. GET "/specializations/" - получение списка всех специализаций
 2. POST "/specializations/"- добавление новой специализации
+
+Клиентская часть:
+
+![](pictures/4.png)

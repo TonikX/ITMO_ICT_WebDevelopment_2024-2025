@@ -46,3 +46,7 @@ class ClientRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 3. GET "/clients/id/" - получение информации о конкретном клиенте
 4. PUT/PATCH "/clients/id/" - изменение информации о клиенте
 5. DELETE "/clients/id/" - удаление клиента
+
+Клиентская часть:
+
+![](pictures/3.png)

@@ -44,3 +44,8 @@ class EnterpriseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIVi
 3. GET "/enterprises/id/" - получение информации о конкретной компании
 4. PUT/PATCH "/enterprises/id/" - изменение информации о компании
 5. DELETE "/enterprises/id/" - удаление компании
+
+Клиентская часть:
+
+![](pictures/2.png)
+![](pictures/7.png)
