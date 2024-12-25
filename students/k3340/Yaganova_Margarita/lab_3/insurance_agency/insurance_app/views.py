@@ -95,6 +95,7 @@ class AgentDeleteAPIView(generics.DestroyAPIView):
     lookup_field = "id"
 
 
+
 class PayoutListCreateAPIView(generics.ListCreateAPIView):
     """
     Список и добавление возможных выплат по категориям
@@ -102,7 +103,7 @@ class PayoutListCreateAPIView(generics.ListCreateAPIView):
     queryset = Payout.objects.all()
 
     def get_serializer_class(self):
-        if self.request.method =="GET":
+        if self.request.method == "GET":
             return PayoutListSerializer
         elif self.request.method == "POST":
             return PayoutSerializer

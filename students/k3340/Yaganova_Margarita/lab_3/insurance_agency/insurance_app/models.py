@@ -46,8 +46,6 @@ class Enterprise(models.Model):
         return self.short_name
 
 
-
-
 class EmploymentContract(models.Model):
     """
     Трудовой договор с агентом

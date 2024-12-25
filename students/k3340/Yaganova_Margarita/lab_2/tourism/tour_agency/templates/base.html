@@ -37,10 +37,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                {% if request.user.is_superuser %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'tour_table' %}">Проданные туры</a>
                 </li>
-                {% if not user.is_authenticated %}
+                {% endif %}
+                {% if not request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Войти</a>
                 </li>

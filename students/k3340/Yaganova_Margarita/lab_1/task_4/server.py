@@ -1,61 +1,54 @@
 import socket
 import threading
 
-SERVER_HOST = 'localhost'
-SERVER_PORT = 8080
-ENCODING = 'utf-8'
-
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind((SERVER_HOST, SERVER_PORT))
-server.listen()
-
 clients = []
-nicknames = []
+names = []
 
 
-def broadcast(message):
-    for client in clients:
-        client.send(message)
-
-
-def handle(client):
+def client_handler(client_socket):
     while True:
         try:
-            message = client.recv(1024)
-            broadcast(message)
-        except OSError:  # Handles socket errors
-            if client in clients:
-                disconnect_client(client)
-            break
+            text = client_socket.recv(1024).decode()
+            if text == 'leave':
+                leave_chat(client_socket)
+            elif text:
+                print(str(text))
+                send_text(text, client_socket)
+        except:
+            continue
 
 
-def disconnect_client(client):
-    index = clients.index(client)
-    clients.remove(client)
-    client.close()
-    nickname = nicknames[index]
-    nicknames.remove(nickname)
-    broadcast(f'{nickname} left!'.encode(ENCODING))
+def send_text(text, client_socket):
+    for client in clients:
+        if client != client_socket:
+            index = clients.index(client_socket)
+            name = names[index]
+            client.send(f'{name}: {text}'.encode())
 
 
-def receive():
-    while True:
-        client, address = server.accept()
-        print(f"Connected with {str(address)}")
-
-        client.send('margo'.encode(ENCODING))
-        nickname = client.recv(1024).decode(ENCODING)
-        nicknames.append(nickname)
-        clients.append(client)
-
-        print(f"Nickname is {nickname}")
-        broadcast(f"{nickname} joined!".encode(ENCODING))
-        client.send('Connected to server!'.encode(ENCODING))
-
-        thread = threading.Thread(target=handle, args=(client,))
-        thread.start()
+def leave_chat(client_socket):
+    send_text('has abandoned y\'all', client_socket)
+    ind = clients.index(client_socket)
+    clients.remove(client_socket)
+    name = names[ind]
+    names.remove(name)
+    print(f'{name} left')
 
 
-if __name__ == "__main__":
-    print(f"Server running on {SERVER_HOST}:{SERVER_PORT}")
-    receive()
+serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serv_address = ('localhost', 9001)
+serv_sock.bind(serv_address)
+serv_sock.listen()
+print('server is connected and listening:', serv_address)
+
+while True:
+    cl_socket, cl_address = serv_sock.accept()
+    cl_socket.send('what\'s your name:'.encode())
+    name = cl_socket.recv(1024).decode()
+    names.append(name)
+    clients.append(cl_socket)
+    print(f'{name} joined')
+    send_text('is amongst you now', cl_socket)
+
+    thread = threading.Thread(target=client_handler, args=(cl_socket, ))
+    thread.start()
