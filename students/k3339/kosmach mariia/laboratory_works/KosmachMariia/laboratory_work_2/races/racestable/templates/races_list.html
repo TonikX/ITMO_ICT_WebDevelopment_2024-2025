@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Races list</title>
+</head>
+<body>
+<div class="container mt-5">
+    <a href="{% url 'profile' %}" class="btn btn-primary mb-4">↩️ Return</a>
+    <h1 class="mb-4">🏎️ Races:</h1>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Winner</th>
+                <th scope="col">Comments</th>
+                <th scope="col">Registration</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+            <tr>
+                <td>{{ race.id }}</td>
+                <td>{{ race.name }}</td>
+                <td>{{ race.date }}</td>
+                <td>{{ race.winner.team }}</td>
+                <td><a href="{% url 'race_comments' race.id %}" class="btn btn-primary">Add</a></td>
+                {% if not race.id in race_connections %}
+                <td><a href="{% url 'create_race_connection' race.id %}" class = "btn btn-primary">Register</a></td>
+                {% else %}
+                <td><a href="{% url 'delete_race_connection' race.id %}" class = "btn btn-danger">Unregister</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
