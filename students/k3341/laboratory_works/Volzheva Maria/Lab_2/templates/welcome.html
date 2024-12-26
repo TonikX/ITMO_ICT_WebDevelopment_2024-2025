@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сайт{% endblock %}</title> <!-- Заголовок страницы, который можно переопределить -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Подключение CSS -->
+    {% load static %} <!-- Загрузка статических тегов Django -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Подключение вашего собственного CSS -->
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-3">
+        <h1>Добро пожаловать в электронный дневник!</h1>
+        <nav>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="/" class="text-white">Главная</a></li>
+                <li class="list-inline-item"><a href="/registration/" class="text-white">Зарегистрироваться</a></li>
+                <li class="list-inline-item"><a href="/login/" class="text-white">Войти</a></li>
+            </ul>
+        </nav>
+        <hr class="my-4" />
+    </header>
+
+    <main class="container my-4">
+        {% block content %} <!-- Блок для контента страниц, который будет переопределен -->
+        {% endblock %}
+    </main>
+
+    <footer class="bg-light text-center py-3">
+        <p>© Волжева М.И. 2024 - Все права защищены.</p>
+    </footer>
+</body>
+</html>

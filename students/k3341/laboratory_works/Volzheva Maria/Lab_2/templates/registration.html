@@ -1,0 +1,52 @@
+{% extends "welcome.html" %}
+
+{% block content %}
+<h2>Регистрация</h2>
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="id_username">Логин</label>
+        <input type="text" name="username" id="id_username" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="id_first_name">Имя</label>
+        <input type="text" name="first_name" id="id_first_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="id_email">Электронная почта</label>
+        <input type="email" name="email" id="id_email" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="id_role">Роль</label>
+        <select name="role" id="id_role" class="form-control">
+            <option value="student">Студент</option>
+            <option value="teacher">Учитель</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="id_student_class">Класс:</label>
+        <select name="student_class" id="id_student_class" class="form-control">
+            {% for class in classes %}
+                <option value="{{ class.id }}">{{ class.name }}</option>
+            {% endfor %}
+        </select><br>
+    </div>
+
+    <div class="form-group">
+        <label for="id_password">Пароль</label>
+        <input type="password" name="password" id="id_password" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="id_password2">Повторите пароль</label>
+        <input type="password" name="password2" id="id_password2" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+{% endblock %}

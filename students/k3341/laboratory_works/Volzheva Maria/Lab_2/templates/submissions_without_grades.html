@@ -1,0 +1,46 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h4 class="text-primary">Не оценённые работы</h4>
+
+        {% if data|length > 0 %}
+            {% for subject, submissions in data.items %}
+                <h5 class="mt-4">Предмет: <span class="text-secondary">{{ subject }}</span></h5>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Студент</th>
+                            <th>Текст дз</th>
+                            <th>Текст сдачи</th>
+                            <th>Дата сдачи</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for submission in submissions %}
+                            <tr>
+                                <td>{{ submission.student.username }}</td>
+                                <td>{{ submission.homework.description }}</td>
+                                <td>{{ submission.submitted_text }}</td>
+                                <td>{{ submission.submitted_at|date:"Y-m-d H:i" }}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="{% url 'grade_submission' submission.id %}">Оценить</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center">Нет не оценённых работ для данного предмета.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% else %}
+            <p>Нет не оценённых работ.</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="btn btn-link">Назад</a>
+    </div>
+{% endblock %}
