@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Список конференций</h2>
+    <div class="row">
+        {% if user.is_authenticated %}
+            {% for conf in confs %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ conf.conf.title }}</h5>
+                        <p class="card-text">{{ conf.conf.description }}</p>
+                        <p class="card-text"><strong>Начало:</strong> {{ conf.conf.starting_at }}</p>
+                        <p class="card-text"><strong>Конец:</strong> {{ conf.conf.ending_at }}</p>
+                        <a href="{% url 'presentations_list' conf.conf.id %}" class="btn btn-primary me-1">Доклады</a>
+                        {% if conf.registration != None %}
+                        <a href="{% url 'edit_registration' conf.registration.id %}" class="btn btn-sm btn-outline-warning me-1">Изменить запись</a>
+                        <a href="{% url 'delete_registration' conf.registration.id %}" class="btn btn-sm btn-outline-danger">Удалить запись</a>
+                        {% else %}
+                        <a href="{% url 'make_presentation' conf.conf.id %}" class="btn btn-outline-success me-1">Добавить доклад</a>
+                        <a href="{% url 'enroll' conf.conf.id %}" class="btn btn-outline-success">Записаться</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            {% for conf in confs %}
+            <div class="col-md-4 d-flex align-items-stretch">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ conf.title }}</h5>
+                        <p class="card-text">{{ conf.description }}</p>
+                        <p class="card-text"><strong>Начало:</strong> {{ conf.starting_at }}</p>
+                        <p class="card-text"><strong>Конец:</strong> {{ conf.ending_at }}</p>
+                        <a href="{% url 'presentations_list' conf.id %}" class="btn btn-primary">Доклады</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

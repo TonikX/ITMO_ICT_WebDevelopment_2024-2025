@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Confirm</title>
+    </head>
+    <body>
+      <form method="post">{% csrf_token %}
+        <p>Confirm deleting:</p>
+        <input type="submit" value="Confirm">
+      </form>
+      <br>
+      <br>
+      <a href="/car/list/">Get back</a>
+    </body>
+</html>

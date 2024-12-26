@@ -1,0 +1,23 @@
+site_name: Web programming report
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task 1": Lr1/task1.md
+      - "Task 2": Lr1/task2.md
+      - "Task 3": Lr1/task3.md
+      - "Task 4": Lr1/task4.md
+      - "Task 5": Lr1/task5.md
+  - Lab 2:
+      - "Task": Lr2/task.md
+  - Lab 3:
+      - "Pr 3.1": Lr3/pr3.1.md
+      - "Pr 3.3":
+          - "API":
+              - "Warriors": Lr3/pr33/api/warriors.md
+              - "SKills": Lr3/pr33/api/skills.md
+      - "Lr3 Api Schema": Lr3/api_schema.md
+  - Lab 4:
+      - "Task": Lr4/task.md
+
+theme:
+  name: material

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Мои регистрации на конференции</h2>
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover table-bordered mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Конференция</th>
+                        <th scope="col">Дата начала</th>
+                        <th scope="col">Дата конца</th>
+                        <th scope="col" class="text-center">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registration in registrations %}
+                    <tr>
+                        <td>{{ registration.conference.title }}</td>
+                        <td>{{ registration.conference.starting_at }}</td>
+                        <td>{{ registration.conference.ending_at }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'edit_registration' registration.id %}" class="btn btn-sm btn-outline-warning me-1">Редактировать</a>
+                            <a href="{% url 'delete_registration' registration.id %}" class="btn btn-sm btn-outline-danger me-1">Удалить</a>
+                            <a href="{% url 'add_review' registration.id %}" class="btn btn-sm btn-outline-info">Оставить отзыв</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">У вас пока нет регистраций на конференции.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
