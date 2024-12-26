@@ -1,0 +1,16 @@
+<h2>{{ flight.flight_number }} - {{ flight.airline }}</h2>
+<p>Departure: {{ flight.departure }}</p>
+<p>Arrival: {{ flight.arrival }}</p>
+
+<h3>Reservations</h3>
+{% for reservation in reservations %}
+    <p>{{ reservation.user }} - Seat {{ reservation.seat_number }}</p>
+{% endfor %}
+
+<h3>Reviews</h3>
+{% for review in reviews %}
+    <p>{{ review.user }} rated {{ review.rating }}/10: {{ review.text }}</p>
+{% endfor %}
+
+<a href="{% url 'create_reservation' flight.id %}">Reserve a Seat</a>
+<a href="{% url 'create_review' flight.id %}">Add Review</a>

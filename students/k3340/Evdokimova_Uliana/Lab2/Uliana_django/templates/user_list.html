@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список пользователей</title>
+</head>
+<body>
+    <h1>Список пользователей</h1>
+    <ul>
+        {% for user in users %}
+            <li>
+                Имя пользователя: {{ user.username }} <br>
+                Номер паспорта: {{ user.passport_number }} <br>
+                Домашний адрес: {{ user.home_address }} <br>
+                Национальность: {{ user.nationality }} <br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

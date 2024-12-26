@@ -1,0 +1,3 @@
+{% for flight in flights %}
+    <a href="{% url 'flight_detail' flight.id %}">{{ flight.flight_number }} - {{ flight.airline }}</a>
+{% endfor %}
