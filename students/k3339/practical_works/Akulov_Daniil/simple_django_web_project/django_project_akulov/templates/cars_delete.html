@@ -1,0 +1,6 @@
+<form method="post">
+	{% csrf_token %}
+    {{ form.as_p }}
+    <p>Вы действительно хотите удалить "{{ object }}"</p>
+	<input type="submit" value="Подтвердить">
+</form>
