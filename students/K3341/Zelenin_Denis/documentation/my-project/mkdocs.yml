@@ -1,0 +1,17 @@
+site_name: web_development
+nav:
+  - Home: index.md
+  - 1 lab:
+    - Task 1: 1.md
+    - Task 2: 2.md
+    - Task 3: 3.md
+    - Task 4: 4.md
+    - Task 5: 5.md
+
+
+theme:
+  name: material
+
+markdown_extensions:  # Дополнительные расширения Markdown
+  - admonition
+  - toc
