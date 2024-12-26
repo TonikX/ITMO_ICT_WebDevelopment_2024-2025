@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Гонка: {{ race.location }} - {{ race.date }}</h1>
+
+<!-- Результаты гонки -->
+<h2>Результаты гонки</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Место</th>
+            <th>Участник</th>
+            <th>Время</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.position }}</td>
+            <td>{{ result.participant.user.get_full_name }}</td>
+            <td>{{ result.race_time }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="text-center">Результаты пока отсутствуют.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Табло участников гонки -->
+<h2>Список участников</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Название команды</th>
+            <th>Описание автомобиля</th>
+            <th>Описание участника</th>
+            <th>Опыт</th>
+            <th>Класс участника</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for registration in participants %}
+        <tr>
+            <td>{{ registration.participant.user.get_full_name }}</td>
+            <td>{{ registration.participant.team_name }}</td>
+            <td>{{ registration.participant.car_description }}</td>
+            <td>{{ registration.participant.participant_description }}</td>
+            <td>{{ registration.participant.experience }} лет</td>
+            <td>{{ registration.participant.participant_class }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">Участники пока не зарегистрированы.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Регистрация на гонку -->
+{% if user.is_authenticated and user.participant %}
+    {% if not is_registered %}
+        <a href="{% url 'register_for_race' race.id %}" class="btn btn-primary">Зарегистрироваться</a>
+    {% else %}
+        <a href="{% url 'unregister_from_race' race.id %}" class="btn btn-danger">Отменить регистрацию</a>
+    {% endif %}
+{% endif %}
+
+<!-- Добавление комментария -->
+{% if user.is_authenticated %}
+    <h3>Добавить комментарий</h3>
+    <form method="post" action="{% url 'add_comment' race.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Добавить комментарий</button>
+    </form>
+{% else %}
+    <p>Для добавления комментария <a href="{% url 'login' %}">войдите</a> в систему.</p>
+{% endif %}
+
+
+<!-- Список комментариев -->
+<h2>Комментарии</h2>
+<ul class="list-group">
+    {% for comment in comments %}
+    <li class="list-group-item">
+        <strong>{{ comment.user.username }}</strong> ({{ comment.comment_type }}) - {{ comment.text }}
+        <span class="badge bg-secondary">{{ comment.rating }}/10</span>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-center">Комментариев пока нет.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

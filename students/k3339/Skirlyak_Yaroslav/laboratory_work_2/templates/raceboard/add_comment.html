@@ -1,0 +1,15 @@
+<h1>Добавить комментарий</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>Комментарий:</label>
+    <textarea name="text"></textarea>
+    <label>Тип комментария:</label>
+    <select name="comment_type">
+        <option value="cooperation">Вопрос о сотрудничестве</option>
+        <option value="race">Вопрос о гонках</option>
+        <option value="other">Иное</option>
+    </select>
+    <label>Рейтинг:</label>
+    <input type="number" name="rating" min="1" max="10">
+    <button type="submit">Добавить</button>
+</form>

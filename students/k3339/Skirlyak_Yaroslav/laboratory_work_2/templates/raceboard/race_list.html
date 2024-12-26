@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Список гонок</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Дата и время</th>
+            <th>Место</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for race in races %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ race.date }}</td>
+            <td>{{ race.location }}</td>
+            <td>
+                <a href="{% url 'race_detail' race.id %}" class="btn btn-primary btn-sm">Посмотреть</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
