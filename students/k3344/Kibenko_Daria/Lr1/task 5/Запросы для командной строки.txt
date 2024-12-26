@@ -1,0 +1,20 @@
+# Запрос 1: Добавить оценку по математике
+curl -X POST http://localhost:8080 -d "subject=Mathematics&grade=5"
+
+# Запрос 2: Добавить оценку по физике
+curl -X POST http://localhost:8080 -d "subject=Physics&grade=4"
+
+# Запрос 3: Добавить оценку по Web-программированию
+curl -X POST http://localhost:8080 -d "subject=Web programming&grade=4"
+
+# Запрос 4: Добавить оценку по информатике
+curl -X POST http://localhost:8080 -d "subject=ComputerScience&grade=5"
+
+# Запрос 5: Добавить оценку по истории
+curl -X POST http://localhost:8080 -d "subject=History&grade=4"
+
+# Запрос 6: Добавить оценку по Методы оптимизации
+curl -X POST http://localhost:8080 -d "subject=Optimization methods&grade=2"
+
+# Запрос 7: Добавить оценку по Физическая культура и спорт
+curl -X POST http://localhost:8080 -d "subject=Physical education and sports&grade=3"

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Мои резервирования</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Мои резервирования</h1>
+    {% if reservations %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Номер рейса</th>
+                <th>Номер места</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.flight_number }}</td>
+                    <td>{{ reservation.seat_number }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning" role="alert">У вас нет резервирований.</div>
+    {% endif %}
+    <a href="{% url 'flight_list' %}" class="btn btn-primary">Назад к списку рейсов</a>
+</div>
+</body>
+</html>

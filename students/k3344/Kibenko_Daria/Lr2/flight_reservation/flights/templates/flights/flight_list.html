@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Список рейсов</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Список рейсов</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Номер рейса</th>
+            <th>Авиакомпания</th>
+            <th>Направление</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for flight in flights %}
+            <tr>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.airline }}</td>
+                <td>{{ flight.destination }}</td>
+                <td>
+                    <form action="{% url 'reserve_flight' flight.flight_number %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="seat_number" placeholder="Номер места" required>
+                        <button type="submit" class="btn btn-primary">Забронировать</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'my_reservations' %}" class="btn btn-secondary">Мои резервирования</a>
+</div>
+</body>
+</html>
+
