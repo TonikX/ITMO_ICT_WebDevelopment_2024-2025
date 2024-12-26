@@ -1,0 +1,20 @@
+site_name: Web Programming Docs
+nav:
+  - Home: index.md
+  - Lr1:
+      - task1: Lr1/task1.md
+      - task2: Lr1/task2.md
+      - task3: Lr1/task3.md
+      - task4: Lr1/task4.md
+      - task5: Lr1/task5.md
+  - Lr2:
+      - hotel: Lr2/hotel.md
+  - Lr3:
+      - prac3-1: Lr3/prac3-1.md
+      - prac3-2: Lr3/prac3-2.md
+      - lab-3: Lr3/lab-3.md
+  - Lr4:
+      - lab-4: Lr4/lab-4.md
+
+theme:
+  name: material

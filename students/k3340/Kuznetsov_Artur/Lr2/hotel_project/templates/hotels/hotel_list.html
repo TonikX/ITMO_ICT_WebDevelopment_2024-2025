@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Список отелей{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Отели</h1>
+        {% for hotel in hotels %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2 class="card-title">{{ hotel.name }}</h2>
+                    <p class="card-text"><strong>Владелец:</strong> {{ hotel.owner }}</p>
+                    <p class="card-text"><strong>Адрес:</strong> {{ hotel.address }}</p>
+                    <p class="card-text">{{ hotel.description }}</p>
+                    <a href="{% url 'room_list' hotel_id=hotel.id %}" class="btn btn-primary">Просмотреть номера</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Забронировать номер{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Забронировать номер: {{ room.room_type }} в {{ room.hotel.name }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Забронировать</button>
+        </form>
+        <a href="{% url 'room_list' hotel_id=room.hotel.id %}" class="btn btn-secondary mt-3">Назад к списку номеров</a>
+    </div>
+{% endblock %}

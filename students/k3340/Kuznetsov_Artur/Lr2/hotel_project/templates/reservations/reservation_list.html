@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Ваши бронирования{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Ваши бронирования</h1>
+        {% for reservation in reservations %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h2 class="card-title">Номер: {{ reservation.room.room_type }} -
+                        Отель: {{ reservation.room.hotel.name }}</h2>
+                    <p><strong>Период:</strong> {{ reservation.start_date }} - {{ reservation.end_date }}</p>
+                    {% if reservation.start_date > today %}
+                        <a href="{% url 'update_reservation' pk=reservation.id %}"
+                           class="btn btn-warning">Редактировать</a>
+                        <a href="{% url 'delete_reservation' pk=reservation.id %}" class="btn btn-danger">Удалить</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
