@@ -1,0 +1,6 @@
+site_name: WEB-programming
+nav:
+  - 3 lab:
+      - lab: lab.md
+theme:
+  name: readthedocs

@@ -1,0 +1,8 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv"],
+  "bracketSameLine": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSpacing": true
+}
