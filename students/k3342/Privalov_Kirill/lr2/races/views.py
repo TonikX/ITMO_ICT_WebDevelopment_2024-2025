@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db import IntegrityError
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import CommentForm
@@ -8,12 +10,23 @@ from .models import Race, Registration, Comment
 
 
 def race_list(request):
+    query = request.GET.get('q', '')
     races = Race.objects.all()
+
+    if query:
+        races = races.filter(Q(name__icontains=query) | Q(result__icontains=query))
+
+    paginator = Paginator(races, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     user_registrations = Registration.objects.filter(user=request.user) if request.user.is_authenticated else []
     registration_dict = {reg.race_id: reg for reg in user_registrations}
+
     return render(request, 'races/race_list.html', {
-        'races': races,
-        'registration_dict': registration_dict
+        'page_obj': page_obj,
+        'registration_dict': registration_dict,
+        'query': query
     })
 
 
