@@ -1,0 +1,17 @@
+<!-- templates/create_owner.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Создание владельца</title>
+</head>
+<body>
+    <h1>Создание владельца</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ owner_form.as_p }}
+        <button type="submit">Создать владельца</button>
+    </form>
+</body>
+</html>

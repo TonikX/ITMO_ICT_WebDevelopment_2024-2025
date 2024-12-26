@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Вход</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="text-center mb-4">
+        <h1>Вход в аккаунт</h1>
+        <p class="text-muted">Введите ваши данные для входа</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/login" method="post" class="p-4 border rounded shadow-sm bg-light">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Email</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Введите ваш email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Введите ваш пароль" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <p>Еще нет аккаунта? <a href="/registration" class="text-decoration-none">Зарегистрироваться</a></p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

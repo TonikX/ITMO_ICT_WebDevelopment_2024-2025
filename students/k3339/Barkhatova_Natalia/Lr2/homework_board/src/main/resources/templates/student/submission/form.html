@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма сдачи ДЗ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="/home">Главная</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="mb-4" th:text="'Загрузить ответ на ДЗ'"></h1>
+
+    <!-- Если задание уже сдано, показываем предупреждение -->
+    <div th:if="${alreadySubmitted}">
+        <div class="alert alert-warning">
+            Вы уже сдали это задание. Редактирование недоступно.
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Ваш ответ</label>
+            <textarea id="content" class="form-control" th:text="${submission.content}" readonly></textarea>
+        </div>
+        <a href="/student/homeworks" class="btn btn-secondary mt-3">Назад</a>
+    </div>
+
+    <!-- Если задание ещё не сдано, показываем форму -->
+    <form th:if="!${alreadySubmitted}" th:action="@{/student/submissions/{id}(id=${homework_id})}"
+          th:object="${submission}" method="post">
+        <div class="mb-3">
+            <label for="content" class="form-label">Ответ</label>
+            <textarea id="content" th:field="*{content}" class="form-control" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/student/homeworks" class="btn btn-secondary ms-2">Отмена</a>
+    </form>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

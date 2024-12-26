@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Вход</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registration">Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="text-center mb-4">
+        <h1>Регистрация</h1>
+        <p class="text-muted">Заполните форму, чтобы создать аккаунт</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form action="/registration" method="POST" class="p-4 border rounded shadow-sm bg-light">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Введите ваш email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Введите ваш пароль" required>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Имя</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Введите ваше имя" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Фамилия</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Введите вашу фамилию" required>
+                </div>
+                <div class="mb-3">
+                    <label for="middleName" class="form-label">Отчество</label>
+                    <input type="text" id="middleName" name="middleName" class="form-control" placeholder="Введите ваше отчество">
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label">Роль</label>
+                    <select id="role" name="role" class="form-select" required>
+                        <option value="" disabled selected>Выберите вашу роль</option>
+                        <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <p>Уже зарегистрированы? <a href="/login" class="text-decoration-none">Войти</a></p>
+    </div>
+
+    <div th:if="${error}" class="text-center mt-3">
+        <p th:text="${error}" class="text-danger"></p>
+    </div>
+    <div th:if="${errors}" class="text-center mt-3">
+        <ul class="list-unstyled text-danger">
+            <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

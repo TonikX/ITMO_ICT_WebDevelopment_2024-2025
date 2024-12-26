@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал оценок</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Журнал оценок для класса <span th:text="${classroom.name}"></span></h1>
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>Ученик</th>
+            <th th:each="homework : ${homeworks}" th:text="'ДЗ ' + ${homework.number}">Домашнее задание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="entry : ${studentGrades}">
+            <td th:text="${entry.key.lastName + ' ' + entry.key.name + ' ' +
+                (entry.key.middleName != null ? entry.key.middleName : '')}">
+                Имя ученика
+            </td>
+            <td th:each="homework : ${homeworks}">
+                <span th:if="${entry.value[homework.number] != null}">
+                    <span th:text="${entry.value[homework.number].grade}">Оценка</span>
+                </span>
+                <span th:if="${entry.value[homework.number] != null and entry.value[homework.number].grade == null}">
+                    Не оценено
+                </span>
+                <span th:if="${entry.value[homework.number] == null}">
+                    Нет сдачи
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/teacher/classrooms" class="btn btn-secondary">Назад</a>
+</div>
+</body>
+</html>

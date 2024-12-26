@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр сдачи ДЗ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="/home">Главная</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="mb-4">Сдача домашнего задания</h1>
+
+    <!-- Если сдачи нет -->
+    <div th:if="!${hasSubmission}">
+        <div class="alert alert-info">
+            На данный момент у вас нет сдачи по данному заданию.
+        </div>
+    </div>
+
+    <!-- Если сдача существует -->
+    <div th:if="${hasSubmission}">
+        <div class="mb-3">
+            <label for="submissionDate" class="form-label">Дата сдачи</label>
+            <input id="submissionDate" class="form-control" type="text" th:value="${submission.submissionDate}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Ответ</label>
+            <textarea id="content" class="form-control" th:text="${submission.content}" readonly></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="grade" class="form-label">Оценка</label>
+            <input id="grade" class="form-control" type="text" th:value="${submission.grade != null ? submission.grade : 'Не оценено'}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="feedback" class="form-label">Обратная связь</label>
+            <textarea id="feedback" class="form-control" th:text="${submission.feedback != null ? submission.feedback : 'Нет обратной связи'}" readonly></textarea>
+        </div>
+    </div>
+
+    <a href="/student/homeworks" class="btn btn-secondary mt-3">Назад к заданиям</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

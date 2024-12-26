@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание или редактирование класса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="/home">Главная</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="mb-4" th:text="${classroom.id != null ? 'Редактирование класса' : 'Создание нового класса'}"></h1>
+    <form th:action="@{/teacher/classrooms}" th:object="${classroom}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="mb-3">
+            <label for="name" class="form-label">Название</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Предмет</label>
+            <select class="form-control" id="subject" th:field="*{subject}" required>
+                <option th:each="subject : ${teacherSubjects}"
+                        th:value="${subject.id}"
+                        th:text="${subject.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+        <label for="students" class="form-label">Состав класса</label>
+        <select multiple class="form-control" id="students" th:field="*{students}">
+            <option th:each="student : ${students}"
+                    th:value="${student.id}"
+                    th:text="${student.name}"></option>
+        </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/teacher/classrooms" class="btn btn-secondary">Отменить</a>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

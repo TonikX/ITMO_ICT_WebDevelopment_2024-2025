@@ -1,0 +1,15 @@
+<!-- car_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Detail</title>
+</head>
+<body>
+    <h1>{{ car.brand }} {{ car.model }}</h1>
+    <p>License Plate: {{ car.license_plate }}</p>
+    <p>Color: {{ car.color }}</p>
+    <a href="{% url 'car_update' car.id %}">Edit</a>
+    <a href="{% url 'car_list' %}">Back to car list</a>
+</body>
+</html>

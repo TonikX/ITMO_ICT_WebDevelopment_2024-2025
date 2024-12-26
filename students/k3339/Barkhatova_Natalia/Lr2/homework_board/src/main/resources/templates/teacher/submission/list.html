@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сдачи домашних заданий</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="/home">Главная</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="mb-4">Сдачи домашних заданий</h1>
+
+    <!-- Таблица для неоцененных сдач -->
+    <h2>Неоцененные сдачи</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Студент</th>
+            <th>Дата сдачи</th>
+            <th>Содержимое</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="submission : ${ungradedSubmissions}">
+            <td th:text="${submission.student.lastName + ' ' +
+            submission.student.name + ' ' +
+            (submission.student.middleName != null ?
+            submission.student.middleName : '')}"></td>
+            <td th:text="${submission.submissionDate}"></td>
+            <td>
+                <a th:href="@{/teacher/submissions/{homeworkId}/view/{id}(homeworkId=${homework.getId()}, id=${submission.id})}"
+                   class="btn btn-info btn-sm">Просмотреть</a>
+            </td>
+            <td>
+                <a th:href="@{/teacher/submissions/{homeworkId}/grade/{id}(homeworkId=${homework.getId()}, id=${submission.id})}"
+                   class="btn btn-primary btn-sm">Оценить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Таблица для оцененных сдач -->
+    <h2>Оцененные сдачи</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Студент</th>
+            <th>Дата сдачи</th>
+            <th>Оценка</th>
+            <th>Отзыв</th>
+            <th>Содержимое</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="submission : ${gradedSubmissions}">
+            <td th:text="${submission.student.lastName + ' ' +
+            submission.student.name + ' ' +
+            (submission.student.middleName != null ?
+            submission.student.middleName : '')}"></td>
+            <td th:text="${submission.submissionDate}"></td>
+            <td th:text="${submission.grade} + '/' + ${homework.getMaxGrade()} "></td>
+            <td th:text="${submission.feedback}"></td>
+            <td>
+                <a th:href="@{/teacher/submissions/{homeworkId}/view/{id}(homeworkId=${homework.getId()}, id=${submission.id})}"
+                   class="btn btn-info btn-sm">Просмотреть</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/teacher/homeworks" class="btn btn-secondary mt-4">Назад к домашним заданиям</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
