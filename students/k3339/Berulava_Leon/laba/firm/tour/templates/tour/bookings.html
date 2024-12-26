@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтвержденные бронирования</title>
+</head>
+<body>
+    <h1>Подтвержденные бронирования</h1>
+    {% if bookings %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Название тура</th>
+                    <th>Количество</th>
+                    <th>Цена за единицу</th>
+                    <th>Общая цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.user.username }}</td>
+                        <td>{{ booking.tour.name }}</td>
+                        <td>{{ booking.quantity }}</td>
+                        <td>{{ booking.tour.price }}</td>
+                        <td>{{ booking.total_price }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><strong>Итоговая сумма:</strong> {{ total_price }} руб.</p>
+    {% else %}
+        <p>Нет подтвержденных бронирований.</p>
+    {% endif %}
+</body>
+</html>

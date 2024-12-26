@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список туров</title>
+    <link rel="stylesheet" href="{% static 'tours/css/style.css' %}?v=3.0">
+</head>
+<body>
+
+<!-- Навигационная панель -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{% url 'Index' %}" class="navbar-logo">TravelAgency</a>
+                <ul class="navbar-links">
+                    <li><a href="{% url 'Index' %}">Главная</a></li>
+                    <li><a href="{% url 'basket' %}">Корзина</a></li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li><a href="{% url 'addTour' %}">Добавить свой тур</a></li>
+                        {% endif %}
+                        <li><a href="#">Личный кабинет</a></li>
+                        <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Вход</a></li>
+                        <li><a href="{% url 'users:registration' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <h1>Список туров</h1>
+        {% for tour in tours %}
+            <div class="tour-card">
+                <h2 class="tour-name">{{ tour.name }}</h2>
+                <p class="tour-agency">{{ tour.agency }}</p>
+                <p class="tour-description">{{ tour.description }}</p>
+                <p class="tour-dates">Период проведения: {{ tour.start_date }} по {{ tour.end_date }}</p>
+                <p class="tour-payment-terms">{{ tour.payment_terms }}</p>
+                <p class="tour-price">Цена: {{ tour.price }} руб.</p>
+                <a href="{% url 'tour_detail' tour.id %}" class="btn btn-details">Подробнее</a>
+                <a href="{% url 'basket_add' tour.id %}"> Отправить в корзину </a>
+            </div>
+        {% endfor %}
+
+        <div class="pagination">
+            <button class="pagination-btn prev {% if not tours.has_previous %}disabled{% endif %}"
+                    {% if tours.has_previous %}onclick="location.href='{% url 'paginator' tours.previous_page_number %}'"{% endif %}>
+                &laquo; Назад
+            </button>
+            <div class="pagination-pages">
+                {% for page in tours.paginator.page_range %}
+                    {% if page == 1 or page == tours.paginator.num_pages or page >= tours.number|add:"-2" and page <= tours.number|add:"2" %}
+                        <a href="{% url 'paginator' page %}" class="pagination-btn
+                            {% if page == tours.number %}active{% endif %}">
+                            {{ page }}
+                        </a>
+                    {% elif page == tours.number|add:"-3" or page == tours.number|add:"3" %}
+                        <span class="pagination-dots">...</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <button class="pagination-btn next {% if not tours.has_next %}disabled{% endif %}"
+                    {% if tours.has_next %}onclick="location.href='{% url 'paginator' tours.next_page_number %}'"{% endif %}>
+                Вперед &raquo;
+            </button>
+</div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,239 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Навигационная панель */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-links {
+    list-style: none;
+}
+
+.navbar-links li {
+    display: inline;
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+}
+
+/* Основное содержимое */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tour-details {
+    padding: 1rem;
+}
+
+.tour-details h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.tour-details p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.tour-details strong {
+    font-weight: bold;
+}
+
+.btn-book {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-book:hover {
+    background-color: #45a049;
+}
+
+/* Нижний колонтитул */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    margin-top: 2rem;
+}
+
+/* Общий стиль секции отзывов */
+.reviews-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.reviews-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Стили для отдельного отзыва */
+.review {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.review p strong {
+    font-size: 16px;
+    color: #000;
+}
+
+/* Стили для текста "Отзывов пока нет" */
+.reviews-section p {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
+}
+
+/* Секция формы */
+.review-form {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9; /* Светлый фон */
+    border: 1px solid #ddd; /* Легкая рамка */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+/* Заголовок формы */
+.review-form h3 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Общие правила для формы */
+.review-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступы между элементами */
+}
+
+/* Поля формы */
+.review-form input,
+.review-form textarea,
+.review-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd; /* Рамка */
+    border-radius: 5px; /* Закругленные углы */
+    font-size: 16px;
+    background-color: #fff; /* Белый фон */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Внутренняя тень */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Анимация */
+}
+
+/* Ховер и фокус на полях формы */
+.review-form input:focus,
+.review-form textarea:focus,
+.review-form select:focus {
+    border-color: #4caf50; /* Зелёная рамка при фокусе */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Светлая зелёная тень */
+}
+
+/* Кнопка отправки */
+.review-form .btn-submit {
+    padding: 10px 15px;
+    background-color: #4caf50; /* Основной зелёный цвет */
+    color: #fff; /* Белый текст */
+    border: none;
+    border-radius: 5px; /* Закругленные углы */
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Анимация */
+}
+
+/* Ховер на кнопке */
+.review-form .btn-submit:hover {
+    background-color: #45a049; /* Более насыщенный зелёный */
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    resize: vertical;
+}

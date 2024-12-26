@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link rel="stylesheet" href="{% static 'tours/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'tours/css/basket.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{% url 'Index' %}" class="navbar-logo">TravelAgency</a>
+                <ul class="navbar-links">
+                    <li><a href="{% url 'Index' %}">Главная</a></li>
+                    <li><a href="{% url 'basket' %}">Корзина</a></li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li><a href="{% url 'addTour' %}">Добавить свой тур</a></li>
+                        {% endif %}
+                        <li><a href="#">Личный кабинет</a></li>
+                        <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Вход</a></li>
+                        <li><a href="{% url 'users:registration' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Корзина туров</h1>
+        {% if baskets %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Тур</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for basket in baskets %}
+                    <tr>
+                        <td>{{ basket.tour.name }}</td>
+                        <td>{{ basket.quantity }}</td>
+                        <td>{{ basket.tour.price }} руб.</td>
+                        <td>{{ basket.quantity|floatformat:0 }}</td>
+                        <td>
+                            <a href="{% url 'basket_remove' basket.id %}">Удалить</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p><strong>Общая сумма:</strong> {{ total_price }} руб.</p>
+        {% else %}
+            <p>Ваша корзина пуста.</p>
+        {% endif %}
+
+        <form action="{% url 'confirm_booking' %}" method="POST">
+        {% csrf_token %}
+            <button type="submit" class="btn-confirm">Подтвердить покупку</button>
+        </form>
+
+</form>
+
+    </div>
+
+
+</body>
+</html>

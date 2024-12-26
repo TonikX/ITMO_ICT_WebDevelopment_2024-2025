@@ -1,0 +1,54 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}"> <!-- Подключите свой файл стилей -->
+</head>
+<body>
+    <div class="register-container">
+        <h1>Регистрация</h1>
+        {% if form.errors %}
+            <div> {{form.errors}} </div>
+        {% endif %}
+        <form action="{% url 'users:registration' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">Имя:</label>
+                {{ form.first_name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Фамилия:</label>
+                {{ form.last_name }}
+
+            </div>
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя:</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Подтвердите пароль:</label>
+                {{ form.password2 }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.is_agent.id_for_label }}">Вы турагент?</label>
+                {{ form.is_agent }}
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="/login">Войти</a></p> <!-- Ссылка на вход -->
+    </div>
+</body>
+</html>

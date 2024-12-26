@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tour.name }}</title>
+    <link rel="stylesheet" href="{% static 'tours/css/abouttour.css' %}">
+    <link rel="stylesheet" href="{% static 'tours/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="{% url 'Index' %}" class="navbar-logo">TravelAgency</a>
+                <ul class="navbar-links">
+                    <li><a href="{% url 'Index' %}">Главная</a></li>
+                    <li><a href="{% url 'basket' %}">Корзина</a></li>
+                    {% if user.is_authenticated %}
+                        {% if user.is_superuser %}
+                            <li><a href="{% url 'addTour' %}">Добавить свой тур</a></li>
+                        {% endif %}
+                        <li><a href="#">Личный кабинет</a></li>
+                        <li><a href="{% url 'users:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">Вход</a></li>
+                        <li><a href="{% url 'users:registration' %}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="tour-details">
+            <h1>{{ tour.name }}</h1>
+            <p class="tour-agency">Турагентство: <strong>{{ tour.agency }}</strong></p>
+            <p class="tour-description">Описание: {{ tour.description }}</p>
+            <p class="tour-dates">Период проведения: с {{ tour.start_date }} по {{ tour.end_date }}</p>
+            <p class="tour-payment-terms">Условия оплаты: {{ tour.payment_terms }}</p>
+            <p class="tour-price">Цена: <strong>{{ tour.price }} руб.</strong></p>
+            <a href="{% url 'basket_add' tour.id %}" class="btn-book">Забронировать тур</a>
+        </div>
+        <div class="reviews-section">
+            <h2>Отзывы</h2>
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="review">
+                        <p><strong>{{ review.user.first_name }}</strong> ({{ review.created_at|date:"d.m.Y" }})</p>
+                        <p>Оценка: {{ review.rating }}</p>
+                        <p>{{ review.comment }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Отзывов пока нет. Будьте первым!</p>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+            <div class="review-form">
+                <h3>Добавить отзыв</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-submit">Отправить</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Войдите в аккаунт, чтобы оставить отзыв.</p>
+        {% endif %}
+    </div>
+
+
+
+    <footer>
+        <p>&copy; 2024 TravelAgency. Все права защищены.</p>
+    </footer>
+</body>
+</html>

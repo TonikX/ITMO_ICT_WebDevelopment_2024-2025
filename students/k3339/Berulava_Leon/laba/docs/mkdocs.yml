@@ -1,0 +1,5 @@
+site_name: Django Project Laba
+nav:
+  - Главная: index.md
+theme:
+  name: material
