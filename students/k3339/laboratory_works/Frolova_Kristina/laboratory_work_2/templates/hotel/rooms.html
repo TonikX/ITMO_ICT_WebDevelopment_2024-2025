@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Список комнат</h2>
+    <div class="row">
+        {% for room in rooms %}
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.room_type }}</h5>
+                    <p class="card-text">
+                        Вместимость: {{ room.capacity }} человек<br/>
+                        Удобства: {{ room.extras }}<br/>
+                        Цена: {{ room.price }} рублей
+                    </p>
+                </div>
+                <a href="{% url 'reserve_room' room_id=room.id %}" class="btn btn-primary">Забронировать номер</a>
+                <a href="{% url 'room_reviews' room_id=room.id %}" class="btn btn-primary">Посмотреть отзывы</a>
+            </div>
+            <hr/>
+
+        {% endfor %}
+
+    </div>
+    <a href="{% url 'hotels' %}" class="btn btn-secondary">Вернуться</a>
+{% endblock %}

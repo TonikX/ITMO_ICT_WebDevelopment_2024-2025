@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Отзывы</h2>
+    <div class="row">
+        {% for review in reviews %}
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.reservation.user.username }}</h5>
+                    <p class="card-text">
+                        {{ review.review }}
+                    </p>
+                    <p class="card-footer">
+                        Оценка {{ review.rate }}
+                    </p>
+                </div>
+            </div>
+            <hr/>
+        {% empty %}
+            <h5 class="mb-4">У этого номера нет отзывов.</h5>
+        {% endfor %}
+
+    </div>
+{% endblock %}
