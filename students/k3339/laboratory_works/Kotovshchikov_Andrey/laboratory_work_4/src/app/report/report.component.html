@@ -1,0 +1,105 @@
+<div class="container m-auto">
+  <h2 class="text-[32px] font-bold text-center mb-10">Формирование отчета</h2>
+  <form class="flex flex-col max-w-sm mx-auto mb-10">
+    <label class="text-gray-900 text-sm mb-1" for="quartals"
+      >Выберите квартал</label
+    >
+    <select
+      id="quartals"
+      class="mb-32 bg-gray-50 border border-gray-300 text-black text-sm rounded-lg block w-full p-2.5 dark:bg-white dark:placeholder-gray-400 dark:text-black outline-none"
+      (change)="onQuarterChange($event)"
+    >
+      <option selected value="1">Первый квартал</option>
+      <option value="2">Второй квартал</option>
+      <option value="3">Третий квартал</option>
+      <option value="4">Четвертый квартал</option>
+    </select>
+
+    <button
+      class="self-center mb-5 p-5 bg-sky-400 rounded-lg text-[18px] font-medium text-white hover:bg-sky-500 transition-all"
+      (click)="generateReport($event)"
+    >
+      Сформировать отчет
+    </button>
+
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </form>
+
+  @if (isReportGenerated()) {
+  <div class="container mx-auto p-4">
+    <h2 class="text-2xl font-bold mb-4">Результат</h2>
+
+    <!-- Таблица -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded-lg">
+        <!-- Шапка таблицы -->
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="py-3 px-4 text-left">Параметр</th>
+            <th class="py-3 px-4 text-left">Значение</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <!-- Число клиентов за указанный период в каждом номере -->
+          <tr>
+            <td class="py-3 px-4 font-bold">Число клиентов по номерам</td>
+            <td class="py-3 px-4">
+              @if(!guestsPerRoom.length) {
+              <p>-</p>
+              } @else {
+              <ul>
+                @for (entry of guestsPerRoom; track $index) {
+                <li>Номер {{ entry[0] }}: {{ entry[1] }} клиентов</li>
+                }
+              </ul>
+              }
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-3 px-4 font-bold">Количество номеров по этажам</td>
+            <td class="py-3 px-4">
+              @if(!roomsPerFloor.length) {
+              <p>-</p>
+              } @else {
+              <ul>
+                @for (entry of roomsPerFloor; track $index) {
+                <li>{{ entry[0] }} этаж: {{ entry[1] }} номеров</li>
+                }
+              </ul>
+              }
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-3 px-4 font-bold">Доход по номерам</td>
+            <td class="py-3 px-4">
+              @if(!profitPerRoom.length) {
+              <p>-</p>
+              } @else {
+              <ul>
+                @for (entry of profitPerRoom; track $index) {
+                <li>Номер {{ entry[0] }}: {{ entry[1] }} ₽</li>
+                }
+              </ul>
+              }
+            </td>
+          </tr>
+
+          <tr>
+            <td class="py-3 px-4 font-bold">Суммарный доход гостиницы</td>
+            <td class="py-3 px-4">{{ totalProfit }} ₽</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+</div>

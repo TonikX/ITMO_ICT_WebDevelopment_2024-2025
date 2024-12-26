@@ -1,0 +1,120 @@
+<div class="container m-auto">
+  <h2 class="text-[32px] font-bold text-center mb-10">Нанять работника</h2>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit($event)"
+    class="flex flex-col gap-5 px-80"
+  >
+    <div>
+      <label for="firstName">Имя</label>
+      <input
+        formControlName="firstName"
+        id="firstName"
+        class="w-full border border-solid border-black p-3"
+        type="text"
+      />
+
+      <div
+        *ngIf="
+          firstNameControl.invalid &&
+          (firstNameControl.dirty || firstNameControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="firstNameControl.errors?.['required']">Введите имя</p>
+        <p *ngIf="firstNameControl.errors?.['maxlength']">
+          Слишком длинное имя
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <label for="lastName">Фамилия</label>
+      <input
+        formControlName="lastName"
+        id="lastName"
+        class="w-full border border-solid border-black p-3"
+        type="text"
+      />
+
+      <div
+        *ngIf="
+          lastNameControl.invalid &&
+          (lastNameControl.dirty || lastNameControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="lastNameControl.errors?.['required']">Введите фамилию</p>
+        <p *ngIf="lastNameControl.errors?.['maxlength']">
+          Слишком длинная фамилия
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <label for="patronymic">Отчество</label>
+      <input
+        formControlName="patronymic"
+        id="patronymic"
+        class="w-full border border-solid border-black p-3"
+        type="text"
+      />
+
+      <div
+        *ngIf="
+          patronymicControl.invalid &&
+          (patronymicControl.dirty || patronymicControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="patronymicControl.errors?.['maxlength']">
+          Слишком длинное отчество
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <label for="hireDate">Дата найма</label>
+      <input
+        formControlName="hireDate"
+        id="hireDate"
+        class="w-full border border-solid border-black p-3"
+        type="date"
+      />
+
+      <div
+        *ngIf="
+          hireDateControl.invalid &&
+          (hireDateControl.dirty || hireDateControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="hireDateControl.errors?.['required']">Введите дату найма</p>
+      </div>
+    </div>
+
+    <button
+      [disabled]="form.invalid"
+      class="px-10 py-3 self-center bg-sky-400 rounded-lg text-[18px] font-medium text-white hover:bg-sky-500 transition-all cursor-pointer"
+    >
+      Нанять
+    </button>
+
+    <p class="text-red-500 text-center">
+      {{ errorMessage() }}
+    </p>
+
+    <p class="text-green-400 text-center">
+      {{ successMessage() }}
+    </p>
+
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,80 @@
+<div
+  class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+  *ngIf="isModalOpen()"
+>
+  <div class="bg-white rounded-lg p-6 w-full max-w-md">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-lg font-semibold">Заселить гостя</h2>
+
+      <div
+        *ngIf="isLoading()"
+        class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+        role="status"
+        aria-label="loading"
+      >
+        <span class="sr-only">Загрузка...</span>
+      </div>
+
+      <p *ngIf="errorMessage()" class="text-red-500 text-center">
+        {{ errorMessage() }}
+      </p>
+
+      <p *ngIf="successMessage()" class="text-green-400 text-center">
+        {{ successMessage() }}
+      </p>
+    </div>
+
+    <form
+      class="space-y-4"
+      [formGroup]="form"
+      (ngSubmit)="createBooking($event)"
+    >
+      <div>
+        <label for="passport" class="block text-sm font-medium text-gray-700"
+          >Серия и номер паспорта</label
+        >
+        <input
+          formControlName="guestPassport"
+          type="text"
+          id="passport"
+          name="passport"
+          required
+          class="p-3 mt-1 block w-full border border-solid border-black rounded-md"
+        />
+      </div>
+
+      <div>
+        <label
+          for="checkoutDate"
+          class="block text-sm font-medium text-gray-700"
+          >Дата планируемого выселения</label
+        >
+        <input
+          formControlName="checkOutDate"
+          type="date"
+          id="checkoutDate"
+          name="checkoutDate"
+          required
+          class="p-3 mt-1 block w-full border border-solid border-black rounded-md"
+        />
+      </div>
+
+      <div class="flex justify-between">
+        <button
+          type="submit"
+          class="bg-sky-400 text-white px-4 py-2 rounded-md hover:bg-sky-500"
+        >
+          Заселить
+        </button>
+
+        <button
+          type="button"
+          class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+          (click)="vacateRoom()"
+        >
+          Освободить номер
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="container m-auto">
+  <div class="flex flex-col items-center">
+    <h2 class="text-[32px] font-bold text-center mb-10">
+      Сотрудники гостиницы
+    </h2>
+
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-5">
+    @for (employee of employees; track $index) {
+    <div
+      class="bg-white shadow-md rounded-lg p-6 cursor-pointer"
+      (click)="navigateToDetail(employee.id)"
+    >
+      <h2 class="text-xl font-semibold mb-4">Информация о сотруднике</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">ID</label>
+          <p class="text-gray-800">{{ employee.id }}</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Имя</label>
+          <p class="text-gray-800">{{ employee.first_name }}</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Фамилия</label>
+          <p class="text-gray-800">{{ employee.last_name }}</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Отчество</label
+          >
+          <p class="text-gray-800">{{ employee.patronymic || "Не указано" }}</p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Дата найма</label
+          >
+          <p class="text-gray-800">
+            {{ employee.hire_date }}
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Дата увольнения</label
+          >
+          <p class="text-gray-800">
+            {{
+              employee.dismissal_date ? employee.dismissal_date : "Не указано"
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

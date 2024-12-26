@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static "styles.css" %}" />
+		<title>{% block title %}{% endblock title %}</title>
+		<style>
+			table {
+				width: 50%;
+				border-collapse: collapse;
+				margin: 20px 0;
+			}
+			th,
+			td {
+				border: 1px solid #ddd;
+				padding: 8px;
+				text-align: left;
+			}
+			th {
+				background-color: #f2f2f2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nav">
+			{% if request.user.is_authenticated %}
+			<div class="nav-left">
+				<a class="nav-link" href="{% url 'conference-list' %}">Все конференции</a>
+				<a class="nav-link" href="{% url 'conference-registration' %}">Запланировать конференцию</a>
+			</div>
+
+			<div>
+				<a class="nav-link" href="{% url 'sign-out' %}">Выйти ({{ request.user }})</a>
+			</div>
+			{% else %}
+			<div class="nav-left">
+				<a class="nav-link" href="{% url 'sign-up' %}">Зарегистрироваться</a>
+				<a class="nav-link" href="{% url 'sign-in' %}">Войти</a>
+			</div>
+			{% endif %}
+		</div>
+
+		<div class="container">{% block content%}{% endblock content %}</div>
+	</body>
+</html>

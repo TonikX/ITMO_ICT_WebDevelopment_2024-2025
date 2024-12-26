@@ -1,0 +1,103 @@
+<div class="container m-auto">
+  <div class="flex flex-col items-center">
+    <h2 class="text-[32px] font-bold text-center mb-10">Клиенты гостиницы</h2>
+
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </div>
+
+  <div class="flex justify-start items-start gap-5">
+    <div class="flex flex-col gap-3 shrink-0 py-5">
+      <div class="flex gap-1">
+        <input
+          name="city"
+          type="radio"
+          (change)="filterGuestsByCity('Москва')"
+        />
+        <p>Москва</p>
+      </div>
+
+      <div class="flex gap-1">
+        <input
+          name="city"
+          type="radio"
+          (change)="filterGuestsByCity('Санкт-Петербург')"
+        />
+        <p>Санкт-Петербург</p>
+      </div>
+
+      <div class="flex gap-1">
+        <input
+          name="city"
+          type="radio"
+          (change)="filterGuestsByCity('Якутск')"
+        />
+        <p>Якутск</p>
+      </div>
+
+      <div class="flex gap-1">
+        <input
+          name="city"
+          type="radio"
+          (change)="filterGuestsByCity('Казань')"
+        />
+        <p>Казань</p>
+      </div>
+
+      <div class="flex gap-1">
+        <input
+          name="city"
+          type="radio"
+          (change)="filterGuestsByCity('Анапа')"
+        />
+        <p>Анапа</p>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading()" class="flex flex-wrap gap-10">
+      @for (guest of guests; track $index) {
+      <div class="bg-white shadow-md rounded-lg p-6 max-w-sm mb-5">
+        <h2 class="text-xl font-semibold mb-4">Информация о госте</h2>
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Имя</label>
+            <p class="text-gray-800">{{ guest.first_name }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Фамилия</label
+            >
+            <p class="text-gray-800">{{ guest.last_name }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Отчество</label
+            >
+            <p class="text-gray-800">{{ guest.patronymic || "Не указано" }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700"
+              >Паспорт</label
+            >
+            <p class="text-gray-800">{{ guest.passport }}</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700">Город</label>
+            <p class="text-gray-800">{{ guest.city }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

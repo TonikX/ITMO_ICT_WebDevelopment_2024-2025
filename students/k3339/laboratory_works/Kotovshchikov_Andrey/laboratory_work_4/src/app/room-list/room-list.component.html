@@ -1,0 +1,61 @@
+<div class="container m-auto" (click)="closeModal($event)">
+  <h2 class="text-center text-[32px] mb-10">
+    Гостиничные номера ({{ rooms.length }})
+  </h2>
+
+  <div class="flex flex-col">
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </div>
+
+  <div class="flex gap-1 mb-5">
+    <input
+      type="checkbox"
+      [checked]="isOnlyAvailable()"
+      (change)="changeIsOnlyAvailable()"
+    />
+    <p>Только свободные</p>
+  </div>
+
+  <div class="grid grid-cols-3 gap-5">
+    @for (room of rooms; track $index) {
+    <div
+      class="bg-white shadow-md rounded-lg p-4 mb-5 cursor-pointer"
+      (click)="openModal(room.id)"
+    >
+      <room-booking-modal
+        [roomId]="room.id"
+        [isModalOpen]="selectedRoomId() === room.id"
+      ></room-booking-modal>
+
+      <ul class="space-y-4">
+        <li class="border-b pb-4">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-lg font-semibold">{{ room.label }}</span>
+            <span class="text-gray-500">{{ room.floor }} этаж</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="text-sm text-gray-600">Телефон: {{ room.phone }}</p>
+              <p class="text-sm text-gray-600">
+                Кровати: {{ room.room_type.beds }}
+              </p>
+            </div>
+            <div>
+              <p class="text-sm text-green-600 font-semibold">
+                Цена: {{ room.room_type.price_per_day }} ₽/день
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    }
+  </div>
+</div>

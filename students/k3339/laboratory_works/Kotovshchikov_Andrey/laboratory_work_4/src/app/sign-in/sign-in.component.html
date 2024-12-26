@@ -1,0 +1,78 @@
+<div class="container m-auto">
+  <h2 class="text-[32px] font-bold text-center mb-10">Авторизация</h2>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="submit($event)"
+    class="flex flex-col gap-5 px-80"
+  >
+    <div>
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        id="email"
+        class="w-full border border-solid border-black p-3"
+        type="email"
+      />
+
+      <div
+        *ngIf="
+          emailControl.invalid && (emailControl.dirty || emailControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="emailControl.errors?.['required']">Введите email</p>
+        <p *ngIf="emailControl.errors?.['maxlength']">Слишком длинный email</p>
+        <p *ngIf="emailControl.errors?.['email']">Некорректный email</p>
+      </div>
+    </div>
+
+    <div>
+      <label for="password">Пароль</label>
+      <input
+        formControlName="password"
+        id="password"
+        class="w-full border border-solid border-black p-3"
+        type="password"
+      />
+
+      <div
+        *ngIf="
+          passwordControl.invalid &&
+          (passwordControl.dirty || passwordControl.touched)
+        "
+        class="text-red-500"
+      >
+        <p *ngIf="passwordControl.errors?.['required']">Введите пароль</p>
+        <p
+          *ngIf="passwordControl.errors?.['minlength'] || passwordControl.errors?.['maxlength']"
+        >
+          Пароль должен состоять из 8-100 символов
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <a class="text-sky-400" routerLink="/sign-up">Зарегистрироваться</a>
+    </div>
+
+    <button
+      [disabled]="form.invalid"
+      class="px-10 py-3 self-center bg-sky-400 rounded-lg text-[18px] font-medium text-white hover:bg-sky-500 transition-all cursor-pointer"
+    >
+      Войти
+    </button>
+
+    <p class="text-red-500 text-center">
+      {{ errorMessage() }}
+    </p>
+
+    <div
+      *ngIf="isLoading()"
+      class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+      role="status"
+      aria-label="loading"
+    >
+      <span class="sr-only">Загрузка...</span>
+    </div>
+  </form>
+</div>

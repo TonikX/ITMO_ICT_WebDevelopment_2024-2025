@@ -1,0 +1,103 @@
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    align-self: center;
+    max-width: 350px;
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px; 
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    margin-top: 25px;
+}
+
+button:hover {
+    transform: scale(0.95);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+textarea {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.errorlist {
+    color: red;
+    list-style: none;
+}
+
+.auth-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-form > p {
+    width: 30%;
+}
+
+.auth-form input {
+    width: 100%;
+}
+
+.auth-form label {
+    margin-right: 100%;
+}
+
+.nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-left {
+    padding-left: 20px;
+}
+
+.nav-link {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #5d2dc4;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.pagination > div {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+.detail-link {
+    color: blue;
+    text-decoration: none;
+}

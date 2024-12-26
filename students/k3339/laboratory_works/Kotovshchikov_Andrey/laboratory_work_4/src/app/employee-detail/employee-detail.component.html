@@ -1,0 +1,139 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-3xl font-bold mb-6">Расписание уборки этажей</h2>
+
+  <div
+    *ngIf="isLoading()"
+    class="self-center animate-spin inline-block size-8 border-[3px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500"
+    role="status"
+    aria-label="loading"
+  >
+    <span class="sr-only">Загрузка...</span>
+  </div>
+
+  <p class="text-red-500 text-center">
+    {{ errorMessage() }}
+  </p>
+
+  <div *ngIf="!isLoading()">
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+      <h2 class="text-xl font-bold mb-4">Информация о работнике</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <p><strong>Имя:</strong> {{ employee.first_name }}</p>
+          <p><strong>Фамилия:</strong> {{ employee.last_name }}</p>
+          <p *ngIf="employee.patronymic">
+            <strong>Отчество:</strong> {{ employee.patronymic }}
+          </p>
+        </div>
+        <div>
+          <p><strong>Дата найма:</strong> {{ employee.hire_date }}</p>
+          <p *ngIf="employee.dismissal_date">
+            <strong>Дата увольнения:</strong> {{ employee.dismissal_date }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="text-lg font-bold mb-2">Уволить сотрудника</h3>
+        <form class="space-y-4">
+          <div>
+            <label
+              for="dismissalDate"
+              class="block text-sm font-medium text-gray-700"
+              >Дата увольнения</label
+            >
+            <input
+              type="date"
+              id="dismissalDate"
+              name="dismissalDate"
+              class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              [(ngModel)]="employee.dismissal_date"
+            />
+          </div>
+
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg"
+            (click)="dismissEmployee($event)"
+          >
+            Уволить
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden mb-6">
+      <table class="w-full table-auto">
+        <thead>
+          <tr class="bg-gray-800 text-white">
+            <th class="py-3 px-4 text-left">День недели</th>
+            <th class="py-3 px-4 text-left">Этаж</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (schedule of employee.schedule; track $index) {
+          <tr class="border-b border-gray-200">
+            <td class="py-3 px-4">{{ schedule.week_day }}</td>
+            <td class="py-3 px-4">{{ schedule.floor }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+      <h2 class="text-xl font-bold mb-4">Редактировать расписание</h2>
+      <form class="space-y-4">
+        <!-- Выбор дня недели -->
+        <div>
+          <label for="day" class="block text-sm font-medium text-gray-700"
+            >День недели</label
+          >
+          <select
+            id="day"
+            name="day"
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            [(ngModel)]="weekDay"
+          >
+            <option selected value="пн">Понедельник</option>
+            <option value="вт">Вторник</option>
+            <option value="ср">Среда</option>
+            <option value="чт">Четверг</option>
+            <option value="пт">Пятница</option>
+            <option value="сб">Суббота</option>
+            <option value="вс">Воскресенье</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="floor" class="block text-sm font-medium text-gray-700"
+            >Этаж</label
+          >
+          <input
+            type="number"
+            id="floor"
+            name="floor"
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Введите номер этажа"
+            [(ngModel)]="floor"
+          />
+        </div>
+
+        <div class="flex gap-5">
+          <button
+            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+            (click)="createEmployeeSchedule($event)"
+          >
+            Добавить
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg"
+            (click)="resetEmployeeSchedule()"
+          >
+            Сбросить расписание
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+{% extends "driving/base.html" %}
+
+{% block title %} {{ car.brand }} {{ car.model }} {% endblock title %}
+
+{% block content %}
+
+<ul>
+	<li>Название: {{ car.brand }} {{ car.model }}</p>
+	<li>Гос номер: {{ car.state_number }}</p>
+	<li>Цвет: {{ car.color }}</p>
+	<a href="{% url 'car-update' car.pk %}" style="margin-right: 10px;">Обновить</a>
+	<a href="{% url 'car-delete' car.pk %}" style="color: red;">Удалить</a>
+</ul>
+
+{% endblock content %}

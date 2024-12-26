@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "lab-2"
+version = "0.1.0"
+description = ""
+authors = ["Andrey <ykt_andrey@mail.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.1.2"
+django-environ = "^0.11.2"
+psycopg2 = "^2.9.9"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.10.0"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 90
+target_version = ["py312"]
