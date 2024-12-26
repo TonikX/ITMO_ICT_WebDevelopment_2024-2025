@@ -1,0 +1,59 @@
+{% extends "template.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<body>
+
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h1 class="text-center">{{ tour.title }}</h1>
+    <h2>Турагентство: {{ tour.agency }}</h2>
+    <p><strong>Описание:</strong> {{ tour.description }}</p>
+    <p><strong>Период проведения:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+    <p><strong>Условия оплаты:</strong> {{ tour.payment_terms }}</p>
+
+    <h3>Отзывы</h3>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                <strong>{{ review.user.username }}:</strong> {{ review.comment }}
+                (Рейтинг: {{ review.rating }})
+                <em>{{ review.date_added|date:"d M Y, H:i" }}</em>
+                <p><strong>Даты тура:</strong> {{ review.tour.start_date }} - {{ review.tour.end_date }}</p>
+            </li>
+        {% empty %}
+            <li>Отзывов нет.</li>
+        {% endfor %}
+    </ul>
+
+
+    <div>
+        {% if user.is_authenticated %}
+            <h3>Оставить отзыв</h3>
+            <div class="d-flex align-items-end">
+                <form method="post" action="{% url 'add_review' tour.id %}">
+                    {% csrf_token %}
+                    {{ review_form.as_p }}
+                    <button type="submit" class="button-uni">Оставить отзыв</button>
+                </form>
+
+                <form method="post" action="{% url 'reserve_tour' tour.id user.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="button-uni" style="margin-left: -120px;">Зарезервировать место на тур</button>
+                </form>
+            </div>
+        {% else %}
+            <p><a href="{% url 'login' %}" class="text-dark">Войдите</a>, чтобы оставить отзыв.</p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

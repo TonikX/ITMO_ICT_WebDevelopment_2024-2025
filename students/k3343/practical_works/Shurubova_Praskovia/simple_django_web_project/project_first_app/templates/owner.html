@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о владельце автомобиля</title>
+</head>
+<body>
+    <h1>Информация о владельцах</h1>
+
+    {% if owner %}
+        <p><strong>Фамилия:</strong> {{ owner.last_name }}</p>
+        <p><strong>Имя:</strong> {{ owner.first_name }}</p>
+        <p><strong>Дата рождения:</strong> {{ owner.birth_date }}</p>
+    {% elif owners %}
+        <ul>
+            {% for owner in owners %}
+                <li><strong>Имя:</strong> {{ owner.first_name }}, <strong>Фамилия:</strong> {{ owner.last_name }}, <strong>Дата рождения:</strong> {{ owner.birth_date }}, <strong>Паспортные данные:</strong> {{ owner.Passport }}, <strong>Адрес:</strong> {{ owner.Address }}, <strong>Национальность:</strong> {{ owner.Nationality }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Информация о владельцах недоступна.</p>
+    {% endif %}
+</body>
+</html>
