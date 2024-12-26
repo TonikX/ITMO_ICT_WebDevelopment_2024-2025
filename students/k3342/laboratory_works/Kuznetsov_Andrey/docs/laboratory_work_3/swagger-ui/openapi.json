@@ -1,0 +1,1231 @@
+swagger: '2.0'
+info:
+  title: Your API
+  description: API documentation
+  contact:
+    email: contact@yourapi.com
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+- http
+basePath: /api
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  api_key:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+- api_key: []
+paths:
+  /agencies/:
+    get:
+      operationId: agencies_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Agency'
+      tags:
+      - agencies
+    post:
+      operationId: agencies_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Agency'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Agency'
+      tags:
+      - agencies
+    parameters: []
+  /agencies/{id}/:
+    get:
+      operationId: agencies_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Agency'
+      tags:
+      - agencies
+    put:
+      operationId: agencies_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Agency'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Agency'
+      tags:
+      - agencies
+    patch:
+      operationId: agencies_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Agency'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Agency'
+      tags:
+      - agencies
+    delete:
+      operationId: agencies_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - agencies
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this agency.
+      required: true
+      type: integer
+  /batch-products/:
+    get:
+      operationId: batch-products_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    post:
+      operationId: batch-products_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/BatchProduct'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    parameters: []
+  /batch-products/expired_products/:
+    get:
+      operationId: batch-products_expired_products
+      description: Get all batches with expired products.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    parameters: []
+  /batch-products/{id}/:
+    get:
+      operationId: batch-products_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    put:
+      operationId: batch-products_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/BatchProduct'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    patch:
+      operationId: batch-products_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/BatchProduct'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/BatchProduct'
+      tags:
+      - batch-products
+    delete:
+      operationId: batch-products_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - batch-products
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this batch product.
+      required: true
+      type: integer
+  /batches/:
+    get:
+      operationId: batches_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Batch'
+      tags:
+      - batches
+    post:
+      operationId: batches_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Batch'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Batch'
+      tags:
+      - batches
+    parameters: []
+  /batches/{id}/:
+    get:
+      operationId: batches_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Batch'
+      tags:
+      - batches
+    put:
+      operationId: batches_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Batch'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Batch'
+      tags:
+      - batches
+    patch:
+      operationId: batches_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Batch'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Batch'
+      tags:
+      - batches
+    delete:
+      operationId: batches_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - batches
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this batch.
+      required: true
+      type: integer
+  /brokers/:
+    get:
+      operationId: brokers_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    post:
+      operationId: brokers_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Broker'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    parameters: []
+  /brokers/by-criteria/:
+    get:
+      operationId: brokers_get_by_criteria
+      description: Get the broker by name or agency.
+      parameters:
+      - name: name
+        in: query
+        description: Broker name.
+        type: string
+      - name: address
+        in: query
+        description: Producer agency address.
+        type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    parameters: []
+  /brokers/delete-by-name/:
+    delete:
+      operationId: brokers_delete_by_name
+      description: Delete the broker by name.
+      parameters:
+      - name: name
+        in: query
+        description: Broker name.
+        type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    parameters: []
+  /brokers/{id}/:
+    get:
+      operationId: brokers_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    put:
+      operationId: brokers_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Broker'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    patch:
+      operationId: brokers_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Broker'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Broker'
+      tags:
+      - brokers
+    delete:
+      operationId: brokers_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - brokers
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this broker.
+      required: true
+      type: integer
+  /client-purchases/:
+    get:
+      operationId: client-purchases_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientPurchase'
+      tags:
+      - client-purchases
+    post:
+      operationId: client-purchases_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientPurchase'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientPurchase'
+      tags:
+      - client-purchases
+    parameters: []
+  /client-purchases/{id}/:
+    get:
+      operationId: client-purchases_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientPurchase'
+      tags:
+      - client-purchases
+    put:
+      operationId: client-purchases_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientPurchase'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientPurchase'
+      tags:
+      - client-purchases
+    patch:
+      operationId: client-purchases_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientPurchase'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientPurchase'
+      tags:
+      - client-purchases
+    delete:
+      operationId: client-purchases_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - client-purchases
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this client purchase.
+      required: true
+      type: integer
+  /clients/:
+    get:
+      operationId: clients_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    post:
+      operationId: clients_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientLoyalty'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    parameters: []
+  /clients/loyal_clients/:
+    get:
+      operationId: clients_loyal_clients
+      description: Find clients who only purchased products from a specific broker.
+      parameters:
+      - name: broker_id
+        in: query
+        description: Broker ID
+        type: integer
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    parameters: []
+  /clients/{id}/:
+    get:
+      operationId: clients_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    put:
+      operationId: clients_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientLoyalty'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    patch:
+      operationId: clients_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/ClientLoyalty'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ClientLoyalty'
+      tags:
+      - clients
+    delete:
+      operationId: clients_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - clients
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this client.
+      required: true
+      type: integer
+  /producers/:
+    get:
+      operationId: producers_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    post:
+      operationId: producers_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Producer'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    parameters: []
+  /producers/by-name/:
+    get:
+      operationId: producers_get_by_name
+      description: Get the producer by name.
+      parameters:
+      - name: name
+        in: query
+        description: Producer name.
+        type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    parameters: []
+  /producers/top_producer_by_revenue/:
+    get:
+      operationId: producers_top_producer_by_revenue
+      description: Find the producer with the highest revenue for the given period.
+      parameters:
+      - name: start_date
+        in: query
+        description: Start date of the period.
+        type: string
+        format: date
+      - name: end_date
+        in: query
+        description: End date of the period.
+        type: string
+        format: date
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    parameters: []
+  /producers/{id}/:
+    get:
+      operationId: producers_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    put:
+      operationId: producers_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Producer'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    patch:
+      operationId: producers_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Producer'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Producer'
+      tags:
+      - producers
+    delete:
+      operationId: producers_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - producers
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this producer.
+      required: true
+      type: integer
+  /products/:
+    get:
+      operationId: products_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+      tags:
+      - products
+    post:
+      operationId: products_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+      - products
+    parameters: []
+  /products/latest_batches/:
+    get:
+      operationId: products_latest_batches
+      description: Get the latest batch information for each product.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductRevenue'
+      tags:
+      - products
+    parameters: []
+  /products/never_sold_products/:
+    get:
+      operationId: products_never_sold_products
+      description: Get the list of products that have never been sold.
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ProductRevenue'
+      tags:
+      - products
+    parameters: []
+  /products/{id}/:
+    get:
+      operationId: products_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+      - products
+    put:
+      operationId: products_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+      - products
+    patch:
+      operationId: products_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Product'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Product'
+      tags:
+      - products
+    delete:
+      operationId: products_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - products
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this product.
+      required: true
+      type: integer
+  /transactions/:
+    get:
+      operationId: transactions_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+      tags:
+      - transactions
+    post:
+      operationId: transactions_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Transaction'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Transaction'
+      tags:
+      - transactions
+    parameters: []
+  /transactions/{id}/:
+    get:
+      operationId: transactions_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Transaction'
+      tags:
+      - transactions
+    put:
+      operationId: transactions_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Transaction'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Transaction'
+      tags:
+      - transactions
+    patch:
+      operationId: transactions_partial_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Transaction'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Transaction'
+      tags:
+      - transactions
+    delete:
+      operationId: transactions_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - transactions
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this transaction.
+      required: true
+      type: integer
+definitions:
+  Agency:
+    required:
+    - name
+    - address
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 255
+        minLength: 1
+      address:
+        title: Address
+        type: string
+        maxLength: 255
+        minLength: 1
+  Producer:
+    required:
+    - name
+    - address
+    - phone
+    - email
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 30
+        minLength: 1
+      address:
+        title: Address
+        type: string
+        maxLength: 255
+        minLength: 1
+      phone:
+        title: Phone
+        type: string
+        maxLength: 255
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        maxLength: 10
+        minLength: 1
+  Product:
+    required:
+    - producer
+    - name
+    - production_date
+    - expiration_date
+    - unit
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      producer:
+        $ref: '#/definitions/Producer'
+      name:
+        title: Name
+        type: string
+        maxLength: 50
+        minLength: 1
+      production_date:
+        title: Production date
+        type: string
+        format: date
+      expiration_date:
+        title: Expiration date
+        type: string
+        format: date
+      unit:
+        title: Unit
+        type: string
+        maxLength: 50
+        minLength: 1
+  BatchProduct:
+    required:
+    - product
+    - batch
+    - quantity
+    - price_per_unit
+    type: object
+    properties:
+      product:
+        $ref: '#/definitions/Product'
+      batch:
+        title: Batch
+        type: integer
+      quantity:
+        title: Quantity
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      price_per_unit:
+        title: Price per unit
+        type: string
+        format: decimal
+  Broker:
+    required:
+    - agency
+    - name
+    - fixed_monthly_fee
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      agency:
+        $ref: '#/definitions/Agency'
+      name:
+        title: Name
+        type: string
+        maxLength: 30
+        minLength: 1
+      fixed_monthly_fee:
+        title: Fixed monthly fee
+        type: string
+        format: decimal
+  Batch:
+    required:
+    - broker
+    - batch_products
+    - supply_conditions
+    - contract_date
+    - shipment_date
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      broker:
+        $ref: '#/definitions/Broker'
+      batch_products:
+        type: array
+        items:
+          $ref: '#/definitions/BatchProduct'
+      supply_conditions:
+        title: Supply conditions
+        type: string
+        enum:
+        - prepayment
+        - no_prepayment
+      contract_date:
+        title: Contract date
+        type: string
+        format: date
+      shipment_date:
+        title: Shipment date
+        type: string
+        format: date
+  ClientPurchase:
+    required:
+    - batch
+    - quantity
+    - purchase_date
+    - total_price
+    - client
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      batch:
+        $ref: '#/definitions/Batch'
+      quantity:
+        title: Quantity
+        type: integer
+        maximum: 9223372036854775807
+        minimum: -9223372036854775808
+      purchase_date:
+        title: Purchase date
+        type: string
+        format: date
+      total_price:
+        title: Total price
+        type: string
+        format: decimal
+      client:
+        title: Client
+        type: integer
+  ClientLoyalty:
+    required:
+    - name
+    - total_purchases
+    - total_spent
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 30
+        minLength: 1
+      total_purchases:
+        title: Total purchases
+        type: integer
+      total_spent:
+        title: Total spent
+        type: string
+        format: decimal
+  ProductRevenue:
+    required:
+    - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 50
+        minLength: 1
+      total_revenue:
+        title: Total revenue
+        type: string
+        readOnly: true
+  Transaction:
+    required:
+    - batch
+    - total_amount
+    - transaction_date
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      batch:
+        $ref: '#/definitions/Batch'
+      total_amount:
+        title: Total amount
+        type: string
+        format: decimal
+      transaction_date:
+        title: Transaction date
+        type: string
+        format: date
