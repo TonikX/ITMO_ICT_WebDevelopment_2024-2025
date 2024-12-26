@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    
+    <h2 class="mb-4">Написать отзыв на комнату {{ object.room.pk }}</h2>
+    <body>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="review" class="form-label">Отзыв</label>
+            {{ form.review }}
+        </div>
+        <div class="mb-3">
+            <label for="rate" class="form-label">Оценка</label>
+            {{ form.rate }}
+        </div>
+        <button type="submit" class="btn btn-success">Отправить</button>
+        <a href="{% url 'reservations' %}" class="btn btn-secondary">Вернуться</a>
+    </form>
+    </body>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h2 class="mb-4">Список бронирований</h2>
+<div class="main">
+    {% for reservation in reservations %}
+        <li>Номер комнаты: {{ reservation.room.id }}</li>
+        <li>Дата начала бронирования: {{ reservation.start_date }}</li>
+        <li>Дата конца бронирования: {{ reservation.end_date }}</li>
+        <a href="{% url 'reservation_update' pk=reservation.id %}" class="btn btn-primary">Изменить резервирование</a>
+        <a href="{% url 'reservation_delete' pk=reservation.id %}" class="btn btn-danger">Удалить резервирование</a>
+        <a href="{% url 'create_review' reservation_id=reservation.id %}" class="btn btn-primary">Оставить отзыв на номер</a>
+    {% empty %}
+        У вас нет забронированных номеров.
+    <hr/>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
