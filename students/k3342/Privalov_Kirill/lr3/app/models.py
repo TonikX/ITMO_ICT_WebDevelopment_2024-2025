@@ -54,6 +54,8 @@ class Schedule(models.Model):
     Date = models.DateField()
     IsWorkingDay = models.BooleanField(default=False)
     Shift = models.CharField(max_length=50, blank=True, null=True)
+    StartTime = models.TimeField()
+    EndTime = models.TimeField()
 
 class Office(models.Model):
     OfficeID = models.AutoField(primary_key=True)
