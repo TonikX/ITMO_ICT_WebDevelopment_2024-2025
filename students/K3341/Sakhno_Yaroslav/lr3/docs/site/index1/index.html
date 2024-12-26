@@ -9,10 +9,8 @@
       
       
       
-        <link rel="prev" href="../index2/">
       
-      
-        <link rel="next" href="../prac_2/">
+        <link rel="next" href="../index2/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +18,7 @@
     
     
       
-        <title>Практическое задание №1 - My Docs</title>
+        <title>Лаба 1 - My Docs</title>
       
     
     
@@ -61,11 +59,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -98,7 +91,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Практическое задание №1
+              Лаба 1
             
           </span>
         </div>
@@ -188,10 +181,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../index1/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -200,6 +200,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -228,19 +229,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -254,7 +253,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Лаба 3
@@ -265,28 +264,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Практическое задание №1
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../prac_1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -295,42 +276,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Листинг
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Результат
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -991,32 +936,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Листинг
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Результат
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1030,65 +949,24 @@
                   
 
 
-  <h1>Практическое задание №1</h1>
+  <h1>Лаба 1</h1>
 
-<p>Напишите запрос на создание 6-7 новых автовладельцев и 5-6 автомобилей, каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей.</p>
-<h3 id="_1">Листинг</h3>
-<pre><code class="language-python">import random
-from datetime import date, timedelta
-from .models import Owner, Car, DriverLicense, Ownership
-
-
-def random_date(start, end):
-    return start + timedelta(
-        days=random.randint(0, int((end - start).days))
-    )
-
-
-for i in range(1, 8):
-    owner = Owner.objects.create_user(
-        username=f'owner{i}',
-        email=f'owner{i}@example.com',
-        password='password123',
-        birth_date=random_date(date(1960, 1, 1), date(2000, 12, 31)),
-        passport=f'AB12345{i}',
-        address=f'123 Main St, City {i}',
-        nationality='Country'
-    )
-
-    DriverLicense.objects.create(
-        owner_id=owner,
-        type='B',
-        issue_date=random_date(date(2000, 1, 1), date.today())
-    )
-
-cars = []
-for j in range(1, 7):
-    car = Car.objects.create(
-        number=f'XYZ123{j}',
-        brand='BrandName',
-        model=f'Model{j}',
-        color='Blue'
-    )
-    cars.append(car)
-
-for owner in Owner.objects.all():
-    owned_cars = random.sample(cars, random.randint(1, 3))
-    for car in owned_cars:
-        Ownership.objects.create(
-            owner=owner,
-            car=car,
-            start_date=random_date(date(2010, 1, 1), date.today()),
-            end_date=random_date(date(2010, 1, 1), date.today())
-        )
-
-for owner in Owner.objects.all():
-    print(f'Owner: {owner.username}')
-    for owning in Ownership.objects.filter(owner=owner):
-        print(f'  Car: {owning.car.number}')
-</code></pre>
-<h3 id="_2">Результат</h3>
-<p><img alt="img.png" src="../img/img.png" /></p>
+<p>Вход
+<img alt="img.png" src="../img4/img.png" />
+Категории
+<img alt="img.png" src="../img4/img_1.png" />
+Авторы
+<img alt="img.png" src="../img4/img_2.png" />
+Залы
+<img alt="img.png" src="../img4/img_3.png" />
+Книги
+<img alt="img.png" src="../img4/img_4.png" />
+Экземлпяры книг
+<img alt="img.png" src="../img4/img_5.png" />
+Читатели
+<img alt="img.png" src="../img4/img_6.png" />
+Взятые книги
+<img alt="img.png" src="../img4/img_7.png" /></p>
 
 
 

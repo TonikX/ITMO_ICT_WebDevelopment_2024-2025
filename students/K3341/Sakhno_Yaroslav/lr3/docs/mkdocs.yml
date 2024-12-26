@@ -3,42 +3,44 @@ dev_addr: 127.0.0.1:8080
 theme:
   name: material
 nav:
-  - Практическое задание №1:  prac_1.md
-  - Практическое задание №2: prac_2.md
-  - Практическое задание №3: prac_3.md
-  - Предметная область: task.md
+  - "Лаба 1": index1.md
+  - "Лаба 2": index2.md
+  - Лаба 3:
+    - Практическое задание №1:  prac_1.md
+    - Практическое задание №2: prac_2.md
+    - Практическое задание №3: prac_3.md
+    - Предметная область: task.md
 
-  - Api:
-    - "authorization": auth/autorization.md
-    - "token authorization": auth/token.md
+    - Api:
+      - "authorization": auth/autorization.md
+      - "token authorization": auth/token.md
 
-    - "books list": books/list.md
-    - "books info": books/info.md
-    - "books create": books/create.md
+      - "books list": books/list.md
+      - "books info": books/info.md
+      - "books create": books/create.md
 
-    - "rooms list": rooms/list.md
-    - "rooms info": rooms/info.md
-    - "rooms create": rooms/create.md
+      - "rooms list": rooms/list.md
+      - "rooms info": rooms/info.md
+      - "rooms create": rooms/create.md
 
-    - "copys list": copys/list.md
-    - "copys info": copys/info.md
-    - "copys update": copys/update.md
-    - "copys create": copys/create.md
+      - "copys list": copys/list.md
+      - "copys info": copys/info.md
+      - "copys update": copys/update.md
+      - "copys create": copys/create.md
 
-    - "readers list": readers/list.md
-    - "readers info": readers/info.md
-    - "readers update": readers/update.md
-    - "readers create": readers/create.md
+      - "readers list": readers/list.md
+      - "readers info": readers/info.md
+      - "readers update": readers/update.md
+      - "readers create": readers/create.md
 
-    - "authors list": author/list.md
-    - "authors info": author/info.md
-    - "authors create": author/create.md
+      - "authors list": author/list.md
+      - "authors info": author/info.md
+      - "authors create": author/create.md
 
-    - "book takes list": booktake/list.md
-    - "book take info": booktake/info.md
-    - "book take create": booktake/create.md
+      - "book takes list": booktake/list.md
+      - "book take info": booktake/info.md
+      - "book take create": booktake/create.md
 
-    - "category list": category/list.md
-    - "category create": category/create.md
-
-
+      - "category list": category/list.md
+      - "category create": category/create.md
+  - "Лаба 4": index.md
