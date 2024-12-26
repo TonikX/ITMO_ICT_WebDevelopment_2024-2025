@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms List</title>
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Контейнер */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Заголовок */
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Текст */
+        p {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        /* Стиль для поля имени */
+        .label {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список номеров</h1>
+    <ul>
+        {% for room in rooms %}
+            <li>
+                <a href="{% url 'room_detail' room.pk %}">{{ room.room_type }} - Capacity: {{ room.capacity }}</a>
+            </li>
+        {% empty %}
+            <li>Нет номеров для отображения.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
