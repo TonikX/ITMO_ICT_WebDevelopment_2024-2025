@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Удаление задания</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'main' %}">Доска домашних заданий</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'submission_list' %}">Мои задания</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выход</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Удаление задания</h2>
+        <p>Вы уверены, что хотите удалить задание "{{ submission.homework.title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'submission_list' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2023 Доска домашних заданий</p>
+    </footer>
+</body>
+</html>

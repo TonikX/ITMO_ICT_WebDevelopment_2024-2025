@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список владельцев</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .owner {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        .owner hr {
+            margin: 10px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .owner span {
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Список владельцев</h1>
+
+        {% for owner in owners %}
+            <div class="owner">
+                <p><span>Имя:</span> {{ owner.first_name }}</p>
+                <p><span>Фамилия:</span> {{ owner.last_name }}</p>
+                <p><span>Дата рождения:</span> {{ owner.birth_date }}</p>
+                <p><span>Номер паспорта:</span> {{ owner.passport_number }}</p>
+                <p><span>Домашний адрес:</span> {{ owner.home_address }}</p>
+                <p><span>Национальность:</span> {{ owner.nationality }}</p>
+                <hr/>
+            </div>
+        {% endfor %}
+
+        <a href="/owners/add/">Добавить нового владельца</a>
+    </div>
+</body>
+
+</html>

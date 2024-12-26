@@ -1,0 +1,36 @@
+from django.urls import path
+from blog.views import (
+    main,
+    register,
+    user_login,
+    account_view,
+    logout_view,
+    add_homework,
+    edit_homework,
+    delete_homework,
+    homework_list,
+    submission_list,
+    submit_homework,
+    edit_submission,
+    delete_submission,
+    grade_table,
+    grade_submission,
+)
+
+urlpatterns = [
+    path('main/', main, name='main'),
+    path('register/', register, name='register'),
+    path('login/', user_login, name='login'),
+    path('account/', account_view, name='account'),
+    path('logout/', logout_view, name='logout'),
+    path('homework/add/', add_homework, name='add_homework'),
+    path('homework/edit/<int:homework_id>/', edit_homework, name='edit_homework'),
+    path('homework/delete/<int:homework_id>/', delete_homework, name='delete_homework'),
+    path('homework/', homework_list, name='homework_list'),
+    path('submissions/', submission_list, name='submission_list'),
+    path('homework/submit/<int:homework_id>/', submit_homework, name='submit_homework'),
+    path('submissions/edit/<int:submission_id>/', edit_submission, name='edit_submission'),
+    path('submissions/delete/<int:submission_id>/', delete_submission, name='delete_submission'),
+    path('grades/', grade_table, name='grade_table'),
+    path('submission/grade/<int:submission_id>/', grade_submission, name='grade_submission'),
+]
