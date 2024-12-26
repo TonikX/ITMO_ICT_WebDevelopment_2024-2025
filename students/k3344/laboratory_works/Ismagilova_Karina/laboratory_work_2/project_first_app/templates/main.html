@@ -1,0 +1,15 @@
+{% extends 'design.html' %}
+
+{% block title %}Добро пожаловать на сайт научных конференций!{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="display-4 mb-4">Добро пожаловать на сайт научных конференций!</h1>
+    <p class="lead">На нашем сайте вы можете узнать о предстоящих научных конференциях.</p>
+
+    <div class="button-list">
+        <a href="{% url 'conference_list' %}" class="btn btn-success btn-lg mb-3">Посмотреть список конференций</a>
+        <a href="{% url 'all_participants_list' %}" class="btn btn-info btn-lg mb-3">Посмотреть список участников</a>
+    </div>
+</div>
+{% endblock %}

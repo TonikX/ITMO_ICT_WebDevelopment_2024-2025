@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Реализация - Web-программирование</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">Web-программирование</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_1 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-1/">ex-1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-2/">ex-2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-3/">ex-3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-4/">ex-4</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-5/">ex-5</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_2 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../models/">Создание моделей</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Реализация</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../custom/">Кастомизация, добавление navbar и пагинации</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_3 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-3/practice_work/">Практическая работа</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-3/laboratory_work_3/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_4 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-4/laboratory_work_4/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../models/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../custom/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">Реализация:</a></li>
+            <li class="second-level"><a href="#no5">Вариант №5</a></li>
+                
+            <li class="second-level"><a href="#_2">Создание контроллеров:</a></li>
+                
+            <li class="second-level"><a href="#_3">Создание ссылок:</a></li>
+                
+            <li class="second-level"><a href="#_4">Создание форм:</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="_1">Реализация:</h2>
+<p>Реализовация сайта, в соответствии с вариантом задания лабораторной работы.</p>
+<h3 id="no5">Вариант №5</h3>
+<p>Список научных конференций<br />
+Интерфейс описывает названия конференций, список тематик, место проведения,
+период проведения, описание конференций, описание место проведения, условия участия.
+Необходимо реализовать следующий функционал:
+- Регистрация новых пользователей.
+- Просмотр конференций и регистрацию авторов для выступлений.
+Пользователь должен иметь возможность редактирования и удаления своих
+регистраций.
+- Написание отзывов к конференциям. При добавлении комментариев,
+должны сохраняться даты конференции, текст комментария, рейтинг (1-10),
+информация о комментаторе.
+- Администратор должен иметь возможность указания результатов
+выступления (рекомендован к публикации или нет) средствами Django-
+admin.
+- В клиентской части должна формироваться таблица, отображающая всех
+участников по конференциям.</p>
+<h3 id="_2">Создание контроллеров:</h3>
+<pre><code class="language-python">User = get_user_model()
+class UserRegistrationView(CreateView):
+    form_class = NewUserForm
+    template_name = 'registration.html'
+    success_url = reverse_lazy('login')
+
+class LoginView(View):
+    form_class = AuthentificationCustomForm
+    template_name = 'login.html'
+    success_url = reverse_lazy('login')
+
+class MainView(TemplateView):
+    template_name = 'main.html'
+
+
+class ConferenceListView(ListView):
+    model = Conference
+    template_name = 'conference_list.html'
+    context_object_name = 'conferences'
+    paginate_by = 4
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        queryset = Conference.objects.all()
+        if query:
+            queryset = queryset.filter(Q(title__icontains=query) | Q(themes__icontains=query))
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query_params = self.request.GET.copy()
+        query_params.pop('page', None)
+        context['query'] = query_params.urlencode()
+        return context
+
+class ConferenceDetailView(DetailView):
+    model = Conference
+    template_name = 'conference_detail.html'
+    context_object_name = 'conference'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.info(request, &quot;Зарегистрируйтесь для просмотра деталей конференции!&quot;)
+            return redirect(reverse('conference_list'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        conference = self.get_object()
+        context['reviews'] = conference.review_set.select_related('user').all()
+        context['review_form'] = ReviewForm()
+        context['is_author'] = self.request.user.is_staff
+        return context
+
+    def post(self, request):
+        conference = self.get_object()
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.user = request.user
+            review.conference = conference
+            review.date = conference.start_date
+            review.save()
+            messages.success(request, &quot;Ваш отзыв успешно добавлен!&quot;)
+            return redirect('conference_detail', pk=conference.pk)
+        context = self.get_context_data()
+        context['review_form'] = review_form
+        return self.render_to_response(context)
+
+class ParticipantRegistrationView(View):
+    def post(self, request, pk):
+        conference = get_object_or_404(Conference, pk=pk)
+        if Participant.objects.filter(user=request.user, conference=conference).exists():
+            messages.error(request, &quot;Вы уже зарегистрированы на данную конференцию как участник.&quot;)
+        else:
+            Participant.objects.create(user=request.user, conference=conference, is_author=False)
+            request.session['is_author'] = False
+            messages.success(request, &quot;Вы успешно зарегистрированы как участник!&quot;)
+        return redirect('conference_list')
+
+class AuthorRegistrationView(View):
+    def post(self, request, pk):
+        conference = get_object_or_404(Conference, pk=pk)
+        if Participant.objects.filter(user=request.user, conference=conference).exists():
+            messages.error(request, &quot;Вы уже зарегистрированы на данную конференцию как автор.&quot;)
+        else:
+            Participant.objects.create(user=request.user, conference=conference, is_author=True)
+            request.session['is_author'] = True
+            messages.success(request, &quot;Вы успешно зарегистрированы как автор!&quot;)
+        return redirect('conference_list')
+
+class AllParticipantsListView(ListView):
+    model = Conference
+    template_name = 'all_participants_list.html'
+    context_object_name = 'conferences'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        participants = Participant.objects.select_related('user', 'conference').all()
+        participant_data = [
+            {
+                'conference': participant.conference.title,
+                'date': participant.conference.start_date,
+                'first_name': participant.user.first_name,
+                'last_name': participant.user.last_name
+            }
+            for participant in participants
+        ]
+        context['participants'] = participant_data
+        return context
+
+class UserDashboardView(LoginRequiredMixin, ListView):
+    model = Participant
+    template_name = 'user_cabinet.html'
+    context_object_name = 'user_participants'
+
+    def get_queryset(self):
+        return Participant.objects.filter(user=self.request.user).select_related('conference')
+
+    def post(self, request):
+        participant_id = request.POST.get(&quot;participant_id&quot;)
+        participant = Participant.objects.filter(id=participant_id, user=request.user).first()
+        if participant:
+            participant.delete()
+            messages.success(request, &quot;Регистрация успешно удалена.&quot;)
+        else:
+            messages.error(request, &quot;Регистрация не найдена или у вас нет прав для её удаления.&quot;)
+        return redirect('user_dashboard')
+</code></pre>
+<h3 id="_3">Создание ссылок:</h3>
+<pre><code class="language-python">urlpatterns = [
+    path('/', MainView.as_view(), name='main'),
+    path('register/', UserRegistrationView.as_view(), name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('conferences/', ConferenceListView.as_view(), name='conference_list'),
+    path('conferences/&lt;int:pk&gt;/', ConferenceDetailView.as_view(), name='conference_detail'),
+    path('conference/&lt;int:pk&gt;/participant/register/', ParticipantRegistrationView.as_view(), name='participant_registration'),
+    path('conference/&lt;int:pk&gt;/author/register/', AuthorRegistrationView.as_view(), name='author_registration'),
+    path('participants/', AllParticipantsListView.as_view(), name='all_participants_list'),
+    path('dashboard/', UserDashboardView.as_view(), name='user_dashboard'),
+]
+</code></pre>
+<h3 id="_4">Создание форм:</h3>
+<pre><code class="language-python">class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['comment', 'rating']
+        labels = {
+            'comment': 'Комментарий',
+            'rating': 'Оценка',
+        }
+
+class ParticipantForm(forms.ModelForm):
+    class Meta:
+        model = Participant
+        fields = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'] = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
+
+class NewUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'birth_date', 'age', 'email']
+        labels = {
+            'username': 'Никнейм',
+            'password1': 'Пароль',
+            'password2': 'Повторите пароль',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'birth_date': 'Дата рождения',
+            'age': 'Полных лет',
+            'email': 'Email'
+        }
+
+class AuthentificationCustomForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1']
+
+class ResultsForm(forms.ModelForm):
+    class Meta:
+        model = Results
+        fields = ['accepted']
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Лабораторная работа - Web-программирование</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">Web-программирование</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_1 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-1/">ex-1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-2/">ex-2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-3/">ex-3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-4/">ex-4</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-5/">ex-5</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_2 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-2/models/">Создание моделей</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-2/realisation/">Реализация</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-2/custom/">Кастомизация, добавление navbar и пагинации</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_3 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../practice_work/">Практическая работа</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_4 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-4/laboratory_work_4/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../practice_work/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../lab-4/laboratory_work_4/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#django-djangorestframework">РЕАЛИЗАЦИЯ СЕРВЕРНОЙ ЧАСТИ ПРИЛОЖЕНИЯ СРЕДСТВАМИ DJANGO И DJANGORESTFRAMEWORK</a></li>
+            <li class="second-level"><a href="#_1">База данных:</a></li>
+                
+            <li class="second-level"><a href="#djangoorm">Реализовать модель базы данных средствами DjangoORM:</a></li>
+                
+            <li class="second-level"><a href="#api-django-rest-framework">Реализовать логику работу API средствами Django REST Framework:</a></li>
+                
+            <li class="second-level"><a href="#djoser">Подключить регистрацию / авторизацию по токенам / вывод информации о текущем пользователе средствами Djoser:</a></li>
+                
+            <li class="second-level"><a href="#_2">Эндпоинты:</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="django-djangorestframework">РЕАЛИЗАЦИЯ СЕРВЕРНОЙ ЧАСТИ ПРИЛОЖЕНИЯ СРЕДСТВАМИ DJANGO И DJANGORESTFRAMEWORK</h2>
+<h3 id="_1">База данных:</h3>
+<p><img alt="img_7.png" src="../img_7.png" /></p>
+<h3 id="djangoorm">Реализовать модель базы данных средствами DjangoORM:</h3>
+<pre><code class="language-python">from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
+
+class Student(models.Model):
+    GENDER_CHOICES = [
+        ('М', 'Мужской'),
+        ('Ж', 'Женский'),
+    ]
+    id_student = models.AutoField(primary_key=True)
+    surname = models.CharField(max_length=20)
+    name = models.CharField(max_length=20)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    class_name = models.CharField(max_length=3)
+
+    def __str__(self):
+        return f&quot;{self.surname} {self.name} ({self.class_name})&quot;
+
+
+class Grade(models.Model):
+    id_grade = models.AutoField(primary_key=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=30)
+    grade = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    quarter = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(4)])
+
+    def __str__(self):
+        return f&quot;{self.student} | {self.subject}: {self.grade} (Quarter {self.quarter})&quot;
+
+
+class StudentSchedule(models.Model):
+    id_schedule = models.AutoField(primary_key=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    lessons = models.ManyToManyField('Lesson')
+
+    def __str__(self):
+        lessons_list = ', '.join(lesson.subject for lesson in self.lessons.all())
+        return f&quot;Schedule for {self.student}: {lessons_list}&quot;
+
+
+class Teacher(models.Model):
+    id_teacher = models.AutoField(primary_key=True)
+    surname = models.CharField(max_length=20)
+    name = models.CharField(max_length=20)
+    room_assigned = models.ForeignKey(
+        'Room', null=True, on_delete=models.SET_NULL, related_name='assigned_teachers'
+    )
+    lessons = models.ManyToManyField('Lesson', related_name='taught_by', blank=True)
+
+    def __str__(self):
+        room_info = f&quot;Room: {self.room_assigned}&quot; if self.room_assigned else &quot;No assigned room&quot;
+        return f&quot;{self.surname} {self.name} ({room_info})&quot;
+
+
+class Room(models.Model):
+    ROOM_STATUS_CHOICES = [
+        ('Оборудованная', 'Оборудованная'),
+        ('Базовая', 'Базовая'),
+    ]
+    id_room = models.AutoField(primary_key=True)
+    number = models.CharField(max_length=20)
+    status = models.CharField(max_length=15, choices=ROOM_STATUS_CHOICES)
+    teacher = models.ManyToManyField(Teacher, blank=True, related_name='rooms')
+
+    def __str__(self):
+        return f&quot;{self.number} ({self.get_status_display()})&quot;
+
+
+class Lesson(models.Model):
+    DAY_CHOICES = [
+        ('Понедельник', 'Понедельник'),
+        ('Вторник', 'Вторник'),
+        ('Среда', 'Среда'),
+        ('Четверг', 'Четверг'),
+        ('Пятница', 'Пятница'),
+        ('Суббота', 'Суббота'),
+    ]
+    NUM_LESSON = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+    ]
+    id_lesson = models.AutoField(primary_key=True)
+    day = models.CharField(max_length=20, choices=DAY_CHOICES)
+    lesson_number = models.CharField(max_length=2, choices=NUM_LESSON)
+    subject = models.CharField(max_length=20)
+    class_label = models.CharField(max_length=3)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teaches')
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='lessons')
+
+    def __str__(self):
+        return f&quot;{self.subject} ({self.class_label}) | {self.day} Lesson {self.lesson_number}&quot;
+</code></pre>
+<h3 id="api-django-rest-framework">Реализовать логику работу API средствами Django REST Framework:</h3>
+<p>serializers.py:</p>
+<pre><code class="language-python">from rest_framework import serializers
+from .models import Student, Teacher, Grade, Lesson, Room, StudentSchedule
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+class TeacherSerializer(serializers.ModelSerializer):
+    lessons = serializers.PrimaryKeyRelatedField(
+        queryset=Lesson.objects.all(),
+        many=True,
+        required=False,
+        allow_null=True
+    )
+
+    class Meta:
+        model = Teacher
+        fields = '__all__'
+
+class GradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
+
+class LessonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lesson
+        fields = '__all__'
+
+class RoomSerializer(serializers.ModelSerializer):
+    teacher = serializers.PrimaryKeyRelatedField(
+        queryset=Teacher.objects.all(),
+        many=True,
+        required=False,
+        allow_null=True
+    )
+
+    class Meta:
+        model = Room
+        fields = '__all__'
+
+class StudentScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentSchedule
+        fields = '__all__'
+</code></pre>
+<p>views.py:</p>
+<pre><code class="language-python">from django.db.models import Count
+from requests import Response
+from rest_framework.response import Response
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.views import APIView
+from .serializers import *
+
+class StudentListCreateView(ListCreateAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class StudentDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
+
+class TeacherListCreateView(ListCreateAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+
+class TeacherDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Teacher.objects.all()
+    serializer_class = TeacherSerializer
+
+class GradeListCreateView(ListCreateAPIView):
+    queryset = Grade.objects.all()
+    serializer_class = GradeSerializer
+
+class LessonListCreateView(ListCreateAPIView):
+    queryset = Lesson.objects.all()
+    serializer_class = LessonSerializer
+
+class LessonDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Lesson.objects.all()
+    serializer_class = LessonSerializer
+
+class RoomListCreateView(ListCreateAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+class RoomDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+class StudentScheduleListCreateView(ListCreateAPIView):
+    queryset = StudentSchedule.objects.all()
+    serializer_class = StudentScheduleSerializer
+
+class StudentScheduleDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = StudentSchedule.objects.all()
+    serializer_class = StudentScheduleSerializer
+
+class SubjectInRoomView(APIView):
+    &quot;Список предметов, которые проводятся в указанной комнате в указанный день недели.&quot;
+    def get(self, request, room_number, day):
+        lessons = Lesson.objects.filter(room__number=room_number, day=day)
+        if lessons.exists():
+            data = [
+                {
+                    &quot;subject&quot;: lesson.subject,
+                    &quot;class&quot;: lesson.class_label,
+                    &quot;lesson_number&quot;: lesson.lesson_number
+                } for lesson in lessons
+            ]
+            return Response(data)
+        else:
+            return Response({&quot;error&quot;: &quot;No lessons found for the specified room and day&quot;}, status=404)
+
+class TeachersPerSubjectView(APIView):
+    &quot;Количество учителей, преподающих каждый предмет, имена и фамилии.&quot;
+    def get(self, request):
+        subjects = Lesson.objects.values('subject').annotate(teacher_count=Count('teacher', distinct=True))
+        result = []
+        for subject in subjects:
+            subject_name = subject['subject']
+            teachers = Lesson.objects.filter(subject=subject_name).values(
+                'teacher__name', 'teacher__surname'
+            ).distinct()
+            teacher_list = [
+                {&quot;name&quot;: teacher['teacher__name'], &quot;surname&quot;: teacher['teacher__surname']}
+                for teacher in teachers
+            ]
+            result.append({
+                &quot;subject&quot;: subject_name,
+                &quot;teacher_count&quot;: subject['teacher_count'],
+                &quot;teachers&quot;: teacher_list
+            })
+        return Response(result)
+
+class GenderCountPerClassView(APIView):
+    &quot;Количество мальчиков и девочек в каждом классе.&quot;
+    def get(self, request):
+        gender_counts = (
+            Student.objects.values('class_name', 'gender')
+            .annotate(count=Count('id_student'))
+        )
+        result = {}
+        for item in gender_counts:
+            class_name = item['class_name']
+            if class_name not in result:
+                result[class_name] = {&quot;boys&quot;: 0, &quot;girls&quot;: 0}
+            if item['gender'] == 'М':
+                result[class_name][&quot;boys&quot;] = item['count']
+            elif item['gender'] == 'Ж':
+                result[class_name][&quot;girls&quot;] = item['count']
+        return Response(result)
+
+class RoomCountByStatusView(APIView):
+    &quot;Количество кабинетов в школе по классификации.&quot;
+    def get(self, request):
+        room_counts = (
+            Room.objects.values('status')
+            .annotate(count=Count('id_room'))
+        )
+        result = {item['status']: item['count'] for item in room_counts}
+        return Response(result)
+
+class TeachersWithSameSubjectsView(APIView):
+    &quot;Список учителей, которые преподают те же предметы, что и указанный учитель по id.&quot;
+    def get(self, request, teacher_id):
+        teacher = Teacher.objects.get(id_teacher=teacher_id)
+        subjects = teacher.lessons.values_list('subject', flat=True)
+        teachers_with_same_subjects = Teacher.objects.filter(lessons__subject__in=subjects).exclude(id_teacher=teacher_id)
+        teacher_list = [
+            {&quot;name&quot;: t.surname + &quot; &quot; + t.name} for t in teachers_with_same_subjects
+        ]
+        return Response(teacher_list)
+
+class StudentScheduleView(APIView):
+    &quot;Расписание для ученика по id.&quot;
+    def get(self, request, student_id):
+        try:
+            student_schedule = StudentSchedule.objects.get(student_id=student_id)
+            student = Student.objects.get(id_student=student_id)
+            lessons = student_schedule.lessons.all()
+            schedule_data = {
+                &quot;student_name&quot;: f&quot;{student.surname} {student.name}&quot;,
+                &quot;class_name&quot;: student.class_name,
+                &quot;lessons&quot;: [{&quot;subject&quot;: lesson.subject, &quot;day&quot;: lesson.day, &quot;lesson_number&quot;: lesson.lesson_number} for
+                            lesson in lessons]
+            }
+
+            return Response(schedule_data)
+
+        except StudentSchedule.DoesNotExist:
+            return Response({&quot;error&quot;: &quot;Schedule not found for the given student&quot;}, status=404)
+        except Student.DoesNotExist:
+            return Response({&quot;error&quot;: &quot;Student not found&quot;}, status=404)
+
+class GradeListView(APIView):
+    &quot;Оценки для ученика по id.&quot;
+    def get(self, request, student_id):
+        grades = Grade.objects.filter(student_id=student_id)
+        student = Student.objects.get(id_student=student_id)
+        if grades.exists():
+            grade_data = [
+                {
+                    &quot;student_name&quot;: f&quot;{student.surname} {student.name}&quot;,
+                    &quot;subject&quot;: grade.subject,
+                    &quot;grade&quot;: grade.grade,
+                    &quot;quarter&quot;: grade.quarter
+                }
+                for grade in grades
+            ]
+            return Response(grade_data)
+        else:
+            return Response({&quot;error&quot;: &quot;Grades not found for the given student&quot;}, status=404)
+</code></pre>
+<h3 id="djoser">Подключить регистрацию / авторизацию по токенам / вывод информации о текущем пользователе средствами Djoser:</h3>
+<pre><code class="language-python">REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+DJOSER = {
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'LOGIN_FIELD': 'username',
+    'TOKEN_MODEL': 'rest_framework.authtoken.models.Token'
+
+}
+</code></pre>
+<p>urls.py:</p>
+<pre><code class="language-python">    path(&quot;auth/&quot;, include(&quot;djoser.urls&quot;)),
+    path(&quot;auth/&quot;, include(&quot;djoser.urls.authtoken&quot;)),
+    path(&quot;api-auth/&quot;, include(&quot;rest_framework.urls&quot;)),
+</code></pre>
+<h3 id="_2">Эндпоинты:</h3>
+<p>Список предметов, которые проводятся в указанной комнате в указанный день недели.
+<img alt="img_8.png" src="../img_8.png" /></p>
+<p>Количество учителей, преподающих каждый предмет, имена и фамилии.<br />
+<img alt="img_9.png" src="../img_9.png" /></p>
+<p>Количество мальчиков и девочек в каждом классе.<br />
+<img alt="img_10.png" src="../img_10.png" /></p>
+<p>Количество кабинетов в школе по классификации. 
+<img alt="img_11.png" src="../img_11.png" />  </p>
+<p>Список учителей, которые преподают те же предметы, что и указанный учитель по id.<br />
+<img alt="img_12.png" src="../img_12.png" /></p>
+<p>Расписание для ученика по id.<br />
+<img alt="img_13.png" src="../img_13.png" />  </p>
+<p>Оценки для ученика по id.<br />
+<img alt="img_14.png" src="../img_14.png" />  </p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

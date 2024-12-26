@@ -1,0 +1,73 @@
+{% extends "design.html" %}
+
+{% block title %}Список конференций{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center mb-4">Список конференций</h1>
+
+    {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="get" action="{% url 'conference_list' %}" class="form-inline justify-content-center mb-3">
+        <input type="text" name="q" class="form-control mr-2" placeholder="Поиск конференций" value="{{ request.GET.q }}">
+        <button type="submit" class="btn btn-outline-primary search">Поиск</button>
+    </form>
+
+    <div class="row justify-content-center">
+        {% for conference in conferences %}
+            <div class="col-md-6 mb-4">
+                <div class="card conference-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ conference.title }}</h5>
+                        <p class="card-text"><strong>Темы:</strong> {{ conference.themes }}</p>
+                        <p class="card-text"><strong>Место проведения:</strong> {{ conference.location }}</p>
+                        <p class="card-text"><strong>Период:</strong> {{ conference.start_date }} - {{ conference.end_date }}</p>
+                        <p class="card-text">{{ 307080conference.description|truncatewords:20 }}</p>
+                        <a href="{% url 'conference_detail' conference.pk %}" class="btn btn-info">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>Конференции не найдены.</p>
+        {% endfor %}
+    </div>
+
+    <div class="custom-pagination d-flex justify-content-center mt-4">
+        <nav aria-label="Page navigation">
+            <ul class="pagination d-flex">
+                {% if page_obj.has_previous %}
+                    <li class="page-item mx-2">
+                        <a class="page-link custom-page-link" href="?page=1{% if query %}&q={{ query }}{% endif %}">
+                            Первая страница
+                        </a>
+                    </li>
+                    <li class="page-item mx-2">
+                        <a class="page-link custom-page-link" href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}">
+                            Предыдущая страница
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item mx-2">
+                        <a class="page-link custom-page-link" href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}">
+                            Следующая страница
+                        </a>
+                    </li>
+                    <li class="page-item mx-2">
+                        <a class="page-link custom-page-link" href="?page={{ paginator.num_pages }}{% if query %}&q={{ query }}{% endif %}">
+                            Последняя страница
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

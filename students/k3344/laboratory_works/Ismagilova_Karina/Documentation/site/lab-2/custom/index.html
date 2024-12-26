@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Кастомизация, добавление navbar и пагинации - Web-программирование</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">Web-программирование</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_1 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-1/">ex-1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-2/">ex-2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-3/">ex-3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-4/">ex-4</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-5/">ex-5</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_2 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../models/">Создание моделей</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../realisation/">Реализация</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Кастомизация, добавление navbar и пагинации</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_3 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-3/practice_work/">Практическая работа</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-3/laboratory_work_3/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_4 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-4/laboratory_work_4/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../realisation/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../lab-3/practice_work/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#navbar">Кастомизация, добавление navbar и пагинации</a></li>
+        <li class="first-level "><a href="#_1">Реализованные страницы:</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="navbar">Кастомизация, добавление navbar и пагинации</h2>
+<p>В рамках данного этапа работы были реализованы следующие ключевые компоненты интерфейса:</p>
+<ul>
+<li>Я создала общий шаблона design.html
+Для унификации стилей и структуры страниц. <br />
+design.html</li>
+</ul>
+<pre><code class="language-html">    &lt;!DOCTYPE html&gt;
+    &lt;html lang=&quot;ru&quot;&gt;
+    &lt;head&gt;
+       &lt;meta charset=&quot;UTF-8&quot;&gt;
+       &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+       &lt;title&gt;{% block title %}Главная страница{% endblock %}&lt;/title&gt;
+
+       &lt;link href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+       {% load static %}
+       &lt;link href=&quot;{% static 'style.css' %}&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;nav class=&quot;navbar navbar-expand-lg navbar-light&quot; style=&quot;background-color: #e6e7e8;&quot;&gt;
+            &lt;div class=&quot;container d-flex align-items-center&quot;&gt;
+                &lt;a class=&quot;navbar-brand d-flex align-items-center&quot; href=&quot;{% url 'main' %}&quot;&gt;
+                    &lt;img src=&quot;{% static 'logo.png' %}&quot; alt=&quot;Логотип&quot; class=&quot;logo&quot;&gt;
+                    Научные конференции
+                &lt;/a&gt;
+                &lt;button class=&quot;navbar-toggler&quot; type=&quot;button&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbarNav&quot; aria-controls=&quot;navbarNav&quot; aria-expanded=&quot;false&quot; aria-label=&quot;Toggle navigation&quot;&gt;
+                    &lt;span class=&quot;navbar-toggler-icon&quot;&gt;&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;div class=&quot;collapse navbar-collapse justify-content-end&quot; id=&quot;navbarNav&quot;&gt;
+                    &lt;ul class=&quot;navbar-nav align-items-center&quot; style=&quot;font-size: 1em;&quot;&gt;
+                        {% if user.is_authenticated %}
+                            &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                &lt;span class=&quot;navbar-text&quot;&gt;Приветствуем, {{ user.username }}!&lt;/span&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                        &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                            &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'main' %}&quot;&gt;Главная&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                            &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'conference_list' %}&quot;&gt;Конференции&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                            &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'all_participants_list' %}&quot;&gt;Участники&lt;/a&gt;
+                        &lt;/li&gt;
+
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                    &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'user_dashboard' %}&quot;&gt;Мои конференции&lt;/a&gt;
+                                &lt;/li&gt;
+                                &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                    &lt;a class=&quot;nav-link&quot; href=&quot;/admin/&quot;&gt;Редактировать конференции&lt;/a&gt;
+                                &lt;/li&gt;
+                            {% else %}
+                                &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                    &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'user_dashboard' %}&quot;&gt;Мои конференции&lt;/a&gt;
+                                &lt;/li&gt;
+                            {% endif %}
+                            &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                &lt;form method=&quot;post&quot; action=&quot;{% url 'logout' %}&quot; class=&quot;m-0 p-0&quot;&gt;
+                                    {% csrf_token %}
+                                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-link nav-link&quot; style=&quot;font-size: 1em;&quot;&gt;Выйти&lt;/button&gt;
+                                &lt;/form&gt;
+                            &lt;/li&gt;
+                        {% else %}
+                            &lt;li class=&quot;nav-item mr-3&quot;&gt;
+                                &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'register' %}&quot;&gt;Регистрация&lt;/a&gt;
+                            &lt;/li&gt;
+                            &lt;li class=&quot;nav-item&quot;&gt;
+                                &lt;a class=&quot;nav-link&quot; href=&quot;{% url 'login' %}&quot;&gt;Войти&lt;/a&gt;
+                            &lt;/li&gt;
+                        {% endif %}
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/nav&gt;
+
+        &lt;div class=&quot;container my-4&quot;&gt;
+            {% block content %}{% endblock %}
+        &lt;/div&gt;
+
+        &lt;footer class=&quot;footer&quot;&gt;
+            &lt;div class=&quot;container text-center&quot;&gt;
+                &lt;span&gt;&amp;copy; 2024 Научные конференции. Все права защищены.&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/footer&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+<p>С использованием  Bootstrap 4.5.2 я реализовала меню навигации. 
+Также на странице списка конференций, я добавила пагинацию и поиск.
+conference_list.html:</p>
+<pre><code class="language-html">&lt;{% extends &quot;design.html&quot; %}
+
+{% block title %}Список конференций{% endblock %}
+
+{% block content %}
+&lt;div class=&quot;container my-4&quot;&gt;
+    &lt;h1 class=&quot;text-center mb-4&quot;&gt;Список конференций&lt;/h1&gt;
+
+    {% if messages %}
+        &lt;div class=&quot;alert alert-success&quot;&gt;
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        &lt;/div&gt;
+    {% endif %}
+
+    &lt;form method=&quot;get&quot; action=&quot;{% url 'conference_list' %}&quot; class=&quot;form-inline justify-content-center mb-3&quot;&gt;
+        &lt;input type=&quot;text&quot; name=&quot;q&quot; class=&quot;form-control mr-2&quot; placeholder=&quot;Поиск конференций&quot; value=&quot;{{ request.GET.q }}&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn btn-outline-primary search&quot;&gt;Поиск&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;div class=&quot;row justify-content-center&quot;&gt;
+        {% for conference in conferences %}
+            &lt;div class=&quot;col-md-6 mb-4&quot;&gt;
+                &lt;div class=&quot;card conference-card&quot;&gt;
+                    &lt;div class=&quot;card-body&quot;&gt;
+                        &lt;h5 class=&quot;card-title&quot;&gt;{{ conference.title }}&lt;/h5&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&lt;strong&gt;Темы:&lt;/strong&gt; {{ conference.themes }}&lt;/p&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&lt;strong&gt;Место проведения:&lt;/strong&gt; {{ conference.location }}&lt;/p&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;&lt;strong&gt;Период:&lt;/strong&gt; {{ conference.start_date }} - {{ conference.end_date }}&lt;/p&gt;
+                        &lt;p class=&quot;card-text&quot;&gt;{{ 307080conference.description|truncatewords:20 }}&lt;/p&gt;
+                        &lt;a href=&quot;{% url 'conference_detail' conference.pk %}&quot; class=&quot;btn btn-info&quot;&gt;Подробнее&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        {% empty %}
+            &lt;p&gt;Конференции не найдены.&lt;/p&gt;
+        {% endfor %}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;custom-pagination d-flex justify-content-center mt-4&quot;&gt;
+        &lt;nav aria-label=&quot;Page navigation&quot;&gt;
+            &lt;ul class=&quot;pagination d-flex&quot;&gt;
+                {% if page_obj.has_previous %}
+                    &lt;li class=&quot;page-item mx-2&quot;&gt;
+                        &lt;a class=&quot;page-link custom-page-link&quot; href=&quot;?page=1{% if query %}&amp;q={{ query }}{% endif %}&quot;&gt;
+                            Первая страница
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;page-item mx-2&quot;&gt;
+                        &lt;a class=&quot;page-link custom-page-link&quot; href=&quot;?page={{ page_obj.previous_page_number }}{% if query %}&amp;q={{ query }}{% endif %}&quot;&gt;
+                            Предыдущая страница
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    &lt;li class=&quot;page-item mx-2&quot;&gt;
+                        &lt;a class=&quot;page-link custom-page-link&quot; href=&quot;?page={{ page_obj.next_page_number }}{% if query %}&amp;q={{ query }}{% endif %}&quot;&gt;
+                            Следующая страница
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;page-item mx-2&quot;&gt;
+                        &lt;a class=&quot;page-link custom-page-link&quot; href=&quot;?page={{ paginator.num_pages }}{% if query %}&amp;q={{ query }}{% endif %}&quot;&gt;
+                            Последняя страница
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                {% endif %}
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endblock %}
+</code></pre>
+<h2 id="_1">Реализованные страницы:</h2>
+<p><img alt="img_2.png" src="../img_2.png" />
+<img alt="img_3.png" src="../img_3.png" />
+<img alt="img_4.png" src="../img_4.png" />
+<img alt="img_5.png" src="../img_5.png" />
+<img alt="img_6.png" src="../img_6.png" />
+<img alt="img_7.png" src="../img_7.png" />
+<img alt="img_8.png" src="../img_8.png" />
+<img alt="img_10.png" src="../img_10.png" /></p>
+<p>Также, если пользователь является админом, то его меню выглядит так: 
+<img alt="img_9.png" src="../img_9.png" />
+Здесь пользователь может перейти в панель django-administration, и, соответственно вносить необходимые правки или подтверждать (рекоммендовать) автора.</p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

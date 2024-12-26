@@ -1,0 +1,23 @@
+site_name: Web-программирование
+nav:
+  - Home: index.md
+  - Laboratory_work_1:
+      - "ex-1": lab-1/ex-1.md
+      - "ex-2": lab-1/ex-2.md
+      - "ex-3": lab-1/ex-3.md
+      - "ex-4": lab-1/ex-4.md
+      - "ex-5": lab-1/ex-5.md
+
+  - Laboratory_work_2:
+      - "Создание моделей": lab-2/models.md
+      - "Реализация": lab-2/realisation.md
+      - "Кастомизация, добавление navbar и пагинации": lab-2/custom.md
+
+  - Laboratory_work_3:
+      - "Практическая работа": lab-3/practice_work.md
+      - "Лабораторная работа": lab-3/laboratory_work_3.md
+
+  - Laboratory_work_4:
+      - "Лабораторная работа": lab-4/laboratory_work_4.md
+theme:
+  name: cinder

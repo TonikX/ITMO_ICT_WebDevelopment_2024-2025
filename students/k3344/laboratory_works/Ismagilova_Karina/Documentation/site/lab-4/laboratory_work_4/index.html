@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Лабораторная работа - Web-программирование</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="../..">Web-программирование</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_1 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-1/">ex-1</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-2/">ex-2</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-3/">ex-3</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-4/">ex-4</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-1/ex-5/">ex-5</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_2 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-2/models/">Создание моделей</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-2/realisation/">Реализация</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-2/custom/">Кастомизация, добавление navbar и пагинации</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_3 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../lab-3/practice_work/">Практическая работа</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../lab-3/laboratory_work_3/">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laboratory_work_4 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li class="active">
+    <a href="./">Лабораторная работа</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../lab-3/laboratory_work_3/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="next" >
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#_1">Интерфейсы</a></li>
+        <li class="first-level "><a href="#_2">Реализация</a></li>
+            <li class="second-level"><a href="#cors-django-rest-framework">Настройка CORS в Django REST framework</a></li>
+                
+            <li class="second-level"><a href="#_3">Реализация интерфейсов</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h2 id="_1">Интерфейсы</h2>
+<p>Вариант: Система для завуча школы</p>
+<ol>
+<li>
+<p>Список учеников:
+Форма добавления нового ученика  -&gt; кнопка "Сохранить" добавляет ученика в базу.
+При нажатии на имя ученика в списке происходит переход на детальную страницу (общая информация, оценки по четвертям). Кнопки "Удалить" и "Редактировать" личную информацию об ученике.
+Поиск по фамилии фильтрует список учеников.</p>
+</li>
+<li>
+<p>Список учителей:
+Форма добавления нового учителя  -&gt; кнопка "Сохранить" добавляет учителя.
+При нажатии на учителя в списке переход на детальную страницу (общая информация, расписание уроков). Кнопки "Удалить" и "Редактировать" личную информацию.
+Поиск по фамилии.</p>
+</li>
+<li>
+<p>Кабинеты:
+Форма добавления нового кабинета -&gt; Кнопка "Сохранить" добавляет кабинет.
+Карточки кабинетов:
+Содержат номер кабинета, статус (оборудованный/базовый).
+При нажатии на карточку кабинета появляется модальное окно с детальной информацией, где отображаются: Список уроков, проходящих в этом кабинете по дням недели. Кнопкf: "Удалить".</p>
+</li>
+<li>
+<p>Уроки:
+Форма добавления нового урока -&gt; Кнопка "Сохранить" добавляет урок.
+Карточки уроков по дням недели:
+При клике на урок происходит переход на модальное окно: номер урока, предмет, учитель, кабинет, день недели. Кнопки: "Редактировать" и "Удалить"</p>
+</li>
+<li>
+<p>Оценки
+Форма добавления новой оценки. 
+Список оценок: Ученик, Предмет, Оценка, Четверть.
+Фильтры: Ученик (поиск/выпадающий список), Предмет (выпадающий список).
+При клике на карточку открывается окно с информацией об оценке и кнопки: "Редактировать" и "Удалить" </p>
+</li>
+<li>
+<p>Отчеты
+Выбор класса для генерации отчета (количество мальчиков/девочек, список учеников, список уроков)</p>
+</li>
+</ol>
+<h2 id="_2">Реализация</h2>
+<h3 id="cors-django-rest-framework">Настройка CORS в Django REST framework</h3>
+<p>Для начала я установила пакет django-cors-headers.</p>
+<pre><code class="language-python">pip install django-cors-headers
+
+</code></pre>
+<p>Затем настроила settings.py 
+Разрешение для всех доменов подключаться к Django-приложению. Включение True чтобы любой домен мог делать запросы к серверу.</p>
+<p>Добавляю middleware - CorsMiddleware, которое обрабатывает CORS-заголовки для запросов. Он проверяет заголовки запросов и добавляет необходимые CORS-заголовки в ответ.</p>
+<pre><code class="language-python">CORS_ORIGIN_ALLOW_ALL = True
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
+INSTALLED_APPS = [
+    ...
+    &quot;corsheaders&quot;
+]
+</code></pre>
+<h3 id="_3">Реализация интерфейсов</h3>
+<p>Настроила маршрутизацию:</p>
+<pre><code class="language-python">import { createRouter, createWebHistory } from 'vue-router';
+import LoginView from '@/views/LoginView.vue';
+import StudentList from '@/views/StudentList.vue';
+import StudentDetail from '@/views/StudentDetail.vue';
+import TeachersList from '@/views/TeachersList.vue';
+import TeacherDetail from '@/views/TeacherDetail.vue';
+import RoomsList from '@/views/RoomsList.vue';
+import Lessons from '@/views/Lessons.vue';
+import Grades from '@/views/Grades.vue';
+import RegistrationView from '@/views/RegistrationView.vue';
+import HomeView from '@/views/HomeView.vue';
+import Report from '@/views/Report.vue';
+
+const routes = [
+  { path: '/home', name: 'Home', component: HomeView },
+  { path: '/register', name: 'Registration', component: RegistrationView },
+  { path: '/login', name: 'Login', component: LoginView },
+  { path: '/students', name: 'StudentList', component: StudentList, meta: { requiresAuth: true } },
+  { path: '/students/:id', name: 'StudentDetail', component: StudentDetail, props: true, meta: { requiresAuth: true } },
+  { path: '/teachers', name: 'TeachersList', component: TeachersList, meta: { requiresAuth: true } },
+  { path: '/teachers/:id', name: 'TeacherDetail', component: TeacherDetail, props: true, meta: { requiresAuth: true } },
+  { path: '/rooms', name: 'RoomsList', component: RoomsList, meta: { requiresAuth: true } },
+  { path: '/lessons', name: 'Lessons', component: Lessons, meta: { requiresAuth: true } },
+  { path: '/grades', name: 'Grades', component: Grades, meta: { requiresAuth: true } },
+  { path: '/report', name: 'Report', component: Report, meta: { requiresAuth: true } },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+});
+
+router.beforeEach((to, from, next) =&gt; {
+  const isAuthenticated = localStorage.getItem('authToken');
+  if (to.matched.some(record =&gt; record.meta.requiresAuth)) {
+    if (!isAuthenticated) {
+      next({ name: 'Login' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+export default router;
+</code></pre>
+<p>authToken.js - для взаимодействия с сервером, предоставляя функции для логина и логаута.</p>
+<pre><code class="language-python">import axios from 'axios';
+
+const BASE_URL = 'http://127.0.0.1:8000/auth/token/login/';
+
+export default {
+  login(credentials) {
+    return axios.post(BASE_URL, credentials)
+      .then(response =&gt; {
+        const token = response.data.auth_token;
+        console.log('Token:', token);
+        localStorage.setItem('token', token);
+        return token;
+      })
+      .catch(error =&gt; {
+        console.error('Ошибка при логине:', error);
+        throw error;
+      });
+  },
+  logout() {
+    localStorage.removeItem('token');
+  },
+};
+</code></pre>
+<p>loginView.vue:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;Header /&gt;
+    &lt;div class=&quot;login-container&quot;&gt;
+      &lt;h1 class=&quot;page-title&quot;&gt;Вход&lt;/h1&gt;
+      &lt;form @submit.prevent=&quot;loginUser&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;username&quot; class=&quot;form-label&quot;&gt;Username&lt;/label&gt;
+          &lt;input
+            v-model=&quot;form.email&quot;
+            type=&quot;username&quot;
+            id=&quot;username&quot;
+            placeholder=&quot;Введите username&quot;
+            class=&quot;form-input&quot;
+            required
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label for=&quot;password&quot; class=&quot;form-label&quot;&gt;Пароль&lt;/label&gt;
+          &lt;input
+            v-model=&quot;form.password&quot;
+            type=&quot;password&quot;
+            id=&quot;password&quot;
+            placeholder=&quot;Введите пароль&quot;
+            class=&quot;form-input&quot;
+            required
+          /&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;login-button&quot;&gt;Войти&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;p v-if=&quot;error&quot; class=&quot;error&quot;&gt;{{ error }}&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import axios from &quot;axios&quot;;
+import Header from &quot;@/components/Header.vue&quot;;
+
+export default {
+  components: {
+    Header,
+  },
+  data() {
+    return {
+      form: {
+        email: &quot;&quot;,
+        password: &quot;&quot;,
+      },
+      error: null,
+    };
+  },
+  methods: {
+    async loginUser() {
+      try {
+        const response = await axios.post(&quot;http://127.0.0.1:8000/auth/token/login/&quot;, {
+          username: this.form.email,
+          password: this.form.password
+        });
+
+        const token = response.data.auth_token;
+        localStorage.setItem(&quot;authToken&quot;, token);
+        alert(&quot;Вход выполнен успешно!&quot;);
+        this.$router.push(&quot;/home&quot;);
+      } catch (error) {
+        this.error = &quot;Ошибка при входе. Проверьте данные.&quot;;
+        console.error(error);
+      }
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2002%3A59%3A38.jpg" />
+<img alt="" src="../IMAGE%202024-12-26%2002%3A59%3A35.jpg" />
+<img alt="" src="../IMAGE%202024-12-26%2002%3A59%3A32.jpg" /></p>
+<p>Затем приведу примеры реализаций интерфейсов.</p>
+<p>StudentsList.vue</p>
+<pre><code>&lt;template&gt;
+  &lt;Header /&gt;
+  &lt;div class=&quot;page-container&quot;&gt;
+    &lt;div class=&quot;header-container&quot;&gt;
+      &lt;h1 class=&quot;page-title&quot;&gt;Список учеников&lt;/h1&gt;
+      &lt;button @click=&quot;showAddStudentModal = true&quot; class=&quot;add-button&quot;&gt;Добавить ученика&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;search-container&quot;&gt;
+      &lt;input
+        v-model=&quot;searchQuery&quot;
+        type=&quot;text&quot;
+        placeholder=&quot;Поиск по фамилии&quot;
+        class=&quot;search-input&quot;
+      /&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;table-wrapper&quot;&gt;
+      &lt;table class=&quot;student-table&quot;&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;Фамилия Имя&lt;/th&gt;
+            &lt;th&gt;Класс&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+          &lt;tr v-for=&quot;student in filteredStudents&quot; :key=&quot;student.id&quot;&gt;
+            &lt;td&gt;
+              &lt;router-link :to=&quot;`/students/${student.id_student}`&quot; class=&quot;student-link&quot;&gt;
+                {{ student.surname }} {{ student.name }}
+              &lt;/router-link&gt;
+            &lt;/td&gt;
+            &lt;td&gt;{{ student.class_name }}&lt;/td&gt;
+          &lt;/tr&gt;
+        &lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div v-if=&quot;showAddStudentModal&quot; class=&quot;modal-overlay&quot;&gt;
+    &lt;div class=&quot;modal-content&quot;&gt;
+      &lt;form @submit.prevent=&quot;addStudent&quot;&gt;
+        &lt;input v-model=&quot;newStudent.surname&quot; type=&quot;text&quot; placeholder=&quot;Фамилия&quot; required /&gt;
+        &lt;input v-model=&quot;newStudent.name&quot; type=&quot;text&quot; placeholder=&quot;Имя&quot; required /&gt;
+        &lt;input v-model=&quot;newStudent.class_name&quot; type=&quot;text&quot; placeholder=&quot;Класс&quot; required /&gt;
+        &lt;div class=&quot;gender-select&quot;&gt;
+          &lt;span&gt;Выберите пол:&lt;/span&gt;
+          &lt;button
+            type=&quot;button&quot;
+            class=&quot;gender-option&quot;
+            :class=&quot;{ active: newStudent.gender === 'М' }&quot;
+            @click=&quot;selectGender('М')&quot;
+          &gt;
+            М
+          &lt;/button&gt;
+          &lt;button
+            type=&quot;button&quot;
+            class=&quot;gender-option&quot;
+            :class=&quot;{ active: newStudent.gender === 'Ж' }&quot;
+            @click=&quot;selectGender('Ж')&quot;
+          &gt;
+            Ж
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;modal-actions&quot;&gt;
+          &lt;button type=&quot;submit&quot; class=&quot;save-button&quot;&gt;Сохранить&lt;/button&gt;
+          &lt;button @click=&quot;closeModal&quot; type=&quot;button&quot; class=&quot;cancel-button&quot;&gt;Отмена&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+
+&lt;script&gt;
+import Header from '@/components/Header.vue';
+import apiClient from '@/api/axios';
+
+export default {
+  components: {
+    Header,
+  },
+  data() {
+    return {
+      students: [],
+      searchQuery: '',
+      newStudent: {
+        surname: '',
+        name: '',
+        class_name: '',
+        gender: '',
+      },
+      showAddStudentModal: false,
+    };
+  },
+  computed: {
+    filteredStudents() {
+      if (!this.searchQuery) {
+        return this.students;
+      }
+      return this.students.filter((student) =&gt;
+        student.surname.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
+  },
+  created() {
+    this.fetchStudents();
+  },
+  methods: {
+    selectGender(gender) {
+      this.newStudent.gender = gender;
+    },
+    async fetchStudents() {
+      try {
+        const response = await apiClient.get('students/');
+        this.students = response.data;
+      } catch (error) {
+        console.error('Ошибка при получении списка учеников:', error);
+      }
+    },
+    async addStudent() {
+      try {
+        const response = await apiClient.post('students/', this.newStudent);
+        this.students.push(response.data);
+        this.closeModal();
+      } catch (error) {
+        console.error('Ошибка при добавлении ученика:', error);
+      }
+    },
+    closeModal() {
+      this.showAddStudentModal = false;
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2002%3A59%3A40.jpg" />
+<img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A08.jpg" />
+StudentDetail.vue</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;Header /&gt;
+    &lt;div class=&quot;page-container&quot;&gt;
+      &lt;h1 class=&quot;page-title&quot;&gt;Детальная информация об ученике&lt;/h1&gt;
+      &lt;div v-if=&quot;student&quot; class=&quot;student-info&quot;&gt;
+        &lt;p&gt;&lt;strong&gt;Фамилия:&lt;/strong&gt; {{ student.surname }}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Имя:&lt;/strong&gt; {{ student.name }}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Класс:&lt;/strong&gt; {{ student.class_name }}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Пол:&lt;/strong&gt; {{ student.gender }}&lt;/p&gt;
+        &lt;div class=&quot;button-group&quot;&gt;
+          &lt;button @click=&quot;toggleEditForm&quot; class=&quot;edit-button&quot;&gt;Редактировать&lt;/button&gt;
+          &lt;button @click=&quot;deleteStudent&quot; class=&quot;delete-button&quot;&gt;Удалить&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div v-if=&quot;showEditForm&quot; class=&quot;edit-form&quot;&gt;
+        &lt;h2&gt;Редактировать ученика&lt;/h2&gt;
+        &lt;form @submit.prevent=&quot;updateStudent&quot;&gt;
+          &lt;input v-model=&quot;editedStudent.surname&quot; type=&quot;text&quot; placeholder=&quot;Фамилия&quot; required /&gt;
+          &lt;input v-model=&quot;editedStudent.name&quot; type=&quot;text&quot; placeholder=&quot;Имя&quot; required /&gt;
+          &lt;input v-model=&quot;editedStudent.class_name&quot; type=&quot;text&quot; placeholder=&quot;Класс&quot; required /&gt;
+          &lt;div class=&quot;gender-buttons&quot;&gt;
+            &lt;button
+              :class=&quot;{'active': editedStudent.gender === 'М'}&quot;
+              @click.prevent=&quot;setGender('М')&quot;
+              class=&quot;gender-button&quot;&gt;
+              М
+            &lt;/button&gt;
+            &lt;button
+              :class=&quot;{'active': editedStudent.gender === 'Ж'}&quot;
+              @click.prevent=&quot;setGender('Ж')&quot;
+              class=&quot;gender-button&quot;&gt;
+              Ж
+            &lt;/button&gt;
+          &lt;/div&gt;
+
+          &lt;div class=&quot;form-actions&quot;&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;save-button&quot;&gt;Сохранить&lt;/button&gt;
+            &lt;button @click=&quot;cancelEdit&quot; type=&quot;button&quot; class=&quot;cancel-button&quot;&gt;Отмена&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+      &lt;/div&gt;
+      &lt;div v-else-if=&quot;grades.length &gt; 0&quot; class=&quot;grades-container&quot;&gt;
+        &lt;h2&gt;Оценки&lt;/h2&gt;
+        &lt;table class=&quot;grades-table&quot;&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Предмет&lt;/th&gt;
+              &lt;th&gt;Оценка&lt;/th&gt;
+              &lt;th&gt;Четверть&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr v-for=&quot;grade in grades&quot; :key=&quot;grade.id&quot;&gt;
+              &lt;td&gt;{{ grade.subject }}&lt;/td&gt;
+              &lt;td&gt;{{ grade.grade }}&lt;/td&gt;
+              &lt;td&gt;{{ grade.quarter }}&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+      &lt;div v-else&gt;
+        &lt;p&gt;Нет данных об оценках.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Header from '@/components/Header.vue';
+import apiClient from '@/api/axios';
+export default {
+  components: {
+    Header,
+  },
+  props: ['id'],
+  data() {
+    return {
+      student: null,
+      grades: [],
+      showEditForm: false,
+      isLoading: true,
+      editedStudent: {
+        surname: '',
+        name: '',
+        class_name: '',
+        gender: '',
+      },
+    };
+  },
+  created() {
+    if (this.id) {
+      this.fetchStudent();
+      this.fetchGrades();
+    } else {
+      console.error('Не передан ID ученика.');
+    }
+  },
+  methods: {
+    async fetchStudent() {
+      try {
+        const response = await apiClient.get(`students/${this.id}/`);
+        this.student = response.data;
+        this.editedStudent = { ...response.data };
+      } catch (error) {
+        console.error('Ошибка при загрузке данных ученика:', error.response || error.message);
+      }
+    },
+    toggleEditForm() {
+      this.showEditForm = true;
+    },
+    async fetchGrades() {
+      this.isLoading = true;
+      try {
+        const response = await apiClient.get(`grades/student/${this.id}/`);
+        this.grades = response.data.sort((a, b) =&gt; a.quarter - b.quarter);
+      } catch (error) {
+        console.error('Ошибка при загрузке оценок ученика:', error.response || error.message);
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    async updateStudent() {
+      try {
+        const response = await apiClient.put(`students/${this.id}/`, this.editedStudent);
+        this.student = response.data;
+        this.showEditForm = false;
+      } catch (error) {
+        console.error('Ошибка при обновлении данных ученика:', error.response || error.message);
+      }
+    },
+    async deleteStudent() {
+      if (confirm('Вы уверены, что хотите удалить этого ученика?')) {
+        try {
+          await apiClient.delete(`students/${this.id}/`);
+          alert('Ученик удалён успешно.');
+          this.$router.push('/students');
+        } catch (error) {
+          console.error('Ошибка при удалении ученика:', error.response || error.message);
+        }
+      }
+    },
+    cancelEdit() {
+      this.showEditForm = false;
+      this.editedStudent = { ...this.student };
+    },
+    setGender(gender) {
+      this.editedStudent.gender = gender;
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A05.jpg" />
+Аналогично я написала реализацию для списка учителей и детальной информаии по учителям:
+<img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A11.jpg" />
+RoomsList.vue:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;Header /&gt;
+    &lt;div class=&quot;page-container&quot;&gt;
+      &lt;div class=&quot;header-container&quot;&gt;
+        &lt;h1 class=&quot;page-title&quot;&gt;Список комнат&lt;/h1&gt;
+        &lt;button @click=&quot;showAddRoomModal = true&quot; class=&quot;add-button&quot;&gt;Добавить комнату&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;rooms-grid&quot;&gt;
+        &lt;div
+          v-for=&quot;room in rooms&quot;
+          :key=&quot;room.id_room&quot;
+          class=&quot;room-card&quot;
+          @click=&quot;openRoomDetails(room)&quot;
+        &gt;
+          &lt;h2&gt;Комната №{{ room.number }}&lt;/h2&gt;
+          &lt;p&gt;Статус: {{ room.status }}&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;showAddRoomModal&quot; class=&quot;modal-overlay&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+          &lt;form @submit.prevent=&quot;addRoom&quot;&gt;
+            &lt;input v-model=&quot;newRoom.number&quot; type=&quot;text&quot; placeholder=&quot;Номер комнаты&quot; required /&gt;
+            &lt;div class=&quot;status-select&quot;&gt;
+              &lt;span&gt;Выберите статус:&lt;/span&gt;
+              &lt;button
+                type=&quot;button&quot;
+                class=&quot;room-option&quot;
+                :class=&quot;{ active: newRoom.status === 'Базовая' }&quot;
+                @click=&quot;selectStatus('Базовая')&quot;
+              &gt;
+                Базовая
+              &lt;/button&gt;
+              &lt;button
+                type=&quot;button&quot;
+                class=&quot;room-option&quot;
+                :class=&quot;{ active: newRoom.status === 'Оборудованная' }&quot;
+                @click=&quot;selectStatus('Оборудованная')&quot;
+              &gt;
+                Оборудованная
+              &lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;modal-actions&quot;&gt;
+              &lt;button type=&quot;submit&quot; class=&quot;save-button&quot;&gt;Сохранить&lt;/button&gt;
+              &lt;button @click=&quot;closeModal&quot; type=&quot;button&quot; class=&quot;cancel-button&quot;&gt;Отмена&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;selectedRoom&quot; class=&quot;modal-overlay&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+          &lt;h2&gt;Комната №{{ selectedRoom.number }}&lt;/h2&gt;
+          &lt;p&gt;Статус: {{ selectedRoom.status }}&lt;/p&gt;
+          &lt;div class=&quot;modal-actions&quot;&gt;
+            &lt;button @click=&quot;deleteRoom&quot; class=&quot;delete-button&quot;&gt;Удалить комнату&lt;/button&gt;
+            &lt;button @click=&quot;closeDetails&quot; class=&quot;cancel-button&quot;&gt;Закрыть&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Header from '@/components/Header.vue';
+import apiClient from '@/api/axios';
+
+export default {
+  components: { Header },
+  data() {
+    return {
+      rooms: [],
+      showAddRoomModal: false,
+      newRoom: {
+        number: '',
+        status: '',
+      },
+      selectedRoom: null,
+    };
+  },
+  created() {
+    this.fetchRooms();
+  },
+  methods: {
+    async fetchRooms() {
+      try {
+        const response = await apiClient.get('rooms/');
+        this.rooms = response.data.sort((a, b) =&gt; a.number - b.number);
+      } catch (error) {
+        console.error('Ошибка при загрузке комнат:', error);
+      }
+    },
+    openRoomDetails(room) {
+      this.selectedRoom = room;
+    },
+    closeDetails() {
+      this.selectedRoom = null;
+    },
+    async addRoom() {
+      try {
+        const response = await apiClient.post('rooms/', this.newRoom);
+        this.rooms.push(response.data);
+        this.closeModal();
+      } catch (error) {
+        console.error('Ошибка при добавлении комнаты:', error);
+      }
+    },
+    async deleteRoom() {
+      if (confirm(`Вы уверены, что хотите удалить комнату №${this.selectedRoom.number}?`)) {
+        try {
+          await apiClient.delete(`rooms/${this.selectedRoom.id_room}/`);
+          this.rooms = this.rooms.filter((room) =&gt; room.id_room !== this.selectedRoom.id_room);
+          this.selectedRoom = null;
+        } catch (error) {
+          console.error('Ошибка при удалении комнаты:', error);
+        }
+      }
+    },
+    selectStatus(status) {
+      this.newRoom.status = status;
+    },
+    closeModal() {
+      this.showAddRoomModal = false;
+      this.newRoom = { number: '', status: '' };
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A16.jpg" />
+Lessons.vue:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;Header /&gt;
+    &lt;div class=&quot;page-container&quot;&gt;
+      &lt;div class=&quot;header-container&quot;&gt;
+        &lt;h1 class=&quot;page-title&quot;&gt;Уроки&lt;/h1&gt;
+        &lt;button @click=&quot;openAddLessonModal&quot; class=&quot;add-button&quot;&gt;Добавить новый урок&lt;/button&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;showAddLessonModal&quot; class=&quot;lesson-modal&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+          &lt;form @submit.prevent=&quot;addLesson&quot;&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;subject&quot;&gt;Предмет&lt;/label&gt;
+              &lt;input v-model=&quot;newLesson.subject&quot; type=&quot;text&quot; id=&quot;subject&quot; required placeholder=&quot;Введите название предмета&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;teacher&quot;&gt;Учитель&lt;/label&gt;
+              &lt;select v-model=&quot;newLesson.id_teacher&quot; id=&quot;teacher&quot; required&gt;
+                &lt;option v-for=&quot;teacher in teachers&quot; :key=&quot;teacher.id_teacher&quot; :value=&quot;teacher.id_teacher&quot;&gt;
+                  {{ teacher.surname }} {{ teacher.name }} {{ teacher.room_assigned?.number }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;room&quot;&gt;Комната&lt;/label&gt;
+              &lt;select v-model=&quot;newLesson.room_assigned_id&quot; id=&quot;room&quot; required&gt;
+                &lt;option v-for=&quot;room in rooms&quot; :key=&quot;room.id_room&quot; :value=&quot;room.id_room&quot;&gt;
+                  Комната №{{ room.number }} - {{ room.status }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;class_label&quot;&gt;Класс&lt;/label&gt;
+              &lt;input v-model=&quot;newLesson.class_label&quot; type=&quot;text&quot; id=&quot;class_label&quot; required placeholder=&quot;Введите класс&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;day&quot;&gt;День недели&lt;/label&gt;
+              &lt;select v-model=&quot;newLesson.day&quot; id=&quot;day&quot; required&gt;
+                &lt;option value=&quot;Понедельник&quot;&gt;Понедельник&lt;/option&gt;
+                &lt;option value=&quot;Вторник&quot;&gt;Вторник&lt;/option&gt;
+                &lt;option value=&quot;Среда&quot;&gt;Среда&lt;/option&gt;
+                &lt;option value=&quot;Четверг&quot;&gt;Четверг&lt;/option&gt;
+                &lt;option value=&quot;Пятница&quot;&gt;Пятница&lt;/option&gt;
+                &lt;option value=&quot;Суббота&quot;&gt;Суббота&lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;lesson_number&quot;&gt;Номер урока&lt;/label&gt;
+              &lt;div class=&quot;lesson-number-buttons&quot;&gt;
+                &lt;button
+                  v-for=&quot;n in 8&quot;
+                  :key=&quot;n&quot;
+                  type=&quot;button&quot;
+                  :class=&quot;['lesson-number-button', { selected: newLesson.lesson_number === n }]&quot;
+                  @click=&quot;newLesson.lesson_number = n&quot;
+                &gt;
+                  {{ n }}
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;button type=&quot;submit&quot; class=&quot;save-button&quot;&gt;Сохранить&lt;/button&gt;
+            &lt;button @click=&quot;closeAddLessonModal&quot; class=&quot;cancel-button&quot;&gt;Отмена&lt;/button&gt;
+
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;showEditLessonModal&quot; class=&quot;lesson-modal&quot;&gt;
+        &lt;div class=&quot;modal-content&quot;&gt;
+          &lt;form @submit.prevent=&quot;updateLesson&quot;&gt;
+            &lt;h2&gt;Редактировать урок&lt;/h2&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;edit-subject&quot;&gt;Предмет&lt;/label&gt;
+              &lt;input v-model=&quot;editableLesson.subject&quot; type=&quot;text&quot; id=&quot;edit-subject&quot; required placeholder=&quot;Введите название предмета&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;edit-teacher&quot;&gt;Учитель&lt;/label&gt;
+              &lt;select v-model=&quot;editableLesson.id_teacher&quot; id=&quot;edit-teacher&quot; required&gt;
+                &lt;option v-for=&quot;teacher in teachers&quot; :key=&quot;teacher.id_teacher&quot; :value=&quot;teacher.id_teacher&quot;&gt;
+                  {{ teacher.surname }} {{ teacher.name }} {{ teacher.room_assigned?.number }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;room&quot;&gt;Комната&lt;/label&gt;
+              &lt;select v-model=&quot;editableLesson.room_assigned_id&quot; id=&quot;room&quot; required&gt;
+                &lt;option v-for=&quot;room in rooms&quot; :key=&quot;room.id_room&quot; :value=&quot;room.id_room&quot;&gt;
+                  Комната №{{ room.number }} - {{ room.status }}
+                &lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;class_label&quot;&gt;Класс&lt;/label&gt;
+              &lt;input v-model=&quot;editableLesson.class_label&quot; type=&quot;text&quot; id=&quot;class_label&quot; required placeholder=&quot;Введите класс&quot; /&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;day&quot;&gt;День недели&lt;/label&gt;
+              &lt;select v-model=&quot;editableLesson.day&quot; id=&quot;day&quot; required&gt;
+                &lt;option value=&quot;Понедельник&quot;&gt;Понедельник&lt;/option&gt;
+                &lt;option value=&quot;Вторник&quot;&gt;Вторник&lt;/option&gt;
+                &lt;option value=&quot;Среда&quot;&gt;Среда&lt;/option&gt;
+                &lt;option value=&quot;Четверг&quot;&gt;Четверг&lt;/option&gt;
+                &lt;option value=&quot;Пятница&quot;&gt;Пятница&lt;/option&gt;
+                &lt;option value=&quot;Суббота&quot;&gt;Суббота&lt;/option&gt;
+              &lt;/select&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;lesson_number&quot;&gt;Номер урока&lt;/label&gt;
+              &lt;div class=&quot;lesson-number-buttons&quot;&gt;
+                &lt;button
+                  v-for=&quot;n in 8&quot;
+                  :key=&quot;n&quot;
+                  type=&quot;button&quot;
+                  :class=&quot;['lesson-number-button', { selected: editableLesson.lesson_number === n }]&quot;
+                  @click=&quot;editableLesson.lesson_number = n&quot;
+                &gt;
+                  {{ n }}
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;button type=&quot;submit&quot; class=&quot;save-button&quot;&gt;Сохранить&lt;/button&gt;
+            &lt;button @click=&quot;closeEditLessonModal&quot; class=&quot;cancel-button&quot;&gt;Отмена&lt;/button&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;teachers.length &gt; 0 &amp;&amp; rooms.length &gt; 0&quot;&gt;
+        &lt;div v-for=&quot;(lessons, day) in lessonsByDay&quot; :key=&quot;day&quot; class=&quot;lesson-day&quot;&gt;
+          &lt;h2&gt;{{ day }}&lt;/h2&gt;
+          &lt;div v-for=&quot;lesson in lessons&quot; :key=&quot;lesson.id_lesson&quot; class=&quot;lesson-card&quot;&gt;
+            &lt;p&gt;&lt;strong&gt; {{lesson.lesson_number }} {{ lesson.subject }}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;Учитель: {{ lesson.teacher }}&lt;/p&gt;
+            &lt;p&gt;Комната: {{ lesson.room }}&lt;/p&gt;
+            &lt;p&gt;Класс: {{ lesson.class_label }}&lt;/p&gt;
+
+            &lt;div class=&quot;lesson-card-actions&quot;&gt;
+              &lt;button @click=&quot;openEditLessonModal(lesson)&quot; class=&quot;edit-button&quot;&gt;Редактировать&lt;/button&gt;
+              &lt;button @click.stop=&quot;deleteLesson(lesson.id_lesson)&quot; class=&quot;delete-button&quot;&gt;Удалить&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Header from '@/components/Header.vue';
+import apiClient from '@/api/axios';
+
+export default {
+  components: {
+    Header,
+  },
+  data() {
+    return {
+      newLesson: {
+        subject: '',
+        id_teacher: null,
+        room_assigned_id: null,
+        class_label: '',
+        day: '',
+        lesson_number: null,
+      },
+      editableLesson: {},
+      teachers: [],
+      rooms: [],
+      lessonsByDay: {},
+      showModal: false,
+      modalLesson: {},
+      showAddLessonModal: false,
+      showEditLessonModal: false,
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const [teachersResponse, roomsResponse] = await Promise.all([
+          apiClient.get('teachers/'),
+          apiClient.get('rooms/')
+        ]);
+        this.teachers = teachersResponse.data;
+        this.rooms = roomsResponse.data;
+        this.fetchLessons();
+      } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+      }
+    },
+
+    async fetchLessons() {
+      try {
+        const response = await apiClient.get('lessons/');
+        const lessons = response.data;
+        console.log('Загруженные уроки:', lessons);
+        lessons.forEach(lesson =&gt; {
+          const teacher = this.teachers.find(t =&gt; t.id_teacher === lesson.teacher);
+          const room = this.rooms.find(r =&gt; r.id_room === lesson.room);
+
+          lesson.teacher = teacher ? `${teacher.surname} ${teacher.name}` : 'Неизвестно';
+          lesson.room = room ? `№${room.number}` : 'Не указан';
+          lesson.class_label = lesson.class_label || 'Класс не указан';
+        });
+        this.lessonsByDay = this.organizeLessonsByDay(lessons);
+      } catch (error) {
+        console.error('Ошибка при загрузке данных уроков:', error);
+      }
+    },
+    organizeLessonsByDay(lessons) {
+      const lessonsByDay = {
+        Понедельник: [],
+        Вторник: [],
+        Среда: [],
+        Четверг: [],
+        Пятница: [],
+        Суббота: [],
+      };
+
+      lessons.forEach(lesson =&gt; {
+        lessonsByDay[lesson.day].push(lesson);
+      });
+
+      for (const day in lessonsByDay) {
+        lessonsByDay[day].sort((a, b) =&gt; a.lesson_number - b.lesson_number);
+      }
+
+      return lessonsByDay;
+    },
+
+    async addLesson() {
+      try {
+        if (!this.newLesson.id_teacher || !this.newLesson.room_assigned_id || !this.newLesson.class_label || !this.newLesson.subject) {
+          alert('Пожалуйста, заполните все обязательные поля');
+          return;
+        }
+
+        const newLesson = {
+          subject: this.newLesson.subject,
+          teacher: this.newLesson.id_teacher,
+          room: this.newLesson.room_assigned_id,
+          class_label: this.newLesson.class_label,
+          day: this.newLesson.day,
+          lesson_number: this.newLesson.lesson_number,
+        };
+        const response = await apiClient.post('lessons/', newLesson);
+        this.lessonsByDay[response.data.day].push(response.data);
+        this.resetNewLessonForm();
+        this.closeAddLessonModal();
+      } catch (error) {
+        console.error('Ошибка при добавлении урока:', error);
+        if (error.response) {
+          console.error('Ответ от сервера:', error.response.data);
+        }
+      }
+    },
+    resetNewLessonForm() {
+      this.newLesson = {
+        subject: '',
+        id_teacher: null,
+        room_assigned_id: null,
+        class_label: '',
+        day: 'Понедельник',
+        lesson_number: 1,
+      };
+    },
+    openAddLessonModal() {
+      this.showAddLessonModal = true;
+    },
+    closeAddLessonModal() {
+      this.showAddLessonModal = false;
+    },
+
+    openEditLessonModal(lesson) {
+      this.editableLesson = {
+        id_lesson: lesson.id_lesson,
+        subject: lesson.subject,
+        id_teacher: lesson.id_teacher,
+        room_assigned_id: lesson.room_assigned_id,
+        class_label: lesson.class_label,
+        day: lesson.day,
+        lesson_number: lesson.lesson_number,
+      };
+      this.showEditLessonModal = true;
+    },
+
+    async updateLesson() {
+      try {
+        console.log('Данные для обновления:', this.editableLesson);
+        await apiClient.put(`lessons/${this.editableLesson.id_lesson}/`, {
+          subject: this.editableLesson.subject,
+          teacher: this.editableLesson.id_teacher,
+          room: this.editableLesson.room_assigned_id,
+          class_label: this.editableLesson.class_label,
+          day: this.editableLesson.day,
+          lesson_number: this.editableLesson.lesson_number,
+        });
+        this.fetchLessons();
+        this.closeEditLessonModal();
+      } catch (error) {
+        console.error('Ошибка при обновлении урока:', error.response?.data || error);
+        alert(`Ошибка: ${JSON.stringify(error.response?.data || error)}`);
+      }
+    },
+
+    closeEditLessonModal() {
+      this.showEditLessonModal = false;
+    },
+
+    async deleteLesson(lessonId) {
+      try {
+        await apiClient.delete(`lessons/${lessonId}/`);
+        this.fetchLessons();
+        this.closeModal();
+      } catch (error) {
+        console.error('Ошибка при удалении урока:', error);
+      }
+    },
+  },
+};
+&lt;/script&gt;
+
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A19.jpg" />
+<img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A30.jpg" />
+Список оценок для учеников по четвертям, Grades.vue:
+<img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A32.jpg" />
+Генерация отчёта по классу, Report.Vue:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;Header /&gt;
+    &lt;div class=&quot;page-container&quot;&gt;
+      &lt;h1&gt;Генерация отчёта&lt;/h1&gt;
+      &lt;div class=&quot;form-container&quot;&gt;
+        &lt;label for=&quot;class-select&quot; class=&quot;form-label-inline&quot;&gt;Выберите класс:&lt;/label&gt;
+        &lt;div class=&quot;select-container-inline&quot;&gt;
+          &lt;select v-model=&quot;selectedClass&quot; id=&quot;class-select&quot; @change=&quot;fetchReportData&quot; class=&quot;custom-select&quot;&gt;
+            &lt;option value=&quot;&quot; disabled selected&gt;Выберите класс...&lt;/option&gt;
+            &lt;option v-for=&quot;className in classOptions&quot; :key=&quot;className&quot; :value=&quot;className&quot;&gt;
+              {{ className }}
+            &lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div v-if=&quot;selectedClass &amp;&amp; reportData&quot; class=&quot;report-content&quot;&gt;
+        &lt;h2&gt;{{ selectedClass }} Класс&lt;/h2&gt;
+
+        &lt;div class=&quot;gender-count&quot;&gt;
+          &lt;p&gt;Количество мальчиков: {{ reportData.genderCount.boys }}&lt;/p&gt;
+          &lt;p&gt;Количество девочек: {{ reportData.genderCount.girls }}&lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Список учеников:&lt;/h3&gt;
+        &lt;table class=&quot;students-table&quot;&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;Фамилия&lt;/th&gt;
+              &lt;th&gt;Имя&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr v-for=&quot;student in reportData.students&quot; :key=&quot;student.id_student&quot;&gt;
+              &lt;td&gt;{{ student.surname }}&lt;/td&gt;
+              &lt;td&gt;{{ student.name }}&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+
+        &lt;h3&gt;Список уроков:&lt;/h3&gt;
+        &lt;table class=&quot;lessons-table&quot;&gt;
+          &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;День&lt;/th&gt;
+              &lt;th&gt;Номер урока&lt;/th&gt;
+              &lt;th&gt;Предмет&lt;/th&gt;
+              &lt;th&gt;Кабинет&lt;/th&gt;
+            &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr v-for=&quot;lesson in enrichedLessons&quot; :key=&quot;lesson.id_lesson&quot;&gt;
+              &lt;td&gt;{{ lesson.day }}&lt;/td&gt;
+              &lt;td&gt;{{ lesson.lesson_number }}&lt;/td&gt;
+              &lt;td&gt;{{ lesson.subject }}&lt;/td&gt;
+              &lt;td&gt;{{ lesson.room_number }}&lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/div&gt;
+
+      &lt;div v-else-if=&quot;selectedClass&quot; class=&quot;loading-message&quot;&gt;
+        &lt;p&gt;Загружаем данные для класса {{ selectedClass }}...&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import Header from &quot;@/components/Header.vue&quot;;
+import apiClient from &quot;@/api/axios&quot;;
+
+export default {
+  components: { Header },
+  data() {
+    return {
+      classOptions: [],
+      selectedClass: null,
+      reportData: null,
+      rooms: [],
+    };
+  },
+  computed: {
+    enrichedLessons() {
+      if (!this.reportData || !this.reportData.lessons) return [];
+      const daysOfWeek = [&quot;Понедельник&quot;, &quot;Вторник&quot;, &quot;Среда&quot;, &quot;Четверг&quot;, &quot;Пятница&quot;, &quot;Суббота&quot;];
+      return this.reportData.lessons
+        .map((lesson) =&gt; {
+          const room = this.rooms.find((room) =&gt; room.id_room === lesson.room);
+          return {
+            ...lesson,
+            room_number: room ? room.number : &quot;Неизвестно&quot;,
+          };
+        })
+        .sort((a, b) =&gt; {
+          const dayA = daysOfWeek.indexOf(a.day);
+          const dayB = daysOfWeek.indexOf(b.day);
+          if (dayA !== dayB) {
+            return dayA - dayB;
+          }
+          return a.lesson_number - b.lesson_number;
+        });
+    },
+  },
+  created() {
+    this.fetchClasses();
+    this.fetchRooms();
+  },
+  methods: {
+    async fetchClasses() {
+      try {
+        const response = await apiClient.get(&quot;students/&quot;);
+        const uniqueClasses = [
+          ...new Set(response.data.map((student) =&gt; student.class_name)),
+        ];
+        this.classOptions = uniqueClasses;
+      } catch (error) {
+        console.error(&quot;Ошибка при загрузке классов:&quot;, error);
+      }
+    },
+    async fetchRooms() {
+      try {
+        const response = await apiClient.get(&quot;rooms/&quot;);
+        this.rooms = response.data;
+      } catch (error) {
+        console.error(&quot;Ошибка при загрузке данных кабинетов:&quot;, error);
+      }
+    },
+    async fetchReportData() {
+      if (!this.selectedClass) return;
+
+      try {
+        const studentsResponse = await apiClient.get(&quot;students/&quot;);
+        const students = studentsResponse.data.filter(
+          (student) =&gt; student.class_name === this.selectedClass
+        );
+
+        const genderCount = {
+          boys: students.filter((student) =&gt; student.gender === &quot;М&quot;).length,
+          girls: students.filter((student) =&gt; student.gender === &quot;Ж&quot;).length,
+        };
+
+        const lessonsResponse = await apiClient.get(&quot;lessons/&quot;);
+        const lessons = lessonsResponse.data.filter(
+          (lesson) =&gt; lesson.class_label === this.selectedClass
+        );
+
+        this.reportData = {
+          students,
+          genderCount,
+          lessons,
+        };
+      } catch (error) {
+        console.error(&quot;Ошибка при загрузке данных отчёта:&quot;, error);
+      }
+    },
+  },
+};
+&lt;/script&gt;
+</code></pre>
+<p><img alt="" src="../IMAGE%202024-12-26%2003%3A00%3A34.jpg" /></p></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

@@ -1,0 +1,18 @@
+{% extends "design.html" %}
+
+{% block title %}Регистрация автора{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Регистрация на конференцию как автор</h2>
+    <p><strong>Конференция:</strong> {{ conference.title }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Зарегистрироваться как автор</button>
+    </form>
+
+    <a href="{% url 'conference_list' %}" class="btn btn-secondary mt-3">Назад к списку конференций</a>
+</div>
+{% endblock %}
