@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Постояльцы за последний месяц{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Постояльцы за последний месяц</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Номер</th>
+                <th>Отель</th>
+                <th>Дата заезда</th>
+                <th>Дата отъезда</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.user.username }}</td>
+                    <td>{{ reservation.room.room_type }}</td>
+                    <td>{{ reservation.room.hotel.name }}</td>
+                    <td>{{ reservation.start_date }}</td>
+                    <td>{{ reservation.end_date }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
