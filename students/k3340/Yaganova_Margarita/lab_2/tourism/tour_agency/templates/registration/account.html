@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Личный кабинет {{ user.username }}</h1>
+<ul class="list-group">
+    {% for booking in bookings %}
+    <li class="list-group-item mb-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-1">
+                    <a href="{% url 'tour_detail' tour_id=booking.tour.pk %}" class="text-decoration-none">{{booking.tour.name}}</a>
+                </h5>
+                <p class="mb-1"><strong>Статус бронирования: </strong>{{booking.get_status_display}}</p>
+            </div>
+            <div class="btn-toolbar">
+                <div class="btn-group me-2">
+                    <a class="btn btn-primary active" href="{% url 'edit_tour' booking_id=booking.pk %}">Редактировать бронирование</a>
+                    <a class="btn btn-secondary" href="{% url 'review' tour_id=booking.tour.pk booking_id=booking.pk %}">Комментировать</a>
+                </div>
+                <form method="POST" action="{% url 'delete_booking' booking_id=booking.pk %}" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Удалить</button>
+                </form>
+            </div>
+        </div>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-center">У вас нет бронирований.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
