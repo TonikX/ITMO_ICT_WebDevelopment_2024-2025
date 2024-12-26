@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список Автомобилей</title>
+</head>
+<body>
+    <h1>Список Автомобилей</h1>
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{% url 'car_detail' car.id %}">{{ car.brand }} {{ car.car_model }} - {{ car.gos_number }}</a>
+            </li>
+        {% empty %}
+            <li>Нет автомобилей.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
