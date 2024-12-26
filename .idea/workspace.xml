@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53451ce7-1298-4e98-b2ec-b1c1264583d6" name="Changes" comment="feat(laboratory works): add second lab&#10;&#10;I'm aiming for max points&#10;&#10;Closes: Anton Govorov" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go Application" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///opt/homebrew/opt/go/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="lr3" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SakhnoYA&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:SakhnoYA/ITMO_ICT_WebDevelopment_2024-2025.git&quot;,
+    &quot;accountId&quot;: &quot;3782c87e-019d-42b6-b59e-0d0c194da6e2&quot;
+  }
+}</component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="ITMO_ICT_WebDevelopment_2024-2025/invalid/Python facet" />
+    </ignored-facets>
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2lVfe4SpRhmR9yxamPb9jigOOkN" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultGoTemplateProperty": "Go Application",
+    "Go Build.go build chat (1).executor": "Run",
+    "Go Build.go build chat.executor": "Run",
+    "Go Build.go build client.go (1).executor": "Run",
+    "Go Build.go build client.go (2).executor": "Run",
+    "Go Build.go build client.go.executor": "Run",
+    "Go Build.go build server.go (1).executor": "Run",
+    "Go Build.go build server.go (2).executor": "Run",
+    "Go Build.go build server.go.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "/Users/sahnoaroslav/GolandProjects/ITMO_ICT_WebDevelopment_2024-2025",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/3/sakhnoya_files" />
+      <recent name="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/1" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="go build chat (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ITMO_ICT_WebDevelopment_2024-2025" />
+      <working_directory value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/4" />
+      <kind value="FILE" />
+      <package value="chat" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/4/client.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build chat" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ITMO_ICT_WebDevelopment_2024-2025" />
+      <working_directory value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/4" />
+      <kind value="FILE" />
+      <package value="chat" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/4/chat.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build client.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ITMO_ICT_WebDevelopment_2024-2025" />
+      <working_directory value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/2" />
+      <parameters value="50 -50 50" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/2/client.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ITMO_ICT_WebDevelopment_2024-2025" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/3/client.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build server.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="ITMO_ICT_WebDevelopment_2024-2025" />
+      <working_directory value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/3" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/students/K3341/Sakhno_Yaroslav/lr1/3/server.go" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
+        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53451ce7-1298-4e98-b2ec-b1c1264583d6" name="Changes" comment="feat(laboratory works): add first lab&#10;&#10;I'm aiming for 10 points&#10;&#10;Closes: Anton Govorov" />
+      <created>1728413036156</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728413036156</updated>
+      <workItem from="1728413037168" duration="164000" />
+      <workItem from="1728413253307" duration="24000" />
+      <workItem from="1731958863112" duration="153000" />
+      <workItem from="1731959419430" duration="237000" />
+      <workItem from="1731960139955" duration="143000" />
+      <workItem from="1732449447535" duration="629000" />
+      <workItem from="1734273437565" duration="6000" />
+      <workItem from="1734273464805" duration="208000" />
+      <workItem from="1735198715015" duration="307000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(laboratory works): add first lab&#10;&#10;I'm aiming for 10 points&#10;&#10;Closes: Anton Govorov" />
+    <MESSAGE value="feat(laboratory works): add second lab&#10;&#10;I'm aiming for max points&#10;&#10;Closes: Anton Govorov" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(laboratory works): add second lab&#10;&#10;I'm aiming for max points&#10;&#10;Closes: Anton Govorov" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
