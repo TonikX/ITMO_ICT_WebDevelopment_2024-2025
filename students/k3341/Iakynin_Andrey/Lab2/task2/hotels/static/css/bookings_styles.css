@@ -1,0 +1,60 @@
+/* bookings_styles.css */
+
+body {
+    background-color: #f8f9fa; /* Светлый фон для страницы */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 900px; /* Максимальная ширина контейнера */
+    margin: 2rem auto; /* Центрирование контейнера */
+    padding: 2rem; /* Внутренние отступы */
+    background-color: #ffffff; /* Белый фон для контейнера */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+h1 {
+    text-align: center; /* Выравнивание заголовка по центру */
+    color: #343a40; /* Тёмный цвет текста заголовка */
+    margin-bottom: 1.5rem; /* Отступ снизу */
+}
+
+.table {
+    width: 100%; /* Ширина таблицы */
+    border-collapse: collapse; /* Убираем отступы между ячейками */
+}
+
+.table th, .table td {
+    padding: 1rem; /* Внутренние отступы для ячеек */
+    text-align: left; /* Выравнивание текста по левому краю */
+    border-bottom: 1px solid #dee2e6; /* Граница между строками */
+}
+
+.table th {
+    background-color: #e9ecef; /* Светло-серый фон для заголовка таблицы */
+    color: #495057; /* Цвет текста заголовка */
+}
+
+.table tr:hover {
+    background-color: #f1f1f1; /* Цвет фона строки при наведении */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Цвет кнопки "Удалить" */
+    border: none; /* Без границы */
+    color: white; /* Белый цвет текста */
+    padding: 0.5rem 1rem; /* Внутренние отступы */
+    border-radius: 4px; /* Закругленные углы */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Темный цвет кнопки при наведении */
+}
+
+.empty-message {
+    text-align: center; /* Центрирование сообщения об отсутствии данных */
+    color: #6c757d; /* Светло-серый цвет */
+    font-style: italic; /* Курсив для сообщения */
+}

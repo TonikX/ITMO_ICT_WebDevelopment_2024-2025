@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Отзывы для номера {{ room.name }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/review_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Отзывы для номера {{ room.name }}</h1>
+
+        <!-- Кнопка для добавления отзыва -->
+        <div class="mb-3">
+            <form method="post">
+                {% csrf_token %}
+                {{ review_form.as_p }}
+                <button type="submit" class="btn btn-primary">Оставить отзыв</button>
+            </form>
+        </div>
+
+        <!-- Список отзывов -->
+        <h2>Существующие отзывы</h2>
+        {% if reviews %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Пользователь</th>
+                        <th>Текст отзыва</th>
+                        <th>Оценка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}
+                        <tr>
+                            <td>{{ review.user.username }}</td>
+                            <td>{{ review.text }}</td>
+                            <td>{{ review.rating }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Отзывов пока нет.</p>
+        {% endif %}
+    </div>
+{% endblock %}

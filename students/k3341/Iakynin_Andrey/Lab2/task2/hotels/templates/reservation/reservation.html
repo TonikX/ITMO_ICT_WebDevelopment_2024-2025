@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Резервирование номера{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/reservation.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Резервирование номера</h1>
+
+<form method="POST" action="{% url 'booking_room' room.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="start_time">Время заезда</label>
+        <input type="datetime-local" id="start_time" name="check_in" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="end_time">Время выезда</label>
+        <input type="datetime-local" id="end_time" name="check_out" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+        <a href="{% url 'hotel_rooms' hotel.id %}" class="btn btn-secondary">Вернуться</a>
+        <a href="{% url 'room_reviews' room.id %}" class="btn btn-secondary">Отзывы</a>
+    </div>
+</form>
+
+{% if booking_form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in booking_form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in booking_form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<h2>Мои резервации</h2>
+{% if bookings %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Время заезда</th>
+                <th>Время выезда</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.check_in }}</td>
+                    <td>{{ booking.check_out }}</td>
+                    <td>
+                        <a href="{% url 'reservations_update' booking.id %}" class="btn btn-warning">Обновить</a>
+                        <a href="{% url 'reservations_delete' booking.id %}" class="btn btn-danger">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>У вас нет резерваций для этого номера.</p>
+{% endif %}
+{% endblock %}
