@@ -206,6 +206,56 @@ https://drive.google.com/file/d/1QxQo5jln6soFUj6EmOVEo1yauCo375PP/view?usp=shari
 ### Этап 2
 Работу необходимо защитить лично.
 
+# Лабораторная работа 4. Реализация клиентской части средствами Vue.js.
+
+## Практическая работа №4.1
+
+Цель работы: Ознакомится с базовыми конструкциями JavaScript.
+[Текст "Практической работы №4.1](https://docs.google.com/document/d/1lurVq_ddbKQ-rORvxF3T9PlPPy-sOgHwFazCI0yEqYY/edit?usp=sharing) **(сдавать не нужно, можно не делать, если базово знаете JS)**.
+
+## Практическая работа №4.2
+
+Цель работы: получить представление о работе Vue.js.
+[Текст "Практической работы №4.2](https://docs.google.com/document/d/1kSXkW6Vcis8z-TunNALcapCVmMHps3jaDdIP4rZkV9E/edit?usp=sharing).
+
+## Практическая работа №4.3
+
+Цель работы: получить практические навыки настройки CORS (Cross-origin resource sharing).
+[Текст "Практической работы №4.3](https://docs.google.com/document/d/1diaE5abmxSYEpLCwAp-or9c_h11-wR8ZSGQl3_b0nsc/edit?usp=sharing).
+
+## Лабораторная часть
+
+Срок сдачи **25.12.2024**
+
+Реализация клиентской части приложения средствами vue.js.
+
+Порядок выполнения работы:<br>
+1.	Выполнить практическую работу 4.1 Базовые конструкции языка JavaScript). (https://docs.google.com/document/d/1lurVq_ddbKQ-rORvxF3T9PlPPy-sOgHwFazCI0yEqYY/edit?usp=sharing)
+2.	Выполнить практическую работу 4.2. Работа с Vue.JS. (https://docs.google.com/document/d/1kSXkW6Vcis8z-TunNALcapCVmMHps3jaDdIP4rZkV9E/edit?usp=sharing)
+3.	Настроить для серверной части, реализованной в лабораторной работе №3 CORS (Cross-origin resource sharing) в соответствии [с Практической работой 4.3](https://docs.google.com/document/d/1diaE5abmxSYEpLCwAp-or9c_h11-wR8ZSGQl3_b0nsc/edit?usp=sharing)
+4.	Утвердить с одним из преподавателей список интерфейсов для взаимодействия с серверной частью в соответствии с вашей предметной областью (**это очень важный пункт, тк бывает такое, что не все студенты понимают суть своих вариантов**).
+5.	Реализовать интерфейсы авторизации, регистрации и изменения учётных данных и настроить взаимодействие с серверной частью.
+Полезные материалы:<br>
+    - Настройка авторизации средствами Vue.js и Django REST framework (DjangoSchool) ([ссылка](https://youtu.be/0VuOGByhiKU?list=PLF-NY6ldwAWqP9PqPU3LA7mX2KJVyLhC_))<br>
+6.	Реализовать клиентские интерфейсы и настроить взаимодействие с серверной частью (интерфейсы из пункта 4).
+Полезные материалы:<br>
+    - Пункты 4.2, 4.3, 4.5 в [Практической работе 4.2](https://github.com/TonikX/ITMO_ICT_WebDevelopment_2020-2021)<br>
+    - В освоении VUE 3 может помочь данный урок [урок](https://youtu.be/XzLuMtDelGk)
+7.	Подключить vuetify или аналогичную библиотеку.
+Полезные материалы:<br>
+    - Пункт 3.1 в [Практической работе 4.2](https://github.com/TonikX/ITMO_ICT_WebDevelopment_2020-2021)<br>
+8.	Реализовать документацию, описывающую работу разработанных интерфейсов средствами MkDocs.
+
+## Сдача работы №4
+
+Работа выполняется индивидуально.<br>
+
+### Этап 1
+Полученную программу залить в папку этого репозитория **sutdents/группа/laboratory_works/фамилия_имя/laboratiry_work_4**. Инструкция о загрузке работы ниже. Не забывайте о файле gitignore. Реализовать документацию, описывающую работу разработанных интерфейсов средствами MkDocs.
+
+### Этап 2
+Работу необходимо защитить лично или прислать видео с описанием проделанной работы.
+
 ## Сдача работ
 
 Все отчеты делаются средствами markdown и mkdocs. Инструкция по созданию веб-страничек из markdown средствами mkdocs доступна тут в пункте 3.2.2 https://docs.google.com/document/d/1rIfREFvCB4pp8uF990Tz3PLXRJ5u_w-Y3vLxfXWKoxg/edit?usp=sharing . Краткое описание работы с markdown доступно в пункте 3.1
