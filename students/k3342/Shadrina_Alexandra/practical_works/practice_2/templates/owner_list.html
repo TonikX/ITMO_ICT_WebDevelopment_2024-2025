@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner List</title>
+</head>
+<body>
+<h1>Список владельцев</h1>
+<a href="/add_owner/">Добавить нового</a>
+    <ul>
+        {% for owner in owners %}
+            <li>{{ owner.last_name}} {{ owner.first_name }}, {{ owner.birth_date }}, {{ owner.passport_number }}, {{ owner.home_address }}, {{ owner.nationality }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
