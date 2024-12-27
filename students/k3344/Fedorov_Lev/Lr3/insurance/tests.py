@@ -1,56 +1,103 @@
 import requests
-import json
+from getpass import getpass
 
-BASE_URL = "http://127.0.0.1:8000/api"
-LOGIN_URL = "http://127.0.0.1:8000/auth/token/"
+BASE_URL = 'http://127.0.0.1:8000'
+LOGIN_URL = f'{BASE_URL}/auth/token/'
+HEADERS = {}
 
-USERNAME = "admin"
-PASSWORD = "admin"
 
-def get_token():
-    response = requests.post(LOGIN_URL, data={"username": USERNAME, "password": PASSWORD})
-    print("Response Status Code:", response.status_code)
-    print("Response Content:", json.dumps(response.json(), indent=4))
-    return response.json().get("access")
+def get_admin_token():
+    username =  'admin'
+    password =  'admin'
 
-def pretty_print_response(response):
+    response = requests.post(LOGIN_URL, data={
+        'username': username,
+        'password': password
+    })
+
     if response.status_code == 200:
-        print(json.dumps(response.json(), indent=4))
+        token = response.json().get('access')
+        print("Token received successfully.")
+        HEADERS['Authorization'] = f'Bearer {token}'
     else:
-        print("Failed to retrieve data:", response.status_code, response.content)
+        print("Failed to retrieve token. Check credentials.")
+        exit()
 
-def test_get_organizations(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{BASE_URL}/organizations/", headers=headers)
-    pretty_print_response(response)
 
-def test_get_employees(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{BASE_URL}/employees/", headers=headers)
-    pretty_print_response(response)
+def test_get_endpoints():
+    endpoints = [
+        '/organizations/',
+        '/positions/',
+        '/agents/',
+        '/employees/',
+        '/contracts/',
+        '/insurance_cases/',
+        '/user_profiles/'
+    ]
 
-def test_get_contracts(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{BASE_URL}/contracts/", headers=headers)
-    pretty_print_response(response)
+    for endpoint in endpoints:
+        response = requests.get(f'{BASE_URL}{endpoint}', headers=HEADERS)
+        if response.status_code == 200:
+            print(f"GET {endpoint} - SUCCESS ({len(response.json())} items)")
+        else:
+            print(f"GET {endpoint} - FAILED: {response.status_code}")
 
-def test_get_insurance_cases(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{BASE_URL}/insurance_cases/", headers=headers)
-    pretty_print_response(response)
 
-def test_get_employee_contracts(token):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.get(f"{BASE_URL}/employee_contracts/1/", headers=headers)
-    pretty_print_response(response)
-
-if __name__ == "__main__":
-    token = get_token()
-    if token:
-        test_get_organizations(token)
-        test_get_employees(token)
-        test_get_contracts(token)
-        test_get_insurance_cases(token)
-        test_get_employee_contracts(token)
+def test_post_endpoints():
+    # Пример создания новой организации
+    data = {
+        "code": "ORG100",
+        "full_name": "Test Insurance Co.",
+        "short_name": "TestIns",
+        "address": "100 Test St.",
+        "bank_details": "IBAN100",
+        "specialization": "Life Insurance"
+    }
+    response = requests.post(f'{BASE_URL}/organizations/', json=data, headers=HEADERS)
+    if response.status_code == 201:
+        print("POST /organizations/ - SUCCESS")
     else:
-        print("Failed to obtain token")
+        print(f"POST /organizations/ - FAILED: {response.status_code} - {response.json()}")
+
+
+def test_put_endpoints():
+    # Получаем первую организацию
+    response = requests.get(f'{BASE_URL}/organizations/', headers=HEADERS)
+    if response.status_code == 200 and response.json():
+        org_id = response.json()[0]['id']
+        data = {
+            "code": "ORG001-EDIT",
+            "full_name": "Updated Alpha Insurance",
+            "short_name": "AlphaUpdated",
+            "address": "Updated Address",
+            "bank_details": "IBAN-EDIT",
+            "specialization": "Updated Auto Insurance"
+        }
+        response = requests.put(f'{BASE_URL}/organizations/{org_id}/', json=data, headers=HEADERS)
+        if response.status_code == 200:
+            print(f"PUT /organizations/{org_id}/ - SUCCESS")
+        else:
+            print(f"PUT /organizations/{org_id}/ - FAILED: {response.status_code} - {response.json()}")
+    else:
+        print("No organizations found for PUT test.")
+
+
+def test_delete_endpoints():
+    response = requests.get(f'{BASE_URL}/organizations/', headers=HEADERS)
+    if response.status_code == 200 and response.json():
+        org_id = response.json()[-1]['id']
+        response = requests.delete(f'{BASE_URL}/organizations/{org_id}/', headers=HEADERS)
+        if response.status_code == 204:
+            print(f"DELETE /organizations/{org_id}/ - SUCCESS")
+        else:
+            print(f"DELETE /organizations/{org_id}/ - FAILED: {response.status_code}")
+    else:
+        print("No organizations found for DELETE test.")
+
+
+if __name__ == '__main__':
+    get_admin_token()
+    test_get_endpoints()
+    test_post_endpoints()
+    test_put_endpoints()
+    test_delete_endpoints()

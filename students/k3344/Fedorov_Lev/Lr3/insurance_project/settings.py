@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'djoser',
     'insurance',
     'corsheaders',
-    'drf_yasg'
+    'drf_yasg',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -132,17 +134,22 @@ SIMPLE_JWT = {
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
-        'user_create': 'djoser.serializers.UserCreateSerializer',
-        'user': 'djoser.serializers.UserSerializer',
-        'current_user': 'djoser.serializers.UserSerializer',
+        'user_create': 'insurance.serializers.RegisterSerializer',
+        'user': 'insurance.serializers.CustomUserSerializer',
+        'current_user': 'insurance.serializers.CustomUserSerializer',
     },
     'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
 }
 
 # CORS settings (allow access from local frontend)
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Replace with your frontend URL
+    'http://localhost:8082',  # Replace with your frontend URL
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+AUTH_USER_MODEL = 'insurance.CustomUser'
 
 # Logging
 LOGGING = {
