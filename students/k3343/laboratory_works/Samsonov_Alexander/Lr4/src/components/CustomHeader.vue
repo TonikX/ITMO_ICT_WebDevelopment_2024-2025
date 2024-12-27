@@ -1,0 +1,64 @@
+<script setup>
+import {isAuthenticated, clearAuthToken} from "@/composables/useAuth.js";
+import router from "@/router/index.js";
+import {rtAccount, rtLogin, rtRegister} from "@/composables/routing.js";
+
+
+</script>
+
+<template>
+  <div class="container-fluid">
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom navbar-dark">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cake"
+               viewBox="0 0 20 20">
+            <path
+                d="m7.994.013-.595.79a.747.747 0 0 0 .101 1.01V4H5a2 2 0 0 0-2 2v3H2a2 2 0 0 0-2 2v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a2 2 0 0 0-2-2h-1V6a2 2 0 0 0-2-2H8.5V1.806A.747.747 0 0 0 8.592.802zM4 6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v.414a.9.9 0 0 1-.646-.268 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0A.9.9 0 0 1 4 6.414zm0 1.414c.49 0 .98-.187 1.354-.56a.914.914 0 0 1 1.292 0c.748.747 1.96.747 2.708 0a.914.914 0 0 1 1.292 0c.374.373.864.56 1.354.56V9H4zM1 11a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.793l-.354.354a.914.914 0 0 1-1.293 0 1.914 1.914 0 0 0-2.707 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0L1 11.793zm11.646 1.854a1.915 1.915 0 0 0 2.354.279V15H1v-1.867c.737.452 1.715.36 2.354-.28a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.708 0a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.707 0a.914.914 0 0 1 1.293 0Z"/>
+          </svg>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li>
+          <router-link :to="`/what_to_cook`"
+                       class="nav-link px-2 link-secondary">Что приготовить
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="`/recipe`"
+                       class="nav-link px-2">Рецепты
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="`/search`"
+                       class="nav-link px-2">Поиск
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="`/favorite`"
+                       class="nav-link px-2">Любимое
+          </router-link>
+        </li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+
+
+        <div v-if="isAuthenticated">
+          <button type="button" class="btn btn-outline-primary me-2" @click="rtAccount">Ваш аккаунт</button>
+          <button type="button" class="btn btn-primary" @click="clearAuthToken">Выйти</button>
+        </div>
+        <div v-else>
+          <button type="button" class="btn btn-outline-primary me-2" @click="rtLogin">Войти</button>
+          <button type="button" class="btn btn-primary" @click="rtRegister">Регистрация</button>
+        </div>
+      </div>
+    </header>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

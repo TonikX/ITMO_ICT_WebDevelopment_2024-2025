@@ -1,0 +1,37 @@
+<script async setup>
+
+import BigCard from "@/components/BigCard.vue";
+import axiosInstance from "@/services/axios.js";
+import {onMounted, ref} from "vue";
+import Carousel from "@/components/Carousel.vue";
+
+
+const recipeData = ref(null)
+const collection = ref(null)
+
+const fetchRecipe = async (id) => {
+  return await (await axiosInstance.get(`recipes/${id}`)).data;
+}
+
+const fetchLists = async () => {
+  return await (await axiosInstance.get(`/lists`)).data;
+}
+
+onMounted(async () => {
+  recipeData.value = await fetchRecipe(1);
+  collection.value = await fetchLists();
+})
+</script>
+<template>
+
+
+  <BigCard v-if="recipeData" :recipe="recipeData"/>
+  <hr>
+
+  <div v-for="item in collection">
+    <Carousel v-if="collection" :carouselData="item" class="my-3"/>
+  </div>
+
+
+</template>
+

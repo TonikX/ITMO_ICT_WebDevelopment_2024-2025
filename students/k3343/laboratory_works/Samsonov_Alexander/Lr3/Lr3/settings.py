@@ -56,6 +56,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:63342",
+    "http://localhost:5173"
 ]
 
 ROOT_URLCONF = "Lr3.urls"
