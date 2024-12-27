@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Licenses List</title>
+</head>
+<body>
+<h1>Licenses List</h1>
+<a href="{% url 'license_create' %}">Add New License</a>
+<ul>
+    {% for license in licenses %}
+        <li>{{ license.name }} - <a href="{% url 'license_delete' license.pk %}">Delete</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

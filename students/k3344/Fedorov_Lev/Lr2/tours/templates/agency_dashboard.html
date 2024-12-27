@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет турагенства</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'tour_list' %}">
+        <img src="{% static 'favicon.ico' %}" alt="Favicon" style="height: 30px; margin-right: 10px;">
+        Личный кабинет турагенства
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'tour_list' %}">Главная</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sold_tours_by_country' %}">Количество туров по
+                странам</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'agency_dashboard' %}">Личный кабинет</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выйти</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Личный кабинет турагенства</h1>
+    <a href="{% url 'create_tour' %}" class="btn btn-primary mb-3">Добавить тур</a>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% elif tours %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Страна</th>
+                <th>Цена</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for tour in tours %}
+                <tr>
+                    <td>{{ tour.name }}</td>
+                    <td>{{ tour.country.name }}</td>
+                    <td>{{ tour.price }}</td>
+                    <td>
+                        <a href="{% url 'edit_tour' tour.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                        <a href="{% url 'delete_tour' tour.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Туры отсутствуют.</p>
+    {% endif %}
+</div>
+
+<footer class="footer bg-dark text-white text-center py-3 mt-4">
+    <p>&copy; 2024 Туристическое агентство ПИН. Все права защищены.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доступные туры - Туристическое агентство</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'tour_list' %}">Туры</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'tour_list' %}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'sold_tours_by_country' %}">Туры по странам</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'user_dashboard' %}">Личный кабинет</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Выйти</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Войти</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register_reviewer' %}">Регистрация для
+                    рецензента</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register_agency' %}">Регистрация для
+                    агентства</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Доступные туры</h1>
+    {% if tours %}
+        <ul>
+            {% for tour in tours %}
+                <li>{{ tour.name }} - {{ tour.country.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Туры отсутствуют.</p>
+    {% endif %}
+</div>
+
+<footer class="footer bg-dark text-white text-center py-3 mt-4">
+    <p>&copy; 2024 Туристическое агентство ПИН. Все права защищены.</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

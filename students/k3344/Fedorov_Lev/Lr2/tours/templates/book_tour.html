@@ -1,0 +1,15 @@
+{% extends 'tours/base.html' %}
+
+{% block title %}Бронирование тура{% endblock %}
+
+{% block content %}
+<h2>Бронирование тура: {{ tour.name }}</h2>
+<p><strong>Агентство:</strong> {{ tour.agency.name }}</p>
+<p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+
+<form method="post" class="mt-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Забронировать</button>
+</form>
+{% endblock %}
