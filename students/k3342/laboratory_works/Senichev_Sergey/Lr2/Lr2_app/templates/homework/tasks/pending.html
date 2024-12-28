@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pending Tasks</title>
+</head>
+<body>
+    <h1>Pending Assignments</h1>
+    <ul>
+        {% for assignment in pending_assignments %}
+            <li>{{ assignment.task.title }} - Status: {{ assignment.status }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
