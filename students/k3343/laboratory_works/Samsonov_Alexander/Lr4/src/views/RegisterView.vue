@@ -52,7 +52,7 @@
 <script>
 import axiosInstance from "@/services/axios";
 import router from "@/router/index.js";
-import CustomHeader from "@/components/CustomHeader.vue";
+import CustomHeader from "@/components/genericInterface/CustomHeader.vue";
 
 export default {
   name: "RegisterView",

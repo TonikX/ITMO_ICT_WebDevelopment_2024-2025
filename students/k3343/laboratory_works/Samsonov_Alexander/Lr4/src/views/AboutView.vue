@@ -1,5 +1,5 @@
 <script setup>
-import Carousel from "@/components/Carousel.vue";
+import Carousel from "@/components/genericInterface/Carousel.vue";
 import {onMounted, ref} from "vue";
 import axiosInstance from "@/services/axios.js";
 

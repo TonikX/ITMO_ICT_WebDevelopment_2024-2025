@@ -2,9 +2,9 @@
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
 import {fetchAndReturn} from "@/composables/fetchAndReturn.js"
-import RecipeBanner from "@/components/RecipeBanner.vue";
-import Loremipsum from "@/components/loremipsum.vue";
-import IngredientsTable from "@/components/IngredientsTable.vue";
+import RecipeBanner from "@/components/recipeComponents/RecipeBanner.vue";
+import IngredientsTable from "@/components/recipeComponents/IngredientsTable.vue";
+import RecipeText from "@/components/recipeComponents/RecipeText.vue";
 
 
 const recipeId = useRoute().params.recipeId;
@@ -44,7 +44,7 @@ onMounted(async () => {
         </div>
         <div class="col">
           <!--          place for contents-->
-          <loremipsum/>
+          <RecipeText :recipeInfo="RecipeData"/>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@ onMounted(async () => {
   <div v-else-if="cError">{{ cError }}</div>
 
   <div v-else>
-    <h1>Success comments</h1>
+    <h1>Комментарии</h1>
     {{ CommentsData }}
   </div>
 

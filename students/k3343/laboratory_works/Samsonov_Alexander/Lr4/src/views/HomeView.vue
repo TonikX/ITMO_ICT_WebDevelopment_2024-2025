@@ -1,9 +1,9 @@
 <script async setup>
 
-import BigCard from "@/components/BigCard.vue";
+import BigCard from "@/components/genericInterface/BigCard.vue";
 import axiosInstance from "@/services/axios.js";
 import {onMounted, ref} from "vue";
-import Carousel from "@/components/Carousel.vue";
+import Carousel from "@/components/genericInterface/Carousel.vue";
 
 
 const recipeData = ref(null)

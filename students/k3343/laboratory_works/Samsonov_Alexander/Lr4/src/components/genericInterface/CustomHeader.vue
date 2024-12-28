@@ -9,7 +9,7 @@ import {isAuthenticated, clearAuthToken} from "@/composables/useAuth.js";
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom navbar-dark">
       <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <a href="/public" class="d-inline-flex link-body-emphasis text-decoration-none">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cake"
                viewBox="0 0 20 20">
             <path

@@ -1,7 +1,6 @@
 <script setup>
 import {ref} from "vue";
 
-
 const props = defineProps(["recipeInfo"])
 const recipeInfo = ref(props.recipeInfo)
 </script>

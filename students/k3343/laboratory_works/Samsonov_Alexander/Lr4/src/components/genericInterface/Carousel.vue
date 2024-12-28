@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import ListCard from "@/components/ListCard.vue";
+import ListCard from "@/components/genericInterface/ListCard.vue";
 import {onMounted, ref} from "vue";
 
 const groupedData = ref(null)

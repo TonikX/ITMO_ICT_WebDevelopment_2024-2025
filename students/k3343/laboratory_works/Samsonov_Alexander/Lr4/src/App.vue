@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import CustomHeader from "@/components/CustomHeader.vue";
-import CustomFooter from "@/components/CustomFooter.vue";
+import CustomHeader from "@/components/genericInterface/CustomHeader.vue";
+import CustomFooter from "@/components/genericInterface/CustomFooter.vue";
 
 export default {
   name: 'App',

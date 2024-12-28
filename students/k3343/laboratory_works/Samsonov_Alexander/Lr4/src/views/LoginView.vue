@@ -33,7 +33,7 @@
 import axiosInstance from "@/services/axios";
 import router from "@/router/index.js";
 import {setAuthToken} from '@/composables/useAuth';
-import CustomHeader from "@/components/CustomHeader.vue";
+import CustomHeader from "@/components/genericInterface/CustomHeader.vue";
 
 
 export default {
