@@ -34,6 +34,10 @@ class MyRecipes(ListAPIView):
 
 class Toggle(APIView):
     permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        obj, created = Like.objects.get_or_create(recipe=recipe, user=request.user)
+        return Response({'liked': obj.status}, status=200)
 
     def post(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)

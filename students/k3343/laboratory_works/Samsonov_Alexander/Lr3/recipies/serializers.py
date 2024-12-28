@@ -1,5 +1,5 @@
-from rest_framework import serializers
 from django.contrib.auth.models import User
+from rest_framework import serializers
 
 from .models import Recipe, Ingredients, Comment, CuratedList
 
@@ -31,6 +31,7 @@ class TagSerializer(serializers.Serializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     author = UserSerializer(required=False, allow_null=True)
+
     class Meta:
         model = Comment
         fields = [
@@ -107,6 +108,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
 class CuratedListSerializer(serializers.ModelSerializer):
     recipes = RecipeListSerializer(many=True)
+
     class Meta:
         model = CuratedList
         fields = [
@@ -119,6 +121,7 @@ class CuratedListSerializer(serializers.ModelSerializer):
 class CuratedListDetailSerializer(serializers.ModelSerializer):
     recipes = RecipeListSerializer(many=True)
     Curator = UserSerializer()
+
     class Meta:
         model = CuratedList
         fields = "__all__"

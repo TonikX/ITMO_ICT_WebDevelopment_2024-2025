@@ -2,7 +2,7 @@
 
 import {ref} from "vue";
 
-const props = defineProps(["commentInfo", "key"])
+const props = defineProps(["commentInfo"])
 const commentInfo = ref(props.commentInfo)
 </script>
 

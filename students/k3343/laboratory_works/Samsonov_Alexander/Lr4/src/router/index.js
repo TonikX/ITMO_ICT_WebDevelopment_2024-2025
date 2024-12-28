@@ -38,7 +38,7 @@ const router = createRouter({
         },
     ],
 })
-// TODO create recipe view (read, comment if authenticated)
 // TODO account management: publish new recipes
-// TODO local storage favorites? 
+// TODO list favorite recipes
+// TODO recipe list, maybe filter on the frontend
 export default router
