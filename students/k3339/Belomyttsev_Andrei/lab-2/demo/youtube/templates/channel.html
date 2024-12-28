@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load youtube_tags %}
+
+{% block content %}
+<h2>{{ channel.title }}</h2>
+<a href="{{ channel.url }}" target="_blank"><img src="{{ channel.icon_high }}" class="avatar"></a>
+<p>{{ channel.get_lang_display }} / {{ channel.get_category_display }} / {{ channel.get_theme_display }} /
+{{ channel.subs|intformat }} subs / {{ channel.views|intformat }} views / {{ channel.videos|intformat }} videos
+</p>
+<p>{{ channel.description|linebreaks|urlize }}</p>
+<p>Added by {{ channel.user.username|default:"anon" }} at {{ channel.time_create }}</p>
+
+{% if user.is_authenticated %}
+<h3>Write Review</h3>
+<form action="/youtube/add-review/{{channel.channel_id}}/" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+<input type="submit">
+</form>
+{% endif %}
+
+<h3>Reviews ({{ reviews|length }})</h3>
+{% for review in reviews %}
+<p><b>{{ review.rating }}</b> / <b>{{ review.user.username }}</b> / {{ review.time_create }}
+{{ review.text|linebreaks }}</p>
+{% if not forloop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

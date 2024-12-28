@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load youtube_tags %}
+
+{% block content %}
+
+<h2>Add Channel</h2>
+<form action="" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+</form>
+
+<h3>My Channels ({{ channels|length }})</h3>
+{% if channels %}
+<table>
+<tr>
+  <th></th>
+  <th>Channel</th>
+  <th>Subs</th>
+  <th>Status</th>
+  <!-- <th>Lang</th>
+  <th>Category</th>
+  <th>Theme</th>
+  <th>Tags</th> -->
+</tr>
+{% for channel in channels %}
+<tr>
+  <td>
+    <a href="{{ channel.get_absolute_url }}">
+    <!-- <a href="{{ channel.url }}" target="_blank"> -->
+    <img src="{{ channel.icon_medium }}" width="40" height="40" style="margin-bottom: 0 !important; border-radius: 50% !important;"></a>
+  </td>
+  <!-- <td><a href="{% url 'channel' channel.channel_id %}" target="_blank">{{ channel.title }}</a></td> -->
+  <td><a href="{{ channel.get_absolute_url }}">{{ channel.title }}</a></td>
+  <td>{{ channel.subs|intformat }}</td>
+  {% if channel.is_approved %}
+  <td style="color:green;">Approved</td>
+  {% else %}
+  <td style="color:red;">Not Approved</td>
+  {% endif %}
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

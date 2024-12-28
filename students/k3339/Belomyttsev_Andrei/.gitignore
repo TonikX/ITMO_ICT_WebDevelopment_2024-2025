@@ -1,0 +1,5 @@
+venv
+site
+.DS_Store
+*.sqlite3
+lab-2/demo/youtube/migrations/0*.py
