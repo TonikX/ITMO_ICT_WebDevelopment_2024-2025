@@ -84,7 +84,7 @@ export default {
           password: this.password,
         });
         this.success = "Registration successful! You can now log in.";
-        setTimeout(router.push('login'), 3)
+        setTimeout(router.back(), 3)
 
       } catch (err) {
         this.error = err.response?.data || "Registration failed.";

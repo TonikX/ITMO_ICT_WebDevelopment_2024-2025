@@ -11,3 +11,15 @@ export const fetchAndReturn = async (path, dataRef, loadingRef, errorRef) => {
         loadingRef.value = false
     }
 }
+
+export const postComment = async (recipeId, rating, header, content) => {
+    try {
+        const response = await axiosInstance.post(`comments/?recipe_id=${recipeId}`,
+            {"rating": rating, 'header': header, 'content_text': content},)
+        console.log(response.data)
+        return response.data
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}

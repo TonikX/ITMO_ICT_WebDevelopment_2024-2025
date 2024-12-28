@@ -61,7 +61,7 @@ export default {
         const data = await response.data;
         this.success = "Login successful!";
         setAuthToken(data['auth_token']);
-        setTimeout(router.push("/"), 3)
+        setTimeout(router.back(), 3)
 
       } catch (err) {
         this.error = err.response?.data?.detail || "Login failed.";

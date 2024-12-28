@@ -28,8 +28,8 @@ onMounted(async () => {
   <BigCard v-if="recipeData" :recipe="recipeData"/>
   <hr>
 
-  <div v-for="item in collection">
-    <Carousel v-if="collection" :carouselData="item" class="my-3"/>
+  <div v-for="item in collection" class="my-3">
+    <Carousel v-if="collection" :carouselData="item" :key="item.id"/>
   </div>
 
 

@@ -1,9 +1,12 @@
 from djoser import serializers
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView, \
+    CreateAPIView, get_object_or_404
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Recipe, Comment, CuratedList
+from .models import Recipe, Comment, CuratedList, Like
 from .serializers import RecipeListSerializer, RecipeDetailSerializer, RecipeCreateSerializer, CommentSerializer, \
     CuratedListSerializer, CuratedListDetailSerializer
 
@@ -21,6 +24,32 @@ class RecipeListCreateView(ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
+
+class MyRecipes(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = RecipeDetailSerializer
+
+    def get_queryset(self):
+        return Recipe.objects.filter(author=self.request.user)
+
+class Toggle(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        obj, created = Like.objects.get_or_create(recipe=recipe, user=request.user)
+        obj.status = not obj.status
+        obj.save()
+        return Response('Ok', status=200)
+
+class MyLikedRecipes(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = RecipeDetailSerializer
+
+    def get_queryset(self):
+        values = Like.objects.filter(user=self.request.user, status=True).select_related('recipe')
+        recipes = [like.recipe for like in values]
+        return recipes
 
 class RecipeDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()

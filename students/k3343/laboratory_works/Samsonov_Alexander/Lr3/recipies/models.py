@@ -80,3 +80,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.header} by {self.author.username}"
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    recipe = models.ForeignKey(Recipe, on_delete=models.SET_NULL, null=True)
+    status = models.BooleanField(default=False)

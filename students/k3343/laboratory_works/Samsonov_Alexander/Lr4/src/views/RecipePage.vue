@@ -5,6 +5,9 @@ import {fetchAndReturn} from "@/composables/fetchAndReturn.js"
 import RecipeBanner from "@/components/recipeComponents/RecipeBanner.vue";
 import IngredientsTable from "@/components/recipeComponents/IngredientsTable.vue";
 import RecipeText from "@/components/recipeComponents/RecipeText.vue";
+import CommentForm from "@/components/commentComponents/commentForm.vue";
+import CommentCard from "@/components/commentComponents/commentCard.vue";
+import {isAuthenticated} from "@/composables/useAuth.js";
 
 
 const recipeId = useRoute().params.recipeId;
@@ -22,6 +25,10 @@ onMounted(async () => {
   await fetchAndReturn(`comments/?recipe_id=${recipeId}`, CommentsData, cLoading, cError)
 })
 
+const onCommentSubmitted = async (result) => {
+  await fetchAndReturn(`comments/?recipe_id=${recipeId}`, CommentsData, cLoading, cError)
+  CommentsData.value.push(await result)
+}
 </script>
 
 <template>
@@ -50,16 +57,21 @@ onMounted(async () => {
     </div>
   </div>
 
+  <hr class="my-3"/>
   <div v-if="cLoading">Loading comments...</div>
   <div v-else-if="cError">{{ cError }}</div>
-
   <div v-else>
-    <h1>Комментарии</h1>
-    {{ CommentsData }}
+    <h1 class="custom-text">Комментарии</h1>
+    <comment-form v-if="isAuthenticated" @submit-comment="onCommentSubmitted" />
+    <comment-card v-for="Comment in CommentsData" :key="Comment.id" :commentInfo="Comment"/>
   </div>
 
 </template>
 
 <style scoped>
-
+.custom-text {
+  position: relative;
+  left: -270px;
+  text-align: center;
+}
 </style>

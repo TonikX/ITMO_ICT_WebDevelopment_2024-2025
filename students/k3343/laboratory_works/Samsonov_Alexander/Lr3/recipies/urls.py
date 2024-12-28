@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import RecipeDetailView, RecipeListCreateView, CommentListCreateView, CommentDetailView, CuratedListView, \
-    CuratedListDetailedView
+    CuratedListDetailedView, MyRecipes, Toggle, MyLikedRecipes
 
 urlpatterns = [
     path('recipes/', RecipeListCreateView.as_view(), name='recipe-list'),
     path('recipes/<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'),
+    path('recipes/<int:pk>/like/', Toggle.as_view(), name='recipe-like'),
+    path('recipes/my/', MyRecipes.as_view(), name='recipe-my'),
+    path('liked/', MyLikedRecipes.as_view()),
 
     path('comments/', CommentListCreateView.as_view(), name='comment-list-retrieve/create'),
     path('comments/<int:pk>/', CommentDetailView.as_view(), name='comment-detail'),
