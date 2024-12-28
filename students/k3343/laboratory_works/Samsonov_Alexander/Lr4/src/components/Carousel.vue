@@ -1,6 +1,6 @@
 <template>
   <h1>{{ carouselData.carouselData.header }}</h1>
-  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div :id=carouselSelector class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div
           class="carousel-item"
@@ -21,7 +21,7 @@
     <button
         class="carousel-control-prev"
         type="button"
-        data-bs-target="#carouselExample"
+        :data-bs-target="'#'+carouselSelector"
         data-bs-slide="prev"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,7 +30,7 @@
     <button
         class="carousel-control-next"
         type="button"
-        data-bs-target="#carouselExample"
+        :data-bs-target="'#'+carouselSelector"
         data-bs-slide="next"
     >
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -42,10 +42,11 @@
 
 <script setup>
 import ListCard from "@/components/ListCard.vue";
-import {computed, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 
 const groupedData = ref(null)
 const carouselData = defineProps(["carouselData"]);
+const carouselSelector = ref(null)
 
 const batchSplit = (batch, split) => {
   const array = []
@@ -59,7 +60,7 @@ const batchSplit = (batch, split) => {
 
 onMounted(() => {
       groupedData.value = batchSplit(carouselData.carouselData.recipes, 4)
-      console.log(carouselData.carouselData)
+      carouselSelector.value = `carousel--${carouselData.carouselData.id}`
     }
 )
 </script>

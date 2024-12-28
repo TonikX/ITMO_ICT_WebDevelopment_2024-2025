@@ -23,6 +23,12 @@ const router = createRouter({
                 isAuthenticated.value ? next('/') : next();
             },
         },
+        {
+            path: '/recipe/:recipeId',
+            name: 'recipe info',
+            component: import('../views/RecipePage.vue'),
+            props: true
+        },
 
         // 404 not found
         {

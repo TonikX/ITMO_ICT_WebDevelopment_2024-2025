@@ -13,4 +13,3 @@ export const clearAuthToken = () => {
     authToken.value = null;
     localStorage.removeItem('authToken');
 };
-

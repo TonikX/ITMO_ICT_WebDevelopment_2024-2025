@@ -1,4 +1,4 @@
-<script async setup>
+<script setup>
 import {ref} from "vue";
 
 const props = defineProps(['recipe'])

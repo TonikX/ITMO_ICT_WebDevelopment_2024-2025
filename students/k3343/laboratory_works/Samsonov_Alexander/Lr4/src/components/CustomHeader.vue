@@ -1,7 +1,5 @@
 <script setup>
 import {isAuthenticated, clearAuthToken} from "@/composables/useAuth.js";
-import router from "@/router/index.js";
-import {rtAccount, rtLogin, rtRegister} from "@/composables/routing.js";
 
 
 </script>
@@ -47,12 +45,12 @@ import {rtAccount, rtLogin, rtRegister} from "@/composables/routing.js";
 
 
         <div v-if="isAuthenticated">
-          <button type="button" class="btn btn-outline-primary me-2" @click="rtAccount">Ваш аккаунт</button>
+          <router-link type="button" class="btn btn-outline-primary me-2" to="/account">Ваш аккаунт</router-link>
           <button type="button" class="btn btn-primary" @click="clearAuthToken">Выйти</button>
         </div>
         <div v-else>
-          <button type="button" class="btn btn-outline-primary me-2" @click="rtLogin">Войти</button>
-          <button type="button" class="btn btn-primary" @click="rtRegister">Регистрация</button>
+          <router-link type="button" class="btn btn-outline-primary me-2" to="/login">Войти</router-link>
+          <router-link type="button" class="btn btn-primary" to="/register">Регистрация</router-link>
         </div>
       </div>
     </header>
