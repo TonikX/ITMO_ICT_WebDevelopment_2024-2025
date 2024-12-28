@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Отели{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать в систему бронирования отелей</h1>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="{% url 'hotel_list' %}">Отели</a></li>
+            <li><a href="{% url 'reservation_list' %}">Мои бронирования</a></li>
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">Мой профиль</a></li>
+                <li><a href="{% url 'logout' %}">Выход</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2024 Система бронирования отелей</p>
+    </footer>
+</body>
+</html>

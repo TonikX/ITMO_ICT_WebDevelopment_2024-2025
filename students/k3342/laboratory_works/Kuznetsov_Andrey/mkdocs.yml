@@ -1,0 +1,17 @@
+site_name: WEB documentation
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task 1": laboratory_work_1/task1.md
+      - "Task 2": laboratory_work_1/task2.md
+      - "Task 3": laboratory_work_1/task3.md
+      - "Task 4": laboratory_work_1/task4.md
+      - "Task 5": laboratory_work_1/task5.md
+  - Lab 2:
+      - "Task": laboratory_work_2/task.md
+      - LeetCode Tasks:
+          - "Task 1": laboratory_work_2/leetcode/task1.md
+          - "Task 2": laboratory_work_2/leetcode/task2.md
+          - "Task 3": laboratory_work_2/leetcode/task3.md
+theme:
+  name: material
