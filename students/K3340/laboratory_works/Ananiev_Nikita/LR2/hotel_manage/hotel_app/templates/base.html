@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% include 'add_bootstrap.html' %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    {% block head %} {% endblock head %}
+</head>
+<body>
+    <div class="header__container">
+        <div class="header__left__buttons">
+            <a href="/" class="btn btn-default">Main Page</a>
+            <a href="/hotel" class="btn btn-default">Hotel List</a>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="header__left__buttons">
+                <a href="/my_bookings/" class="btn btn-default">Booking history</a>
+            </div>
+            <div class="header__right__buttons">
+                <a href="/logout"><button class="btn btn-danger">Log Out</button></a>
+                {% if user.is_staff %}
+                    <a href="/admin/"><button class="btn btn-primary">Admin panel</button></a>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="header__right__buttons">
+                <a href="/login"><button class="btn btn-primary">Sign In</button></a>
+                <a href="/register"><button class="btn btn-primary">Sign Up</button></a>
+            </div>
+        {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

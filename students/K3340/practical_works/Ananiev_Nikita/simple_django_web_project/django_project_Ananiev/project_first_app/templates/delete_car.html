@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete car</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Do you want to delete car "{{ car.brand }} {{ car.model }}"?</p>
+        <input type="submit" value="Confirm">
+    </form>
+</body>
+</html>

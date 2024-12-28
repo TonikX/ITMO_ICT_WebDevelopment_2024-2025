@@ -1,0 +1,22 @@
+site_name: Nikita Ananiev WEB
+nav:
+  - Home:  index.md
+  - lab_1:
+    - 1 task : lab_1/task1.md
+    - 2 task : lab_1/task2.md
+    - 3 task : lab_1/task3.md
+    - 4 task : lab_1/task4.md
+    - 5 task : lab_1/task5.md
+  - lab_2:
+      - main : lab_2/main.md
+      - register : lab_2/register.md
+      - hotel_logic : lab_2/hotels.md
+      - bookings: lab_2/booking.md
+  - lab_3:
+      - main : lab_3/main.md
+      - users : lab_3/users.md
+      - rooms : lab_3/rooms.md
+      - bookings : lab_3/bookings.md
+      - employees : lab_3/employees.md
+theme:
+  name: material

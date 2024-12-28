@@ -1,0 +1,32 @@
+#residents__table table {
+    border-spacing: 1px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 75%;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+#residents__table td,th {
+    padding-left: 8px
+}
+
+#residents__table thead tr {
+    height: 60px;
+    background: #B79492;
+    font-size: 16px;
+}
+
+#residents__table tbody tr {
+    height: 48px;
+    border-bottom: 1px solid #566246;
+    &:last-child  { border:0; }
+}
+
+#residents__table td,th {
+    text-align:left;
+}

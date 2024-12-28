@@ -1,0 +1,57 @@
+.details__container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    gap: 20px;
+    margin: auto;
+    max-width: 80%;
+}
+
+.details__inner__container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2%;
+}
+
+#hotel__pics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5%;
+    flex-wrap: wrap;
+}
+
+#room__pics {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5%;
+    flex-wrap: wrap;
+}
+
+#room__pics h3 {
+    width: 100%;
+}
+
+#hotel__pics h2 {
+    width: 100%;
+}
+
+.pic__buttons {
+    margin-top: 2%;
+    display: flex;
+    width: 100%;
+    gap: 1%;
+    justify-content: flex-start;
+}
+
+.list__pic {
+    max-width: 45%;
+}
+
+.list__pic img {
+    max-width: 100%;
+    border-radius: 5px;
+}

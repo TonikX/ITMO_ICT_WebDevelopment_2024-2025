@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/details.css" %}" />
+    <title>Room {{ room.number }} | {{ room.hotel.name }}</title>
+{% endblock head %}
+
+{% block content %}
+    <h1> Detailed information about Room {{ room.number }}:</h1>
+    <div class="details__container">
+        <div class="details__inner__container">
+            <p> Area: {{ room.area }}</p>
+            <p> Types: |
+                {% for type in types %}
+                {{ type.type }} |
+                {% endfor %} </p>
+            <p> Price: {{ room.day_price }} $/day</p>
+        </div>
+        <div class="details__inner__container" id="room__pics">
+            <h3>Pictures:</h3>
+            {% if pictures %}
+                {% for pic in pictures %}
+                    <div class="list__pic">
+                        <img src="{{ pic.image.url }}" height="360">
+                    </div>
+                {% endfor %}
+                <div class="pic__buttons">
+                    <button id="prev__pic" class="btn btn-light">Prev</button>
+                    <button id="next__pic" class="btn btn-light">Next</button>
+                </div>
+            {% else %}
+                (No pictures provided for this room..)
+            {% endif %}
+        </div>
+        <div class="details__inner__container">
+            <p> Status:
+            {% if available %}
+                Available now! <p>
+                <a href="/add_booking/{{ room_id }}"><button class="btn btn-light">Book now</button></a> </p>
+            {% else %}
+                Booked for now <p>
+                <a href="/add_booking/{{ room_id }}"><button class="btn btn-light">Book on other date</button></a> </p>
+            {% endif %} </p>
+        </div>
+    </div>
+    <script src="{% static 'javascript/list_pics.js' %}"></script>
+{% endblock content %}

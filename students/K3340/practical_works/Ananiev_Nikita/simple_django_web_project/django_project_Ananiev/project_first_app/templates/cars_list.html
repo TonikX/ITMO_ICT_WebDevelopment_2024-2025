@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All cars</title>
+</head>
+<body>
+    <h2>Cars list:</h2>
+    <div class="main">
+        {% for car in cars %}
+            <ul> {{ car }} </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

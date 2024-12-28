@@ -1,0 +1,70 @@
+.hotel__list__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40%);
+    justify-content: center;
+    max-width: 100%;
+    margin: auto;
+}
+
+.hotel__list__item {
+    background-color: white;
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+    margin: 2%;
+}
+
+.hotel__list__item img {
+    max-height: 100%;
+    max-width: 100%;
+    margin-bottom: 2%;
+}
+
+.booking__list__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 80%;
+    margin: auto;
+}
+
+.booking__list__item {
+    background-color: white;
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+    margin: 1%;
+}
+
+.room__list__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 33%);
+    justify-content: center;
+    max-width: 80%;
+    margin: auto;
+}
+
+.room__list__item {
+    background-color: white;
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 20px;
+    margin: 2%;
+}
+
+.room__list__item img {
+    max-height: 100%;
+    max-width: 100%;
+    margin-bottom: 5%;
+}
+
+ul {
+    display: contents;
+    list-style-type: none;
+}
