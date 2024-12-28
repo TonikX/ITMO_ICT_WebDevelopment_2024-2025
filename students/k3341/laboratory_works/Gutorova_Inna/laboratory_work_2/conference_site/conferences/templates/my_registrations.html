@@ -1,0 +1,101 @@
+<!-- templates/my_registrations.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Registrations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        li strong {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+        .actions {
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Conference Site</h1>
+    </header>
+    <main>
+        <h2>My Registrations</h2>
+        {% if registrations %}
+            <ul>
+                {% for registration in registrations %}
+                    <li>
+                        <strong>Conference:</strong> {{ registration.conference.name }}<br>
+                        <strong>Presentation Topic:</strong> {{ registration.topic }}<br>
+                        <div class="actions">
+                            <a href="{% url 'edit_registration' registration.id %}">Edit</a> |
+                            <a href="{% url 'delete_registration' registration.id %}">Delete</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You have no registrations yet.</p>
+        {% endif %}
+        <br>
+        <a href="{% url 'home' %}">Return to Home Page</a>
+    </main>
+    <footer>
+        <p>&copy; 2024 Conference Site</p>
+    </footer>
+</body>
+</html>

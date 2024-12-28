@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conference List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #ffdd57;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Conference List</h1>
+    </header>
+    <main>
+        <ul>
+            {% for conference in conferences %}
+            <li>
+                <a href="{% url 'conference_detail' conference.id %}">{{ conference.name }}</a>
+            </li>
+            {% empty %}
+            <li>No conferences available.</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Conference Site</p>
+    </footer>
+</body>
+</html>
