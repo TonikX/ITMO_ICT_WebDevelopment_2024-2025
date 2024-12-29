@@ -1,124 +1,140 @@
 from django.db import models
 
+
 class Patient(models.Model):
-    PatientID = models.AutoField(primary_key=True)
-    LastName = models.CharField(max_length=100)
-    FirstName = models.CharField(max_length=100)
-    MiddleName = models.CharField(max_length=100, blank=True, null=True)
-    Gender = models.CharField(max_length=10, choices=(('M', 'Муж'), ('F', 'Жен')))
-    DateOfBirth = models.DateField()
-    Phone = models.CharField(max_length=20, blank=True, null=True)
-    Address = models.CharField(max_length=255, blank=True, null=True)
+    patientId = models.AutoField(primary_key=True)
+    lastName = models.CharField(max_length=100)
+    firstName = models.CharField(max_length=100)
+    middleName = models.CharField(max_length=100, blank=True, null=True)
+    gender = models.CharField(max_length=10, choices=(('M', 'Муж'), ('F', 'Жен')))
+    dateOfBirth = models.DateField()
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.LastName} {self.FirstName}"
+        return f"{self.lastName} {self.firstName}"
+
 
 class MedicalCard(models.Model):
-    MedicalCardID = models.AutoField(primary_key=True)
-    PatientID = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='medical_cards')
-    IssueDate = models.DateField()
-    Notes = models.TextField(blank=True, null=True)
+    medicalCardId = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='medicalCards')
+    issueDate = models.DateField()
+    notes = models.TextField(blank=True, null=True)
+
 
 class Position(models.Model):
-    PositionID = models.AutoField(primary_key=True)
-    Title = models.CharField(max_length=100)
-    Category = models.CharField(max_length=100, blank=True, null=True)
-    Salary = models.DecimalField(max_digits=10, decimal_places=2)
+    positionId = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=100, blank=True, null=True)
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return self.Title
+        return self.title
+
 
 class Doctor(models.Model):
-    DoctorID = models.AutoField(primary_key=True)
-    LastName = models.CharField(max_length=100)
-    FirstName = models.CharField(max_length=100)
-    MiddleName = models.CharField(max_length=100, blank=True, null=True)
-    Gender = models.CharField(max_length=10, choices=(('M', 'Муж'), ('F', 'Жен')))
-    DateOfBirth = models.DateField()
-    Education = models.CharField(max_length=255, blank=True, null=True)
-    PositionID = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name='doctors')
+    doctorId = models.AutoField(primary_key=True)
+    lastName = models.CharField(max_length=100)
+    firstName = models.CharField(max_length=100)
+    middleName = models.CharField(max_length=100, blank=True, null=True)
+    gender = models.CharField(max_length=10, choices=(('M', 'Муж'), ('F', 'Жен')))
+    dateOfBirth = models.DateField()
+    education = models.CharField(max_length=255, blank=True, null=True)
+    position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name='doctors')
 
     def __str__(self):
-        return f"Dr. {self.LastName}"
+        return f"Dr. {self.lastName}"
+
 
 class LaborContract(models.Model):
-    ContractID = models.AutoField(primary_key=True)
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='labor_contracts')
-    StartDate = models.DateField()
-    EndDate = models.DateField(blank=True, null=True)
-    ContractDetails = models.TextField(blank=True, null=True)
+    contractId = models.AutoField(primary_key=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='laborContracts')
+    startDate = models.DateField()
+    endDate = models.DateField(blank=True, null=True)
+    contractDetails = models.TextField(blank=True, null=True)
+
 
 class Schedule(models.Model):
-    ScheduleID = models.AutoField(primary_key=True)
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='schedules')
-    Date = models.DateField()
-    IsWorkingDay = models.BooleanField(default=False)
-    Shift = models.CharField(max_length=50, blank=True, null=True)
+    scheduleId = models.AutoField(primary_key=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='schedules')
+    date = models.DateField()
+    isWorkingDay = models.BooleanField(default=False)
+    shift = models.CharField(max_length=50, blank=True, null=True)
+    startTime = models.TimeField()
+    endTime = models.TimeField()
+
 
 class Office(models.Model):
-    OfficeID = models.AutoField(primary_key=True)
-    OfficeNumber = models.CharField(max_length=50)
-    WorkingHoursStart = models.TimeField()
-    WorkingHoursEnd = models.TimeField()
-    ResponsibleDoctorID = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, related_name='offices')
-    InternalPhone = models.CharField(max_length=20, blank=True, null=True)
+    officeId = models.AutoField(primary_key=True)
+    officeNumber = models.CharField(max_length=50)
+    workingHoursStart = models.TimeField()
+    workingHoursEnd = models.TimeField()
+    responsibleDoctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, related_name='offices')
+    internalPhone = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
-        return self.OfficeNumber
+        return self.officeNumber
+
 
 class Visit(models.Model):
-    VisitID = models.AutoField(primary_key=True)
-    PatientID = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='visits')
-    DoctorID = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, related_name='visits')
-    VisitDate = models.DateField()
-    VisitTime = models.TimeField()
-    OfficeID = models.ForeignKey(Office, on_delete=models.SET_NULL, null=True, related_name='visits')
-    CurrentConditionNotes = models.TextField(blank=True, null=True)
-    VisitStatus = models.TextField(blank=True, null=True)
+    visitId = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='visits')
+    doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, related_name='visits')
+    visitDate = models.DateField()
+    visitTime = models.TimeField()
+    # office = models.ForeignKey(Office, on_delete=models.SET_NULL, null=True, related_name='visits')
+    currentConditionNotes = models.TextField(blank=True, null=True)
+    visitStatus = models.TextField(blank=True, null=True)
+
 
 class Diagnosis(models.Model):
-    DiagnosisID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=200)
-    IllnessType = models.CharField(max_length=200, blank=True, null=True)
-    Description = models.TextField(blank=True, null=True)
-    GeneralTreatmentRecommendations = models.TextField(blank=True, null=True)
+    diagnosisId = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    illnessType = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    generalTreatmentRecommendations = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.Name
+        return self.name
+
 
 class VisitDiagnosis(models.Model):
-    VisitDiagnosisID = models.AutoField(primary_key=True)
-    VisitID = models.ForeignKey(Visit, on_delete=models.CASCADE, related_name='visit_diagnoses')
-    DiagnosisID = models.ForeignKey(Diagnosis, on_delete=models.CASCADE, related_name='visit_diagnoses')
-    SpecificRecommendations = models.TextField(blank=True, null=True)
-    VisitDiagnosisStatus = models.CharField(max_length=100, blank=True, null=True)
+    visitDiagnosisId = models.AutoField(primary_key=True)
+    visit = models.ForeignKey(Visit, on_delete=models.CASCADE, related_name='visitDiagnoses')
+    diagnosis = models.ForeignKey(Diagnosis, on_delete=models.CASCADE, related_name='visitDiagnoses')
+    specificRecommendations = models.TextField(blank=True, null=True)
+    visitDiagnosisStatus = models.CharField(max_length=100, blank=True, null=True)
+
 
 class Service(models.Model):
-    ServiceID = models.AutoField(primary_key=True)
-    Name = models.CharField(max_length=200)
-    Description = models.TextField(blank=True, null=True)
-    ServiceType = models.CharField(max_length=100, blank=True, null=True)
+    serviceId = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+    serviceType = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.Name
+        return self.name
+
 
 class ServicePrice(models.Model):
-    ServicePriceID = models.AutoField(primary_key=True)
-    ServiceID = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='service_prices')
-    Price = models.DecimalField(max_digits=10, decimal_places=2)
-    ValidFrom = models.DateField()
-    ValidTo = models.DateField(blank=True, null=True)
+    servicePriceId = models.AutoField(primary_key=True)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='servicePrices')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    validFrom = models.DateField()
+    validTo = models.DateField(blank=True, null=True)
+
 
 class VisitService(models.Model):
-    VisitServiceID = models.AutoField(primary_key=True)
-    VisitID = models.ForeignKey(Visit, on_delete=models.CASCADE, related_name='visit_services')
-    ServiceID = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='visit_services')
-    Quantity = models.IntegerField(default=1)
-    PriceAtTime = models.DecimalField(max_digits=10, decimal_places=2)
-    Status = models.CharField(max_length=100, blank=True, null=True)
-    PaymentStatus = models.CharField(max_length=100, blank=True, null=True)
+    visitServiceId = models.AutoField(primary_key=True)
+    visit = models.ForeignKey(Visit, on_delete=models.CASCADE, related_name='visitServices')
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name='visitServices')
+    quantity = models.IntegerField(default=1)
+    priceAtTime = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=100, blank=True, null=True)
+    paymentStatus = models.CharField(max_length=100, blank=True, null=True)
+
 
 class Payment(models.Model):
-    PaymentID = models.AutoField(primary_key=True)
-    VisitServiceID = models.ForeignKey(VisitService, on_delete=models.CASCADE, related_name='payments')
-    Amount = models.DecimalField(max_digits=10, decimal_places=2)
+    paymentId = models.AutoField(primary_key=True)
+    visitService = models.ForeignKey(VisitService, on_delete=models.CASCADE, related_name='payments')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
