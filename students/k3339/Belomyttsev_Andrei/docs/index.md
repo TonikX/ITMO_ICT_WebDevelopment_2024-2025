@@ -1,0 +1,24 @@
+# Web Docs
+
+This is the documentation for the course **Web Programming**.
+
+## Labs
+
+- Lab-1
+    - [Task-1](lab-1/task-1.md)
+    - [Task-2](lab-1/task-2.md)
+    - [Task-3](lab-1/task-3.md)
+    - [Task-4](lab-1/task-4.md)
+    - [Task-5](lab-1/task-5.md)
+- Lab-2
+    - [Practice-1](lab-2/practice-1.md)
+    - [Practice-2](lab-2/practice-2.md)
+    - [Practice-3](lab-2/practice-3.md)
+    - [Lab-2](lab-2/lab-2.md)
+- Lab-3
+    - [Practice-1](lab-3/practice-1.md)
+    - [Practice-2](lab-3/practice-2.md)
+    - [Practice-3](lab-3/practice-3.md)
+    - [Lab-3](lab-3/lab-3.md)
+- Lab-4
+    - [Lab-4](lab-4/lab-4.md)

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load youtube_tags %}
+
+{% block content %}
+<h2>List of educational YouTube channels</h2>
+<table>
+<tr>
+  <th></th>
+  <th>Channel</th>
+  <th>Subs</th>
+  <th>Views</th>
+  <th>Videos</th>
+  <!-- <th></th> -->
+  <!-- <th>Lang</th> -->
+  <!-- <th>Category</th> -->
+  <!-- <th>Theme</th> -->
+</tr>
+{% for channel in channels %}
+<tr>
+  <td>
+    <a href="{{ channel.get_absolute_url }}">
+    <!-- <a href="{{ channel.url }}" target="_blank"> -->
+    <img src="{{ channel.icon_medium }}" width="40" height="40" style="margin-bottom: 0 !important; border-radius: 50% !important;"></a>
+  </td>
+  <!-- <td><a href="{% url 'channel' channel.channel_id %}" target="_blank">{{ channel.title }}</a></td> -->
+  <td><a href="{{ channel.get_absolute_url }}">{{ channel.title }}</a></td>
+  <td>{{ channel.subs|intformat }}</td>
+  <td>{{ channel.views|intformat }}</td>
+  <td>{{ channel.videos|intformat }}</td>
+  <!-- <td>{{ channel.get_lang_display }} / {{ channel.get_category_display }} / {{ channel.get_theme_display }}</td> -->
+  <!-- <td>{{ channel.get_lang_display }}</td>
+  <td>{{ channel.get_category_display }}</td>
+  <td>{{ channel.get_theme_display }}</td> -->
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
