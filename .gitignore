@@ -154,6 +154,27 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Node modules
+node_modules/
+
+# Angular build outputs
+dist/
+out-tsc/
+
+# IDE and editor settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files (если вы не хотите загружать конфиденциальные настройки)
+*.env
+
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
