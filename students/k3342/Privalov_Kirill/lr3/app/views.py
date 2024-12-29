@@ -1,3 +1,4 @@
+from .filters import LaborContractFilter, ScheduleFilter
 from rest_framework.viewsets import ModelViewSet
 from .models import (
     Patient, MedicalCard, Doctor, Position, LaborContract, Schedule,
@@ -8,6 +9,8 @@ from .serializers import (
     ScheduleSerializer, OfficeSerializer, VisitSerializer, DiagnosisSerializer, VisitDiagnosisSerializer,
     ServiceSerializer, ServicePriceSerializer, VisitServiceSerializer, PaymentSerializer
 )
+from django_filters.rest_framework import DjangoFilterBackend
+
 
 class PatientViewSet(ModelViewSet):
     queryset = Patient.objects.all()
@@ -28,11 +31,14 @@ class DoctorViewSet(ModelViewSet):
 class LaborContractViewSet(ModelViewSet):
     queryset = LaborContract.objects.all()
     serializer_class = LaborContractSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = LaborContractFilter
 
 class ScheduleViewSet(ModelViewSet):
     queryset = Schedule.objects.all()
     serializer_class = ScheduleSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ScheduleFilter
 class OfficeViewSet(ModelViewSet):
     queryset = Office.objects.all()
     serializer_class = OfficeSerializer
