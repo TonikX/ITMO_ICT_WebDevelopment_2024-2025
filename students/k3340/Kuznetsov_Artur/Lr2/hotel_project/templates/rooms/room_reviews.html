@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы для {{ room.room_type }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Отзывы для номера: {{ room.room_type }}</h1>
+        <a href="{% url 'room_list' hotel_id=room.hotel.id %}" class="btn btn-secondary mb-3">Назад к списку номеров</a>
+        {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p><strong>Пользователь:</strong> {{ review.reservation.user.username }}</p>
+                    <p><strong>Рейтинг:</strong> {{ review.rate }}/10</p>
+                    <p><strong>Дата пребывания:</strong> с {{ review.reservation.start_date }}
+                        по {{ review.reservation.end_date }}</p>
+                    <p>{{ review.comment }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

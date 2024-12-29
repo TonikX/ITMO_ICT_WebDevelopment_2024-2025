@@ -1,0 +1,2644 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../prac3-2/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>lab-3 - Web Programming Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-django-rest-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Web Programming Docs" class="md-header__button md-logo" aria-label="Web Programming Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web Programming Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              lab-3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Web Programming Docs" class="md-nav__button md-logo" aria-label="Web Programming Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web Programming Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lr1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lr1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/task1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/task2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/task3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/task4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/task5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lr2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lr2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr2/hotel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hotel
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lr3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lr3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prac3-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prac3-1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prac3-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prac3-2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    lab-3
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    lab-3
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#no6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант №6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема базы данных
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Эндпоинты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Эндпоинты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Пользователи
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Пользователи">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Регистрация нового пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Авторизация пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Получение информации о текущем пользователе
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Обновление информации о пользователе
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4. Обновление информации о пользователе">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Получение списка всех пользователей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Получение информации о конкретном пользователе
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Удаление пользователя
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Газеты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Газеты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Создание новой газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Список всех газет
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Детали конкретной газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Обновление данных газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Удаление газеты
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Типографии
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Типографии">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Создание новой типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Список всех типографий
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Детали конкретной типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Обновление данных типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5. Удаление типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Почтовые отделения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Почтовые отделения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. Создание нового почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. Список всех почтовых отделений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3. Детали конкретного почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4. Обновление данных почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5. Удаление почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Тиражи
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Тиражи">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Создание нового тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Список всех тиражей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. Детали конкретного тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4. Обновление данных тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5. Удаление тиража
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Поставки
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Поставки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. Создание новой поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. Список всех поставок
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3. Детали конкретной поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4. Обновление данных поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5. Удаление поставки
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Запросы с аналитикой
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Запросы с аналитикой">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. Получение адресов, где печатается газета
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2. Фамилия редактора газеты, которая печатается в указанной типографии самым большим тиражом
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3. Почтовые отделения, куда поступают газеты дороже указанной цены
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4. Газеты, которые поступают в почтовые отделения в количестве меньше указанного
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5. Почтовые отделения, куда поступает указанная газета из указанной типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Отчёты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Отчёты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. Отчёт по работе типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#no6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант №6
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Схема базы данных
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Эндпоинты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Эндпоинты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Пользователи
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Пользователи">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Регистрация нового пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Авторизация пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Получение информации о текущем пользователе
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Обновление информации о пользователе
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4. Обновление информации о пользователе">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Получение списка всех пользователей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Получение информации о конкретном пользователе
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Удаление пользователя
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Газеты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Газеты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Создание новой газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Список всех газет
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Детали конкретной газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Обновление данных газеты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Удаление газеты
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Типографии
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Типографии">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Создание новой типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Список всех типографий
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Детали конкретной типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Обновление данных типографии
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5. Удаление типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Почтовые отделения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Почтовые отделения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. Создание нового почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. Список всех почтовых отделений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3. Детали конкретного почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4. Обновление данных почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5. Удаление почтового отделения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Тиражи
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Тиражи">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Создание нового тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Список всех тиражей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. Детали конкретного тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4. Обновление данных тиража
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5. Удаление тиража
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Поставки
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Поставки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. Создание новой поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. Список всех поставок
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3. Детали конкретной поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4. Обновление данных поставки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.5. Удаление поставки
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Запросы с аналитикой
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Запросы с аналитикой">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. Получение адресов, где печатается газета
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2. Фамилия редактора газеты, которая печатается в указанной типографии самым большим тиражом
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3. Почтовые отделения, куда поступают газеты дороже указанной цены
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4. Газеты, которые поступают в почтовые отделения в количестве меньше указанного
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5. Почтовые отделения, куда поступает указанная газета из указанной типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Отчёты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Отчёты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. Отчёт по работе типографии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="3-django-rest-api">Лабораторная работа 3. Реализация серверной части на django rest. Документирование API.</h1>
+<p>Реализация серверной части приложения средствами django и djangorestframework в соответствии с заданием из <a href="https://drive.google.com/file/d/1QxQo5jln6soFUj6EmOVEo1yauCo375PP/view?usp=sharing">текста работы</a>.</p>
+<h2 id="no6">Вариант №6</h2>
+<p>Создать программную систему, позволяющую отслеживать распределение по почтовым отделениям газет, печатающихся в типографиях города.</p>
+<p>Система должна обеспечивать хранение, просмотр и изменение сведений о газетах, почтовых отделениях, получающих газеты и о типографиях, выпускающих газеты. Сведения о газетах включают в себя: название газеты, индекс издания, фамилию, имя и отчество редактора, цену экземпляра газеты. Цены могут меняться. Возможно появление новых газет и изменение индекса существующего издания. Для типографий указываются их названия и адреса.</p>
+<p>В типографии разными тиражами печатаются газеты нескольких наименований. Типография может быть закрыта, тогда необходимо скорректировать работу других типографий с учетом потребностей почтовых отделений в газетах.</p>
+<p>Почтовое отделение имеет номер и адрес. На каждое почтовое отделение поступают в определенных количествах газеты разных наименований, причем часть экземпляров одной и той же газеты может быть напечатана в одной типографии, а часть – в другой.</p>
+<p>Пользователям системы может потребоваться следующая информация:
+- По каким адресам печатаются газеты данного наименования?
+- Фамилия редактора газеты, которая печатается в указанной типографии самым большим тиражом?
+- На какие почтовые отделения (адреса) поступает газета, имеющая цену, больше указанной?
+- Какие газеты и куда (номер почты) поступают в количестве меньшем, чем заданное?
+- Куда поступает данная газета, печатающаяся по данному адресу.</p>
+<p>Необходимо предусмотреть возможность выдачи справки об индексе и цене указанной газеты и отчета о работе типографий с почтовыми отделениями города. Отчет должен содержать по каждой типографии следующие сведения: общее количество печатающихся в типографии газет, количество газет каждого наименования, какие газеты и в каком количестве типография отправляет в каждое почтовое отделение.</p>
+<h2 id="_1">Схема базы данных</h2>
+<p><img alt="Схема базы данных" src="../../images/Lr3/Lr3/database_schema.png" /></p>
+<p><img alt="Модель пользователя" src="../../images/Lr3/Lr3/models_user.png" /></p>
+<p><img alt="Модель газеты" src="../../images/Lr3/Lr3/models_newspaper.png" /></p>
+<p><img alt="Модель типографии" src="../../images/Lr3/Lr3/models_printinghouse.png" /></p>
+<p><img alt="Модель почтового отделения" src="../../images/Lr3/Lr3/models_postoffice.png" /></p>
+<p><img alt="Модель тиража" src="../../images/Lr3/Lr3/models_edition.png" /></p>
+<p><img alt="Модель поставки" src="../../images/Lr3/Lr3/models_distribution.png" /></p>
+<h2 id="_2">Эндпоинты</h2>
+<h3 id="1">1. Пользователи</h3>
+<p><img alt="Пользователи" src="../../images/Lr3/Lr3/user.png" /></p>
+<h4 id="11">1.1. Регистрация нового пользователя</h4>
+<ul>
+<li>URL: <code>/auth/users/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Нет</li>
+<li>Пример запроса</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;username&quot;: &quot;new_user&quot;,
+    &quot;password&quot;: &quot;password123&quot;,
+    &quot;email&quot;: &quot;new_user@example.com&quot;,
+    &quot;first_name&quot;: &quot;Имя&quot;,
+    &quot;last_name&quot;: &quot;Фамилия&quot;,
+    &quot;patronymic&quot;: &quot;Отчество&quot;,
+    &quot;role&quot;: &quot;user&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;username&quot;: &quot;new_user&quot;,
+    &quot;email&quot;: &quot;new_user@example.com&quot;,
+    &quot;first_name&quot;: &quot;Имя&quot;,
+    &quot;last_name&quot;: &quot;Фамилия&quot;,
+    &quot;patronymic&quot;: &quot;Отчество&quot;,
+    &quot;role&quot;: &quot;user&quot;
+}
+</code></pre>
+<h4 id="12">1.2. Авторизация пользователя</h4>
+<ul>
+<li>URL: <code>/auth/token/login/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;username&quot;: &quot;second_admin&quot;,
+    &quot;password&quot;: &quot;1qaz2wsx3edc!&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+
+    &quot;auth_token&quot;: &quot;15be70c2a9ea30e5bba5360f148f85516c6dbb79&quot;
+
+}
+</code></pre>
+<h4 id="13">1.3. Получение информации о текущем пользователе</h4>
+<ul>
+<li>URL: <code>/auth/users/me/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;email&quot;: &quot;testuser@example.com&quot;,
+    &quot;first_name&quot;: &quot;Имя&quot;,
+    &quot;last_name&quot;: &quot;Фамилия&quot;,
+    &quot;patronymic&quot;: &quot;Отчество&quot;,
+    &quot;role&quot;: &quot;user&quot;,
+    &quot;id&quot;: 2,
+    &quot;username&quot;: &quot;testuser&quot;
+}
+</code></pre>
+<h3 id="14">1.4. Обновление информации о пользователе</h3>
+<ul>
+<li>URL: <code>/users/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> или <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;username&quot;: &quot;new_user_updated&quot;,
+    &quot;email&quot;: &quot;new_user_updated@example.com&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;username&quot;: &quot;new_user_updated&quot;,
+    &quot;email&quot;: &quot;new_user_updated@example.com&quot;,
+    &quot;first_name&quot;: &quot;Имя&quot;,
+    &quot;last_name&quot;: &quot;Фамилия&quot;,
+    &quot;patronymic&quot;: &quot;Отчество&quot;,
+    &quot;role&quot;: &quot;user&quot;
+}
+</code></pre>
+<h4 id="15">1.5. Получение списка всех пользователей</h4>
+<ul>
+<li>URL: <code>/users/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;username&quot;: &quot;ivan_ii&quot;,
+        &quot;first_name&quot;: &quot;Иван&quot;,
+        &quot;last_name&quot;: &quot;Иванов&quot;,
+        &quot;patronymic&quot;: &quot;Иванович&quot;,
+        &quot;email&quot;: &quot;ivan@mail.ru&quot;,
+        &quot;role&quot;: &quot;user&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;username&quot;: &quot;sergey_ss&quot;,
+        &quot;first_name&quot;: &quot;Сергей&quot;,
+        &quot;last_name&quot;: &quot;Сергеев&quot;,
+        &quot;patronymic&quot;: &quot;Сергеевич&quot;,
+        &quot;email&quot;: &quot;sergey@mail.ru&quot;,
+        &quot;role&quot;: &quot;editor&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;username&quot;: &quot;nikolay_nn&quot;,
+        &quot;first_name&quot;: &quot;Николай&quot;,
+        &quot;last_name&quot;: &quot;Николаев&quot;,
+        &quot;patronymic&quot;: &quot;Николаевич&quot;,
+        &quot;email&quot;: &quot;nikolay@mail.ru&quot;,
+        &quot;role&quot;: &quot;admin&quot;
+    }
+]
+</code></pre>
+<h4 id="16">1.6. Получение информации о конкретном пользователе</h4>
+<ul>
+<li>URL: <code>/users/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;username&quot;: &quot;ivan_ii&quot;,
+    &quot;first_name&quot;: &quot;Иван&quot;,
+    &quot;last_name&quot;: &quot;Иванов&quot;,
+    &quot;patronymic&quot;: &quot;Иванович&quot;,
+    &quot;email&quot;: &quot;ivan@mail.ru&quot;,
+    &quot;role&quot;: &quot;user&quot;
+}
+</code></pre>
+<h4 id="17">1.7. Удаление пользователя</h4>
+<ul>
+<li>URL: <code>/users/delete/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="2">2. Газеты</h3>
+<p><img alt="Газеты" src="../../images/Lr3/Lr3/newspaper.png" /></p>
+<h4 id="21">2.1. Создание новой газеты</h4>
+<ul>
+<li>URL: <code>/newspapers/create/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;name&quot;: &quot;Известия&quot;,
+    &quot;index&quot;: &quot;GZT001&quot;,
+    &quot;price&quot;: &quot;100.50&quot;,
+    &quot;editor&quot;: 2
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Известия&quot;,
+    &quot;index&quot;: &quot;GZT001&quot;,
+    &quot;price&quot;: &quot;100.50&quot;,
+    &quot;editor&quot;: 2
+}
+</code></pre>
+<h4 id="22">2.2. Список всех газет</h4>
+<ul>
+<li>URL: <code>/newspapers/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Известия&quot;,
+        &quot;index&quot;: &quot;GZT001&quot;,
+        &quot;price&quot;: &quot;100.50&quot;,
+        &quot;editor&quot;: 2
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;Коммерсантъ&quot;,
+        &quot;index&quot;: &quot;GZT002&quot;,
+        &quot;price&quot;: &quot;50.50&quot;,
+        &quot;editor&quot;: 3
+    }
+]
+</code></pre>
+<h4 id="23">2.3. Детали конкретной газеты</h4>
+<ul>
+<li>URL: <code>/newspapers/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Известия&quot;,
+    &quot;index&quot;: &quot;GZT001&quot;,
+    &quot;price&quot;: &quot;100.50&quot;,
+    &quot;editor&quot;: 2,
+    &quot;editions&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 1,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 500
+        }
+    ],
+    &quot;distributions&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;post_office&quot;: 1,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 1,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 200
+        }
+    ]
+}
+</code></pre>
+<h4 id="24">2.4. Обновление данных газеты</h4>
+<ul>
+<li>URL: <code>/newspapers/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> / <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;price&quot;: &quot;120.00&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Известия&quot;,
+    &quot;index&quot;: &quot;GZT001&quot;,
+    &quot;price&quot;: &quot;120.00&quot;,
+    &quot;editor&quot;: 2
+}
+</code></pre>
+<h4 id="25">2.5. Удаление газеты</h4>
+<ul>
+<li>URL: `/newspapers/delete/<int:pk>/</li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="3">3. Типографии</h3>
+<p><img alt="Типографии" src="../../images/Lr3/Lr3/printinghouse.png" /></p>
+<h4 id="31">3.1. Создание новой типографии</h4>
+<ul>
+<li>URL: <code>/printinghouses/create/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;name&quot;: &quot;Городская типография&quot;,
+    &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;,
+    &quot;is_active&quot;: true
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Городская типография&quot;,
+    &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;,
+    &quot;is_active&quot;: true
+}
+</code></pre>
+<h4 id="32">3.2. Список всех типографий</h4>
+<ul>
+<li>URL: <code>/printinghouses/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Городская типография&quot;,
+        &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;,
+        &quot;is_active&quot;: true
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;Региональная типография&quot;,
+        &quot;address&quot;: &quot;ул. Парковая, д. 3&quot;,
+        &quot;is_active&quot;: true
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;Типография Прогресс&quot;,
+        &quot;address&quot;: &quot;ул. Советская, д. 12&quot;,
+        &quot;is_active&quot;: false
+    }
+]
+</code></pre>
+<h4 id="33">3.3. Детали конкретной типографии</h4>
+<ul>
+<li>URL: <code>/printinghouses/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Городская типография&quot;,
+    &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;,
+    &quot;is_active&quot;: true,
+    &quot;editions&quot;: [
+        {
+            &quot;id&quot;: 4,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 1,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 500
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 4,
+            &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;quantity&quot;: 200
+        }
+    ],
+    &quot;distributions&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;post_office&quot;: 1,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 1,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 200
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;post_office&quot;: 4,
+            &quot;post_office_address&quot;: &quot;бульвар Зеленый, д. 8&quot;,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 4,
+            &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;quantity&quot;: 200
+        }
+    ]
+}
+</code></pre>
+<h4 id="34">3.4. Обновление данных типографии</h4>
+<ul>
+<li>URL: <code>/printinghouses/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> / <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;is_active&quot;: false
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Городская типография&quot;,
+    &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;,
+    &quot;is_active&quot;: false
+}
+</code></pre>
+<h4 id="35">3.5. Удаление типографии</h4>
+<ul>
+<li>URL: `/printinghouses/delete/<int:pk>/</li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="4">4. Почтовые отделения</h3>
+<p><img alt="Почтовые отделения" src="../../images/Lr3/Lr3/postoffice.png" /></p>
+<h4 id="41">4.1. Создание нового почтового отделения</h4>
+<ul>
+<li>URL: <code>/postoffices/create/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;number&quot;: 101,
+    &quot;address&quot;: &quot;ул. Пушкина, д. 15&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;number&quot;: 101,
+    &quot;address&quot;: &quot;ул. Пушкина, д. 15&quot;
+}
+</code></pre>
+<h4 id="42">4.2. Список всех почтовых отделений</h4>
+<ul>
+<li>URL: <code>/postoffices/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;number&quot;: 101,
+        &quot;address&quot;: &quot;ул. Пушкина, д. 15&quot;
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;number&quot;: 102,
+        &quot;address&quot;: &quot;пр. Гагарина, д. 25&quot;
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;number&quot;: 103,
+        &quot;address&quot;: &quot;ул. Победы, д. 40&quot;
+    },
+    {
+        &quot;id&quot;: 4,
+        &quot;number&quot;: 104,
+        &quot;address&quot;: &quot;бульвар Зеленый, д. 8&quot;
+    }
+]
+</code></pre>
+<h4 id="43">4.3. Детали конкретного почтового отделения</h4>
+<ul>
+<li>URL: <code>/postoffices/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;number&quot;: 101,
+    &quot;address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+    &quot;distributions&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;post_office&quot;: 1,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;printing_house&quot;: 1,
+            &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+            &quot;newspaper&quot;: 1,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 200
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;post_office&quot;: 1,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;printing_house&quot;: 2,
+            &quot;printing_house_name&quot;: &quot;Региональная типография&quot;,
+            &quot;newspaper&quot;: 4,
+            &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;quantity&quot;: 100
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;post_office&quot;: 1,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;printing_house&quot;: 3,
+            &quot;printing_house_name&quot;: &quot;Типография Прогресс&quot;,
+            &quot;newspaper&quot;: 5,
+            &quot;newspaper_name&quot;: &quot;Московский комсомолец&quot;,
+            &quot;quantity&quot;: 100
+        }
+    ]
+}
+</code></pre>
+<h4 id="44">4.4. Обновление данных почтового отделения</h4>
+<ul>
+<li>URL: <code>/postoffices/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> / <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;address&quot;: &quot;ул. Советская, д. 10&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;number&quot;: 101,
+    &quot;address&quot;: &quot;ул. Советская, д. 10&quot;
+}
+</code></pre>
+<h4 id="45">4.5. Удаление почтового отделения</h4>
+<ul>
+<li>URL: <code>/postoffices/delete/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="5">5. Тиражи</h3>
+<p><img alt="Тиражи" src="../../images/Lr3/Lr3/edition.png" /></p>
+<h4 id="51">5.1. Создание нового тиража</h4>
+<ul>
+<li>URL: <code>/editions/create/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;printing_house&quot;: 1,
+    &quot;newspaper&quot;: 1,
+    &quot;quantity&quot;: 500
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 500
+}
+</code></pre>
+<h4 id="52">5.2. Список всех тиражей</h4>
+<ul>
+<li>URL: <code>/editions/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;printing_house&quot;: 1,
+        &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+        &quot;newspaper&quot;: 1,
+        &quot;newspaper_name&quot;: &quot;Известия&quot;,
+        &quot;quantity&quot;: 500
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;printing_house&quot;: 2,
+        &quot;printing_house_name&quot;: &quot;Региональная типография&quot;,
+        &quot;newspaper&quot;: 2,
+        &quot;newspaper_name&quot;: &quot;Коммерсантъ&quot;,
+        &quot;quantity&quot;: 1500
+    },
+]
+</code></pre>
+<h4 id="53">5.3. Детали конкретного тиража</h4>
+<ul>
+<li>URL: <code>/editions/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 500
+}
+</code></pre>
+<h4 id="54">5.4. Обновление данных тиража</h4>
+<ul>
+<li>URL: <code>/editions/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> / <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;quantity&quot;: 600
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 600
+}
+</code></pre>
+<h4 id="55">5.5. Удаление тиража</h4>
+<ul>
+<li>URL: <code>/editions/delete/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="6">6. Поставки</h3>
+<p><img alt="Поставки" src="../../images/Lr3/Lr3/distribution.png" /></p>
+<h4 id="61">6.1. Создание новой поставки</h4>
+<ul>
+<li>URL: <code>/distributions/create/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;post_office&quot;: 1,
+    &quot;printing_house&quot;: 1,
+    &quot;newspaper&quot;: 1,
+    &quot;quantity&quot;: 200
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;post_office&quot;: 1,
+    &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 200
+}
+</code></pre>
+<h4 id="62">6.2. Список всех поставок</h4>
+<ul>
+<li>URL: <code>/distributions/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">[
+    {
+        &quot;id&quot;: 1,
+        &quot;post_office&quot;: 1,
+        &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+        &quot;printing_house&quot;: 1,
+        &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+        &quot;newspaper&quot;: 1,
+        &quot;newspaper_name&quot;: &quot;Известия&quot;,
+        &quot;quantity&quot;: 200
+    },
+    {
+        &quot;id&quot;: 2,
+        &quot;post_office&quot;: 1,
+        &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+        &quot;printing_house&quot;: 2,
+        &quot;printing_house_name&quot;: &quot;Региональная типография&quot;,
+        &quot;newspaper&quot;: 4,
+        &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+        &quot;quantity&quot;: 100
+    },
+    {
+        &quot;id&quot;: 3,
+        &quot;post_office&quot;: 2,
+        &quot;post_office_address&quot;: &quot;пр. Гагарина, д. 25&quot;,
+        &quot;printing_house&quot;: 2,
+        &quot;printing_house_name&quot;: &quot;Региональная типография&quot;,
+        &quot;newspaper&quot;: 2,
+        &quot;newspaper_name&quot;: &quot;Коммерсантъ&quot;,
+        &quot;quantity&quot;: 150
+    }
+]
+</code></pre>
+<h4 id="63">6.3. Детали конкретной поставки</h4>
+<ul>
+<li>URL: <code>/distributions/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>GET</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;post_office&quot;: 1,
+    &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 200
+}
+</code></pre>
+<h4 id="64">6.4. Обновление данных поставки</h4>
+<ul>
+<li>URL: <code>/distributions/update/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>PUT</code> / <code>PATCH</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;quantity&quot;: 250
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;id&quot;: 1,
+    &quot;post_office&quot;: 1,
+    &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+    &quot;printing_house&quot;: 1,
+    &quot;printing_house_name&quot;: &quot;Городская типография&quot;,
+    &quot;newspaper&quot;: 1,
+    &quot;newspaper_name&quot;: &quot;Известия&quot;,
+    &quot;quantity&quot;: 250
+}
+</code></pre>
+<h4 id="65">6.5. Удаление поставки</h4>
+<ul>
+<li>URL: <code>/distributions/delete/&lt;int:pk&gt;/</code></li>
+<li>Метод: <code>DELETE</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Да (только для администратора)</li>
+</ul>
+<h3 id="7">7. Запросы с аналитикой</h3>
+<h4 id="71">7.1. Получение адресов, где печатается газета</h4>
+<ul>
+<li>URL: <code>/newspapers/addresses/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;name&quot;: &quot;Известия&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;addresses&quot;: [
+        &quot;ул. Ленина, д. 10&quot;
+    ]
+}
+</code></pre>
+<h4 id="72">7.2. Фамилия редактора газеты, которая печатается в указанной типографии самым большим тиражом</h4>
+<ul>
+<li>URL: <code>/printinghouses/top-editor/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;printing_house_id&quot;: 1
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;editor_id&quot;: 2,
+    &quot;editor_name&quot;: &quot;Сергей Сергеев&quot;,
+    &quot;total_quantity&quot;: 1000
+}
+</code></pre>
+<h4 id="73">7.3. Почтовые отделения, куда поступают газеты дороже указанной цены</h4>
+<ul>
+<li>URL: <code>/postoffices/expensive-newspapers/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;min_price&quot;: 100
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;offices&quot;: [
+        {
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;newspaper_name&quot;: &quot;Известия&quot;
+        },
+        {
+            &quot;post_office_address&quot;: &quot;ул. Победы, д. 40&quot;,
+            &quot;newspaper_name&quot;: &quot;Ведомости&quot;
+        }
+    ]
+}
+</code></pre>
+<h4 id="74">7.4. Газеты, которые поступают в почтовые отделения в количестве меньше указанного</h4>
+<ul>
+<li>URL: <code>/distributions/low-quantity/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;max_quantity&quot;: 200
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;distributions&quot;: [
+        {
+            &quot;newspaper__name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;post_office__number&quot;: 101,
+            &quot;quantity&quot;: 100
+        },
+        {
+            &quot;newspaper__name&quot;: &quot;Коммерсантъ&quot;,
+            &quot;post_office__number&quot;: 102,
+            &quot;quantity&quot;: 150
+        },
+        {
+            &quot;newspaper__name&quot;: &quot;Московский комсомолец&quot;,
+            &quot;post_office__number&quot;: 101,
+            &quot;quantity&quot;: 100
+        },
+        {
+            &quot;newspaper__name&quot;: &quot;Московский комсомолец&quot;,
+            &quot;post_office__number&quot;: 104,
+            &quot;quantity&quot;: 150
+        }
+    ]
+}
+</code></pre>
+<h4 id="75">7.5. Почтовые отделения, куда поступает указанная газета из указанной типографии</h4>
+<ul>
+<li>URL: <code>/distributions/destination-by-address/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;name&quot;: &quot;Известия&quot;,
+    &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;destinations&quot;: [
+        {
+            &quot;post_office__address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;quantity&quot;: 250
+        },
+        {
+            &quot;post_office__address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;quantity&quot;: 200
+        }
+    ]
+}
+</code></pre>
+<h3 id="8">8. Отчёты</h3>
+<h4 id="81">8.1. Отчёт по работе типографии</h4>
+<ul>
+<li>URL: <code>/reports/printinghouses/</code></li>
+<li>Метод: <code>POST</code></li>
+<li>Требуется аутентификация: Да</li>
+<li>Требуется разрешение: Нет</li>
+<li>Пример запроса:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;printing_house_id&quot;: 1
+}
+</code></pre>
+<ul>
+<li>Пример успешного ответа:</li>
+</ul>
+<pre><code class="language-python">{
+    &quot;printing_house&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Городская типография&quot;,
+        &quot;address&quot;: &quot;ул. Ленина, д. 10&quot;
+    },
+    &quot;total_newspapers&quot;: 1200,
+    &quot;newspaper_counts&quot;: [
+        {
+            &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;quantity&quot;: 200
+        },
+        {
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;quantity&quot;: 1000
+        }
+    ],
+    &quot;distributions&quot;: [
+        {
+            &quot;newspaper_name&quot;: &quot;Аргументы и факты&quot;,
+            &quot;post_office_address&quot;: &quot;бульвар Зеленый, д. 8&quot;,
+            &quot;quantity&quot;: 200
+        },
+        {
+            &quot;newspaper_name&quot;: &quot;Известия&quot;,
+            &quot;post_office_address&quot;: &quot;ул. Пушкина, д. 15&quot;,
+            &quot;quantity&quot;: 450
+        }
+    ]
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
