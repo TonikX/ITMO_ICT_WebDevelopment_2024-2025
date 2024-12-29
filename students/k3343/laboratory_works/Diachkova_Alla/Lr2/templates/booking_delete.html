@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel booking{% endblock %}
+
+{% block content %}
+<h2>Cancel booking</h2>
+    <p>You are going to delete your booking with flight {{ booking.flight.flight_number }}.</p>
+    <p>Click 'Cancel booking' if you want to proceed.</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Cancel booking</button>
+    <a href="{% url 'bookings' %}">Go back</a>
+</form>
+{% endblock %}
