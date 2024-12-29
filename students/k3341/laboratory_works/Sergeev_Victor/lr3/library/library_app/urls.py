@@ -28,7 +28,13 @@ urlpatterns = [
 
     path('book_take/<int:pk>/', BookTakeRUDView.as_view()),
     path('book_take/create/', BookTakeCreateView.as_view()),
+    path('book_take/', BookTakeListView.as_view()),
 
+    path('book_genre/', BookGenreCreateView.as_view()),
+    path('book_genre/<int:pk>/', BookGenreDeleteView.as_view()),
+    path('book_author/', BookAuthorCreateView.as_view()),
+    path('book_author/<int:pk>/', BookAuthorDeleteView.as_view()),
+    
     path('reader/<int:pk>/book/', ReaderBooksView.as_view()),
     path('reader/delay/month/', ReadersMonthDelayView.as_view()),
     path('reader/less/5/', ReadersLessThanBooksView.as_view()),

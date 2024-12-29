@@ -40,7 +40,7 @@ class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
 
 class BookCreateView(generics.CreateAPIView):
-    serializer_class = BookSerializer
+    serializer_class = BookCreateSerializer
     permission_classes=[IsAuthenticated]
 
 class BookRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -54,7 +54,7 @@ class BookCopyListView(generics.ListAPIView):
     queryset = BookCopy.objects.all()
 
 class BookCopyCreateView(generics.CreateAPIView):
-    serializer_class = BookCopySerializer
+    serializer_class = BookCopyCreateSerializer
     permission_classes=[IsAuthenticated]
 
 class BookCopyRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -68,7 +68,7 @@ class ReaderListView(generics.ListAPIView):
     queryset = Reader.objects.all()
 
 class ReaderCreateView(generics.CreateAPIView):
-    serializer_class = ReaderSerializer
+    serializer_class = ReaderCreateSerializer
     permission_classes=[IsAuthenticated]
 
 class ReaderRUDView(generics.RetrieveUpdateDestroyAPIView):
@@ -90,6 +90,11 @@ class ReadingRoomRUDView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes=[IsAuthenticated]
     queryset = ReadingRoom.objects.all()
 
+class BookTakeListView(generics.ListAPIView):
+    serializer_class = BookTakeSerializer
+    permission_classes=[IsAuthenticated]
+    queryset = BookTake.objects.all()
+
 class BookTakeCreateView(generics.CreateAPIView):
     serializer_class = BookTakeSerializer
     permission_classes=[IsAuthenticated]
@@ -98,6 +103,50 @@ class BookTakeRUDView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookTakeSerializer
     permission_classes=[IsAuthenticated]
     queryset = BookTake.objects.all()
+
+class BookGenreCreateView(generics.CreateAPIView):
+    serializer_class = BookGenreSerializer
+    permission_classes = [IsAuthenticated]
+
+class BookGenreDeleteView(generics.DestroyAPIView):
+    serializer_class = BookGenreSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def delete(self, *args, **kwargs):
+        genre_id = self.request.query_params.get('genre_id')
+        if not genre_id:
+            queryset = BookGenre.objects.none()
+        else:
+            queryset = BookGenre.objects.filter(book_id=kwargs['pk'], genre_id=genre_id)
+        if not queryset.exists():
+            return Response(
+                {"error": "No such book genre"},
+                 status=status.HTTP_404_NOT_FOUND
+            )
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class BookAuthorCreateView(generics.CreateAPIView):
+    serializer_class = BookAuthorSerializer
+    permission_classes = [IsAuthenticated]
+
+class BookAuthorDeleteView(generics.DestroyAPIView):
+    serializer_class = BookAuthorSerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, *args, **kwargs):
+        author_id = self.request.query_params.get('author_id')
+        if not author_id:
+            queryset = BookAuthor.objects.none()
+        else:
+            queryset = BookAuthor.objects.filter(book_id=kwargs['pk'], author_id=author_id)
+        if not queryset.exists():
+            return Response(
+                {"error": "No such book author"},
+                 status=status.HTTP_404_NOT_FOUND
+            )
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class ReaderBooksView(APIView):
     permission_classes=[IsAuthenticated]
@@ -112,7 +161,7 @@ class ReaderBooksView(APIView):
 
         return Response(serializer.data)
 
-class ReadersMonthDelayView(APIView):
+class BookTakesMonthDelayView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self, request, **kwargs):
         last_month_date = date.today() - timedelta(days=30)
@@ -121,7 +170,17 @@ class ReadersMonthDelayView(APIView):
 
         return Response(serializer.data)
 
-class ReadersLessThanBooksView(APIView):
+class ReadersMonthDelayView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self, request, **kwargs):
+        last_month_date = date.today() - timedelta(days=30)
+        ids = BookTake.objects.filter(take_date__lt=last_month_date, restore_date__isnull=True).values_list('reader_id', flat=True)
+        readers = Reader.objects.filter(id__in=ids)
+        serializer = ReaderSerializer(readers, many=True)
+
+        return Response(serializer.data)
+
+class BookTakesLessThanBooksView(APIView):
     permission_classes=[IsAuthenticated]
     def get(self, request, **kwargs):
         books_pks = BookCopy.objects \
@@ -131,16 +190,28 @@ class ReadersLessThanBooksView(APIView):
         serializer = BookTakeReaderSerializer(book_takes, many=True)
 
         return Response(serializer.data)
+    
+class ReadersLessThanBooksView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self, request, **kwargs):
+        books_pks = BookCopy.objects \
+                            .values('book').annotate(Count('id')) \
+                            .filter(id__count__lt=5).values_list('book', flat=True)
+        book_takes = BookTake.objects.filter(book_copy__book__id__in=books_pks, restore_date__isnull=True)
+        reader_ids = book_takes.values_list('reader_id', flat=True)
+        readers = Reader.objects.filter(id__in=reader_ids)
+        serializer = ReaderSerializer(readers, many=True)
+
+        return Response(serializer.data)
 
 class ReadersLessTwentyYears(APIView):
     permission_classes=[IsAuthenticated]
     def get(self, request, **kwargs):
         date_ago = date.today() - timedelta(days=(20*365))
         readers = Reader.objects.filter(birthdate__gt=date_ago)
-        count = len(readers)
         serializer = ReaderSerializer(readers, many=True)
 
-        return Response({'count':count, 'readers':serializer.data})
+        return Response(serializer.data)
     
 class ReadersEducationPercentageView(APIView):
     permission_classes=[IsAuthenticated]

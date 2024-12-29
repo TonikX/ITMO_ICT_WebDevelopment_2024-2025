@@ -4,24 +4,34 @@ from .models import *
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        exclude = ['id']
+        fields = '__all__'
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        exclude = ['id']
+        fields = '__all__'
 
 class BookSerializer(serializers.ModelSerializer):
-    # genre = GenreSerializer(many=True)
-    # author = AuthorSerializer(many=True)
+    genre = GenreSerializer(many=True, read_only=True)
+    author = AuthorSerializer(many=True, read_only=True)
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'publisher']
+        fields = '__all__'
+
+class BookCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('title', 'publisher')
 
 class BookCopySerializer(serializers.ModelSerializer):
     book = BookSerializer()
 
+    class Meta:
+        model = BookCopy
+        fields = '__all__'
+
+class BookCopyCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookCopy
         fields = '__all__'
@@ -32,18 +42,19 @@ class ReadingRoomSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ReaderSerializer(serializers.ModelSerializer):
-    reading_room = ReadingRoomSerializer()
+    class Meta:
+        model = Reader
+        fields = '__all__'
 
+class ReaderCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reader
         fields = '__all__'
 
 class BookTakeSerializer(serializers.ModelSerializer):
-    book_copy = BookCopySerializer()
-
     class Meta:
         model = BookTake
-        exclude = ['reader']
+        fields = '__all__'
 
 class ReaderContactInformationSerializer(serializers.ModelSerializer):
     reading_room = ReadingRoomSerializer()
@@ -52,9 +63,16 @@ class ReaderContactInformationSerializer(serializers.ModelSerializer):
         fields = ['full_name', 'reading_room', 'address', 'phone_number', 'reading_ticket_number']
 
 class BookTakeReaderSerializer(serializers.ModelSerializer):
-    reader = ReaderContactInformationSerializer()
-    book_copy = BookCopySerializer()
-
     class Meta:
         model = BookTake
         fields = ['reader', 'book_copy', 'take_date']
+
+class BookGenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookGenre
+        fields = '__all__'
+
+class BookAuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookAuthor
+        fields = '__all__'

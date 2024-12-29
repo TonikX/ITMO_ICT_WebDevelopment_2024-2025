@@ -100,6 +100,9 @@ class Reader(models.Model):
     Модель читателя
     """
 
+    def today():
+        return now().date()
+
     full_name = models.CharField(max_length=120,
                                  verbose_name="ФИО читателя")
     
@@ -128,7 +131,7 @@ class Reader(models.Model):
     degree = models.BooleanField(default=False,
                                  verbose_name="Наличие учёной степени")
     
-    registration_date = models.DateField(default=now, 
+    registration_date = models.DateField(default=today, 
                                          verbose_name="Дата регистрации")
     
     reading_ticket_number = models.CharField(max_length=10,
@@ -144,6 +147,9 @@ class BookTake(models.Model):
     Модель взятия книги
     """
 
+    def today():
+        return now().date()
+
     book_copy = models.ForeignKey("BookCopy",
                              verbose_name="Взятая копия книги",
                              related_name="book_taken",
@@ -154,7 +160,7 @@ class BookTake(models.Model):
                                related_name="who_took",
                                on_delete=models.CASCADE)
     
-    take_date = models.DateField(default=now,
+    take_date = models.DateField(default=today,
                                  verbose_name="Дата взятия")
     
     restore_date = models.DateField(blank=True, null=True,
