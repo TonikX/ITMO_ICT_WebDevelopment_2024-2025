@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Изменить бронирование{% else %}Новое бронирование{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <h2>{% if form.instance.pk %}Изменить бронирование{% else %}Новое бронирование{% endif %}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                {% if form.instance.pk %}Обновить{% else %}Бронировать{% endif %}
+            </button>
+        </form>
+    </div>
+{% endblock %}

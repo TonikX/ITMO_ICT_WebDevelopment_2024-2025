@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <h2>Добро пожаловать на сайт управления отелем</h2>
+    <div class="welcome-container text-center">
+        {% if user.is_authenticated %}
+            <p>Вы вошли как {{ user.username }}</p>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-danger">Выйти</button>
+                </div>
+            </form>
+        {% else %}
+            <div class="auth-links">
+                <p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+                    или
+                    <a href="{% url 'register' %}" class="btn btn-primary">Зарегистрироваться</a>
+                </p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+<!-- templates/car_confirm_delete.html -->
+
+<h1>Delete Car</h1>
+<p>Are you sure you want to delete {{ car.brand }} {{ car.model }} ({{ car.license_plate }})?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'car_list' %}">Cancel</a>
+</form>

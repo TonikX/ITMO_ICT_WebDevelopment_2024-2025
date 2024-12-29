@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Посетители за последний месяц{% endblock %}
+
+{% block content %}
+    <h2>Посетители, зарегистрированные в прошлом месяце</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Имя гостя</th>
+                    <th>Комната</th>
+                    <th>Отель</th>
+                    <th>Дата въезда</th>
+                    <th>Дата выезда</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for guest in guests %}
+                <tr>
+                    <td>{{ guest.user.username }}</td>
+                    <td>{{ guest.room.room_type.name }}</td>
+                    <td>{{ guest.room.hotel.name }}</td>
+                    <td>{{ guest.start_date }}</td>
+                    <td>{{ guest.end_date }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">Не было гостей за прошедший месяц.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

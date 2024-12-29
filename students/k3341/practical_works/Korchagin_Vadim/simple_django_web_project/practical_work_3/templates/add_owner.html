@@ -1,0 +1,8 @@
+<!-- templates/add_owner.html -->
+
+<h1>Add New Car Owner</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Owner</button>
+</form>

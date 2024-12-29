@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang=ru>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали владельца</title>
+</head>
+<body>
+    <h1>Информация о владельце</h1>
+    <p>Фамилия: {{ owner.last_name }}</p>
+    <p>Имя: {{ owner.first_name }}</p>
+    <p>Дата рождения: {{ owner.birth_date}}</p>
+
+    <h2>Автомобили владельца</h2>
+    <ul>
+        {% for ownership in owner.ownership_set.all %}
+            <li> {{ ownership.car.brand }} {{ ownership.car.model }}: с {{ ownership.start_date }} по {{ ownership.end_date }}</li>
+        {% empty %}
+            <li> У владельца нет автомобилей </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

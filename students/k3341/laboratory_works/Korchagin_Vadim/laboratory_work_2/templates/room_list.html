@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Доступные комнаты{% endblock %}
+
+{% block content %}
+    <h2>Доступные комнаты</h2>
+
+    <div class="row">
+        {% for room in page_obj %}
+            <div class="col-md-6">
+             <div class="highlight-block">
+                <h5 class="card-title">{{ room.hotel.name }} - {{ room.room_type.name }}</h5>
+                <p>Вместимость: {{ room.capacity }} человек</p>
+                <p>Цена: ${{ room.cost_per_night }}/ночь</p>
+                <small>{{ room.amenities }}</small>
+                <div class="mt-3">
+                    <a href="{% url 'room_detail' room.pk %}" class="btn btn-primary">Показать детали</a>
+                </div>
+            </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>Нет доступных комнат.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% load bootstrap3 %}
+
+    {% bootstrap_pagination page_obj %}
+{% endblock %}

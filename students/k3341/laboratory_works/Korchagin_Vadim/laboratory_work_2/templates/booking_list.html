@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+    <h2>Мои бронирования</h2>
+    <div class="list-group">
+            {% for booking in bookings %}
+                     <div class="highlight-block">
+                        <h5 class="card-title">{{ booking.room.hotel.name }} - {{ booking.room.room_type.name }}</h5>
+                        <p>
+                            От: {{ booking.start_date }}<br>
+                            До: {{ booking.end_date }}<br>
+                            Статус: {{ booking.get_status_display }}
+                        </p>
+                        {% if booking.status == "completed" %}
+
+                        {% else %}
+                            <div class="btn-group">
+                                <a href="{% url 'booking_update' booking.pk %}" class="btn btn-primary">Редактировать</a>
+                                <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-danger">Отменить</a>
+                            </div>
+                        {% endif %}
+                         <a href="{% url 'add_review' booking.pk %}" class="btn btn-secondary">Оставить отзыв</a>
+                    </div>
+            {% empty %}
+            <p class="text-center text-muted">У вас сейчас нет бронирований.</p>
+            {% endfor %}
+    </div>
+
+{% endblock %}

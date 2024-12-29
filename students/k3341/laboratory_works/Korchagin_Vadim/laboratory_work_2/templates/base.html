@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HOTEL{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        /* Навигационная панель */
+        .navbar {
+            border-radius: 0;
+            background-color: #007bff;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .navbar-brand {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .navbar-nav > li > a {
+            color: #fff !important;
+            padding: 15px 20px;
+        }
+
+        .navbar-nav > li > a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Контейнер */
+        .container {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .highlight-block {
+          border: 2px solid #007bff;
+          padding: 20px; /* Отступы внутри блока */
+          border-radius: 8px; /* Скругленные углы */
+          background-color: #f9f9f9; /* Светлый фон */
+        }
+
+        .highlight-block + .highlight-block {
+          margin-top: 20px; /* Отступ сверху у следующего блока */
+        }
+        /* Заголовки */
+        h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-align: center;
+        }
+
+        /* Кнопки */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Формы */
+        form {
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Список элементов */
+        .list-group-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9fafb;
+        }
+
+        .card-title {
+            font-size: 22px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">HOTEL</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'room_list' %}">Список номеров</a></li>
+                <li><a href="{% url 'booking_list' %}">Ваши бронирования</a></li>
+                {% if user.is_superuser %}
+                <li><a href="{% url 'recent_guests' %}">Постояльцы за последний месяц</a></li>
+                <li><a href="/admin/">Админ-панель</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block extra_js %}{% endblock %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert
+                {% if message.tags == 'error' %}
+                    alert-danger
+                {% elif message.tags == 'success' %}
+                    alert-success
+                {% else %}
+                    alert-info
+                {% endif %}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+</body>
+</html>

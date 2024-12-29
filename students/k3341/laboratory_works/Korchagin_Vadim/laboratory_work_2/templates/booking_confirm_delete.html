@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Отменить бронирование{% endblock %}
+
+{% block content %}
+
+    <h2>Отменить бронирование</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="highlight-block">
+            <h4>Вы уверены, что хотите отменить бронирование?</h4>
+            <p>
+                <strong>Комната:</strong> {{ booking.room.hotel.name }} - {{ booking.room.room_type.name }}<br>
+                <strong>Даты:</strong> {{ booking.start_date }} до {{ booking.end_date }}
+            </p>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-danger">Подтвердить отмену</button>
+                <a href="{% url 'booking_list' %}" class="btn btn-secondary">Назад</a>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

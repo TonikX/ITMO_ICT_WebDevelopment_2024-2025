@@ -1,0 +1,12 @@
+<!-- templates/car_list.html -->
+
+<h1>Car List</h1>
+<ul>
+    {% for car in cars %}
+        <li>
+            <a href="{% url 'car_detail' car.id %}">
+                {{ car.brand }} {{ car.model }} - {{ car.license_plate }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

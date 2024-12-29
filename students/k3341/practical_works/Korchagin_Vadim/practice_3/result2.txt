@@ -1,0 +1,49 @@
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/bin/python /Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pydev/pydevconsole.py --mode=client --host=127.0.0.1 --port=52981
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+import django; print('Django %s' % django.get_version())
+sys.path.extend(['/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pycharm', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pydev'])
+if 'setup' in dir(django): django.setup()
+import django_manage_shell; django_manage_shell.run('/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3')
+PyDev console: starting.
+Python 3.13.0 (main, Oct  7 2024, 05:02:14) [Clang 16.0.0 (clang-1600.0.26.3)] on darwin
+Django 5.1.3
+from car_owners.models import Car
+toyota_cars = Car.objects.filter(brand="Toyota")
+for car in toyota_cars:
+    print(car)
+
+Toyota Camry (A123BC77)
+from car_owners.models import CarOwner
+owners_named_ivan = CarOwner.objects.filter(first_name="Иван")
+for owner in owners_named_ivan:
+    print(owner)
+
+Иван Иванов
+from car_owners.models import CarOwner
+owner = CarOwner.objects.order_by('?').first()
+owner_id = owner.id
+print(f"ID случайного владельца: {owner_id}")
+ID случайного владельца: 3
+from car_owners.models import DriverLicense
+driver_license = DriverLicense.objects.get(car_owner__id=owner_id)
+print(driver_license)
+Удостоверение №770001 (Иван Иванов)
+from car_owners.models import CarOwner
+owners_with_red_cars = CarOwner.objects.filter(
+    ownerships__car__color="Красный"
+).distinct()
+for owner in owners_with_red_cars:
+    print(owner)
+
+Алексей Алексеев
+Николай Николаев
+from car_owners.models import CarOwner
+owners_since_2020 = CarOwner.objects.filter(
+    ownerships__start_date__year=2020
+).distinct()
+for owner in owners_since_2020:
+    print(owner)
+
+Иван Иванов
+Петр Петров
+Дмитрий Дмитриев

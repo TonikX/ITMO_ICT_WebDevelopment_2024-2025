@@ -1,0 +1,8 @@
+<!-- templates/car_form.html -->
+
+<h1>{% if car.pk %}Update Car{% else %}Add New Car{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if car.pk %}Save Changes{% else %}Add Car{% endif %}</button>
+</form>

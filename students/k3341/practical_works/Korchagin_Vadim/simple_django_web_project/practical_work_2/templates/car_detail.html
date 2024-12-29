@@ -1,0 +1,6 @@
+<!-- templates/car_detail.html -->
+
+<h1>{{ car.brand }} {{ car.model }}</h1>
+<p>License Plate: {{ car.license_plate }}</p>
+<p>Color: {{ car.color }}</p>
+<a href="{% url 'car_update' car.id %}">Update Car Details</a>

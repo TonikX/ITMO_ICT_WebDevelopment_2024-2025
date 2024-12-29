@@ -1,0 +1,61 @@
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/bin/python /Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pydev/pydevconsole.py --mode=client --host=127.0.0.1 --port=53221
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+import django; print('Django %s' % django.get_version())
+sys.path.extend(['/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pycharm', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pydev'])
+if 'setup' in dir(django): django.setup()
+import django_manage_shell; django_manage_shell.run('/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3')
+PyDev console: starting.
+Python 3.13.0 (main, Oct  7 2024, 05:02:14) [Clang 16.0.0 (clang-1600.0.26.3)] on darwin
+Django 5.1.3
+
+from car_owners.models import CarOwner, Car, Ownership, DriverLicense
+from django.db.models import Max, Min, Avg, Count
+oldest_license_date = DriverLicense.objects.aggregate(oldest_issue_date=Min('issue_date'))
+print(f"Дата выдачи самого старшего удостоверения: {oldest_license_date['oldest_issue_date'].date()}")
+Дата выдачи самого старшего удостоверения: 1998-09-20
+
+latest_ownership_date = Ownership.objects.aggregate(latest_start_date=Max('start_date'))
+print(f"Самая поздняя дата начала владения машиной: {latest_ownership_date['latest_start_date'].date()}")
+Самая поздняя дата начала владения машиной: 2024-10-19
+
+owners_car_count = CarOwner.objects.annotate(car_count=Count('ownerships__car', distinct=True))
+for owner in owners_car_count:
+    print(f"{owner.first_name} {owner.last_name} владеет {owner.car_count} машинами")
+
+poka ola владеет 3 машинами
+chao hola владеет 3 машинами
+Иван Иванов владеет 2 машинами
+Петр Петров владеет 2 машинами
+Сергей Сергеев владеет 1 машинами
+Алексей Алексеев владеет 3 машинами
+Михаил Михайлов владеет 1 машинами
+Дмитрий Дмитриев владеет 1 машинами
+Николай Николаев владеет 2 машинами
+
+brand_car_count = Car.objects.values('brand').annotate(count=Count('id'))
+for item in brand_car_count:
+    print(f"Марка {item['brand']} имеет {item['count']} машин")
+
+Марка Audi имеет 1 машин
+Марка BMW имеет 1 машин
+Марка Ford имеет 1 машин
+Марка Honda имеет 1 машин
+Марка Mercedes имеет 1 машин
+Марка Toyota имеет 1 машин
+Марка changan имеет 1 машин
+Марка misubatsi имеет 1 машин
+Марка playstation имеет 1 машин
+Марка volkswolf имеет 1 машин
+
+owners_with_license = CarOwner.objects.filter(driver_license__isnull=False).distinct().order_by('driver_license__issue_date')
+for owner in owners_with_license:
+    license_issue_date = owner.driver_license.first().issue_date.date()
+    print(f"{owner.first_name} {owner.last_name}, дата выдачи удостоверения: {license_issue_date}")
+
+Петр Петров, дата выдачи удостоверения: 1998-09-20
+Иван Иванов, дата выдачи удостоверения: 2000-06-15
+Алексей Алексеев, дата выдачи удостоверения: 2005-04-25
+Дмитрий Дмитриев, дата выдачи удостоверения: 2008-11-12
+Сергей Сергеев, дата выдачи удостоверения: 2010-01-05
+Николай Николаев, дата выдачи удостоверения: 2012-03-18
+Михаил Михайлов, дата выдачи удостоверения: 2015-07-30

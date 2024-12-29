@@ -1,0 +1,25 @@
+
+.elevated-card {
+    border-radius: 10px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+.dialog-card {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 16px;
+    background-color: #ffffff;
+}
+
+.dialog-title {
+    color: #1867C0;
+}
+
+.card-padding {
+    padding: 1.5rem; /* Пример */
+}
+
+.my-dialog-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+

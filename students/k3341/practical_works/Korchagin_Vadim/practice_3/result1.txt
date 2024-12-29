@@ -1,0 +1,268 @@
+import sys; print('Python %s on %s' % (sys.version, sys.platform))
+import django; print('Django %s' % django.get_version())
+sys.path.extend(['/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pycharm', '/Users/qerennyth/Applications/PyCharm Professional Edition.app/Contents/plugins/python-ce/helpers/pydev'])
+if 'setup' in dir(django): django.setup()
+import django_manage_shell; django_manage_shell.run('/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3')
+PyDev console: starting.
+Python 3.13.0 (main, Oct  7 2024, 05:02:14) [Clang 16.0.0 (clang-1600.0.26.3)] on darwin
+Django 5.1.3
+
+from car_owners.models import CarOwner, Car, Ownership, DriverLicense
+from datetime import datetime
+owner1 = CarOwner.objects.create(first_name="Иван", last_name="Иванов", birth_date=datetime(1980, 5, 17))
+owner2 = CarOwner.objects.create(first_name="Петр", last_name="Петров", birth_date=datetime(1975, 8, 23))
+owner3 = CarOwner.objects.create(first_name="Сергей", last_name="Сергеев", birth_date=datetime(1990, 12, 5))
+owner4 = CarOwner.objects.create(first_name="Алексей", last_name="Алексеев", birth_date=datetime(1985, 3, 14))
+owner5 = CarOwner.objects.create(first_name="Михаил", last_name="Михайлов", birth_date=datetime(1995, 7, 29))
+owner6 = CarOwner.objects.create(first_name="Дмитрий", last_name="Дмитриев", birth_date=datetime(1988, 9, 9))
+owner7 = CarOwner.objects.create(first_name="Николай", last_name="Николаев", birth_date=datetime(1992, 11, 11))
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1980-05-17 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1975-08-23 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1990-12-05 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1985-03-14 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1995-07-29 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1988-09-09 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField CarOwner.birth_date received a naive datetime (1992-11-11 00:00:00) while time zone support is active.
+  warnings.warn(
+car1 = Car.objects.create(license_plate="A123BC77", brand="Toyota", model="Camry", color="Черный")
+car2 = Car.objects.create(license_plate="B456CD99", brand="Honda", model="Civic", color="Белый")
+car3 = Car.objects.create(license_plate="C789DE88", brand="Ford", model="Focus", color="Синий")
+car4 = Car.objects.create(license_plate="D012EF66", brand="BMW", model="X5", color="Серый")
+car5 = Car.objects.create(license_plate="E345FG55", brand="Audi", model="A6", color="Красный")
+car6 = Car.objects.create(license_plate="F678GH44", brand="Mercedes", model="E200", color="Зеленый")
+license1 = DriverLicense.objects.create(
+    car_owner=owner1,
+    license_number="770001",
+    license_type="B",
+    issue_date=datetime(2000, 6, 15)
+)
+license2 = DriverLicense.objects.create(
+    car_owner=owner2,
+    license_number="770002",
+    license_type="B",
+    issue_date=datetime(1998, 9, 20)
+)
+license3 = DriverLicense.objects.create(
+    car_owner=owner3,
+    license_number="770003",
+    license_type="B",
+    issue_date=datetime(2010, 1, 5)
+)
+license4 = DriverLicense.objects.create(
+    car_owner=owner4,
+    license_number="770004",
+    license_type="B",
+    issue_date=datetime(2005, 4, 25)
+)
+license5 = DriverLicense.objects.create(
+    car_owner=owner5,
+    license_number="770005",
+    license_type="B",
+    issue_date=datetime(2015, 7, 30)
+)
+license6 = DriverLicense.objects.create(
+    car_owner=owner6,
+    license_number="770006",
+    license_type="B",
+    issue_date=datetime(2008, 11, 12)
+)
+license7 = DriverLicense.objects.create(
+    car_owner=owner7,
+    license_number="770007",
+    license_type="B",
+    issue_date=datetime(2012, 3, 18)
+)
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2000-06-15 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (1998-09-20 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2010-01-05 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2005-04-25 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2015-07-30 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2008-11-12 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField DriverLicense.issue_date received a naive datetime (2012-03-18 00:00:00) while time zone support is active.
+  warnings.warn(
+Ownership.objects.create(
+    car_owner=owner1,
+    car=car1,
+    start_date=datetime(2020, 1, 1),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner1,
+    car=car2,
+    start_date=datetime(2021, 5, 10),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner2,
+    car=car2,
+    start_date=datetime(2019, 3, 15),
+    end_date=datetime(2021, 5, 9)
+)
+Ownership.objects.create(
+    car_owner=owner2,
+    car=car3,
+    start_date=datetime(2020, 7, 22),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner3,
+    car=car4,
+    start_date=datetime(2018, 12, 1),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner4,
+    car=car5,
+    start_date=datetime(2017, 6, 18),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner4,
+    car=car6,
+    start_date=datetime(2019, 8, 25),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner4,
+    car=car1,
+    start_date=datetime(2016, 2, 10),
+    end_date=datetime(2020, 1, 1)
+)
+Ownership.objects.create(
+    car_owner=owner5,
+    car=car3,
+    start_date=datetime(2021, 9, 5),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner6,
+    car=car6,
+    start_date=datetime(2020, 10, 30),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner7,
+    car=car5,
+    start_date=datetime(2022, 2, 14),
+    end_date=None
+)
+Ownership.objects.create(
+    car_owner=owner7,
+    car=car4,
+    start_date=datetime(2023, 4, 20),
+    end_date=None
+)
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2020-01-01 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2021-05-10 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2019-03-15 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.end_date received a naive datetime (2021-05-09 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2020-07-22 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2018-12-01 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2017-06-18 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2019-08-25 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2016-02-10 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.end_date received a naive datetime (2020-01-01 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2021-09-05 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2020-10-30 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2022-02-14 00:00:00) while time zone support is active.
+  warnings.warn(
+/Users/qerennyth/Documents/ИТМО/Web/ITMO_ICT_WebDevelopment_2024-2025/students/k3341/practical_works/Korchagin_Vadim/practice_3/.venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1665: RuntimeWarning: DateTimeField Ownership.start_date received a naive datetime (2023-04-20 00:00:00) while time zone support is active.
+  warnings.warn(
+owners = CarOwner.objects.all()
+for owner in owners:
+    print(f"Владелец: {owner.first_name} {owner.last_name}, Дата рождения: {owner.birth_date.date()}")
+    # Удостоверение
+    try:
+        license = DriverLicense.objects.get(car_owner=owner)
+        print(f"  Удостоверение №{license.license_number}, Категория: {license.license_type}, Дата выдачи: {license.issue_date.date()}")
+    except DriverLicense.DoesNotExist:
+        print("  Удостоверение не найдено.")
+    # Автомобили
+    ownerships = Ownership.objects.filter(car_owner=owner)
+    if ownerships.exists():
+        print("  Автомобили:")
+        for ownership in ownerships:
+            car = ownership.car
+            print(f"    {car.brand} {car.model}, Номер: {car.license_plate}, Цвет: {car.color}")
+    else:
+        print("  Автомобили не найдены.")
+    print("-" * 40)
+
+Владелец: poka ola, Дата рождения: 2024-10-02
+  Удостоверение не найдено.
+  Автомобили:
+    misubatsi m34, Номер: 1234, Цвет: red
+    playstation 6, Номер: 00000, Цвет: purple
+    volkswolf 0000291, Номер: 101010, Цвет: #123412
+----------------------------------------
+Владелец: chao hola, Дата рождения: 1899-10-10
+  Удостоверение не найдено.
+  Автомобили:
+    playstation 6, Номер: 00000, Цвет: purple
+    volkswolf 0000291, Номер: 101010, Цвет: #123412
+    changan qr2, Номер: 756392, Цвет: gray
+----------------------------------------
+Владелец: Иван Иванов, Дата рождения: 1980-05-17
+  Удостоверение №770001, Категория: B, Дата выдачи: 2000-06-15
+  Автомобили:
+    Toyota Camry, Номер: A123BC77, Цвет: Черный
+    Honda Civic, Номер: B456CD99, Цвет: Белый
+----------------------------------------
+Владелец: Петр Петров, Дата рождения: 1975-08-23
+  Удостоверение №770002, Категория: B, Дата выдачи: 1998-09-20
+  Автомобили:
+    Honda Civic, Номер: B456CD99, Цвет: Белый
+    Ford Focus, Номер: C789DE88, Цвет: Синий
+----------------------------------------
+Владелец: Сергей Сергеев, Дата рождения: 1990-12-05
+  Удостоверение №770003, Категория: B, Дата выдачи: 2010-01-05
+  Автомобили:
+    BMW X5, Номер: D012EF66, Цвет: Серый
+----------------------------------------
+Владелец: Алексей Алексеев, Дата рождения: 1985-03-14
+  Удостоверение №770004, Категория: B, Дата выдачи: 2005-04-25
+  Автомобили:
+    Audi A6, Номер: E345FG55, Цвет: Красный
+    Mercedes E200, Номер: F678GH44, Цвет: Зеленый
+    Toyota Camry, Номер: A123BC77, Цвет: Черный
+----------------------------------------
+Владелец: Михаил Михайлов, Дата рождения: 1995-07-29
+  Удостоверение №770005, Категория: B, Дата выдачи: 2015-07-30
+  Автомобили:
+    Ford Focus, Номер: C789DE88, Цвет: Синий
+----------------------------------------
+Владелец: Дмитрий Дмитриев, Дата рождения: 1988-09-09
+  Удостоверение №770006, Категория: B, Дата выдачи: 2008-11-12
+  Автомобили:
+    Mercedes E200, Номер: F678GH44, Цвет: Зеленый
+----------------------------------------
+Владелец: Николай Николаев, Дата рождения: 1992-11-11
+  Удостоверение №770007, Категория: B, Дата выдачи: 2012-03-18
+  Автомобили:
+    Audi A6, Номер: E345FG55, Цвет: Красный
+    BMW X5, Номер: D012EF66, Цвет: Серый
+----------------------------------------
