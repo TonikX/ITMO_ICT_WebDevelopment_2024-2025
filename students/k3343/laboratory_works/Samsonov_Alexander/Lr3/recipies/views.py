@@ -54,15 +54,20 @@ class MyLikedRecipes(ListAPIView):
     serializer_class = RecipeDetailSerializer
 
     def get_queryset(self):
-        values = Like.objects.filter(user=self.request.user, status=True).select_related('recipe')
-        recipes = [like.recipe for like in values]
-        return recipes
+        return Recipe.objects.filter(
+            like__user=self.request.user,
+            like__status=True
+        ).distinct()
 
 
 class RecipeDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
-    serializer_class = RecipeDetailSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_serializer_class(self):
+        if self.request.method == ['PATCH', 'PUT']:
+            return RecipeCreateSerializer
+        return RecipeDetailSerializer
 
     def get_object(self):
         recipe = get_object_or_404(Recipe, pk=self.kwargs['pk'])

@@ -49,15 +49,15 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class RecipeDetailSerializer(serializers.ModelSerializer):
-    author = UserSerializer()
-    tags = TagSerializer(many=True)
+    author = UserSerializer(required=False)
+    tags = TagSerializer(many=True, required=False)
     ingredients = IngredientSerializer(many=True)
 
     class Meta:
         model = Recipe
         fields = [
             'id',
-            'author',  # We're manually controlling the output here
+            'author',
             'header',
             'thumbnail_link',
             'content_json',
@@ -70,6 +70,27 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
             'ingredients'
         ]
         depth = 1
+
+    def update(self, instance, validated_data):
+        ingredients_data = validated_data.pop('ingredients')
+
+        buffer = []
+        for ingredient_data in ingredients_data:
+            if 'id' in ingredient_data:
+                ingredient = Ingredients.objects.get(id=ingredient_data['id'])
+            else:
+                ingredient = Ingredients.objects.create(**ingredient_data)
+
+            buffer.append(ingredient)
+        instance.ingredients.set(buffer)
+        instance.header = validated_data.get('header')
+        instance.thumbnail_link = validated_data.get('thumbnail_link')
+        instance.content_json = validated_data.get('content_json')
+        instance.time_takes = validated_data.get('time_takes')
+        instance.difficulty = validated_data.get('difficulty')
+        instance.save()
+        return instance
+
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
@@ -104,6 +125,23 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         recipe.tags.set(tags_data)
 
         return recipe
+
+    def update(self, instance, validated_data):
+        ingredients_data = validated_data.pop('ingredients')
+        tags_data = validated_data.pop('tags')
+
+
+        for ingredient_data in ingredients_data:
+            if 'id' in ingredient_data:
+                ingredient = Ingredients.objects.get(id=ingredient_data['id'])
+            else:
+                ingredient = Ingredients.objects.create(**ingredient_data)
+
+            instance.ingredients.add(ingredient)
+
+        instance.tags.set(tags_data)
+
+        return instanc
 
 
 class CuratedListSerializer(serializers.ModelSerializer):
