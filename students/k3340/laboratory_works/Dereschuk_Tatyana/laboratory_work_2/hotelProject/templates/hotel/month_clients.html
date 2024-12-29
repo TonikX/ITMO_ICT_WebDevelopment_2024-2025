@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Клиенты отелей за текущий месяц</h2>
+    <div class="row">
+        {% for reservation in reservations_of_this_month %}
+            <div class="col-md-4">
+                <div class="card-body">
+                    <h5 class="card-title">Имя пользователя: {{ reservation.user.username }}</h5>
+                    <p class="card-text">
+                        Отель: {{ reservation.room.hotel.name }} <br/>
+                        Комната: {{ reservation.room.room_type }} <br/>
+                        Дата заселения: {{ reservation.start_date }} <br/>
+                        Дата выселения: {{ reservation.end_date }} <br/>
+                    </p>
+                </div>
+            </div>
+            <hr/>
+        {% empty %}
+            <h5 class="mb-4">Не было посетителей =(</h5>
+        {% endfor %}
+    </div>
+{% endblock %}
