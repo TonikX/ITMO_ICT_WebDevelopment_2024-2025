@@ -1,7 +1,7 @@
 <script setup>
 
 import {onMounted, ref} from "vue";
-import {fetchAndReturn} from "@/composables/fetchAndReturn.js";
+import {fetchAndReturn} from "@/composables/serverActions.js";
 import RecipeCard from "@/components/genericInterface/ListCard.vue";
 
 const Recipes = ref(null)

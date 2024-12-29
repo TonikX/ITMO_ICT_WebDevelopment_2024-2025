@@ -23,3 +23,12 @@ export const postComment = async (recipeId, rating, header, content) => {
         return null
     }
 }
+
+export const canEdit = async (recipeId) => {
+    try {
+        const response = await axiosInstance.get(`recipes/${recipeId}/canEdit/`, {},)
+        return await response.data
+    } catch (error) {
+        return error.code === "ERR_BAD_REQUEST";
+    }
+}

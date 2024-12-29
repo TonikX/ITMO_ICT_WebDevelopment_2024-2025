@@ -35,7 +35,7 @@ class Recipe(models.Model):
         ('Hard', 'hd'),
     ]
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     header = models.CharField(max_length=500)
     thumbnail_link = models.CharField(max_length=500)
     content_json = models.JSONField()
@@ -83,6 +83,6 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=True)
     status = models.BooleanField(default=False)

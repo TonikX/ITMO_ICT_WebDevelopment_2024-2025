@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import {useRoute} from "vue-router";
-import {postComment} from "@/composables/fetchAndReturn.js";
+import {postComment} from "@/composables/serverActions.js";
 import { defineEmits } from 'vue';
 
 const emit = defineEmits(['submit-comment']);

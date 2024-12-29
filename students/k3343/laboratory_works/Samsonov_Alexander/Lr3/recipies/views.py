@@ -1,7 +1,7 @@
 from djoser import serializers
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView, \
-    CreateAPIView, get_object_or_404
+    get_object_or_404
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -32,8 +32,10 @@ class MyRecipes(ListAPIView):
     def get_queryset(self):
         return Recipe.objects.filter(author=self.request.user)
 
+
 class Toggle(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
         obj, created = Like.objects.get_or_create(recipe=recipe, user=request.user)
@@ -46,6 +48,7 @@ class Toggle(APIView):
         obj.save()
         return Response('Ok', status=200)
 
+
 class MyLikedRecipes(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = RecipeDetailSerializer
@@ -55,19 +58,46 @@ class MyLikedRecipes(ListAPIView):
         recipes = [like.recipe for like in values]
         return recipes
 
+
 class RecipeDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeDetailSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_object(self):
-        recipe = super().get_object()
+        recipe = get_object_or_404(Recipe, pk=self.kwargs['pk'])
 
         if self.request.method in ['PUT', 'PATCH', 'DELETE']:
             if recipe.author != self.request.user:
                 raise PermissionDenied("You do not have permission to modify this recipe.")
 
         return recipe
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.tags.clear()
+        instance.ingredients.clear()
+        instance.like_set.clear()
+        instance.comment_set.clear()
+        instance.save()
+
+        self.perform_destroy(instance)
+        return Response({'detail': 'Recipe deleted successfully.'}, status=200)
+
+
+    def perform_destroy(self, instance):
+        instance.delete()
+
+class CanEdit(APIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get(self, request, pk):
+        recipe = get_object_or_404(Recipe, pk=pk)
+        if self.request.user.is_anonymous:
+            return Response(False, status=200)
+        if self.request.user == recipe.author:
+            return Response(True, status=200)
+        return Response(False, status=200)
 
 
 class CommentListCreateView(ListCreateAPIView):

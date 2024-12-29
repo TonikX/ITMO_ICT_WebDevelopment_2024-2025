@@ -1,7 +1,7 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import {useRoute} from "vue-router";
-import {fetchAndReturn} from "@/composables/fetchAndReturn.js"
+import {fetchAndReturn} from "@/composables/serverActions.js"
 import RecipeBanner from "@/components/recipeComponents/RecipeBanner.vue";
 import IngredientsTable from "@/components/recipeComponents/IngredientsTable.vue";
 import RecipeText from "@/components/recipeComponents/RecipeText.vue";

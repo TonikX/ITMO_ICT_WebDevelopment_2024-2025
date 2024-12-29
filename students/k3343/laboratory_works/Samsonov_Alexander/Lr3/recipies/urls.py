@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import RecipeDetailView, RecipeListCreateView, CommentListCreateView, CommentDetailView, CuratedListView, \
-    CuratedListDetailedView, MyRecipes, Toggle, MyLikedRecipes
+    CuratedListDetailedView, MyRecipes, Toggle, MyLikedRecipes, CanEdit
 
 urlpatterns = [
     path('recipes/', RecipeListCreateView.as_view(), name='recipe-list'),
     path('recipes/<int:pk>/', RecipeDetailView.as_view(), name='recipe-detail'),
     path('recipes/<int:pk>/like/', Toggle.as_view(), name='recipe-like'),
+    path('recipes/<int:pk>/canEdit/', CanEdit.as_view(), name='can-edit'),
     path('recipes/my/', MyRecipes.as_view(), name='recipe-my'),
     path('liked/', MyLikedRecipes.as_view()),
 
