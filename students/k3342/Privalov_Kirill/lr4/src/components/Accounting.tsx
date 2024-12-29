@@ -34,7 +34,7 @@ interface IServicePrice {
   servicePriceId?: number;
   serviceId: number;
   service?: IService;
-  price: string; // Changed from number to string to match API response
+  price: string;
   validFrom: string;
   validTo?: string;
 }
@@ -409,7 +409,7 @@ const Accounting: React.FC = () => {
             </FormControl>
             <TextField
               label="Price"
-              type="text" // Changed to text to accommodate decimal values as strings
+              type="text"
               value={priceForm.price}
               onChange={(e) =>
                 setPriceForm({ ...priceForm, price: e.target.value })

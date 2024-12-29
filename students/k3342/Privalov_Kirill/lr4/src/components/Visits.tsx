@@ -187,7 +187,7 @@ const Visits: React.FC = () => {
           visit.visitDate === format(date, "yyyy-MM-dd") &&
           visit.visitTime === `${timeStr}:00` &&
           visit.visitStatus !== "Canceled" &&
-          (currentVisitId ? visit.visitId !== currentVisitId : true) // Exclude current visit
+          (currentVisitId ? visit.visitId !== currentVisitId : true)
       );
       if (!isBooked) {
         times.push(timeStr);
@@ -202,7 +202,7 @@ const Visits: React.FC = () => {
       setCurrentVisit(visit);
       setFormData({
         visitDate: visit.visitDate,
-        visitTime: visit.visitTime.slice(0, 5), // Format to "HH:mm"
+        visitTime: visit.visitTime.slice(0, 5),
         patientId: visit.patient.patientId.toString(),
         doctorId: visit.doctor.doctorId.toString(),
         visitStatus: visit.visitStatus,
@@ -279,7 +279,7 @@ const Visits: React.FC = () => {
           doctorId: parseInt(formData.doctorId),
           visitStatus: formData.visitStatus,
           currentConditionNotes: formData.currentConditionNotes,
-          officeId: currentVisit.officeId, // Preserve existing officeId
+          officeId: currentVisit.officeId,
         });
       } else {
         await api.post("/visits/", {
@@ -289,7 +289,7 @@ const Visits: React.FC = () => {
           doctorId: parseInt(formData.doctorId),
           visitStatus: formData.visitStatus,
           currentConditionNotes: formData.currentConditionNotes,
-          officeId: null, // Adjust if office selection is implemented
+          officeId: null,
         });
       }
       await fetchVisits();

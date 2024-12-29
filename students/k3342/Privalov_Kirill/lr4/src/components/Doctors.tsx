@@ -45,7 +45,7 @@ interface IDoctor {
   lastName: string;
   firstName: string;
   middleName?: string;
-  gender: "M" | "F" | "O"; // Added "O" for Other
+  gender: "M" | "F";
   dateOfBirth: string;
   education?: string;
 }
