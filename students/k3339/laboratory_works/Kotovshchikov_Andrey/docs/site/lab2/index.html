@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Лабораторная работа 2 - Web-программирование</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Web-программирование</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Лабораторные работы</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../lab1/" class="dropdown-item">Лабораторная работа 1</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Лабораторная работа 2</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../lab1/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2-django-5" class="nav-link">Лабораторная работа 2. Реализация простого сайта на django. Вариант 5 (Список научных конференций)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1" class="nav-link">1. Регистрация новых пользователей</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2" class="nav-link">2. Просмотр конференций и регистрацию авторов для выступлений с возможностью редактирования и удаления своих конференций.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">3. Написание отзывов к конференциям.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4" class="nav-link">4. Администратор должен иметь возможность указания результатов выступления.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5" class="nav-link">5. В клиентской части должна формироваться таблица, отображающая всех участников по конференциям.</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="2-django-5">Лабораторная работа 2. Реализация простого сайта на django. Вариант 5 (Список научных конференций)</h1>
+<hr />
+<h2 id="1"><strong>1. Регистрация новых пользователей</strong></h2>
+<pre><code class="language-python">class SignUpView(views.View):
+    def get(self, request, *args, **kwargs):
+        context = {
+            &quot;title&quot;: &quot;Регистрация&quot;,
+            &quot;form&quot;: SignUpForm(),
+            &quot;action&quot;: &quot;Зарегистрироваться&quot;,
+        }
+
+        return render(request, &quot;users/auth-form.html&quot;, context)
+
+    def post(self, request: HttpRequest, *args, **kwargs):
+        context = {
+            &quot;title&quot;: &quot;Регистрация&quot;,
+            &quot;action&quot;: &quot;Зарегистрироваться&quot;,
+        }
+
+        form = SignUpForm(request.POST or None)
+        context[&quot;form&quot;] = form
+
+        if not form.is_valid():
+            return render(request, &quot;users/auth-form.html&quot;, context)
+
+        email = form.cleaned_data[&quot;email&quot;]
+        is_email_occupied = User.objects.filter(email=email).exists()
+        if is_email_occupied:
+            context[&quot;message&quot;] = &quot;Email занят другим пользователем&quot;
+            return render(request, &quot;users/auth-form.html&quot;, context)
+
+        User.objects.create_user(
+            email=email,
+            password=form.cleaned_data[&quot;password&quot;],
+            first_name=form.cleaned_data[&quot;first_name&quot;],
+            last_name=form.cleaned_data[&quot;last_name&quot;],
+        )
+
+        return redirect(reverse(&quot;sign-in&quot;))
+</code></pre>
+<p>Класс <strong>SignUpView</strong> наследуется от <strong>views.View</strong> и представляет собой представление Django для обработки регистрации пользователей. Этот класс реализует два метода: get и post, которые обрабатывают GET и POST запросы соответственно. Метод get обрабатывает GET-запросы и отображает форму регистрации. В нем создается контекст данных, который включает заголовок страницы ("Регистрация"), экземпляр формы <strong>SignUpForm</strong> и текст кнопки отправки формы ("Зарегистрироваться"). Затем используется функция render для отображения шаблона <strong>users/auth-form.html</strong> с переданным контекстом данных. Метод post обрабатывает POST-запросы, валидирует данные формы и создает нового пользователя. В нем также создается контекст данных с заголовком страницы ("Регистрация") и текстом кнопки отправки формы ("Зарегистрироваться"). Создается экземпляр формы SignUpForm с данными из запроса. Если форма не валидна, она отображается снова с ошибками. Если форма валидна, проверяется, занят ли указанный email другим пользователем. Если email занят, отображается сообщение об ошибке. Если email свободен, создается новый пользователь с указанными данными и выполняется перенаправление на страницу входа.</p>
+<pre><code class="language-html">{% extends &quot;index.html&quot; %} {% block title %} {{ title }} {% endblock title %} {% block content %}
+
+&lt;form class=&quot;auth-form&quot; method=&quot;post&quot;&gt;
+    {% csrf_token %} {{ form.as_p }}
+    &lt;button type=&quot;submit&quot;&gt;{{ action }}&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p class=&quot;errorlist&quot; style=&quot;text-align: center;&quot;&gt;{{ message }}&lt;/p&gt;
+
+{% endblock content %}
+</code></pre>
+<p>Шаблон <strong>users/auth-form.html</strong> расширяет базовый шаблон <strong>index.html</strong> и используется для отображения формы аутентификации или регистрации. В шаблоне определены два блока: <strong>title</strong> и <strong>content</strong>. Блок title устанавливает заголовок страницы, используя переменную title, переданную из контекста. Блок content содержит форму с методом post, которая включает <strong>CSRF-токен</strong> для защиты от CSRF-атак, отображает поля формы с помощью <strong>{{ form.as_p }}</strong> и кнопку отправки формы с текстом, переданным в переменной action. Также в блоке <strong>content</strong> отображается сообщение об ошибке, если оно есть, с помощью переменной message.</p>
+<h2 id="2"><strong>2. Просмотр конференций и регистрацию авторов для выступлений с возможностью редактирования и удаления своих конференций.</strong></h2>
+<pre><code class="language-python">class ConferenceListView(mixins.LoginRequiredMixin, generic.ListView):
+    template_name = &quot;conferences/conference-list.html&quot;
+    context_object_name = &quot;conferences&quot;
+    paginate_by = 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[&quot;title&quot;] = &quot;Список конференций&quot;
+        return context
+
+    def get_queryset(self):
+        return Conference.objects.select_related(&quot;author&quot;).all().order_by(&quot;name&quot;)
+</code></pre>
+<p>Класс <strong>ConferenceListView</strong> наследуется от <strong>mixins.LoginRequiredMixin</strong> и <strong>generic.ListView</strong>, что позволяет использовать функциональность, требующую аутентификации пользователя, и предоставляет базовые возможности для отображения списка объектов. Атрибут template_name указывает на имя шаблона, который будет использоваться для отображения списка конференций <strong>("conferences/conference-list.html")</strong>. Атрибут context_object_name определяет имя переменной контекста, которая будет использоваться в шаблоне для доступа к списку конференций ("conferences"). Атрибут <strong>paginate_by</strong> устанавливает количество конференций, отображаемых на одной странице (1). Метод <strong>get_context_data</strong> переопределяет базовый метод для добавления заголовка страницы ("Список конференций") в контекст данных. Метод get_queryset возвращает отсортированный список всех конференций, используя <strong>select_related</strong> для оптимизации запросов к базе данных.</p>
+<pre><code class="language-python">class ConferenceDetailView(mixins.LoginRequiredMixin, generic.UpdateView):
+    model = Conference
+    form_class = ConferenceUpdatingForm
+    template_name = &quot;conferences/conference-detail.html&quot;
+    pk_url_kwarg = &quot;conference_pk&quot;
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[&quot;feedback_form&quot;] = FeedbackForm()
+        context[&quot;is_user_member&quot;] = self.object.members.contains(self.request.user)
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy(&quot;conference-detail&quot;, kwargs={&quot;conference_pk&quot;: self.object.pk})
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(
+            Conference.objects.select_related(&quot;author&quot;)
+            .select_related(&quot;booking&quot;)
+            .select_related(&quot;booking__room&quot;)
+            .prefetch_related(&quot;members&quot;),
+            id=self.kwargs[self.pk_url_kwarg],
+        )
+
+    def form_valid(self, form):
+        if self.object.author.pk != self.request.user.pk:
+            raise PermissionDenied()
+
+        return super().form_valid(form)
+</code></pre>
+<p>Класс <strong>ConferenceDetailView</strong> наследуется от <strong>mixins.LoginRequiredMixin</strong> и <strong>generic.UpdateView</strong>, что позволяет использовать функциональность, требующую аутентификации пользователя, и предоставляет базовые возможности для обновления объектов. Атрибут model указывает на модель Conference, с которой работает представление. Атрибут form_class определяет форму ConferenceUpdatingForm, которая будет использоваться для обновления конференции. Атрибут template_name указывает на имя шаблона, который будет использоваться для отображения деталей конференции <strong>("conferences/conference-detail.html")</strong>. Атрибут pk_url_kwarg определяет имя аргумента URL, который содержит первичный ключ конференции ("conference_pk"). Метод get_context_data переопределяет базовый метод для добавления формы обратной связи (FeedbackForm) и флага, указывающего, является ли текущий пользователь участником конференции, в контекст данных. Метод get_success_url возвращает URL для перенаправления после успешного обновления конференции, используя reverse_lazy для генерации URL на основе имени маршрута и первичного ключа конференции. Метод <strong>get_object</strong> переопределяет базовый метод для получения объекта конференции с использованием <strong>get_object_or_404</strong>, оптимизируя запросы к базе данных с помощью <strong>select_related</strong> и <strong>prefetch_related</strong>. Метод <strong>form_valid</strong> переопределяет базовый метод для проверки, является ли текущий пользователь автором конференции, и вызывает исключение <strong>PermissionDenied</strong>, если это не так. Затем вызывается родительский метод form_valid для продолжения обработки формы.</p>
+<pre><code class="language-python">class ConferenceRegistrationView(mixins.LoginRequiredMixin, views.View):
+    def get(self, request: HttpRequest, *args, **kwargs):
+        context = {
+            &quot;form&quot;: ConferenceRegistrationForm(),
+            &quot;title&quot;: &quot;Регистрация конференции&quot;,
+            &quot;action&quot;: &quot;Зарегистрировать конференцию&quot;,
+        }
+
+        return render(request, &quot;conferences/registration-form.html&quot;, context)
+
+    @transaction.atomic
+    def post(self, request: HttpRequest, *args, **kwargs):
+        context = {
+            &quot;title&quot;: &quot;Регистрация конференции&quot;,
+            &quot;action&quot;: &quot;Зарегистрировать конференцию&quot;,
+        }
+
+        form = ConferenceRegistrationForm(request.POST or None)
+        context[&quot;form&quot;] = form
+
+        if not form.is_valid():
+            return render(request, &quot;conferences/registration-form.html&quot;, context)
+
+        booking_id = form.cleaned_data[&quot;booking&quot;].id
+        booking = Booking.objects.select_for_update(no_key=True).get(id=booking_id)
+        if booking.conference is not None:
+            context[&quot;message&quot;] = &quot;Выбранная бронь уже занята другим пользователем&quot;
+            return render(request, &quot;conferences/registration-form.html&quot;, context)
+
+        conference: Conference = form.save(commit=False)
+        conference.author = request.user
+        conference.save()
+
+        booking.conference = conference
+        booking.save()
+
+        context[&quot;message&quot;] = &quot;Конференция зарегистрирована&quot;
+        context[&quot;form&quot;] = ConferenceRegistrationForm()
+        return render(request, &quot;conferences/registration-form.html&quot;, context)
+</code></pre>
+<p>Класс <strong>ConferenceRegistrationView</strong> наследуется от <strong>mixins.LoginRequiredMixin</strong> и <strong>views.View</strong>, что позволяет использовать функциональность, требующую аутентификации пользователя, и обрабатывать GET и POST запросы. Метод get обрабатывает GET-запросы и отображает форму регистрации конференции. В нем создается контекст данных, который включает экземпляр формы <strong>ConferenceRegistrationForm</strong>, заголовок страницы ("Регистрация конференции") и текст кнопки отправки формы ("Зарегистрировать конференцию"). Затем используется функция render для отображения шаблона <strong>conferences/registration-form.html</strong> с переданным контекстом данных. Метод post обрабатывает POST-запросы, валидирует данные формы и регистрирует новую конференцию. В нем также создается контекст данных с заголовком страницы ("Регистрация конференции") и текстом кнопки отправки формы ("Зарегистрировать конференцию"). Создается экземпляр формы <strong>ConferenceRegistrationForm</strong> с данными из запроса. Если форма не валидна, она отображается снова с ошибками. Если форма валидна, проверяется, занята ли выбранная бронь другой конференцией. Если бронь занята, отображается сообщение об ошибке. Если бронь свободна, создается новая конференция с указанными данными и текущим пользователем в качестве автора. Затем бронь обновляется, чтобы связать ее с новой конференцией. После успешной регистрации конференции отображается сообщение об успешной регистрации и очищенная форма.</p>
+<pre><code class="language-python">class ConferenceDeleteView(mixins.LoginRequiredMixin, generic.DeleteView):
+    model = Conference
+    pk_url_kwarg = &quot;conference_pk&quot;
+    success_url = reverse_lazy(&quot;conference-list&quot;)
+
+    def dispatch(self, request: HttpRequest, *args, **kwargs):
+        conference = get_object_or_404(self.model, pk=self.kwargs[self.pk_url_kwarg])
+        if conference.author.pk != request.user.pk:
+            raise PermissionDenied()
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+</code></pre>
+<p>Класс <strong>ConferenceDeleteView</strong> наследуется от <strong>mixins.LoginRequiredMixin</strong> и <strong>generic.DeleteView</strong>, что позволяет использовать функциональность, требующую аутентификации пользователя, и предоставляет базовые возможности для удаления объектов. Атрибут model указывает на модель Conference, с которой работает представление. Атрибут pk_url_kwarg определяет имя аргумента URL, который содержит первичный ключ конференции ("conference_pk"). Атрибут success_url указывает URL для перенаправления после успешного удаления конференции, используя reverse_lazy для генерации URL на основе имени маршрута ("conference-list"). Метод dispatch переопределяет базовый метод для проверки, является ли текущий пользователь автором конференции, и вызывает исключение PermissionDenied, если это не так. Затем вызывается родительский метод dispatch для продолжения обработки запроса. Метод get переопределяет базовый метод для вызова метода delete, что позволяет удалять конференцию сразу при GET-запросе.</p>
+<h2 id="3"><strong>3. Написание отзывов к конференциям.</strong></h2>
+<pre><code class="language-python">class FeedbackView(mixins.LoginRequiredMixin, generic.CreateView):
+    model = Feedback
+    form_class = FeedbackForm
+
+    def form_valid(self, form):
+        conference = Conference.objects.filter(id=self.kwargs[&quot;conference_pk&quot;]).first()
+        if conference is None:
+            raise ObjectDoesNotExist()
+
+        is_user_member = conference.members.contains(self.request.user)
+        if not is_user_member:
+            raise PermissionDenied()
+
+        if not conference.is_over():
+            raise BadRequest(&quot;Конференция еще не окончена&quot;)
+
+        feedback: Feedback = form.save(commit=False)
+        feedback.author = self.request.user
+        feedback.conference = conference
+        feedback.save()
+
+        redirect_url = reverse(
+            &quot;conference-detail&quot;,
+            kwargs={&quot;conference_pk&quot;: self.kwargs[&quot;conference_pk&quot;]},
+        )
+
+        return redirect(redirect_url)
+</code></pre>
+<p>Класс <strong>FeedbackView</strong> наследуется от <strong>mixins.LoginRequiredMixin</strong> и <strong>generic.CreateView</strong>, что позволяет использовать функциональность, требующую аутентификации пользователя, и предоставляет базовые возможности для создания объектов. Атрибут model указывает на модель Feedback, с которой работает представление. Атрибут <strong>form_class</strong> определяет форму <strong>FeedbackForm</strong>, которая будет использоваться для создания отзыва. Метод form_valid переопределяет базовый метод для проверки, существует ли конференция с указанным первичным ключом, является ли текущий пользователь участником конференции и завершена ли конференция. Если конференция не существует, вызывается исключение <strong>ObjectDoesNotExist</strong>. Если пользователь не является участником конференции, вызывается исключение <strong>PermissionDenied</strong>. Если конференция еще не завершена, вызывается исключение <strong>BadRequest</strong> с сообщением "Конференция еще не окончена". Если все проверки пройдены, создается новый отзыв с текущим пользователем в качестве автора и указанной конференцией. Затем выполняется перенаправление на страницу деталей конференции с использованием <strong>reverse</strong> для генерации URL на основе имени маршрута и первичного ключа конференции.</p>
+<h2 id="4"><strong>4. Администратор должен иметь возможность указания результатов выступления.</strong></h2>
+<p>Администратор имеет статус <strong>суперпользователя</strong>, засчет этого ему открывается доступ к админ панеле, где он может отметить конференцию как <strong>рекомендованную к публикации</strong></p>
+<h2 id="5"><strong>5. В клиентской части должна формироваться таблица, отображающая всех участников по конференциям.</strong></h2>
+<pre><code class="language-html">{% extends &quot;index.html&quot; %} {% block title %} {{ title }} {% endblock title %} {% block content %}
+
+&lt;ul&gt;
+    &lt;li&gt;Название: {{ conference.name }}&lt;/li&gt;
+    &lt;li&gt;Автор: {{ conference.author }}&lt;/li&gt;
+    &lt;li&gt;Описание: {{ conference.description }}&lt;/li&gt;
+    &lt;li&gt;Условия участия: {{ conference.participation_conditions }}&lt;/li&gt;
+    &lt;li&gt;Начало: {{ conference.booking.start_date }}&lt;/li&gt;
+    &lt;li&gt;Конец: {{ conference.booking.end_date }}&lt;/li&gt;
+    &lt;li&gt;Конференц зал: {{ conference.booking.room }}&lt;/li&gt;
+    &lt;li&gt;Тематики: {{ conference.display_topics }}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Участники ({{ conference.count_members }})&lt;/h2&gt;
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Имя&lt;/th&gt;
+            &lt;th&gt;Фамилия&lt;/th&gt;
+            &lt;th&gt;Почта&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        {% for member in conference.members.all %}
+        &lt;tr&gt;
+            &lt;td&gt;{{ member.first_name }}&lt;/td&gt;
+            &lt;td&gt;{{ member.last_name }}&lt;/td&gt;
+            &lt;td&gt;{{ member.email }}&lt;/td&gt;
+        &lt;/tr&gt;
+        {% endfor %}
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+...
+</code></pre>
+<p>В шаблоне <strong>conferences/conference-detail.html</strong> отрисовывается таблица со всеми добавленными автором конференции участниками. Так как таблица конференций и участников имеет связь многие ко многим, во избежание проблемы <strong>N + 1</strong> в <strong>ConferenceDetailView</strong> был использован <strong>prefetch_related</strong> для предварительной подгрузки связанных записей.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
