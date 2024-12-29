@@ -1,11 +1,14 @@
 site_name: WEB-programming
 nav:
-  - Home: index.md
-  - 1 lab:
-      - Task 1: lw1/1.md
-      - Task 2: lw1/2.md
-      - Task 3: lw1/3.md
-      - Task 4: lw1/4.md
-      - Task 5: lw1/5.md
+    - Home: index.md
+    - 1 lab:
+      - Task 1: laboratory_work_1/1.md
+      - Task 2: laboratory_work_1/2.md
+      - Task 3: laboratory_work_1/3.md
+      - Task 4: laboratory_work_1/4.md
+      - Task 5: laboratory_work_1/5.md
+    - 3 lab:
+      - Pr 3.1: laboratory_work_3/pr_3_1.md
+      - lab: laboratory_work_3/lab.md
 theme:
-  name: bootstrap4
+    name: readthedocs
