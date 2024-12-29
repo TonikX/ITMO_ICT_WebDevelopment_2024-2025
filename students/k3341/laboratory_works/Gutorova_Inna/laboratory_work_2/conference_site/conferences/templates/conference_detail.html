@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ conference.name }} - Conference Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+        p {
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #ffdd57;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ conference.name }}</h1>
+    </header>
+    <main>
+        <p><strong>Location:</strong> {{ conference.location }}</p>
+        <p><strong>Themes:</strong> {{ conference.themes }}</p>
+        <p><strong>Dates:</strong> {{ conference.start_date }} to {{ conference.end_date }}</p>
+        <p><strong>Description:</strong> {{ conference.description }}</p>
+        <p><strong>Participation Conditions:</strong> {{ conference.participation_conditions }}</p>
+
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in reviews %}
+            <li>
+                <strong>{{ review.user.username }}</strong> (Rating: {{ review.rating }}):
+                {{ review.comment }} <br>
+                <em>Posted on: {{ review.created_at }}</em>
+            </li>
+            {% empty %}
+            <li>No reviews yet. Be the first to write one!</li>
+            {% endfor %}
+        </ul>
+
+        {% if user.is_authenticated %}
+            <p><a href="{% url 'register_for_conference' conference.id %}">Register for Conference</a></p>
+            <p><a href="{% url 'add_review' conference.id %}">Write a Review</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to register or write a review.</p>
+        {% endif %}
+
+        <h2>Participants</h2>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Presentation Topic</th>
+            </tr>
+            {% for registration in conference.registration_set.all %}
+            <tr>
+                <td>{{ registration.user.username }}</td>
+                <td>{{ registration.topic }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="2">No participants yet.</td></tr>
+            {% endfor %}
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 Conference Site</p>
+    </footer>
+</body>
+</html>
