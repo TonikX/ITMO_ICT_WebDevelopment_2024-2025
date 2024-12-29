@@ -20,6 +20,14 @@ class AirlineCreateSerializer(serializers.ModelSerializer):
         fields = ["name", "country", "contact_info"]
 
 
+class UserSerializer(serializers.ModelSerializer):
+    airline = serializers.StringRelatedField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'airline']
+
+
 class PlaneModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlaneModel
@@ -29,10 +37,14 @@ class PlaneModelSerializer(serializers.ModelSerializer):
 class PlaneSerializer(serializers.ModelSerializer):
     airline = serializers.StringRelatedField()
     model = PlaneModelSerializer()
+    plane_str = serializers.SerializerMethodField()
 
     class Meta:
         model = Plane
         fields = '__all__'
+
+    def get_plane_str(self, obj):
+        return str(obj)
 
 
 class PlaneCreateSerializer(serializers.ModelSerializer):
@@ -49,10 +61,16 @@ class PlaneUpdateSerializer(serializers.ModelSerializer):
 
 class EmployeeSerializer(serializers.ModelSerializer):
     employer = serializers.StringRelatedField()
+    crew_roles = serializers.SerializerMethodField()
 
     class Meta:
         model = Employee
         fields = '__all__'
+
+    def get_crew_roles(self, obj):
+        roles = obj.crew_roles.all()
+        roles = [role.role for role in roles]
+        return roles
 
 
 class EmployeeCreateSerializer(serializers.ModelSerializer):
@@ -64,7 +82,7 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
 class EmployeeNestedSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['first_name', 'last_name']
+        fields = ['id', 'first_name', 'last_name', 'work_experience_years']
 
 
 class CrewMemberSerializer(serializers.ModelSerializer):
@@ -86,7 +104,7 @@ class CrewMemberFullSerializer(serializers.ModelSerializer):
 class CrewMemberCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CrewMember
-        fields = ['employee', 'role']
+        fields = ['employees', 'role']
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
@@ -103,7 +121,7 @@ class CrewMemberCreateSerializer(serializers.ModelSerializer):
     def validate(self, data):
         instance = self.instance
 
-        employee = data.get('employee', instance.employee if instance else None)
+        employee = data.get('employees', instance.employee if instance else None)
         role = data.get('role', instance.role if instance else None)
 
         if CrewMember.objects.filter(employee=employee, role=role).exclude(pk=instance.pk if instance else None).exists():
@@ -124,6 +142,7 @@ class RouteSerializer(serializers.ModelSerializer):
     departure_airport = serializers.StringRelatedField()
     destination_airport = serializers.StringRelatedField()
     stops = serializers.SerializerMethodField()
+    route_str = serializers.SerializerMethodField()
 
     class Meta:
         model = Route
@@ -135,6 +154,12 @@ class RouteSerializer(serializers.ModelSerializer):
         """
         stops = obj.transit_stops.all().order_by('arrival_day', 'arrival_time')
         return TransitStopSerializer(stops, many=True).data
+
+    def get_route_str(self, obj):
+        """
+        Dynamically include all transit stops for the route, using TransitStopSerializer.
+        """
+        return str(obj)
 
 
 class RouteCreateSerializer(serializers.ModelSerializer):
@@ -434,7 +459,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
             raise serializers.ValidationError(
-                {"plane": f"Plane {plane.number} is under maintenance from {maintenance.start_date} "
+                {"departure_date": f"Plane {plane.number} is under maintenance from {maintenance.start_date} "
                           f"to {maintenance.end_date or 'an unknown end date'}."}
             )
 
@@ -446,7 +471,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
         if overlapping_flights_plane.exists():
             flight = overlapping_flights_plane.first()
             raise serializers.ValidationError(
-                {"plane": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
+                {"departure_date": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
                           f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
@@ -459,7 +484,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
             if overlapping_flights_crew.exists():
                 flight = overlapping_flights_crew.first()
                 raise serializers.ValidationError(
-                    {"crew": f"Crew {crew} is occupied by another flight ({flight.number}) "
+                    {"departure_date": f"Crew {crew} is occupied by another flight ({flight.number}) "
                              f"from {flight.departure_date} to {flight.arrival_date}."}
                 )
 
@@ -547,8 +572,14 @@ class MaintenanceCreateSerializer(serializers.ModelSerializer):
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
             raise serializers.ValidationError(
-                {"plane": f"Plane {plane.number} is under another maintenance from {maintenance.start_date} "
+                {"start_date": f"Plane {plane.number} is under another maintenance from {maintenance.start_date} "
                           f"to {maintenance.end_date or 'an unknown end date'}."}
+            )
+
+            # Check if end_date is later than start_date
+        if start_date and end_date and end_date <= start_date:
+            raise serializers.ValidationError(
+                {"end_date": "End date must be later than the start date."}
             )
 
         # Validate overlapping flights for the plane
@@ -614,6 +645,7 @@ class MostFrequentPlaneSerializer(serializers.Serializer):
     route_id = serializers.IntegerField()
     route = serializers.SerializerMethodField()
     most_frequent_plane = serializers.SerializerMethodField()
+    airline = serializers.IntegerField()
 
     def get_route(self, obj):
         route_id = obj['route_id']
@@ -625,9 +657,9 @@ class MostFrequentPlaneSerializer(serializers.Serializer):
 
     def get_most_frequent_plane(self, obj):
         route_id = obj['route_id']
-
+        airline = self.validated_data.get('airline')
         planes = (
-            Flight.objects.filter(route_id=route_id)
+            Flight.objects.filter(route_id=route_id, plane__airline_id=airline)
             .values('plane__model')
             .annotate(flight_count=Count('id'))
             .order_by('-flight_count')
@@ -653,14 +685,16 @@ class UnderFilledRouteSerializer(serializers.ModelSerializer):
     destination_airport = serializers.StringRelatedField()
     under_filled_count = serializers.SerializerMethodField()
     under_filled_percentage = serializers.SerializerMethodField()
+    route = serializers.SerializerMethodField()
 
     class Meta:
         model = Route
-        fields = ['id', 'departure_airport', 'destination_airport', 'under_filled_count', 'under_filled_percentage']
+        fields = ['route', 'id', 'departure_airport', 'destination_airport', 'under_filled_count', 'under_filled_percentage']
 
     def get_under_filled_count(self, obj):
         threshold = self.context.get('threshold', 50) / 100
-        flights = obj.flights.all()
+        airline = self.context.get('airline')
+        flights = obj.flights.filter(plane__airline = airline)
         under_filled_count = 0
         for flight in flights:
             fill_percentage = flight.sold_tickets_number / flight.plane.model.seats_capacity
@@ -669,12 +703,16 @@ class UnderFilledRouteSerializer(serializers.ModelSerializer):
         return under_filled_count
 
     def get_under_filled_percentage(self, obj):
-        flights = obj.flights.all()
+        airline = self.context.get('airline')
+        flights = obj.flights.filter(plane__airline = airline)
         total_flights = flights.count()
         if total_flights == 0:
             return 0  # No flights to calculate percentage
         under_filled_count = self.get_under_filled_count(obj)
         return round((under_filled_count / total_flights) * 100, 2)
+
+    def get_route(self, obj):
+        return RouteSerializer(obj).data
 
 
 class FlightSeatAvailabilitySerializer(serializers.ModelSerializer):

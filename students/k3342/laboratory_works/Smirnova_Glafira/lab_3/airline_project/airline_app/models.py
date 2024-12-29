@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -10,6 +11,13 @@ class Airline(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class User(AbstractUser):
+    airline = models.ForeignKey(Airline, on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
+
+    def __str__(self):
+        return f"{self.username}, {self.airline}"
 
 
 class Airport(models.Model):

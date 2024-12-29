@@ -15,6 +15,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+AUTH_USER_MODEL = 'airline_app.User'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -39,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',  # Для токенов
     'djoser',
     'drf_yasg',
-    "airline_app"
+    "airline_app",
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +66,7 @@ REST_FRAMEWORK = {
 # }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -139,3 +144,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user': 'airline_app.serializers.UserSerializer',
+        'current_user': 'airline_app.serializers.UserSerializer',
+    },
+}

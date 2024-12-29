@@ -65,35 +65,17 @@ class PlanesAPIView(APIView):
     serializer_class = PlaneCreateSerializer
 
     def get(self, request, airline_pk=None):
-        if airline_pk:
-            planes = Plane.objects.filter(airline_id=airline_pk)
-            serializer = PlaneSerializer(planes, many=True)
-            return Response(serializer.data)
-        planes = Plane.objects.all()
+        user_airline = request.user.airline
+        planes = Plane.objects.filter(airline=user_airline)
         serializer = PlaneSerializer(planes, many=True)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=serializer_class)
     def post(self, request, airline_pk=None):
-        if not airline_pk:
-            return Response(
-                {"error": "POST method is not allowed on this endpoint. "
-                          "To add a new employee, use /airlines/<int:airline_pk>/employees."},
-                status=status.HTTP_405_METHOD_NOT_ALLOWED
-            )
-
-        try:
-            airline = Airline.objects.get(pk=airline_pk)
-        except Airline.DoesNotExist:
-            return Response(
-                {"error": "Airline not found."},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
+        user_airline = request.user.airline
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-
-        plane = serializer.save(airline=airline)
+        plane = serializer.save(airline=user_airline)
         return Response({"message": "Plane created successfully", "id": plane.id}, status=status.HTTP_201_CREATED)
 
 
@@ -129,52 +111,29 @@ class PlaneAPIView(APIView):
 
 class EmployeesAPIView(APIView):
     """
-    Handles listing all employees or employees associated with a specific airline, and creating a new employee for a specific airline.
+    Handles listing all employees or employees associated with a specific airline, and creating a new employees for a specific airline.
     """
 
     serializer_class = EmployeeCreateSerializer
 
-    def get_permissions(self):
-        if self.request.method == 'GET':
-            return [AllowAny()]
-        return [IsAuthenticated()]
-
     def get(self, request, airline_pk=None):
-        if airline_pk:
-            employees = Employee.objects.filter(employer_id=airline_pk)
-            serializer = EmployeeSerializer(employees, many=True)
-            return Response(serializer.data)
-        employees = Employee.objects.all()
+        user_airline = request.user.airline
+        employees = Employee.objects.filter(employer=user_airline)
         serializer = EmployeeSerializer(employees, many=True)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=serializer_class)
-    def post(self, request, airline_pk):
-        if not airline_pk:
-            return Response(
-                {"error": "POST method is not allowed on this endpoint. "
-                          "To add a new employee, use /airlines/<int:airline_pk>/employees."},
-                status=status.HTTP_405_METHOD_NOT_ALLOWED
-            )
-
-        try:
-            airline = Airline.objects.get(pk=airline_pk)
-        except Airline.DoesNotExist:
-            return Response(
-                {"error": "Airline not found."},
-                status=status.HTTP_404_NOT_FOUND
-            )
-
+    def post(self, request, airline_pk=None):
+        user_airline = request.user.airline
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-
-        employee = serializer.save(employer=airline)
+        employee = serializer.save(employer=user_airline)
         return Response(EmployeeSerializer(employee).data, status=status.HTTP_201_CREATED)
 
 
 class EmployeeAPIView(APIView):
     """
-    Handles retrieving, updating, and deleting a specific employee.
+    Handles retrieving, updating, and deleting a specific employees.
     """
 
     serializer_class = EmployeeCreateSerializer
@@ -225,28 +184,30 @@ class FlightsAPIView(APIView):
     serializer_class = FlightCreateSerializer
 
     def get(self, request, airline_pk=None):
-        if airline_pk:
-            flights = Flight.objects.filter(plane__airline_id=airline_pk)
-            serializer = FlightShortSerializer(flights, many=True)
-            return Response(serializer.data)
-        flights = Flight.objects.all()
+        user_airline = request.user.airline
+        flights = Flight.objects.filter(plane__airline_id=user_airline)
         serializer = FlightShortSerializer(flights, many=True)
         return Response(serializer.data)
 
+
     @swagger_auto_schema(request_body=serializer_class)
     def post(self, request, airline_pk=None):
-        if airline_pk:
-            try:
-                airline = Airline.objects.get(pk=airline_pk)
-            except Airline.DoesNotExist:
-                return Response(
-                    {"error": "Airline not found."},
-                    status=status.HTTP_404_NOT_FOUND
-                )
+        user_airline = request.user.airline
 
-        serializer = self.serializer_class(data=request.data)
+        # Overriding to_representation to include only planes of the user's airline
+        class AirlineSpecificFlightCreateSerializer(FlightCreateSerializer):
+            def to_representation(self, instance):
+                rep = super().to_representation(instance)
+                rep['plane_choices'] = [
+                    {"id": plane.id, "name": str(plane)}
+                    for plane in Plane.objects.filter(airline=user_airline)
+                ]
+                return rep
+
+        serializer = AirlineSpecificFlightCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         flight = serializer.save()
+
         return Response({"message": "Flight created successfully", "id": flight.id}, status=status.HTTP_201_CREATED)
 
 
@@ -260,6 +221,7 @@ class FlightAPIView(APIView):
     def get(self, request, airline_pk=None, pk=None):
         flight = Flight.objects.get(pk=pk)
         serializer = FlightSerializer(flight)
+        print(serializer.data)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=FlightCreateSerializer)
@@ -268,7 +230,7 @@ class FlightAPIView(APIView):
             flight = Flight.objects.get(pk=pk)
         except Flight.DoesNotExist:
             return Response({"error": "Flight not found."}, status=status.HTTP_404_NOT_FOUND)
-
+        print(request.data)
         serializer = self.serializer_class(flight, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -279,6 +241,36 @@ class FlightAPIView(APIView):
         flight.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class FlightChoicesAPIView(APIView):
+    """
+    API endpoint to fetch available choices for creating a flight.
+    """
+
+    def get(self, request):
+        # Fetch the airline associated with the authenticated use
+        print(request.user)
+        user_airline = request.user.airline
+
+        # Filter routes, planes, and crews for the user's airline
+        routes = Route.objects.all()
+        planes = Plane.objects.filter(airline=user_airline)
+        crews = Crew.objects.all()
+
+        # Serialize the data
+        route_choices = [{"id": route.id, "name": str(route)} for route in routes]
+        plane_choices = [{"id": plane.id, "plane_str": str(plane)} for plane in planes]
+        crew_choices = [{"id": crew.id, "name": str(crew)} for crew in crews]
+        status_choices = Flight._meta.get_field('status').choices
+        status_choices_serialized = [{"id": choice[0], "name": choice[1]} for choice in status_choices]
+
+
+        # Return the choices in a single response
+        return Response({
+            "route_choices": route_choices,
+            "plane_choices": plane_choices,
+            "crew_choices": crew_choices,
+            "status_choices": status_choices_serialized,
+        })
 
 class MaintenancesAPIView(APIView):
     """
@@ -288,8 +280,10 @@ class MaintenancesAPIView(APIView):
     serializer_class = MaintenanceCreateSerializer
 
     def get(self, request):
-        maintenances = Maintenance.objects.all()
+        user_airline = request.user.airline
+        maintenances = Maintenance.objects.filter(plane__airline_id=user_airline)
         serializer = MaintenanceSerializer(maintenances, many=True)
+        print(serializer.data)
         return Response(serializer.data)
 
     @swagger_auto_schema(request_body=serializer_class)
@@ -315,16 +309,54 @@ class MaintenanceAPIView(APIView):
 
     @swagger_auto_schema(request_body=MaintenanceCreateSerializer)
     def put(self, request, pk):
+        print(request.data)
         maintenance = get_object_or_404(Maintenance, pk=pk)
         serializer = self.serializer_class(maintenance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(MaintenanceSerializer(maintenance).data, status=status.HTTP_200_OK)
+        if not serializer.is_valid():
+            print("Validation failed:", serializer.errors)
+            return Response(serializer.errors, status=400)
+        try:
+            obj = serializer.save()
+            return Response({"message": "Object created successfully", "id": obj.id}, status=201)
+        except Exception as e:
+            print("Error during save:", str(e))
+            return Response({"error": str(e)}, status=500)
 
     def delete(self, request, pk):
         maintenance = get_object_or_404(Maintenance, pk=pk)
         maintenance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class MaintenanceChoicesAPIView(APIView):
+    """
+    API endpoint to fetch available choices for filtering maintenances.
+    """
+
+    def get(self, request):
+        user_airline = request.user.airline
+
+        planes = [{"id": plane.id, "name": str(plane)} for plane in Plane.objects.filter(airline=user_airline)]
+
+        status_choices = Maintenance._meta.get_field("status").choices
+        statuses = [{"value": key, "label": value} for key, value in status_choices]
+
+        # Возвращаем ответ
+        return Response({
+            "planes": list(planes),
+            "statuses": statuses,
+        })
+
+class AirportsAPIView(APIView):
+    """
+    API endpoint to fetch available choices for filtering maintenances.
+    """
+
+    def get(self, request):
+        airports = [{"name": str(airport)} for airport in Airport.objects.all()]
+        return Response({
+            "airports": list(airports),
+        })
 
 
 class SeatsAPIView(APIView):
@@ -510,6 +542,30 @@ class CrewMemberAPIView(APIView):
         crew_member.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class EmployeeCrewMembersAPIView(APIView):
+    """
+    API to fetch all CrewMember objects associated with a specific Employee.
+    """
+    def get(self, request, employee_pk):
+        try:
+            employee = Employee.objects.get(pk=employee_pk)
+        except Employee.DoesNotExist:
+            return Response({"error": "Employee not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        crew_members = CrewMember.objects.filter(employee=employee)
+        serializer = CrewMemberFullSerializer(crew_members, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class CrewMemberRolesAPIView(APIView):
+    """
+    API to fetch all available roles for CrewMember.
+    """
+    def get(self, request):
+        roles = dict(CrewMember._meta.get_field('role').choices)
+        roles_list = [{"value": key, "label": value} for key, value in roles.items()]
+        return Response(roles_list, status=status.HTTP_200_OK)
+
+
 
 class CrewsAPIView(APIView):
     """
@@ -568,7 +624,9 @@ class MostFrequentPlaneAPIView(APIView):
     """
 
     def get(self, request, route_id):
-        data = {'route_id': route_id}
+        user_airline = request.user.airline
+        print(user_airline.id)
+        data = {'route_id': route_id, 'airline': user_airline.id}
         serializer = MostFrequentPlaneSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
@@ -580,9 +638,10 @@ class UnderFilledRoutesAPIView(APIView):
     """
 
     def get(self, request):
+        user_airline = request.user.airline
         threshold = float(request.query_params.get('threshold', 50))
         routes = Route.objects.filter(flights__isnull=False).distinct()
-        serializer = UnderFilledRouteSerializer(routes, many=True, context={'threshold': threshold})
+        serializer = UnderFilledRouteSerializer(routes, many=True, context={'threshold': threshold, 'airline': user_airline})
 
         filtered_data = [route for route in serializer.data if route['under_filled_count'] > 0]
         return Response(filtered_data)
@@ -673,11 +732,18 @@ class PlaneStatisticsAPIView(APIView):
     Handles retrieving statistical information about planes for a specific airline.
     """
 
-    def get(self, request, pk):
-        try:
-            airline = Airline.objects.get(pk=pk)
-        except Airline.DoesNotExist:
-            return Response({"error": "Airline not found."}, status=status.HTTP_404_NOT_FOUND)
-
-        serializer = PlaneStatisticsSerializer(airline)
+    def get(self, request):
+        serializer = PlaneStatisticsSerializer(request.user.airline)
         return Response(serializer.data)
+
+
+class PlaneModelListView(APIView):
+    def get(self, request, *args, **kwargs):
+        try:
+            models = PlaneModel.objects.all()
+            serializer = PlaneModelSerializer(models, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(
+                {"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

@@ -15,6 +15,11 @@ nav:
       - "airline management API": lab_3/airline_api.md
       - "airline management ORM": lab_3/airline_orm.md
 
+  - lab 4:
+    - "airline management platform interfaces": lab_4/airline_interfaces.md
+    - "airline management platform setup": lab_4/airline_setup.md
+
+
   - practice 3:
       - "orm queries": practice_3/queries.md
 
