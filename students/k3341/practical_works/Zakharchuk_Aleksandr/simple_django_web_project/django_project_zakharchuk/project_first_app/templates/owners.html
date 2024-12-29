@@ -1,0 +1,13 @@
+<main>
+    {% for owner in owners %}
+        <ul>
+            <li>Имя: {{ owner.first_name }}</li>
+            <li>Фамилия: {{ owner.last_name }}</li>
+            <li>Дата рождения: {{ owner.birth_date }}</li>
+            <li>Номер паспорта: {{ owner.passport }}</li>
+            <li>Домашний адрес: {{ owner.address }}</li>
+            <li>Национальность: {{ owner.nationality }}</li>
+        </ul>
+        <hr/>
+    {% endfor %}
+</main>

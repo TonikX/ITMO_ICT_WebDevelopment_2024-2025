@@ -1,0 +1,19 @@
+site_name: Warriors API Documentation
+nav:
+  - Home: index.md
+  - Endpoints:
+      - Overview: endpoints/index.md
+      - Warriors and Professions: endpoints/warriors_professions.md
+      - Warriors and Skills: endpoints/warriors_skills.md
+      - Warrior details: endpoints/warrior_details.md
+theme:
+  name: material
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences

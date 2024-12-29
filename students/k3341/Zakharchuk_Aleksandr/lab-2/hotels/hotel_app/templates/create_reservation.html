@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+  <div class="card shadow-sm mt-4">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">Забронировать номер</h5>
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex justify-content-between">
+          <a
+            href="{% url 'hotel_rooms' hotel_id=room.hotel.id %}"
+            class="btn btn-secondary"
+            >Назад</a
+          >
+          <button type="submit" class="btn btn-primary">Забронировать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
