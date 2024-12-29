@@ -1,0 +1,9 @@
+site_name: School Project Documentation
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Models: models.md
+  - Data Population: data_population.md
+  - API Endpoints: api_endpoints.md
+  - Conclusion: conclusion.md
