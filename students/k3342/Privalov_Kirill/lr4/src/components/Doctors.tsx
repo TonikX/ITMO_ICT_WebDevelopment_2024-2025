@@ -589,7 +589,7 @@ const Doctors: React.FC = () => {
                 onChange={(e) =>
                   setDoctorCreateForm({
                     ...doctorCreateForm,
-                    gender: e.target.value as "M" | "F" | "O",
+                    gender: e.target.value as "M" | "F",
                   })
                 }
                 fullWidth
@@ -708,7 +708,7 @@ const Doctors: React.FC = () => {
                 onChange={(e) =>
                   setDoctorEditForm({
                     ...doctorEditForm,
-                    gender: e.target.value as "M" | "F" | "O",
+                    gender: e.target.value as "M" | "F",
                   })
                 }
                 fullWidth
