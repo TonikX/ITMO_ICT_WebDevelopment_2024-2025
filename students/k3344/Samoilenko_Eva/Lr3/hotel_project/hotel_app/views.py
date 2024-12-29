@@ -15,7 +15,7 @@ class RoomsAPIView(APIView):
     def get(self, request):
         rooms = Room.objects.all()
         serializer = RoomSerializer(rooms, many=True)
-        return Response({'List of Hotel Rooms': serializer.data})
+        return Response(serializer.data)
 
     @swagger_auto_schema(request_body=RoomCreateSerializer)
     def post(self, request):
@@ -32,7 +32,7 @@ class RoomAPIView(APIView):
         try:
             room = Room.objects.get(id=room_id)
             serializer = RoomSerializer(room)
-            return Response({f'{room.__str__()}': serializer.data})
+            return Response(serializer.data)
         except Room.DoesNotExist:
             return Response({"Not Found": "Room not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -65,7 +65,7 @@ class EmployeesAPIView(APIView):
     def get(self, request):
         employees = Employee.objects.all()
         serializer = EmployeeSerializer(employees, many=True)
-        return Response({'List of all hired Employees': serializer.data})
+        return Response(serializer.data)
 
     @swagger_auto_schema(request_body=EmployeeCreateSerializer)
     def post(self, request):
@@ -83,7 +83,7 @@ class EmployeeAPIView(APIView):
         try:
             employee = Employee.objects.get(id=employee_id)
             serializer = EmployeeCreateSerializer(employee)
-            return Response({f'{employee.__str__()}': serializer.data})
+            return Response(serializer.data)
         except Employee.DoesNotExist:
             return Response({"Not Found": "Employee not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -117,7 +117,7 @@ class ClientsAPIView(APIView):
     def get(self, request):
         clients = Client.objects.all()
         serializer = ClientSerializer(clients, many=True)
-        return Response({'List of all existing Clients': serializer.data})
+        return Response(serializer.data)
 
     @swagger_auto_schema(request_body=ClientCreateSerializer)
     def post(self, request):
@@ -135,7 +135,7 @@ class ClientAPIView(APIView):
         try:
             client = Client.objects.get(id=client_id)
             serializer = ClientSerializer(client)
-            return Response({f'{client.__str__()}': serializer.data})
+            return Response(serializer.data)
         except Client.DoesNotExist:
             return Response({"Not Found": "Client not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -169,7 +169,7 @@ class BookingsAPIView(APIView):
     def get(self, request):
         bookings = Booking.objects.all()
         serializer = BookingSerializer(bookings, many=True)
-        return Response({'List of all Bookings': serializer.data})
+        return Response(serializer.data)
 
     @swagger_auto_schema(request_body=BookingCreateSerializer)
     def post(self, request):
@@ -187,7 +187,7 @@ class BookingAPIView(APIView):
         try:
             booking = Booking.objects.get(id=booking_id)
             serializer = BookingSerializer(booking)
-            return Response({f'{booking.__str__()}': serializer.data})
+            return Response(serializer.data)
         except Booking.DoesNotExist:
             return Response({"Not Found": "Booking not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -221,7 +221,7 @@ class CleaningsAPIView(APIView):
     def get(self, request):
         cleanings = Cleaning.objects.all()
         serializer = CleaningSerializer(cleanings, many=True)
-        return Response({'List of all Cleanings': serializer.data})
+        return Response(serializer.data)
 
     @swagger_auto_schema(request_body=CleaningCreateSerializer)
     def post(self, request):
@@ -239,7 +239,7 @@ class CleaningAPIView(APIView):
         try:
             cleaning = Cleaning.objects.get(id=cleaning_id)
             serializer = CleaningSerializer(cleaning)
-            return Response({f'{cleaning.__str__()}': serializer.data})
+            return Response(serializer.data)
         except Cleaning.DoesNotExist:
             return Response({"Not Found": "Cleaning not found"}, status=status.HTTP_404_NOT_FOUND)
 
@@ -458,5 +458,4 @@ class QuarterReportAPIView(APIView):
         # суммарный доход по всей гостинице
         response['Full Hotel Income'] = hotel_income
 
-        return Response({f'Quarter report for {requested_quarter} quarter': response},
-                        status=status.HTTP_200_OK)
+        return Response(response, status=status.HTTP_200_OK)

@@ -12,7 +12,7 @@ Windows. Объекты добавлялись с
 
 Создание 6 автомобилей:
 
-![img_1.png](practical_work_imgs/img_1.png) 
+![img_1.png](practical_work_imgs/img_1.png)
 
 Добавление 6 новый автовладельцев:
 

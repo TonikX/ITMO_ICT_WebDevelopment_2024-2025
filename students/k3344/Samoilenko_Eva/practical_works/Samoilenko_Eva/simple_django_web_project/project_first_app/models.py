@@ -9,6 +9,9 @@ class Car(models.Model):
     model = models.CharField(max_length=20)
     color = models.CharField(max_length=30, null=True, blank=True)
 
+    def __str__(self):
+        return f'{self.brand} {self.model}'
+
 
 # class Owner(models.Model):
 class Owner(AbstractUser):
@@ -20,6 +23,9 @@ class Owner(AbstractUser):
     nationality = models.CharField(max_length=30, default="", blank=True, null=True)
     cars = models.ManyToManyField(Car, through='Ownership')
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class License(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="license_owner",
@@ -29,6 +35,9 @@ class License(models.Model):
     type = models.CharField(max_length=10)
     date = models.DateField()
 
+    def __str__(self):
+        return f'License of {self.owner.__str__()}, number {self.number}'
+
 
 class Ownership(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="car_owner",
@@ -36,3 +45,6 @@ class Ownership(models.Model):
     car = models.ForeignKey(Car, related_name="car", on_delete=models.CASCADE)
     date_b = models.DateField()
     date_e = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Ownership of {self.owner.__str__()} on {self.car.__str__()}'

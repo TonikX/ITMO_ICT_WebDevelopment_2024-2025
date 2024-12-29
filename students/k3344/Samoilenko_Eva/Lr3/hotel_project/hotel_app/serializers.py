@@ -23,7 +23,7 @@ class ClientReportSerializer(serializers.ModelSerializer):
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
-        fields = ['id', 'first_name', 'last_name']
+        fields = ['id', 'first_name', 'last_name', 'father_name']
 
 
 class EmployeeCreateSerializer(serializers.ModelSerializer):
@@ -35,7 +35,7 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ['room_type', 'price', 'floor_num', 'phone_num']
+        fields = ['id', 'room_type', 'price', 'floor_num', 'phone_num']
 
 
 class RoomCreateSerializer(serializers.ModelSerializer):
