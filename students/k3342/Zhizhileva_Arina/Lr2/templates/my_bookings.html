@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'tour_list' %}">Home</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Your Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tour Name</th>
+                    <th>Date Reserved</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.tour.name }}</td>
+                    <td>{{ booking.date_reserved }}</td>
+                    <td>
+                        <a href="{% url 'edit_booking' booking.id %}">Edit</a>
+                        <a href="{% url 'delete_booking' booking.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
