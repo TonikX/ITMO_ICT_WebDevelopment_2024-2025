@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owners</title>
+</head>
+<body>
+  <span><h1>Owners</h1><a href="{% url 'owner_create' %}">Add new owner</a></span>
+  <ul>
+    {% for owner in owners %}
+    {% if not owner.is_superuser %}
+      <li>
+        <strong>Name:</strong> {{ owner.first_name }} {{ owner.last_name }}:
+        <a href="/owners/{{owner.id}}/update/">Edit</a> |
+        <a href="/owners/{{owner.id}}/delete/">Delete</a> |
+        <a href="/owners/{{owner.id}}/">Detail</a>
+      </li>
+    {% endif %}
+      {% empty %}
+      <li>No owners yet.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

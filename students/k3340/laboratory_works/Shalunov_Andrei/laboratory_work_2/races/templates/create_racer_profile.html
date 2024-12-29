@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/create_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-form-container">
+    <h2>Создание профиля гонщика</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Создать профиль</button>
+    </form>
+</div>
+{% endblock %}

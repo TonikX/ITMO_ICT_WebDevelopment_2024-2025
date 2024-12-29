@@ -1,0 +1,23 @@
+site_name: Shalunov Andrei WebDevelopment
+theme:
+  name: material
+  language: 'ru'
+
+nav:
+  - Home: index.md
+  - Лабораторная №1:
+      - Задание 1: Lr1/zad1.md
+      - Задание 2: Lr1/zad2.md
+      - Задание 3: Lr1/zad3.md
+      - Задание 4: Lr1/zad4.md
+      - Задание 5: Lr1/zad5.md
+  - Лабораторная №2:
+      - Описание: Lr2/description.md
+      - Модели: Lr2/models.md
+      - Представления: Lr2/views.md
+      - Формы: Lr2/forms.md
+      - URLs: Lr2/urls.md
+  - Лабораторная №3:
+       - Описание: Lr3/description.md
+       - Endpoints: Lr3/api.md
+       - Практическая работа: Lr3/practical.md

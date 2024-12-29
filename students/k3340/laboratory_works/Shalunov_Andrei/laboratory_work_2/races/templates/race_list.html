@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/race_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <form method="get" action="{% url 'race_list' %}" class="mb-4">
+        <div class="input-group">
+            <input  name="q" class="form-control" placeholder="Поиск гонок" value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-primary">Искать</button>
+        </div>
+    </form>
+
+    <h2>Все гонки</h2>
+    {% for race in races %}
+        <div class="race-card">
+            <h3><a href="{% url 'race_detail' race.id %}">{{ race.name }}</a></h3>
+            <p>Дата: {{ race.date }}</p>
+            <p>Результат: {{ race.result|default:"Регистрация открыта." }}</p>
+        </div>
+    {% endfor %}
+
+    {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{{ search_query }}">Первая</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{{ search_query }}">Назад</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Первая</span></li>
+                    <li class="page-item disabled"><span class="page-link">Назад</span></li>
+                {% endif %}
+
+                <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{{ search_query }}">Вперед</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{{ search_query }}">Последняя</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Вперед</span></li>
+                    <li class="page-item disabled"><span class="page-link">Последняя</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}

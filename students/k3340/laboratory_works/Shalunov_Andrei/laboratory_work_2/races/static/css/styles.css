@@ -1,0 +1,167 @@
+/* styles.css */
+
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #444;
+    text-align: center;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+.header {
+    background-color: #4CAF50;
+    padding: 1em 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    margin: 0;
+    font-weight: 600;
+    color: #fff;
+}
+
+.nav {
+    background-color: #333;
+    padding: 1em 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav ul li {
+    display: inline-block;
+}
+
+.nav ul li a {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.nav ul li a:hover {
+    background-color: #45a049;
+    color: #fff;
+}
+
+.main-content {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2, h3 {
+    color: #000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.button {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Стили для форм */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: auto;
+}
+
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+button[type="submit"] {
+    width: fit-content;
+    align-self: center;
+}
+
+.button-link {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.button-link:hover {
+    background-color: #45a049;
+    color: #fff;
+}
+
+.action-link {
+    color: #0073e6; /* Выделяющийся синий цвет */
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.action-link:hover {
+    color: #005bb5; /* Тон темнее при наведении */
+}
