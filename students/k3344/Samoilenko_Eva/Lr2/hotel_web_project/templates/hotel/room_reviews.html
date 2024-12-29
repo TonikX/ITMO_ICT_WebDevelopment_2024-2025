@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Room Reviews for {{ room.room_type }}</h2>
+
+    {% for review in reviews %}
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{ review.rate }}</h3>
+                    <p class="card-text"><strong>Author: </strong>{{ review.booking.user.username }}</p>
+                    <p class="card-text"><strong>Booking Date (from): </strong>{{ review.booking.start_date }}</p>
+                    <p class="card-text"><strong>Booking Date (to): </strong>{{ review.booking.end_date }}</p>
+                    <p class="card-text">{{ review.review }}</p>
+            </div>
+        </div>
+    {% empty %}
+            <h5 class="mb-4">No reviews for this room.</h5>
+    {% endfor %}
+
+<div>
+    <a href="{% url 'rooms' hotel_id=room.hotel.id %}" class="btn btn">Other Rooms</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django_project_Samoilenko import settings
+
+
+class Car(models.Model):
+    gov_number = models.CharField(max_length=15)
+    brand = models.CharField(max_length=20)
+    model = models.CharField(max_length=20)
+    color = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.brand} {self.model}'
+
+
+# class Owner(models.Model):
+class Owner(AbstractUser):
+    last_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30)
+    dob = models.DateField(null=True, blank=True)
+    passport_number = models.CharField(max_length=10, default="", blank=True, null=True)
+    home_address = models.CharField(max_length=30, default="", blank=True, null=True)
+    nationality = models.CharField(max_length=30, default="", blank=True, null=True)
+    cars = models.ManyToManyField(Car, through='Ownership')
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+
+class License(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="license_owner",
+                              on_delete=models.CASCADE)
+    # owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    number = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
+    date = models.DateField()
+
+    def __str__(self):
+        return f'License of {self.owner.__str__()}, number {self.number}'
+
+
+class Ownership(models.Model):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="car_owner",
+                              on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, related_name="car", on_delete=models.CASCADE)
+    date_b = models.DateField()
+    date_e = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f'Ownership of {self.owner.__str__()} on {self.car.__str__()}'

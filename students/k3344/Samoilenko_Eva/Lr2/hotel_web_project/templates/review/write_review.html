@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Share your thoughts on your stay</h2>
+    <body>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="review" class="form-label">Review</label>
+            {{ form.review }}
+        </div>
+        <div class="mb-3">
+            <label for="rate" class="form-label">Rate</label>
+            {{ form.rate }}
+        </div>
+        <button type="submit" class="btn btn-success">Send</button>
+        <a href="{% url 'bookings' %}" class="btn btn-secondary">Back</a>
+    </form>
+    </body>
+
+{% endblock %}
