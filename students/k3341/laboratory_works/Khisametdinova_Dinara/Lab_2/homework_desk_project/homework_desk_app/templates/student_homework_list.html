@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашние задания</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Ваши домашние задания</h2>
+        {% for homework in homeworks %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ homework.subject.name }}</h5>
+                    <p class="card-text"><strong>Описание:</strong> {{ homework.description }}</p>
+                    <p class="card-text"><strong>Дата выдачи:</strong> {{ homework.issued_date }}</p>
+                    <p class="card-text"><strong>Период выполнения:</strong> {{ homework.due_period }}</p>
+                    
+                    {% if homework.penalties_info %}
+                        <p class="card-text"><strong>Штрафы за просрочку:</strong> {{ homework.penalties_info }}</p>
+                    {% endif %}
+                    
+                    <p class="card-text"><strong>Классы:</strong> 
+                        {% for class in homework.classes.all %}
+                            {{ class.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+
+                    <a href="{% url 'submit_homework' homework.id %}" class="btn btn-primary">Сдать задание</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

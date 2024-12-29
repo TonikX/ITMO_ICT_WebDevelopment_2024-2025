@@ -1,0 +1,44 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выполнения задания</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Выполнения задания</h2>
+
+        {% if submissions %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        <th>Текст выполнения</th>
+                        <th>Дата сдачи</th>
+                        <th>Оценка</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                        <tr>
+                            <td>{{ submission.student.username }}</td>
+                            <td>{{ submission.submitted_text }}</td>
+                            <td>{{ submission.submitted_at|date:"d.m.Y H:i" }}</td>
+                            <td>{{ submission.grade|default:"Не оценено" }}</td>
+                            <td>
+                                <a href="{% url 'grade_submission' submission.id %}" class="btn btn-warning btn-sm">Оценить</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="alert alert-warning">Нет данных о выполнении задания.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

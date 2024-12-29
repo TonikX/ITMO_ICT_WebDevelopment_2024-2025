@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block title %}Таблица оценок{% endblock %}
+{% block content %}
+    <h2 class="mb-4">Таблица оценок</h2>
+
+    <!-- Filter by Class and Subject -->
+    <form method="get" class="form-inline mb-4">
+        <div class="form-group mr-3">
+            <label for="class_id" class="mr-2">Класс:</label>
+            <select name="class_id" id="class_id" class="form-control" onchange="this.form.submit()">
+                <option value="">Все классы</option>
+                {% for class in classes %}
+                    <option value="{{ class.id }}" {% if class.id|stringformat:"s" == selected_class_id %}selected{% endif %}>
+                        {{ class.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group mr-3">
+            <label for="subject_id" class="mr-2">Предмет:</label>
+            <select name="subject_id" id="subject_id" class="form-control" onchange="this.form.submit()">
+                <option value="">Все предметы</option>
+                {% for subject in subjects %}
+                    <option value="{{ subject.id }}" {% if subject.id|stringformat:"s" == selected_subject_id %}selected{% endif %}>
+                        {{ subject.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+
+    {% if submissions %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Ученик</th>
+                    <th>Предмет</th>
+                    <th>Дата сдачи</th>
+                    <th>Оценка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                    <tr>
+                        <td>{{ submission.student.username }}</td>
+                        <td>{{ submission.homework.subject.name }}</td>
+                        <td>{{ submission.submitted_at|date:"d.m.Y H:i" }}</td>
+                        <td>{{ submission.grade|default:"Не оценено" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% bootstrap_pagination page_obj %}
+    {% else %}
+        <p class="alert alert-warning">Нет данных о сдачах заданий.</p>
+    {% endif %}
+{% endblock %}
