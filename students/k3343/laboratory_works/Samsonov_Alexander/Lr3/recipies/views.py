@@ -63,7 +63,7 @@ class RecipeDetailView(RetrieveUpdateDestroyAPIView):
     def get_object(self):
         recipe = super().get_object()
 
-        if self.request.method in ['PATCH', 'DELETE']:
+        if self.request.method in ['PUT', 'PATCH', 'DELETE']:
             if recipe.author != self.request.user:
                 raise PermissionDenied("You do not have permission to modify this recipe.")
 
