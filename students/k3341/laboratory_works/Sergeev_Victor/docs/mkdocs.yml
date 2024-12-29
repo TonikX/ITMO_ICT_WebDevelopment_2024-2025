@@ -19,6 +19,15 @@ nav:
     - Models: lr3/models.md
     - Auth/Register: lr3/auth.md
     - API: lr3/api.md
-
+  - Lab №4:
+    - Главная страница: lr4/main.md
+    - Аутентификация: lr4/authentification.md
+    - Жанры: lr4/genre.md
+    - Авторы: lr4/author.md
+    - Книги: lr4/book.md
+    - Копии книг: lr4/bookcopy.md
+    - Читальные залы: lr4/reading_room.md
+    - Читатели: lr4/reader.md
+    - Взятия книг: lr4/booktake.md
 theme:
  name: material
