@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import Recipe, Ingredients, Comment, CuratedList
+from .models import Recipe, Ingredients, Comment, CuratedList, Tags
 
 
 class RecipeListSerializer(serializers.ModelSerializer):
@@ -110,7 +110,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         ingredients_data = validated_data.pop('ingredients')
-        tags_data = validated_data.pop('tags')
 
         recipe = Recipe.objects.create(**validated_data)
 
@@ -122,7 +121,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
 
             recipe.ingredients.add(ingredient)
 
-        recipe.tags.set(tags_data)
 
         return recipe
 

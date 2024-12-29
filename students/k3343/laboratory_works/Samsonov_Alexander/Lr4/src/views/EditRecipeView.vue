@@ -46,7 +46,6 @@ const submitRecipe = async () => {
 
 <template>
   <div class="container mt-4" v-if="recipeInfo">
-    <div v-if="errors">{{errors}}</div>
     <!-- Recipe Header -->
     <div class="mb-3">
       <label for="recipe-header" class="form-label">Recipe Header</label>

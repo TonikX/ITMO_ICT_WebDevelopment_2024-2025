@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Recipe, Comment, CuratedList, Like
+from .models import Recipe, Comment, CuratedList, Like, Tags, Ingredients
 from .serializers import RecipeListSerializer, RecipeDetailSerializer, RecipeCreateSerializer, CommentSerializer, \
     CuratedListSerializer, CuratedListDetailSerializer
 
@@ -21,9 +21,23 @@ class RecipeListCreateView(ListCreateAPIView):
             return RecipeCreateSerializer
         return RecipeListSerializer
 
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
+    def create(self, validated_data, **kwargs):
 
+        data = validated_data.data
+        ingredients_data = data.pop('ingredients', [])
+        tags = data.pop('tags', [])
+        recipe = Recipe.objects.create(**data, author=self.request.user)
+
+        for ingredient_data in ingredients_data:
+            if 'id' in ingredient_data:
+                ingredient = Ingredients.objects.get(id=ingredient_data['id'])
+            else:
+                ingredient = Ingredients.objects.get_or_create(**ingredient_data)[0]
+            recipe.ingredients.add(ingredient)
+
+        tags = [Tags.objects.get_or_create(tag_name=i)[0] for i in tags]
+        recipe.tags.add(*tags)
+        return Response({}, 200)
 
 class MyRecipes(ListAPIView):
     permission_classes = [IsAuthenticated]
