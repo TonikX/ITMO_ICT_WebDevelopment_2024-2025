@@ -7,5 +7,7 @@ nav:
       - Task 3: laboratory_work_1/3.md
       - Task 4: laboratory_work_1/4.md
       - Task 5: laboratory_work_1/5.md
+    - 4 lab:
+      - Laba: laboratory_work_4/laba.md
 theme:
     name: readthedocs
