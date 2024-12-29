@@ -11,14 +11,14 @@ const recipeId = useRoute().params.recipeId;
 
 onMounted(async () => {
   if (! isAuthenticated.value ||!await canEdit(recipeId)) {
-    router.push('/');
+    router.push({path: '/', replace: true});
   }
 })
 
 const deleteRecipe = async () => {
   const result = await axiosInstance.delete(`/recipes/${recipeId}/`)
   if (result.status === 200) {
-    router.push("/account");
+    router.push({path: "/account", replace: true});
   }
 }
 </script>

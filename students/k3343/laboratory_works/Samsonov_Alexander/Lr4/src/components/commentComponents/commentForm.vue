@@ -14,7 +14,7 @@ const error = ref(null)
 
 const submit = async () => {
   try {
-    const numRating = Number(rating.value);
+    Number(rating.value);
   } catch (error) {
     error.value = 'Rating must be from 0 to 10';
     return;
@@ -22,6 +22,9 @@ const submit = async () => {
   const result = postComment(recipeId, rating.value ,header.value, content_text.value);
   if (result !== null) {
     emit("submit-comment", result);
+    rating.value = "";
+    header.value = "";
+    content_text.value = "";
   }
 }
 </script>

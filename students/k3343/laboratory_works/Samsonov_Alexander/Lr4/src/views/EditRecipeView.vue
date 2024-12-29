@@ -13,7 +13,7 @@ const errors = ref(null)
 
 onMounted(async () => {
   if (! isAuthenticated.value ||!await canEdit(recipeId)) {
-    router.push('/');
+    router.push({path: '/', replace: true});
   }
   const response = await axiosInstance.get(`recipes/${recipeId}/`);
   let value = response.data;
@@ -37,7 +37,7 @@ const removeIngredient = (index) => {
 const submitRecipe = async () => {
   const response = axiosInstance.patch(`recipes/${recipeId}/`, recipeInfo.value )
   if (await response.success) {
-    router.push('/account');
+    router.push({path: '/account', replace: true});
   }
   console.log(await response);
 }
