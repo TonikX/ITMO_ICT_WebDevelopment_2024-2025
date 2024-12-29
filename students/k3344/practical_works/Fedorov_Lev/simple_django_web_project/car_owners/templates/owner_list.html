@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owners List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Owners List</h1>
+    <a href="{% url 'owner_create' %}" class="btn btn-primary">Add New Owner</a>
+    <ul class="list-group mt-3">
+        {% for owner in owners %}
+            <li class="list-group-item">
+                {{ owner.first_name }} {{ owner.last_name }}
+                <a href="{% url 'owner_delete' owner.pk %}" class="btn btn-danger btn-sm float-right">Delete</a>
+                <a href="{% url 'car_create' owner.pk %}" class="btn btn-secondary btn-sm float-right mr-2">Add Car</a>
+                <a href="{% url 'license_create' owner.pk %}" class="btn btn-secondary btn-sm float-right mr-2">Add License</a>
+                <ul>
+                    <li>Cars and Licenses:
+                        <ul>
+                            {% for license in owner.licenses.all %}
+                                <li>{{ license.license_number }} - {{ license.expiry_date }} - {{ license.license_type }} - <a href="{% url 'license_delete' license.pk %}">Delete</a></li>
+                            {% empty %}
+                                <li>No Car & licenses</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

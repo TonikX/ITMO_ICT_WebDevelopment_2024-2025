@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ownerships List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Ownerships List</h1>
+    <a href="{% url 'ownership_create' %}" class="btn btn-primary">Add New Ownership</a>
+    <ul class="list-group mt-3">
+        {% for ownership in ownerships %}
+            <li class="list-group-item">
+                {{ ownership.name }}
+                <a href="{% url 'ownership_delete' ownership.pk %}" class="btn btn-danger btn-sm float-right">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
