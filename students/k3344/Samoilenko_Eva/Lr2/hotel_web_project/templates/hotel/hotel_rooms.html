@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Hotel Rooms</h2>
+
+    {% for room in rooms %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">{{ room.room_type }}</h3>
+            <p class="card-text"><strong>Hotel: </strong>{{ room.hotel.name }}</p>
+            <p class="card-text"><strong>Price: </strong>{{ room.price }}</p>
+            <p class="card-text"><strong>Capacity: </strong>{{ room.capacity }}</p>
+            <p class="card-text">{{ room.description }}</p>
+            <a href="{% url 'book_room' hotel_id=room.hotel.id room_id=room.id %}" class="btn
+            btn-success" style="float: right;">Book Room</a>
+            <a href="{% url 'room_reviews' hotel_id=room.hotel.id room_id=room.id %}" class="btn
+            btn-info" >Room Reviews</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    <div><a href="{% url 'hotels' %}" class="btn btn">See Hotels</a></div>
+
+{% endblock %}
