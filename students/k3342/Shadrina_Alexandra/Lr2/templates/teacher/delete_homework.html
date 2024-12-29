@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить ДЗ</title>
+</head>
+<body>
+<h2>Удалить домашнее задание: {{ homework.subject }}</h2>
+<p>Вы уверены, что хотите удалить это задание?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+</body>
+</html>
