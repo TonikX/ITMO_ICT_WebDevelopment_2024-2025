@@ -1,0 +1,15 @@
+site_name: My Docs
+nav:
+  - Home: index.md
+  - Lab №1:
+    - Task 1: lr1/task1.md
+    - Task 2: lr1/task2.md
+    - Task 3: lr1/task3.md
+    - Task 4: lr1/task4.md
+    - Task 5: lr1/task5.md
+  - Lab №2:
+    - Models: lr2/models.md
+    - Views: lr2/views.md
+    - Navigation: lr2/router.md
+theme:
+ name: material

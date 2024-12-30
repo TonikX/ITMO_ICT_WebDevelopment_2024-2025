@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>Science Conf</title> 
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-left">
+      <a class="nav-link" href="/conference">All conferences</a>
+      {% if request.user.is_authenticated %}
+      <a class="nav-link" href="/conference/create">Create conference</a>
+      {% endif %}
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <div>
+      <a class="nav-link" href="/logout">Logout ({{ request.user }})</a>
+    </div>
+    {% else %}
+    <div class="nav-left">
+      <a class="nav-link" href="/register">Sign Up</a>
+      <a class="nav-link" href="/login">Sign In</a>
+    </div>
+    {% endif %}
+  </div>
+    <h1>{{object.name}}</h1>
+    <p><strong>Description: </strong> {{ object.description }}</p>
+    <p><strong>Participate conditionals: </strong> {{ object.participate_conditionals }}</p>
+    <p><strong>Location: </strong> {{ object.location }}</p>
+    <p><strong>Date of start: </strong> {{ object.date_of_start }}</p>
+    <p><strong>Date of finish: </strong> {{ object.date_of_finish }}</p>
+    {% if not is_speaker and request.user.id %}
+    <button onclick="window.location.href='speaker/create/'">Apply as speaker</button>
+    {% endif %}
+    {% if not is_auditor and request.user.id %}
+    <p><form action="auditor/" method="POST">{% csrf_token %}
+      <button type="submit">Apply as auditor</button>
+    </form></p>
+    {% elif request.user.id %}
+    <p>You signed up on this event as auditor</p>
+    {% endif %}
+    <h2>Speakers</h2>
+    <ul>
+        {% for performance in speakers %}
+        <li><p><strong>{{ performance.speaker.first_name }} {{ performance.speaker.last_name }}</strong>
+            - {{ performance.speaking_topic }}
+            {% if performance.recommended %}
+            - RECOMMENDED
+            {% endif %}
+        {% if request.user == performance.speaker.user or request.user.username == 'admin' or request.user == object.creator.user %}
+        | <a href="speaker/{{ performance.id }}/update/">Update</a> | <a href="speaker/{{ performance.id }}/delete/">Delete</a>
+        {% endif %}
+        {% if request.user.username == 'admin' or request.user == object.creator.user %}
+            <form action="speaker/{{ performance.id }}/update/" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ performance.speaking_topic }}" name="speaking_topic">
+                {% if performance.recommended %}
+                <input type="hidden" value="False" name="recommended">
+                <button type="submit">Unrecommend</button>
+                {% else %}
+                <input type="hidden" value="True" name="recommended">
+                <button type="submit">Recommend</button>
+                {% endif %}
+            </form>
+        {% endif %}</p>
+        </li>
+        {% empty %}
+        <li>No speakers yet.</li>
+        {% endfor %}
+    </ul>
+    <h2>Reviews: {{ reviews.count }}</h2>
+    <ul>
+      {% for review in reviews %}
+      <li>
+        <p><strong>{{ review.author.first_name }} {{ review.author.last_name }}</strong> {{ review.grade }}/10</p>
+        <p>{{review.description}}</p>
+            <p>Updated: {{ review.date }}. <a href="review/{{ review.id }}/">full review</a></p>
+          </li>
+          {% empty %}
+        <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+    {% if request.user.is_authenticated %}
+    <a href="review/create/">Add new review</a>
+    {% else %}
+    <strong>Sign In to add new review</strong>
+    {% endif %}
+    
+  </body>
+</html>
