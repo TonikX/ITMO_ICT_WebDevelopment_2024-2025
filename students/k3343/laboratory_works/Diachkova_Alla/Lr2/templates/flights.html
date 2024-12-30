@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% block title %}Flights - AviaTravel{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>Flights</h1>
+
+        {% if flights %}
+            {% for flight in flights %}
+                <div class="flight-item">
+                    <h2><a href="{% url 'flight_info' flight.pk %}">{{ flight }}</a></h2>
+                    <p class="text-muted mb-0">{{ flight.description }}</p>
+                </div>
+            {% endfor %}
+
+            <nav class="d-flex justify-content-center mt-4">
+                {% bootstrap_pagination page_obj %}
+            </nav>
+        {% else %}
+            <div class="alert alert-info">
+                <h2 class="h4 mb-0">No flights added yet</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

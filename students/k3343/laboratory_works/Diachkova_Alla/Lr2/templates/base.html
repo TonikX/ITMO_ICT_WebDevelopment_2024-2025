@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AviaFlights Info App{% endblock %}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="crt">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>AviaTravel Info Portal</h1>
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="{% url 'flights' %}" class="nav-link{% if request.resolver_match.url_name == 'flights' %} active{% endif %}">Flights</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="{% url 'bookings' %}" class="nav-link{% if request.resolver_match.url_name == 'bookings' %} active{% endif %}">Bookings</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}" class="nav-link">Log out</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="nav-link{% if request.resolver_match.url_name == 'login' %} active{% endif %}">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'register' %}" class="nav-link{% if request.resolver_match.url_name == 'register' %} active{% endif %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

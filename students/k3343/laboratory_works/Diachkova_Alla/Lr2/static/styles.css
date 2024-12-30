@@ -1,0 +1,228 @@
+.ct {
+    background-color: #0056b3;
+    color: white;
+    padding: 15px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1rem;
+    margin-left: 100px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+main {
+    padding: 20px;
+}
+
+.flight-list {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.flight-list h2 {
+    font-size: 1.5rem;
+    color: #212529;
+    margin-bottom: 10px;
+}
+
+.flight-list p {
+    color: #495057;
+    margin: 5px 0;
+}
+
+.pagination {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: #007bff;
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #e9ecef;
+}
+
+.button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+}
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link.active {
+    background-color: #ffffff;
+    color: #007bff;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .step-links {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: #f1f1f1;
+}
+
+.pagination .current {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 8px;
+    border: none;
+}
+
+form label {
+    font-weight: 500;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.flight-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.btn-primary{
+    padding: 10px;
+    font-size: 160px;
+    font-weight: bold;
+}
+
+form {
+    max-width: 400px;
+    margin: 0;
+}
+
+form p {
+    margin-bottom: 15px;
+}

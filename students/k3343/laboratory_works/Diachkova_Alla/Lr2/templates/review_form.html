@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Leave Review{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+{#        <div class="col-md-8">#}
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="card-title">Leave a Review</h2>
+                        <p class="text-muted mb-0">
+                            Flight {{ booking.flight.flight_number }} - {{ booking.flight.airline }}
+                        </p>
+                        <p class="text-muted">
+                            {{ booking.flight.departure_datetime|date:"d.m.Y H:i" }} -
+                            {{ booking.flight.arrival_datetime|date:"d.m.Y H:i" }}
+                        </p>
+                    </div>
+
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label">
+                                    {{ field.label }}
+                                </label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ field.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid gap-2 mt-4">
+                            <a href="{% url 'bookings' %}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                Submit Review
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style for rating input if it's a number field */
+    input[type="number"] {
+        max-width: 100px;
+    }
+
+    /* Style for review text area */
+    textarea {
+        min-height: 60px;
+    }
+</style>
+{% endblock %}

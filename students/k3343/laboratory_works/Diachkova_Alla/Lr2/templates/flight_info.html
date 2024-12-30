@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Flight {{ flight.flight_number }}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="card-title mb-4">
+                    Flight {{ flight.flight_number }} - {{ flight.airline }}
+                </h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded">
+                            <h5 class="text-muted mb-2">Departure</h5>
+                            <p class="h4 mb-0">{{ flight.departure_datetime|date:"d.m.Y H:i" }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded">
+                            <h5 class="text-muted mb-2">Arrival</h5>
+                            <p class="h4 mb-0">{{ flight.arrival_datetime|date:"d.m.Y H:i" }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="p-3 bg-light rounded">
+                        <h5 class="text-muted mb-2">Gate</h5>
+                        <p class="h4 mb-0">{{ flight.gate_number }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
+                        {% if user.is_authenticated %}
+                            <form action="{% url 'make_booking' flight.pk %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-lg px-4">
+                                    Book Now
+                                </button>
+                            </form>
+                        {% else %}
+                            <p class="mb-3">To book this flight:</p>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'login' %}" class="btn btn-primary">Log In</a>
+                                <a href="{% url 'register' %}" class="btn btn-outline-primary">Register</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h3 class="card-title mb-4">Passengers</h3>
+                {% if passengers %}
+                    <ul class="list-group list-group-flush">
+                        {% for booking in passengers %}
+                            <li class="list-group-item">{{ booking.user.full_name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No passengers yet</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Reviews</h3>
+                {% if mean_rating %}
+                    <div class="alert alert-info mb-4">
+                        <div class="d-flex align-items-center">
+                            <strong class="me-2">Average Rating:</strong>
+                            <span class="h4 mb-0">{{ mean_rating|floatformat:1 }} / 10</span>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if passengers %}
+                    <div class="review-list">
+                        {% for booking in passengers %}
+                            {% for review in booking.review_set.all %}
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <h5 class="card-title mb-0">{{ review.booking.user.full_name }}</h5>
+                                            <span class="badge bg-primary">{{ review.rating }}/10</span>
+                                        </div>
+                                        <p class="card-text mb-0">{{ review.text }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% if not passengers.exists %}
+                            <p class="text-muted">No reviews yet</p>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">No reviews yet</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

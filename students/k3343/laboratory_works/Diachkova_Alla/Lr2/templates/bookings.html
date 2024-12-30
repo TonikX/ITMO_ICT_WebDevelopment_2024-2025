@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+{#        <div class="col-12">#}
+            <h2 class="mb-4">My Bookings</h2>
+
+            {% if bookings %}
+                <div class="row g-4">
+                    {% for booking in bookings %}
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="card-title mb-0">
+                                            Flight {{ booking.flight.flight_number }}
+                                        </h5>
+                                        <span class="badge bg-primary">{{ booking.flight.airline }}</span>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">Departure</small>
+                                            <strong>{{ booking.flight.departure_datetime|date:"d.m.Y H:i" }}</strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">Arrival</small>
+                                            <strong>{{ booking.flight.arrival_datetime|date:"d.m.Y H:i" }}</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <a href="{% url 'review_create' booking.pk %}" class="btn btn-primary">
+                                            <i class="bi bi-star"></i> Leave Review
+                                        </a>
+                                        <a href="{% url 'booking_delete' booking.pk %}" class="btn btn-outline-danger">
+                                            <i class="bi bi-x-circle"></i> Cancel Booking
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-5">
+                        <h3 class="h4 text-muted mb-4">You haven't booked any flights yet.</h3>
+                        <a href="{% url 'flights' %}" class="btn btn-primary btn-lg">
+                            Browse Available Flights
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s ease-in-out;
+    }
+    {##}
+    {#.card:hover {#}
+    {#    transform: translateY(-2px);#}
+    {#}#}
+
+    .badge {
+        font-size: 0.9rem;
+        padding: 0.5em 1em;
+    }
+</style>
+{% endblock %}

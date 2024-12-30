@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car info</title>
+</head>
+<body>
+<div>
+    Legal number: {{ car.state_number }}, Brand: {{ car.brand }}, Model: {{ car.model }}, Color: {{ car.color }}
+</div>
+<br>
+<a href="{% url 'car_update' car.pk %}">Update info</a>
+<a href="{% url 'car_delete' car.pk %}">Delete info</a>
+<br>
+<a href="/cars/">Go back</a>
+</body>
+</html>

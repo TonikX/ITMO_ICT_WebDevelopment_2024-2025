@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h2 class="card-title">Cancel Booking</h2>
+                        <p class="card-text text-danger mb-1">
+                            <strong>Flight {{ booking.flight.flight_number }}</strong>
+                        </p>
+                        <p class="card-text text-muted">
+                            {{ booking.flight.departure_datetime|date:"d.m.Y H:i" }} -
+                            {{ booking.flight.arrival_datetime|date:"d.m.Y H:i" }}
+                        </p>
+                    </div>
+
+                    <div class="alert alert-warning" role="alert">
+                        <h4 class="alert-heading mb-2">Warning!</h4>
+                        <p class="mb-0">This action cannot be undone. Are you sure you want to cancel this booking?</p>
+                    </div>
+
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'bookings' %}" class="btn btn-outline-secondary btn-lg">
+                                Go Back
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                Cancel Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
