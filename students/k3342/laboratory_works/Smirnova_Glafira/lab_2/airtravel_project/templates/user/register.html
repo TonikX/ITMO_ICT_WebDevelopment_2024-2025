@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="reservation-container">
+    <h1 class="highlight">Register</h1>
+
+    <form method="post" class="reservation-form">
+        {% csrf_token %}
+
+        <div class="form-field">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+        </div>
+
+        <div class="form-field">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+        </div>
+
+        <div class="form-field">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+        </div>
+
+        <div class="form-field">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+
+        <div class="form-field">
+            {{ form.password1.label_tag }}
+            {{ form.password1 }}
+        </div>
+
+        <div class="form-field">
+            {{ form.password2.label_tag }}
+            {{ form.password2 }}
+        </div>
+
+        <button type="submit" class="submit-button">Register</button>
+    </form>
+
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+</div>
+{% endblock %}
