@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tour.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'tour_list' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'register' %}">Register</a>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>{{ tour.name }}</h2>
+        <div>
+            <h3>Agency: {{ agency.name }}</h3>
+            <p>Description: {{ agency.description }}</p>
+            <p>Website: <a href="{{ agency.website }}" target="_blank">{{ agency.website }}</a></p>
+        </div>
+
+        <p><strong>Dates:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+        <p><strong>Price:</strong> ${{ tour.price }}</p>
+        <p><strong>Payment conditions:</strong> {{ tour.payment_conditions }}</p>
+        {% if average_rating != "No reviews yet" %}
+            <p><strong>Average Rating:</strong> {{ average_rating|floatformat:1 }} / 10</p>
+        {% else %}
+            <p><strong>Average Rating:</strong> {{ average_rating }}</p>
+        {% endif %}    
+        <p><strong>Available Seats:</strong> {{ tour.available_seats }}</p>
+
+        {% if booking_confirmed %}
+            <p><strong>Your booking is confirmed.</strong></p>
+            <a href="{% url 'add_review' tour_id=tour.id %}" class="review-button">Add Review</a>
+        {% else %}
+            {% if tour.available_seats > 0 %}
+                <a href="{% url 'book_tour' tour.id %}" class="book-btn">Book this tour</a>
+            {% else %}
+                <p><strong>No available seats.</strong></p>
+            {% endif %}
+        {% endif %}
+        
+        <h3>Reviews</h3>
+        {% if reviews %}
+            <ul>
+                {% for review in reviews %}
+                    <li>
+                        <strong>{{ review.user.username }}</strong> ({{ review.created_at|date:"F j, Y" }}): 
+                        <p>Rating: {{ review.rating }} / 10</p>
+                        <p>{{ review.text }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No reviews yet for this tour.</p>
+        {% endif %}    
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tour Agency. All rights reserved.</p>
+    </footer>
+</body>
+</html>
