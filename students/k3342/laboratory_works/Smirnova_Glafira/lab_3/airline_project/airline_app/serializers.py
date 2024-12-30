@@ -459,7 +459,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
         if overlapping_maintenances.exists():
             maintenance = overlapping_maintenances.first()
             raise serializers.ValidationError(
-                {"departure_date": f"Plane {plane.number} is under maintenance from {maintenance.start_date} "
+                {"plane": f"Plane {plane.number} is under maintenance from {maintenance.start_date} "
                           f"to {maintenance.end_date or 'an unknown end date'}."}
             )
 
@@ -471,7 +471,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
         if overlapping_flights_plane.exists():
             flight = overlapping_flights_plane.first()
             raise serializers.ValidationError(
-                {"departure_date": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
+                {"plane": f"Plane {plane.number} is occupied by another flight ({flight.number}) "
                           f"from {flight.departure_date} to {flight.arrival_date}."}
             )
 
@@ -484,7 +484,7 @@ class FlightPatchSerializer(serializers.ModelSerializer):
             if overlapping_flights_crew.exists():
                 flight = overlapping_flights_crew.first()
                 raise serializers.ValidationError(
-                    {"departure_date": f"Crew {crew} is occupied by another flight ({flight.number}) "
+                    {"crew": f"Crew {crew} is occupied by another flight ({flight.number}) "
                              f"from {flight.departure_date} to {flight.arrival_date}."}
                 )
 

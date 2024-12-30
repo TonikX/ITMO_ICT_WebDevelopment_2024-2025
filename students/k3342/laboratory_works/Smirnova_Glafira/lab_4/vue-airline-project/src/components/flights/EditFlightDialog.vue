@@ -12,7 +12,28 @@
             v-model="flight.number"
             label="Номер перелета"
             :error-messages="errors.number || []"
-            @input="clearFieldError('number')"
+            @input="updateField('number')"
+            required
+          />
+
+                    <v-select
+            v-model="flight.plane"
+            :items="choices.plane_choices"
+            label="Самолет"
+            item-value="id"
+            item-title="plane_str"
+            :error-messages="errors.plane || []"
+            @update:model-value="updateField('plane')"
+            required
+          />
+          <v-select
+            v-model="flight.crew"
+            :items="choices.crew_choices"
+            label="Экипаж"
+            item-value="id"
+            item-title="name"
+            :error-messages="errors.crew || []"
+            @update:model-value="updateField('crew')"
             required
           />
 
@@ -21,7 +42,7 @@
             label="Дата вылета"
             type="date"
             :error-messages="errors.departure_date || []"
-            @input="clearFieldError('departure_date')"
+            @input="updateField('departure_date')"
             required
           />
           <v-select
@@ -53,8 +74,9 @@ export default {
   emits: ["update:dialog", "flight-updated"],
   data() {
     return {
-      flight: { ...this.initialFlight },
+      flight: {},
       errors: {},
+      updatedFlight: {}
     };
   },
   watch: {
@@ -73,12 +95,16 @@ export default {
     },
     closeDialog() {
       this.$emit("update:dialog", false);
-      this.flight = {...this.initialFlight};
       this.errors = {};
     },
-    clearFieldError(fieldName) {
+    updateField(fieldName) {
       if (this.errors[fieldName]) {
         delete this.errors[fieldName];
+      }
+       if (fieldName === 'crew') {
+        this.updatedFlight['crew'] = this.flight.crew;
+      } else if (fieldName === 'plane') {
+        this.updatedFlight['plane'] = this.flight.plane;
       }
     },
     initializeFlight() {
@@ -87,13 +113,14 @@ export default {
     async updateFlight() {
       try {
         console.log(this.flight)
-        const updatedFlight = {
-          ...this.flight,
-          plane: this.flight.plane.id,
-          crew: this.flight.crew.id,
-        };
 
-        await this.$emit("flight-updated", updatedFlight);
+        this.updatedFlight.departure_date = this.flight.departure_date
+        this.updatedFlight.status = this.flight.status
+        this.updatedFlight.number = this.flight.number
+
+        console.log("sending to update", this.updatedFlight)
+
+        await this.$emit("flight-updated", this.updatedFlight);
       } catch (error) {
         console.error("Ошибка обновления перелета:", error.response?.data || error.message);
         if (error.response && error.response.data) {

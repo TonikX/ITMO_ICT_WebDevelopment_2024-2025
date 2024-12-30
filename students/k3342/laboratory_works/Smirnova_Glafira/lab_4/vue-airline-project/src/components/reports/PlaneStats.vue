@@ -13,12 +13,17 @@
         <v-card-title>
           Модель: {{ model.model }}
         </v-card-title>
-        <v-card-subtitle>
-          Количество бортов: {{ model.plane_amount }}<br>
+
+          <v-card-text>
+          <p><strong>Количество бортов: {{ model.plane_amount }}<br></strong></p>
+            </v-card-text>
+            <v-card-subtitle>
           Количество посадочных мест: {{ model.seat_capacity }}<br>
           Скорость: {{ model.speed }} км/ч<br>
-          Номера самолетов: {{ model.plane_numbers.join(', ') }}
-        </v-card-subtitle>
+              </v-card-subtitle>
+        <v-card-text>
+          <p>Номера самолетов: {{ model.plane_numbers.join(', ') }}</p> </v-card-text>
+
       </v-card>
     </div>
 
