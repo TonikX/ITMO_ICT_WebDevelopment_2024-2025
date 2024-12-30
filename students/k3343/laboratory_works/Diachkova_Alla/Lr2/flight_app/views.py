@@ -13,20 +13,18 @@ def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()  # Save the user
+            user = form.save()
             passport_number = form.cleaned_data.get('passport_number')
             raw_password = form.cleaned_data.get('password1')
 
-            # Authenticate the user with passport_number and raw_password
             user = authenticate(passport_number=passport_number, password=raw_password)
 
-            if user is not None:  # Check if authentication was successful
-                login(request, user)  # Log the user in
-                return redirect('flights')  # Redirect to the flights page
+            if user is not None:
+                login(request, user)
+                return redirect('flights')
             else:
                 form.add_error(None, 'Authentication failed. Please check your credentials.')
         else:
-            # This handles the case where the form is not valid
             form.add_error(None, 'There was an error with your registration details.')
     else:
         form = CustomUserCreationForm()
@@ -59,6 +57,9 @@ class Flights(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+    def get_queryset(self):
+        return Flight.objects.order_by('departure_datetime')
 
 
 class FlightInfoView(DetailView):

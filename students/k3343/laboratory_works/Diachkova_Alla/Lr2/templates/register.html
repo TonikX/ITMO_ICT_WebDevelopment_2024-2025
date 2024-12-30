@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register - AviaTravel{% endblock %}
 
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Ok</button>
-</form>
+<div class="row justify-content-center">
+{#    <div class="col-md-6">#}
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4">Регистрация</h2>
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label" style="display: block; text-align: center;" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            <div class="input-group" style="display: block; text-align: center;">
+                                {{ field }}
+                                {% if field.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ field.errors|join:" " }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Cоздать аккаунт
+                        </button>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="text-muted">
+                            Уже зарегистрированы?
+                            <a href="{% url 'login' %}" class="text-decoration-none">Войти</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "bootstrap3",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "flight_app",
-    "bootstrap3",
 ]
 
 MIDDLEWARE = [
@@ -132,9 +132,15 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Add this line
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Add this line
+STATIC_ROOT = BASE_DIR  # Add this line
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+from django.db import connection, transaction
+
+with transaction.atomic():
+    with connection.cursor() as cursor:
+        cursor.execute("PRAGMA foreign_keys=OFF;")

@@ -5,20 +5,25 @@ from django.utils import timezone
 
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, passport_number, full_name, password=None):
+    def create_user(self, passport_number, full_name, password=None, **extra_fields):
         if not passport_number:
             raise ValueError("Passport number is required")
-        user = self.model(passport_number=passport_number, full_name=full_name)
+        extra_fields.setdefault('is_active', True)
+        user = self.model(passport_number=passport_number, full_name=full_name, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, passport_number, full_name, password):
-        user = self.create_user(passport_number, full_name, password)
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
+    def create_superuser(self, passport_number, full_name, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self.create_user(passport_number, full_name, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -75,27 +80,25 @@ class Flight(models.Model):
         max_length=2,
         validators=[RegexValidator(regex=r'^\d{2}$', message="Gate number must consist of 2 digits")]
     )
-
     def __str__(self):
         return f"Flight {self.flight_number} - {self.airline}"
-
 
 class Booking(models.Model):
     user = models.ForeignKey(User, verbose_name="User", on_delete=models.CASCADE)
     flight = models.ForeignKey(Flight, verbose_name="Flight", on_delete=models.CASCADE)
-    booking_number = models.CharField(
-        "Booking Number",
-        max_length=5,
-        validators=[RegexValidator(regex=r'^\d{5}$', message="Booking number must consist of 5 digits")]
-    )
-    ticket_number = models.CharField("Ticket Number", max_length=255, blank=True, null=True)
+    booking_number = models.CharField("Booking Number", max_length=5)
+    ticket_number = models.CharField("Ticket Number", max_length=255, blank=True, null=False)
+
+    class Meta:
+        unique_together = ('user', 'flight')
 
     def __str__(self):
         return f"Booking {self.booking_number} for {self.user}"
 
 
 class Review(models.Model):
-    booking = models.ForeignKey(Booking, verbose_name="Booking", on_delete=models.CASCADE)
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, null=False)
+
     review_date = models.DateField("Review Date", default=timezone.now)
     text = models.TextField("Review Text")
     rating = models.IntegerField(

@@ -1,8 +1,5 @@
-/* Custom Styles */
-
-/* Make the header sticky */
-header {
-    background-color: #0056b3; /* Darker shade of Bootstrap primary color */
+.ct {
+    background-color: #0056b3;
     color: white;
     padding: 15px 25px;
     position: sticky;
@@ -10,19 +7,17 @@ header {
     z-index: 1000;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Space between title and navigation */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add slight shadow for depth */
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the main title */
 header h1 {
-    font-size: 2rem;
-    margin: 0;
+    font-size: 1rem;
+    margin-left: 100px;
     font-weight: bold;
     letter-spacing: 1px;
 }
 
-/* Style links in the navigation */
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -35,50 +30,47 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white; /* White color for links */
-    text-decoration: none; /* Remove underline */
-    padding: 10px 15px; /* Add padding around links */
-    transition: background-color 0.3s ease; /* Smooth background change */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Main content styles */
 main {
     padding: 20px;
 }
 
-/* Style for flight listings */
 .flight-list {
-    margin-bottom: 20px; /* Space between flights */
+    margin-bottom: 20px;
     padding: 15px;
-    border: 1px solid #dee2e6; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
 }
 
 .flight-list h2 {
     font-size: 1.5rem;
-    color: #212529; /* Darker gray text */
+    color: #212529;
     margin-bottom: 10px;
 }
 
 .flight-list p {
-    color: #495057; /* Muted text for flight details */
+    color: #495057;
     margin: 5px 0;
 }
 
-/* Pagination styles */
 .pagination {
-    margin: 20px 0; /* Space around pagination */
+    margin: 20px 0;
     display: flex;
-    justify-content: center; /* Center pagination */
+    justify-content: center;
 }
 
 .pagination a {
-    color: #007bff; /* Primary color for links */
+    color: #007bff;
     margin: 0 5px;
     text-decoration: none;
     padding: 8px 12px;
@@ -88,12 +80,11 @@ main {
 }
 
 .pagination a:hover {
-    background-color: #e9ecef; /* Slightly darker background on hover */
+    background-color: #e9ecef;
 }
 
-/* Additional custom styles */
 .button {
-    background-color: #28a745; /* Bootstrap success color */
+    background-color: #28a745;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -103,13 +94,12 @@ main {
 }
 
 .button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 1.5rem; /* Smaller font size on mobile */
+        font-size: 1.5rem;
     }
 
     nav ul {
@@ -121,42 +111,41 @@ main {
         margin: 5px 0;
     }
 }
-/* Navigation styles */
 .nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 20px; /* Space between items */
+    gap: 20px;
 }
 
 .nav-link {
-    color: white; /* Keep text white */
-    text-decoration: none; /* Remove underline */
+    color: white;
+    text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-link.active {
-    background-color: #ffffff; /* White background for active link */
-    color: #007bff; /* Primary color text */
+    background-color: #ffffff;
+    color: #007bff;
     font-weight: bold;
 }
 
 @media (max-width: 768px) {
     .nav-list {
-        flex-direction: column; /* Stack items vertically on small screens */
+        flex-direction: column;
         align-items: center;
     }
 
     .nav-link {
-        width: 100%; /* Full width links */
-        text-align: center; /* Center the text */
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -189,4 +178,51 @@ main {
     border-radius: 4px;
     background-color: #007bff;
     color: white;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 8px;
+    border: none;
+}
+
+form label {
+    font-weight: 500;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.flight-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.btn-primary{
+    padding: 10px;
+    font-size: 160px;
+    font-weight: bold;
+}
+
+form {
+    max-width: 400px;
+    margin: 0;
+}
+
+form p {
+    margin-bottom: 15px;
 }

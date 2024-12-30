@@ -29,8 +29,23 @@ class BookingAdmin(admin.ModelAdmin):
     search_fields = ('booking_number', 'user__full_name', 'flight__flight_number')
     ordering = ('booking_number',)
 
+    def delete_model(self, request, obj):
+        # Ensure reviews are deleted before the booking
+        Review.objects.filter(booking=obj).delete()
+        obj.delete()
 
+    def save_model(self, request, obj, form, change):
+        # Custom logic for saving the booking (if needed)
+        super().save_model(request, obj, form, change)
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    def delete_model(self, request, obj):
+        # Delete review and ensure foreign key constraints are respected
+        obj.delete()
+
+
+admin.site.register(Booking, BookingAdmin)
+admin.site.register(Review, ReviewAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Flight)
-admin.site.register(Booking, BookingAdmin)
-admin.site.register(Review)
