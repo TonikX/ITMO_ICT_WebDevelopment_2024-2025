@@ -1,0 +1,13 @@
+<div class="main">
+  
+    {% for owner in dataset %}
+  
+    {{ owner.first_name }}<br/>
+    {{ owner.last_name }}<br/>
+    {{ owner.user.username }}<br/>
+    {{ owner.user.email}}<br/>
+    <hr/>
+  
+    {% endfor %}
+  
+</div>
