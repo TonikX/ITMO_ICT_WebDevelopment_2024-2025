@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4 class="mb-4">Забронировать номер</h4>
+    <h5 class="mb-2">Информация о номере</h5>
+    <p>
+        Номер комнаты: {{ room.number }} <br/>
+        Отель: {{ room.hotel.name }} <br/>
+        Тип: {{ room.room_type }} <br/>
+        Вместимость: {{ room.capacity }} человек<br/>
+        Описание: {{ room.description }}<br/>
+        Цена: {{ room.price }} руб. в сутки
+    </p>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="check_in" class="form-label">Дата заезда</label>
+            {{ form.check_in }}
+        </div>
+        <div class="mb-3">
+            <label for="check_out" class="form-label">Дата выезда</label>
+            {{ form.check_out }}
+        </div>
+        <button type="submit" class="btn btn-success">Забронировать</button>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="pt-5 mb-4">Произошла ошибка</h2>
+    <p class="mb-4">{{ message }}</p>
+    <a href="{% url 'rooms' %}" class="btn btn-primary">Вернуться на главную страницу</a>
+
+{% endblock %}

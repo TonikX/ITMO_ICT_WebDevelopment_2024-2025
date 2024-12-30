@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Мои резервирования</h2>
+    <div class="row mt-4" >
+        {% for booking in bookings %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{ booking.room.room_type }}</h4>
+                    <p class="card-text">
+                        Номер комнаты: {{ booking.room.number }} <br/>
+                        Отель: {{ booking.room.hotel.name }} <br/>
+                        Вместимость: {{ booking.room.capacity }} человек<br/>
+                        Описание: {{ booking.room.description }}<br/>
+                        <b>Детали брони:</b><br>
+                        Начало: {{ booking.check_in|date:"d.m.y" }}
+                        Конец: {{ booking.check_out|date:"d.m.y" }}
+                    </p>
+                    <div>
+                        {% if booking.is_finished %}
+                            <a href="{% url 'review-create' booking.room.id %}" class="btn btn-secondary">Добавить отзыв</a>
+                        {% else %}
+                            <a href="{% url 'booking-update' booking.id %}" class="btn btn-secondary">Редактировать</a>
+                            <a href="{% url 'booking-delete' booking.id %}" class="btn btn-light">Удалить</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

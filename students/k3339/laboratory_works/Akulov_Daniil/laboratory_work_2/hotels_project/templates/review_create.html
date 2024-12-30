@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4 class="mb-4">Добавить отзыв</h4>
+    <h5 class="mb-2">Информация о номере</h5>
+    <p>
+        Номер комнаты: {{ room.number }} <br/>
+        Отель: {{ room.hotel.name }} <br/>
+        Тип: {{ room.room_type }} <br/>
+        Вместимость: {{ room.capacity }} человек<br/>
+        Описание: {{ room.description }}<br/>
+        Цена: {{ room.price }} руб. в сутки
+    </p>
+    <form method="post">{% csrf_token %}
+        <div class="mb-3">
+            <label for="rating" class="form-label">Оценка</label>
+            {{ form.rating }}
+        </div>
+        <div class="mb-3">
+            <label for="text" class="form-label">Текст отзыва</label>
+            {{ form.text }}
+        </div>
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form>
+
+{% endblock %}
