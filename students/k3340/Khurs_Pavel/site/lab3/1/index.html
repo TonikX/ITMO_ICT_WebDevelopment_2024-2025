@@ -83,11 +83,15 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_4">Соответствие требованиям задания</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Сериализаторы</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_5">Запросы и отчёты</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Возможные запросы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. Получение списка водителей</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#_6">Заключение</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2. Назначение смены водителю</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -129,6 +133,7 @@
                 <h1 id="_1">Документация системы управления автобусным парком</h1>
 <h2 id="_2">Введение</h2>
 <p>Данная система предназначена для диспетчера автобусного парка частной транспортной фирмы. Она обеспечивает хранение сведений о водителях, маршрутах и характеристиках автобусов, а также позволяет формировать отчёты и получать необходимую информацию для эффективного управления автопарком.</p>
+<hr />
 <h2 id="_3">Модели данных</h2>
 <h3 id="bustype">Модель <code>BusType</code> (Тип автобуса)</h3>
 <p><strong>Описание:</strong></p>
@@ -138,176 +143,245 @@
 <li><code>name</code> (<code>CharField</code>, <code>max_length=100</code>): Название типа автобуса.</li>
 <li><code>capacity</code> (<code>PositiveIntegerField</code>): Вместимость автобуса данного типа.</li>
 </ul>
-<p><strong>Методы:</strong></p>
-<ul>
-<li><code>__str__()</code>: Возвращает строковое представление типа автобуса с указанием вместимости.</li>
-</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">from django.db import models
+
+class BusType(models.Model):
+    name = models.CharField(max_length=100)
+    capacity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f&quot;{self.name} (Capacity: {self.capacity})&quot;
+</code></pre>
+<hr />
 <h3 id="bus">Модель <code>Bus</code> (Автобус)</h3>
 <p><strong>Описание:</strong></p>
 <p>Хранит информацию об отдельных автобусах автопарка.</p>
 <p><strong>Поля:</strong></p>
 <ul>
-<li><code>registration_number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер государственной регистрации автобуса.</li>
+<li><code>registration_number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер госрегистрации.</li>
 <li><code>bus_type</code> (<code>ForeignKey</code> на <code>BusType</code>): Ссылка на тип автобуса.</li>
 <li><code>in_service</code> (<code>BooleanField</code>, <code>default=True</code>): Статус автобуса (на линии или нет).</li>
+<li><code>under_maintenance</code> (<code>BooleanField</code>, <code>default=False</code>): В ремонте.</li>
 </ul>
-<p><strong>Методы:</strong></p>
-<ul>
-<li><code>__str__()</code>: Возвращает строковое представление автобуса по его регистрационному номеру.</li>
-</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Bus(models.Model):
+    registration_number = models.CharField(max_length=20, unique=True)
+    bus_type = models.ForeignKey(BusType, on_delete=models.CASCADE)
+    in_service = models.BooleanField(default=True)
+    under_maintenance = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f&quot;Bus {self.registration_number}&quot;
+</code></pre>
+<hr />
 <h3 id="driver">Модель <code>Driver</code> (Водитель)</h3>
 <p><strong>Описание:</strong></p>
 <p>Хранит информацию о водителях.</p>
 <p><strong>Поля:</strong></p>
 <ul>
-<li><code>passport_data</code> (<code>CharField</code>, <code>max_length=100</code>): Паспортные данные водителя.</li>
-<li><code>DRIVER_CLASS_CHOICES</code>: Классы водителей:</li>
-<li><code>'A'</code>: Класс A</li>
-<li><code>'B'</code>: Класс B</li>
-<li><code>'C'</code>: Класс C</li>
-<li><code>driver_class</code> (<code>CharField</code>, <code>max_length=1</code>, <code>choices=DRIVER_CLASS_CHOICES</code>): Класс водителя.</li>
-<li><code>work_experience</code> (<code>PositiveIntegerField</code>): Стаж работы (в годах).</li>
-<li><code>salary</code> (<code>DecimalField</code>, <code>max_digits=10</code>, <code>decimal_places=2</code>): Оклад водителя (зависит от класса и стажа).</li>
+<li><code>passport_data</code> (<code>CharField</code>, <code>max_length=100</code>): Паспортные данные.</li>
+<li><code>driver_class</code> (<code>CharField</code>, <code>choices</code>): Класс водителя (A, B, C).</li>
+<li><code>capable_bus_classes</code> (<code>ManyToManyField</code>): Типы автобусов, которыми может управлять.</li>
+<li><code>work_experience</code> (<code>PositiveIntegerField</code>): Стаж работы в годах.</li>
+<li><code>salary</code> (<code>DecimalField</code>): Зарплата.</li>
 <li><code>date_of_birth</code> (<code>DateField</code>): Дата рождения.</li>
 </ul>
-<p><strong>Методы:</strong></p>
-<ul>
-<li><code>__str__()</code>: Возвращает строковое представление водителя по его паспортным данным.</li>
-</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Driver(models.Model):
+    passport_data = models.CharField(max_length=100)
+    DRIVER_CLASS_CHOICES = [
+        ('A', 'Class A'),
+        ('B', 'Class B'),
+        ('C', 'Class C'),
+    ]
+    driver_class = models.CharField(max_length=1, choices=DRIVER_CLASS_CHOICES)
+    work_experience = models.PositiveIntegerField()
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    date_of_birth = models.DateField()
+    capable_bus_classes = models.ManyToManyField(BusType, related_name='qualified_drivers', blank=True)
+
+    def __str__(self):
+        return f&quot;Driver {self.passport_data}&quot;
+</code></pre>
+<hr />
 <h3 id="route">Модель <code>Route</code> (Маршрут)</h3>
 <p><strong>Описание:</strong></p>
 <p>Хранит информацию о маршрутах.</p>
 <p><strong>Поля:</strong></p>
 <ul>
 <li><code>number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер маршрута.</li>
-<li><code>start_point</code> (<code>CharField</code>, <code>max_length=100</code>): Начальный пункт движения.</li>
-<li><code>end_point</code> (<code>CharField</code>, <code>max_length=100</code>): Конечный пункт движения.</li>
-<li><code>operation_start_time</code> (<code>TimeField</code>): Время начала движения по маршруту.</li>
-<li><code>operation_end_time</code> (<code>TimeField</code>): Время окончания движения по маршруту.</li>
-<li><code>interval</code> (<code>DurationField</code>): Интервал движения автобусов на маршруте.</li>
-<li><code>duration</code> (<code>DurationField</code>): Продолжительность маршрута (время движения от начала до конца).</li>
+<li><code>start_point</code> (<code>CharField</code>, <code>max_length=100</code>): Начальный пункт.</li>
+<li><code>end_point</code> (<code>CharField</code>, <code>max_length=100</code>): Конечный пункт.</li>
+<li><code>operation_start_time</code> (<code>TimeField</code>): Время начала движения.</li>
+<li><code>operation_end_time</code> (<code>TimeField</code>): Время окончания.</li>
+<li><code>duration</code> (<code>DurationField</code>): Длительность маршрута.</li>
 </ul>
-<p><strong>Методы:</strong></p>
-<ul>
-<li><code>__str__()</code>: Возвращает строковое представление маршрута с указанием начального и конечного пунктов.</li>
-</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Route(models.Model):
+    number = models.CharField(max_length=20, unique=True)
+    start_point = models.CharField(max_length=100)
+    end_point = models.CharField(max_length=100)
+    operation_start_time = models.TimeField()
+    operation_end_time = models.TimeField()
+    interval = models.DurationField()
+    duration = models.DurationField()
+
+    def __str__(self):
+        return f&quot;Route {self.number}: {self.start_point} - {self.end_point}&quot;
+</code></pre>
+<hr />
 <h3 id="workshift">Модель <code>WorkShift</code> (Рабочая смена)</h3>
 <p><strong>Описание:</strong></p>
 <p>Хранит информацию о графике работы водителей.</p>
 <p><strong>Поля:</strong></p>
 <ul>
-<li><code>driver</code> (<code>ForeignKey</code> на <code>Driver</code>): Ссылка на водителя.</li>
-<li><code>bus</code> (<code>ForeignKey</code> на <code>Bus</code>): Ссылка на автобус.</li>
-<li><code>route</code> (<code>ForeignKey</code> на <code>Route</code>): Ссылка на маршрут.</li>
+<li><code>driver</code> (<code>ForeignKey</code> на <code>Driver</code>): Водитель.</li>
+<li><code>bus</code> (<code>ForeignKey</code> на <code>Bus</code>): Автобус.</li>
+<li><code>route</code> (<code>ForeignKey</code> на <code>Route</code>): Маршрут.</li>
 <li><code>date</code> (<code>DateField</code>): Дата смены.</li>
-<li><code>shift_start_time</code> (<code>TimeField</code>): Время начала смены.</li>
-<li><code>shift_end_time</code> (<code>TimeField</code>): Время окончания смены.</li>
-<li><code>STATUS_CHOICES</code>: Статусы смены:</li>
-<li><code>'Worked'</code>: Отработал</li>
-<li><code>'Absent'</code>: Отсутствовал</li>
-<li><code>'Sick'</code>: Болезнь</li>
-<li><code>'Breakdown'</code>: Поломка</li>
-<li><code>'No Driver'</code>: Нет водителя</li>
-<li><code>'No Bus'</code>: Нет автобуса</li>
-<li><code>status</code> (<code>CharField</code>, <code>max_length=20</code>, <code>choices=STATUS_CHOICES</code>, <code>default='Worked'</code>): Статус смены.</li>
-<li><code>reason</code> (<code>TextField</code>, <code>null=True</code>, <code>blank=True</code>): Причина, если смена не была отработана.</li>
+<li><code>shift_start_time</code> (<code>TimeField</code>): Время начала.</li>
+<li><code>shift_end_time</code> (<code>TimeField</code>): Время окончания.</li>
+<li><code>status</code> (<code>CharField</code>, <code>choices</code>): Статус смены.</li>
 </ul>
-<p><strong>Метаданные:</strong></p>
-<ul>
-<li><code>unique_together</code>: (<code>driver</code>, <code>date</code>, <code>shift_start_time</code>, <code>shift_end_time</code>): Уникальность записи смены для конкретного водителя на определённую дату и время.</li>
-</ul>
-<p><strong>Методы:</strong></p>
-<ul>
-<li><code>__str__()</code>: Возвращает строковое представление смены с указанием даты, водителя, автобуса и маршрута.</li>
-</ul>
-<h2 id="_4">Соответствие требованиям задания</h2>
-<ul>
-<li>
-<p><strong>Хранение сведений о водителях, маршрутах и характеристиках автобусов:</strong></p>
-</li>
-<li>
-<p>Модели <code>Driver</code>, <code>Route</code>, <code>Bus</code> и <code>BusType</code> обеспечивают хранение необходимой информации.</p>
-</li>
-<li>
-<p><strong>Оклад водителя зависит от класса и стажа работы:</strong></p>
-</li>
-<li>
-<p>Поле <code>salary</code> в модели <code>Driver</code> хранит оклад водителя. Логика расчёта оклада может быть реализована дополнительно в методах модели или при сохранении данных.</p>
-</li>
-<li>
-<p><strong>Маршрут характеризуется номером, названием начального и конечного пунктов, временем начала и конца движения, интервалом движения и продолжительностью:</strong></p>
-</li>
-<li>
-<p>Модель <code>Route</code> содержит все необходимые поля для хранения этих данных.</p>
-</li>
-<li>
-<p><strong>Вместимость автобуса зависит от его типа:</strong></p>
-</li>
-<li>
-<p>Модель <code>BusType</code> хранит информацию о вместимости, а модель <code>Bus</code> ссылается на <code>BusType</code>.</p>
-</li>
-<li>
-<p><strong>Каждый водитель закреплён за определённым автобусом и работает на определённом маршруте, но может пересесть на другую машину:</strong></p>
-</li>
-<li>
-<p>Модель <code>WorkShift</code> связывает водителя, автобус и маршрут, позволяя гибко назначать их на смены.</p>
-</li>
-<li>
-<p><strong>Хранение графика работы водителей:</strong></p>
-</li>
-<li>
-<p>Модель <code>WorkShift</code> хранит информацию о сменах водителей, включая дату, время и статус.</p>
-</li>
-<li>
-<p><strong>Возможность корректировки БД при изменениях:</strong></p>
-</li>
-<li>Система поддерживает CRUD-операции для всех моделей, позволяя добавлять, изменять и удалять записи.</li>
-</ul>
-<h2 id="_5">Запросы и отчёты</h2>
-<ul>
-<li>
-<p><strong>Список водителей на определённом маршруте с графиком работы:</strong></p>
-</li>
-<li>
-<p>Можно получить из модели <code>WorkShift</code>, фильтруя по <code>route</code>.</p>
-</li>
-<li>
-<p><strong>Время начала и окончания движения автобусов на каждом маршруте:</strong></p>
-</li>
-<li>
-<p>Поля <code>operation_start_time</code> и <code>operation_end_time</code> в модели <code>Route</code>.</p>
-</li>
-<li>
-<p><strong>Общая продолжительность маршрутов, обслуживаемых автопарком:</strong></p>
-</li>
-<li>
-<p>Сумма полей <code>duration</code> всех записей в модели <code>Route</code>.</p>
-</li>
-<li>
-<p><strong>Автобусы, не вышедшие на линию в заданный день и причина:</strong></p>
-</li>
-<li>
-<p>Из модели <code>WorkShift</code>, фильтруя по <code>date</code> и <code>status</code> (например, <code>status='Breakdown'</code> или <code>status='No Driver'</code>).</p>
-</li>
-<li>
-<p><strong>Количество водителей каждого класса:</strong></p>
-</li>
-<li>
-<p>Агрегирование по полю <code>driver_class</code> в модели <code>Driver</code>.</p>
-</li>
-<li>
-<p><strong>Отчёт по автопарку, сгруппированный по типам автобусов:</strong></p>
-</li>
-<li>
-<p>Используя связи между моделями <code>BusType</code>, <code>Bus</code>, <code>Route</code> и <code>WorkShift</code>, можно сформировать отчёт с указанием маршрутов, обслуживаемых каждым типом автобусов, и включить все необходимые характеристики.</p>
-</li>
-<li>
-<p><strong>Сведения о суммарной продолжительности обслуживаемых маршрутов, количестве автобусов каждого типа, количестве водителей, их среднем возрасте и стаже:</strong></p>
-</li>
-<li>Эти данные могут быть получены с помощью соответствующих агрегирующих запросов к моделям <code>Route</code>, <code>Bus</code>, <code>Driver</code>.</li>
-</ul>
-<h2 id="_6">Заключение</h2>
-<p>Система спроектирована в соответствии с требованиями задания и обеспечивает функциональность, необходимую для эффективного управления автобусным парком. Модели данных отражают все ключевые сущности и их взаимосвязи, позволяя хранить, обновлять и получать необходимую информацию.</p>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class WorkShift(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
+    route = models.ForeignKey(Route, on_delete=models.CASCADE)
+    date = models.DateField()
+    shift_start_time = models.TimeField()
+    shift_end_time = models.TimeField()
+    STATUS_CHOICES = [
+        ('Worked', 'Worked'),
+        ('Absent', 'Absent'),
+        ('Sick', 'Sick'),
+        ('Breakdown', 'Breakdown'),
+        ('No Driver', 'No Driver'),
+        ('No Bus', 'No Bus'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Worked')
+    reason = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f&quot;Shift on {self.date}: {self.driver} on {self.bus} for {self.route}&quot;
+</code></pre>
+<hr />
+<h2 id="_4">Сериализаторы</h2>
+<p><strong>Пример: <code>WorkShiftSerializer</code></strong></p>
+<pre><code class="language-python">from rest_framework import serializers
+
+class WorkShiftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkShift
+        fields = '__all__'
+
+    def validate(self, data):
+        # Пример валидации перекрывающихся смен
+        driver = data.get('driver')
+        date = data.get('date')
+        overlapping_shifts = WorkShift.objects.filter(
+            driver=driver,
+            date=date
+        )
+        if overlapping_shifts.exists():
+            raise serializers.ValidationError(&quot;Driver already has a shift on this date.&quot;)
+        return data
+</code></pre>
+<hr />
+<h2 id="_5">Возможные запросы</h2>
+<h3 id="1">1. Получение списка водителей</h3>
+<p><strong>Запрос:</strong> <code>GET /api/drivers/</code></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 1,
+    &quot;capable_bus_classes&quot;: [1],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;A&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2000-12-23&quot;
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;B&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2010-12-23&quot;
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;PB1233221&quot;,
+    &quot;driver_class&quot;: &quot;C&quot;,
+    &quot;work_experience&quot;: 2,
+    &quot;salary&quot;: &quot;123.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2024-12-05&quot;
+  },
+  {
+    &quot;id&quot;: 4,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;PB12332221&quot;,
+    &quot;driver_class&quot;: &quot;B&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;123123.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2024-12-12&quot;
+  }
+]
+</code></pre>
+<h3 id="2">2. Назначение смены водителю</h3>
+<p><strong>Запрос:</strong> <code>POST /api/workshifts/</code>
+<strong>Тело:</strong></p>
+<pre><code class="language-json">{
+  &quot;driver_id&quot;: 1,
+  &quot;bus_id&quot;: 5,
+  &quot;route_id&quot;: 2,
+  &quot;date&quot;: &quot;2024-12-01&quot;,
+  &quot;shift_start_time&quot;: &quot;08:00&quot;,
+  &quot;shift_end_time&quot;: &quot;16:00&quot;,
+  &quot;status&quot;: &quot;Worked&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;id&quot;: 5,
+  &quot;driver&quot;: {
+    &quot;id&quot;: 1,
+    &quot;capable_bus_classes&quot;: [1],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;A&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2000-12-23&quot;
+  },
+  &quot;bus&quot;: {
+    &quot;id&quot;: 3,
+    &quot;registration_number&quot;: &quot;AB123121223&quot;,
+    &quot;in_service&quot;: true,
+    &quot;bus_type&quot;: {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;база&quot;,
+      &quot;capacity&quot;: 10
+    }
+  },
+  &quot;route&quot;: {
+    &quot;id&quot;: 1,
+    &quot;number&quot;: &quot;1&quot;,
+    &quot;start_point&quot;: &quot;Ad&quot;,
+    &quot;end_point&quot;: &quot;Ray&quot;,
+    &quot;operation_start_time&quot;: &quot;01:59:00&quot;,
+    &quot;operation_end_time&quot;: &quot;14:00:00&quot;,
+    &quot;interval&quot;: &quot;08:05:00&quot;,
+    &quot;duration&quot;: &quot;12:23:00&quot;
+  },
+  &quot;date&quot;: &quot;2024-12-30&quot;,
+  &quot;shift_start_time&quot;: &quot;12:12:00&quot;,
+  &quot;shift_end_time&quot;: &quot;12:12:00&quot;,
+  &quot;status&quot;: &quot;Worked&quot;,
+  &quot;reason&quot;: &quot;string&quot;
+}
+</code></pre>
               
             </div>
           </div><footer>
