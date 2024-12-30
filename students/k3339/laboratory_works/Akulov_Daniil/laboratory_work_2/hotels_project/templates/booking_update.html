@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h4>Редактирование брони</h4>
+    <h5 class="card-title">{{ booking.room.room_type }}</h5>
+    <p class="card-text">
+        Номер комнаты: {{ booking.room.number }} <br/>
+        Отель: {{ booking.room.hotel.name }} <br/>
+        Вместимость: {{ booking.room.capacity }} человек<br/>
+        Описание: {{ booking.room.description }}<br/>
+        <b>Старые даты брони:</b><br>
+        Начало: {{ booking.check_in|date:"d.m.y" }}
+        Конец: {{ booking.check_out|date:"d.m.y" }}
+    </p>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Сохранить">
+    </form>
+
+{% endblock %}

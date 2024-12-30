@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Ваши отели</h2>
+    <a href="{% url 'hotel-create' %}" class="btn btn-primary">Регистрация отеля</a>
+    <div class="row mt-4" >
+        {% for hotel in hotels %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{ hotel.name }}</h4>
+                    <p class="card-text">
+                        Адрес: {{ hotel.address }}
+                        <br>
+                        Описание: {{ hotel.description }}
+                        <br>
+                        Количество комнат: {{ hotel.rooms.count }}
+                    </p>
+                    <div>
+                        <a href="{% url 'hotel-rooms' hotel.id %}" class="btn btn-primary">Комнаты</a>
+                        <a href="{% url 'hotel-update' hotel.id %}" class="btn btn-secondary">Редактировать</a>
+                        <a href="{% url 'hotel-delete' hotel.id %}" class="btn btn-light">Удалить</a>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

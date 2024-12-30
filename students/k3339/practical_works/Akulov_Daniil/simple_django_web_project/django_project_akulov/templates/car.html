@@ -1,0 +1,19 @@
+<h2>Car</h2>
+<hr>
+<div>
+    Number: {{car.number}}
+</div>
+<br>
+<div>
+    Mark: <b>{{car.mark}}</b>
+</div>
+<br>
+<div>
+    Model: <i>{{car.model}}</i>
+</div>
+<br>
+<div>
+    Color: <i>{{car.color}}</i>
+</div>
+<a href="{% url 'car-update' car.id %}" style="margin-right: 10px;">Обновить</a>
+<a href="{% url 'car-delete' car.id %}" style="color: red;">Удалить</a>

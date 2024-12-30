@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Комнаты Отеля {{ hotel.name }}</h2>
+    <a href="{% url 'room-create' hotel.id %}" class="btn btn-primary">Добавить комнату</a>
+    <a href="{% url 'hotel-bookings' hotel.id %}" class="btn btn-secondary">Бронирования</a>
+    <div class="row mt-4" >
+        {% for room in rooms %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">{{ room.room_type }}</h4>
+                    <p class="card-text">
+                        Номер комнаты: {{ room.number }} <br/>
+                        Вместимость: {{ room.capacity }} человек<br/>
+                        Описание: {{ room.description }}<br/>
+                        Цена: {{ room.price }} руб. в сутки
+                    </p>
+                    <div>
+                        <a href="{% url 'room-update' room.id %}" class="btn btn-secondary">Редактировать</a>
+                        <a href="{% url 'room-delete' room.id %}" class="btn btn-light">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

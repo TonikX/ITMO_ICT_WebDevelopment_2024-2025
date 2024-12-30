@@ -1,0 +1,16 @@
+site_name: WEB-programming
+nav:
+  - Home: index.md
+  - Lab 1:
+      - Task 1: laboratory_work_1/1.md
+      - Task 2: laboratory_work_1/2.md
+      - Task 3: laboratory_work_1/3.md
+      - Task 4: laboratory_work_1/4.md
+      - Task 5: laboratory_work_1/5.md
+  - Lab 2:
+      - Main: laboratory_work_2/index.md
+  - Lab 3:
+      - Main: laboratory_work_3/lab.md
+      - PW: laboratory_work_3/pw.md
+theme:
+  name: material
