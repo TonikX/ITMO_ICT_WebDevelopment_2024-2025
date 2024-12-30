@@ -1,0 +1,91 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Full-width Navbar Styling */
+.navbar {
+    background-color: #3a3f44;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    width: 100%;
+}
+
+/* Navbar Left and Right Sections */
+.navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+/* Navbar Links Styling */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Navbar Right Links */
+.navbar-right {
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-username {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.navbar-right .nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-right .nav-link:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Container styling (centered and max-width) */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}

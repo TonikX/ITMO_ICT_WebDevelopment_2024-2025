@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Туры от {{ tour_firm.name }}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/tour_list.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="tour-list-container">
+
+        <a href="{% url 'tour_firm_list' %}" class="back-btn">← Назад к компаниям</a>
+
+        <h1 class="tour-list-title">Туры от {{ tour_firm.name }}</h1>
+
+        {% if user.is_authenticated and user.is_staff %}
+            <a href="{% url 'add_new_tour' %}" class="add-tour-btn">Добавить тур</a>
+        {% endif %}
+
+
+        <div class="tour-cards">
+            {% for tour in page_obj %}
+                <div class="tour-card">
+                    <h2 class="tour-title">{{ tour.name }}</h2>
+                    <p class="tour-description">{{ tour.description|truncatewords:20 }}</p>
+                    <p class="tour-description">{{ tour.payment_conditions }}</p>
+                    <a href="{% url 'tour_detail' tour.id %}" class="tour-link">Подробнее</a>
+                </div>
+            {% empty %}
+                <p class="no-tours">Туры не найдены.</p>
+            {% endfor %}
+        </div>
+
+
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">« В начало</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+            {% endif %}
+            <span class="page-current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">В конец »</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Обновить бронирование{% endblock %}
+
+{% block content %}
+<h2>Обновить бронирование</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Обновить</button>
+    <a href="{% url 'my_reservations' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

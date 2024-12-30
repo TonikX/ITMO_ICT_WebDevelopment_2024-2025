@@ -1,0 +1,18 @@
+<!-- my_reservations.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Мои резервации</h2>
+
+  {% for reservation in reservations %}
+    <div class="reservation">
+      <p>Тур: {{ reservation.tour.name }}</p>
+      <p>Статус: {{ reservation.status }}</p>
+      <p>Люди: {{ reservation.people }}</p>
+
+      <!-- Cancel and Update buttons -->
+      <a href="{% url 'cancel_reservation' reservation.id %}" class="btn btn-danger btn-sm">Отменить</a>
+      <a href="{% url 'reservation_update' reservation.id %}" class="btn btn-warning btn-sm">Обновить</a>
+    </div>
+  {% endfor %}
+{% endblock %}

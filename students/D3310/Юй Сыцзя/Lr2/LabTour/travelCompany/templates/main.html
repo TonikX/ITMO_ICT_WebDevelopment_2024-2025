@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="welcome-title">Добро пожаловать на сайт туров!</h1>
+        <p class="welcome-subtitle">Найдите и забронируйте лучшие туры по всему миру с легкостью.</p>
+        <div class="buttons">
+            {% if user.is_superuser %}
+                <a class="btn-secondary" href="{% url 'all_reservations' %}">Управление резервациями</a>
+            {% endif %}
+            <a class="btn-secondary" href="{% url 'tour_firm_list' %}">Смотреть туры</a>
+        </div>
+    </div>
+
+    <div class="popular-destinations">
+        <h2>Популярные направления</h2>
+        <div class="destination-cards">
+            <div class="destination-card">
+                <img src="{% static 'image/istockphoto-1436430810-612x612.jpg' %}" alt="Paris">
+                <h3>Париж</h3>
+                <p>Откройте для себя очарование столицы Франции, посетите Эйфелеву башню и Лувр.</p>
+            </div>
+            <div class="destination-card">
+                <img src="{% static 'image/manta-bay-or-kelingking-beach-on-nusa-penida-T8AHWZ6-696x392.jpg' %}" alt="Bali">
+                <h3>Бали</h3>
+                <p>Насладитесь отдыхом на тропическом острове с потрясающими пляжами и культурными достопримечательностями.</p>
+            </div>
+            <div class="destination-card">
+                <img src="{% static 'image/images.jpeg' %}" alt="New York">
+                <h3>Нью-Йорк</h3>
+                <p>Окунитесь в энергичную атмосферу Большого Яблока с его знаменитыми достопримечательностями.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="why-choose-us">
+        <h2>Почему выбирают нас?</h2>
+        <ul class="benefits-list">
+            <li>
+                <i class="fas fa-globe"></i>
+                <h4>Широкий выбор</h4>
+                <p>Тысячи туров по всем направлениям мира.</p>
+            </li>
+            <li>
+                <i class="fas fa-money-bill-wave"></i>
+                <h4>Выгодные цены</h4>
+                <p>Лучшие предложения по доступным ценам.</p>
+            </li>
+            <li>
+                <i class="fas fa-user-shield"></i>
+                <h4>Надежность</h4>
+                <p>Мы сотрудничаем только с проверенными агентствами.</p>
+            </li>
+        </ul>
+    </div>
+
+{% endblock %}

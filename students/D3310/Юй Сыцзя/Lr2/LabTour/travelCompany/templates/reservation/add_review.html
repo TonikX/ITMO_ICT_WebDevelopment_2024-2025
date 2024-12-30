@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Оставить отзыв{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/add_rewiew.css' %}">
+{% endblock %}
+{% block content %}
+<h2>Оставить отзыв о туре: {{ tour.name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% endblock %}

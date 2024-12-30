@@ -1,0 +1,176 @@
+
+.jumbotron {
+    background: linear-gradient(135deg, #c6e5f7, #6db0e2);
+    color: #333;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+}
+.jumbotron h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #222;
+}
+.jumbotron p {
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: #555;
+}
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.btn-primary {
+    background-color: #007bff;
+}
+.btn-secondary {
+    background-color: #6c757d;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Popular Destinations Section */
+.popular-destinations {
+    margin: 40px auto;
+    max-width: 1200px;
+    text-align: center;
+}
+.popular-destinations h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #222;
+}
+.destination-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.destination-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.destination-card img {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+.destination-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+.destination-card p {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+.destination-card:hover {
+    transform: scale(1.05);
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    margin: 40px auto;
+    max-width: 1000px;
+    text-align: center;
+}
+.why-choose-us h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #222;
+}
+.benefits-list {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.benefits-list li {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.benefits-list li:hover {
+    transform: scale(1.05);
+}
+.benefits-list i {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.benefits-list h4 {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 10px;
+}
+.benefits-list p {
+    color: #666;
+    font-size: 1em;
+}
+
+/* Testimonials Section */
+.testimonials {
+    margin: 40px auto;
+    max-width: 1000px;
+    text-align: center;
+}
+.testimonials h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #222;
+}
+.testimonial-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.testimonial-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+.testimonial-card p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+.testimonial-card h5 {
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+}
+.testimonial-card:hover {
+    transform: scale(1.05);
+}

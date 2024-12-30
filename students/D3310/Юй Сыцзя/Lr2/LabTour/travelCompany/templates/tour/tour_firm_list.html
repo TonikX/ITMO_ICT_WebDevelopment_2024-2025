@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Список туристических компаний{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/tour_firm_list.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="agency-list-container">
+        <h1 class="agency-list-title">Туристические Компании</h1>
+
+        {% if user.is_authenticated and user.is_staff %}
+        <div class="add-tour-button-container">
+            <a href="{% url 'add_agency' %}" class="add-tour-button">Добавить агенство</a>
+        </div>
+        {% endif %}
+
+        <form method="get" action="{% url 'tour_firm_list' %}" class="search-form">
+            <input type="text" name="q" placeholder="Поиск по названию..." value="{{ query|default:'' }}" class="search-input">
+            <button type="submit" class="search-button">Поиск</button>
+        </form>
+
+        <div class="agency-cards">
+            {% for agency in page_obj %}
+                <div class="agency-card">
+                    <h2 class="agency-name">{{ agency.name }}</h2>
+                    <p class="agency-description">{{ agency.description|truncatewords:15 }}</p>
+                    <a href="{% url 'tour_list' agency.id %}" class="agency-link">Смотреть туры</a>
+                </div>
+            {% empty %}
+                <p class="no-agencies">Туристические компании не найдены.</p>
+            {% endfor %}
+        </div>
+
+
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&q={{ query }}">&laquo; В начало</a>
+                <a href="?page={{ page_obj.previous_page_number }}&q={{ query }}">Назад</a>
+            {% endif %}
+            <span class="page-current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&q={{ query }}">Вперед</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&q={{ query }}">В конец &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

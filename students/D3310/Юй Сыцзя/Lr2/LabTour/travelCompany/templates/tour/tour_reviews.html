@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Отзывы о туре: {{ tour.name }}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/tour_rewies.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="tour-reviews-container">
+        <h2>Отзывы о туре: {{ tour.name }}</h2>
+
+        {% if reviews %}
+            <div class="reviews-list">
+                {% for review in reviews %}
+                    <div class="review-card">
+                        <p class="review-comment">{{ review.comment }}</p>
+                        <p class="review-rating">Рейтинг: {{ review.rating }}</p>
+                        <p class="review-author">Автор: {{ review.user.username }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Нет отзывов для этого тура.</p>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_review' tour.id %}" class="add-review-btn">Добавить отзыв</a>
+        {% else %}
+            <p>Чтобы оставить отзыв, <a href="{% url 'login' %}">войдите</a>.</p>
+        {% endif %}
+    </div>
+{% endblock %}
