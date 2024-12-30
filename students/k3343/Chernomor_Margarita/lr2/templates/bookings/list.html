@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+
+{% block title %}Bookings{% endblock %}
+
+{% block main_contents %}
+
+    <h2>Your Bookings</h2>
+    <ul class="list-group">
+        {% for reservation in reservations %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-8">
+                        <strong>Room in </strong> {{ reservation.room.hotel.name }}<br>
+                        <strong>Start Date:</strong> {{ reservation.dt_start }}<br>
+                        <strong>End Date:</strong> {{ reservation.dt_end }}
+                        <strong>Status:</strong> {{ reservation.get_status_display }}
+                    </div>
+                    <div class="col-4 justify-content-end">
+                        {% if reservation.status == 'cr' or reservation.status == 'ap' %}
+                            <button type="button" class="btn btn-light my-2">
+                                <a href="/bookings/{{ reservation.id }}/edit/">Edit your reservation</a>
+                            </button>
+                            <br>
+                            <button type="button" class="btn btn-danger">
+                                <a href="/bookings/{{ reservation.id }}/cancel/">Cancel reservation</a>
+                            </button>
+                        {% endif %}
+                        {% if reservation.status == 'co' %}
+                            {% if not reservation.review %}
+                                <button type="button" class="btn btn-secondary">
+                                    <a href="/bookings/{{ reservation.id }}/comment/">Comment your stay</a>
+                                </button>
+                            {% else %}
+                                <div class="h5">Your review:</div>
+                                <b>{{ reservation.review.text }}</b>
+                                {{ reservation.review.rating }}/10
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No bookings found.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

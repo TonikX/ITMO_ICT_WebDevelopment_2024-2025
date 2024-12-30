@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Room details
+{% endblock %}
+
+{% block main_contents %}
+
+    <h1>Room info</h1>
+    <strong>{{ room.room_type.room_type }}</strong>
+    Conveniences:
+    <ul>
+        {% for c in room.conveniences.all %}
+            <li>{{ c.convenience }}</li>
+        {% endfor %}
+    </ul>
+    <div class="row">
+        <div class="col-8">
+            <form method="get" class="mb-4">
+                <label for="dt_start">Select start date:</label>
+                <input id="dt_start" name="dt_start" type="text" class="form-control flatpickr"
+                       placeholder="Start date">
+
+                <label for="dt_end" class="mt-3">Select end date:</label>
+                <input id="dt_end" name="dt_end" type="text" class="form-control flatpickr" placeholder="End date">
+
+                <button type="submit" class="btn btn-primary mt-3">Check Availability</button>
+            </form>
+        </div>
+
+        <div class="col-4"><h2>Available Dates</h2>
+            <ul class="list-group">
+                {% for date in possible_dates %}
+                    <li class="list-group-item">{{ date }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+        
+    <h1>Create a reservation</h1>
+    <div class="container mt-4">
+        <h4>Make a Reservation</h4>
+        <form action="{% url 'reserve-room' room.pk %}" method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="dt_start" class="form-label">Start Date</label>
+                <input type="date" id="dt_start" name="dt_start" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please select a start date.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="dt_end" class="form-label">End Date</label>
+                <input type="date" id="dt_end" name="dt_end" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please select an end date.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Reserve</button>
+        </form>
+    </div>
+
+    <script>
+        // Example Bootstrap validation logic
+        (function () {
+            'use strict';
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+{% endblock %}

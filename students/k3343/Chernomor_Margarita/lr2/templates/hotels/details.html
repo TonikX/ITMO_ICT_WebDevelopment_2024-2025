@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}
+
+    Hotel {{ hotel.name }}
+
+{% endblock %}
+
+{% block main_contents %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="h4">{{ hotel.name }}</div>
+                <p class="h5">Description</p>
+                <p>{{ hotel.description }}</p>
+
+            </div>
+            <div class="col">
+                <p>Address: {{ hotel.address }}</p>
+                <div class="h5">Owner</div>
+                <p>{{ hotel.owner.username }}</p>
+            </div>
+        </div>
+        <hr>
+        <h1>Rooms:</h1>
+        {% for  room in hotel_rooms %}
+            <a href="/room/{{ room.id }}/">
+                <div class="row">
+
+                    <div class="col">
+
+                        <p>{{ room.room_type.room_type }}: {{ room.n_people }} people</p>
+                        <p>Costs {{ room.cost }}</p>
+
+                    </div>
+                    <div class="col-2">
+                        Conveniences:
+                        <ul>
+                            {% for c in room.conveniences.all %}
+                                <li>{{ c.convenience }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+            </a>
+            <hr>
+        {% endfor %}
+        <h1>Reviews: </h1>
+        {% for review in review_list %}
+            <div class="row">
+                <div class="col-8">
+                    <strong>{{ review.author.username }}</strong>
+                    <div>{{ review.text }}</div>
+                    <p>{{ review.rating }}/10</p>
+                </div>
+                <div class="col-4">
+                    The person was a guest at {{ review.reservation.dt_start }}
+                </div>
+            </div>
+            <hr>
+            {% empty %}
+            <h2>No data</h2>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

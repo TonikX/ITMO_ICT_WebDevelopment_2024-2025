@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Hotel List{% endblock %}
+
+{% block main_contents %}
+
+    <h1>Hotels available</h1>
+    <ul>
+        {% for hotel, rating in hotel_ratings.items %}
+            <li>
+
+                <a href="/hotels/{{ hotel.id }}/" style="color: black">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="h4">{{ hotel.name }}</div>
+                                <p class="h5">Description</p>
+                                <p>{{ hotel.description }}</p>
+
+                            </div>
+                            <div class="col">
+                                <div class="h5">Owner</div>
+                                <p>{{ hotel.owner.username }}</p>
+                                <p>Address: {{ hotel.address }}</p>
+                                <p>Average rating: {{ rating }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+{% endblock %}
