@@ -6,13 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# nodeJS / vue
-node_modules
-vue-auth*
-package.json
-package-lock.json
-.vscode
-
 # Distribution / packaging
 .Python
 build/
