@@ -1,0 +1,47 @@
+<!-- public/chat.html -->
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Чат</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <h1>Многопользовательский чат</h1>
+    <div id="messages"></div>
+    <input id="messageInput" autocomplete="off" /><button
+      onclick="sendMessage()"
+    >
+      Отправить
+    </button>
+
+    <script>
+      const socket = io();
+
+      socket.emit('getMessages');
+
+      socket.on('allMessages', function (messages) {
+        const messagesDiv = document.getElementById('messages');
+        messagesDiv.innerHTML = '';
+        messages.forEach((msg) => {
+          const messageElement = document.createElement('div');
+          messageElement.textContent = msg.content;
+          messagesDiv.appendChild(messageElement);
+        });
+      });
+
+      socket.on('message', function (msg) {
+        const messages = document.getElementById('messages');
+        const messageElement = document.createElement('div');
+        messageElement.textContent = msg;
+        messages.appendChild(messageElement);
+      });
+
+      function sendMessage() {
+        const input = document.getElementById('messageInput');
+        socket.emit('message', input.value);
+        input.value = '';
+      }
+    </script>
+  </body>
+</html>

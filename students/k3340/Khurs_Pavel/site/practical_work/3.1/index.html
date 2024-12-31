@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://owarpero.github.io/ITMO_ICT_WebDevelopment_2024-2025/practical_work/3.1/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>3.1 - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = 3.1;
+        var mkdocs_page_input_path = "practical_work/3.1.md";
+        var mkdocs_page_url = "/ITMO_ICT_WebDevelopment_2024-2025/practical_work/3.1/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/5/">Task 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab3/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">practical_work</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">3.1</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">Задание 1: Создание данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">Описание</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_2">Результат</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">Задание 2: Фильтрация данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Описание</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">Задание 3: Анализ данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Описание</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">practical_work</li>
+      <li class="breadcrumb-item active">3.1</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31">Отчет по выполнению практической работы 3.1</h1>
+<h2 id="1">Задание 1: Создание данных</h2>
+<h3 id="_1">Описание</h3>
+<p>Создать 6 новых пользователей-автовладельцев и добавить 5 различных автомобилей. Каждому владельцу присвоить от одной до трёх машин.</p>
+<pre><code class="language-python">from project_first_app.models import CustomUser, Car, Ownership
+from datetime import date
+
+# Создание пользователей
+owner1 = CustomUser.objects.create_user(username=&quot;alexey_smirnov&quot;, password=&quot;mypassword&quot;, passport_number=&quot;111222333&quot;)
+owner2 = CustomUser.objects.create_user(username=&quot;tatiana_orlova&quot;, password=&quot;mypassword&quot;, passport_number=&quot;222333444&quot;)
+owner3 = CustomUser.objects.create_user(username=&quot;dmitry_belov&quot;, password=&quot;mypassword&quot;, passport_number=&quot;333444555&quot;)
+owner4 = CustomUser.objects.create_user(username=&quot;irina_sokolova&quot;, password=&quot;mypassword&quot;, passport_number=&quot;444555666&quot;)
+owner5 = CustomUser.objects.create_user(username=&quot;igor_morozov&quot;, password=&quot;mypassword&quot;, passport_number=&quot;555666777&quot;)
+owner6 = CustomUser.objects.create_user(username=&quot;marina_efremova&quot;, password=&quot;mypassword&quot;, passport_number=&quot;666777888&quot;)
+
+# Создание автомобилей
+car1 = Car.objects.create(make=&quot;Toyota&quot;, model=&quot;Corolla&quot;, color=&quot;Black&quot;, state_number=&quot;ZZZ999&quot;)
+car2 = Car.objects.create(make=&quot;Ford&quot;, model=&quot;Focus&quot;, color=&quot;Blue&quot;, state_number=&quot;YYY888&quot;)
+car3 = Car.objects.create(make=&quot;Volkswagen&quot;, model=&quot;Golf&quot;, color=&quot;White&quot;, state_number=&quot;XXX777&quot;)
+car4 = Car.objects.create(make=&quot;BMW&quot;, model=&quot;3 Series&quot;, color=&quot;Red&quot;, state_number=&quot;WWW666&quot;)
+car5 = Car.objects.create(make=&quot;Audi&quot;, model=&quot;Q5&quot;, color=&quot;Green&quot;, state_number=&quot;VVV555&quot;)
+
+# Назначение автомобилей владельцам
+Ownership.objects.create(owner=owner1, car=car1, start_date=date(2024, 1, 2))
+Ownership.objects.create(owner=owner1, car=car2, start_date=date(2024, 1, 20))
+Ownership.objects.create(owner=owner2, car=car3, start_date=date(2024, 2, 5))
+Ownership.objects.create(owner=owner3, car=car4, start_date=date(2024, 3, 10))
+Ownership.objects.create(owner=owner4, car=car5, start_date=date(2024, 4, 3))
+Ownership.objects.create(owner=owner5, car=car2, start_date=date(2024, 5, 7))
+Ownership.objects.create(owner=owner6, car=car3, start_date=date(2024, 6, 12))
+Ownership.objects.create(owner=owner6, car=car4, start_date=date(2024, 7, 18))
+</code></pre>
+<h4 id="_2">Результат</h4>
+<p>Владельцы:
+alexey_smirnov, tatiana_orlova, dmitry_belov, irina_sokolova, igor_morozov, marina_efremova</p>
+<p>Машины:
+Toyota Corolla, Ford Focus, Volkswagen Golf, BMW 3 Series, Audi Q5</p>
+<h2 id="2">Задание 2: Фильтрация данных</h2>
+<h3 id="_3">Описание</h3>
+<p>Выполнить выборку данных по определённым критериям.</p>
+<ol>
+<li><strong>Все автомобили марки Toyota:</strong></li>
+</ol>
+<pre><code class="language-python">toyota_cars = Car.objects.filter(make=&quot;Toyota&quot;)
+for car in toyota_cars:
+    print(car)
+</code></pre>
+<p><strong>Результат:</strong><br />
+<code>Toyota Corolla (ZZZ999)</code></p>
+<ol>
+<li><strong>Владельцы, чьи имена содержат "marina":</strong></li>
+</ol>
+<pre><code class="language-python">marina_owners = CustomUser.objects.filter(username__icontains=&quot;marina&quot;)
+for owner in marina_owners:
+    print(owner)
+</code></pre>
+<p><strong>Результат:</strong><br />
+<code>marina_efremova</code></p>
+<ol>
+<li><strong>Случайный автомобиль и связанный с ним владелец:</strong></li>
+</ol>
+<pre><code class="language-python">import random
+random_car = random.choice(Car.objects.all())
+owner = random_car.ownership_set.first().owner
+print(f&quot;Car: {random_car}, Owner: {owner.username}&quot;)
+</code></pre>
+<p><strong>Результат (пример):</strong><br />
+<code>Car: Volkswagen Golf, Owner: tatiana_orlova</code></p>
+<ol>
+<li><strong>Все владельцы автомобилей красного цвета:</strong></li>
+</ol>
+<pre><code class="language-python">red_cars = Car.objects.filter(color=&quot;Red&quot;)
+red_car_owners = CustomUser.objects.filter(ownerships__car__in=red_cars).distinct()
+for owner in red_car_owners:
+    print(owner)
+</code></pre>
+<p><strong>Результат:</strong><br />
+<code>dmitry_belov, marina_efremova</code></p>
+<ol>
+<li><strong>Все владельцы, начавшие владение в 2024 году:</strong></li>
+</ol>
+<pre><code class="language-python">owners_from_2024 = CustomUser.objects.filter(ownerships__start_date__year=2024).distinct()
+for owner in owners_from_2024:
+    print(owner)
+</code></pre>
+<p><strong>Результат:</strong><br />
+<code>alexey_smirnov, tatiana_orlova, dmitry_belov, irina_sokolova, igor_morozov, marina_efremova</code></p>
+<h2 id="3">Задание 3: Анализ данных</h2>
+<h3 id="_4">Описание</h3>
+<p>Проанализировать данные с помощью аннотаций и упорядочивания.</p>
+<ol>
+<li><strong>Наиболее ранняя дата начала владения:</strong></li>
+</ol>
+<pre><code class="language-python">earliest_ownership_date = Ownership.objects.earliest('start_date').start_date
+print(f&quot;Самая ранняя дата начала владения: {earliest_ownership_date}&quot;)
+</code></pre>
+<p><strong>Результат:</strong><br />
+<code>Самая ранняя дата начала владения: 2024-01-02</code></p>
+<ol>
+<li><strong>Количество автомобилей у каждого владельца:</strong></li>
+</ol>
+<pre><code class="language-python">from django.db.models import Count
+owners_with_car_count = CustomUser.objects.annotate(car_count=Count('ownerships__car'))
+for owner in owners_with_car_count:
+    print(f&quot;{owner.username} имеет {owner.car_count} автомобилей&quot;)
+</code></pre>
+<p><strong>Результат:</strong></p>
+<pre><code>alexey_smirnov имеет 2 автомобилей
+tatiana_orlova имеет 1 автомобилей
+dmitry_belov имеет 1 автомобилей
+irina_sokolova имеет 1 автомобилей
+igor_morozov имеет 1 автомобилей
+marina_efremova имеет 2 автомобилей
+</code></pre>
+<ol>
+<li><strong>Подсчет количества автомобилей по каждой марке:</strong></li>
+</ol>
+<pre><code class="language-python">car_make_counts = Car.objects.values('make').annotate(count=Count('make'))
+for make_count in car_make_counts:
+    print(f&quot;{make_count['make']}: {make_count['count']} шт.&quot;)
+</code></pre>
+<p><strong>Результат:</strong></p>
+<pre><code>Toyota: 1 шт.
+Ford: 1 шт.
+Volkswagen: 1 шт.
+BMW: 1 шт.
+Audi: 1 шт.
+</code></pre>
+<ol>
+<li><strong>Сортировка владельцев по дате выдачи удостоверения:</strong></li>
+</ol>
+<pre><code class="language-python">sorted_owners_by_license_date = CustomUser.objects.filter(driverlicense__isnull=False).order_by('driverlicense__issue_date')
+for owner in sorted_owners_by_license_date:
+    license_date = owner.driverlicense_set.first().issue_date
+    print(f&quot;{owner.username} - {license_date}&quot;)
+</code></pre>
+<p><strong>Результат:</strong></p>
+<pre><code>alexey_smirnov 2024-01-15
+dmitry_belov 2024-02-10
+igor_morozov 2024-03-20
+irina_sokolova 2024-04-05
+marina_efremova 2024-05-18
+tatiana_orlova 2024-06-07
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab4/1/" class="btn btn-neutral float-left" title="Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab4/1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

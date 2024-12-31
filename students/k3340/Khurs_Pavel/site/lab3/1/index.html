@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://owarpero.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab3/1/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Task - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Task";
+        var mkdocs_page_input_path = "lab3/1.md";
+        var mkdocs_page_url = "/ITMO_ICT_WebDevelopment_2024-2025/lab3/1/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/5/">Task 5</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab1/notes/">Notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab2/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Task</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Введение</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Модели данных</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#bustype">Модель BusType (Тип автобуса)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bus">Модель Bus (Автобус)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#driver">Модель Driver (Водитель)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#route">Модель Route (Маршрут)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workshift">Модель WorkShift (Рабочая смена)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">Сериализаторы</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Возможные запросы</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1">1. Получение списка водителей</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2">2. Назначение смены водителю</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">4 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lab4/1/">Task</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">practical_work</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../practical_work/3.1/">3.1</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3 lab</li>
+      <li class="breadcrumb-item active">Task</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Документация системы управления автобусным парком</h1>
+<h2 id="_2">Введение</h2>
+<p>Данная система предназначена для диспетчера автобусного парка частной транспортной фирмы. Она обеспечивает хранение сведений о водителях, маршрутах и характеристиках автобусов, а также позволяет формировать отчёты и получать необходимую информацию для эффективного управления автопарком.</p>
+<hr />
+<h2 id="_3">Модели данных</h2>
+<h3 id="bustype">Модель <code>BusType</code> (Тип автобуса)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о типах автобусов и их вместимости.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>name</code> (<code>CharField</code>, <code>max_length=100</code>): Название типа автобуса.</li>
+<li><code>capacity</code> (<code>PositiveIntegerField</code>): Вместимость автобуса данного типа.</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">from django.db import models
+
+class BusType(models.Model):
+    name = models.CharField(max_length=100)
+    capacity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f&quot;{self.name} (Capacity: {self.capacity})&quot;
+</code></pre>
+<hr />
+<h3 id="bus">Модель <code>Bus</code> (Автобус)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию об отдельных автобусах автопарка.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>registration_number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер госрегистрации.</li>
+<li><code>bus_type</code> (<code>ForeignKey</code> на <code>BusType</code>): Ссылка на тип автобуса.</li>
+<li><code>in_service</code> (<code>BooleanField</code>, <code>default=True</code>): Статус автобуса (на линии или нет).</li>
+<li><code>under_maintenance</code> (<code>BooleanField</code>, <code>default=False</code>): В ремонте.</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Bus(models.Model):
+    registration_number = models.CharField(max_length=20, unique=True)
+    bus_type = models.ForeignKey(BusType, on_delete=models.CASCADE)
+    in_service = models.BooleanField(default=True)
+    under_maintenance = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f&quot;Bus {self.registration_number}&quot;
+</code></pre>
+<hr />
+<h3 id="driver">Модель <code>Driver</code> (Водитель)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о водителях.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>passport_data</code> (<code>CharField</code>, <code>max_length=100</code>): Паспортные данные.</li>
+<li><code>driver_class</code> (<code>CharField</code>, <code>choices</code>): Класс водителя (A, B, C).</li>
+<li><code>capable_bus_classes</code> (<code>ManyToManyField</code>): Типы автобусов, которыми может управлять.</li>
+<li><code>work_experience</code> (<code>PositiveIntegerField</code>): Стаж работы в годах.</li>
+<li><code>salary</code> (<code>DecimalField</code>): Зарплата.</li>
+<li><code>date_of_birth</code> (<code>DateField</code>): Дата рождения.</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Driver(models.Model):
+    passport_data = models.CharField(max_length=100)
+    DRIVER_CLASS_CHOICES = [
+        ('A', 'Class A'),
+        ('B', 'Class B'),
+        ('C', 'Class C'),
+    ]
+    driver_class = models.CharField(max_length=1, choices=DRIVER_CLASS_CHOICES)
+    work_experience = models.PositiveIntegerField()
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    date_of_birth = models.DateField()
+    capable_bus_classes = models.ManyToManyField(BusType, related_name='qualified_drivers', blank=True)
+
+    def __str__(self):
+        return f&quot;Driver {self.passport_data}&quot;
+</code></pre>
+<hr />
+<h3 id="route">Модель <code>Route</code> (Маршрут)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о маршрутах.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>number</code> (<code>CharField</code>, <code>max_length=20</code>, <code>unique=True</code>): Номер маршрута.</li>
+<li><code>start_point</code> (<code>CharField</code>, <code>max_length=100</code>): Начальный пункт.</li>
+<li><code>end_point</code> (<code>CharField</code>, <code>max_length=100</code>): Конечный пункт.</li>
+<li><code>operation_start_time</code> (<code>TimeField</code>): Время начала движения.</li>
+<li><code>operation_end_time</code> (<code>TimeField</code>): Время окончания.</li>
+<li><code>duration</code> (<code>DurationField</code>): Длительность маршрута.</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class Route(models.Model):
+    number = models.CharField(max_length=20, unique=True)
+    start_point = models.CharField(max_length=100)
+    end_point = models.CharField(max_length=100)
+    operation_start_time = models.TimeField()
+    operation_end_time = models.TimeField()
+    interval = models.DurationField()
+    duration = models.DurationField()
+
+    def __str__(self):
+        return f&quot;Route {self.number}: {self.start_point} - {self.end_point}&quot;
+</code></pre>
+<hr />
+<h3 id="workshift">Модель <code>WorkShift</code> (Рабочая смена)</h3>
+<p><strong>Описание:</strong></p>
+<p>Хранит информацию о графике работы водителей.</p>
+<p><strong>Поля:</strong></p>
+<ul>
+<li><code>driver</code> (<code>ForeignKey</code> на <code>Driver</code>): Водитель.</li>
+<li><code>bus</code> (<code>ForeignKey</code> на <code>Bus</code>): Автобус.</li>
+<li><code>route</code> (<code>ForeignKey</code> на <code>Route</code>): Маршрут.</li>
+<li><code>date</code> (<code>DateField</code>): Дата смены.</li>
+<li><code>shift_start_time</code> (<code>TimeField</code>): Время начала.</li>
+<li><code>shift_end_time</code> (<code>TimeField</code>): Время окончания.</li>
+<li><code>status</code> (<code>CharField</code>, <code>choices</code>): Статус смены.</li>
+</ul>
+<p><strong>Пример кода:</strong></p>
+<pre><code class="language-python">class WorkShift(models.Model):
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    bus = models.ForeignKey(Bus, on_delete=models.CASCADE)
+    route = models.ForeignKey(Route, on_delete=models.CASCADE)
+    date = models.DateField()
+    shift_start_time = models.TimeField()
+    shift_end_time = models.TimeField()
+    STATUS_CHOICES = [
+        ('Worked', 'Worked'),
+        ('Absent', 'Absent'),
+        ('Sick', 'Sick'),
+        ('Breakdown', 'Breakdown'),
+        ('No Driver', 'No Driver'),
+        ('No Bus', 'No Bus'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Worked')
+    reason = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return f&quot;Shift on {self.date}: {self.driver} on {self.bus} for {self.route}&quot;
+</code></pre>
+<hr />
+<h2 id="_4">Сериализаторы</h2>
+<p><strong>Пример: <code>WorkShiftSerializer</code></strong></p>
+<pre><code class="language-python">from rest_framework import serializers
+
+class WorkShiftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WorkShift
+        fields = '__all__'
+
+    def validate(self, data):
+        # Пример валидации перекрывающихся смен
+        driver = data.get('driver')
+        date = data.get('date')
+        overlapping_shifts = WorkShift.objects.filter(
+            driver=driver,
+            date=date
+        )
+        if overlapping_shifts.exists():
+            raise serializers.ValidationError(&quot;Driver already has a shift on this date.&quot;)
+        return data
+</code></pre>
+<hr />
+<h2 id="_5">Возможные запросы</h2>
+<h3 id="1">1. Получение списка водителей</h3>
+<p><strong>Запрос:</strong> <code>GET /api/drivers/</code></p>
+<pre><code class="language-json">[
+  {
+    &quot;id&quot;: 1,
+    &quot;capable_bus_classes&quot;: [1],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;A&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2000-12-23&quot;
+  },
+  {
+    &quot;id&quot;: 2,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;B&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2010-12-23&quot;
+  },
+  {
+    &quot;id&quot;: 3,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;PB1233221&quot;,
+    &quot;driver_class&quot;: &quot;C&quot;,
+    &quot;work_experience&quot;: 2,
+    &quot;salary&quot;: &quot;123.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2024-12-05&quot;
+  },
+  {
+    &quot;id&quot;: 4,
+    &quot;capable_bus_classes&quot;: [],
+    &quot;passport_data&quot;: &quot;PB12332221&quot;,
+    &quot;driver_class&quot;: &quot;B&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;123123.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2024-12-12&quot;
+  }
+]
+</code></pre>
+<h3 id="2">2. Назначение смены водителю</h3>
+<p><strong>Запрос:</strong> <code>POST /api/workshifts/</code>
+<strong>Тело:</strong></p>
+<pre><code class="language-json">{
+  &quot;driver_id&quot;: 1,
+  &quot;bus_id&quot;: 5,
+  &quot;route_id&quot;: 2,
+  &quot;date&quot;: &quot;2024-12-01&quot;,
+  &quot;shift_start_time&quot;: &quot;08:00&quot;,
+  &quot;shift_end_time&quot;: &quot;16:00&quot;,
+  &quot;status&quot;: &quot;Worked&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+  &quot;id&quot;: 5,
+  &quot;driver&quot;: {
+    &quot;id&quot;: 1,
+    &quot;capable_bus_classes&quot;: [1],
+    &quot;passport_data&quot;: &quot;string&quot;,
+    &quot;driver_class&quot;: &quot;A&quot;,
+    &quot;work_experience&quot;: 12,
+    &quot;salary&quot;: &quot;12.00&quot;,
+    &quot;date_of_birth&quot;: &quot;2000-12-23&quot;
+  },
+  &quot;bus&quot;: {
+    &quot;id&quot;: 3,
+    &quot;registration_number&quot;: &quot;AB123121223&quot;,
+    &quot;in_service&quot;: true,
+    &quot;bus_type&quot;: {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;база&quot;,
+      &quot;capacity&quot;: 10
+    }
+  },
+  &quot;route&quot;: {
+    &quot;id&quot;: 1,
+    &quot;number&quot;: &quot;1&quot;,
+    &quot;start_point&quot;: &quot;Ad&quot;,
+    &quot;end_point&quot;: &quot;Ray&quot;,
+    &quot;operation_start_time&quot;: &quot;01:59:00&quot;,
+    &quot;operation_end_time&quot;: &quot;14:00:00&quot;,
+    &quot;interval&quot;: &quot;08:05:00&quot;,
+    &quot;duration&quot;: &quot;12:23:00&quot;
+  },
+  &quot;date&quot;: &quot;2024-12-30&quot;,
+  &quot;shift_start_time&quot;: &quot;12:12:00&quot;,
+  &quot;shift_end_time&quot;: &quot;12:12:00&quot;,
+  &quot;status&quot;: &quot;Worked&quot;,
+  &quot;reason&quot;: &quot;string&quot;
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lab2/1/" class="btn btn-neutral float-left" title="Task"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../lab4/1/" class="btn btn-neutral float-right" title="Task">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lab2/1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../lab4/1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

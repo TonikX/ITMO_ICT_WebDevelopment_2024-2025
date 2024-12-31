@@ -1,0 +1,80 @@
+<!-- public/grades.html -->
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Оценки</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <h1>Список оценок</h1>
+    <div id="gradesList"></div>
+    <button onclick="showAddGradeForm()">Добавить оценку</button>
+
+    <div id="addGradeForm" style="display: none">
+      <h2>Добавить новую оценку</h2>
+      <label for="subject">Предмет:</label><br />
+      <input type="text" id="subject" name="subject" /><br /><br />
+      <label for="score">Оценка:</label><br />
+      <input
+        type="number"
+        id="score"
+        name="score"
+        min="1"
+        max="5"
+      /><br /><br />
+      <button onclick="addGrade()">Сохранить</button>
+      <button onclick="hideAddGradeForm()">Отмена</button>
+    </div>
+
+    <script>
+      const socket = io('/grades');
+
+      socket.emit('getGrades');
+
+      socket.on('allGrades', function (grades) {
+        const gradesList = document.getElementById('gradesList');
+        gradesList.innerHTML = '';
+        grades.forEach((grade) => {
+          const gradeElement = document.createElement('div');
+          gradeElement.textContent = `${grade.subject}: ${grade.score}`;
+          gradesList.appendChild(gradeElement);
+        });
+      });
+
+      socket.on('newGrade', function (grade) {
+        const gradesList = document.getElementById('gradesList');
+        const gradeElement = document.createElement('div');
+        gradeElement.textContent = `${grade.subject}: ${grade.score}`;
+        gradesList.prepend(gradeElement);
+      });
+
+      function showAddGradeForm() {
+        document.getElementById('addGradeForm').style.display = 'block';
+      }
+
+      function hideAddGradeForm() {
+        document.getElementById('addGradeForm').style.display = 'none';
+      }
+
+      function addGrade() {
+        const subject = document.getElementById('subject').value;
+        const score = parseInt(document.getElementById('score').value);
+
+        if (!subject || isNaN(score) || score < 1 || score > 5) {
+          alert('Пожалуйста, заполните все поля корректно.');
+          return;
+        }
+
+        socket.emit('addGrade', { subject, score });
+        document.getElementById('subject').value = '';
+        document.getElementById('score').value = '';
+        hideAddGradeForm();
+      }
+
+      socket.on('error', function (error) {
+        alert(error.message);
+      });
+    </script>
+  </body>
+</html>
