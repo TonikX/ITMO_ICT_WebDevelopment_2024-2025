@@ -25,12 +25,15 @@ function handleUpdateStudent(student) {
 <template>
   <div class="student-list">
     <template v-for="student in students" :key="student.id">
-      <v-card class="student-card" width="400">
-        <template #title>{{ student.second_name }} {{ student.first_name }} {{ student.patronymic ?? "" }}</template>
-        Класс {{ student.group.group_grade }}{{ student.group.group_name }}<br/>
-        <v-card-actions>
-          <v-btn @click="handleEdit(student)" color="primary">Редактировать</v-btn>
-          <v-btn @click="$emit('delete-student', student.id)" color="secondary">Удалить</v-btn>
+      <v-card class="student-card" width="600">
+        <v-card-title>
+          {{ student.second_name }} {{ student.first_name }} {{ student.patronymic ?? "" }}
+        </v-card-title>
+        <v-card-subtitle>Класс {{ student.group.group_grade }}{{ student.group.group_name }}</v-card-subtitle>
+        <v-card-actions class="student-card-actions">
+          <v-btn @click="handleEdit(student)" color="primary" class="action-btn">Редактировать</v-btn>
+          <v-btn @click="$emit('delete-student', student.id)" color="error" class="action-btn">Удалить</v-btn>
+          <v-btn :to="`/students/${student.id}`" color="success" class="action-btn">Посмотреть оценки</v-btn>
         </v-card-actions>
       </v-card>
     </template>
@@ -46,16 +49,18 @@ function handleUpdateStudent(student) {
 </template>
 
 <style scoped>
-.student-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.student-card {
+  margin-bottom: 16px;
 }
 
-.student-card {
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+.student-card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.action-btn {
+  flex: 1; /* Чтобы кнопки имели одинаковую ширину */
+  text-transform: none; /* Убрать CAPSLOCK текста */
 }
 </style>

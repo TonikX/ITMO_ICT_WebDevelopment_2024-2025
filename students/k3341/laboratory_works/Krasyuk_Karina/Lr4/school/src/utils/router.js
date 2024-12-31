@@ -7,6 +7,7 @@ import StudentView from "@/views/StudentView.vue";
 import ScheduleView from "@/views/ScheduleView.vue";
 import RoomView from "@/views/RoomView.vue";
 import ReportView from "@/views/ReportView.vue";
+import StudentDetailView from "@/views/StudentDetailView.vue";
 
 
 const routes = [
@@ -27,6 +28,10 @@ const routes = [
     {
         path: '/students',
         component: StudentView
+    },
+    {
+        path: '/students/:id',
+        component: StudentDetailView
     },
     {
         path: '/schedule',

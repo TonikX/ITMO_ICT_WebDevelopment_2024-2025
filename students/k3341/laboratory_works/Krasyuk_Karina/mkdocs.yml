@@ -12,5 +12,7 @@ nav:
   - 3 lab:
     - "Практическая работа": pr/pr1.md
     - "Лабораторная работа": LR3/lab3.md
+  - 4 lab:
+    - "Лабораторная работа": LR4/lab4.md
 theme:
   name: readthedocs
