@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Лабораторная работа - WEB-programming</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430";
+        var mkdocs_page_input_path = "LR3\\lab3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-programming
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR1/task1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR1/task2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR1/task3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR1/task4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR1/task5/">Task 5</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../LR2/lr2/">Лабораторная работа</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../pr/pr1/">Практическая работа</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Лабораторная работа</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Описание эндпоинтов</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#school">School</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#schedule">Schedule</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#students">Students</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#teachers">Teachers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#rooms">Rooms</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#subjects">Subjects</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#report">Report</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#auth">Auth</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-programming</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3 lab</li>
+      <li class="breadcrumb-item active">Лабораторная работа</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="3-django-rest-api">Лабораторная работа 3. Реализация серверной части на django rest. Документирование API</h1>
+<h2 id="_1">Описание эндпоинтов</h2>
+<h3 id="school">School</h3>
+<h4 id="schedule">Schedule</h4>
+<p>1 <strong>Получить расписание</strong></p>
+<pre><code>GET /school/schedules
+</code></pre>
+<p>2 <strong>Добавить расписание</strong></p>
+<pre><code>POST /school/schedules
+</code></pre>
+<p>3 <strong>Получить определённое расписание</strong></p>
+<pre><code>GET /school/schedules/{id}
+</code></pre>
+<p>4 <strong>Удалить расписание</strong></p>
+<pre><code>DELETE /school/schedules/{id}/delete
+</code></pre>
+<p>5 <strong>Изменить расписание</strong></p>
+<pre><code>UPDATE /school/schedules/{id}/update
+</code></pre>
+<p>6 <strong>Изменить расписание</strong></p>
+<pre><code>PATCH  /school/schedules/{id}/update
+</code></pre>
+<p>7 <strong>Получить предмет, который будет преподаваться в определённом классе, в определённый день недели, на определённом уроке.</strong></p>
+<pre><code>GET /school/schedule/subject
+</code></pre>
+<h4 id="students">Students</h4>
+<p>8 <strong>Получить список учеников</strong></p>
+<pre><code>GET /school/students
+</code></pre>
+<p>9 <strong>Добавить ученика</strong></p>
+<pre><code>POST  /school/students
+</code></pre>
+<p>10 <strong>Получить подробную информацию об ученике</strong></p>
+<pre><code>GET /school/students/{id}
+</code></pre>
+<p>11 <strong>Удалить ученика</strong></p>
+<pre><code>DELETE /school/students/{id}/delete
+</code></pre>
+<p>12 <strong>Изменить данные об ученике</strong></p>
+<pre><code>UPDATE /school/students/{id}/update
+</code></pre>
+<p>13 <strong>Изменить данные об ученике</strong></p>
+<pre><code>PATCH /school/students/{id}/update
+</code></pre>
+<p>14 <strong>Получить информацию о количестве мальчиков и девочек в каждом классе</strong></p>
+<pre><code>GET /school/students/gender
+</code></pre>
+<h4 id="teachers">Teachers</h4>
+<p>15 <strong>Получить список учителей</strong></p>
+<pre><code>GET /school/teachers
+</code></pre>
+<p>16 <strong>Добавить учителя</strong></p>
+<pre><code>POST /school/teachers
+</code></pre>
+<p>17 <strong>Удалить учителя</strong></p>
+<pre><code>DELETE /school/teachers/{id}/delete
+</code></pre>
+<p>18 <strong>Получить подробную информацию об учителе</strong></p>
+<pre><code>GET /school/teachers/{id}
+</code></pre>
+<p>19 <strong>Изменить данные об учителе</strong></p>
+<pre><code>UPDATE /school/teachers/{id}/update
+</code></pre>
+<p>20 <strong>Изменить данные об учителе</strong></p>
+<pre><code>PATCH /school/teachers/{id}/update
+</code></pre>
+<p>21 <strong>Получить список классных руководителей</strong></p>
+<pre><code>GET /school/teachers/home
+</code></pre>
+<p>22 <strong>Добавить классного руководителя</strong></p>
+<pre><code>POST /school/teachers/home
+</code></pre>
+<p>23 <strong>Получить список учителей, преподающих те же предметы, что и учитель, ведущий
+информатику в заданном классе.</strong></p>
+<pre><code>GET /school/teachers/colleagues
+</code></pre>
+<h4 id="rooms">Rooms</h4>
+<p>24  <strong>Получить количество аудиторий для базовых и профильных дисциплин</strong></p>
+<pre><code>GET /school/rooms/profile_base
+</code></pre>
+<h4 id="subjects">Subjects</h4>
+<p>25 <strong>Получить список предметов и количество учителей, которые преподают дисциплину</strong></p>
+<pre><code>GET /school/subjects/teachers_count
+</code></pre>
+<h4 id="report">Report</h4>
+<p>26 <strong>Получить отчёт об определённом классе</strong></p>
+<pre><code>GET /school/report
+</code></pre>
+<h3 id="auth">Auth</h3>
+<p>27 <strong>Получить токен юзера по паролю и никнейму</strong></p>
+<pre><code>POST /auth/token/login
+</code></pre>
+<p>28 <strong>Вывести информацию о пользователе</strong></p>
+<pre><code>GET /auth/users/me
+</code></pre>
+<p>29 <strong>Зарегистрировать пользователя</strong></p>
+<pre><code>POST /auth/users
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../pr/pr1/" class="btn btn-neutral float-left" title="Практическая работа"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../pr/pr1/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
