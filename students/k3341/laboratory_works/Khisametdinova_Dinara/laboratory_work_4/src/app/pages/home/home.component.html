@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <h1>Personal Dashboard</h1>
+    <div *ngIf="currentUser; else guestTemplate" class="mt-4">
+      <h2>Welcome, {{ currentUser.first_name }} {{ currentUser.last_name }}!</h2>
+      <p><strong>Role:</strong> {{ currentUser.role }}</p>
+      <p><strong>Email:</strong> {{ currentUser.email }}</p>
+  
+      <div *ngIf="currentUser.role === 'teacher'" class="mt-4">
+        <h3>Your Uploaded Tasks</h3>
+        <select
+          class="form-select mt-2"
+          #taskSelect
+          (change)="loadTaskDetails(+taskSelect.value)"
+        >
+          <option *ngFor="let task of uploadedTasks" [value]="task.id">
+            {{ task.title }}
+          </option>
+        </select>
+      </div>
+  
+      <div *ngIf="currentUser.role === 'student'" class="mt-4">
+        <h3>Your Submissions</h3>
+        <select
+          class="form-select mt-2"
+          #submissionSelect
+          (change)="loadSubmissionDetails(+submissionSelect.value)"
+        >
+          <option *ngFor="let submission of uploadedSubmissions" [value]="submission.id">
+            {{ submission.title }}
+          </option>
+        </select>
+  
+        <h3>Your Reviews</h3>
+        <select
+          class="form-select mt-2"
+          #reviewSelect
+          (change)="loadReviewDetails(+reviewSelect.value)"
+        >
+          <option *ngFor="let review of reviews" [value]="review.id">
+            Criterion: {{ review.criterion }} - Score: {{ review.score }}
+          </option>
+        </select>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedDetails" class="mt-4">
+      <h4>Details</h4>
+      <pre>{{ selectedDetails | json }}</pre>
+    </div>
+  
+    <ng-template #guestTemplate>
+      <h2>Welcome, Guest!</h2>
+      <p>Please log in to access your personal dashboard.</p>
+    </ng-template>
+  </div>
+  

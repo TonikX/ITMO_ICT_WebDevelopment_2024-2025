@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Task List</h1>
+  <input
+    type="text"
+    class="form-control mb-3"
+    [(ngModel)]="filter"
+    placeholder="Search tasks..."
+  />
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of filteredTasks">
+      {{ task.title }}
+    </li>
+  </ul>
+</div>

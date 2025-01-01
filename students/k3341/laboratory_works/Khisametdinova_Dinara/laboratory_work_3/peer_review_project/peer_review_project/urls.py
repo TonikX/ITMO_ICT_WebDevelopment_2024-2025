@@ -47,7 +47,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('peer/', include('peer_review_app.urls')),
     path('api-token-auth/', obtain_auth_token),
-    re_path(r'^auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('doc/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('doc/redoc', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),

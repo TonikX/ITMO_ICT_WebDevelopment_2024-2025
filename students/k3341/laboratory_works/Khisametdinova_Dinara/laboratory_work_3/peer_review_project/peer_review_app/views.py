@@ -47,7 +47,7 @@ class UserCreateAPIView(CreateAPIView):
 class TaskListCreateView(generics.ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated, IsTeacher]
+    permission_classes = [IsTeacher]
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)

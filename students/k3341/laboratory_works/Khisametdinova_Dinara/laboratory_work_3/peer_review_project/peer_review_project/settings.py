@@ -41,18 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'rest_framework',
     'peer_review_app',
-    'djoser',
     'corsheaders',
     'rest_framework.authtoken',
-    'drf_yasg'
+    'djoser',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -61,7 +61,14 @@ MIDDLEWARE = [
 CORS_ALLOW_ALL_ORIGINS = True
 
 SWAGGER_SETTINGS = {
-    "DEFAULT_INFO": "peer_review_project.urls.swagger_info", 
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+        },
+    },
 }
 
 ROOT_URLCONF = 'peer_review_project.urls'

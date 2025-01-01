@@ -28,7 +28,7 @@ class Option(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='options')
 
 class Submission(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='submissions')  # Basic student отправляет
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='submissions')
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='submissions')
     content = models.TextField()
     submitted_at = models.DateTimeField(auto_now_add=True)
@@ -41,8 +41,8 @@ class Review(models.Model):
         ('4', 'Very Good'),
         ('5', 'Excellent'),
     ]
-    submission = models.ForeignKey(Submission, on_delete=models.CASCADE, related_name='reviews')  # Ревью к submission
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')  # Reviewer
+    submission = models.ForeignKey(Submission, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
     criterion = models.ForeignKey(Criterion, on_delete=models.CASCADE, related_name='reviews')
     comments = models.TextField()
     score = models.CharField(max_length=1, choices=SCORE_CHOICES)

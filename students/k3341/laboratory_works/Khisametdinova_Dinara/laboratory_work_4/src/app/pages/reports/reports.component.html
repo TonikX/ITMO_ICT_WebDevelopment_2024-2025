@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h1>Report for {{ currentUser.first_name }} {{ currentUser.last_name }}</h1>
+    <p>Your role: <strong>{{ currentUser.role }}</strong></p>
+    <hr />
+  
+    <div *ngIf="tasksUploaded.length && currentUser.role === 'teacher'">
+      <h2>Tasks You Uploaded:</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasksUploaded">
+          {{ task.title }} - {{ task.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="tasksReviewed.length && currentUser.role === 'student'">
+      <h2>Tasks You Reviewed:</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasksReviewed">
+          {{ task.title }} - {{ task.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="averageScoreForUser !== null" class="mt-4">
+      <h2>Your Average Score:</h2>
+      <p><strong>{{ averageScoreForUser }}</strong></p>
+    </div>
+  </div>
+  

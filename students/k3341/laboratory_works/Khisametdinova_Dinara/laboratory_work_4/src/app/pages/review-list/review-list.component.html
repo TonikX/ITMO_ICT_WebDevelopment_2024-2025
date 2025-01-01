@@ -1,0 +1,12 @@
+<div class="container">
+    <h2>Reviews</h2>
+    <div *ngFor="let review of reviews" class="card mb-2">
+      <div class="card-body">
+        <h5>Criterion: {{ review.criterion }}</h5>
+        <p>Score: {{ review.score }}</p>
+        <p>Comments: {{ review.comments }}</p>
+        <p>Reviewer: {{ review.user }}</p>
+      </div>
+    </div>
+  </div>
+  

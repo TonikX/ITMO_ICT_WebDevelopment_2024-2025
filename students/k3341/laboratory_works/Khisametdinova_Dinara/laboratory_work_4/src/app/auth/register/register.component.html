@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card p-4 shadow-lg" style="width: 400px;">
+      <h2 class="text-center mb-4">Register</h2>
+      <form (ngSubmit)="register()" [class.was-validated]="submitted" novalidate>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="Username"
+            [(ngModel)]="user.username"
+            required
+          />
+          <label for="username">Username</label>
+          <div class="invalid-feedback">Please enter a username.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Email"
+            [(ngModel)]="user.email"
+            required
+          />
+          <label for="email">Email</label>
+          <div class="invalid-feedback">Please enter a valid email.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            [(ngModel)]="user.password"
+            required
+          />
+          <label for="password">Password</label>
+          <div class="invalid-feedback">Please enter a password.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            id="re_password"
+            name="re_password"
+            class="form-control"
+            placeholder="Confirm Password"
+            [(ngModel)]="user.re_password"
+            required
+          />
+          <label for="re_password">Confirm Password</label>
+          <div class="invalid-feedback">Passwords must match.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <select
+            id="role"
+            name="role"
+            class="form-select"
+            [(ngModel)]="user.role"
+            required
+          >
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+          </select>
+          <label for="role">Role</label>
+          <div class="invalid-feedback">Please select a role.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            class="form-control"
+            placeholder="First Name"
+            [(ngModel)]="user.first_name"
+            required
+          />
+          <label for="first_name">First Name</label>
+          <div class="invalid-feedback">Please enter your first name.</div>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            class="form-control"
+            placeholder="Last Name"
+            [(ngModel)]="user.last_name"
+            required
+          />
+          <label for="last_name">Last Name</label>
+          <div class="invalid-feedback">Please enter your last name.</div>
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Register</button>
+      </form>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </div>
+  </div>
+  

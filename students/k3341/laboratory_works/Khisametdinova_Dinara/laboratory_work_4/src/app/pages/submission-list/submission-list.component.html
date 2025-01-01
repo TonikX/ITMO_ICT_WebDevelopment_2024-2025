@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Submissions</h2>
+    <div *ngFor="let submission of submissions" class="card mb-2">
+      <div class="card-body">
+        <h5>{{ submission.content }}</h5>
+        <p>Task: {{ submission.task }}</p>
+        <p>User: {{ submission.user }}</p>
+      </div>
+    </div>
+  </div>
+  
