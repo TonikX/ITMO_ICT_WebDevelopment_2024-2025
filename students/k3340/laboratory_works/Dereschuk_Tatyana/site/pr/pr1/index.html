@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Практическая работа - WEB-Labs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041f\u0440\u0430\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430";
+        var mkdocs_page_input_path = "pr\\pr1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> WEB-Labs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr1/task1/">Task 1</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr1/task2/">Task 2</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr1/task3/">Task 3</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr1/task4/">Task 4</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr1/task5/">Task 5</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr2/lab2/">Лабораторная работа</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Практическая работа</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">Задание 1</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">Задание 2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">Задание 3</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../lr3/lab3/">Лабораторная работа</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">WEB-Labs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3 lab</li>
+      <li class="breadcrumb-item active">Практическая работа</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="31">Практическое задание 3.1</h1>
+<h2 id="1">Задание 1</h2>
+<p>Напишите запрос на создание 6-7 новых автовладельцев и 5-6 автомобилей, каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей. Задание можете выполнить либо в интерактивном режиме интерпретатора, либо в отдельном python-файле. Результатом должны стать запросы и отображение созданных объектов. </p>
+<pre><code class="language-python">from project_second_app.models import *
+car = Car.objects.create(state_number='A000AA199', brand='BMW', model='X5')
+car = Car.objects.create(state_number='A001AA199', brand='BMW', model='X4')
+car = Car.objects.create(state_number='A000AA198', brand='BMW', model='X5')
+car = Car.objects.create(state_number='A004AA197', brand='BMW', model='M5')
+car = Car.objects.create(state_number='A006AA197', brand='Audi', model='A80')
+car = Car.objects.create(state_number='A007AA197', brand='Audi', model='S6')
+owner = Owner.objects.create(firstName=&quot;First&quot;, lastName=&quot;Firstov&quot;)
+owner = Owner.objects.create(firstName=&quot;Second&quot;, lastName=&quot;Seconod&quot;)
+owner = Owner.objects.create(firstName=&quot;Third&quot;, lastName=&quot;Thirdov&quot;)
+owner = Owner.objects.create(firstName=&quot;Fourth&quot;, lastName=&quot;Fourthov&quot;)
+owner = Owner.objects.create(firstName=&quot;Fith&quot;, lastName=&quot;Fithov&quot;)
+owner = Owner.objects.create(firstName=&quot;Sixth&quot;, lastName=&quot;Sixthov&quot;)
+car = Car.objects.get(state_number='A000AA199')
+owner = Owner.objects.get(firstName='First')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2023-11-06', date_end='2024-03-12')
+owner = Owner.objects.get(firstName='Second')
+car = Car.objects.get(state_number='A001AA199')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2023-12-06', date_end='2024-05-12')
+car = Car.objects.get(state_number='A000AA198')
+owner = Owner.objects.get(firstName='Third')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2024-01-15', date_end='2024-05-12')
+car = Car.objects.get(state_number='A004AA197')
+owner = Owner.objects.get(firstName='Fourth')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2024-03-15', date_end='2024-04-13')
+car = Car.objects.get(state_number='A006AA197')
+owner = Owner.objects.get(firstName='Fith')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2024-01-25')
+car = Car.objects.get(state_number='A007AA197')
+owner = Owner.objects.get(firstName='Sixth')
+ownership = Ownership.objects.create(owner_id=owner, car_id=car, date_start='2024-06-21')
+
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111111', type='b', date_of_issue='2026-12-13')
+owner = Owner.objects.get(firstName='Fith')
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111112', type='b', date_of_issue='2030-05-13')
+owner = Owner.objects.get(firstName='Fourth')
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111113', type='b', date_of_issue='2032-05-13')
+owner = Owner.objects.get(firstName='Third')
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111114', type='b', date_of_issue='2033-02-25')
+owner = Owner.objects.get(firstName='Second')
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111115', type='b', date_of_issue='2025-02-25')
+owner = Owner.objects.get(firstName='First')
+license = DriverLicense.objects.create(owner_id=owner, license_number='1111111116', type='b', date_of_issue='2025-02-25')
+</code></pre>
+<p>Результаты:
+<img alt="" src="../images/1.png" />
+<img alt="" src="../images/2.png" /></p>
+<h2 id="2">Задание 2</h2>
+<p>По созданным в пр.1 данным написать следующие запросы на фильтрацию:</p>
+<ul>
+<li>Где это необходимо, добавьте related_name к полям модели</li>
+<li>Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)</li>
+<li>Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)</li>
+<li>Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)</li>
+<li>Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)</li>
+<li>Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)</li>
+</ul>
+<pre><code class="language-python">Car.objects.filter(brand='BMW')
+Owner.objects.filter(firstName='First')
+owner_id = Owner.objects.get(firstName='First').id
+license = DriverLicense.objects.get(owner_id=1)
+owners = Owner.objects.filter(car_)
+owners = Owner.objects.filter(owner_car__car__color__contains='Red')
+owners = Owner.objects.filter(owner_car__date_start__contains='2024')
+</code></pre>
+<p>Результаты:
+<img alt="" src="../images/3.png" /></p>
+<h2 id="3">Задание 3</h2>
+<ul>
+<li>Вывод даты выдачи самого старшего водительского удостоверения</li>
+<li>Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе</li>
+<li>Выведите количество машин для каждого водителя</li>
+<li>Подсчитайте количество машин каждой марки</li>
+<li>Отсортируйте всех автовладельцев по дате выдачи удостоверения </li>
+</ul>
+<pre><code class="language-python">DriverLicense.objects.aggregate(Min(&quot;date_of_issue&quot;))
+Ownership.objects.aggregate(Max(&quot;date_start&quot;))
+Ownership.objects.values(&quot;owner&quot;).annotate(Count(&quot;id&quot;))
+Car.objects.values(&quot;brand&quot;).annotate(Count(&quot;id&quot;))
+from django.db.models import F
+Owner.objects.annotate(issue_date=F('driverlicense__date_of_issue')).distinct().order_by('issue_date')
+</code></pre>
+<p>Результаты:
+<img alt="" src="../images/4.png" />
+<img alt="" src="../images/5.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../lr2/lab2/" class="btn btn-neutral float-left" title="Лабораторная работа"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../lr3/lab3/" class="btn btn-neutral float-right" title="Лабораторная работа">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../../lr2/lab2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../lr3/lab3/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
