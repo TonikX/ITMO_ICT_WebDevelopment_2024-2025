@@ -370,6 +370,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      index.html
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание работы кода
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -403,6 +445,26 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr2/lr2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab2
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -460,6 +522,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      index.html
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание работы кода
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -492,6 +596,63 @@
 <li>Запуск клиента</li>
 </ol>
 <p>По  ссылке - http://127.0.0.1:8080/ - будет отображаться странца из index.html</p>
+<h2 id="_4">Код</h2>
+<h3 id="indexhtml">index.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Простой сервер на Python&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Привет! Task-3.&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="serverpy">server.py</h3>
+<pre><code class="language-python">import socket
+
+HOST = 'localhost'
+PORT = 8080
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.bind((HOST, PORT))
+
+server_socket.listen(5)
+print(f&quot;HTTP сервер запущен на {HOST}:{PORT}...&quot;)
+
+while True:
+
+    client_connection, client_address = server_socket.accept()
+    print(f'Подключение от {client_address}')
+
+    request = client_connection.recv(1024).decode()
+    print(f'Запрос клиента:\n{request}')
+
+    with open('index.html', 'r') as file:
+        html_content = file.read()
+
+    http_response = (
+        &quot;HTTP/1.1 200 OK\r\n&quot;
+        &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
+        f&quot;Content-Length: {len(html_content)}\r\n&quot;
+        &quot;Connection: close\r\n&quot;
+        &quot;\r\n&quot;
+        + html_content
+    )
+
+    client_connection.sendall(http_response.encode())
+
+    client_connection.close()
+</code></pre>
+<h2 id="_5">Описание работы кода</h2>
+<ul>
+<li>Создается TCP-сокет для прослушивания входящих соединений на localhost и порту 8080</li>
+<li>При подключении клиент отправляет HTTP-запрос, который сервер принимает и выводит в консоль для анализа</li>
+<li>Сервер открывает index.html, загружает его содержимое и формирует HTTP-ответ с кодом 200 OK</li>
+<li>Сформированный HTTP-ответ с HTML-контентом отправляется клиенту</li>
+<li>После отправки ответа соединение с клиентом закрывается</li>
+</ul>
 
 
 

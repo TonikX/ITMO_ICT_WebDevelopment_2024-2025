@@ -328,6 +328,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clientpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      client.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -407,6 +440,26 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr2/lr2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -460,6 +513,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clientpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      client.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -493,6 +579,44 @@
 <li>Запуск клиента</li>
 </ol>
 <pre><code class="language-python">python3 client.py
+</code></pre>
+<h2 id="_4">Код</h2>
+<h3 id="clientpy">client.py</h3>
+<pre><code class="language-python">import socket
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+client_socket.connect(('localhost', 8080))
+
+client_socket.sendall(f'Hello, server'.encode('utf-8'))
+
+response = client_socket.recv(1024)
+print(f'Ответ от сервера: {response.decode()}')
+
+client_socket.close()
+</code></pre>
+<h3 id="serverpy">server.py</h3>
+<pre><code class="language-python">import socket
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.bind(('localhost', 8080))
+
+server_socket.listen(1)
+print(&quot;Сервер запущен на порту 8080...&quot;)
+
+while True:
+
+    client_connection, client_address = server_socket.accept()
+    print(f'Подключение от {client_address}')
+
+    request = client_connection.recv(1024).decode()
+    print(f'Запрос от клиента: {request}')
+
+    response = 'Hello, client'
+    client_connection.sendall(response.encode())
+
+    client_connection.close()
 </code></pre>
 
 

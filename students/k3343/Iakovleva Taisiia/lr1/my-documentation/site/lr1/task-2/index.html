@@ -349,6 +349,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clientpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      client.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание работы кода
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание работы кода">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Клиентская часть
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Серверная часть
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -407,6 +473,26 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lr2/lr2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -460,6 +546,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Код
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Код">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clientpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      client.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serverpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      server.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание работы кода
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание работы кода">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Клиентская часть
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Серверная часть
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -494,6 +646,65 @@
 </ol>
 <pre><code class="language-python">python3 client.py
 </code></pre>
+<h2 id="_4">Код</h2>
+<h3 id="clientpy">client.py</h3>
+<pre><code class="language-python">import socket
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+client_socket.connect(('localhost', 8080))
+
+a = input(&quot;Введите длину стороны a: &quot;)
+b = input(&quot;Введите длину стороны b: &quot;)
+
+client_socket.sendall(f&quot;{a} {b}&quot;.encode())
+
+response = client_socket.recv(1024)
+print(f'Ответ от сервера: {response.decode()}')
+
+client_socket.close()
+</code></pre>
+<h3 id="serverpy">server.py</h3>
+<pre><code class="language-python">import socket
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.bind(('localhost', 8080))
+
+server_socket.listen(1)
+print(&quot;Сервер запущен на порту 8080...&quot;)
+
+while True:
+
+    client_connection, client_address = server_socket.accept()
+    print(f'Подключение от {client_address}')
+
+    request = client_connection.recv(1024).decode()
+    print(f'Запрос от клиента: {request}')
+
+    a, b = map(float, request.split())
+
+    c = (a ** 2 + b ** 2) ** 0.5
+    response = f&quot;Гипотенуза: {c:.2f}&quot;
+    client_connection.sendall(response.encode())
+
+    client_connection.close()
+</code></pre>
+<h2 id="_5">Описание работы кода</h2>
+<h3 id="_6">Клиентская часть</h3>
+<ul>
+<li>Создается TCP-сокет, который подключается к серверу на адресе localhost и порту 8080</li>
+<li>Пользователь вводит значения сторон a и b, которые отправляются серверу</li>
+<li>Получает от сервера результат — вычисленное значение гипотенузы — и выводит его на экран</li>
+<li>Закрывает соединение после завершения взаимодействия</li>
+</ul>
+<h3 id="_7">Серверная часть</h3>
+<ul>
+<li>Создается TCP-сокет, который привязывается к адресу localhost и порту 8080 и начинает прослушивание входящих соединений</li>
+<li>Сервер принимает соединение, получает данные от клиента и выводит их на экран</li>
+<li>Выполняет расчет гипотенузы и отправляет результат обратно клиенту</li>
+<li>Закрывает соединение с клиентом после отправки ответа</li>
+</ul>
 
 
 
