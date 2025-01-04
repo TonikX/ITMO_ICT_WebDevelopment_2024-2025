@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new grade</title>
+</head>
+<body>
+<h1>Add new grade</h1>
+<form method="POST" action="/submit">
+    <label>Discipline: <input type="text" name="discipline" required></label><br><br>
+    <label>Grade: <input type="number" name="grade" min="1" max="10" required></label><br><br>
+    <input type="submit" value="Send">
+</form>
+<br>
+<a href="/grades">View all grades</a>
+</body>
+</html>
