@@ -12,7 +12,7 @@ class Pet(models.Model):
     )
     sex = models.CharField(choices=sex_types, max_length=1)
     name = models.CharField(max_length=100)
-    birtday = models.DateField()
+    birtday = models.DateField(null=True, blank=True)
 
     animal_type = models.CharField(max_length=100)
     is_buy = models.BooleanField()
@@ -97,7 +97,7 @@ class Habited(models.Model):
     name = models.CharField(max_length=100)
     continent = models.CharField(max_length=100)
     country = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
 
 
 class Diet(models.Model):

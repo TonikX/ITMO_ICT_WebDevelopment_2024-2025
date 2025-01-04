@@ -2,7 +2,7 @@ from django.db.models import Count, Sum, Value
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 from .models import *
 from .serializers import *
 
@@ -49,6 +49,15 @@ class CreatePetAPIView(CreateAPIView):
     queryset = Pet.objects.all()
 
 
+class DeletePetAPIView(DestroyAPIView):
+    serializer_class = PetSerializer
+    queryset = Pet.objects.all()
+
+
+class UpdatePetAPIView(UpdateAPIView):
+    serializer_class = PetCreateSerializer
+    queryset = Pet.objects.all()
+
 class GetReportOutRentAPIView(APIView):
     def get(self, request):
         pets_outrent_type = Pet.objects.filter(is_rented="out").values("animal_type").annotate(count_type=Count("number"), costs_type=Sum("rent_pet__price"))
@@ -61,3 +70,46 @@ class GetReportOutRentAPIView(APIView):
         serializer3 = RentOutAllPetSummarySerializer(pets_outrent_all)
 
         return Response({"RentedPets1": serializer1.data, "RentedPets2": serializer2.data, "RentedPets3": serializer3.data})
+    
+
+class ListDietAPIView(ListAPIView):
+    serializer_class = DietSerializer
+    queryset = Diet.objects.all()
+
+class CreateDietAPIView(CreateAPIView):
+    serializer_class = DietCudSerializer
+    queryset = Diet.objects.all()
+
+
+class DeleteDietAPIView(DestroyAPIView):
+    serializer_class = DietCudSerializer
+    queryset = Diet.objects.all()
+
+
+class UpdateDietAPIView(UpdateAPIView):
+    serializer_class = DietCudSerializer
+    queryset = Diet.objects.all()
+
+
+class ListHabitedAPIView(ListAPIView):
+    serializer_class = HabitedSerializer
+    queryset = Habited.objects.all()
+
+class CreateHabitedAPIView(CreateAPIView):
+    serializer_class = HabitedSerializer
+    queryset = Habited.objects.all()
+
+
+class DeleteHabitedAPIView(DestroyAPIView):
+    serializer_class = HabitedSerializer
+    queryset = Habited.objects.all()
+
+
+class UpdateHabitedAPIView(UpdateAPIView):
+    serializer_class = HabitedSerializer
+    queryset = Habited.objects.all()
+
+
+class ListProductAPIView(ListAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()

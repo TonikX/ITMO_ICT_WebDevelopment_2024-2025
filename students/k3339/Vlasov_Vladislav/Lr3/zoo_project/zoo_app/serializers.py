@@ -100,6 +100,14 @@ class DietSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class DietCudSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Diet
+        fields = "__all__"
+
+
+
 class PetSerializer(serializers.ModelSerializer):
     
     sex = serializers.CharField(source="get_sex_display", read_only=True)
@@ -128,35 +136,56 @@ class PetCreateSerializer(serializers.ModelSerializer):
         model = Pet
         fields =  ["number", "name", "sex", "animal_type", "note_reptile_pet", "note_bird_pet", "birtday", "is_buy", "buy_pet", "is_rented", "rent_pet", "valliere", "habited", "diet"]
 
+    def my_validate(self, validated_data, buy_data, rent_data, note_reptile_data, note_bird_data, is_rented):
+        if validated_data["is_buy"] == True:
+            if buy_data is None:
+                raise serializers.ValidationError("У купленных питомцев должна быть информация о покупке")
+        else:
+            if buy_data is not None:
+                raise serializers.ValidationError("У купленных питомцев не должно быть информации о покупке")
+
+        if is_rented is not None:
+            if rent_data is None:
+                raise serializers.ValidationError("У питомцев в аренде должна быть информация о аренде")
+        else:
+            if rent_data is not None:
+                raise serializers.ValidationError("У питомцев не в аренде не должно быть информации о аренде")
+
+        if validated_data["animal_type"] == "reptile":
+            if note_reptile_data is None:
+                raise serializers.ValidationError("Рептилии должны иметь справку")
+            
+            if note_bird_data is not None:
+                raise serializers.ValidationError("Рептилии не должы иметь справку птиц")
+        
+        elif validated_data["animal_type"] == "bird":
+            if note_bird_data is None:
+                raise serializers.ValidationError("Птицы должы иметь справку")
+            
+            if note_reptile_data is not None:
+                raise serializers.ValidationError("Птицы не должны иметь справку рептилий")
+        
+        else:
+            if note_bird_data is not None or note_reptile_data is not None:
+                raise serializers.ValidationError("Эти животные не должы иметь справку")
+
     def create(self, validated_data):
 
         buy_data = validated_data.pop("buy_pet", None)
         rent_data = validated_data.pop("rent_pet", None)
         note_reptile_data = validated_data.pop("note_reptile_pet", None)
         note_bird_data = validated_data.pop("note_bird_pet", None)
+        is_rented = validated_data.pop("is_rented", None)
 
-        if validated_data["is_buy"] == True:
-            if buy_data is None:
-                raise serializers.ValidationError("У купленных питомцев должна быть информация о покупке")
-
-        if validated_data["is_rented"] is not None:
-            if rent_data is None:
-                raise serializers.ValidationError("У питомцев в аренде должна быть информация о аренде")
-
-        if validated_data["animal_type"] == "reptile":
-            if note_reptile_data is None:
-                raise serializers.ValidationError("Рептилии должны иметь справку")
-        
-        if validated_data["animal_type"] == "bird":
-            if note_bird_data is None:
-                raise serializers.ValidationError("Птицы должы иметь справку")
+        self.my_validate(validated_data, buy_data, rent_data, note_reptile_data, note_bird_data, is_rented)
 
         pet = Pet.objects.create(**validated_data)
+        pet.is_rented = is_rented
 
         if validated_data["is_buy"] == True:
             Buy.objects.create(pet=pet, **buy_data)
 
-        if validated_data["is_rented"] is not None:
+        if is_rented is not None:
             Rent.objects.create(pet=pet, **rent_data)
 
         if validated_data["animal_type"] == "reptile":
@@ -166,3 +195,42 @@ class PetCreateSerializer(serializers.ModelSerializer):
             NoteBird.objects.create(pet=pet, **note_bird_data)
 
         return pet
+    
+    def update(self, instance, validated_data):
+
+        buy_data = validated_data.pop("buy_pet", None)
+        rent_data = validated_data.pop("rent_pet", None)
+        note_reptile_data = validated_data.pop("note_reptile_pet", None)
+        note_bird_data = validated_data.pop("note_bird_pet", None)
+        is_rented = validated_data.pop("is_rented", None)
+
+        self.my_validate(validated_data, buy_data, rent_data, note_reptile_data, note_bird_data, is_rented)
+
+        for attr, value in validated_data.items():
+            if attr not in ["note_bird_pet", "note_reptile_pet", "buy_pet", "rent_pet"]:
+                setattr(instance, attr, value)
+        
+        instance.is_rented = is_rented
+        instance.save()
+
+        if validated_data["is_buy"] == True:
+            for attr, value in buy_data.items():
+                setattr(instance.buy_pet, attr, value)
+            instance.buy_pet.save()
+
+        if is_rented is not None:
+            for attr, value in rent_data.items():
+                setattr(instance.rent_pet, attr, value)
+            instance.rent_pet.save()
+
+        if validated_data["animal_type"] == "reptile":
+            for attr, value in note_reptile_data.items():
+                setattr(instance.note_reptile_pet, attr, value)
+            instance.note_reptile_pet.save()
+        
+        if validated_data["animal_type"] == "bird":
+            for attr, value in note_bird_data.items():
+                setattr(instance.note_bird_pet, attr, value)
+            instance.note_bird_pet.save()
+
+        return instance
