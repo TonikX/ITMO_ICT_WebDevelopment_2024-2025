@@ -185,4 +185,4 @@ class Report(models.Model):
 ![](img2.jpg) 
 
 Отчет за квартал:
-![](img3.jpg)
+![](img3![img.png](img.png).jpg)
