@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="edit-registration">
+    <h2>Edit Registration for "{{ conference.title }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Save Changes</button>
+    </form>
+</main>
+
+<style>
+    .edit-registration {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #d7ccc8;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-registration h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    .edit-registration form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .submit-button {
+        background-color: #d7ccc8;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        text-align: center;
+    }
+
+    .submit-button:hover {
+        background-color: #c7b3a0;
+    }
+</style>
+{% endblock %}

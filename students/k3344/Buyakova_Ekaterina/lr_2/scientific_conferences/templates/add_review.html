@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="review-form">
+    <h2>Add Review for "{{ conference.title }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Submit Review</button>
+    </form>
+</main>
+
+<style>
+    .review-form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #d7ccc8;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .review-form h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .review-form form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .submit-button {
+        background-color: #d7ccc8;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: #c7b3a0;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="registration-page">
+    <h1>Sign up for Conference"{{ conference.title }}"</h1>
+    <div class="registration-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Sign up</button>
+        </form>
+    </div>
+</main>
+
+<style>
+    .registration-page {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #d7ccc8;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .registration-form {
+        text-align: left;
+    }
+
+    .submit-button {
+        background-color: #d7ccc8;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .submit-button:hover {
+        background-color: #c0a68d;
+    }
+</style>
+{% endblock %}
