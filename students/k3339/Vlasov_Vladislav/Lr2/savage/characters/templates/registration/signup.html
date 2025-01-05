@@ -1,0 +1,23 @@
+
+<!-- accounts/templates/accounts/register.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    <h2>Регистрация</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <form method="get" action="{% url 'login' %}", style="padding-top: 15px;">
+        <button type="submit">Авторизироваться</button>
+    </form>
+</body>
+</html>

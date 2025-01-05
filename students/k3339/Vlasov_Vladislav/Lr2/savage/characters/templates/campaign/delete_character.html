@@ -1,0 +1,27 @@
+<!-- publisher_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Удалить персонажа</title>
+</head>
+
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <p>Выхотите удалить этого персонажа? "{{ object }}"<br/>
+        Если вы это сделаете, он навсегда покинет кампанию и никогда не вернётся.<br/>
+        Вы сможете создать только его близнеца!
+    </p>
+    <input type="submit" value="Отправить в небытие!">
+  </form>
+  <br>
+  <br>
+  <form method="get" action="{% url 'characters_list' %}">
+    {% csrf_token %}
+    <button type="submit">Оставить</button>
+  </form>
+</body>
+</html>

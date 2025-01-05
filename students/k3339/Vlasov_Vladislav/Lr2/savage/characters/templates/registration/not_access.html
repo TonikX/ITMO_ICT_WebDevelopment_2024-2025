@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доступ запрещен</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #c0392b; /* Цвет заголовка */
+        }
+        a {
+            text-decoration: none;
+            color: #2980b9; /* Цвет ссылки */
+        }
+        a:hover {
+            text-decoration: underline; /* Подчёркивание при наведении */
+        }
+    </style>
+</head>
+<body>
+    <h1>У вас нет доступа</h1>
+    <p>К сожалению, вы не имеете прав для просмотра этой страницы.</p>
+    <p>Вы можете вернуться на <a href="{% url 'characters_list' %}">главную страницу</a>.</p>
+</body>
+</html>
