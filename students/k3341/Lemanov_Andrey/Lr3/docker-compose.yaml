@@ -1,0 +1,8 @@
+version: "3.4"
+
+services:
+  server:
+    container_name: "peer-review"
+    build: .
+    ports:
+      - "8080:8080"

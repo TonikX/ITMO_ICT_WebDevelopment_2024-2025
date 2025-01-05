@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homeworks Board</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
+  </head>
+  <body class="bg-gray-900 text-white">
+    <nav class="bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+
+          <div class="flex-shrink-0">
+            <a href="/" class="text-2xl font-bold text-white-400"
+              >Homework task tracker</a
+            >
+          </div>
+
+          <div class="md:hidden">
+            <button
+              type="button"
+              class="text-gray-400 hover:text-white focus:outline-none focus:text-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Открыть главное меню</span>
+
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 8h16M4 16h16"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="hidden md:flex md:items-center">
+            <div class="ml-10 flex items-baseline space-x-4">
+              {% if student == null %}
+              <a
+                href="/signup"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                >Создать аккаунт</a
+              >
+              <a
+                href="/signin"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                >Войти в аккаунт</a
+              >
+              {% else %}
+              <a
+                href="/tasks"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                >Домашние задания</a
+              >
+              <a
+                href="/grades"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+                >Журнал класса</a
+              >
+              <a
+                href="/logout"
+                class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 hover:bg-red-500"
+                >Выйти из аккаунта</a
+              >
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden md:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          {% if student == null %}
+          <a
+            href="/signup"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            >Создать аккаунт</a
+          >
+          <a
+            href="/signin"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            >Войти в аккаунт</a
+          >
+          {% else %}
+          <a
+            href="/tasks"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            >Домашние задания</a
+          >
+          <a
+            href="/grades"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            >Журнал класса</a
+          >
+          <a
+            href="/logout"
+            class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700"
+            >Выйти из аккаунта</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+      {% block content %} {% endblock %}
+    </div>
+
+
+    <script>
+      const menuButton = document.querySelector(
+        'nav button[aria-controls="mobile-menu"]'
+      );
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuButton.addEventListener("click", () => {
+        const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", !isExpanded);
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
