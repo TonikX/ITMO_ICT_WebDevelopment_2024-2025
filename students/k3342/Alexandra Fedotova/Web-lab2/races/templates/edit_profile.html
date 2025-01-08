@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование профиля</title>
+    <style>
+        /* Стили, как в вашем шаблоне личного кабинета */
+        body {
+            background-color: #333;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #333 20%, #222 80%);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 600px; /* Уменьшено для страницы редактирования */
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #e10600;
+            text-align: center;
+        }
+
+        .form-section label {
+            color: #e10600;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form-section input, .form-section select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .form-section button {
+            background-color: #e10600;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: #ff1e00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <h3>Редактирование профиля</h3>
+            <div class="form-section">
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="full_name">Имя:</label>
+                    <input type="text" name="full_name" id="full_name" value="{{ participant.full_name }}" required>
+
+                    <label for="team">Команда:</label>
+                    <select name="team" id="team" required>
+                        <option value="">Выберите команду</option>
+                        {% for team in teams %}
+                            <option value="{{ team.id }}" {% if team.id == participant.team.id %}selected{% endif %}>
+                                {{ team.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="car_description">Описание автомобиля:</label>
+                    <input type="text" name="car_description" id="car_description" value="{{ participant.car_description }}" required>
+
+                    <label for="participant_description">Описание участника:</label>
+                    <input type="text" name="participant_description" id="participant_description" value="{{ participant.participant_description }}" required>
+                    
+                    <label for="race_class">Класс гонщика:</label>
+                    <input type="text" name="race_class" id="race_class" value="{{ participant.race_class }}" required>
+
+                    <label for="experience">Опыт:</label>
+                    <input type="number" name="experience" id="experience" value="{{ participant.experience }}" required>
+
+                    <button type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить комментарий</title>
+    <style>
+        body {
+            background-color: #333;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #333 20%, #222 80%);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #e10600;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #e10600;
+            margin: 15px 0;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            margin-top: 10px;
+        }
+
+        .form-section label {
+            color: #e10600;
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form-section input, .form-section select, .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .form-section button {
+            background-color: #e10600;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-section button:hover {
+            background-color: #ff1e00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <h3>Добавить комментарий к гонке</h3>
+            <div class="card-content">
+                <p>Дата гонки: {{ race.date }} {{ race.start_time }}</p>
+                <form method="post" class="form-section">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Сохранить комментарий</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

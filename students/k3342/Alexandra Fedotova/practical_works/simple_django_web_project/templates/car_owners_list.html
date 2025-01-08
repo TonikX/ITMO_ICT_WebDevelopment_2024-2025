@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Owners</title>
+</head>
+<body>
+    <h1>All Car Owners</h1>
+    <ul>
+        {% for owner in owners %}
+            <li>
+                {{ owner.first_name }} {{ owner.last_name }} - Date of Birth: {{ owner.date_of_birth }}<br>
+                Passport Number: {{ owner.user.passport_number }}<br>
+                Home Address: {{ owner.user.home_address }}<br>
+                Nationality: {{ owner.user.nationality }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Add New Owner</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ owner_form.as_p }}
+        <button type="submit">Add Owner</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Detail</title>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }}</h1>
+    <p>Registration Number: {{ car.registration_number }}</p>
+    <p>Color: {{ car.color }}</p>
+    <a href="{% url 'car_update' car.pk %}">Edit</a>
+    <a href="{% url 'car_delete' car.pk %}">Delete</a>
+    <a href="{% url 'car_list' %}">Back to Cars List</a>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комментарии к гонке</title>
+    <style>
+        body {
+            background-color: #333;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle, #333 20%, #222 80%);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #222;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #e10600;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #e10600;
+            margin: 15px 0;
+            font-size: 1.5em;
+            text-transform: uppercase;
+        }
+
+        .card-content {
+            margin-top: 10px;
+        }
+
+        .race-item {
+            background-color: #333;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #444;
+        }
+
+        .race-item p {
+            margin: 5px 0;
+        }
+
+        .race-item strong {
+            color: #e10600;
+        }
+
+        .race-item a {
+            color: #e10600;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .race-item a:hover {
+            color: #ff1e00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="card">
+            <h3>Комментарии к гонке</h3>
+            <div class="card-content">
+                <p>Дата гонки: {{ race.date }} {{ race.start_time }}</p>
+                {% if comments %}
+                    <ul>
+                        {% for comment in comments %}
+                            <li class="race-item">
+                                <p><strong>Комментатор:</strong> {{ comment.user.username }}</p>
+                                <p><strong>Тип комментария:</strong> {{ comment.get_comment_type_display }}</p>
+                                <p><strong>Рейтинг:</strong> {{ comment.rating }}</p>
+                                <p><strong>Комментарий:</strong> {{ comment.text }}</p>
+                                <p><strong>Дата добавления:</strong> {{ comment.date_created }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Комментариев пока нет.</p>
+                {% endif %}
+                <a href="{% url 'add_comment' race.id %}">Добавить комментарий</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

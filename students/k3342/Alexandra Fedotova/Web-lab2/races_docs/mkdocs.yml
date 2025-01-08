@@ -1,0 +1,11 @@
+site_name: Web lab2 - Races
+nav:
+  - Главная: index.md
+  - Регистрация пользователя: registration.md
+  - Личный кабинет пользователя: personal_acc.md
+  - Страница списка гонок: races.md
+  - Страница результатов конкретной гонки: race_results.md
+  - Страница комментариев к гонке: comments.md 
+theme:
+  name: material
+  
