@@ -24,6 +24,7 @@ urlpatterns = [
     path('airlines/<int:airline_pk>/flights', FlightsAPIView.as_view(), name='flights_by_airline'),
     path('flights/<int:pk>/', FlightAPIView.as_view(), name='flight_detail'),
     path('airlines/<int:airline_pk>/flights/<int:pk>/', FlightAPIView.as_view(), name='flight_detail'),
+    path('flights/choices/', FlightChoicesAPIView.as_view(), name='flight-choices'),
 
     path('flights/<int:flight_pk>/seats/', SeatsAPIView.as_view(), name='flight_seats'),
     path('flights/<int:flight_id>/seat-availability/', FlightSeatAvailabilityAPIView.as_view(),
@@ -34,15 +35,22 @@ urlpatterns = [
     path('routes/', RoutesAPIView.as_view(), name='route_list'),
     path('routes/<int:pk>/', RouteAPIView.as_view(), name='route_detail'),
 
-    path('flights/<int:pk>/stops/', FlightTransitStopsAPIView.as_view(), name='flight_transit_stops'),
+    path('airports/', AirportsAPIView.as_view(), name='airport_list'),
+
+    path('routes/<int:pk>/stops/', RouteTransitStopsAPIView.as_view(), name='route_transit_stops'),
+    path('routes/<int:route_pk>/flights/', FlightsOfRouteAPIView.as_view(), name='route_flights'),
 
     path('crew-members/', CrewMembersAPIView.as_view(), name='crew_members'),
+    path('crew-members/<int:pk>/', CrewMemberAPIView.as_view(), name='crew_member_detail'),
 
     path('crews/', CrewsAPIView.as_view(), name='crews'),
+    path('crews/<int:pk>/', CrewAPIView.as_view(), name='crew_detail'),
 
     path('maintenances/', MaintenancesAPIView.as_view(), name='maintenance_list'),
     path('maintenances/<int:pk>/', MaintenanceAPIView.as_view(), name='maintenance_detail'),
+    path("maintenances/choices/", MaintenanceChoicesAPIView.as_view(), name="maintenance-choices"),
 
+    path('models/', PlaneModelListView.as_view(), name='plane-models-list'),
 
     # Statistics
     path('routes/<int:route_id>/most-frequent-plane/', MostFrequentPlaneAPIView.as_view(), name='most_frequent_plane'),
@@ -53,10 +61,8 @@ urlpatterns = [
     path('airlines/<int:airline_id>/employees-count/', AirlineEmployeesCountAPIView.as_view(),
          name='airline_employees_count'),
 
-    path('airlines/<int:pk>/plane-statistics/', PlaneStatisticsAPIView.as_view(), name='plane_statistics'),
+    path('plane-statistics/', PlaneStatisticsAPIView.as_view(), name='plane_statistics'),
 
-    path('flights/by-airport/<str:airport_code>/', FlightsByAirportAPIView.as_view(), name='flights_by_airport'),
-
-    path('flights/with-transit-stops/', FlightsWithTransitStopsAPIView.as_view(), name='flights_with_transit_stops'),
-
+    path('employees/<int:employee_pk>/crew-members/', EmployeeCrewMembersAPIView.as_view(), name='employees-crew-members'),
+    path('crew-members/roles/', CrewMemberRolesAPIView.as_view(), name='crew-member-roles'),
 ]

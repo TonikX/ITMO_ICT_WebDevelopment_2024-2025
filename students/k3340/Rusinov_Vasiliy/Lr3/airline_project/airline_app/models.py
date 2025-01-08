@@ -1,13 +1,23 @@
+from datetime import timedelta
+from datetime import date, time
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class Airline(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    address = models.TextField(blank=True)
+    country = models.TextField(blank=True)
     contact_info = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return self.name
+
+
+class User(AbstractUser):
+    airline = models.ForeignKey(Airline, on_delete=models.SET_NULL, null=True, blank=True, related_name='users')
+
+    def __str__(self):
+        return f"{self.username}, {self.airline}"
 
 
 class Airport(models.Model):
@@ -20,11 +30,18 @@ class Airport(models.Model):
         return f"{self.city}, {self.country} ({self.code})"
 
 
-class Plane(models.Model):
-    number = models.CharField(max_length=10, unique=True)
-    model = models.CharField(max_length=50)
+class PlaneModel(models.Model):
+    name = models.CharField(max_length=50)
     seats_capacity = models.IntegerField()
     speed = models.FloatField()
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+class Plane(models.Model):
+    number = models.CharField(max_length=10, unique=True, default=0)
+    model = models.ForeignKey(PlaneModel, on_delete=models.CASCADE, related_name='planes')
     airline = models.ForeignKey(Airline, on_delete=models.CASCADE, related_name='planes')
 
     def __str__(self):
@@ -67,40 +84,54 @@ class CrewMember(models.Model):
 
 
 class Crew(models.Model):
-    captain = models.ForeignKey(CrewMember, on_delete=models.CASCADE, related_name='captain_of')
-    co_pilot = models.ForeignKey(CrewMember, on_delete=models.CASCADE, related_name='co_pilot_of')
-    navigator = models.ForeignKey(CrewMember, on_delete=models.CASCADE, related_name='navigator_of')
+    captain = models.ForeignKey(CrewMember, on_delete=models.SET_NULL, null=True, related_name='captain_of')
+    co_pilot = models.ForeignKey(CrewMember, on_delete=models.SET_NULL, null=True, related_name='co_pilot_of')
+    navigator = models.ForeignKey(CrewMember, on_delete=models.SET_NULL, null=True, related_name='navigator_of')
     attendants = models.ManyToManyField(CrewMember, related_name='attendant_in')
 
     def __str__(self):
-        return f"Crew with Captain {self.captain.employee}"
+        return f"Crew {self.pk} with Captain {self.captain.employee}"
 
 
 class Route(models.Model):
+    number = models.CharField(max_length=10, unique=True, default=0)
     departure_airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='departure_routes')
     destination_airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='destination_routes')
-    stops = models.ManyToManyField(Airport, related_name='transit_routes', blank=True)
+    departure_time = models.TimeField(default=time(0, 0))
+    arrival_time = models.TimeField(default=time(0, 0))
+    arrival_day = models.IntegerField(default=0)
     distance_km = models.FloatField()
+    regularity = models.CharField(max_length=20, default='unknown')
 
     def __str__(self):
-        return f"{self.departure_airport} -> {self.destination_airport}"
+        return f"{self.number}: {self.departure_airport} -> {self.destination_airport}"
 
 
 class Flight(models.Model):
-    number = models.CharField(max_length=10, unique=True)
-    departure_datetime = models.DateTimeField()
-    arrival_datetime = models.DateTimeField()
+    number = models.CharField(max_length=10, unique=True, default=0)
+    departure_date = models.DateField(default=date.today)
+    arrival_date = models.DateField(default=date.today)
     crew = models.ForeignKey(Crew, on_delete=models.SET_NULL, null=True, related_name='flights')
     route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name='flights')
-    plane = models.ForeignKey(Plane, on_delete=models.CASCADE, related_name='flights')
+    plane = models.ForeignKey(Plane, on_delete=models.SET_NULL, null=True, related_name='flights')
     sold_tickets_number = models.IntegerField(default=0)
+    status = models.CharField(default='Scheduled', max_length=50,
+                              choices=[('Scheduled', 'Scheduled'), ('Boarding', 'Boarding'),
+                                       ('Boarding Complete', 'Boarding Complete'), ('In Air', 'In Air'),
+                                       ('Landing', 'Landing'), ('Complete', 'Complete'),
+                                       ('Delayed', 'Delayed'), ('Canceled', 'Canceled')])
 
     def __str__(self):
         return f"Flight {self.number}"
 
+    def save(self, *args, **kwargs):
+        if self.departure_date and self.route:
+            self.arrival_date = self.departure_date + timedelta(days=self.route.arrival_day or 0)
+        super().save(*args, **kwargs)
+
 
 class Seat(models.Model):
-    number = models.CharField(max_length=10)
+    number = models.CharField(max_length=10, default=0)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='seats')
     is_sold = models.BooleanField(default=False)
 
@@ -109,10 +140,12 @@ class Seat(models.Model):
 
 
 class TransitStop(models.Model):
-    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='transit_stops')
+    route = models.ForeignKey(Route, on_delete=models.CASCADE, related_name='transit_stops')
     airport = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='transit_stops')
-    arrival_datetime = models.DateTimeField()
-    departure_datetime = models.DateTimeField()
+    arrival_time = models.TimeField(default=time(0, 0))
+    arrival_day = models.IntegerField(default=0)
+    departure_time = models.TimeField(default=time(0, 0))
+    departure_day = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"Stop at {self.airport} for {self.flight}"
+        return f"Stop at {self.airport} for {self.route}"
