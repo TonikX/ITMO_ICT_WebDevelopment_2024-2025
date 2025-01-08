@@ -1,0 +1,10 @@
+site_name: LABORATORY WORKS
+
+nav:
+  - About: home.md
+  - Laboratory work №1:
+      - UDP: lab1/UDP.md
+      - TCP: lab1/TCP.md
+      - HTTP: lab1/HTTP.md
+      - TCP chat: lab1/TCP_chat.md
+      - HTTP webserver: lab1/HTTP_webserver.md
