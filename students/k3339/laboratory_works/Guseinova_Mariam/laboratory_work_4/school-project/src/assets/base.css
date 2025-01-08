@@ -1,0 +1,22 @@
+:root {
+    --color-background: white;
+    --color-text: black;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100vh;
+    color: black;
+    background: var(--color-background);
+    line-height: 1.6;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    text-rendering: optimizeLegibility;
+}

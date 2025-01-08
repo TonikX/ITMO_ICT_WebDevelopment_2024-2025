@@ -1,0 +1,68 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.grades-table,
+.schedule-table,
+.student-table,
+.teacher-table {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.grades-table,
+.schedule-table {
+  background-color: #f9f9f9;
+}
+
+.teacher-table,
+.schedule-table {
+  min-width: 600px;
+}
+
+.students-table,
+.lessons-table {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.students-table th,
+.lessons-table th,
+.students-table td,
+.lessons-table td {
+  border: 1px solid #ccc;
+}
+
+.students-table th,
+.lessons-table th {
+  background-color: #f9f9f9;
+}
+
+.students-table tr:nth-child(even),
+.lessons-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

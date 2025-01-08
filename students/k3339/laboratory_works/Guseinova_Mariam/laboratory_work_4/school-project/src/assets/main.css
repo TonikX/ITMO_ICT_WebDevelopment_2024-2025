@@ -1,0 +1,12 @@
+@import './base.css';
+@import './styles/layout.css';
+@import './styles/global.css';
+@import './styles/modal.css';
+@import './styles/buttons.css';
+@import './styles/tables.css';
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+  background: white;
+}

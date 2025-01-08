@@ -1,0 +1,212 @@
+button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.add-button,
+.save-button,
+.cancel-button,
+.nav-button,
+.edit-button,
+.delete-button,
+.close-button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-button,
+.save-button {
+  background-color: #628c64;
+  color: white;
+}
+
+.add-button:hover,
+.save-button:hover {
+  background-color: #3d573e;
+}
+
+.save-button {
+  background-color: #628c64;
+  color: white !important;
+  margin-right: 10px;
+}
+
+.save-button:hover {
+  opacity: 0.8;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #822e35;
+  color: white;
+}
+
+.nav-button {
+  text-decoration: none;
+  background-color: #006d77;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: #005457;
+  transform: scale(1.05);
+}
+
+.edit-button {
+  background-color: #34548a;
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #34548a;
+  margin-right: 10px;
+}
+
+.edit-button:hover {
+  background-color: #1f2f4a;
+}
+
+.delete-button {
+  background-color: transparent;
+  color: #ab3f48;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #ab3f48;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #ab3f48;
+  color: white;
+}
+
+.close-button {
+  background-color: #888;
+  color: white;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 280px;
+  width: 100%;
+}
+
+.lesson-number-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.lesson-number-button {
+  border: 1px solid #ccc;
+  border-radius: 10%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+.lesson-number-button.selected {
+  background-color: #628c64;
+  color: white;
+  border-color: #628c64;
+}
+
+.teacher-link,
+.student-link {
+  text-decoration: none;
+  color: black;
+}
+
+.teacher-link:hover,
+.student-link:hover {
+  text-decoration: underline;
+  background-color: #adbaae;
+  color: #333232;
+  border-radius: 3px;
+}
+
+.gender-select,
+.room-select {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gender-select span,
+.room-select span {
+  font-size: 15px;
+}
+
+.gender-option,
+.room-option {
+  width: 150px;
+  height: 30px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 0.5px solid #ccc;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 8px;
+}
+
+.gender-option:hover,
+.room-option:hover {
+  background-color: #e0e0e0;
+}
+
+.gender-option.active,
+.room-option.active {
+  background-color: #628c64;
+  color: white;
+}
+
+.gender-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.gender-button {
+  padding: 10px 15px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50px;
+  text-align: center;
+}
+
+.gender-button:hover {
+  background-color: #e0e0e0;
+}
+
+.gender-button.active {
+  background-color: #628c64;
+  color: white;
+}
