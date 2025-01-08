@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../db_models/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Эндпоинты - Отчеты по лабораторным работам</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Отчеты по лабораторным работам" class="md-header__button md-logo" aria-label="Отчеты по лабораторным работам" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Отчеты по лабораторным работам
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Эндпоинты
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Отчеты по лабораторным работам" class="md-nav__button md-logo" aria-label="Отчеты по лабораторным работам" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Отчеты по лабораторным работам
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Главная
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа 1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/part1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Часть 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/part2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Часть 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/part3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Часть 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/part4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Часть 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/part5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Часть 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа 2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа 2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Модели
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/views/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Представление
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/urls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Пути
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab2/frontend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Фронтенд
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная работа 3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная работа 3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical_exercises/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Практическая работа
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system_info/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Предметная область
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Архитектура проекта
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Эндпоинты
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Эндпоинты
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Водители
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Водители">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apidrivers-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers - Получить список водителей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apidrivers-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/drivers - Добавить водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apidriversdriver_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/drivers/{driver_id} - Удалить водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversclasses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/classes - Получить список классов водителей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apidriversclasses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/drivers/classes - Добавить класс водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apidriversclassesdriver_class_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/drivers/classes/{driver_class_id} - Удалить класс водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversdriver_idwork_schedule-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/{driver_id}/work_schedule - Получить график работы водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversclassescount-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/classes/count - Получить количество водителей в каждом классе
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршруты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Маршруты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes - Получить список маршрутов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiroutes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/routes - Добавить маршрут
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiroutesroute_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/routes/{route_id} - Удалить маршрут
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutesschedules-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes/schedules - Получить расписание для каждого маршрута
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutestotal-length-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes/total-length - Получить общую длину всех маршрутов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Автобусы
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Автобусы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apibuses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/buses - Получить список автобусов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apibuses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/buses - Добавить автобус
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apibusesbus_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/buses/{bus_id} - Удалить автобус
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apibusestypes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/buses/types - Добавить тип автобуса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apibusestypes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/buses/types - Получить список типов автобусов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apibusestypesbus_type_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/buses/types/{bus_type_id} - Удалить тип автобуса
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Назначения водителей на маршруты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Назначения водителей на маршруты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassignments-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/assignments - Получить список назначений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassignments-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/assignments - Добавить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiassignmentsassignment_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/assignments/{assignment_id} - Удалить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassignmentsassignment_idend-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/assignments/{assignment_id}/end - Завершить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassignmentsendreasons-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/assignments/end/reasons - Получить причины завершения назначения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Авторизация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Авторизация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthlogin-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/login - Авторизоваться
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthregister-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/register - Зарегистрироваться
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthrefresh-token-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/refresh-token - Обновить токен доступа
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../db_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Модели базы данных
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dm_models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Доменные модели
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Водители
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Водители">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apidrivers-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers - Получить список водителей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apidrivers-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/drivers - Добавить водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apidriversdriver_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/drivers/{driver_id} - Удалить водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversclasses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/classes - Получить список классов водителей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apidriversclasses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/drivers/classes - Добавить класс водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apidriversclassesdriver_class_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/drivers/classes/{driver_class_id} - Удалить класс водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversdriver_idwork_schedule-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/{driver_id}/work_schedule - Получить график работы водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apidriversclassescount-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/drivers/classes/count - Получить количество водителей в каждом классе
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршруты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Маршруты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes - Получить список маршрутов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiroutes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/routes - Добавить маршрут
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiroutesroute_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/routes/{route_id} - Удалить маршрут
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutesschedules-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes/schedules - Получить расписание для каждого маршрута
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiroutestotal-length-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/routes/total-length - Получить общую длину всех маршрутов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Автобусы
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Автобусы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apibuses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/buses - Получить список автобусов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apibuses-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/buses - Добавить автобус
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apibusesbus_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/buses/{bus_id} - Удалить автобус
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apibusestypes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/buses/types - Добавить тип автобуса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apibusestypes-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/buses/types - Получить список типов автобусов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apibusestypesbus_type_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/buses/types/{bus_type_id} - Удалить тип автобуса
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Назначения водителей на маршруты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Назначения водителей на маршруты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassignments-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/assignments - Получить список назначений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassignments-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/assignments - Добавить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiassignmentsassignment_id-" class="md-nav__link">
+    <span class="md-ellipsis">
+      DELETE /api/assignments/{assignment_id} - Удалить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassignmentsassignment_idend-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/assignments/{assignment_id}/end - Завершить назначение
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassignmentsendreasons-" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/assignments/end/reasons - Получить причины завершения назначения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Авторизация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Авторизация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthlogin-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/login - Авторизоваться
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthregister-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/register - Зарегистрироваться
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiauthrefresh-token-" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/auth/refresh-token - Обновить токен доступа
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Эндпоинты</h1>
+
+<h3 id="_1">Водители</h3>
+<p><img alt="Водители" src="../screenshots/drivers_endpoints.png" /></p>
+<h6 id="get-apidrivers-"><code>GET /api/drivers</code> - Получить список водителей</h6>
+<h6 id="post-apidrivers-"><code>POST /api/drivers</code> - Добавить водителя</h6>
+<h6 id="delete-apidriversdriver_id-"><code>DELETE /api/drivers/{driver_id}</code> - Удалить водителя</h6>
+<h6 id="get-apidriversclasses-"><code>GET /api/drivers/classes</code> - Получить список классов водителей</h6>
+<h6 id="post-apidriversclasses-"><code>POST /api/drivers/classes</code> - Добавить класс водителя</h6>
+<h6 id="delete-apidriversclassesdriver_class_id-"><code>DELETE /api/drivers/classes/{driver_class_id}</code> - Удалить класс водителя</h6>
+<h6 id="get-apidriversdriver_idwork_schedule-"><code>GET /api/drivers/{driver_id}/work_schedule</code> - Получить график работы водителя</h6>
+<h6 id="get-apidriversclassescount-"><code>GET /api/drivers/classes/count</code> - Получить количество водителей в каждом классе</h6>
+<h3 id="_2">Маршруты</h3>
+<p><img alt="Маршруты" src="../screenshots/routes_endpoints.png" />  </p>
+<h6 id="get-apiroutes-"><code>GET /api/routes</code> - Получить список маршрутов</h6>
+<h6 id="post-apiroutes-"><code>POST /api/routes</code> - Добавить маршрут</h6>
+<h6 id="delete-apiroutesroute_id-"><code>DELETE /api/routes/{route_id}</code> - Удалить маршрут</h6>
+<h6 id="get-apiroutesschedules-"><code>GET /api/routes/schedules</code> - Получить расписание для каждого маршрута</h6>
+<h6 id="get-apiroutestotal-length-"><code>GET /api/routes/total-length</code> - Получить общую длину всех маршрутов</h6>
+<h3 id="_3">Автобусы</h3>
+<p><img alt="Автобусы" src="../screenshots/buses_endpoints.png" />  </p>
+<h6 id="get-apibuses-"><code>GET /api/buses</code> - Получить список автобусов</h6>
+<h6 id="post-apibuses-"><code>POST /api/buses</code> - Добавить автобус</h6>
+<h6 id="delete-apibusesbus_id-"><code>DELETE /api/buses/{bus_id}</code> - Удалить автобус</h6>
+<h6 id="post-apibusestypes-"><code>POST /api/buses/types</code> - Добавить тип автобуса</h6>
+<h6 id="get-apibusestypes-"><code>GET /api/buses/types</code> - Получить список типов автобусов</h6>
+<h6 id="delete-apibusestypesbus_type_id-"><code>DELETE /api/buses/types/{bus_type_id}</code> - Удалить тип автобуса</h6>
+<h3 id="_4">Назначения водителей на маршруты</h3>
+<p><img alt="Назначения водителей на маршруты" src="../screenshots/assignments_endpoints.png" />  </p>
+<h6 id="get-apiassignments-"><code>GET /api/assignments</code> - Получить список назначений</h6>
+<h6 id="post-apiassignments-"><code>POST /api/assignments</code> - Добавить назначение</h6>
+<h6 id="delete-apiassignmentsassignment_id-"><code>DELETE /api/assignments/{assignment_id}</code> - Удалить назначение</h6>
+<h6 id="post-apiassignmentsassignment_idend-"><code>POST /api/assignments/{assignment_id}/end</code> - Завершить назначение</h6>
+<h6 id="get-apiassignmentsendreasons-"><code>GET /api/assignments/end/reasons</code> - Получить причины завершения назначения</h6>
+<h3 id="_5">Авторизация</h3>
+<p><img alt="Авторизация" src="../screenshots/auth_endpoints.png" />  </p>
+<h6 id="post-apiauthlogin-"><code>POST /api/auth/login</code> - Авторизоваться</h6>
+<h6 id="post-apiauthregister-"><code>POST /api/auth/register</code> - Зарегистрироваться</h6>
+<h6 id="post-apiauthrefresh-token-"><code>POST /api/auth/refresh-token</code> - Обновить токен доступа</h6>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
