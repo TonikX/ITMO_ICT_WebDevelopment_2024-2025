@@ -1,0 +1,11 @@
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+
+    <p>Вы действительно хотите удалить "{{ object }}"</p>
+
+    <input type="submit" value="Да">
+</form>

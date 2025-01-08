@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2 class="mb-4">Пользователи за последний месяц</h2>
+    <div class="row mt-4" >
+        {% for user in users %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ user.username }}</h5>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

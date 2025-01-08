@@ -1,0 +1,21 @@
+<h2>Cars</h2>
+<a href="{% url 'car-create' %}" style="margin-right: 10px;">Добавить новую машину</a>
+{% for car in cars %}
+    <hr>
+    <div>
+        Number: {{car.number}}
+    </div>
+    <br>
+    <div>
+        Mark: <b>{{car.mark}}</b>
+    </div>
+    <br>
+    <div>
+        Model: <i>{{car.model}}</i>
+    </div>
+    <br>
+    <div>
+        Color: <i>{{car.color}}</i>
+    </div>
+    <a href="{% url 'car' car.id %}" style="margin-right: 10px;">Открыть</a>
+{% endfor %}
