@@ -1,0 +1,12 @@
+site_name: Описание лабораторных работ
+nav:
+ - Главная: index.md
+ - Лабораторные работы:
+   - Лабораторная работа 1: labs/lab_1.md
+   - Лабораторная работа 2: labs/lab_2.md
+   - Лабораторная работа 3: labs/lab_3.md
+   - Практика 3.1: labs/3.1_Practice.md
+   - Лабораторная работа 4: labs/lab_4.md
+   - Leetcode задачи: labs/Leetcode.md
+theme:
+ name: mkdocs

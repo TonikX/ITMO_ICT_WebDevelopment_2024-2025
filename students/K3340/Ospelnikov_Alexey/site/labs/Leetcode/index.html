@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Leetcode задачи - Описание лабораторных работ</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Описание лабораторных работ</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Лабораторные работы</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../lab_1/" class="dropdown-item">Лабораторная работа 1</a>
+</li>
+                                    
+<li>
+    <a href="../lab_2/" class="dropdown-item">Лабораторная работа 2</a>
+</li>
+                                    
+<li>
+    <a href="../lab_3/" class="dropdown-item">Лабораторная работа 3</a>
+</li>
+                                    
+<li>
+    <a href="../3.1_Practice/" class="dropdown-item">Практика 3.1</a>
+</li>
+                                    
+<li>
+    <a href="../lab_4/" class="dropdown-item">Лабораторная работа 4</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Leetcode задачи</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../lab_4/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#no1" class="nav-link">Лабораторная работа №1</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1" class="nav-link">Задание 1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2" class="nav-link">Задание 2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">Задание 3</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4" class="nav-link">Задание 4</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5" class="nav-link">Задание 5</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="no1">Лабораторная работа №1</h1>
+<h2 id="1">Задание 1</h2>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент отправляет серверу сообщение «Hello, server», и оно должно отобразиться на стороне сервера. В ответ сервер отправляет клиенту сообщение «Hello, client», которое должно отобразиться у клиента.</p>
+<p>Код сервера:</p>
+<pre><code class="language-python">import socket
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+socket.bind(('', 8080))
+
+max_user = 1
+response = b&quot;Hello, client&quot;
+while True:
+    client_data, addr = socket.recvfrom(1024)
+    if not client_data:
+        break
+    print(client_data)
+    socket.sendto(response, addr)
+socket.close()
+</code></pre>
+<p>Код клиента:</p>
+<pre><code class="language-python">import socket
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+while True:
+    message = bytes(input(), 'utf-8')
+    socket.sendto(message, ('localhost', 8080))
+    response = socket.recv(1024)
+    if not response:
+        break
+    print(response)
+socket.close()
+</code></pre>
+<h2 id="2">Задание 2</h2>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент запрашивает выполнение математической операции, параметры которой вводятся с клавиатуры. Сервер обрабатывает данные и возвращает результат клиенту.</p>
+<p>Вариант операции: Поиск площади параллелограмма</p>
+<p>Код сервера:</p>
+<pre><code class="language-python">import socket
+import math
+
+server_socket = socket.socket()
+server_socket.bind(('', 8080))
+
+max_user = 5
+server_socket.listen(max_user)
+while True:
+    client_socket, addr = server_socket.accept()
+    client_data = list(map(lambda x: int(x), client_socket.recv(1024).decode().split()))
+    if not client_data or len(client_data) != 3:
+        print(&quot;Invalid parameters for triangle area task&quot;)
+        client_socket.close()
+        break
+    S = client_data[0] * client_data[1] * math.sin(client_data[2])
+    client_socket.send(bytes(str(S), 'utf-8'))    
+    print(client_data)
+socket.close()
+
+</code></pre>
+<p>Код клиента:</p>
+<pre><code class="language-python">import socket
+
+client_socket = socket.socket()
+client_socket.connect(('localhost', 8080))
+print(&quot;Please write the lengths of 2 sides and an angle of the parallelogramm:&quot;)
+client_socket.send(bytes(input(), 'utf-8'))
+res = client_socket.recv(1024)
+print(f&quot;Area = {res.decode()}&quot;)
+client_socket.close()
+</code></pre>
+<h2 id="3">Задание 3</h2>
+<p>Реализовать серверную часть приложения. Клиент подключается к серверу, и в ответ получает HTTP-сообщение, содержащее HTML-страницу, которая сервер подгружает из файла index.html.
+Код сервера:</p>
+<pre><code class="language-python">import socket
+
+
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.bind(('', 8080))
+
+max_conn_count = 5
+
+socket.listen(max_conn_count)
+
+while True:
+    conn_socket, addr = socket.accept()
+    request = conn_socket.recv(1024).decode().split()
+    if request[0] != &quot;GET&quot;:
+        conn_socket.close()
+        print(&quot;Bad Gateway&quot;)
+        conn_socket.send(b'Response 400')
+        conn_socket.close()
+        break
+    print(request)
+    with open('index.html', 'r') as index:
+        response = 'Response 200'
+        print(&quot;OK&quot;)
+        conn_socket.send(response.encode('utf-8'))
+        conn_socket.close()
+</code></pre>
+<p>Код клиента:</p>
+<pre><code class="language-python">import http.client
+
+host = 'localhost'
+client_conn = http.client.HTTPConnection(host, 8080)
+client_conn.request('GET', 'index.html')
+response = client_conn.getresponse()
+print(response.read().decode())
+</code></pre>
+<p>Код HTML-разметки</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;WEB Lab1-3&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt; Hello, it's html page, delivered from python socket server. &lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="4">Задание 4</h2>
+<p>Реализовать двухпользовательский или многопользовательский чат. Для максимального количества баллов реализуйте многопользовательский чат.</p>
+<p>Требования:</p>
+<ul>
+<li>Обязательно использовать библиотеку socket.</li>
+<li>Для многопользовательского чата необходимо использовать библиотеку threading.</li>
+</ul>
+<p>Код сервера:</p>
+<pre><code class="language-python">import socket
+import threading
+from copy import copy
+
+
+max_conn_count = 10
+locker = threading.Lock()
+threads = []
+connections = []
+
+def threaded_handle(conn, address):
+    while True:
+        data = conn.recv(1024)
+        if not data:
+            conn.close()
+            print(f&quot;{address} connection interrupted&quot;)
+            break
+        msg = address[0] + &quot;:&quot; + str(address[1]) + &quot; send a message: &quot; + data.decode()
+        print(msg)
+        with locker:
+            conn_copy = copy(connections)
+        for c in conn_copy:
+            c.sendall(msg.encode('utf-8'))
+
+
+def main():
+    a_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    a_socket.bind(('', 8080))
+    a_socket.listen(max_conn_count)
+
+    while True:
+        conn_socket, addr = a_socket.accept()
+        conn_thread = threading.Thread(target=threaded_handle, args=(conn_socket, addr,))
+        threads.append(conn_thread)
+        connections.append(conn_socket)
+        conn_thread.start()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p>Код клиента:</p>
+<pre><code class="language-python">import socket
+import threading
+
+
+getting_msg, host, port = True, 'localhost', 8080
+client_locker = threading.Lock()
+
+def show_chat(sock):
+    while True:
+        with client_locker:
+            serv_data = sock.recv(1024)
+        if not serv_data:
+            with client_locker:
+                sock.close()
+            print(&quot;Connection closed&quot;)
+            break
+        print(serv_data.decode())
+
+
+def main_client():
+    client_socket = socket.socket()
+    client_socket.connect((host, port))
+    chat_thread = threading.Thread(target=show_chat, args=(client_socket,))
+    chat_thread.start()
+
+    while getting_msg:
+        new_msg = input().encode('utf-8')
+        client_socket.send(new_msg)
+
+    chat_thread.join()
+
+
+if __name__ == &quot;__main__&quot;:
+    main_client()
+</code></pre>
+<h2 id="5">Задание 5</h2>
+<p>Написать простой веб-сервер для обработки GET и POST HTTP-запросов с помощью библиотеки socket в Python.</p>
+<p>Сервер должен:</p>
+<ul>
+<li>Принять и записать информацию о дисциплине и оценке по дисциплине.</li>
+<li>Отдать информацию обо всех оценках по дисциплинам в виде HTML-страницы.</li>
+</ul>
+<p>Web-страница с оценками выглядит так:
+<img alt="Оценки" src="../../assets/lab_1/grades.png" title="Оценки" /></p>
+<p>Код сервера:</p>
+<pre><code class="language-python">import socket
+import json
+from bs4 import BeautifulSoup as bs
+from urllib.parse import urlparse, parse_qs
+from datetime import datetime
+
+max_headers = 100
+
+
+class HTTPRequest:
+    def __init__(self, method, url, version, headers, r_body):
+        self.method = method
+        self.url = url
+        self.version = version
+        self.headers = headers
+        self.body = r_body
+
+    @property
+    def parsed_url(self):
+        return urlparse(self.url)
+
+    @property
+    def query(self):
+        return parse_qs(self.parsed_url.query)
+
+
+class HTTPResponse:
+    def __init__(self, code, status, version, headers=None, body=None):
+        self.code = code
+        self.status = status
+        self.version = version
+        self.headers = headers
+        self.body = body
+
+    def compile(self):
+        resp = f&quot;{self.version} {self.code} {self.status}\n&quot;
+        if self.headers:
+            for header, value in self.headers.items():
+                resp += f&quot;{header}: {value}\n&quot;
+        if self.body:
+            resp += f&quot;\n{self.body}&quot;
+        return resp
+
+
+def compile_html(req, filename, json_file):
+    soup = bs(open(filename, 'r+'), &quot;html.parser&quot;)
+    caption = soup.find('h2', {'id': 'subj_name'})
+    mark_list = soup.find('ul', {'id': 'marks'})
+    try:
+        subj = req.query['subject'][0]
+        caption.string = f&quot;Оценки по предмету: {subj}&quot;
+        with open(json_file, 'r') as grades_file:
+            subjects = json.load(grades_file)
+            marks = subjects[subj]
+        for mark in marks:
+            mark_li = soup.new_tag('li')
+            mark_li.string = mark
+            mark_list.append(mark_li)
+        return soup.prettify('utf-8').decode()
+    except KeyError:
+        raise Exception(&quot;Wrong request parameters&quot;)
+
+
+class HTTPServer:
+    def __init__(self, ip, port):
+        self.ip = ip
+        self.port = port
+        self.name = &quot;MyHTTPServer&quot;
+        self.http_v = &quot;HTTP/1.1&quot;
+
+    def serve_forever(self):
+        serv_sock = socket.socket()
+        serv_sock.bind((self.ip, self.port))
+        serv_sock.listen()
+        try:
+            while True:
+                conn_socket, addr = serv_sock.accept()
+                self.serve_client(conn_socket)
+        finally:
+            serv_sock.close()
+
+    def serve_client(self, connection):
+        req = self.parse_request(connection)
+        if req:
+            resp = self.handle_request(req).compile()
+            resp_encoded = resp.encode()
+            connection.sendall(resp_encoded)
+        connection.close()
+
+    def parse_request(self, connection):
+        with connection.makefile('rb') as req_file:
+            raw_first_line = req_file.readline()
+            first_line = str(raw_first_line, 'utf-8')
+            method, url, version = first_line.split()
+            headers = self.parse_headers(req_file)
+            return HTTPRequest(method, url, version, headers, req_file)
+
+    def parse_headers(self, rfile):
+        headers = dict()
+        while len(headers) &lt;= max_headers:
+            r_line = rfile.readline().decode('utf-8')
+            if r_line == '\n' or r_line == '' or r_line == '\r\n':
+                return headers
+            header, value = tuple(r_line.split())
+            headers[header] = value
+        raise Exception('too many headers')
+
+    def handle_request(self, req):
+        if req.parsed_url.path == &quot;/grades&quot;:
+            if req.method == &quot;GET&quot;:
+                html = compile_html(req, &quot;html/index.html&quot;,
+                                    &quot;json/grades.json&quot;)
+                resp_headers = {
+                    &quot;Server&quot;: self.name,
+                    &quot;Date&quot;: str(datetime.now()),
+                    &quot;Content-Length&quot;: len(html),
+                    &quot;Content-Type&quot;: &quot;text/html; charset=utf-8&quot;
+                }
+                return HTTPResponse(200, &quot;OK&quot;, self.http_v, resp_headers, html)
+            elif req.method == &quot;POST&quot;:
+                with open(&quot;json/grades.json&quot;, &quot;r+&quot;) as grades_file:
+                    subjects = json.load(grades_file)
+                    try:
+                        subjects[req.query[&quot;subject&quot;][0]].append(req.query[&quot;mark&quot;][0])
+                    except KeyError:
+                        raise Exception(&quot;Wrong request parameters&quot;)
+                    grades_file.seek(0)
+                    json.dump(subjects, grades_file)
+                    grades_file.truncate()
+                return HTTPResponse(204, &quot;Created&quot;, self.http_v)
+        else:
+            return HTTPResponse(400, &quot;Bad Request&quot;, self.http_v)
+
+
+if __name__ == '__main__':
+    host = '127.0.0.1'
+    _port = 8080
+    serv = HTTPServer(host, _port)
+    try:
+        serv.serve_forever()
+    except KeyboardInterrupt:
+        pass
+</code></pre>
+<p>Код клиента:</p>
+<pre><code class="language-python">import os
+import http.client
+import webbrowser
+
+
+class HTTPClient:
+    def __init__(self):
+        self.conn = None
+
+    def connect_to(self, ip, port):
+        self.conn = http.client.HTTPConnection(ip, port)
+
+    def post_mark(self, subj, grade):
+        if not self.conn:
+            raise Exception('No connection provided')
+        self.conn.request('POST', f&quot;/grades?subject={subj}&amp;mark={grade}&quot;)
+        serv_response = self.conn.getresponse()
+        print(serv_response.status, serv_response.reason)
+
+    def get_marks(self, subj):
+        if not self.conn:
+            raise Exception('No connection provided')
+        self.conn.request('GET', f&quot;/grades?subject={subj}&quot;)
+        serv_response = self.conn.getresponse()
+        path = &quot;html/client.html&quot;
+        body = serv_response.read()
+        with open(path, &quot;wb&quot;) as cli_html:
+            cli_html.write(body)
+        webbrowser.open('file://' + os.path.realpath(path), new=2)
+
+
+if __name__ == &quot;__main__&quot;:
+    _ip, _port = '127.0.0.1', 8080
+    client = HTTPClient()
+    while True:
+        client.connect_to(_ip, _port)
+        subject = input(&quot;Выберите предмет: &quot;)
+        choice = int(input(&quot;1 - Выставить(POST) оценку\n2 - Получить(GET) оценки\n&quot;))
+        if choice == 1:
+            mark = int(input(&quot;Введите оценку от 2(неуд) до 5(отл): &quot;))
+            if mark &lt; 2 or mark &gt; 5:
+                raise Exception('Оценка должна быть от 2(неуд) до 5(отл)')
+            client.post_mark(subject, mark)
+            continue
+        client.get_marks(subject)
+</code></pre>
+<p>JSON c оценками </p>
+<pre><code class="language-json">{
+  &quot;Math&quot;: [&quot;4&quot;, &quot;4&quot;, &quot;5&quot;, &quot;4&quot;, &quot;4&quot;, &quot;2&quot;, &quot;5&quot;, &quot;2&quot;],
+  &quot;Geography&quot;: [&quot;3&quot;, &quot;4&quot;],
+  &quot;Informatics&quot;: [&quot;2&quot;, &quot;5&quot;],
+  &quot;Chemistry&quot;: [&quot;2&quot;, &quot;4&quot;],
+  &quot;History&quot;: [&quot;5&quot;, &quot;4&quot;, &quot;4&quot;, &quot;2&quot;],
+  &quot;English&quot;: [&quot;4&quot;, &quot;4&quot;, &quot;2&quot;, &quot;4&quot;, &quot;2&quot;],
+  &quot;PE&quot;: [&quot;2&quot;, &quot;5&quot;],
+  &quot;Physics&quot;: [&quot;5&quot;, &quot;4&quot;]
+}
+
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

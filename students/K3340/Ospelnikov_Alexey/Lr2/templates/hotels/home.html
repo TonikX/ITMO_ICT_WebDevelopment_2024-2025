@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Добро пожаловать</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        .links-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links-container a {
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #5cb85c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .links-container a:hover {
+           background-color: #4cae4c;
+        }
+
+         .info-container {
+            margin-top: 20px;
+            text-align: left;
+             padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать на Hotel Booking!</h1>
+        <div class="info-container">
+           <p>Приветствуем вас на сайте. Здесь вы сможете сделать бронь самых престижных отелей России</p>
+        </div>
+        <div class="links-container">
+            <a href="{% url 'hotel_list' %}">Список отелей</a>
+             <a href="{% url 'booking_list' %}">Мои бронирования</a>
+            <a href="{% url 'current_guests' %}">Постояльцы</a>
+             {% if user.is_authenticated %}
+             <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+             <a href="{% url 'login' %}">Войти</a>
+              <a href="{% url 'register' %}">Регистрация</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

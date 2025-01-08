@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<style>
+    body {
+            
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #005d3a;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 15px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #005d3a;
+    text-decoration: none;
+}
+a:hover{
+  color: #4cae4c;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.links-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.links-container a {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #5cb85c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.links-container a:hover {
+    background-color: #4cae4c;
+}
+
+.info-container {
+    margin-top: 20px;
+    text-align: left;
+     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}</style>
+    <title>{{ room.room_type.name }} в {{ room.hotel.name }}</title>
+</head>
+<body>
+    <h2>{{ room.room_type.name }} в {{ room.hotel.name }}</h2>
+    <p>Цена: {{ room.price }}</p>
+    <p>Вместимость: {{ room.capacity }}</p>
+    <p>Удобства: {{ room.amenities }}</p>
+      <h3>Бронирование номера</h3>
+      <form method="post">
+           {% csrf_token %}
+           {{ booking_form.as_p }}
+           <button name="booking_submit" type="submit">Забронировать</button>
+       </form>
+    <h3>Отзывы</h3>
+       <form method="post">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button name="review_submit" type="submit">Оставить отзыв</button>
+        </form>
+    <ul>
+         {% for review in reviews %}
+           <li>
+               <p>Автор: {{ review.user.username }}</p>
+               <p>Рейтинг: {{ review.rating }}</p>
+               <p>Начало проживания: {{ review.stay_start }}</p>
+               <p>Конец проживания: {{ review.stay_end }}</p>
+               <p>Комментарий: {{ review.comment }}</p>
+           </li>
+           {% empty %}
+            <li>Нет отзывов</li>
+         {% endfor %}
+        </ul>
+
+</body>
+</html>
