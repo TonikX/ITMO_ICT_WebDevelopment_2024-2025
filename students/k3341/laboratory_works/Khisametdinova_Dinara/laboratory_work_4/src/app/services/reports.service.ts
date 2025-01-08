@@ -21,4 +21,8 @@ export class ReportService {
   getAverageScoreByUsername(username: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/tasks/average-score/${username}/`);
   }
+
+  getTaskStatistics(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/statistics/`);
+  }  
 }

@@ -1,33 +1,125 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Импорт FormsModule
+import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Добавление FormsModule
+  imports: [CommonModule, FormsModule],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent {
   tasks: any[] = [];
-  filter: string = ''; // Переменная для фильтрации
+  filter: string = '';
+  isTeacher: boolean = false;
 
-  constructor(private taskService: TaskService) {
+  newTask = {
+    title: '',
+    description: '',
+  };
+
+  editingTask: any = null;
+  editingCriteria: any[] = [];
+  editingOptions: any[] = [];
+
+  constructor(private taskService: TaskService, private authService: AuthService) {
+    const currentUser = this.authService.getCurrentUser();
+    this.isTeacher = currentUser?.role === 'teacher';
     this.loadTasks();
   }
 
   loadTasks() {
-    this.taskService.getTasks().subscribe((data) => {
-      this.tasks = data;
+    this.taskService.getTasks().subscribe({
+      next: (data) => {
+        this.tasks = data;
+      },
+      error: (err) => console.error('Error loading tasks:', err),
     });
   }
 
-  // Пример фильтрации
   get filteredTasks() {
     return this.tasks.filter((task) =>
       task.title.toLowerCase().includes(this.filter.toLowerCase())
     );
+  }
+
+  createTask() {
+    if (!this.newTask.title || !this.newTask.description) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    const newTaskPayload = {
+      ...this.newTask,
+      criterion: this.editingCriteria,
+      options: this.editingOptions,
+    };
+    this.taskService.createTask(newTaskPayload).subscribe({
+      next: () => {
+        this.loadTasks();
+        this.newTask = { title: '', description: '' };
+        this.editingCriteria = [];
+        this.editingOptions = [];
+      },
+      error: (err) => console.error('Error creating task:', err),
+    });
+  }
+
+  editTask(task: any) {
+    this.editingTask = { ...task };
+    this.editingCriteria = task.criterion ? [...task.criterion] : [];
+    this.editingOptions = task.options ? [...task.options] : [];
+  }
+
+  saveTask() {
+    if (!this.editingTask.title || !this.editingTask.description) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    const updatedTask = {
+      ...this.editingTask,
+      criterion: this.editingCriteria,
+      options: this.editingOptions,
+    };
+
+    this.taskService.updateTask(this.editingTask.id, this.editingTask).subscribe({
+      next: () => {
+        this.loadTasks();
+        this.cancelEdit();
+        this.editingTask = null;
+      },
+      error: (err) => console.error('Error updating task:', err),
+    });
+  }
+
+  deleteTask(taskId: number) {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.taskService.deleteTask(taskId).subscribe({
+        next: () => this.loadTasks(),
+        error: (err) => console.error('Error deleting task:', err),
+      });
+    }
+  }
+
+  cancelEdit() {
+    this.editingTask = null;
+  }
+
+  addCriterion() {
+    this.editingCriteria.push({ name: '', description: '', task: this.editingTask?.id || null });
+  }
+  
+  removeCriterion(index: number) {
+    this.editingCriteria.splice(index, 1);
+  }
+  
+  addOption() {
+    this.editingOptions.push({ content: '', task: this.editingTask?.id || null });
+  }
+  
+  removeOption(index: number) {
+    this.editingOptions.splice(index, 1);
   }
 }

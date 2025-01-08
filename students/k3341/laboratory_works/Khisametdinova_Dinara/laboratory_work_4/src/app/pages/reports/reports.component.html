@@ -3,6 +3,7 @@
     <p>Your role: <strong>{{ currentUser.role }}</strong></p>
     <hr />
   
+    <!-- Tasks Uploaded -->
     <div *ngIf="tasksUploaded.length && currentUser.role === 'teacher'">
       <h2>Tasks You Uploaded:</h2>
       <ul class="list-group">
@@ -12,6 +13,7 @@
       </ul>
     </div>
   
+    <!-- Tasks Reviewed -->
     <div *ngIf="tasksReviewed.length && currentUser.role === 'student'">
       <h2>Tasks You Reviewed:</h2>
       <ul class="list-group">
@@ -21,9 +23,20 @@
       </ul>
     </div>
   
+    <!-- Average Score -->
     <div *ngIf="averageScoreForUser !== null" class="mt-4">
       <h2>Your Average Score:</h2>
       <p><strong>{{ averageScoreForUser }}</strong></p>
+    </div>
+  
+    <!-- Task Statistics -->
+    <div *ngIf="taskStatistics" class="mt-4">
+      <h2>Platform Statistics:</h2>
+      <ul>
+        <li>Total Tasks: <strong>{{ taskStatistics.tasks }}</strong></li>
+        <li>Total Submissions: <strong>{{ taskStatistics.submissions }}</strong></li>
+        <li>Total Reviews: <strong>{{ taskStatistics.reviews }}</strong></li>
+      </ul>
     </div>
   </div>
   

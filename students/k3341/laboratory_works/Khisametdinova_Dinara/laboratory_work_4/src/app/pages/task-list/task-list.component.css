@@ -1,8 +1,14 @@
-.container {
-    padding: 20px;
-  }
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.list-group-item input,
+.list-group-item textarea {
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.list-group-item button {
+  margin-right: 5px;
+}
+button {
+    pointer-events: auto;
+    z-index: 10;
   }
   

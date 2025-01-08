@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,15 +15,15 @@ export class TaskService {
   }
 
   createTask(task: any): Observable<any> {
-    return this.http.post(this.baseUrl, task);
+    return this.http.post(`${this.baseUrl}/`, task, this.getHttpOptions());
   }
 
   updateTask(id: number, task: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, task);
+    return this.http.put(`${this.baseUrl}/${id}/details/`, task, this.getHttpOptions());
   }
 
   deleteTask(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}/`, this.getHttpOptions());
   }
 
   getAverageScore(taskId: number): Observable<any> {
@@ -32,5 +32,14 @@ export class TaskService {
 
   getAverageScoreByUsername(username: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/average-score/${username}`);
-  }  
+  }
+
+  private getHttpOptions() {
+    const token = localStorage.getItem('auth_token');
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Token ${token}`,
+      }),
+    };
+  }
 }
