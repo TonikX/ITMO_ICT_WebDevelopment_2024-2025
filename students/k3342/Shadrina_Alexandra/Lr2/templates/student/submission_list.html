@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submission List</title>
+</head>
+<body>
+<h2>Ваши отправленные задания</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Предмет</th>
+            <th>Ответ</th>
+            <th>Дата сдачи</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.homework.subject }}</td>
+                <td>{{ submission.submission_text }}</td>
+                <td>{{ submission.submission_date }}</td>
+                <td>
+                    <a href="{% url 'edit_submission' submission.id %}">Редактировать</a>
+                    <a href="{% url 'delete_submission' submission.id %}">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
