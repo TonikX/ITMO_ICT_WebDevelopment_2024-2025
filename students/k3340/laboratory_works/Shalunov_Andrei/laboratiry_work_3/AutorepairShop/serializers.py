@@ -80,7 +80,7 @@ class ContractSerializer(serializers.ModelSerializer):
     auto_id = serializers.PrimaryKeyRelatedField(
         queryset=Automobile.objects.all(), source='auto', write_only=True
     )
-    employee = EmployeeSerializer(read_only=True)  # Поле для чтения данных о сотруднике
+    employee = EmployeeSerializer(read_only=True)
     employee_id = serializers.PrimaryKeyRelatedField(
         queryset=Employee.objects.all(), source='employee', write_only=True
     )
