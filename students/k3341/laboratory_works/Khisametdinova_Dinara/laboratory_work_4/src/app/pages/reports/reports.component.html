@@ -38,5 +38,28 @@
         <li>Total Reviews: <strong>{{ taskStatistics.reviews }}</strong></li>
       </ul>
     </div>
+    <div *ngIf="personalStatistics" class="mt-4">
+        <h2>Personal Statistics:</h2>
+        <ul>
+          <li *ngIf="personalStatistics.tasks_created !== undefined">
+            Tasks Created: <strong>{{ personalStatistics.tasks_created }}</strong>
+            <span *ngIf="personalStatistics.task_rank">
+              (You are in the <strong>{{ personalStatistics.task_rank }}</strong> place by the number of tasks)
+            </span>
+          </li>
+          <li *ngIf="personalStatistics.submissions_made !== undefined">
+            Submissions Made: <strong>{{ personalStatistics.submissions_made }}</strong>
+            <span *ngIf="personalStatistics.submission_rank">
+              (You are in the <strong>{{ personalStatistics.submission_rank }}</strong> place by the number of submissions)
+            </span>
+          </li>
+          <li *ngIf="personalStatistics.reviews_given !== undefined">
+            Reviews Given: <strong>{{ personalStatistics.reviews_given }}</strong>
+            <span *ngIf="personalStatistics.review_rank">
+              (You are in the <strong>{{ personalStatistics.review_rank }}</strong> place by the number of reviews)
+            </span>
+          </li>
+        </ul>
+    </div>
   </div>
   

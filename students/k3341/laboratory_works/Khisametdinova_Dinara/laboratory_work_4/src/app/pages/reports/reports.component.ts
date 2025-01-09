@@ -16,6 +16,7 @@ export class ReportComponent implements OnInit {
   tasksReviewed: any[] = [];
   averageScore: number | null = null;
   averageScoreForUser: number | null = null;
+  personalStatistics: any = null; 
   taskStatistics: {
     tasks: number;
     submissions: number;
@@ -37,6 +38,7 @@ export class ReportComponent implements OnInit {
 
     this.loadAverageScoreByUsername();
     this.loadTaskStatistics();
+    this.loadPersonalStatistics();
   }
 
   loadUploadedTasks() {
@@ -62,6 +64,12 @@ export class ReportComponent implements OnInit {
   loadTaskStatistics() {
     this.reportService.getTaskStatistics().subscribe((data) => {
       this.taskStatistics = data;
+    });
+  }
+
+  loadPersonalStatistics() {
+    this.reportService.getPersonalStatistics().subscribe((data) => {
+      this.personalStatistics = data;
     });
   }
 }

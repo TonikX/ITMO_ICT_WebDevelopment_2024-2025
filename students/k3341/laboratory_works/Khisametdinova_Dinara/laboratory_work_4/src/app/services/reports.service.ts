@@ -25,4 +25,8 @@ export class ReportService {
   getTaskStatistics(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/statistics/`);
   }  
+
+  getPersonalStatistics(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/personal-statistics/`);
+  }  
 }
