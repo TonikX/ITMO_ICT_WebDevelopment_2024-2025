@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-50">
+    <div class="text-center w-75">
+        <h1 class="dashboard-name mb-4">Регистрации на гонки</h1>
+        <div class="dashboard-items">
+            {% if has_racer %}
+                {% if races|length != 0 %}
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Комментарии</th>
+                            <th scope="col">Регистрация</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tbody>
+                    {% for race in races %}
+                    <tr>
+                        <td>{{ race.id }}</td>
+                        <td>{{ race.date_of_race }}</td>
+                        <td><a href="{% url 'race_comments' race.id %}" class="btn btn-primary">Добавить</a></td>
+                        <td><a href="{% url 'delete_race_connection' race.id %}" class="btn btn-danger">Отказаться</a></td>
+                    </tr>
+                    {% empty %}
+                    <h5 class="mb-4">У вас нет регистраций на гонки.</h5>
+                    {% endfor %}
+                </tbody>
+                </table>
+            {% endif %}
+            {% if not has_racer %}
+                <a href="{% url 'racer_registration' %}" class="btn btn-primary mb-2">Зарегистрировать гонщика</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

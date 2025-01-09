@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Регистрация</title>
+</head>
+<body>
+<div class="container d-flex justify-content-center align-items-center mt-5" style="min-height: 50vh;">
+    <div class="w-50" style="max-width: 400px;">
+        <h1 class="mb-4 text-center">Регистрация</h1>
+        <form method="post" class="mb-3">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ user_form.as_p }}
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                <a href="/login/" class="btn btn-secondary">Войти</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+{% endblock %}

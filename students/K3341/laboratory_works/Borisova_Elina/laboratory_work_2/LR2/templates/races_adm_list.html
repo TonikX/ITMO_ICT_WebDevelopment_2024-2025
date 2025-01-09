@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Сводная таблица:</h1>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Победитель</th>
+                <th scope="col">Комментарии</th>
+                <th scope="col">Статус заезда</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+            <tr>
+                <td>{{ race.id }}</td>
+                <td>{{ race.date_of_race }}</td>
+                <td>{{ race.winner }}</td>
+                <td><a href="{% url 'race_comments' race.id %}" class="btn btn-primary">Посмотреть комментарии</a></td>
+                <td>{{ race.get_status_display }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

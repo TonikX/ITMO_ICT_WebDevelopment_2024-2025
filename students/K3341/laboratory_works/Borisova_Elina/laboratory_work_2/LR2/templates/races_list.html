@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Список гонок:</h1>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Комментарии</th>
+                <th scope="col">Регистрация</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for race in races %}
+            <tr>
+                <td>{{ race.id }}</td>
+                <td>{{ race.date_of_race }}</td>
+                <td><a href="{% url 'race_comments' race.id %}" class="btn btn-primary">Добавить</a></td>
+                {% if not race.id in race_connections %}
+                <td><a href="{% url 'create_race_connection' race.id %}" class = "btn btn-primary">Зарегистрироваться</a></td>
+                {% else %}
+                <td><a href="{% url 'delete_race_connection' race.id %}" class = "btn btn-danger">Отказаться</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

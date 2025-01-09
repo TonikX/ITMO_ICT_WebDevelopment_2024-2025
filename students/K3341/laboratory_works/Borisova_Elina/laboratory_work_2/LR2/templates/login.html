@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="text-center">
+        {% if form.errors %}
+            <p>
+                Введённые данные неверны. Попробуйте ещё раз.
+            </p>
+        {% else %}
+            <p>Заполните поля ниже для входа</p>
+        {% endif %}
+        <h1 class="mb-4">Войти</h1>
+        <form action="{% url 'login' %}" method="post" class="mb-3">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+        <a href="{% url 'registration' %}" class="btn btn-primary">Зарегистрироваться</a>
+    </div>
+</div>
+{% endblock %}
