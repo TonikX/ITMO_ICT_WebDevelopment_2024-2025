@@ -1,0 +1,8 @@
+{% block review %}
+  <div class="review">
+    <p>User: {{ review.user.first_name }} {{ review.user.last_name }}</p>
+    <p><a href="{% url 'flight' %}">Flight: {{ review.flight.flight_number }} {{ review.flight.departure }} - {{ review.flight.arrival }}</a></p>
+    <p>Comment: {{ review.comment_text }}</p>
+    <p>Rating: {{ review.rating }}</p>
+  </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>My Reviews</h1>
+  {% block reviews %}
+  <div class="reviews">
+    {% for review in reviews %}
+      {% include 'reviews/review.html' with review=review %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% endblock %}

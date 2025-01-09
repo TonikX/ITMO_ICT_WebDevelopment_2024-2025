@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Reserve Seat on Flight {{ flight.flight_number }}
+{% endblock %}
+
+{% block content %}
+    <h1>Reserve Seat on Flight {{ flight.flight_number }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Render form fields -->
+        <button type="submit">Submit Reservation</button>
+    </form>
+
+    <a href="{% url 'flight_detail' flight.pk %}">Back to Flight Details</a>
+{% endblock %}
