@@ -1,0 +1,54 @@
+:root {
+  --primary-color: #6b4226;
+  --secondary-color: #a67c52;
+  --background-color: #f5f5dc;
+  --text-color: #3e2723;
+  --font-family: 'Merriweather', serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  color: var(--primary-color);
+}
+
+button, .v-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .v-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.card, .v-card {
+  background-color: white;
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
