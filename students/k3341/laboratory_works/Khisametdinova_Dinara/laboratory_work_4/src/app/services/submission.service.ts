@@ -6,27 +6,30 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SubmissionService {
-  private baseUrl = 'http://127.0.0.1:8000/peer/submissions';
+  private baseUrl = 'http://127.0.0.1:8000/peer';
 
   constructor(private http: HttpClient) {}
 
-  // Метод для получения списка Submissions
   getSubmissions(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+    return this.http.get<any[]>(`${this.baseUrl}/submissions/`);
   }
 
-  // Метод для создания Submission
   createSubmission(submission: any): Observable<any> {
-    return this.http.post(this.baseUrl, submission);
+    return this.http.post(`${this.baseUrl}/submissions/`, submission);
   }
 
-  // Метод для обновления Submission
   updateSubmission(id: number, submission: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/${id}`, submission);
+    return this.http.put(`${this.baseUrl}/submissions/${id}/`, submission);
   }
 
-  // Метод для удаления Submission
   deleteSubmission(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/submissions/${id}/`);
+  }
+
+  getTaskDetails(taskId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tasks/${taskId}/details`);
+  }
+  getAllTasks(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/tasks/`);
   }
 }
