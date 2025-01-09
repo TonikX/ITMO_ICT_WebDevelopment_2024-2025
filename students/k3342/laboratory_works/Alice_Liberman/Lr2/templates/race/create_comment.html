@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create comment
+{% endblock title %}
+
+
+{% block header %}
+    <h1 class="mx-3">Fill in the form</h1>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <h2>Create New Comment</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add comment</button>
+        </form>
+
+        <a href="/race/">Back to race List</a></div>
+{% endblock %}

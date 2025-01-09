@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Login page{% endblock title %}
+
+{% block header %}<h1 class="text-center">Зарегистрироваться</h1>{% endblock header %}
+{% block content %}
+    <div class="container">
+        <form method="post" class="px-4 py-3">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label_tag }}</label>
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+
+
+    <p><a href="/account/login/">Been here?
+        <strong>Log in</strong></a></p>
+    </div>
+{% endblock content %}
+

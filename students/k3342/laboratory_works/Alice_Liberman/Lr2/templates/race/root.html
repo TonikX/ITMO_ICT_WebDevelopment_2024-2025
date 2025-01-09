@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    All races
+{% endblock title %}
+
+
+{% block header %}
+
+    <div class="container-fluid my-3">
+        <div class="row">
+            <h1 class="mx-3 col-2"><a href="/race/">New races</a></h1>
+            <h3 class="col-2"><a href="/race/yours/">Your registrations</a></h3>
+            <h3 class="col-2"><a href="/race/history/">Past races</a></h3>
+
+        </div>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <h2>Race List</h2>
+
+        {% if races %}
+            <ul>
+                {% for race in races %}
+                    <li>
+                        <h3>{{ race.name }}</h3>
+                        <p>{{ race.description }}</p>
+                        <p>Date for the race: {{ race.dt_event }}</p>
+                        <p>Register before {{ race.dt_due_register }}</p>
+                        <a href="/race/{{ race.id }}/">more</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+            </div>
+
+
+        {% else %}
+            <p>No races available.</p>
+        {% endif %}
+    </div>
+{% endblock %}

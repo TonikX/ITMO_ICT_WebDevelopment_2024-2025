@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Create car
+{% endblock title %}
+
+
+{% block header %}
+    <h1 class="mx-3">Fill in the form</h1>
+{% endblock header %}
+
+{% block content %}
+    <div class="container">
+        <h2>Create New Car</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Car</button>
+        </form>
+
+        <a href="/cars/">Back to Car List</a></div>
+{% endblock %}
