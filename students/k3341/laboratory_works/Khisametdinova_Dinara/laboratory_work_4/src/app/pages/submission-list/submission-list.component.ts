@@ -12,10 +12,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class SubmissionListComponent implements OnInit {
   submissions: any[] = [];
+  filteredSubmissions: any[] = [];
   tasks: any[] = [];
   selectedTaskId: number | null = null; 
   selectedTaskDetails: any = null; 
   newSubmissionContent: string = '';
+  searchQuery: string = '';
 
   constructor(private submissionService: SubmissionService) {}
 
@@ -27,6 +29,7 @@ export class SubmissionListComponent implements OnInit {
   loadSubmissions(): void {
     this.submissionService.getSubmissions().subscribe((data) => {
       this.submissions = data;
+      this.filteredSubmissions = data; 
     });
   }
 

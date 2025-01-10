@@ -30,6 +30,6 @@ export class SubmissionService {
     return this.http.get<any>(`${this.baseUrl}/tasks/${taskId}/details`);
   }
   getAllTasks(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/tasks/`);
+    return this.http.get<any[]>(`${this.baseUrl}/tasks/for-students/`);
   }
 }
