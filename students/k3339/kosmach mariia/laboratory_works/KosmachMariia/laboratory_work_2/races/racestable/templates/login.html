@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Sign in</title>
+</head>
+<body>
+<div class="container mt-5">
+    {% if form.errors %}
+        <p>
+            Your username and password didn't match. Please try again.
+        </p>
+    {% else %}
+        <p>Please, use the following form to sign-in:</p>
+    {% endif %}
+    <h1 class="mb-4">🛂 Sign in</h1>
+    <form action="{% url 'login' %}" method="post" class="mb-3">
+        {{ form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Sign In"></p>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>RACES</title>
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo h1 {
+            font-weight: bold;
+        }
+    </style>
+</head>
+    <body>
+        <div class="container mt-5">
+            <div class="header">
+                <div class="header-logo">
+                    <h1 class="mb-4">🚦 RACES</h1>
+                </div>
+                <div class="header-buttons">
+                    <a href="{% url 'login' %}" class="btn btn-primary mb-2">Sign In</a>
+                    <a href="{% url 'registration' %}" class="btn btn-secondary mb-2">Sign Up</a>
+                </div>
+            </div>
+            <div class="info">
+                <p>
+                    An application for viewing information about car races and registering for them.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
