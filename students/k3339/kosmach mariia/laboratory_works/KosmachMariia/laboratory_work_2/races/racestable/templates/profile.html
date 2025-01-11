@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Profile</title>
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-logo {
+            font-weight: bold;
+            font-size: 40px;
+        }
+        .profile {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: space-evenly;
+            align-items: flex-end;
+        }
+        .header-buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .header-buttons a {
+            margin-left: 10px;
+        }
+        .header-name {
+            margin-bottom: 5px;
+        }
+        .dashboard-items {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            align-content: center;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+        .dashboard-name {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container mt-5">
+        <div class="header">
+            <div class="header-logo">
+                <div>🚦 RACES</div>
+            </div>
+            <div class="profile">
+                <div class="header-name">
+                    {{ request.user }}
+                </div>
+                <div class="header-buttons">
+                    <a href="{% url 'logout' %}" class="btn btn-primary mb-2">Logout</a>
+                    <a href="{% url 'delete_account' %}" class="btn btn-danger">Delete account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h1 class="dashboard-name">📜 Dashboard</h1>
+        <div class="dashboard-items">
+            {% if  has_racer %}
+                <a href="{% url 'races_list' %}" class="btn btn-primary">Race table</a>
+            {% endif %}
+            <a href="{% url 'edit_user' %}" class="btn btn-primary mb-2">Edit user</a>
+            <a href="{% url 'change_password' %}" class="btn btn-primary mb-2">Change password</a>
+            {% if not has_racer %}
+                <a href="{% url 'racer_registration' %}" class="btn btn-primary mb-2">Register racer</a>
+            {% else %}
+                <a href="{% url 'edit_racer' %}" class="btn btn-primary mb-2">Edit racer</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
