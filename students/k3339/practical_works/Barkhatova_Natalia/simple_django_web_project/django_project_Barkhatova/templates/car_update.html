@@ -1,0 +1,17 @@
+<!-- car_update.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Car</title>
+</head>
+<body>
+    <h1>Update Car</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save changes</button>
+    </form>
+    <a href="{% url 'car_detail' car.id %}">Cancel</a>
+</body>
+</html>

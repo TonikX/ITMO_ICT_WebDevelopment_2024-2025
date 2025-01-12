@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список классов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <a class="navbar-brand" href="/home">Главная</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Выйти</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1 class="mb-4">Список классов</h1>
+    <a href="/teacher/classrooms/create" class="btn btn-primary mb-3">Создать новый класс</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Предмет</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="classroom : ${classrooms}">
+            <td th:text="${classroom.name}"></td>
+            <td th:text="${classroom.subject.name}"></td>
+            <td>
+                <a th:href="@{/teacher/classrooms/students/{id}/classroom(id=${classroom.id})}" class="btn btn-info btn-sm">Список студентов</a>
+                <a th:href="@{/teacher/classrooms/{id}/edit(id=${classroom.id})}" class="btn btn-warning btn-sm">Редактировать</a>
+                <a th:href="@{/teacher/classrooms/{id}/delete(id=${classroom.id})}" class="btn btn-danger btn-sm">Удалить</a>
+                <a th:href="@{/teacher/classrooms/{id}/grades(id=${classroom.id})}" class="btn btn-danger btn-sm">Журнал оценок</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

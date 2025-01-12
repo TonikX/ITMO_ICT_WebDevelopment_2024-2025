@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if car %}Edit Car{% else %}Add Car{% endif %}</title>
+</head>
+<body>
+    <h1>{% if car %}Edit Car{% else %}Add Car{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if car %}Save Changes{% else %}Add Car{% endif %}</button>
+    </form>
+    <a href="{% url 'car_list' %}">Back to Cars List</a>
+</body>
+</html>
