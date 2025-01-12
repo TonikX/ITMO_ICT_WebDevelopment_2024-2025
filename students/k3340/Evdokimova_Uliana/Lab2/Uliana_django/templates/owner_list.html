@@ -1,0 +1,9 @@
+<h1>Список владельцев</h1>
+<ul>
+    {% for owner in owners %}
+        <li>{{ owner.first_name }} {{ owner.last_name }} - Дата рождения: {{ owner.birth_date }}</li>
+    {% empty %}
+        <li>Нет владельцев</li>
+    {% endfor %}
+</ul>
+

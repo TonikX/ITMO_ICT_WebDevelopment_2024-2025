@@ -1,0 +1,16 @@
+site_name: "dinarasaurae's webdev"
+theme:
+  name: 'material'
+  palette:
+    primary: 'orange'
+    accent: 'red'
+
+nav:
+  - Home: index.md
+  - LAB №1:
+    - task 1: lab1/task1.md
+    - task 2: lab1/task2.md
+    - task 3: lab1/task3.md
+    - task 4: lab1/task4.md
+    - task 5: lab1/task5.md
+

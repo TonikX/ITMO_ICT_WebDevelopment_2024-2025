@@ -1,0 +1,6 @@
+<h2>Reserve a Seat on {{ flight.flight_number }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Reserve</button>
+</form>
