@@ -25,7 +25,7 @@
      
 - [Итоговый вид приложения](https://yg-margo.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab2/result/)
 
-## Лабораторная работа №3 и №4
+## Лабораторная работа №3
 
 - [Клиенты](https://yg-margo.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab3/client/)
 
@@ -42,3 +42,7 @@
 - [Контракты](https://yg-margo.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab3/contracts/)
 
 - [Претензии](https://yg-margo.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab3/claims/)
+
+## Лабораторная работа №4
+
+- [Интерфейс сайта](https://yg-margo.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab4/interface/)
