@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sold Tours</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'tour_list' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'register' %}">Register</a>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Sold Tours</h2>
+        {% if sold_tours %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Tour Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Price</th>
+                    <th>Average Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tour in sold_tours %}
+                <tr>
+                    <td>{{ tour.name }}</td>
+                    <td>{{ tour.description }}</td>
+                    <td>{{ tour.start_date }}</td>
+                    <td>{{ tour.end_date }}</td>
+                    <td>{{ tour.price }}</td>
+                    <td>{{ tour.average_rating }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No sold tours available.</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Tour Agency. All rights reserved.</p>
+    </footer>
+</body>
+</html>

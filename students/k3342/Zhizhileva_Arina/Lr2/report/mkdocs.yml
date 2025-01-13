@@ -1,0 +1,10 @@
+site_name: 'Web 3.2 Жижилева Арина, Лабораторная работа №2'
+theme:
+  name: 'material'
+nav:
+  - Главная: index.md
+  - Описание моделей: chapter1.md
+  - Регистрация: chapter2.md
+  - Urls: chapter3.md
+  - Формы: chapter4.md
+  - Получившийся проект: chapter5.md

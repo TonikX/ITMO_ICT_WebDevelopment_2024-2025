@@ -1,0 +1,236 @@
+/* Import a readable Google font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    --dark-gold: #b8860b;
+    --gold-light: #f9e8c9;
+    --background-light: #fffaf2;
+    --text-dark: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container for centering the content */
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Navbar */
+header {
+    background-color: var(--gold-light);
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: var(--dark-gold);
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--text-dark);
+}
+
+/* Tours List Styling */
+.tour-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tour-item {
+    background-color: #ffffff;
+    border: 1px solid var(--gold-light);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.tour-item h3 {
+    color: var(--dark-gold);
+    margin-bottom: 10px;
+}
+
+.tour-item p {
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Button Styling */
+.btn, .book-btn {
+    display: inline-block;
+    background-color: var(--dark-gold);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover, .book-btn:hover {
+    background-color: var(--gold-light);
+    color: var(--text-dark);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 0.9em;
+    color: var(--text-dark);
+}
+
+footer a {
+    color: var(--dark-gold);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header, .footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar a {
+    color: var(--gold-light); /* Темно-золотой цвет */
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: var(--dark-gold);
+}
+
+.container {
+    flex: 1;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Стиль для списка туров */
+.tour-list {
+    display: grid;
+    gap: 20px;
+}
+
+.tour-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Кнопки */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn, .filter-btn {
+    padding: 8px 15px;
+    background-color: var(--gold-light);
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn:hover, .filter-btn:hover {
+    background-color: var(--dark-gold);
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.registration-form, .login-form {
+    margin-top: 20px;
+}
+
+.registration-form button, .login-form button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.messages {
+    margin-top: 15px;
+    color: goldenrod;
+}
