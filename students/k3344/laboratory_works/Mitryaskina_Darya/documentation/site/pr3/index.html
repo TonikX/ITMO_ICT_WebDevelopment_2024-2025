@@ -1,0 +1,1186 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab2/">
+      
+      
+        <link rel="next" href="../lab3/diets/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+    
+    
+      
+        <title>Пр №3.1 - Web-программирование</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#31" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Web-программирование" class="md-header__button md-logo" aria-label="Web-программирование" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Web-программирование
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Пр №3.1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Web-программирование" class="md-nav__button md-logo" aria-label="Web-программирование" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Web-программирование
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Лаб №1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Лаб №2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Пр №3.1
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Пр №3.1
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#django-web-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Web Framework. Запросы и их выполнение
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Django Web Framework. Запросы и их выполнение">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Задание">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание объектов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Написать запросы на фильтрацию
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Написать запросы на агрегацию
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание объектов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Создание объектов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание автовладельцев
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Создание автомобилей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Назначение автомобилей владельцам
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Назначение удостоверений
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Написание запросов на фильтрацию
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Написание запросов на фильтрацию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-toyota" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-id-id-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2010" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Написание запросов на агрегацию
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Написание запросов на агрегацию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Вывод даты выдачи самого старшего водительского удостоверения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Выведите количество машин для каждого водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Подсчитайте количество машин каждой марки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Отсортируйте всех автовладельцев по дате выдачи удостоверения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лаб №3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Лаб №3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/diets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/breeds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Breed
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/hens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/cages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/workshops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workshop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Лаб №4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#django-web-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Django Web Framework. Запросы и их выполнение
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Django Web Framework. Запросы и их выполнение">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Задание
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Задание">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание объектов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Написать запросы на фильтрацию
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Написать запросы на агрегацию
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Создание объектов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Создание объектов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание автовладельцев
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Создание автомобилей
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Назначение автомобилей владельцам
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Назначение удостоверений
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Написание запросов на фильтрацию
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Написание запросов на фильтрацию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-toyota" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-id-id-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-2010" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Написание запросов на агрегацию
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Написание запросов на агрегацию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Вывод даты выдачи самого старшего водительского удостоверения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Выведите количество машин для каждого водителя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Подсчитайте количество машин каждой марки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Отсортируйте всех автовладельцев по дате выдачи удостоверения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="31">Практическое задание 3.1</h1>
+<h2 id="django-web-framework">Django Web Framework. Запросы и их выполнение</h2>
+<hr />
+<h3 id="_1">Задание</h3>
+<h4 id="1">1. Создание объектов</h4>
+<p>Воспользуйтесь проектом из практики 2.1. Напишите запросы для создания:
+- 6–7 новых автовладельцев.
+- 5–6 автомобилей.</p>
+<p>Каждому автовладельцу необходимо назначить удостоверение и от 1 до 3 автомобилей. Задание можно выполнить в интерактивном режиме интерпретатора или в отдельном Python-файле. Результатом должны стать запросы и отображение созданных объектов.</p>
+<h4 id="2">2. Написать запросы на фильтрацию</h4>
+<ul>
+<li>Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)</li>
+<li>Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)</li>
+<li>Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)</li>
+<li>Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)</li>
+<li>Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)</li>
+</ul>
+<h4 id="3">3. Написать запросы на агрегацию</h4>
+<ul>
+<li>Вывод даты выдачи самого старшего водительского удостоверения</li>
+<li>Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе</li>
+<li>Выведите количество машин для каждого водителя</li>
+<li>Подсчитайте количество машин каждой марки</li>
+<li>Отсортируйте всех автовладельцев по дате выдачи удостоверения </li>
+</ul>
+<hr />
+<h3 id="_2">Создание объектов</h3>
+<h4 id="1_1">1. Создание автовладельцев</h4>
+<pre><code class="language-python">from project_first_app.models import User
+
+owner1 = User(passport=123457, first_name=&quot;Иван&quot;, last_name=&quot;Попов&quot;)
+owner2 = User(passport=436576, first_name=&quot;Сергей&quot;, last_name=&quot;Асанов&quot;)
+owner3 = User(passport=465776, first_name=&quot;Лариса&quot;, last_name=&quot;Васильева&quot;)
+owner4 = User(passport=242455, first_name=&quot;Мария&quot;, last_name=&quot;Бабушкина&quot;)
+owner5 = User(passport=786855, first_name=&quot;Валерий&quot;, last_name=&quot;Смирнов&quot;)
+owner6 = User(passport=456464, first_name=&quot;Лидия&quot;, last_name=&quot;Максимова&quot;)
+
+owner1.save()
+owner2.save()
+owner3.save()
+owner4.save()
+owner5.save()
+owner6.save()
+</code></pre>
+<h4 id="2_1">2. Создание автомобилей</h4>
+<pre><code class="language-python">from project_first_app.models import Car
+
+car1 = Car(state_number=&quot;K345OP&quot;, brand=&quot;BMW&quot;, model=&quot;X6&quot;, color=&quot;black&quot;)
+car2 = Car(state_number=&quot;A123BC&quot;, brand=&quot;Mercedes&quot;, model=&quot;E-Class&quot;, color=&quot;white&quot;)
+car3 = Car(state_number=&quot;M789TT&quot;, brand=&quot;Audi&quot;, model=&quot;Q7&quot;, color=&quot;blue&quot;)
+car4 = Car(state_number=&quot;H567XY&quot;, brand=&quot;Toyota&quot;, model=&quot;Camry&quot;, color=&quot;gray&quot;)
+car5 = Car(state_number=&quot;P234KT&quot;, brand=&quot;Lexus&quot;, model=&quot;RX&quot;, color=&quot;red&quot;)
+
+car1.save()
+car2.save()
+car3.save()
+car4.save()
+car5.save()
+</code></pre>
+<h4 id="3_1">3. Назначение автомобилей владельцам</h4>
+<pre><code class="language-python">from project_first_app.models import Ownership
+from django.utils.timezone import make_aware
+from datetime import datetime
+
+Ownership(owner=owner1, car=car1, start_date=make_aware(datetime(2024, 1, 1)), end_date=None).save()
+Ownership(owner=owner1, car=car2, start_date=make_aware(datetime(2024, 7, 1)), end_date=None).save()
+
+Ownership(owner=owner2, car=car3, start_date=make_aware(datetime(2024, 1, 1)), end_date=make_aware(datetime(2024, 3, 31))).save()
+Ownership(owner=owner2, car=car4, start_date=make_aware(datetime(2024, 4, 1)), end_date=make_aware(datetime(2024, 6, 30))).save()
+Ownership(owner=owner2, car=car5, start_date=make_aware(datetime(2024, 7, 1)), end_date=None).save()
+
+Ownership(owner=owner3, car=car1, start_date=make_aware(datetime(2024, 1, 1)), end_date=None).save()
+
+Ownership(owner=owner4, car=car2, start_date=make_aware(datetime(2024, 1, 1)), end_date=make_aware(datetime(2024, 5, 31))).save()
+Ownership(owner=owner4, car=car3, start_date=make_aware(datetime(2024, 6, 1)), end_date=None).save()
+
+Ownership(owner=owner5, car=car4, start_date=make_aware(datetime(2024, 1, 1)), end_date=make_aware(datetime(2024, 4, 30))).save()
+Ownership(owner=owner5, car=car5, start_date=make_aware(datetime(2024, 5, 1)), end_date=make_aware(datetime(2024, 8, 31))).save()
+Ownership(owner=owner5, car=car1, start_date=make_aware(datetime(2024, 9, 1)), end_date=None).save()
+
+</code></pre>
+<h4 id="4">4. Назначение удостоверений</h4>
+<pre><code class="language-python">from project_first_app.models import License
+
+License(owner=owner1, license_number=&quot;1234567890&quot;, license_type=&quot;B&quot;, issue_date=make_aware(datetime(2020, 1, 1))).save()
+License(owner=owner2, license_number=&quot;0987654321&quot;, license_type=&quot;C&quot;, issue_date=make_aware(datetime(2019, 5, 15))).save()
+License(owner=owner3, license_number=&quot;5678901234&quot;, license_type=&quot;A&quot;, issue_date=make_aware(datetime(2018, 3, 10))).save()
+License(owner=owner4, license_number=&quot;3456789012&quot;, license_type=&quot;D&quot;, issue_date=make_aware(datetime(2021, 7, 20))).save()
+License(owner=owner5, license_number=&quot;6789012345&quot;, license_type=&quot;B&quot;, issue_date=make_aware(datetime(2022, 11, 5))).save()
+License(owner=owner6, license_number=&quot;2345678901&quot;, license_type=&quot;C&quot;, issue_date=make_aware(datetime(2023, 4, 1))).save()
+
+</code></pre>
+<p><code>users</code></p>
+<p><img src="../img/users.png" alt="item-details" style="width:700px; height:auto;"></p>
+<p><code>cars</code></p>
+<p><img src="../img/cars.png" alt="item-details" style="width:700px; height:auto;"></p>
+<p><code>licenses</code></p>
+<p><img src="../img/licenses.png" alt="item-details" style="width:700px; height:auto;"></p>
+<p><code>ownerships</code></p>
+<p><img src="../img/ownerships.png" alt="item-details" style="width:700px; height:auto;"></p>
+<h3 id="_3">Написание запросов на фильтрацию</h3>
+<h4 id="1-toyota">1. Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)</h4>
+<pre><code class="language-python">&gt;&gt;&gt; toyota_cars = Car.objects.filter(brand=&quot;Toyota&quot;) 
+&gt;&gt;&gt; toyota_cars 
+&lt;QuerySet [&lt;Car: Toyota Camry&gt;]&gt;
+</code></pre>
+<h4 id="2_2">2. Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)</h4>
+<pre><code class="language-python">&gt;&gt;&gt; serg_drivers = User.objects.filter(first_name=&quot;Сергей&quot;) 
+&gt;&gt;&gt; serg_drivers 
+&lt;QuerySet [&lt;User: Сергей Асанов&gt;]&gt;
+</code></pre>
+<h4 id="3-id-id-2">3. Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)</h4>
+<pre><code class="language-python">&gt;&gt;&gt; random_owner = User.objects.get(passport=123457) 
+&gt;&gt;&gt; license_for_owner = License.objects.get(owner=random_owner) 
+&gt;&gt;&gt; license_for_owner 
+&lt;License: 1234567890, type B (&lt;bound method User.__str__ of &lt;User: Иван Попов&gt;&gt;)&gt;
+</code></pre>
+<h4 id="4_1">4. Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)</h4>
+<pre><code class="language-python">&gt;&gt;&gt; User.objects.filter(ownership__car__color=&quot;red&quot;).distinct()   
+&lt;QuerySet [&lt;User: Сергей Асанов&gt;, &lt;User: Валерий Смирнов&gt;]&gt;
+</code></pre>
+<h4 id="5-2010">5. Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)</h4>
+<pre><code class="language-python">&gt;&gt;&gt; User.objects.filter(ownership__start_date__year=2024, ownership__end_date=None).distinct()        
+&lt;QuerySet [&lt;User: Иван Попов&gt;, &lt;User: Сергей Асанов&gt;, &lt;User: Лариса Васильева&gt;, &lt;User: Мария Бабушкина&gt;, &lt;User: Валерий Смирнов&gt;]&gt;
+</code></pre>
+<h3 id="_4">Написание запросов на агрегацию</h3>
+<h4 id="1_2">1. Вывод даты выдачи самого старшего водительского удостоверения</h4>
+<p>Вывод даты выдачи самого старшего водительского удостоверения: Для этого мы можем использовать метод aggregate() для нахождения минимальной даты из всех удостоверений.</p>
+<pre><code class="language-python">&gt;&gt;&gt; from django.db.models import Min
+&gt;&gt;&gt; oldest_license = License.objects.aggregate(oldest_license_date=Min('issue_date'))
+&gt;&gt;&gt; print(oldest_license['oldest_license_date'])
+2018-03-10 00:00:00+00:00
+</code></pre>
+<h4 id="2-">2. Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе</h4>
+<p>Здесь мы можем воспользоваться методом aggregate() для поиска самой поздней даты начала владения машины.</p>
+<pre><code class="language-python">&gt;&gt;&gt; from django.db.models import Max&gt;&gt;&gt; 
+&gt;&gt;&gt; latest_ownership_date = Ownership.objects.aggregate(latest_date=Max('start_date'))
+&gt;&gt;&gt; print(latest_ownership_date['latest_date'])
+2024-09-01 00:00:00+00:00
+</code></pre>
+<h4 id="3_2">3. Выведите количество машин для каждого водителя</h4>
+<p>Для подсчета количества машин, принадлежащих каждому водителю, можно использовать annotate() с функцией Count.</p>
+<pre><code class="language-python">&gt;&gt;&gt; from django.db.models import Count
+&gt;&gt;&gt; car_count_per_owner = User.objects.annotate(car_count=Count('ownership'))    
+&gt;&gt;&gt; for user in car_count_per_owner:
+...     print(f&quot;{user.first_name} {user.last_name}: {user.car_count}&quot;)
+... 
+Иван Попов: 2
+Мария Бабушкина: 2Сергей Асанов: 3
+Лидия Максимова: 0Лариса Васильева: 1
+Валерий Смирнов: 3
+</code></pre>
+<h4 id="4_2">4. Подсчитайте количество машин каждой марки</h4>
+<p>Для подсчета машин по маркам можно использовать values() с группировкой по марке и annotate() для подсчета</p>
+<pre><code class="language-python">&gt;&gt;&gt; cars_by_brand = Car.objects.values('brand').annotate(Count(&quot;id&quot;)) 
+&gt;&gt;&gt; cars_by_brand 
+&lt;QuerySet [{'brand': 'Audi', 'id__count': 1}, {'brand': 'BMW', 'id__count': 1}, {'brand': 'Lexus', 'id__count': 1}, {'brand': 'Mercedes', 'id__count': 1}, {'brand': 'Toyota', 'id__count': 1}]&gt;
+</code></pre>
+<h4 id="5">5. Отсортируйте всех автовладельцев по дате выдачи удостоверения</h4>
+<pre><code class="language-python">&gt;&gt;&gt; User.objects.filter(license__isnull=False).distinct().order_by('license__issue_date') 
+&lt;QuerySet [&lt;User: Лариса Васильева&gt;, &lt;User: Сергей Асанов&gt;, &lt;User: Иван Попов&gt;, &lt;User: Мария Бабушкина&gt;, &lt;User: Валерий Смирнов&gt;, &lt;User: Лидия Максимова&gt;]&gt;
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
