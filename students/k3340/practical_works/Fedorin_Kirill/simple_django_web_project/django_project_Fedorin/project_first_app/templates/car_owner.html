@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о владельце</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .field {
+            margin: 10px 0;
+        }
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Информация о владельце автомобиля</h1>
+        
+        {% if car_owner %}
+            <div class="field">
+                <span class="label">Фамилия:</span> {{ car_owner.last_name }}
+            </div>
+            <div class="field">
+                <span class="label">Имя:</span> {{ car_owner.first_name }}
+            </div>
+            <div class="field">
+                <span class="label">Дата рождения:</span> {{ car_owner.birth_date|date:"d.m.Y" }}
+            </div>
+
+            <h2>Информация об автомобиле</h2>
+            <div class="field">
+                <span class="label">Гос. номер:</span> {{ car.license_plate }}
+            </div>
+            <div class="field">
+                <span class="label">Марка:</span> {{ car.brand }}
+            </div>
+            <div class="field">
+                <span class="label">Модель:</span> {{ car.model }}
+            </div>
+            <div class="field">
+                <span class="label">Цвет:</span> {{ car.color }}
+            </div>
+        {% else %}
+            <p>У автомобиля нет владельца или данные недоступны.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

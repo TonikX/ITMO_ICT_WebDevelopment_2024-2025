@@ -1,0 +1,60 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>{{ conference.title }}</h2>
+<p>{{ conference.description }}</p>
+<p>Location: {{ conference.location.name }} - {{ conference.location.address }}</p>
+<p>Topics: {{ conference.topics }}</p>
+<p>Period: From {{ conference.start_date }} to {{ conference.end_date }}</p>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if user.is_authenticated %}
+    {% if registration_exists %}
+        <p>You are registered for this conference.</p>
+        <form method="post" action="{% url 'unregister_from_conference' conference.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Unregister from this Conference</button>
+        </form>
+    {% else %}
+        <form method="post" action="{% url 'register_for_conference' conference.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Register for this Conference</button>
+        </form>
+    {% endif %}
+{% else %}
+    <p><a href="{% url 'login' %}">Login</a> to register for this conference.</p>
+{% endif %}
+
+<h3>Participants</h3>
+<ul>
+    {% for participant in participants %}
+        <li>{{ participant.user.username }}</li>
+    {% empty %}
+        <li>No participants yet.</li>
+    {% endfor %}
+</ul>
+
+<h3>Reviews</h3>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.user.username }}</strong> ({{ review.date_posted }}):<br>
+            {{ review.text }}<br>
+            Rating: {{ review.rating }}
+        </li>
+    {% empty %}
+        <li>No reviews yet.</li>
+    {% endfor %}
+</ul>
+
+{% if user.is_authenticated and registration_exists %}
+    <a href="{% url 'add_review' conference.id %}" class="btn btn-secondary">Add Review</a>
+{% endif %}
+{% endblock %}
