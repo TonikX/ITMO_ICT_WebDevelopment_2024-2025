@@ -32,4 +32,7 @@ export class SubmissionService {
   getAllTasks(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/tasks/for-students/`);
   }
+  getSubmissionsByTask(taskId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/submissions/?task=${taskId}`);
+  }  
 }

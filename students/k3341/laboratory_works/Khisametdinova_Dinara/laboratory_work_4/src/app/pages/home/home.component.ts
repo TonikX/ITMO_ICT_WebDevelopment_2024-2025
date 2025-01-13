@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Добавляем CommonModule
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { HomeService } from '../../services/home.service';
 
@@ -8,7 +8,7 @@ import { HomeService } from '../../services/home.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule], // Импортируем CommonModule
+  imports: [CommonModule],
 })
 export class HomeComponent implements OnInit {
   currentUser: any;

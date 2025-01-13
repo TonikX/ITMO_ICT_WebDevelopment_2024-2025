@@ -14,7 +14,8 @@
       <div *ngIf="editingTask?.id !== task.id">
         <h5>{{ task.title }}</h5>
         <p>{{ task.description }}</p>
-        <div *ngIf="isTeacher">
+        <!-- Проверка на автора задачи -->
+        <div *ngIf="currentUser && task.creator.id === currentUser.id; else showCreator">
           <button class="btn btn-sm btn-primary me-2" (click)="editTask(task)">
             Edit
           </button>
@@ -22,6 +23,9 @@
             Delete
           </button>
         </div>
+        <ng-template #showCreator>
+          <p>Created by: {{ task.creator.first_name }} {{ task.creator.last_name }}</p>
+        </ng-template>
       </div>
 
       <!-- Редактирование задачи -->

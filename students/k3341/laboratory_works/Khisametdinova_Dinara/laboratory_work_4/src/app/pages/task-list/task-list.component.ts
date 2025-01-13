@@ -15,6 +15,7 @@ export class TaskListComponent {
   tasks: any[] = [];
   filter: string = '';
   isTeacher: boolean = false;
+  currentUser: any = null; // Текущий пользователь
 
   newTask = {
     title: '',
@@ -26,8 +27,8 @@ export class TaskListComponent {
   editingOptions: any[] = [];
 
   constructor(private taskService: TaskService, private authService: AuthService) {
-    const currentUser = this.authService.getCurrentUser();
-    this.isTeacher = currentUser?.role === 'teacher';
+    this.currentUser = this.authService.getCurrentUser(); // Загружаем текущего пользователя
+    this.isTeacher = this.currentUser?.role === 'teacher'; // Проверяем роль пользователя
     this.loadTasks();
   }
 
@@ -68,6 +69,11 @@ export class TaskListComponent {
   }
 
   editTask(task: any) {
+    // Проверяем, является ли текущий пользователь создателем задачи
+    if (task.creator.id !== this.currentUser.id) {
+      alert("You don't have permission to edit this task.");
+      return;
+    }
     this.editingTask = { ...task };
     this.editingCriteria = task.criterion ? [...task.criterion] : [];
     this.editingOptions = task.options ? [...task.options] : [];
@@ -84,17 +90,22 @@ export class TaskListComponent {
       options: this.editingOptions,
     };
 
-    this.taskService.updateTask(this.editingTask.id, this.editingTask).subscribe({
+    this.taskService.updateTask(this.editingTask.id, updatedTask).subscribe({
       next: () => {
         this.loadTasks();
         this.cancelEdit();
-        this.editingTask = null;
       },
       error: (err) => console.error('Error updating task:', err),
     });
   }
 
   deleteTask(taskId: number) {
+    const taskToDelete = this.tasks.find((task) => task.id === taskId);
+    // Проверяем, является ли текущий пользователь создателем задачи
+    if (taskToDelete?.creator.id !== this.currentUser.id) {
+      alert("You don't have permission to delete this task.");
+      return;
+    }
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskService.deleteTask(taskId).subscribe({
         next: () => this.loadTasks(),
@@ -110,15 +121,15 @@ export class TaskListComponent {
   addCriterion() {
     this.editingCriteria.push({ name: '', description: '', task: this.editingTask?.id || null });
   }
-  
+
   removeCriterion(index: number) {
     this.editingCriteria.splice(index, 1);
   }
-  
+
   addOption() {
     this.editingOptions.push({ content: '', task: this.editingTask?.id || null });
   }
-  
+
   removeOption(index: number) {
     this.editingOptions.splice(index, 1);
   }

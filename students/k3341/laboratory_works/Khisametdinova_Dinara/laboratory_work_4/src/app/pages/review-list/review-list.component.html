@@ -1,12 +1,42 @@
 <div class="container">
-    <h2>Reviews</h2>
-    <div *ngFor="let review of reviews" class="card mb-2">
-      <div class="card-body">
-        <h5>Criterion: {{ review.criterion }}</h5>
-        <p>Score: {{ review.score }}</p>
-        <p>Comments: {{ review.comments }}</p>
-        <p>Reviewer: {{ review.user }}</p>
-      </div>
+  <h2>Reviews</h2>
+  <div>
+    <label for="taskSelect">Select Task:</label>
+    <select id="taskSelect" class="form-select mb-2" (change)="onTaskSelect($event)">
+      <option *ngFor="let task of tasks" [value]="task.id">{{ task.title }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedTask">
+    <h3>Submissions for {{ selectedTask.title }}</h3>
+    <select class="form-select mb-3" (change)="onSubmissionSelect($event)">
+      <option *ngFor="let submission of submissions" [value]="submission.id">
+        {{ submission.content }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <h3>Add Review</h3>
+    <div class="mb-2">
+      <label for="score">Score:</label>
+      <input type="number" id="score" class="form-control" [(ngModel)]="newReview.score" />
+    </div>
+    <div class="mb-2">
+      <label for="comments">Comments:</label>
+      <textarea id="comments" class="form-control" [(ngModel)]="newReview.comments"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="addReview()">Submit Review</button>
+  </div>
+
+  <div *ngFor="let review of reviews" class="card mb-2">
+    <div class="card-body">
+      <h5>Criterion: {{ review.criterion_detail?.name || 'Not specified' }}</h5>
+      <p>Submission: {{ review.submission_detail?.content || 'Not specified' }}</p>
+      <p>Score: {{ review.score }}</p>
+      <p>Comments: {{ review.comments }}</p>
+      <p>Reviewer: {{ review.user?.first_name }} {{ review.user?.last_name }}</p>
+      <button *ngIf="review.user?.id === currentUser?.id" class="btn btn-primary btn-sm" (click)="editReview(review)">Edit</button>
     </div>
   </div>
-  
+</div>
