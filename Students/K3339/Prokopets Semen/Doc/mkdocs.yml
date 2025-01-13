@@ -1,0 +1,18 @@
+site_name: WEB-programming with Semen4ikk
+nav:
+  - Home: index.md
+  - 2 lab:
+      - models: Lr_2/models.md
+      - views: Lr_2/views.md
+      - urls: Lr_2/urls.md
+      - forms: Lr_2/forms.md
+      - settings: Lr_2/settings.md
+  - 3 lab:
+    - models: Lr_3/models.md
+    - views: Lr_3/views.md
+    - urls: Lr_3/urls.md
+    - serializers: Lr_3/serializers.md
+    - settings: Lr_3/settings.md
+    - swagger: Lr_3/Swagger.md
+theme:
+  name: readthedocs
