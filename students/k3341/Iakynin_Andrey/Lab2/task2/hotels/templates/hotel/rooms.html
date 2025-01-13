@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Номера в отеле {{ hotel.name }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Номера в отеле {{ hotel.name }}</h1>
+
+{% if request.user.is_superuser %}
+    <a href="{% url 'add_room' hotel.id %}" class="btn btn-success mb-3">Добавить номер</a>
+{% endif %}
+
+<div class="row">
+    {% for room in page_obj %}
+        <div class="col-md-4">
+            <div class="flip-card-container">
+                <div class="flip-card">
+                    <!-- Front Side -->
+                    <div class="flip-card-front">
+                        <h5 class="card-title">{{ room.name }}</h5>
+                        <p class="card-text">Тип: {{ room.type }}</p>
+                        <p class="card-text">Цена: {{ room.price }} руб.</p>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="flip-card-back">
+                        <a href="{% url 'rooms_detail' room.id %}" class="btn btn-primary">Перейти</a>
+                        {% if request.user.is_superuser %}
+                            <a href="{% url 'delete_room' hotel.id room.id %}" class="btn btn-danger"
+                               onclick="return confirm('Вы уверены, что хотите удалить этот номер?');">Удалить номер</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>Нет доступных номеров.</p>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

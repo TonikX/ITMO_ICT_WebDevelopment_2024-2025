@@ -1,0 +1,151 @@
+/* styles.css */
+
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif; /* Шрифт страницы */
+}
+
+h1 {
+    text-align: center; /* Центрирование заголовка */
+    margin-bottom: 2rem; /* Отступ снизу заголовка */
+    color: #343a40; /* Цвет текста заголовка */
+}
+
+.row {
+    display: flex; /* Flexbox для адаптивного расположения карточек */
+    flex-wrap: wrap; /* Перенос карточек на следующую строку при недостатке места */
+    justify-content: center; /* Центрирование карточек по горизонтали */
+}
+
+.card {
+    border: none; /* Убираем рамку карточки */
+    border-radius: 0.5rem; /* Закругленные углы карточки */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+    transition: transform 0.2s; /* Плавный переход при наведении */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Подъем карточки при наведении */
+}
+
+.card-body {
+    padding: 1.5rem; /* Отступы внутри карточки */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Размер шрифта заголовка карточки */
+    margin-bottom: 1rem; /* Отступ снизу заголовка */
+    color: #007bff; /* Цвет заголовка */
+}
+
+.btn {
+    width: 100%; /* Кнопки занимают всю ширину карточки */
+    margin-top: 0.5rem; /* Отступ сверху кнопки */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Цвет фона кнопки "Перейти к номерам" */
+    border-color: #007bff; /* Цвет рамки кнопки */
+    transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Темный цвет фона при наведении */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Цвет фона кнопки "Удалить отель" */
+    border-color: #dc3545; /* Цвет рамки кнопки */
+    transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Темный цвет фона при наведении */
+}
+
+.mb-3 {
+    margin-bottom: 1rem; /* Отступ снизу для кнопки добавления отеля */
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center; /* Центрирование пагинации */
+    align-items: center;
+    margin-top: 2rem; /* Отступ сверху */
+    font-size: 1rem;
+    color: #343a40;
+}
+
+.pagination .step-links {
+    display: flex;
+    gap: 0.5rem; /* Отступ между элементами */
+}
+
+.pagination a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #e2e6ea;
+    color: #0056b3;
+}
+
+.pagination .current {
+    padding: 0.5rem 0.75rem;
+    background-color: #007bff; /* Цвет активной страницы */
+    color: #ffffff;
+    border-radius: 0.25rem;
+    border: 1px solid #007bff;
+    font-weight: bold;
+}
+
+.pagination .step-links .current-page {
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* styles.css */
+
+/* Поле поиска с !important, чтобы перебить Bootstrap */
+.search-form input[type="text"] {
+    width: 100% !important; /* Ширина поля поиска */
+    padding: 0.5rem 1rem !important; /* Отступы внутри поля */
+    font-size: 1rem !important;
+    border: 1px solid #dee2e6 !important; /* Рамка поля */
+    border-radius: 0.25rem 0 0 0.25rem !important; /* Закругление только левых углов */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-form input[type="text"]:focus {
+    border-color: #007bff !important; /* Цвет рамки при фокусе */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3) !important; /* Тень при фокусе */
+}
+
+/* Кнопка поиска */
+.search-form button {
+    padding: 0.5rem 1rem !important; /* Отступы внутри кнопки */
+    font-size: 1rem !important;
+    background-color: #336ca9 !important; /* Цвет фона кнопки */
+    color: #ffffff !important; /* Цвет текста кнопки */
+    border: 1px solid #007bff !important; /* Цвет рамки кнопки */
+    border-radius: 0 0.25rem 0.25rem 0 !important; /* Закругление только правых углов */
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #0056b3 !important; /* Темный цвет при наведении */
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.3) !important; /* Тень при наведении */
+}
+
+.search-form button:focus {
+    outline: none !important;
+}
+

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Вход в систему{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Вход в систему</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <div>
+                <i class="input-icon fas fa-user"></i> <!-- Иконка пользователя -->
+                <input type="text" name="username" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <div>
+                <i class="input-icon fas fa-lock"></i> <!-- Иконка замка -->
+                <input type="password" name="password" class="form-control" required id="password">
+                <button type="button" id="togglePassword" class="btn btn-secondary" style="position: absolute; right: 10px; top: 34px;">
+                    <i class="fas fa-eye" id="toggleIcon"></i> <!-- Иконка для показа/скрытия пароля -->
+                </button>
+            </div>
+        </div>
+
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+    <div class="mt-3">
+        <a href="{% url 'register' %}">Нет аккаунта? Зарегистрируйтесь</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    });
+</script>
+{% endblock %}

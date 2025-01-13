@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать на сайт бронирования отелей!</h1>
+        <p class="lead">Здесь вы можете найти и забронировать лучшие отели.</p>
+        <a class="btn btn-primary btn-lg" href="/hotels" role="button">Посмотреть отели</a>
+        <br><br> <!-- Отступ между кнопками -->
+        <a class="btn btn-secondary btn-lg" href="{% url 'bookings' %}" role="button">Посмотреть все бронирования</a>
+    </div>
+{% endblock %}

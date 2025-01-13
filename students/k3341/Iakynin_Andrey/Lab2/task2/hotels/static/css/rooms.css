@@ -1,0 +1,140 @@
+/* room_styles.css */
+
+body {
+    background-color: #f3f4f6;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #343a40;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.flip-card-container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem;
+}
+
+.flip-card {
+    width: 100%;
+    height: 250px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.flip-card-container:hover .flip-card {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Front side: coral background and white text */
+.flip-card-front {
+    background-color: #b82043; /* Коралловый цвет */
+    color: #ffffff; /* Белый текст */
+}
+
+.flip-card-back {
+    background-color: #007bff; /* Синий фон задней стороны */
+    color: #ffffff;
+    transform: rotateY(180deg);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+}
+
+.btn-primary:hover {
+    background-color: #003e7e;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+/* room_styles.css */
+
+.pagination {
+    display: flex;
+    justify-content: center; /* Центрирование пагинации */
+    align-items: center;
+    margin-top: 2rem; /* Отступ сверху */
+    font-size: 1rem;
+    color: #343a40;
+}
+
+.pagination .step-links {
+    display: flex;
+    gap: 0.5rem; /* Отступ между элементами */
+}
+
+.pagination a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #e2e6ea;
+    color: #0056b3;
+}
+
+.pagination .current {
+    padding: 0.5rem 0.75rem;
+    background-color: #007bff; /* Цвет активной страницы */
+    color: #ffffff;
+    border-radius: 0.25rem;
+    border: 1px solid #007bff;
+    font-weight: bold;
+}
+
+.pagination .step-links .current-page {
+    font-weight: bold;
+    color: #343a40;
+}

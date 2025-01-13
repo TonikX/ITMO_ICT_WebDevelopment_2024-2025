@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Car{% endblock %}
+
+{% block content %}
+    <h1>Add New Car</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Car</button>
+        <a href="{% url 'car_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

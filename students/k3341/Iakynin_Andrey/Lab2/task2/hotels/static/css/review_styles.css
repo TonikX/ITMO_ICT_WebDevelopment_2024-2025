@@ -1,0 +1,87 @@
+/* review_styles.css */
+
+body {
+    background-color: #f8f9fa; /* Светлый фон для контраста */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px; /* Ограничение ширины контейнера */
+    margin: 2rem auto; /* Центрирование */
+    padding: 2rem; /* Внутренний отступ */
+    background-color: #ffffff; /* Белый фон для контейнера */
+    border-radius: 8px; /* Закругленные углы */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+
+h1 {
+    text-align: center;
+    color: #343a40; /* Тёмный цвет для заголовка */
+    margin-bottom: 1.5rem; /* Отступ снизу */
+}
+
+h2 {
+    color: #495057; /* Цвет для подзаголовка */
+    margin-bottom: 1rem; /* Отступ снизу */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse; /* Убирает отступы между ячейками */
+    margin-top: 1.5rem; /* Отступ сверху для таблицы */
+}
+
+.table th, .table td {
+    padding: 1rem; /* Внутренний отступ в ячейках */
+    text-align: left; /* Выравнивание текста */
+    border-bottom: 1px solid #dee2e6; /* Граница между строками */
+}
+
+.table th {
+    background-color: #e9ecef; /* Светло-серый фон для заголовка таблицы */
+    color: #495057; /* Цвет текста заголовка */
+}
+
+.table tr:hover {
+    background-color: #f1f1f1; /* Цвет фона строки при наведении */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Цвет кнопки */
+    border: none; /* Без границы */
+    color: white; /* Белый цвет текста */
+    padding: 0.5rem 1rem; /* Внутренние отступы */
+    border-radius: 4px; /* Закругленные углы */
+    transition: background-color 0.3s; /* Плавный переход */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Темный цвет кнопки при наведении */
+}
+
+.mb-3 {
+    margin-bottom: 1.5rem; /* Отступ снизу для блока */
+}
+
+.alert {
+    background-color: #f8d7da; /* Цвет фона для сообщения об ошибке */
+    color: #721c24; /* Цвет текста */
+    border: 1px solid #f5c6cb; /* Граница */
+    padding: 0.75rem; /* Внутренние отступы */
+    border-radius: 0.25rem; /* Закругленные углы */
+    margin-top: 1rem; /* Отступ сверху */
+}
+
+textarea {
+    width: 100%; /* Ширина текстового поля */
+    padding: 0.5rem; /* Внутренние отступы */
+    border: 1px solid #ced4da; /* Граница */
+    border-radius: 4px; /* Закругленные углы */
+    resize: none; /* Отключение изменения размера */
+    transition: border-color 0.3s; /* Плавный переход */
+}
+
+textarea:focus {
+    border-color: #80bdff; /* Цвет границы при фокусе */
+    outline: none; /* Убираем стандартный контур */
+}
