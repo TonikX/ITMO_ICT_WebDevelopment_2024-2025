@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Task details</h1>
+    <p>Title: {{ task.title }}</p>
+    <p>Description: {{ task.description }}</p>
+    <p>Created at: {{ task.created_at }}</p>
+    <p>Expire at: {{ task.expire_at }}</p>
+    <p>Author: {{ task.author }}</p>
+    <p>Classes:
+        {% for student_class in task.student_classes.all %}
+            {{ student_class.name }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+            No classes assigned
+        {% endfor %}
+    </p>
+    <a href="/tasks">Get back</a>
+{% endblock %}
