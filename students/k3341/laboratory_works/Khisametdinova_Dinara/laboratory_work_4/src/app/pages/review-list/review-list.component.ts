@@ -16,11 +16,12 @@ export class ReviewListComponent {
   reviews: any[] = [];
   tasks: any[] = [];
   submissions: any[] = [];
-  selectedTask: any = null;
+  selectedTaskId: number | null = null;
+  selectedTask: any = null; // Добавлено для хранения выбранной задачи
   selectedSubmission: any = null;
-  currentUser: any = null; // Текущий пользователь
+  currentUser: any = null;
 
-  editingReview: any = null; // Для редактирования отзывов
+  editingReview: any = null;
   newReview = {
     score: '',
     comments: '',
@@ -44,23 +45,24 @@ export class ReviewListComponent {
   }
 
   loadTasks() {
-    this.taskService.getTasks().subscribe((data) => {
+    this.reviewService.getAllTasks().subscribe((data) => {
       this.tasks = data;
     });
   }
 
   onTaskSelect(event: Event) {
-    const target = event.target as HTMLSelectElement; // Приведение target к HTMLSelectElement
-    const id = parseInt(target.value, 10); // Преобразуем значение в число
-    this.selectedTask = this.tasks.find((task) => task.id === id);
-    this.submissionService.getSubmissionsByTask(id).subscribe((data: any[]) => {
+    const target = event.target as HTMLSelectElement;
+    const id = parseInt(target.value, 10);
+    this.selectedTaskId = id;
+    this.selectedTask = this.tasks.find((task) => task.id === id); // Сохраняем полную информацию о задаче
+    this.reviewService.getSubmissionsByTask(id).subscribe((data: any[]) => {
       this.submissions = data;
     });
   }
 
   onSubmissionSelect(event: Event) {
-    const target = event.target as HTMLSelectElement; // Приведение target к HTMLSelectElement
-    const id = parseInt(target.value, 10); // Преобразуем значение в число
+    const target = event.target as HTMLSelectElement;
+    const id = parseInt(target.value, 10);
     this.selectedSubmission = this.submissions.find((submission) => submission.id === id);
   }
 

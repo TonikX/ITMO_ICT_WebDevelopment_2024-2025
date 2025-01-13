@@ -46,14 +46,20 @@ export class HomeComponent implements OnInit {
 
   loadUploadedSubmissions(): void {
     this.homeService.getUploadedSubmissions(this.currentUser.id).subscribe({
-      next: (submissions) => (this.uploadedSubmissions = submissions),
+      next: (submissions) =>
+        (this.uploadedSubmissions = submissions.filter(
+          (sub: any) => sub.user.id === this.currentUser.id
+        )),
       error: (err) => console.error('Ошибка при загрузке submissions:', err),
     });
   }
 
   loadReviews(): void {
     this.homeService.getReviews(this.currentUser.id).subscribe({
-      next: (reviews) => (this.reviews = reviews),
+      next: (reviews) =>
+        (this.reviews = reviews.filter(
+          (review: any) => review.user.id === this.currentUser.id
+        )),
       error: (err) => console.error('Ошибка при загрузке reviews:', err),
     });
   }
@@ -70,13 +76,6 @@ export class HomeComponent implements OnInit {
       next: (details) => (this.selectedDetails = details),
       error: (err) =>
         console.error('Ошибка при загрузке деталей submission:', err),
-    });
-  }
-
-  loadReviewDetails(reviewId: number): void {
-    this.homeService.getReviewDetails(reviewId).subscribe({
-      next: (details) => (this.selectedDetails = details),
-      error: (err) => console.error('Ошибка при загрузке деталей review:', err),
     });
   }
 }

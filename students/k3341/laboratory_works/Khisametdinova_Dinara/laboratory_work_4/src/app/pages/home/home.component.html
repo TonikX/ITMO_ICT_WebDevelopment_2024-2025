@@ -1,56 +1,74 @@
 <div class="container mt-4">
-    <h1>Personal Dashboard</h1>
-    <div *ngIf="currentUser; else guestTemplate" class="mt-4">
-      <h2>Welcome, {{ currentUser.first_name }} {{ currentUser.last_name }}!</h2>
-      <p><strong>Role:</strong> {{ currentUser.role }}</p>
-      <p><strong>Email:</strong> {{ currentUser.email }}</p>
-  
-      <div *ngIf="currentUser.role === 'teacher'" class="mt-4">
-        <h3>Your Uploaded Tasks</h3>
-        <select
-          class="form-select mt-2"
-          #taskSelect
-          (change)="loadTaskDetails(+taskSelect.value)"
-        >
-          <option *ngFor="let task of uploadedTasks" [value]="task.id">
-            {{ task.title }}
-          </option>
-        </select>
-      </div>
-  
-      <div *ngIf="currentUser.role === 'student'" class="mt-4">
-        <h3>Your Submissions</h3>
-        <select
-          class="form-select mt-2"
-          #submissionSelect
-          (change)="loadSubmissionDetails(+submissionSelect.value)"
-        >
-          <option *ngFor="let submission of uploadedSubmissions" [value]="submission.id">
-            {{ submission.title }}
-          </option>
-        </select>
-  
-        <h3>Your Reviews</h3>
-        <select
-          class="form-select mt-2"
-          #reviewSelect
-          (change)="loadReviewDetails(+reviewSelect.value)"
-        >
-          <option *ngFor="let review of reviews" [value]="review.id">
-            Criterion: {{ review.criterion }} - Score: {{ review.score }}
-          </option>
-        </select>
+  <h1>Personal Dashboard</h1>
+  <div *ngIf="currentUser; else guestTemplate" class="mt-4">
+    <h2>Welcome, {{ currentUser.first_name }} {{ currentUser.last_name }}!</h2>
+    <p><strong>Role:</strong> {{ currentUser.role }}</p>
+    <p><strong>Email:</strong> {{ currentUser.email }}</p>
+
+    <!-- Для учителей -->
+    <div *ngIf="currentUser.role === 'teacher'" class="mt-4">
+      <h3>Your Uploaded Tasks</h3>
+      <select
+        class="form-select mt-2"
+        #taskSelect
+        (change)="loadTaskDetails(+taskSelect.value)"
+      >
+        <option *ngFor="let task of uploadedTasks" [value]="task.id">
+          {{ task.title }}
+        </option>
+      </select>
+
+      <div *ngIf="selectedDetails" class="mt-4">
+        <h4>Task Details</h4>
+        <p><strong>Title:</strong> {{ selectedDetails.title }}</p>
+        <p><strong>Description:</strong> {{ selectedDetails.description }}</p>
+        <div>
+          <h5>Criteria</h5>
+          <ul>
+            <li *ngFor="let criterion of selectedDetails.criterion">
+              <strong>{{ criterion.name }}:</strong> {{ criterion.description }}
+            </li>
+          </ul>
+          <p *ngIf="!selectedDetails.criterion.length">Criteria not added.</p>
+        </div>
+        <div>
+          <h5>Options</h5>
+          <ul>
+            <li *ngFor="let option of selectedDetails.options">
+              {{ option.content }}
+            </li>
+          </ul>
+          <p *ngIf="!selectedDetails.options.length">Options not added.</p>
+        </div>
       </div>
     </div>
-  
-    <div *ngIf="selectedDetails" class="mt-4">
-      <h4>Details</h4>
-      <pre>{{ selectedDetails | json }}</pre>
+
+    <!-- Для студентов -->
+    <div *ngIf="currentUser.role === 'student'" class="mt-4">
+      <h3>Your Submissions</h3>
+      <ul>
+        <li *ngFor="let submission of uploadedSubmissions" class="mb-3">
+          <h5>Task: {{ submission.task_detail?.title }}</h5>
+          <p><strong>Content:</strong> {{ submission.content }}</p>
+          <p><strong>Submitted At:</strong> {{ submission.submitted_at }}</p>
+        </li>
+      </ul>
+
+      <h3 class="mt-4">Your Reviews</h3>
+      <ul>
+        <li *ngFor="let review of reviews" class="mb-3">
+          <h5>Criterion: {{ review.criterion_detail?.name || 'Not specified' }}</h5>
+          <p><strong>Submission:</strong> {{ review.submission_detail?.content || 'Not specified' }}</p>
+          <p><strong>Score:</strong> {{ review.score }}</p>
+          <p><strong>Comments:</strong> {{ review.comments }}</p>
+        </li>
+      </ul>
     </div>
-  
-    <ng-template #guestTemplate>
-      <h2>Welcome, Guest!</h2>
-      <p>Please log in to access your personal dashboard.</p>
-    </ng-template>
   </div>
-  
+
+  <!-- Для неавторизованных пользователей -->
+  <ng-template #guestTemplate>
+    <h2>Welcome, Guest!</h2>
+    <p>Please log in to access your personal dashboard.</p>
+  </ng-template>
+</div>

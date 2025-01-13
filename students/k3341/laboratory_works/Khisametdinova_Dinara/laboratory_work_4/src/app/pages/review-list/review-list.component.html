@@ -2,8 +2,16 @@
   <h2>Reviews</h2>
   <div>
     <label for="taskSelect">Select Task:</label>
-    <select id="taskSelect" class="form-select mb-2" (change)="onTaskSelect($event)">
-      <option *ngFor="let task of tasks" [value]="task.id">{{ task.title }}</option>
+    <select
+      id="taskSelect"
+      class="form-select mb-2"
+      (change)="onTaskSelect($event)"
+      [(ngModel)]="selectedTaskId"
+    >
+      <option [value]="null">Select a Task</option>
+      <option *ngFor="let task of tasks" [value]="task.id">
+        {{ task.title }}
+      </option>
     </select>
   </div>
 
@@ -16,7 +24,7 @@
     </select>
   </div>
 
-  <div>
+  <div *ngIf="submissions.length > 0; else noSubmissions">
     <h3>Add Review</h3>
     <div class="mb-2">
       <label for="score">Score:</label>
@@ -28,6 +36,10 @@
     </div>
     <button class="btn btn-primary" (click)="addReview()">Submit Review</button>
   </div>
+
+  <ng-template #noSubmissions>
+    <p>No submissions available for this task.</p>
+  </ng-template>
 
   <div *ngFor="let review of reviews" class="card mb-2">
     <div class="card-body">
