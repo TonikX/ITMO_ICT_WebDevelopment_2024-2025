@@ -1,0 +1,15 @@
+site_name: 'Отчёт по проекту'
+theme:
+  name: 'material'
+  palette:
+    scheme: default
+    primary: pink
+    accent: pink
+
+nav:
+  - Главная: index.md
+  - Работа endpoint-ов: Endpoints.md
+  - Практическая работа №3.1. Django Web framework. Запросы и их выполнение: Practical_work.md
+
+extra_css:
+  - css/extra.css
