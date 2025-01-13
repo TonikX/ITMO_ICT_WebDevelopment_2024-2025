@@ -1,0 +1,18 @@
+site_name: web_development
+site_url: https://Satori-Tamaba.github.io/ITMO_ICT_WebDevelopment_2024-2025/
+nav:
+  - Home: index.md
+  - 1 lab:
+    - Task 1: 'lab1/1.md'
+    - Task 2: 'lab1/2.md'
+    - Task 3: 'lab1/3.md'
+    - Task 4: 'lab1/4.md'
+    - Task 5: 'lab1/5.md'
+
+
+theme:
+  name: material
+
+markdown_extensions:
+  - admonition
+  - toc

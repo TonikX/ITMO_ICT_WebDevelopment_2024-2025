@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #110c1b;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'races' %}">
+      <i class="bi bi-trophy"></i> Main</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'users' %}">
+            <i class="bi bi-person ms-3"></i> Users
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'drivers' %}">
+            <i class="bi bi-car-front ms-3"></i> Drivers
+          </a>
+        </li>
+        {% if user.is_authenticated and user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'add_driver' %}">
+            <i class="bi bi-car-front ms-3"></i> New driver
+          </a>
+        </li>
+        {% endif %}
+        </li>
+        {% if user.is_authenticated and user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'add_car' %}">
+            <i class="bi bi-file-person ms-3"></i> New car
+          </a>
+        </li>
+        {% endif %}
+        </li>
+        {% if user.is_authenticated and user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'add_truck' %}">
+            <i class="bi bi-signpost ms-3"></i> New truck
+          </a>
+        </li>
+        {% endif %}
+        </li>
+        {% if user.is_authenticated and user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'add_race' %}">
+            <i class="bi bi-calendar ms-3"></i> New race
+          </a>
+        </li>
+        {% endif %}
+
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">
+            <i class="bi bi-person-circle ms-2"></i> Profile
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

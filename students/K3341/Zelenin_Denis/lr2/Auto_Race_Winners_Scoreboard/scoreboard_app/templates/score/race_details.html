@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Results</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles_result.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'score/bootstrapMenu.html' %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Race Results</h1>
+        <div class="results-table">
+            <div class="table-header">
+                <div class="table-cell">
+                    Позиция в конце
+                    <a href="?sort=end_position&order=asc" class="sort-icon"><i class="bi bi-arrow-up"></i></a>
+                    <a href="?sort=end_position&order=desc" class="sort-icon"><i class="bi bi-arrow-down"></i></a>
+                </div>
+                <div class="table-cell">
+                    Позиция в начале
+                    <a href="?sort=start_position&order=asc" class="sort-icon"><i class="bi bi-arrow-up"></i></a>
+                    <a href="?sort=start_position&order=desc" class="sort-icon"><i class="bi bi-arrow-down"></i></a>
+                </div>
+                <div class="table-cell">Водитель</div>
+                <div class="table-cell">Машина</div>
+                <div class="table-cell">Команда</div>
+                <div class="table-cell">
+                    Время
+                    <a href="?sort=driver_time&order=asc" class="sort-icon"><i class="bi bi-arrow-up"></i></a>
+                    <a href="?sort=driver_time&order=desc" class="sort-icon"><i class="bi bi-arrow-down"></i></a>
+                </div>
+            </div>
+            {% for race in page_obj %}
+            <a href="{% url 'show_driver' race.Driver_id.slug %}" class="race-item">
+                <div class="table-row">
+                    <div class="table-cell">{{ race.end_position }}</div>
+                    <div class="table-cell">{{ race.start_position }}</div>
+                    <div class="table-cell">{{ race.Driver_id.first_name }} {{ race.Driver_id.last_name }}</div>
+                    <div class="table-cell">{{ race.Driver_id.car_id.model }}</div>
+                    <div class="table-cell">{{ race.Driver_id.team }}</div>
+                    <div class="table-cell">{{ race.driver_time }}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- Пагинация -->
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}">&laquo; First</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}">Previous</a>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}{% if request.GET.order %}&order={{ request.GET.order }}{% endif %}">Last &raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <h2 class="COм">Comments</h2>
+    <ul class="list-group mb-4">
+        {% for comment in comments %}
+            <li class="list-group-item">
+                <strong class="comment-author">{{ comment.user_id.username }}</strong>
+                <span class="comment-text">{{ comment.comment }}</span>
+                <span class="text-muted">comment type: {{ comment.com_type }} {{ comment.date }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">There are no comments yet</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="addCom">Add comment</h2>
+    <form method="post" class="mb-5">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</body>
+</html>

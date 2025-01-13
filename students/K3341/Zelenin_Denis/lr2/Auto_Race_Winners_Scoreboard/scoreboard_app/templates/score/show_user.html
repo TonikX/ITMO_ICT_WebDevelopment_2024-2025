@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <title>User Details</title>
+</head>
+<body>
+    <div class="container">
+        <h1>User Details</h1>
+        <div class="user-detail">
+            <span>First Name:</span> {{ user.first_name }}
+        </div>
+        <div class="user-detail">
+            <span>Last Name:</span> {{ user.last_name }}
+        </div>
+        <a href="{% url 'races' %}">Go back to homepage</a>
+    </div>
+</body>
+</html>

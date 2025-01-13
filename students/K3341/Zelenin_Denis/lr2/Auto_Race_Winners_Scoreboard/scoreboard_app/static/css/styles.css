@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 70px; /* Отступ для учета высоты меню */
+}
+
+.race-board {
+    width: 80%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.race-board h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.race-list {
+    margin-top: 10px;
+}
+
+.race-item {
+    display: block;
+    padding: 15px 20px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.race-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.race-details {
+    text-align: left;
+}
+
+.race-extra {
+    text-align: right;
+}
+
+.race-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff6666;
+}
+
+.race-location {
+    display: block;
+    font-size: 1em;
+    color: #ffcc00;
+}
+
+.race-date {
+    font-size: 1em;
+    color: #ffffff;
+}
+
+.race-truck {
+    font-size: 1em;
+    color: #ffcc00;
+}
+
+.navbar {
+    background-color: #d91212 !important; /* Изменение цвета фона меню */
+}
+
+.

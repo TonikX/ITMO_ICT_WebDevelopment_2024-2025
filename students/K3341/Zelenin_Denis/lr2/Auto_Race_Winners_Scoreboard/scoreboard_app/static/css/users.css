@@ -1,0 +1,97 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* Контейнер */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+/* Таблица */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #2a2a2a; /* Задний фон таблицы */
+}
+
+.users-table thead th {
+    background-color: #333333; /* Задний фон заголовков */
+    color: #ffffff;
+    text-align: left;
+    padding: 10px;
+    border-bottom: 2px solid #555555;
+}
+
+.users-table tbody tr {
+    background-color: #2a2a2a; /* Фон строк */
+    color: #030000 !important;
+    transition: background-color 0.3s;
+}
+
+.users-table tbody tr:nth-child(even) {
+    background-color: #242424; /* Чередование строк */
+}
+
+.users-table tbody tr:hover {
+    background-color: #3a3a3a; /* Фон строки при наведении */
+}
+
+.users-table td {
+    padding: 10px;
+    border-bottom: 1px solid #444444;
+}
+
+/* Ссылки */
+.user-link {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.user-link:hover {
+    text-decoration: underline;
+}
+
+/* Стиль для пустой таблицы */
+.no-data {
+    text-align: center;
+    color: #ff6666;
+    font-weight: bold;
+}
+
+/* Пагинация */
+.pagination .page-link {
+    background-color: #2a2a2a; /* Фон кнопок пагинации */
+    color: #FFCC00FF;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-link:hover {
+    background-color: #ffcc00;
+    color: #000;
+}
+
+.pagination .active .page-link {
+    background-color: #ffcc00;
+    color: #000;
+    border: 1px solid #ffcc00;
+}
