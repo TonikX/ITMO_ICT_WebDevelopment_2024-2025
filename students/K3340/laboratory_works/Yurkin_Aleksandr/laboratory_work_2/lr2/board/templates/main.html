@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <div class="text-center">
+            <h1 class="display-4 text-primary">Добро пожаловать в Homeworks Board</h1>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                {% if student == null %}
+                    <div class="welcome-card text-center">
+                        <p class="lead">Пожалуйста, создайте аккаунт или войдите в систему, чтобы просматривать задания.</p>
+                    </div>
+                {% else %}
+                    <div class="welcome-card">
+                        <h4 class="font-weight-bold text-success">Здравствуйте, {{ student.name }}!</h4>
+                        <p class="text-muted">Удачи в выполнении ваших домашних заданий!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}

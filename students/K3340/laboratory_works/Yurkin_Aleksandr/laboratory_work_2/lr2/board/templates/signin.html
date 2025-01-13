@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-6 mx-auto mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-center text-primary">Войти в аккаунт</h2>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

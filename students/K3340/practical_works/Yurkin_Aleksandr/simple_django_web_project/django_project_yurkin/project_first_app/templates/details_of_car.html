@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car details</title>
+</head>
+<body>
+    <h1>Car details</h1>
+    <p>Brand: {{ car.brand }}</p>
+    <p>Model: {{ car.model }}</p>
+    <p>License plate: {{ car.license_plate }}</p>
+    <p>Color: {{ car.color }}</p>
+    <p>Owners:</p>
+    <ul>
+        {% for ownership in car.ownership_set.all %}
+            <li>
+                <a href="/owner/{{ ownership.owner.id }}">{{ ownership.owner }} - from {{ ownership.start_date}} to {{ ownership.end_date }}</a>
+            </li>
+        {% empty %}
+            <li>No cars found</li>
+        {% endfor %}
+    </ul>
+    <a href="/car/list">Get back</a>
+</body>
+</html>
