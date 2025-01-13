@@ -29,8 +29,6 @@ const login = () => {
     IncorrectAuth.value = true;
   });
 };
-
-
 </script>
 
 <template>
