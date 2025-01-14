@@ -1,0 +1,8 @@
+@import './base.css';
+
+#app {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
