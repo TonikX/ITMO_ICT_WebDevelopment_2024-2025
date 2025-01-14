@@ -21,5 +21,8 @@
     - [Submission](lab2/submission.md)
     - [Homework](lab2/homeworks.md)
 - [LAB №3](lab3.md)
+    - [Practical work 3.1](lab3/practical_work_3_1.md)
+    - [Practical work 3.2](lab3/practical_work_3_2.md)
+    - [Practical work 3.3](lab3/practical_work_3_3.md)
 - [LAB №4](lab4.md)
 
