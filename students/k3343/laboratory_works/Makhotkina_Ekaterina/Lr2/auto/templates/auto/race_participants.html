@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Участники гонки: {{ race.title }}</h2>
+    <ul>
+        {% for participant in participants %}
+            <li>
+                <h3>{{ participant.racer.user.get_full_name }}</h3>
+                <p><strong>Команда:</strong> {{ participant.racer.team.name }}</p>
+                <p><strong>Статус:</strong> {{ participant.racer.get_status_display }}</p>
+                <p><strong>Класс участника:</strong> {{ participant.racer.participant_class }}</p>
+
+                {% if participant.racer.car %}
+                    <h4>Автомобиль:</h4>
+                    <p><strong>Модель:</strong> {{ participant.racer.car.model }}</p>
+                    <p><strong>Описание:</strong> {{ participant.racer.car.description }}</p>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>В этой гонке еще нет участников.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

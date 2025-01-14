@@ -1,0 +1,27 @@
+<h1>{{ race.title }}</h1>
+<p>Дата гонки: {{ race.race_date }}</p>
+
+<h2>Комментарии</h2>
+<form method="post" action="{% url 'add_comment' race.id %}">
+    {% csrf_token %}
+    <textarea name="text" required></textarea>
+    <select name="comment_type" required>
+        <option value="cooperation">Вопрос о сотрудничестве</option>
+        <option value="race">Вопрос о гонках</option>
+        <option value="other">Иное</option>
+    </select>
+    <input type="number" name="rating" min="1" max="10" required>
+    <button type="submit">Добавить комментарий</button>
+</form>
+
+<h3>Список комментариев</h3>
+<ul>
+    {% for comment in race.comments.all %}
+        <li>
+            <strong>{{ comment.user.username }}</strong> ({{ comment.created_at }}): {{ comment.text }} - Рейтинг: {{ comment.rating }}
+            <br>Тип: {{ comment.get_comment_type_display }}
+        </li>
+    {% empty %}
+        <li>Нет комментариев.</li>
+    {% endfor %}
+</ul>

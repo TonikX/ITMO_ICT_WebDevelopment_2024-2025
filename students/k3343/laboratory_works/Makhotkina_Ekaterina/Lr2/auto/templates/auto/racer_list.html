@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Список участников</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Команда</th>
+            <th>Статус</th>
+            <th>Автомобиль</th>
+            <th>Детали</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for racer in racers %}
+            <tr>
+                <td><a href="{% url 'racer_detail' racer.id %}">{{ racer.user.get_full_name }}</a></td>
+                <td>{{ racer.team }}</td>
+                <td>{{ racer.status }}</td>
+                <td>{{ racer.car }}</td>
+                <td><a href="{% url 'racer_detail' racer.id %}">Посмотреть детали</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6">Нет доступных участников.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

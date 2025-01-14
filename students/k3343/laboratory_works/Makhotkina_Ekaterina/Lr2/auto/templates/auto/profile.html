@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Профиль пользователя</h2>
+    <p><strong>Имя:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    {% if racer %}
+        <h3>Информация о гонщике</h3>
+        <p><strong>Команда:</strong> {{ racer.team.name }}</p>
+        <p><strong>Статус:</strong> {{ racer.get_status_display }}</p>
+        <p><strong>Класс участника:</strong> {{ racer.participant_class }}</p>
+
+        {% if racer.car %}
+            <h4>Автомобиль</h4>
+            <p><strong>Модель:</strong> {{ racer.car.model }}</p>
+            <p><strong>Описание:</strong> {{ racer.car.description }}</p>
+        {% endif %}
+
+        <h3>Регистрации на гонки</h3>
+        <ul>
+            {% for registration in race_registrations %}
+                <li>
+                    <strong>Гонка:</strong> {{ registration.race.title }} ({{ registration.race.race_date|date:"d M Y" }})
+                    <br>
+                    <a href="{% url 'delete_registration' registration.id %}">Удалить регистрацию</a> |
+                    <a href="{% url 'edit_profile' %}">Редактировать профиль</a>
+                </li>
+            {% empty %}
+                <li>У вас пока нет регистраций на гонки.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Вы не являетесь гонщиком. Профиль гонщика доступен только для спортсменов.</p>
+    {% endif %}
+{% endblock %}

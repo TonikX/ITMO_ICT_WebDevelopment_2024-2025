@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Детали участника: {{ racer.user.get_full_name }}</h2>
+    <p><strong>ФИО:</strong> {{ racer.user.get_full_name }}
+    <p><strong>Username:</strong> {{ racer.user.username }}</p>
+    <p><strong>Команда:</strong> {{ racer.team.name }}</p>
+    <p><strong>Автомобиль:</strong> {{ racer.car.model }}</p>
+    <p><strong>Описание:</strong> {{ racer.bio }}</p>
+    <p><strong>Опыт:</strong> {{ racer.years_of_experience }} лет</p>
+    <p><strong>Класс:</strong> {{ racer.participant_class }}</p>
+    <a href="{% url 'racer_list' %}">Назад к списку участников</a>
+{% endblock %}
+
