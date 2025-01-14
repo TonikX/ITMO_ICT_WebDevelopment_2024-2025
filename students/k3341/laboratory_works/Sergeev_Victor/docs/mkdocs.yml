@@ -8,6 +8,7 @@ nav:
     - Task 4: lr1/task4.md
     - Task 5: lr1/task5.md
   - Lab №2:
+    - About: lr2/about.md
     - Models: lr2/models.md
     - Views: lr2/views.md
     - Navigation: lr2/router.md
