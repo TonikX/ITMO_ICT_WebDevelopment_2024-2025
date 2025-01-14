@@ -1,13 +1,11 @@
-from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from .models import *
-from django.views.generic import ListView, CreateView, TemplateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView
 from .forms import UserRegistrationForm, SubmissionForm, SubjectForm, CustomAuthenticationForm, HomeworkCreateForm, GradeSubmissionForm
 from .decorators import student_required, teacher_required
 
@@ -31,11 +29,9 @@ class UserDashboardView(LoginRequiredMixin, ListView):
     def get_queryset(self): 
         user = self.request.user
 
-        # Если студент, показываем только его домашние задания
         if user.role == 'student':
             return Submission.objects.filter(student=user).select_related('homework')
         
-        # Если учитель или админ, показываем все домашние задания
         return Submission.objects.filter(homework__subject__teachers=user).select_related('homework', 'student')
 
     def get_context_data(self, **kwargs):
@@ -98,29 +94,7 @@ class SubmissionCreateView(CreateView):
     
 def is_admin_or_teacher(user):
     return user.is_superuser or user.role == 'teacher'
-'''
-@method_decorator(user_passes_test(is_admin_or_teacher), name='dispatch')
-class AdminGradeTableView(ListView):
-    model = Submission
-    template_name = 'grade_table.html'
-    context_object_name = 'submissions'
-    paginate_by = 10
 
-    def get_queryset(self):
-        queryset = Submission.objects.select_related('student', 'homework')
-        class_id = self.request.GET.get('class_id')
-
-        if class_id:
-            queryset = queryset.filter(student__student_class_id=class_id)
-        
-        return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['classes'] = Class.objects.all()
-        context['is_admin'] = True  # Администратор видит больше данных
-        return context
-'''
 @method_decorator(user_passes_test(is_admin_or_teacher), name='dispatch')
 class AdminGradeTableView(ListView):
     model = Submission
@@ -133,13 +107,11 @@ class AdminGradeTableView(ListView):
         class_id = self.request.GET.get('class_id')
         subject_id = self.request.GET.get('subject_id')
 
-        # Фильтрация по выбранному классу (включая пустые значения для "всех классов")
         if class_id:
             queryset = queryset.filter(student__student_class_id=class_id)
         else:
             queryset = queryset.filter(student__student_class__isnull=True) | queryset
 
-        # Фильтрация по выбранному предмету
         if subject_id:
             queryset = queryset.filter(homework__subject_id=subject_id)
         
@@ -188,51 +160,14 @@ class HomeworkCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
     def test_func(self):
         return self.request.user.role == 'teacher'
-'''   
+
 class SubmissionListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Submission
     template_name = 'submission_list.html'
     context_object_name = 'submissions'
 
     def get_queryset(self):
-        homework_id = self.kwargs.get('homework_id')
-        return Submission.objects.filter(homework__id=homework_id)
-
-    def test_func(self):
-        return self.request.user.role == 'teacher'
-'''
-'''
-class SubmissionListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = Submission
-    template_name = 'submission_list.html'
-    context_object_name = 'submissions'
-
-    def get_queryset(self):
-        homework_id = self.request.GET.get('homework_id')
-        return Submission.objects.filter(homework__id=homework_id)
-
-    def test_func(self):
-        return self.request.user.role == 'teacher'
-    
-class SubmissionGradeView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Submission
-    form_class = GradeSubmissionForm
-    template_name = 'grade_submission.html'
-    context_object_name = 'submission'
-
-    def get_success_url(self):
-        return reverse_lazy('submission_list')
-
-    def test_func(self):
-        return self.request.user.role == 'teacher'
-'''
-class SubmissionListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = Submission
-    template_name = 'submission_list.html'
-    context_object_name = 'submissions'
-
-    def get_queryset(self):
-        return Submission.objects.all()  # Возвращаем все выполненные задания
+        return Submission.objects.all()
 
     def test_func(self):
         return self.request.user.role == 'teacher'
@@ -280,5 +215,5 @@ class StudentHomeworkListView(LoginRequiredMixin, ListView):
     context_object_name = 'homeworks'
 
     def get_queryset(self):
-        # Студенты видят все доступные дз
+        
         return Homework.objects.all()    

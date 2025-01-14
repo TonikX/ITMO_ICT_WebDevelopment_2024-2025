@@ -19,7 +19,7 @@ class UserRegistrationForm(forms.ModelForm):
     
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])  # Хэширование пароля
+        user.set_password(self.cleaned_data['password'])  # Хэширование
         if commit:
             user.save()
         return user
