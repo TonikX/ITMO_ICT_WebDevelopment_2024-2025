@@ -10,13 +10,24 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule],
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   currentUser: any = null;
   isTeacher = false;
+  isSuperUser = false;
 
-  constructor(private router: Router, private authService: AuthService) {
-    this.currentUser = this.authService.getCurrentUser();
-    this.isTeacher = this.currentUser?.role === 'teacher';
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.getCurrentUserDetails().subscribe({
+      next: (user) => {
+        this.currentUser = user;
+        this.isTeacher = this.currentUser?.role === 'teacher';
+        this.isSuperUser = this.currentUser?.is_superuser;
+      },
+      error: (error) => {
+        console.error('Failed to fetch user details:', error);
+      },
+    });
   }
 
   logout(): void {
@@ -24,22 +35,7 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
   }
 
-  isLoggedIn(): boolean {
-    return !!this.authService.getCurrentUser(); 
-  }
-
-  navigateTo(route: string) {
+  navigateTo(route: string): void {
     this.router.navigate([route]);
-  }
-  
-  ngOnInit() {
-    this.authService.getCurrentUserDetails().subscribe({
-      next: (user) => {
-        this.currentUser = user;
-      },
-      error: (error) => {
-        console.error('Failed to fetch user details:', error);
-      },
-    });
   }
 }

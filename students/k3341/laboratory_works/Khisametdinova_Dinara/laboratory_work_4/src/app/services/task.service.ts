@@ -14,6 +14,10 @@ export class TaskService {
     return this.http.get<any[]>(this.baseUrl);
   }
 
+  getTasksForStudents(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/for-students/`);
+  }
+
   createTask(task: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/`, task, this.getHttpOptions());
   }
@@ -34,6 +38,18 @@ export class TaskService {
     return this.http.get<any>(`${this.baseUrl}/average-score/${username}`);
   }
 
+  getTasksByCreator(creatorId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/?creator=${creatorId}`);
+  }
+  
+  getTasksByCreatorStudents(creatorId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/for-students/?creator=${creatorId}`);
+  }
+
+  getCreators(): Observable<any[]> {
+    return this.http.get<any[]>('http://127.0.0.1:8000/peer/users/');
+  }
+  
   private getHttpOptions() {
     const token = localStorage.getItem('auth_token');
     return {

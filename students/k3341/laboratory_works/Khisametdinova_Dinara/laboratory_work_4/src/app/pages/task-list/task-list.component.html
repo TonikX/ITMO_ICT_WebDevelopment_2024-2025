@@ -1,12 +1,25 @@
 <div class="container">
   <h1 class="mb-4">Task List</h1>
 
-  <input
-    type="text"
-    class="form-control mb-3"
-    [(ngModel)]="filter"
-    placeholder="Search tasks..."
-  />
+    <!-- Search and Filter -->
+    <div class="d-flex mb-3">
+      <input
+        type="text"
+        class="form-control me-2"
+        [(ngModel)]="filter"
+        placeholder="Search tasks..."
+      />
+      <select
+        class="form-select"
+        [(ngModel)]="selectedCreatorId"
+        (change)="filterTasksByCreator(selectedCreatorId)"
+      >
+        <option [value]="null">All Creators</option>
+        <option *ngFor="let creator of creators" [value]="creator.id">
+          {{ creator.first_name }} {{ creator.last_name }}
+        </option>
+      </select>
+    </div>
 
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let task of filteredTasks">

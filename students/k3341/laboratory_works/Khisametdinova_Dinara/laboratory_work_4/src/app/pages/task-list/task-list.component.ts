@@ -15,7 +15,9 @@ export class TaskListComponent {
   tasks: any[] = [];
   filter: string = '';
   isTeacher: boolean = false;
-  currentUser: any = null; // Текущий пользователь
+  currentUser: any = null;
+  selectedCreatorId: number | null = null; // Фильтр по преподавателю
+  creators: any[] = []; // Список преподавателей
 
   newTask = {
     title: '',
@@ -27,9 +29,16 @@ export class TaskListComponent {
   editingOptions: any[] = [];
 
   constructor(private taskService: TaskService, private authService: AuthService) {
-    this.currentUser = this.authService.getCurrentUser(); // Загружаем текущего пользователя
-    this.isTeacher = this.currentUser?.role === 'teacher'; // Проверяем роль пользователя
-    this.loadTasks();
+    this.currentUser = this.authService.getCurrentUser();
+    this.isTeacher = this.currentUser?.role === 'teacher';
+
+    if (this.isTeacher) {
+      this.loadTasks();
+      this.loadCreators();
+    } else {
+      this.loadTasksForStudents();
+      this.loadCreators();
+    }
   }
 
   loadTasks() {
@@ -39,6 +48,41 @@ export class TaskListComponent {
       },
       error: (err) => console.error('Error loading tasks:', err),
     });
+  }
+
+  loadTasksForStudents() {
+    this.taskService.getTasksForStudents().subscribe({
+      next: (data) => {
+        this.tasks = data;
+      },
+      error: (err) => console.error('Error loading tasks for students:', err),
+    });
+  }
+
+  loadCreators() {
+    this.taskService.getCreators().subscribe({
+      next: (data) => {
+        this.creators = data;
+      },
+      error: (err) => console.error('Error loading creators:', err),
+    });
+  }
+
+  filterTasksByCreator(creatorId: number | null) {
+    if (creatorId === null) {
+      this.isTeacher ? this.loadTasks() : this.loadTasksForStudents();
+    } else {
+      const filterMethod = this.isTeacher
+        ? this.taskService.getTasksByCreator
+        : this.taskService.getTasksByCreatorStudents;
+
+      filterMethod.call(this.taskService, creatorId).subscribe({
+        next: (data) => {
+          this.tasks = data;
+        },
+        error: (err) => console.error('Error filtering tasks by creator:', err),
+      });
+    }
   }
 
   get filteredTasks() {
@@ -69,7 +113,6 @@ export class TaskListComponent {
   }
 
   editTask(task: any) {
-    // Проверяем, является ли текущий пользователь создателем задачи
     if (task.creator.id !== this.currentUser.id) {
       alert("You don't have permission to edit this task.");
       return;
@@ -101,7 +144,6 @@ export class TaskListComponent {
 
   deleteTask(taskId: number) {
     const taskToDelete = this.tasks.find((task) => task.id === taskId);
-    // Проверяем, является ли текущий пользователь создателем задачи
     if (taskToDelete?.creator.id !== this.currentUser.id) {
       alert("You don't have permission to delete this task.");
       return;
