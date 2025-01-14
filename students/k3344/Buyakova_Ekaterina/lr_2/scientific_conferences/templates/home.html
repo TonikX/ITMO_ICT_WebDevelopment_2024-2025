@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Scientific Conference Management</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Scientific Conference Management System</h1>
+        <nav>
+    <a href="{% url 'conference_list' %}">Conferences</a> |
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+        <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+            {% csrf_token %}
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+    |
+    <a href="{% url 'register' %}">Register</a>
+</nav>
+    </header>
+    <main>
+        <p style="font-size: 1.2em; line-height: 1.5;">
+            Discover and manage scientific conferences with ease.<br>
+            Join us in promoting knowledge and collaboration across various fields!
+        </p>
+        <img src="{% static 'images/conference_image.jpg' %}" alt="Scientific Conference" />
+    </main>
+</body>
+</html>

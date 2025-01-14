@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="conference-detail">
+    <h1>{{ conference.title }}</h1>
+    <p>{{ conference.description }}</p>
+    <p><strong>Location:</strong> {{ conference.location }}</p>
+    <p><strong>Duration:</strong> {{ conference.start_date }} - {{ conference.end_date }}</p>
+    <p><strong>Average grade:</strong> {{ conference.average_rating }}</p>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.user.username }}: {{ review.text }} (Grade: {{ review.rating }})</li>
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="conference-actions">
+    <a href="{% url 'register_for_conference' conference.id %}" class="submit-button">Register</a>
+    <a href="{% url 'add_review' conference.id %}" class="submit-button">Add review</a>
+
+    {% if user.is_authenticated and registration.user == user %}
+        <a href="{% url 'edit_registration' conference_id=conference.id %}" class="submit-button">Edit Registration</a>
+        <a href="{% url 'delete_registration' conference_id=conference.id %}" class="submit-button">Delete Registration</a>
+    {% endif %}
+</div>
+</main>
+
+<style>
+    .conference-detail {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 2px solid #d7ccc8;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    .conference-actions {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .conference-actions a {
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+    .conference-actions .submit-button {
+        background-color: #d7ccc8;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .conference-actions .submit-button:hover {
+        background-color: #c7b3a0;
+    }
+</style>
+{% endblock %}

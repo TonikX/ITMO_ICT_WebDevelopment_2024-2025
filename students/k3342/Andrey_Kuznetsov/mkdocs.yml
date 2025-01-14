@@ -1,4 +1,4 @@
-site_name: WEB documentation
+site_name: WEB docs
 nav:
   - Home: index.md
   - Lab 1:

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Conference Management{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        header h1 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Scientific Conference Management</h1>
+    {% block nav %}
+    <nav>
+        {% if user.is_authenticated %}
+            {% if request.path == '/participants/' %}
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="logout-link">Log out</a>
+                </form>
+            {% else %}
+                <a href="{% url 'participant_list' %}">Participants</a> |
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" class="logout-link">Log out</a>
+                </form>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}">Log in</a> |
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    {% endblock %}
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
