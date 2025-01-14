@@ -1,5 +1,11 @@
 site_name: WEB программирование
 nav:
  - Home: index.md
- - Labotary works:
+ - Laboratory works:
      - "Лабораторная работа 1": Laboratory works/lab1.md
+     - "Лабораторная работа 2": Laboratory works/lab2.md
+     - "Лабораторная работа 3": Laboratory works/lab3.md
+     - "Лабораторная работа 4": Laboratory works/lab4.md
+
+ - Practical works:
+     - "Практическая работа 3": Practical works/prac3.md

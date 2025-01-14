@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Практическая работа 3 - WEB программирование</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">WEB программирование</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Laboratory works</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../Laboratory%20works/lab1/" class="dropdown-item">Лабораторная работа 1</a>
+</li>
+                                    
+<li>
+    <a href="../../Laboratory%20works/lab3/" class="dropdown-item">Лабораторная работа 3</a>
+</li>
+                                    
+<li>
+    <a href="../../Laboratory%20works/lab4/" class="dropdown-item">Лабораторная работа 4</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Practical works</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Практическая работа 3</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../Laboratory%20works/lab4/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3-simple-drf-project" class="nav-link">Практическая работа 3. Simple DRF project.</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1" class="nav-link">Практическое задание 1:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2" class="nav-link">Практическое задание 2:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3" class="nav-link">Практическое задание 3:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="3-simple-drf-project">Практическая работа 3. Simple DRF project.</h1>
+<p>За основу взят проект из практики 2.1.</p>
+<h2 id="1">Практическое задание 1:</h2>
+<p>Напишите запрос на создание 6-7 новых автовладельцев и 5-6 автомобилей, каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей. Задание можете выполнить либо в интерактивном режиме интерпретатора, либо в отдельном python-файле. </p>
+<pre><code class="language-python">from project_first_app.models import User, Car, Ownership, DriverLicense
+from datetime import date
+
+owner_1 = User.objects.create_user(username=&quot;Natalia&quot;, password=&quot;0000&quot;, passport_number=&quot;11111111&quot;)
+owner_2 = User.objects.create_user(username=&quot;Mariam&quot;, password=&quot;0000&quot;, passport_number=&quot;22222&quot;)
+owner_3 = User.objects.create_user(username=&quot;Inga&quot;, password=&quot;0000&quot;, passport_number=&quot;333333&quot;)
+owner_4 = User.objects.create_user(username=&quot;Anna&quot;, password=&quot;0000&quot;, passport_number=&quot;444444&quot;)
+owner_5 = User.objects.create_user(username=&quot;Maria&quot;, password=&quot;0000&quot;, passport_number=&quot;5555555&quot;)
+owner_6 = User.objects.create_user(username=&quot;Ivan&quot;, password=&quot;0000&quot;, passport_number=&quot;6666666&quot;)
+
+car_1 = Car.objects.create(brand=&quot;Ferrari&quot;, model=&quot;model&quot;, color=&quot;Red&quot;, state_number=&quot;AA123eee&quot;)
+car_2 = Car.objects.create(brand=&quot;Toyota&quot;, model=&quot;model&quot;, color=&quot;Green&quot;, state_number=&quot;BB345eee&quot;)
+car_3 = Car.objects.create(brand=&quot;Jaguar&quot;, model=&quot;model&quot;, color=&quot;White&quot;, state_number=&quot;CC678eee&quot;)
+car_4 = Car.objects.create(brand=&quot;Toyota&quot;, model=&quot;model&quot;, color=&quot;Black&quot;, state_number=&quot;DD901eee&quot;)
+car_5 = Car.objects.create(brand=&quot;KIA&quot;, model=&quot;model&quot;, color=&quot;Rose&quot;, state_number=&quot;EE234eee&quot;)
+
+license_1 = DriverLicense.objects.create(owner=owner_1, license_number=&quot;32563&quot;, type=&quot;A&quot;, date_of_getting=date(2014, 5, 1))
+license_2 = DriverLicense.objects.create(owner=owner_2, license_number=&quot;2332&quot;, type=&quot;A&quot;, date_of_getting=date(2016, 7, 2))
+license_3 = DriverLicense.objects.create(owner=owner_3, license_number=&quot;3663&quot;, type=&quot;B&quot;, date_of_getting=date(2017, 8, 3))
+license_4 = DriverLicense.objects.create(owner=owner_4, license_number=&quot;38283&quot;, type=&quot;B&quot;, date_of_getting=date(2018, 9, 4))
+license_5 = DriverLicense.objects.create(owner=owner_5, license_number=&quot;3333&quot;, type=&quot;C&quot;, date_of_getting=date(2019, 10, 5))
+license_6 = DriverLicense.objects.create(owner=owner_6, license_number=&quot;36273&quot;, type=&quot;C&quot;, date_of_getting=date(2020, 11, 6))
+
+Ownership.objects.create(owner=owner_1, car=car_1, start_date=date(2024, 1, 1))
+Ownership.objects.create(owner=owner_1, car=car_2, start_date=date(2024, 1, 15))
+Ownership.objects.create(owner=owner_2, car=car_3, start_date=date(2024, 2, 1))
+Ownership.objects.create(owner=owner_3, car=car_4, start_date=date(2024, 3, 1))
+Ownership.objects.create(owner=owner_4, car=car_5, start_date=date(2024, 4, 1))
+Ownership.objects.create(owner=owner_5, car=car_2, start_date=date(2024, 5, 1))
+Ownership.objects.create(owner=owner_6, car=car_3, start_date=date(2024, 6, 1))
+Ownership.objects.create(owner=owner_6, car=car_4, start_date=date(2024, 7, 1))
+</code></pre>
+<h2 id="2">Практическое задание 2:</h2>
+<ul>
+<li>Где это необходимо, добавьте related_name к полям модели</li>
+<li>Выведете все машины марки “Toyota” (или любой другой марки, которая у вас есть)</li>
+<li>Найти всех водителей с именем “Олег” (или любым другим именем на ваше усмотрение)</li>
+<li>Взяв любого случайного владельца получить его id, и по этому id получить экземпляр удостоверения в виде объекта модели (можно в 2 запроса)</li>
+<li>Вывести всех владельцев красных машин (или любого другого цвета, который у вас присутствует)</li>
+<li>Найти всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе)</li>
+</ul>
+<p>Все машины марки “Toyota”:</p>
+<pre><code class="language-python">toyota = Car.objects.filter(make=&quot;Toyota&quot;)
+for car in toyota:
+    print(car)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Toyota model BB345eee
+Toyota model DD901eee
+</code></pre>
+<p>Водители с именем Natalia:</p>
+<pre><code class="language-python">Natalia_ = User.objects.filter(username__icontains=&quot;Natalia&quot;)
+for owner in Natalia_:
+    print(owner)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Natalia
+</code></pre>
+<p>Случайный владелец и его удостоверение:</p>
+<pre><code class="language-python">owner = User.objects.first()
+print(f&quot;User ID: {user.id}, Name: {user.username}&quot;)
+license_obj = DriverLicense.objects.get(user_id=user.id)
+print(f&quot;License: {license_obj.license_number}, Type: {license_obj.type}&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">User ID: 1, Name: test
+License: 12345, Type: A
+</code></pre>
+<p>Все владельцы красных машин:</p>
+<pre><code class="language-python">red_cars = Car.objects.filter(color=&quot;Red&quot;)
+red_car_owners = User.objects.filter(ownerships__car__in=red_cars).distinct()
+for owner in red_car_owners:
+    print(owner)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Natalia
+</code></pre>
+<p>Все владельцы, чей год владения машиной начинается с 2024:</p>
+<pre><code class="language-python">owners_of_2024 =User.objects.filter(ownerships__start_date__year=2024).distinct()
+for owner in owners_from_2024:
+    print(owner)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Natalia
+Mariam
+Inga
+Anna
+Maria
+Ivan
+</code></pre>
+<h2 id="3">Практическое задание 3:</h2>
+<p>Необходимо реализовать следующие запросы c применением описанных методов:
+* Вывод даты выдачи самого старшего водительского удостоверения
+* Укажите самую позднюю дату владения машиной, имеющую какую-то из существующих моделей в вашей базе
+* Выведите количество машин для каждого водителя
+* Подсчитайте количество машин каждой марки
+* Отсортируйте всех автовладельцев по дате выдачи удостоверения</p>
+<p>Самое старое водительское удостоверение:</p>
+<pre><code class="language-python">oldest_license_date = DriverLicense.objects.aggregate(oldest_date=Min(&quot;date_of_getting&quot;))
+print(f&quot;Самая ранняя дата получения удостоверения: {oldest_license_date['oldest_date']}&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Самая ранняя дата выдачи удостоверения: 2014-05-01
+</code></pre>
+<p>Самая поздняя дата владения машиной:</p>
+<pre><code class="language-python">latest_start_date = Ownership.objects.aggregate(latest_start_date=Max(&quot;start_date&quot;))
+print(f&quot;Самая поздняя дата начала владения машиной: {latest_start_date['latest_start_date']}&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Самая поздняя дата начала владения машиной: 2024-07-01
+</code></pre>
+<p>Количество машин для каждого водителя:</p>
+<pre><code class="language-python">user_cars_count = User.objects.annotate(car_count=Count(&quot;ownerships__car&quot;)).distinct()
+for user in user_cars_count:
+    print(f&quot;{user.username} владеет {user.car_count} машин(ой/ами)&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Natalia владеет 2 машин(ой/ами)
+Mariam владеет 1 машин(ой/ами)
+Inga владеет 1 машин(ой/ами)
+Anna владеет 1 машин(ой/ами)
+Maria владеет 1 машин(ой/ами)
+Ivan владеет 2 машин(ой/ами)
+</code></pre>
+<p>Количество машин каждой марки:</p>
+<pre><code class="language-python">car_brand_counts = Car.objects.values('brand').annotate(count=Count('brand'))
+for brand_count in car_brand_counts:
+    print(f&quot;{brand_count['brand']}: {brand_count['count']} cars&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Ferrari: 1 cars
+Toyota: 2 cars
+Jaguar: 1 cars
+KIA: 1 cars
+</code></pre>
+<p>Все автовладельцев по дате выдачи удостоверения:</p>
+<pre><code class="language-python">owners_sorted_by_license = User.objects.order_by(&quot;licenses__date_of_issue&quot;).distinct()
+for owner in owners_sorted_by_license:
+    license_obj = User.licenses.first()
+    print(f&quot;{user.username} - Дата выдачи удостоверения: {license_obj.date_of_issue}&quot;)
+</code></pre>
+<p>Вывод:</p>
+<pre><code class="language-python">Natalia - Дата выдачи удостоверения: 2014-05-01
+Mariam - Дата выдачи удостоверения: 2016-07-02
+Inga - Дата выдачи удостоверения: 2017-08-03
+Anna - Дата выдачи удостоверения: 2018-09-04
+Maria - Дата выдачи удостоверения: 2019-10-05
+Ivan - Дата выдачи удостоверения: 2020-11-06
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
