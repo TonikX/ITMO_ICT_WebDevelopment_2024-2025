@@ -1,0 +1,19 @@
+site_name: "WEB-labs documentation"
+site_url: "https://ellomacaug.github.io/ITMO_ICT_WebDevelopment_2024-2025/"
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'blue'
+    accent: 'blue'
+
+nav:
+  - Home: index.md
+  - Lab №1:
+      - Task 1: task1.md
+      - Task 2: task2.md
+      - Task 3: task3.md
+      - Task 4: task4.md
+      - Task 5: task5.md
+  - Lab №2:
+      - Main functionality: lab2.md
