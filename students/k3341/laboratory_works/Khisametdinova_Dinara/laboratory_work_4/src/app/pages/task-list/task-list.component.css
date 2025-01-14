@@ -1,0 +1,14 @@
+.list-group-item input,
+.list-group-item textarea {
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.list-group-item button {
+  margin-right: 5px;
+}
+button {
+    pointer-events: auto;
+    z-index: 10;
+  }
+  

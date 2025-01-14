@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список Автомобилей</title>
+</head>
+<body>
+    <h1>Список Автомобилей</h1>
+    <ul>
+        {% for car in cars %}
+            <li>
+                <a href="{% url 'car_detail' car.pk %}">{{ car.model }} ({{ car.number }})</a>
+            </li>
+        {% empty %}
+            <li>Автомобилей нет.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'car_create' %}">Добавить новый автомобиль</a>
+</body>
+</html>

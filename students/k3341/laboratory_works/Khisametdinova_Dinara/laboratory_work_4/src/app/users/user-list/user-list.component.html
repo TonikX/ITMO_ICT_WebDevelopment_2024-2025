@@ -1,0 +1,73 @@
+<div class="container mt-4">
+    <h1 class="mb-4">User List</h1>
+  
+    <!-- Search and Filter -->
+    <div class="d-flex mb-3">
+      <input
+        type="text"
+        class="form-control me-2"
+        [(ngModel)]="filter"
+        placeholder="Search users..."
+        (input)="applyFilters()"
+      />
+      <select
+        class="form-select"
+        [(ngModel)]="selectedRole"
+        (change)="applyFilters()"
+      >
+        <option [value]="null">All Roles</option>
+        <option value="teacher">Teacher</option>
+        <option value="student">Student</option>
+      </select>
+    </div>
+  
+    <!-- User List -->
+    <ul class="list-group mb-4">
+      <li *ngFor="let user of filteredUsers" class="list-group-item">
+        <div>
+          <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+          <p>Email: {{ user.email }}</p>
+          <p>Role: {{ user.role }}</p>
+        </div>
+        <button
+          *ngIf="isSuperUser"
+          class="btn btn-sm btn-danger mt-2"
+          (click)="deleteUser(user.id)"
+        >
+          Delete
+        </button>
+      </li>
+    </ul>
+  
+    <!-- Add User (Superuser only) -->
+    <div *ngIf="isSuperUser" class="mt-4">
+      <h3>Add New User</h3>
+      <div class="mb-2">
+        <input
+          type="text"
+          class="form-control mb-2"
+          [(ngModel)]="newUser.first_name"
+          placeholder="First Name"
+        />
+        <input
+          type="text"
+          class="form-control mb-2"
+          [(ngModel)]="newUser.last_name"
+          placeholder="Last Name"
+        />
+        <input
+          type="email"
+          class="form-control mb-2"
+          [(ngModel)]="newUser.email"
+          placeholder="Email"
+        />
+        <select class="form-select mb-3" [(ngModel)]="newUser.role">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="superuser">Superuser</option>
+        </select>
+        <button class="btn btn-primary" (click)="addUser()">Add User</button>
+      </div>
+    </div>
+  </div>
+  

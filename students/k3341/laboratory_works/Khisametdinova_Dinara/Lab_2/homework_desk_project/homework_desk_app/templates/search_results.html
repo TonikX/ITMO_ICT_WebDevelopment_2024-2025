@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<h1>Результаты поиска</h1>
+
+{% if submission_page_obj or homework_page_obj %}
+    <h2>Результаты по студентам:</h2>
+    {% if submission_page_obj %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ученик</th>
+                    <th>Задание</th>
+                    <th>Дата сдачи</th>
+                    <th>Оценка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submission_page_obj %}
+                    <tr>
+                        <td>{{ submission.student.username }}</td>
+                        <td>{{ submission.homework.subject.name }}</td>
+                        <td>{{ submission.submitted_at|date:"d.m.Y H:i" }}</td>
+                        <td>{{ submission.grade|default:"Не оценено" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% bootstrap_pagination submission_page_obj url=last_question %}
+    {% else %}
+        <p>Нет результатов по студентам.</p>
+    {% endif %}
+
+    <h2>Результаты по заданиям:</h2>
+    {% if homework_page_obj %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Предмет</th>
+                    <th>Описание</th>
+                    <th>Дата выдачи</th>
+                    <th>Срок выполнения</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for homework in homework_page_obj %}
+                    <tr>
+                        <td>{{ homework.subject.name }}</td>
+                        <td>{{ homework.description }}</td>
+                        <td>{{ homework.issued_date }}</td>
+                        <td>{{ homework.due_period }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% bootstrap_pagination homework_page_obj url=last_question %}
+    {% else %}
+        <p>Нет результатов по заданиям.</p>
+    {% endif %}
+{% else %}
+    <p>Нет результатов для вашего запроса.</p>
+{% endif %}
+{% endblock %}

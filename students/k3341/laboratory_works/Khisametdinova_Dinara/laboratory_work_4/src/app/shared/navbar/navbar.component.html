@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/dashboard">
+      <img src="logo.png" alt="Logo" width="80" height="40" class="me-2" />
+      Peer Review
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active fw-semibold" (click)="navigateTo('/home')">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="navigateTo('/submissions')">Submissions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="navigateTo('/reviews')">Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="navigateTo('/reports')">Reports</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="navigateTo('/tasks')">Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" (click)="navigateTo('/users')">Users</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <span *ngIf="currentUser" class="me-3 text-primary fw-bold">
+          Welcome, {{ currentUser.first_name }} {{ currentUser.last_name }}
+          <span *ngIf="isSuperUser">, you're the Superuser! 😊</span>
+        </span>
+        <button class="btn btn-outline-danger btn-sm" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

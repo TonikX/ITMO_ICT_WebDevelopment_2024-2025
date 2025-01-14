@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Submissions</h2>
+
+  <div class="mb-4">
+    <h3>Add Submission</h3>
+    <label for="taskSelect">Select a Task:</label>
+    <select
+      id="taskSelect"
+      class="form-select mb-3"
+      [(ngModel)]="selectedTaskId"
+      (change)="onTaskSelect(selectedTaskId)"
+    >
+      <option [value]="null">Select a Task</option>
+      <option *ngFor="let task of tasks" [value]="task.id">
+        {{ task.title }}
+      </option>
+    </select>
+
+    <div *ngIf="selectedTaskDetails">
+      <p><strong>Title:</strong> {{ selectedTaskDetails.title }}</p>
+      <p><strong>Description:</strong> {{ selectedTaskDetails.description }}</p>
+      <h5>Criteria:</h5>
+      <ul>
+        <li *ngFor="let criterion of selectedTaskDetails.criterion">
+          {{ criterion.name }} - {{ criterion.description }}
+        </li>
+      </ul>
+      <h5>Options:</h5>
+      <ul>
+        <li *ngFor="let option of selectedTaskDetails.options">
+          {{ option.content }}
+        </li>
+      </ul>
+
+      <textarea
+        class="form-control mb-2"
+        [(ngModel)]="newSubmissionContent"
+        placeholder="Enter your submission here..."
+      ></textarea>
+      <button class="btn btn-primary" (click)="addSubmission()">Submit</button>
+    </div>
+  </div>
+
+  <div *ngFor="let submission of filteredSubmissions" class="card mb-2">
+    <div class="card-body">
+      <h5>{{ submission.content }}</h5>
+      <p><strong>Task:</strong> {{ submission.task_detail.title }}</p>
+      <p><strong>User:</strong> {{ submission.user.username }}</p>
+      <p><strong>Submitted At:</strong> {{ submission.submitted_at | date: 'short' }}</p>
+    </div>
+  </div>
+</div>

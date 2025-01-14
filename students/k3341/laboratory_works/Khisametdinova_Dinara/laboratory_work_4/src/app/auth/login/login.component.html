@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <h1>Login</h1>
+  
+    <div *ngIf="currentUser; else loginForm" class="mt-4">
+      <h2>Welcome, {{ currentUser.first_name }} {{ currentUser.last_name }}!</h2>
+      <p><strong>Role:</strong> {{ currentUser.role }}</p>
+      <p><strong>Email:</strong> {{ currentUser.email }}</p>
+      <button class="btn btn-primary" (click)="navigateToHome()">Go to Dashboard</button>
+    </div>
+  
+    <ng-template #loginForm>
+      <form (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="username"
+            name="username"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="password"
+            name="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+    </ng-template>
+  </div>
+  

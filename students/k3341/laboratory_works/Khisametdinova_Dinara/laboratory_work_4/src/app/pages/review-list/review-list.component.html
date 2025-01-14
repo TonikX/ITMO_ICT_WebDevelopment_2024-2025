@@ -1,0 +1,81 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Reviews</h2>
+  
+  <div class="mb-4">
+    <label for="taskSelect" class="form-label fw-bold">Select Task:</label>
+    <select
+      id="taskSelect"
+      class="form-select"
+      (change)="onTaskSelect($event)"
+      [(ngModel)]="selectedTaskId"
+    >
+      <option [value]="null">-- Select a Task --</option>
+      <option *ngFor="let task of tasks" [value]="task.id">
+        {{ task.title }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="selectedTask" class="mb-4">
+    <h4 class="text-secondary">Submissions for <span class="text-primary">{{ selectedTask.title }}</span></h4>
+    <select class="form-select" (change)="onSubmissionSelect($event)">
+      <option [value]="null">-- Select a Submission --</option>
+      <option *ngFor="let submission of submissions" [value]="submission.id">
+        {{ submission.content }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="submissions.length > 0; else noSubmissions" class="mb-5">
+    <h4 class="text-success">Add Review</h4>
+    <div class="mb-3">
+      <label for="score" class="form-label">Score:</label>
+      <input
+        type="number"
+        id="score"
+        class="form-control"
+        [(ngModel)]="newReview.score"
+        placeholder="Enter score"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="comments" class="form-label">Comments:</label>
+      <textarea
+        id="comments"
+        class="form-control"
+        [(ngModel)]="newReview.comments"
+        placeholder="Enter your comments"
+        rows="3"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary w-100" (click)="addReview()">Submit Review</button>
+  </div>
+
+  <ng-template #noSubmissions>
+    <div class="alert alert-warning" role="alert">
+      <strong>No submissions available for this task.</strong>
+    </div>
+  </ng-template>
+
+  <div *ngFor="let review of reviews" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        Criterion: 
+        <span class="text-info">{{ review.criterion_detail?.name || 'Not specified' }}</span>
+      </h5>
+      <p class="card-text"><strong>Submission:</strong> {{ review.submission_detail?.content || 'Not specified' }}</p>
+      <p class="card-text"><strong>Score:</strong> <span class="text-success">{{ review.score }}</span></p>
+      <p class="card-text"><strong>Comments:</strong> {{ review.comments }}</p>
+      <p class="card-text">
+        <strong>Reviewer:</strong> {{ review.user?.first_name }} {{ review.user?.last_name }}
+      </p>
+      <button
+        *ngIf="review.user?.id === currentUser?.id"
+        class="btn btn-outline-primary btn-sm"
+        (click)="editReview(review)"
+      >
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

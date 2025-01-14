@@ -1,0 +1,23 @@
+body {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+  }
+  
+  .card {
+    border-radius: 15px;
+  }
+  
+  .card-header h4 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  

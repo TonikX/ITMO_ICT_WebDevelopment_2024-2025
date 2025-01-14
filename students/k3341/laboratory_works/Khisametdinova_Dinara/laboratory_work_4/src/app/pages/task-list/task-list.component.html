@@ -1,0 +1,177 @@
+<div class="container">
+  <h1 class="mb-4">Task List</h1>
+
+    <div class="d-flex mb-3">
+      <input
+        type="text"
+        class="form-control me-2"
+        [(ngModel)]="filter"
+        placeholder="Search tasks..."
+      />
+      <select
+        class="form-select"
+        [(ngModel)]="selectedCreatorId"
+        (change)="filterTasksByCreator(selectedCreatorId)"
+      >
+        <option [value]="null">All Creators</option>
+        <option *ngFor="let creator of creators" [value]="creator.id">
+          {{ creator.first_name }} {{ creator.last_name }}
+        </option>
+      </select>
+    </div>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of filteredTasks">
+      <div *ngIf="editingTask?.id !== task.id">
+        <h5>{{ task.title }}</h5>
+        <p>{{ task.description }}</p>
+        <div *ngIf="currentUser && task.creator.id === currentUser.id; else showCreator">
+          <button class="btn btn-sm btn-primary me-2" (click)="editTask(task)">
+            Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id)">
+            Delete
+          </button>
+        </div>
+        <ng-template #showCreator>
+          <p>Created by: {{ task.creator.first_name }} {{ task.creator.last_name }}</p>
+        </ng-template>
+      </div>
+
+      <div *ngIf="editingTask?.id === task.id">
+        <h5>Editing Task</h5>
+        <input
+          type="text"
+          class="form-control mb-2"
+          [(ngModel)]="editingTask.title"
+          placeholder="Task title"
+        />
+        <textarea
+          class="form-control mb-3"
+          [(ngModel)]="editingTask.description"
+          placeholder="Task description"
+        ></textarea>
+
+        <h4 class="mb-2">Criteria</h4>
+        <div class="mb-2" *ngFor="let criterion of editingCriteria; let i = index">
+          <input
+            type="text"
+            class="form-control mb-2"
+            [(ngModel)]="criterion.name"
+            placeholder="Criterion name"
+          />
+          <textarea
+            class="form-control mb-2"
+            [(ngModel)]="criterion.description"
+            placeholder="Criterion description"
+          ></textarea>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="removeCriterion(i)"
+            title="Remove this criterion"
+          >
+            Remove Criterion
+          </button>
+        </div>
+        <button class="btn btn-primary btn-sm mb-3" (click)="addCriterion()">
+          Add New Criterion
+        </button>
+
+        <h4 class="mb-2">Options</h4>
+        <div class="mb-2" *ngFor="let option of editingOptions; let i = index">
+          <input
+            type="text"
+            class="form-control mb-2"
+            [(ngModel)]="option.content"
+            placeholder="Option content"
+          />
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="removeOption(i)"
+            title="Remove this option"
+          >
+            Remove Option
+          </button>
+        </div>
+        <button class="btn btn-primary btn-sm mb-4" (click)="addOption()">
+          Add New Option
+        </button>
+
+        <div class="mt-1">
+          <button class="btn btn-success btn-sm me-2" (click)="saveTask()">
+            Save Task
+          </button>
+          <button class="btn btn-secondary btn-sm" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="isTeacher" class="mt-4">
+    <h3 class="mb-3">Add New Task</h3>
+    <input
+      type="text"
+      class="form-control mb-2"
+      [(ngModel)]="newTask.title"
+      placeholder="Task title"
+    />
+    <textarea
+      class="form-control mb-3"
+      [(ngModel)]="newTask.description"
+      placeholder="Task description"
+    ></textarea>
+
+    <h4 class="mb-2">Criteria</h4>
+    <div class="mb-2" *ngFor="let criterion of editingCriteria; let i = index">
+      <input
+        type="text"
+        class="form-control mb-2"
+        [(ngModel)]="criterion.name"
+        placeholder="Criterion name"
+      />
+      <textarea
+        class="form-control mb-2"
+        [(ngModel)]="criterion.description"
+        placeholder="Criterion description"
+      ></textarea>
+      <button
+        class="btn btn-danger btn-sm"
+        (click)="removeCriterion(i)"
+        title="Remove this criterion"
+      >
+        Remove Criterion
+      </button>
+    </div>
+    <button class="btn btn-primary btn-sm mb-3" (click)="addCriterion()">
+      Add New Criterion
+    </button>
+
+    <h4 class="mb-2">Options</h4>
+    <div class="mb-2" *ngFor="let option of editingOptions; let i = index">
+      <input
+        type="text"
+        class="form-control mb-2"
+        [(ngModel)]="option.content"
+        placeholder="Option content"
+      />
+      <button
+        class="btn btn-danger btn-sm"
+        (click)="removeOption(i)"
+        title="Remove this option"
+      >
+        Remove Option
+      </button>
+    </div>
+    <button class="btn btn-primary btn-sm mb-4" (click)="addOption()">
+      Add New Option
+    </button>
+
+    <div class="mt-1">
+      <button class="btn btn-primary btn-lg" (click)="createTask()">
+        Add Task
+      </button>
+    </div>
+  </div>
+</div>

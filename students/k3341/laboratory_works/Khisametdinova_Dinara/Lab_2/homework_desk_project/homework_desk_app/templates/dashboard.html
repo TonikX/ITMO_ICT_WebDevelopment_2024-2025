@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Панель управления</h2>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Профиль пользователя</h4>
+                <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Роль:</strong> {{ user.role }}</p>
+            </div>
+        </div>
+
+        {% if is_student %}
+            <h4>Ваши домашние задания и оценки:</h4>
+
+            <a href="{% url 'student_grade_table' %}" class="btn btn-primary mb-3">Мои оценки</a>
+
+            <a href="{% url 'student_homeworks' %}" class="btn btn-info mb-3">Просмотр заданий</a>
+
+            <a href="{% url 'submit_homework' homework_id=1 %}" class="btn btn-success mb-3">Прикрепить задание</a> 
+
+        {% else %}
+            <h4>Оценки всех студентов:</h4>
+
+            <a href="{% url 'admin_grade_table' %}" class="btn btn-primary mb-3">Оценки всех студентов</a>
+            
+            <a href="{% url 'submission_list' %}" class="btn btn-info mb-3">Управление заданиями</a>
+        {% endif %}
+
+        {% if submissions %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ученик</th>
+                        {% if not is_student %}
+                            <th>Класс</th>
+                        {% endif %}
+                        <th>Задание</th>
+                        <th>Дата сдачи</th>
+                        <th>Оценка</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                        <tr>
+                            <td>{{ submission.student.username }}</td>
+                            {% if not is_student %}
+                                <td>{{ submission.student.student_class.name }}</td>
+                            {% endif %}
+                            <td>{{ submission.homework.subject.name }}</td>
+                            <td>{{ submission.submitted_at|date:"d.m.Y H:i" }}</td>
+                            <td>{{ submission.grade|default:"Не оценено" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="alert alert-warning">Нет данных о сдачах заданий.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

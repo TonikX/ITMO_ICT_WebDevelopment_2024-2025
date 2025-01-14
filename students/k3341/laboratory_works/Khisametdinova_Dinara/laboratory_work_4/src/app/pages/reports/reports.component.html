@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <h1>Report for {{ currentUser.first_name }} {{ currentUser.last_name }}</h1>
+    <p>Your role: <strong>{{ currentUser.role }}</strong></p>
+    <hr />
+  
+    <div *ngIf="tasksUploaded.length && currentUser.role === 'teacher'">
+      <h2>Tasks You Uploaded:</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasksUploaded">
+          {{ task.title }} - {{ task.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="tasksReviewed.length && currentUser.role === 'student'">
+      <h2>Tasks You Reviewed:</h2>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasksReviewed">
+          {{ task.title }} - {{ task.description }}
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="averageScoreForUser !== null" class="mt-4">
+      <h2>Your Average Score:</h2>
+      <p><strong>{{ averageScoreForUser }}</strong></p>
+    </div>
+  
+    <div *ngIf="taskStatistics" class="mt-4">
+      <h2>Platform Statistics:</h2>
+      <ul>
+        <li>Total Tasks: <strong>{{ taskStatistics.tasks }}</strong></li>
+        <li>Total Submissions: <strong>{{ taskStatistics.submissions }}</strong></li>
+        <li>Total Reviews: <strong>{{ taskStatistics.reviews }}</strong></li>
+      </ul>
+    </div>
+    <div *ngIf="personalStatistics" class="mt-4">
+        <h2>Personal Statistics:</h2>
+        <ul>
+          <li *ngIf="personalStatistics.tasks_created !== undefined">
+            Tasks Created: <strong>{{ personalStatistics.tasks_created }}</strong>
+            <span *ngIf="personalStatistics.task_rank">
+              (You are in the <strong>{{ personalStatistics.task_rank }}</strong> place by the number of tasks)
+            </span>
+          </li>
+          <li *ngIf="personalStatistics.submissions_made !== undefined">
+            Submissions Made: <strong>{{ personalStatistics.submissions_made }}</strong>
+            <span *ngIf="personalStatistics.submission_rank">
+              (You are in the <strong>{{ personalStatistics.submission_rank }}</strong> place by the number of submissions)
+            </span>
+          </li>
+          <li *ngIf="personalStatistics.reviews_given !== undefined">
+            Reviews Given: <strong>{{ personalStatistics.reviews_given }}</strong>
+            <span *ngIf="personalStatistics.review_rank">
+              (You are in the <strong>{{ personalStatistics.review_rank }}</strong> place by the number of reviews)
+            </span>
+          </li>
+        </ul>
+    </div>
+  </div>
+  
