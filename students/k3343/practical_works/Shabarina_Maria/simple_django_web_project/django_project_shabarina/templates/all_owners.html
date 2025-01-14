@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Owners Info</title>
+</head>
+<body>
+    <h1>Car Owners Info</h1>
+    <ol>
+        {% for owner in all_owners %}
+            <li>{{ owner.first_name }} {{ owner.last_name }} ({{ owner.date_of_birth }}) - {{ owner.address }}</li>
+            <hr/>
+        {% empty %}
+            <li>No objects yet.</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

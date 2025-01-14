@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave a Review</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Leave a Review</h1>
+        <a href="{% url 'user_reservations' %}" class="back-button">← Back to reservations</a>
+    </header>
+    <div class="review-container">
+        <h2>New review for reservation №{{reservation.id}} in hotel "{{ reservation.hotel.name }}"</h2>
+        <form method="post" class="review-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>

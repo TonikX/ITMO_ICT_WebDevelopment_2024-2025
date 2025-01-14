@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cff0ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #35a5ff;
+    color: #fffefe;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.reservation-container {
+    width: 60%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.reservation-card {
+    background-color: white;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.reservation-container h3 {
+    text-align: center;
+    font-size: 25px;
+}
+
+hr {
+    margin: 10px 0;
+    border: none;
+    background-color: #35a5ff;
+    height: 2px;
+}
+
+.reservation-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.no-reservation {
+    text-align: center;
+    font-size: 25px;
+}
+
+.no-reservation a {
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #35a5ff;
+    color: white;
+    margin: 0 5px;
+    padding: 0.5rem 1rem;
+}
+
+.reservation-actions a {
+    margin: 0 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.reservation-actions button {
+    margin: 0 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #bbb;
+    color: white;
+}
+
+.reservation-button {
+    background: #4CAF50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+

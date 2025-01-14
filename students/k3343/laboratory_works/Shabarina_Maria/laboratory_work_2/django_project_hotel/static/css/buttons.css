@@ -1,0 +1,33 @@
+.btn {
+    padding: 5px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+nav a {
+    background-color: #cff0ff;
+    color: #35a5ff;
+    padding: 5px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+}

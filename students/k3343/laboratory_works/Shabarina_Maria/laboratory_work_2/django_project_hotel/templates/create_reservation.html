@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Reservation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reservations.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Create Reservation</h1>
+         <a href="{% url 'hotel_info' room.hotel.id %}" class="back-button">← Back to hotel information</a>
+    </header>
+
+    <div class="reservation-container">
+        <h3>New reservation!</h3>
+        <hr>
+        <p>Hotel: {{ room.hotel.name }}</p>
+        <p>Room: {{ room.type.type }}</p>
+        <form method="post">
+        {% csrf_token %}
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required><br>
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" required><br>
+        <div class="reservation-actions">
+            <button type="submit" class="reservation-button">Create Reservation</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

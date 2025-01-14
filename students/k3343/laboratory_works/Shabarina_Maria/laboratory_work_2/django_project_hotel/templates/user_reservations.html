@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Reservations</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reservations.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">My Reservations</h1>
+         <a href="{% url 'all_hotels' %}" class="back-button">← Back to hotels</a>
+    </header>
+    <div class="reservation-container">
+        {% if reservations %}
+            {% for reservation in reservations %}
+                <div class="reservation-card">
+                    <h3>Reservation № {{reservation.id}}</h3>
+                    <hr>
+                    <p>Hotel: {{ reservation.hotel.name }}</p>
+                    <p>Room: {{ reservation.room.type.type }}</p>
+                    <p>Dates: {{ reservation.start_date }} - {{ reservation.end_date }}</p>
+                    <p>Status: {{ reservation.status }}</p>
+                    <div class="reservation-actions">
+                        <a href="{% url 'update_reservation' reservation.id %}" class="cancel-button">Edit</a>
+                        <a href="{% url 'delete_reservation' reservation.id %}" class="delete-button">Delete</a>
+                        <a href="{% url 'create_review' reservation.id %}" class="edit-button">Review</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+        <div class="no-reservation">
+            <p> No reservations found </p>
+        </div>
+        {% endif %}
+
+</body>
+</html>

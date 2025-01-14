@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cff0ff;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #35a5ff;
+    color: #fffefe;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    position: relative;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.hotel-info {
+    width: 95%;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.hotel-card {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 2rem;
+}
+
+.hotel-card img {
+    width: 50%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.hotel-details h2 {
+    font-size: 50px;
+    color: black;
+}
+
+.description {
+    font-size: 25px;
+    color: black;
+}
+
+hr {
+    margin: 10px 0;
+    border: none;
+    background-color: #35a5ff;
+    height: 2px;
+}
+
+.rooms-info {
+    margin-top: 2rem;
+}
+
+.rooms-info h3 {
+    font-size: 30px;
+    color: #35a5ff;
+    margin-bottom: 10px;
+}
+
+.room-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.room-card h4 {
+    font-size: 25px;
+    color: #333;
+}
+
+.room-card p {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
+.reserve-room-button {
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 16px;
+}

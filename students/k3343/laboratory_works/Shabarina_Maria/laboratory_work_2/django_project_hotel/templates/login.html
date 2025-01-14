@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Login</h1>
+    </header>
+
+    <div class="auth-container">
+        <h2 align="center">Login</h2>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="auth-button">Login</button>
+        </form>
+        <p class="switch-auth">Don't have an account? <a href="{% url 'registration' %}">Register</a></p>
+    </div>
+</body>
+</html>

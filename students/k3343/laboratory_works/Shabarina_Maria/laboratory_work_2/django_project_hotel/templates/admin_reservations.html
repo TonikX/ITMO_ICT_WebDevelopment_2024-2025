@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ hotel.name }} - Reservations</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/reservations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Reservations for "{{ hotel.name }}"</h1>
+        <a href="{% url 'all_hotels' %}" class="back-button">← Back to hotels</a>
+    </header>
+    <div class="reservation-container">
+        {% if reservations %}
+            {% for reservation in reservations %}
+                <div class="reservation-card">
+                    <h3>Reservation № {{ reservation.id }}</h3>
+                    <p>User: {{ reservation.user.username }}</p>
+                    <p>Room: {{ reservation.room.type.type }}</p>
+                    <p>Dates: {{ reservation.start_date }} - {{ reservation.end_date }}</p>
+                    <p>Status: {{ reservation.get_status_display }}</p>
+                    {% if reservation.status == 'not_checked_in' %}
+                        <a href="{% url 'confirm_reservation' reservation.id %}" class="btn btn-success">Check In</a>
+                        <a href="{% url 'decline_reservation' reservation.id %}" class="btn btn-danger">Check Out</a>
+                    {%elif reservation.status == 'checked_in' %}
+                        <a href="{% url 'decline_reservation' reservation.id %}" class="btn btn-danger">Check Out</a>
+                    {% else %}
+                        <a href="{% url 'confirm_reservation' reservation.id %}" class="btn btn-success">Check In</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No reservations found for this hotel.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

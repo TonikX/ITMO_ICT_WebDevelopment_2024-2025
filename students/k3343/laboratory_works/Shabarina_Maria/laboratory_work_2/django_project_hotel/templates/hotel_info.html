@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ hotel.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/hotel_info.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Hotel Information</h1>
+        <a href="{% url 'all_hotels' %}" class="back-button">← Back to hotels</a>
+    </header>
+    <section class="hotel-info">
+        <div class="hotel-card">
+            <img src="{% static 'images/hotels/' %}{{ hotel.id }}.jpg" alt="{{ hotel.name }}" class="hotel-image">
+            <div class="hotel-details">
+                <h2>{{ hotel.name }}</h2>
+                <p>Address: {{ hotel.address }}</p>
+                <p>Owner: {{ hotel.owner }}</p>
+                <hr height="3px">
+                <p class="description">{{ hotel.description }}</p>
+            </div>
+        </div>
+
+        <div class="rooms-info">
+            <h3>Available Rooms</h3>
+            {% for room in hotel.rooms.all %}
+            <div class="room-card">
+                <h4>{{ room.type.type }}</h4>
+                <p>Description: {{ room.type.description }}</p>
+                <p>Facilities: {{ room.type.facilities }}</p>
+                <p>Price: {{ room.price }}$ per night</p>
+                <p>Capacity: {{ room.type.capacity }}</p>
+                <p>{{ room.description }}</p>
+                <a href="{% url 'create_reservation' room.id %}" class="reserve-room-button">Reserve this Room</a>
+                <a href="{% url 'all_reviews' room.id %}" class="reserve-room-button">Reviews</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>

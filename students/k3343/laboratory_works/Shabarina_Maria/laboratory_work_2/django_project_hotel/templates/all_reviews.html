@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
+</head>
+<body>
+    <header>
+        <h1 align="center">Reviews for {{ room.type.type }} in "{{ room.hotel.name }}"</h1>
+        <a href="{% url 'hotel_info' room.hotel.id %}" class="back-button">← Back to hotel information</a>
+    </header>
+    <div class="reviews-container">
+        <ul class="reviews-list">
+            {% for review in reviews %}
+                <li class="review-card">
+                    <div class="review-info">
+                        <strong>{{ review.reservation.user }}</strong>
+                        <p class="review-date">({{ review.reservation.start_date }} - {{ review.reservation.end_date }})</p>
+                        <p class="review-comment">{{ review.comment }}</p>
+                    </div>
+                    <div class="review-rating">{{ review.rating }}</div>
+                </li>
+            {% empty %}
+                <li class="no-reviews">No reviews available for this room.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
+
+</html>

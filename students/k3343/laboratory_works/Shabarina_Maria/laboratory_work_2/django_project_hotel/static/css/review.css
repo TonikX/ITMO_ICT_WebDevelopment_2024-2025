@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #cff0ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #35a5ff;
+    color: #fffefe;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.back-button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.review-container {
+    width: 60%;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.review-container h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+.review-form label {
+    font-weight: bold;
+}
+
+.review-form input, .review-form textarea, .review-form select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.submit-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    opacity: 0.9;
+}
+
+.reviews-container {
+    width: 60%;
+    max-width: 800px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.reviews-list {
+    list-style: none;
+    padding: 0;
+}
+
+.review-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background: #f9f9f9;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.review-info {
+    flex: 1;
+}
+
+.review-info strong {
+    font-size: 22px;
+    color: #35a5ff;
+}
+
+.review-date {
+    font-size: 14px;
+    color: #777;
+}
+
+.review-comment {
+    margin: 0.5rem 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.review-rating {
+    font-size: 40px;
+    color: #ff9800;
+    font-weight: bold;
+    text-align: center;
+    min-width: 60px;
+    align-self: center;
+}
+
+.no-reviews {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+}
+
+
