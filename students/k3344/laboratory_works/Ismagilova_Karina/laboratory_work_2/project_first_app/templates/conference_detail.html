@@ -1,0 +1,92 @@
+{% extends "design.html" %}
+
+{% block title %}Информация о конференции{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">{{ conference.title }}</h1>
+    <ul class="list-group mb-4">
+        <li class="list-group-item"><strong>Темы:</strong> {{ conference.themes }}</li>
+        <li class="list-group-item"><strong>Место проведения:</strong> {{ conference.location }}</li>
+        <li class="list-group-item"><strong>Период:</strong> {{ conference.start_date }} - {{ conference.end_date }}</li>
+        <li class="list-group-item"><strong>Описание:</strong> {{ conference.description }}</li>
+        <li class="list-group-item"><strong>Описание места:</strong> {{ conference.location_description }}</li>
+    </ul>
+
+    <h2>Автор(-ы) конференции:</h2>
+    <ul class="list-group mb-4">
+        {% for participant in conference.participant_set.all %}
+            {% if participant.is_author %}
+                <li class="list-group-item">
+                    {{ participant.user.last_name }} {{ participant.user.first_name }}
+                    {% if participant.results_set.first %}
+                        {% if participant.results_set.first.accepted %}
+                            <span class="text-success">(Рекомендован)</span>
+                        {% else %}
+                            <span class="text-danger">(Не рекомендован)</span>
+                        {% endif %}
+                    {% else %}
+                        <span class="text-warning">(Автор на проверке)</span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% empty %}
+            <li class="list-group-item">Авторы пока не назначены.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Регистрация на конференцию</h2>
+    <div class="button-group">
+        <form method="post" action="{% url 'participant_registration' pk=conference.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info">Регистрация как участник</button>
+        </form>
+        <form method="post" action="{% url 'author_registration' pk=conference.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-info">Регистрация как автор</button>
+        </form>
+    </div>
+
+    <h2>Отзывы</h2>
+    <ul class="list-group mb-4">
+        {% for review in reviews %}
+            <li class="list-group-item">
+                <strong>Комментарий от {{ review.user.first_name }} {{ review.user.last_name }}</strong>: {{ review.comment }}<br>
+                <strong>Рейтинг:</strong> {{ review.rating }} / 10<br>
+                <small>Конференция: {{ conference.title }}</small><br>
+                <small>Дата проведения конференции: {{ conference.start_date }} - {{ conference.end_date }}</small><br>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Отзывов пока нет.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Участники:</h2>
+    <ul class="list-group mb-4">
+        {% for participant in conference.participant_set.all %}
+            {% if not participant.is_author %}
+                <li class="list-group-item">
+                    {{ participant.user.last_name }} {{ participant.user.first_name }} {{ participant.user.age }} лет
+                </li>
+            {% endif %}
+        {% empty %}
+            <li class="list-group-item">Нет участников.</li>
+        {% endfor %}
+    </ul>
+
+        {% if user.is_authenticated %}
+        <h2>Добавить отзыв</h2>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            {{ review_form.as_p }}
+            <button type="submit" class="btn btn-success">Добавить отзыв</button>
+        </form>
+    {% else %}
+        <p>Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы оставить отзыв.</p>
+    {% endif %}
+
+    <div class="back-button">
+        <a href="{% url 'conference_list' %}" class="btn btn-secondary">Назад к списку конференций</a>
+    </div>
+</div>
+{% endblock %}

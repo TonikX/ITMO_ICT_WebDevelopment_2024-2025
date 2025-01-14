@@ -1,0 +1,9 @@
+site_name: Лабораторная работа №2
+nav:
+  - Home: index.md
+  - Laboratory_work_2:
+      - "Создание моделей": models.md
+      - "Реализация": realisation.md
+      - "Кастомизация, добавление navbar и пагинации": custom.md
+theme:
+  name: windmill

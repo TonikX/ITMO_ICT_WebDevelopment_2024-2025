@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о владельце автомобиля</title>
+</head>
+<body>
+    <h1>Информация о владельцах</h1>
+
+    {% if owner %}
+        <p><strong>Фамилия:</strong> {{ owner.last_name }}</p>
+        <p><strong>Имя:</strong> {{ owner.first_name }}</p>
+        <p><strong>Дата рождения:</strong> {{ owner.birth_date }}</p>
+        <a href="{% url 'owner_delete' owner.pk %}">Удалить</a>
+    {% elif owners %}
+        <ul>
+            {% for owner in owners %}
+                <li><strong>Имя:</strong> {{ owner.first_name }}, <strong>Фамилия:</strong> {{ owner.last_name }}, <strong>Дата рождения:</strong> {{ owner.birth_date }}, <strong>Пасспорт:</strong> {{ owner.passport }}, <strong>Адрес:</strong> {{ owner.address }}, <strong>Национальность:</strong> {{ owner.nationality }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Информация о владельцах недоступна.</p>
+    {% endif %}
+    <a href="{% url 'add_owner' %}">Добавить владельца</a>
+</body>
+</html>
