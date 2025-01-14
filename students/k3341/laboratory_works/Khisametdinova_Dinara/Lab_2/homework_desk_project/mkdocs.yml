@@ -29,3 +29,13 @@ nav:
       - Practical work 3.3: lab3/practical_work_3_3.md 
       - Laboratory work. Description: lab3/desc.md
       - Laboratory work. Description. API: lab3/api.html
+  - LAB №4:
+    - Project overview: lab4/intro.md
+    - Navbar: lab4/navbar.md
+    - Home: lab4/home.md
+    - Reports: lab4/reports.md
+    - Reviews: lab4/reviews.md
+    - Submissions: lab4/submissions.md
+    - Tasks: lab4/tasks.md
+    - Users: lab4/users.md
+    - Authorization: lab4/auth.md

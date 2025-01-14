@@ -20,9 +20,18 @@
     - [Search](lab2/search.md)
     - [Submission](lab2/submission.md)
     - [Homework](lab2/homeworks.md)
-- [LAB №3](lab3.md)
+- LAB №3:
     - [Practical work 3.1](lab3/practical_work_3_1.md)
     - [Practical work 3.2](lab3/practical_work_3_2.md)
     - [Practical work 3.3](lab3/practical_work_3_3.md)
-- [LAB №4](lab4.md)
+- LAB №4:
+    - [Project overview](lab4/intro.md)
+    - [Navbar](lab4/navbar.md)
+    - [Home](lab4/home.md)
+    - [Reports](lab4/reports.md)
+    - [Reviews](lab4/reviews.md)
+    - [Submissions](lab4/submissions.md)
+    - [Tasks](lab4/tasks.md)
+    - [Users](lab4/users.md)
+    - [Authorization](lab4/auth.md)
 
