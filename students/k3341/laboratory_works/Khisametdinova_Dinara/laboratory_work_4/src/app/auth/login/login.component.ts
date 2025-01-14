@@ -41,6 +41,6 @@ export class LoginComponent {
   }
 
   navigateToHome(): void {
-    this.router.navigate(['/home']); // Метод для перенаправления
+    this.router.navigate(['/home']);
   }
 }

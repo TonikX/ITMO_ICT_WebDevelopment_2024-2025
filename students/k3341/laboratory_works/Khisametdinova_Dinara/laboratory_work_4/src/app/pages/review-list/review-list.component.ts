@@ -17,7 +17,7 @@ export class ReviewListComponent {
   tasks: any[] = [];
   submissions: any[] = [];
   selectedTaskId: number | null = null;
-  selectedTask: any = null; // Добавлено для хранения выбранной задачи
+  selectedTask: any = null;
   selectedSubmission: any = null;
   currentUser: any = null;
 
@@ -54,7 +54,7 @@ export class ReviewListComponent {
     const target = event.target as HTMLSelectElement;
     const id = parseInt(target.value, 10);
     this.selectedTaskId = id;
-    this.selectedTask = this.tasks.find((task) => task.id === id); // Сохраняем полную информацию о задаче
+    this.selectedTask = this.tasks.find((task) => task.id === id);
     this.reviewService.getSubmissionsByTask(id).subscribe((data: any[]) => {
       this.submissions = data;
     });

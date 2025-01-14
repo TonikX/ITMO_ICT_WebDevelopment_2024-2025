@@ -1,7 +1,6 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Reviews</h2>
   
-  <!-- Select Task Section -->
   <div class="mb-4">
     <label for="taskSelect" class="form-label fw-bold">Select Task:</label>
     <select
@@ -17,7 +16,6 @@
     </select>
   </div>
 
-  <!-- Submissions Section -->
   <div *ngIf="selectedTask" class="mb-4">
     <h4 class="text-secondary">Submissions for <span class="text-primary">{{ selectedTask.title }}</span></h4>
     <select class="form-select" (change)="onSubmissionSelect($event)">
@@ -28,7 +26,6 @@
     </select>
   </div>
 
-  <!-- Add Review Section -->
   <div *ngIf="submissions.length > 0; else noSubmissions" class="mb-5">
     <h4 class="text-success">Add Review</h4>
     <div class="mb-3">
@@ -60,7 +57,6 @@
     </div>
   </ng-template>
 
-  <!-- Reviews List Section -->
   <div *ngFor="let review of reviews" class="card mb-3">
     <div class="card-body">
       <h5 class="card-title">

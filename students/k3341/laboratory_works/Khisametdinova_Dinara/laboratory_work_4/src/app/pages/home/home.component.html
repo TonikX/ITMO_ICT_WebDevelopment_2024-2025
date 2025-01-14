@@ -5,7 +5,6 @@
     <p><strong>Role:</strong> {{ currentUser.role }}</p>
     <p><strong>Email:</strong> {{ currentUser.email }}</p>
 
-    <!-- Для учителей -->
     <div *ngIf="currentUser.role === 'teacher'" class="mt-4">
       <h3>Your Uploaded Tasks</h3>
       <select
@@ -43,7 +42,6 @@
       </div>
     </div>
 
-    <!-- Для студентов -->
     <div *ngIf="currentUser.role === 'student'" class="mt-4">
       <h3>Your Submissions</h3>
       <ul>
@@ -66,7 +64,6 @@
     </div>
   </div>
 
-  <!-- Для неавторизованных пользователей -->
   <ng-template #guestTemplate>
     <h2>Welcome, Guest!</h2>
     <p>Please log in to access your personal dashboard.</p>

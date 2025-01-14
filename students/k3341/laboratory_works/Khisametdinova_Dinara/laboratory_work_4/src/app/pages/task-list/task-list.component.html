@@ -1,7 +1,6 @@
 <div class="container">
   <h1 class="mb-4">Task List</h1>
 
-    <!-- Search and Filter -->
     <div class="d-flex mb-3">
       <input
         type="text"
@@ -23,11 +22,9 @@
 
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let task of filteredTasks">
-      <!-- Отображение задачи, если она не редактируется -->
       <div *ngIf="editingTask?.id !== task.id">
         <h5>{{ task.title }}</h5>
         <p>{{ task.description }}</p>
-        <!-- Проверка на автора задачи -->
         <div *ngIf="currentUser && task.creator.id === currentUser.id; else showCreator">
           <button class="btn btn-sm btn-primary me-2" (click)="editTask(task)">
             Edit
@@ -41,7 +38,6 @@
         </ng-template>
       </div>
 
-      <!-- Редактирование задачи -->
       <div *ngIf="editingTask?.id === task.id">
         <h5>Editing Task</h5>
         <input

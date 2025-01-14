@@ -16,8 +16,8 @@ export class TaskListComponent {
   filter: string = '';
   isTeacher: boolean = false;
   currentUser: any = null;
-  selectedCreatorId: number | null = null; // Фильтр по преподавателю
-  creators: any[] = []; // Список преподавателей
+  selectedCreatorId: number | null = null;
+  creators: any[] = []; 
 
   newTask = {
     title: '',
