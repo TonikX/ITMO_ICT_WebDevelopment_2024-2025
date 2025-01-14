@@ -1,0 +1,41 @@
+<!-- templates/confirmed_tours_by_country.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтвержденные туры по странам</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Подтвержденные туры по странам</h1>
+
+    {% for country, reservations in countries.items %}
+        <h2>Страна: {{ country }}</h2>
+        <table class="tours-table">
+            <thead>
+                <tr>
+                    <th>Название тура</th>
+                    <th>Турагентство</th>
+                    <th>Дата бронирования</th>
+                    <th>Пользователь</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.tour.name }}</td>
+                        <td>{{ reservation.tour.agency }}</td>
+                        <td>{{ reservation.reservation_date }}</td>
+                        <td>{{ reservation.user.username }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endfor %}
+</div>
+
+</body>
+</html>

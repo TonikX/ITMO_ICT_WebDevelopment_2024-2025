@@ -1,0 +1,23 @@
+<!-- templates/add_comment.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Написать комментарий</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Написать комментарий к туру: {{ tour.name }}</h1>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">Добавить комментарий</button>
+    </form>
+</div>
+
+</body>
+</html>

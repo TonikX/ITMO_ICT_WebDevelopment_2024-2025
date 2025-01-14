@@ -1,0 +1,60 @@
+<!-- templates/tour_detail.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ tour.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>{{ tour.name }}</h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'reserve_tour' tour.id %}" class="button">Забронировать тур</a>
+                <a href="{% url 'my_tours' %}" class="button">Мои бронирования</a>
+                <a href="{% url 'add_comment' tour.id %}" class="button">Написать комментарий</a>
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="button">Выйти</button>
+                </form>
+            {% else %}
+                <p>Пожалуйста, войдите, чтобы забронировать тур.</p>
+                <a href="{% url 'login' %}" class="button">Войти</a>
+                <a href="{% url 'signup' %}" class="button">Регистрация</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="tour-details">
+        <p><strong>Турагентство:</strong> {{ tour.agency }}</p>
+        <p><strong>Страна:</strong> {{ tour.country }}</p>
+        <p><strong>Описание:</strong> {{ tour.description }}</p>
+        <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+    </div>
+
+    <a href="{% url 'tour_list' %}" class="button back-button">Назад к списку туров</a>
+
+    <section class="comments-section">
+        <h2>Комментарии</h2>
+        {% if tour.comments.all %}
+            <ul class="comments-list">
+                {% for comment in tour.comments.all %}
+                    <li class="comment-item">
+                        <strong>{{ comment.user.username }}</strong> ({{ comment.travel_date }}):
+                        Оценка: {{ comment.rating }}/10<br>
+                        {{ comment.text }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Комментариев пока нет.</p>
+        {% endif %}
+    </section>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,414 @@
+/* Основные стили */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Кнопки */
+
+.button,
+.form .button {
+    display: inline-block;
+    padding: 10px 16px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%; /* Полная ширина для кнопок в форме */
+    font-size: 16px;
+    border: none;
+}
+
+.button:hover,
+.form .button:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для формы */
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form p {
+    margin-bottom: 15px;
+}
+
+.form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Стили для списка туров */
+
+.tour-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tour-item {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tour-link {
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tour-link:hover {
+    text-decoration: underline;
+}
+
+/* Стили для страницы деталей тура */
+
+.tour-details {
+    background-color: #f0f8ff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Секция комментариев */
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comment-item {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.back-button {
+    display: block;
+    width: fit-content;
+    margin: 20px 0;
+}
+
+.error-message {
+    color: red;
+    background-color: #ffe6e6;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
+}
+
+.error-message p {
+    margin: 5px 0;
+}
+.reservation-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.reservation-item {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between; /* Распределяет пространство между элементами */
+    align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+.button-group {
+    display: flex;
+    gap: 10px; /* Отступ между кнопками */
+}
+
+.button,
+.delete-button {
+    padding: 8px 12px; /* Общее значение для высоты кнопки */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #007bff; /* Основной цвет кнопки */
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover,
+.delete-button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Красный цвет для кнопки удаления */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Темнее красный при наведении */
+}
+
+.back-button {
+    display: block;
+    margin: 20px 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form p {
+    margin-bottom: 15px;
+}
+
+.form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    width: 100%; /* Полная ширина кнопки */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.error-messages {
+    color: red;
+    margin-top: 10px;
+    text-align: center; /* Центрирование сообщений об ошибках */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form p {
+    margin-bottom: 15px;
+}
+
+.form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form textarea,
+.form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    width: 100%; /* Полная ширина кнопки */
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.error-messages {
+    color: red;
+    margin-top: 10px;
+    text-align: center; /* Центрирование сообщений об ошибках */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.tours-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.tours-table th, .tours-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.tours-table th {
+    background-color: #f0f8ff; /* Цвет фона для заголовков */
+}
+
+.tours-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Альтернативный цвет строк */
+}
+
+.tours-table tr:hover {
+    background-color: #f1f1f1; /* Цвет при наведении на строку */
+}
+
+/* Другие стили */
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    width: fit-content;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}

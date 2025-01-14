@@ -1,0 +1,35 @@
+<!-- templates/edit_reservation.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать бронирование</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Редактировать бронирование</h1>
+    <p>Тур: {{ tour.name }}</p>
+    <p>Период тура: {{ tour.start_date }} - {{ tour.end_date }}</p>
+
+    <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">Сохранить изменения</button>
+    </form>
+
+    {% if form.errors %}
+        <div class="error-messages">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

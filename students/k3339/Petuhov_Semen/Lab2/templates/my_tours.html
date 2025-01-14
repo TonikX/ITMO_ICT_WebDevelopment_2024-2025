@@ -1,0 +1,37 @@
+<!-- templates/my_tours.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои бронирования</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Мои бронирования</h1>
+
+    <ul class="reservation-list">
+        {% for reservation in reservations %}
+            <li class="reservation-item">
+                {{ reservation.tour.name }} ({{ reservation.reservation_date }})
+                <div class="button-group">
+                    <a href="{% url 'edit_reservation' reservation.id %}" class="button">Изменить дату бронирования</a>
+                    <form action="{% url 'delete_reservation' reservation.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="button delete-button">Удалить</button>
+                    </form>
+                </div>
+            </li>
+        {% empty %}
+            <li>У вас нет активных бронирований.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{% url 'tour_list' %}" class="button">Назад к списку туров</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!-- templates/tour_list.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список туров</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Список туров</h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'my_tours' %}" class="button">Мои бронирования</a>
+                <form action="{% url 'logout' %}" method="post" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="button">Выйти</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="button">Войти</a>
+                <a href="{% url 'signup' %}" class="button">Регистрация</a>
+            {% endif %}
+
+            <!-- Кнопка для перехода на страницу подтвержденных туров только для администраторов -->
+            {% if user.is_staff %}
+                <a href="{% url 'confirmed_tours_by_country' %}" class="button">Подтвержденные туры по странам</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <ul class="tour-list">
+        {% for tour in tours %}
+            <li class="tour-item">
+                <a href="{% url 'tour_detail' tour.id %}" class="tour-link">{{ tour.name }}</a>
+                <p>Страна: {{ tour.country }}</p>
+            </li>
+        {% empty %}
+            <li>Нет доступных туров.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
