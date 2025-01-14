@@ -1,0 +1,35 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4">
+        <h4>Добро пожаловать, дорогой учитель!</h4>
+
+        <h6>Мои предметы:</h6>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Название предмета</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject in subjects %}
+                    <tr>
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.description }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2">Нет текущих предметов.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h6>Оценки классов:</h6>
+        <a href="/grades_for_teacher/" class="btn btn-primary">Подробнее</a>
+
+        <h6 class="mt-4">Непроверенные ДЗ:</h6>
+        <a href="/submissions/without-grades/" class="btn btn-primary">Подробнее</a>
+    </div>
+{% endblock %}

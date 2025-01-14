@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h1 class="text-primary">Оценка работы студента: {{ submission.student.username }}</h1>
+
+        <div class="mb-3">
+            <p class="font-weight-bold">Текст задания:</p>
+            <p class="text-dark">{{ submission.homework.description }}</p>
+        </div>
+
+        <div class="mb-3">
+            <p class="font-weight-bold">Текст сдачи:</p>
+            <p class="text-dark">{{ submission.submitted_text }}</p>
+        </div>
+
+        <form method="post" class="mb-3">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="grade" class="font-weight-bold">Оценка:</label>
+                <input type="number" id="grade" name="grade" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить оценку</button>
+        </form>
+
+        <a href="/submissions/without-grades/" class="btn btn-link">Назад</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h1 class="text-primary">Отправка дз:</h1>
+        <p class="text-dark"><strong>Текст задания:
+        </strong>{{ homework.description }}</p>
+
+        <form method="post" class="mb-3">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="submitted_text" class="font-weight-bold">Моё дз:</label>
+                <input type="text" id="submitted_text" name="submitted_text" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить моё дз</button>
+        </form>
+
+        <a href="/submissions/without-grades/" class="btn btn-link">Назад</a>
+    </div>
+{% endblock %}

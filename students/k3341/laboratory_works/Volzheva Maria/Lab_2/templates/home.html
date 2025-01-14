@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сайт{% endblock %}</title> <!-- Заголовок страницы, который можно переопределить -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> <!-- Подключение CSS -->
+</head>
+<body>
+    <header class="bg-light p-3">
+        <h2>Электронный дневник</h2>
+        <nav>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/home/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link disabled">Пользователь: {{ our_user.username }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Выйти</a>
+                </li>
+            </ul>
+        </nav>
+        <hr />
+    </header>
+
+    <main class="container my-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-light text-center py-3">
+        <p>© Волжева М.И. 2024 - Все права защищены.</p>
+    </footer>
+</body>
+</html>

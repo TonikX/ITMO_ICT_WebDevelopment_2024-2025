@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <h3>Отправка дз:</h3>
+    <form method="POST" enctype="multipart/form-data">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Using the formset -->
+    {{ form.as_p }}
+
+    <input type="submit" value="Отправить" action="/home/">
+    </form>
+{% endblock %}
+
+

@@ -1,0 +1,34 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h4 class="text-primary">Подробнее о дз</h4>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Предмет:</h6>
+            <p class="text-dark">{{ object.subject }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Описание:</h6>
+            <p class="text-dark">{{ object.description }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Дедлайн:</h6>
+            <p class="text-danger">{{ object.date_to }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Штрафы:</h6>
+            <p class="text-warning">{{ object.penalties_info }}</p>
+        </div>
+
+        <form action="/homework/{{ object.id }}/new_submission/" target="_blank" class="mt-3">
+            <button type="submit" class="btn btn-success">Сдать дз</button>
+        </form>
+    </div>
+{% endblock %}
