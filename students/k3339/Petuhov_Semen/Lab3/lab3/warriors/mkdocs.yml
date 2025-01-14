@@ -1,0 +1,16 @@
+site_name: lab3
+nav:
+ - CarOwners task:
+     - "models": carowners/models.md
+     - "requests": carowners/reguests.md
+ - Warriors task:
+     - "models": warriors/models.md
+     - "requests": warriors/reguests.md
+     - "views": warriors/views.md
+ - lab_flights:
+     - "models": lab_flights/models.md
+     - "Authentication": lab_flights/auth.md
+     - "create_db": lab_flights/create_dbs.md
+     - "queries": lab_flights/queries.md
+theme:
+ name: material
