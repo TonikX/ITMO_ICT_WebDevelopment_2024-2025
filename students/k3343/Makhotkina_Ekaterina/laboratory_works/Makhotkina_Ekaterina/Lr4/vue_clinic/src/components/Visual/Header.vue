@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app color="primary" dark>
-    <v-toolbar-title>Медицинская система</v-toolbar-title>
+    <v-toolbar-title>Клиника</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn text to="/home">Главная</v-btn>
     <v-btn text to="/patient">Пациенты</v-btn>
