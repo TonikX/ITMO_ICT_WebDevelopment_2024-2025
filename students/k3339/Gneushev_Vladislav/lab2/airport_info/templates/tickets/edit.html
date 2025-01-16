@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Edit Ticket{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/flight_details.css' %}">
+    <div class="edit-ticket-container">
+        <h1>Edit Ticket for {{ ticket.passenger.username }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{% url 'flight_details' ticket.flight.id %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

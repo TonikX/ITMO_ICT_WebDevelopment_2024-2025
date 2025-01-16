@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Delete Ticket{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/delete_ticket.css' %}">
+    <div class="delete-ticket-container">
+        <h1>Confirm Deletion</h1>
+        <p>Are you sure you want to delete this ticket for {{ ticket.passenger.username }} on flight {{ ticket.flight.flight_number }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, delete ticket</button>
+            <a href="{% url 'flight_details' ticket.flight.id %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

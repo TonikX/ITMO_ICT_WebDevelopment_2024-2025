@@ -1,0 +1,17 @@
+site_name: Отчеты по лабораторным работам
+
+nav:
+  - Главная: index.md
+  - Лабораторная работа 1:
+    - Часть 1: lab1/part1.md
+    - Часть 2: lab1/part2.md
+    - Часть 3: lab1/part3.md
+    - Часть 4: lab1/part4.md
+    - Часть 5: lab1/part5.md
+  - Лабораторная работа 2:
+    - Модели: lab2/models.md
+    - Представление: lab2/views.md
+    - Пути: lab2/urls.md
+    - Фронтенд: lab2/frontend.md
+theme:
+ name: material

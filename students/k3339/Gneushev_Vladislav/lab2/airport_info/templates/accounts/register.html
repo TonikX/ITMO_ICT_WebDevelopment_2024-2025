@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+    <h1>Create an account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Register"></p>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+{% endblock %}

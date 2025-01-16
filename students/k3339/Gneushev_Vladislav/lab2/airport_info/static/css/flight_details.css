@@ -1,0 +1,252 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Flight Information Section */
+.flight-info {
+    flex: 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flight-info h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.flight-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flight-detail {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #555;
+}
+
+.value {
+    color: #333;
+}
+
+/* Reviews Sidebar */
+.reviews-sidebar {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+.reviews-sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Review Item Styling */
+.review {
+    background-color: #f0f8ff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.review p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.review hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+/* Ticket List Styling */
+.ticket-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.ticket-item {
+    background-color: #e9ecef;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items with equal spacing */
+}
+
+.ticket-item .info {
+    display: flex;
+    gap: 15px;
+}
+
+.ticket-item strong {
+    color: #333;
+}
+
+.ticket-item .links {
+    min-width: 100px; /* Reserve space for edit/delete links */
+    text-align: right; /* Align links to the right */
+}
+
+.ticket-item .links a {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.ticket-item .links a:hover {
+    text-decoration: underline;
+}
+
+.edit-link, .delete-link {
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+.edit-link:hover, .delete-link:hover {
+    text-decoration: underline;
+}
+
+/* Edit Ticket Form Styling */
+.edit-ticket-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-ticket-container h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form p {
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.review-options {
+    margin-top: 20px;
+}
+
+.review-options .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.review-options .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Reservation List Styling */
+.reservation-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.reservation-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Space between info and actions */
+    align-items: center;
+}
+
+.reservation-info {
+    font-size: 14px;
+    color: #555;
+}
+
+.reservation-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.reservation-actions .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.reservation-actions .btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.reservation-actions .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+
+.reservation-actions .btn:hover {
+    opacity: 0.9;
+}

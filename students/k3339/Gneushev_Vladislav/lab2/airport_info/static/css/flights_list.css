@@ -1,0 +1,94 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Flight List Styling */
+.flights-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.flight-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 30%;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flight-info {
+    margin-bottom: 20px;
+}
+
+.flight-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.flight-route {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.flight-times {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Button Styling */
+.view-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.view-btn a:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flight-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .flight-card {
+        width: 100%;
+    }
+}

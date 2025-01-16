@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Flights{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/flights_list.css' %}">
+    <div class="container">
+        <h1 class="page-title">Flights</h1>
+        <div class="flights-list">
+            {% for flight in flights %}
+                <div class="flight-card">
+                    <div class="flight-info">
+                        <h3 class="flight-number">{{ flight.flight_number }}</h3>
+                        <p class="flight-route">{{ flight.from_city }} to {{ flight.to_city }}</p>
+                        <p class="flight-times">{{ flight.start_at }} - {{ flight.end_at }}</p>
+                    </div>
+                    <div class="view-btn">
+                        <a href="{% url 'flight_details' flight_id=flight.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No flights available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

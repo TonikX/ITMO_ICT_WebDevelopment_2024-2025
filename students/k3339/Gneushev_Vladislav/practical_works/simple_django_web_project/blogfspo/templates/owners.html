@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owners</title>
+</head>
+<body>
+    <h3>Автовладельцы:</h3>
+    {% for owner in owners %}
+    <li>
+        Имя: {{owner.first_name}}<br>
+        Фамилия: {{owner.last_name}}<br>
+        Дата рождения: 
+            {% if owner.birth_date == None %} -
+            {% else %} {{owner.birth_date}}
+            {% endif%}
+        <br>
+    </li><br>
+    {% empty %}
+	<li>No owners found.</li>
+	{% endfor %}
+</body>
+</html>

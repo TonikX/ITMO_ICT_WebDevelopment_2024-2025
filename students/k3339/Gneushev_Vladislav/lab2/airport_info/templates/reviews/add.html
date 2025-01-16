@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/flight_details.css' %}">
+
+    <div class="add-review-container">
+        <h2>Add a Review for Flight {{ flight.flight_number }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.text.label_tag }}
+                {{ form.text }}
+                <br>
+                <br>
+                {{ form.rating.label_tag }}
+                {{ form.rating }}
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+{% endblock %}
