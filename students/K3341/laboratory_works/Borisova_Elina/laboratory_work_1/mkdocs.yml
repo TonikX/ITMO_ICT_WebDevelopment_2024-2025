@@ -7,3 +7,13 @@ theme:
 
 nav:
   - Home: index.md
+  - Lab №1:
+      - Task 1: task1.md
+      - Task 2: task2.md
+      - Task 3: task3.md
+      - Task 4: task4.md
+      - Task 5: task5.md
+  - Lab №2:
+      - Lab task + functional: LR2.md
+  - Lab №3:
+  - Lab №4:
