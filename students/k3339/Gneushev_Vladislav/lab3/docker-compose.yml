@@ -1,0 +1,26 @@
+version: "3"
+
+name: lab3-commercial_buses
+services:
+  api:
+    restart: always
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - "./app:/app"
+    ports:
+      - "8080:8080"
+    entrypoint:
+      [ "python", "-m", "app" ]
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: commercial_buses
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
