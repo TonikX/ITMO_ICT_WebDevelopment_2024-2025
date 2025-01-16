@@ -1,0 +1,9 @@
+site_name: Лаб 4 - Реализация клиентской части средствами Vue.js
+nav:
+  - Главная: index.md
+theme:
+  name: material
+markdown_extensions:
+  - toc
+  - codehilite
+  - admonition

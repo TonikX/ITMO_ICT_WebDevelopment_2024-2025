@@ -1,0 +1,25 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Grade Table{% endblock %}
+
+{% block content %}
+    <h1>Grade Table</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Homework</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.student.username }}</td>
+                <td>{{ submission.homework.description }}</td>
+                <td>{{ submission.grade }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

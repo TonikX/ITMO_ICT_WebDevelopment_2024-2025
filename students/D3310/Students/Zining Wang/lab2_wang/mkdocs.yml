@@ -1,0 +1,9 @@
+site_name: Лаб 2 - Реализация простого сайта на django
+nav:
+  - Главная: index.md
+theme:
+  name: material
+markdown_extensions:
+  - toc
+  - codehilite
+  - admonition

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ homework.description }} - Homework Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ homework.description }}</h1>
+
+        <p><strong>Subject:</strong> {{ homework.subject.name }}</p>
+        <p><strong>Teacher:</strong> {{ homework.teacher.user.username }}</p>
+        <p><strong>Issued:</strong> {{ homework.issue_date }}</p>
+        <p><strong>Due Date:</strong> {{ homework.due_date }}</p>
+        <p><strong>Description:</strong> {{ homework.description }}</p>
+        <p><strong>Penalty:</strong> {{ homework.penalty }}</p>
+
+        <a href="{% url 'submit_homework' homework.id %}" class="btn btn-primary">Submit Homework</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>Teacher List</h2>
+    <ul class="list-unstyled">  <!-- 使用 Bootstrap 的 list-unstyled 类 -->
+        {% for teacher in teachers %}
+            <li>
+                <strong>{{ teacher.subject.name }}</strong> - {{ teacher.user.username }} 
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
