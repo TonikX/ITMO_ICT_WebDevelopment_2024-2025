@@ -1,12 +1,3 @@
-# Welcome to Web programming 
+# Добро пожаловать в мою документацию!
 
-## Лабы:
-
-- LAB №1:
-    - [Task 1](task1.md)
-    - [Task 2](task2.md)
-    - [Task 3](task3.md)
-    - [Task 4](task4.md)
-    - [Task 5](task5.md)
-- LAB №2:
-    - [Task](LR2.md)
+Документация лабораторных работ по предмету WEB.
