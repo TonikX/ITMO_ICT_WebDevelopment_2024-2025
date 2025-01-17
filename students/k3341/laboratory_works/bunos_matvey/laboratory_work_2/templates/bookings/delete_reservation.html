@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="mb-4 text-danger">Удалить бронирование</h2>
+        <p>Вы уверены, что хотите удалить бронирование номера <strong>{{ reservation.room }}</strong> с даты <strong>{{ reservation.check_in }}</strong> по <strong>{{ reservation.check_out }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Да, удалить</button>
+            <a href="{% url 'my_reservations' %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Постояльцы за последний месяц</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Гость</th>
+            <th>Номер</th>
+            <th>Дата заезда</th>
+            <th>Дата выезда</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td>{{ reservation.user.username }}</td>
+            <td>{{ reservation.room }}</td>
+            <td>{{ reservation.check_in }}</td>
+            <td>{{ reservation.check_out }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Нет постояльцев за последний месяц.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
