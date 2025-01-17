@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Passengers of flight {{ flight.flight_number }}
+{% endblock %}
+
+{% block content %}
+    <h1>Passengers of flight {{ flight.flight_number }}</h1>
+
+    <div class="passenger-list">
+    <ul>
+        {% for passenger in passengers %}
+            <li class="passenger-item">
+                <span class="passenger-name">{{ passenger.first_name }} {{ passenger.last_name }}</span>
+                <span class="passenger-seat"> - Seat: {{ passenger.seat.seat_number }}</span>
+                <span class="passenger-ticket"> - Ticket Number: {{ passenger.ticket_number }}</span>
+            </li>
+        {% empty %}
+            <li>No passengers for this flight.</li>
+        {% endfor %}
+    </ul>
+     </div>
+    <a href="{% url 'flight_detail' flight.pk %}" class="back-button">Back to Flight Details</a>
+
+{% endblock %}

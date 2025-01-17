@@ -1,0 +1,16 @@
+{% block review %}
+<div class="review">
+    <div class="review-header">
+        <p class="user-name">User: {{ review.user.first_name }} {{ review.user.last_name }}</p>
+        <p class="flight-info">
+            <a href="{% url 'flight_detail' review.flight.pk %}" class="flight-link">
+                Flight date: {{ flight.departure|date:"d.m.Y" }}
+            </a>
+        </p>
+    </div>
+    <p class="comment">Comment: {{ review.comment_text }}</p>
+    <p class="rating">Rating:
+        <span class="rating-value">{{ review.rating }}</span> / 10
+    </p>
+</div>
+{% endblock %}

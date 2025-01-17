@@ -1,0 +1,419 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #e0f7fa; /* Light cyan for a softer background */
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(to right, #003366, #00509e); /* Darker blue gradient */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #002244; /* Dark navy blue */
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Section styles */
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+/* Button styles */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004080; /* Darker blue for buttons */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #003366; /* Even darker blue on hover */
+}
+
+/* Card styles for flight listings */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 15px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #002244; /* Dark navy blue for footer */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+footer p {
+    margin-top: 10px;
+}
+
+.flight-details {
+    background-color: #003366; /* Lighter dark blue background for contrast */
+    border: 1px solid #00509e; /* Slightly lighter blue border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding around the content */
+    margin: 20px 0; /* Margin above and below */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* More pronounced shadow for depth */
+}
+
+.date {
+    font-family: Arial, sans-serif; /* Changed to a standard sans-serif font */
+    font-size: 1.1em; /* Slightly larger font size */
+    color: #ffd700; /* Gold color for visibility */
+    background-color: rgba(255, 255, 255, 0.1); /* Light background to differentiate */
+    padding: 5px; /* Padding around the date */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Ensure padding works correctly */
+}
+
+.flight-number {
+    font-size: 2em; /* Larger font size for the flight number */
+    color: #00c6ff; /* Bright cyan color for the flight number */
+}
+
+.flights-grid {
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px; /* Space above the grid */
+}
+
+.reservation-number {
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Larger font size for the flight number */
+    color: #a1c4ff; /* Bright cyan color for the flight number */
+}
+
+.seat-number {
+    font-weight: bold;
+    font-size: 1.1em; /* Larger font size for the flight number */
+    color: #003366;
+}
+
+.flight-info {
+    margin-top: 15px; /* Space above the flight info section */
+}
+
+.field-name {
+    font-weight: bold; /* Bold font for field names */
+    color: #a1c4ff; /* Lighter blue for field names */
+}
+
+.field-value {
+    color: #e9ecef; /* Light gray color for values to stand out against dark background */
+}
+
+.field {
+    margin-bottom: 10px; /* Space between fields */
+}
+
+/* Link styles */
+.flight-number a {
+    text-decoration: underline; /* Remove underline from link */
+    color: #a1c4ff; /* Match link color to flight number */
+}
+
+.flight-number a:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.review {
+    background-color: #e0f7fa; /* Light gray background for contrast */
+    border: 1px solid #0072ff; /* Blue border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding around the content */
+    margin: 20px 0; /* Margin above and below */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.review-header {
+    margin-bottom: 10px; /* Space below the header */
+}
+
+.user-name {
+    font-weight: bold; /* Bold font for user name */
+    color: #00509e; /* Darker blue for user name */
+}
+
+
+.flight-link {
+    color: #0072ff; /* Blue color for flight link */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.flight-link:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.comment {
+    margin-top: 10px; /* Space above comment */
+    color: #333; /* Standard text color for comments */
+}
+
+.rating {
+    margin-top: 10px; /* Space above rating */
+    font-weight: bold; /* Bold font for rating label */
+    color: #000000
+}
+
+.rating-value {
+    color: #6A5ACD; /* Gold color for rating value */
+}
+.admin-button{
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add padding */
+    margin: 10px; /* Add margin between buttons */
+    background-color: #a1c4ff; /* Blue background color */
+    color: black; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.styled-button {
+    display: inline-block; /* Make the link behave like a button */
+    padding: 10px 20px; /* Add padding */
+    margin: 10px; /* Add margin between buttons */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.styled-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.passenger-list {
+    background-color: #001f3f; /* Dark blue background */
+    color: #e9ecef; /* Light text color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.passenger-list h1, .passenger-list h2 {
+    color: #00c6ff; /* Bright cyan color for headings */
+}
+
+.passenger-list ul {
+    list-style-type: none; /* Remove default list styling */
+    padding-left: 0; /* Remove left padding */
+}
+
+.passenger-item {
+    margin-bottom: 10px; /* Space between list items */
+    background-color: rgba(255, 255, 255, 0.1); /* Light translucent background for list items */
+    padding: 10px; /* Padding inside list items */
+    border-radius: 5px; /* Rounded corners for list items */
+}
+
+.passenger-name {
+    font-weight: bold; /* Bold font for passenger name */
+    color: #00c6ff; /* Bright cyan color for names */
+}
+
+.passenger-seat,
+.passenger-ticket {
+    color: #e9ecef; /* Light text color for seat and ticket info */
+}
+
+.passenger-seat {
+    font-style: italic; /* Italic style for seat information */
+}
+
+.passenger-ticket {
+    font-style: italic; /* Italic style for ticket information */
+}
+
+.back-button {
+    display: inline-block; /* Make it behave like a button */
+    padding: 10px 20px; /* Padding around the button */
+    margin-top: 20px; /* Space above the button */
+    background-color: #007bff; /* Blue background color for button */
+    color: white; /* White text color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+
+   nav ul li {
+        display: block; /* Stack navigation items on smaller screens */
+        margin-bottom: 10px;
+   }
+
+   header h1 {
+        font-size: 2em; /* Smaller header on mobile */
+   }
+
+   section h2 {
+        font-size: 1.5em; /* Smaller section headers on mobile */
+   }
+}
+
+.flex-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: space-between; /* Space between items */
+    align-items: flex-start; /* Align items at the start */
+    margin-top: 20px; /* Space above the container */
+}
+
+.admin-buttons {
+    margin-top: 15px; /* Space above the buttons */
+}
+
+.available-seats,
+.reviews {
+    background-color: #a1c4ff; /* Dark blue background for both sections */
+    color: #000000; /* Light text color */
+    padding: 20px; /* Padding inside each section */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    width: 48%; /* Set width to allow space for both sections */
+}
+
+.reviews {
+    margin-left: 20px; /* Space between available seats and reviews */
+}
+
+h2 {
+    color: #000000; /* Bright cyan color for headings */
+}
+
+.reservations {
+    display: grid; /* Enable grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px; /* Space above the grid */
+}
+
+.reservation-container {
+    color: #FFFFFF; /* Light text color */
+    max-width: 600px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Padding inside the container */
+    background-color: #003366; /* Semi-transparent background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+h1.highlight {
+    color: #a1c4ff; /* Bright cyan color for highlighted text */
+}
+
+.reservation-form {
+    margin-top: 20px; /* Space above the form */
+}
+
+.reservation-form button.submit-button {
+    background-color: #007bff; /* Blue background for submit button */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around button text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 20px;
+}
+
+.reservation-form button.submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.button-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center items horizontally */
+    margin-top: 20px; /* Space above the button container */
+}
+
+.styled-button,
+.admin-button {
+    display: inline-block; /* Allow buttons to take only necessary width */
+    margin: 10px 0; /* Vertical spacing between buttons */
+}
+
+.back-link {
+    display: inline-block; /* Make it behave like a button */
+    margin-top: 20px; /* Space above the link */
+    color: #a1c4ff; /* Bright cyan color for link */
+    text-decoration: none; /* Remove underline from link */
+}
+
+.back-link:hover {
+    text-decoration: underline; /* Underline on hover for clarity */
+}
