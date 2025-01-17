@@ -1,0 +1,9 @@
+<h2>Мои автомобили</h2>
+<ul>
+    {% for car in cars %}
+        <li>{{ car.brand }} {{ car.model }} ({{ car.registration_number }}) - Цвет: {{ car.color }}</li>
+    {% empty %}
+        <p>У вас еще нет автомобилей.</p>
+    {% endfor %}
+</ul>
+<p><a href="{% url 'add_car' %}">Добавить автомобиль</a></p>

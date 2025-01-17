@@ -1,0 +1,9 @@
+<h1>Список Пользователей</h1>
+<ul>
+    {% for user in users %}
+        <li>
+            {{ user.first_name }} {{ user.last_name }} 
+            - <a href="{% url 'user_detail' user.pk %}">Подробнее</a>
+        </li>
+    {% endfor %}
+</ul>

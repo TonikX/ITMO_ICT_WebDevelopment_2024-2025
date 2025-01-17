@@ -1,0 +1,6 @@
+<h1>Информация об автомобиле</h1>
+<p>Марка: {{ object.brand }}</p>
+<p>Модель: {{ object.model }}</p>
+<p>Госномер: {{ object.registration_number }}</p>
+<p>Цвет: {{ object.color }}</p>
+<a href="{% url 'car_update' object.pk %}">Редактировать</a>
