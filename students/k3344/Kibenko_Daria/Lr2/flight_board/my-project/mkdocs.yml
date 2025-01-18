@@ -1,14 +1,7 @@
 site_name: Flight Booking System Documentation
 nav:
   - Home: index.md
-  - API Documentation:
-      - Flights: api/flights.md
-      - Reservations: api/reservations.md
-      - Reviews: api/reviews.md
-  - User Guide:
-      - Registration: user_guide/registration.md
-      - Booking Flights: user_guide/booking_flights.md
-      - Writing Reviews: user_guide/writing_reviews.md
+  - Demonstration: result.md
 
 extra_css:
   - css/custom.css
