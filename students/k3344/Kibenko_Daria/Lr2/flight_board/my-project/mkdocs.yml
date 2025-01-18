@@ -1,4 +1,6 @@
 site_name: Flight Booking System Documentation
+site_url: https://daria-kibenko.github.io/ITMO_ICT_WebDevelopment_2024-2025/
+
 nav:
   - Home: index.md
   - Demonstration: result.md
