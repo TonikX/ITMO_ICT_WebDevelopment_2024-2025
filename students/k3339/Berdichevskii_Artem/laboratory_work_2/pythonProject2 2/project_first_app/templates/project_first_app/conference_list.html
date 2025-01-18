@@ -1,0 +1,10 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+<h1>Список конференций</h1>
+<ul>
+    {% for conference in conferences %}
+        <li><a href="{% url 'conference_detail' conference.id %}">{{ conference.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+<h1>Список отзывов</h1>
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.user.username }}</strong> — <em>Конференция: {{ review.conference.title }}</em><br>
+            <p>{{ review.comment }}</p>
+            <p><strong>Рейтинг:</strong> {{ review.rating }}</p>
+            <small>Добавлено: {{ review.date_added }}</small>
+        </li>
+    {% empty %}
+        <li>Нет отзывов.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+    <h2>Добавить отзыв для {{ conference.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+    </form>
+    <br>
+    <a href="{% url 'conference_detail' conference.id %}" class="btn btn-secondary">Назад к конференции</a>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'strap.html' %}
+
+{% block title %}Участники{% endblock %}
+
+{% block content %}
+<body>
+<div class="container">
+    <h1 class="mt-4">Список участников</h1>
+    <form method="get" class="mb-4">
+        <div class="form-group">
+            <label for="user">Пользователь</label>
+            <input type="text" name="user" class="form-control" placeholder="Поиск по пользователю" value="{{ query_user }}">
+        </div>
+        <div class="form-group">
+            <label for="conference">Конференция</label>
+            <input type="text" name="conference" class="form-control" placeholder="Поиск по конференции" value="{{ query_conference }}">
+        </div>
+        <button class="btn btn-primary" type="submit">Найти</button>
+    </form>
+    {% if participants %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Конференция</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for participant in participants %}
+                <tr>
+                    <td>{{ participant.user.username }}</td>
+                    <td>{{ participant.conference.title }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination">
+            <span class="step-links">
+                {% if participants.has_previous %}
+                    <a href="?user={{ query_user }}&conference={{ query_conference }}&page=1">&laquo; первая</a>
+                    <a href="?user={{ query_user }}&conference={{ query_conference }}&page={{ participants.previous_page_number }}">предыдущая</a>
+                {% endif %}
+
+                <span class="current">
+                    Страница {{ participants.number }} из {{ participants.paginator.num_pages }}.
+                </span>
+
+                {% if participants.has_next %}
+                    <a href="?user={{ query_user }}&conference={{ query_conference }}&page={{ participants.next_page_number }}">следующая</a>
+                    <a href="?user={{ query_user }}&conference={{ query_conference }}&page={{ participants.paginator.num_pages }}">последняя &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% else %}
+        <p>Участники не найдены.</p>
+    {% endif %}
+</div>
+</body>
+{% endblock %}

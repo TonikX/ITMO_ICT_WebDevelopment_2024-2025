@@ -1,0 +1,11 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+    <h2>Создать новую конференцию</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Создать конференцию</button><br><br>
+    </form>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Отмена</a>
+{% endblock %}

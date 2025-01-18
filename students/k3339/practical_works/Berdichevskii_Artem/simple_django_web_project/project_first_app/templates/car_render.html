@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Car info</h1>
+    <ul>
+        {% for car in cars %}
+            <li>
+                Brand: {{ car.brand }}, model: {{ car.model }}, color: {{ car.color }}
+            </li>
+
+        {% empty %}
+            <li>No cars available.</li>
+        {% endfor %}
+    </ul>
+    <h1>Actions</h1>
+    <ul>
+    <li>
+        <a href="../create/">Register new car</a>
+    </li>
+    <li>
+        <a href="n/update">Update car</a>
+    </li>
+    <li>
+        <a href="n/delete">Delete car</a>
+    </li>
+    </ul>
+{% endblock %}

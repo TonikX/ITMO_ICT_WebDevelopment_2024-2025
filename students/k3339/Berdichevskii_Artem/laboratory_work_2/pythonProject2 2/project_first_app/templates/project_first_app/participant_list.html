@@ -1,0 +1,11 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+<h1>Список участников</h1>
+<ul>
+    {% for participant in participants %}
+        <li>{{ participant.user.username }} - {{ participant.conference.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

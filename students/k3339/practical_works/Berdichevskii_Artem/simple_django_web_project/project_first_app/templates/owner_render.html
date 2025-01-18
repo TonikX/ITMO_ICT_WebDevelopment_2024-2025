@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Car Owner info</h1>
+    <ul>
+        {% for owner in owners %}
+            <li>Name: {{ owner.name }} {{ owner.surname }}<br>
+            Born in {{ owner.birth_date }}</li>
+        {% empty %}
+            <li>No owners available.</li>
+        {% endfor %}
+    </ul>
+
+
+    <h1>Actions</h1>
+    <ul>
+    <li>
+        <a href="create/">Register new person</a>
+    </li>
+    </ul>
+{% endblock %}

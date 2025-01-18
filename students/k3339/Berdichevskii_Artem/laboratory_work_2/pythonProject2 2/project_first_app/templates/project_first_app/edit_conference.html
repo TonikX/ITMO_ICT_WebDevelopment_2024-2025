@@ -1,0 +1,11 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+    <h2>Редактировать конференцию: {{ conference.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+    <a href="{% url 'conference_detail' conference.id %}" class="btn btn-secondary">Отменить</a>
+{% endblock %}

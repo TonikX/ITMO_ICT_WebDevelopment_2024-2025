@@ -1,0 +1,24 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+    <h2 class="text-center mb-4">Вход</h2>
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.non_field_errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.username.label }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+    <br>
+    <a href="{% url 'register' %}" class="btn btn-secondary">Зарегистрироваться</a>
+{% endblock %}

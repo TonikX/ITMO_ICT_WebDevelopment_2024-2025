@@ -1,0 +1,11 @@
+{% extends "strap.html" %}
+
+{% block content %}
+  <h2>Редактировать регистрацию</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+  </form>
+  <a href="{% url 'participant-list' %}">Отменить</a>
+{% endblock %}

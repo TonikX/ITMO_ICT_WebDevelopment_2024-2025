@@ -1,0 +1,24 @@
+{% extends 'strap.html' %}
+
+{% block content %}
+    <h2>{{ conference.title }}</h2>
+    <p><strong>Темы:</strong> {{ conference.themes }}</p>
+    <p><strong>Место проведения:</strong> {{ conference.location }}</p>
+    <p><strong>Дата начала:</strong> {{ conference.start_date }}</p>
+    <p><strong>Дата окончания:</strong> {{ conference.end_date }}</p>
+    <p><strong>Описание:</strong> {{ conference.description }}</p>
+    <p><strong>Описание места:</strong> {{ conference.location_description }}</p>
+
+    <h3>Отзывы:</h3>
+    {% for review in conference.reviews.all %}
+        <div>
+            <p><strong>{{ review.user.username }}:</strong> {{ review.comment }} (Рейтинг: {{ review.rating }})</p>
+            <p><em>Добавлено {{ review.date_added }}</em></p>
+        </div>
+    {% empty %}
+        <p>Отзывов пока нет.</p>
+    {% endfor %}
+
+    <a href="{% url 'add_review' conference.id %}" class="btn btn-primary">Добавить отзыв</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Назад на главную</a>
+{% endblock %}
