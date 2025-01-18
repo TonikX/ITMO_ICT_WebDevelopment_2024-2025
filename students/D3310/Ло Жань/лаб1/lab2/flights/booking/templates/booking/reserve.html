@@ -1,0 +1,40 @@
+<!-- 用户预定航班的页面。-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve Flight</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Reserve Flight: {{ flight.flight_number }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="passenger_name">Passenger Name</label>
+                <input type="text" class="form-control" id="passenger_name" name="passenger_name" required>
+            </div>
+            <div class="form-group">
+                <label for="seat_number">Seat Number</label>
+                <input type="text" class="form-control" id="seat_number" name="seat_number" required>
+            </div>
+            <div class="form-group">
+                <label for="ticket_number">Ticket Number</label>
+                <input type="text" class="form-control" id="ticket_number" name="ticket_number" required>
+            </div>
+            <div class="form-group">
+                <label for="seating">Seat Type</label>
+                <select class="form-control" id="seating" name="seating" required>
+                    <option value="economy">Economy</option>
+                    <option value="business">Business</option>
+                    <option value="first">First</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Reserve</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- # 显示用户已预定的航班。 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reservations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Your Reservations</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Flight Number</th>
+                    <th>Passenger Name</th>
+                    <th>Seat Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.flight.flight_number }}</td>
+                    <td>{{ reservation.passenger_name }}</td>
+                    <td>{{ reservation.seating }}</td>
+                    <td><a href="{% url 'cancel_reservation' reservation.id %}" class="btn btn-danger">Cancel</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
