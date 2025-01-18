@@ -1,0 +1,1129 @@
+{
+  "created_at": "2025-01-11 11:19",
+  "cli_options": "-a -o erd.json --json",
+  "disable_fields": false,
+  "disable_abstract_fields": false,
+  "use_subgraph": false,
+  "rankdir": "TB",
+  "graphs": [
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"django.contrib.admin\"",
+      "app_name": "django.contrib.admin",
+      "cluster_app_name": "cluster_django_contrib_admin",
+      "models": [
+        {
+          "app_name": "django_contrib_admin_models",
+          "name": "LogEntry",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "AutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "content_type",
+              "label": "content_type",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "user",
+              "label": "user",
+              "type": "ForeignKey (id)",
+              "blank": false,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "action_flag",
+              "label": "action_flag",
+              "type": "PositiveSmallIntegerField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "action_time",
+              "label": "action_time",
+              "type": "DateTimeField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "change_message",
+              "label": "change_message",
+              "type": "TextField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "object_id",
+              "label": "object_id",
+              "type": "TextField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "object_repr",
+              "label": "object_repr",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "users_models",
+              "target": "User",
+              "type": "ForeignKey",
+              "name": "user",
+              "label": "user (logentry)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "django_contrib_contenttypes_models",
+              "target": "ContentType",
+              "type": "ForeignKey",
+              "name": "content_type",
+              "label": "content_type (logentry)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "LogEntry"
+        }
+      ]
+    },
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"django.contrib.auth\"",
+      "app_name": "django.contrib.auth",
+      "cluster_app_name": "cluster_django_contrib_auth",
+      "models": [
+        {
+          "app_name": "django_contrib_auth_models",
+          "name": "Permission",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "AutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "content_type",
+              "label": "content_type",
+              "type": "ForeignKey (id)",
+              "blank": false,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "codename",
+              "label": "codename",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "django_contrib_contenttypes_models",
+              "target": "ContentType",
+              "type": "ForeignKey",
+              "name": "content_type",
+              "label": "content_type (permission)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Permission"
+        },
+        {
+          "app_name": "django_contrib_auth_models",
+          "name": "Group",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "AutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "django_contrib_auth_models",
+              "target": "Permission",
+              "type": "ManyToManyField",
+              "name": "permissions",
+              "label": "permissions (group)",
+              "arrows": "[arrowhead=dot arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Group"
+        }
+      ]
+    },
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"django.contrib.contenttypes\"",
+      "app_name": "django.contrib.contenttypes",
+      "cluster_app_name": "cluster_django_contrib_contenttypes",
+      "models": [
+        {
+          "app_name": "django_contrib_contenttypes_models",
+          "name": "ContentType",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "AutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "app_label",
+              "label": "app_label",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "model",
+              "label": "model",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "ContentType"
+        }
+      ]
+    },
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"django.contrib.sessions\"",
+      "app_name": "django.contrib.sessions",
+      "cluster_app_name": "cluster_django_contrib_sessions",
+      "models": [
+        {
+          "app_name": "django_contrib_sessions_base_session",
+          "name": "AbstractBaseSession",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "expire_date",
+              "label": "expire_date",
+              "type": "DateTimeField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "session_data",
+              "label": "session_data",
+              "type": "TextField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "AbstractBaseSession"
+        },
+        {
+          "app_name": "django_contrib_sessions_models",
+          "name": "Session",
+          "abstracts": [
+            "AbstractBaseSession"
+          ],
+          "fields": [
+            {
+              "name": "session_key",
+              "label": "session_key",
+              "type": "CharField",
+              "blank": false,
+              "abstract": true,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "expire_date",
+              "label": "expire_date",
+              "type": "DateTimeField",
+              "blank": false,
+              "abstract": true,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "session_data",
+              "label": "session_data",
+              "type": "TextField",
+              "blank": false,
+              "abstract": true,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "django_contrib_sessions_base_session",
+              "target": "AbstractBaseSession",
+              "type": "inheritance",
+              "name": "inheritance",
+              "label": "abstract\\ninheritance",
+              "arrows": "[arrowhead=empty, arrowtail=none, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Session"
+        }
+      ]
+    },
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"system\"",
+      "app_name": "system",
+      "cluster_app_name": "cluster_system",
+      "models": [
+        {
+          "app_name": "system_models",
+          "name": "Area",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "Area"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Building",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "area",
+              "label": "area",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "system_models",
+              "target": "Area",
+              "type": "ForeignKey",
+              "name": "area",
+              "label": "area (buildings)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Building"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Cage",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "building",
+              "label": "building",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "additional",
+              "label": "additional",
+              "type": "CharField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "communal",
+              "label": "communal",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "system_models",
+              "target": "Building",
+              "type": "ForeignKey",
+              "name": "building",
+              "label": "building (cages)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Cage"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Diet",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "num",
+              "label": "num",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "type",
+              "label": "type",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "Diet"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Habitat",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "characteristic",
+              "label": "characteristic",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "location",
+              "label": "location",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "Habitat"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Animal",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "diet",
+              "label": "diet",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "winter_place",
+              "label": "winter_place",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "age",
+              "label": "age",
+              "type": "IntegerField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "birthdate",
+              "label": "birthdate",
+              "type": "DateField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "in_lease",
+              "label": "in_lease",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "normal_temperature",
+              "label": "normal_temperature",
+              "type": "FloatField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "num",
+              "label": "num",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "owner",
+              "label": "owner",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "previous_owner",
+              "label": "previous_owner",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "sex",
+              "label": "sex",
+              "type": "TextField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "since",
+              "label": "since",
+              "type": "DateField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "where_is_now",
+              "label": "where_is_now",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "winter_sleeping",
+              "label": "winter_sleeping",
+              "type": "IntegerField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "system_models",
+              "target": "Diet",
+              "type": "ForeignKey",
+              "name": "diet",
+              "label": "diet (animals_on_this_diet)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "system_models",
+              "target": "WinterPlace",
+              "type": "ForeignKey",
+              "name": "winter_place",
+              "label": "winter_place (birds_wintering)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Animal"
+        },
+        {
+          "app_name": "system_models",
+          "name": "WinterPlace",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "code",
+              "label": "code",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "date_from",
+              "label": "date_from",
+              "type": "DateField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "date_to",
+              "label": "date_to",
+              "type": "DateField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "WinterPlace"
+        },
+        {
+          "app_name": "system_models",
+          "name": "AnimalInCage",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "animal",
+              "label": "animal",
+              "type": "OneToOneField (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            },
+            {
+              "name": "cage",
+              "label": "cage",
+              "type": "ForeignKey (id)",
+              "blank": true,
+              "abstract": false,
+              "relation": true,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "system_models",
+              "target": "Animal",
+              "type": "OneToOneField",
+              "name": "animal",
+              "label": "animal (where)",
+              "arrows": "[arrowhead=none, arrowtail=none, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "system_models",
+              "target": "Cage",
+              "type": "ForeignKey",
+              "name": "cage",
+              "label": "cage (who)",
+              "arrows": "[arrowhead=none, arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "AnimalInCage"
+        },
+        {
+          "app_name": "system_models",
+          "name": "Worker",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "birthday",
+              "label": "birthday",
+              "type": "DateField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "name",
+              "label": "name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "num",
+              "label": "num",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "passport",
+              "label": "passport",
+              "type": "CharField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "phone",
+              "label": "phone",
+              "type": "CharField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "system_models",
+              "target": "Animal",
+              "type": "ManyToManyField",
+              "name": "animals",
+              "label": "animals (wathers)",
+              "arrows": "[arrowhead=dot arrowtail=dot, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "Worker"
+        }
+      ]
+    },
+    {
+      "True": true,
+      "False": false,
+      "None": null,
+      "name": "\"users\"",
+      "app_name": "users",
+      "cluster_app_name": "cluster_users",
+      "models": [
+        {
+          "app_name": "django_contrib_auth_models",
+          "name": "PermissionsMixin",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "is_superuser",
+              "label": "is_superuser",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "PermissionsMixin"
+        },
+        {
+          "app_name": "django_contrib_auth_base_user",
+          "name": "AbstractBaseUser",
+          "abstracts": [],
+          "fields": [
+            {
+              "name": "last_login",
+              "label": "last_login",
+              "type": "DateTimeField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "password",
+              "label": "password",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [],
+          "label": "AbstractBaseUser"
+        },
+        {
+          "app_name": "users_models",
+          "name": "User",
+          "abstracts": [
+            "AbstractBaseUser",
+            "PermissionsMixin"
+          ],
+          "fields": [
+            {
+              "name": "id",
+              "label": "id",
+              "type": "BigAutoField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": true
+            },
+            {
+              "name": "date_joined",
+              "label": "date_joined",
+              "type": "DateTimeField",
+              "blank": true,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "email",
+              "label": "email",
+              "type": "EmailField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "first_name",
+              "label": "first_name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "is_active",
+              "label": "is_active",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "is_staff",
+              "label": "is_staff",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "is_superuser",
+              "label": "is_superuser",
+              "type": "BooleanField",
+              "blank": false,
+              "abstract": true,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "last_login",
+              "label": "last_login",
+              "type": "DateTimeField",
+              "blank": true,
+              "abstract": true,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "last_name",
+              "label": "last_name",
+              "type": "CharField",
+              "blank": false,
+              "abstract": false,
+              "relation": false,
+              "primary_key": false
+            },
+            {
+              "name": "password",
+              "label": "password",
+              "type": "CharField",
+              "blank": false,
+              "abstract": true,
+              "relation": false,
+              "primary_key": false
+            }
+          ],
+          "relations": [
+            {
+              "target_app": "django_contrib_auth_models",
+              "target": "Group",
+              "type": "ManyToManyField",
+              "name": "groups",
+              "label": "groups (user)",
+              "arrows": "[arrowhead=dot arrowtail=dot, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "django_contrib_auth_models",
+              "target": "Permission",
+              "type": "ManyToManyField",
+              "name": "user_permissions",
+              "label": "user_permissions (user)",
+              "arrows": "[arrowhead=dot arrowtail=dot, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "django_contrib_auth_base_user",
+              "target": "AbstractBaseUser",
+              "type": "inheritance",
+              "name": "inheritance",
+              "label": "abstract\\ninheritance",
+              "arrows": "[arrowhead=empty, arrowtail=none, dir=both]",
+              "needs_node": false
+            },
+            {
+              "target_app": "django_contrib_auth_models",
+              "target": "PermissionsMixin",
+              "type": "inheritance",
+              "name": "inheritance",
+              "label": "abstract\\ninheritance",
+              "arrows": "[arrowhead=empty, arrowtail=none, dir=both]",
+              "needs_node": false
+            }
+          ],
+          "label": "User"
+        }
+      ]
+    }
+  ]
+}

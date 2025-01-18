@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <title>Write a Review</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styling/style.css' %}">
+</head>
+<body>
+    <h1>Write a Review</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>

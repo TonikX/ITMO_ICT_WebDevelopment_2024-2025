@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <title>Hotels</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styling/style.css' %}">
+</head>
+<body>
+    <h1>Hotels</h1>
+    <ul>
+        {% for hotel in hotels %}
+            <li><a href="{% url 'room_reserve' %}">{{ hotel.name }}  /</a> <a href="{% url 'write_review' hotel.id %}">Оставить отзыв</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

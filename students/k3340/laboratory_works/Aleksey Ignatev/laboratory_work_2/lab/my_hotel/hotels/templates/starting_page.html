@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Starting Page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styling/style.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Hotel Management System</h1>
+    <ul>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'hotel_list' %}">List of Hotels</a></li>
+        <li><a href="{% url 'reserve_list' %}">List of Reservations</a></li>
+        <li>Reserve a room at:</li>
+        <ul>
+            {% for hotel in hotels %}
+                <li><a href="{% url 'room_reserve' %}">{{ hotel.name }}</a></li>
+            {% empty %}
+                <li>No hotels available.</li>
+            {% endfor %}
+        </ul>
+
+        <li><a href="{% url 'last_month_guests' %}">Last Month's Guests</a></li>
+    </ul>
+
+</body>
+</html>

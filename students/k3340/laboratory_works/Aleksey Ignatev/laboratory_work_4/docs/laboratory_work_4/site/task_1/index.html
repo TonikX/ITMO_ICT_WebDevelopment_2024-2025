@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Реализация веб-сервиса управления отелями на Django - Lab 4 Report</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Lab 4 Report</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Реализация веб-сервиса управления отелями на Django</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#-django" class="nav-link">Реализация веб-сервиса управления отелями на Django</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#1" class="nav-link">1. Задача</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#2" class="nav-link">2. Как выполнялась работа</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#3" class="nav-link">3. Фрагменты кода</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#4" class="nav-link">4. Скриншоты работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="-django">Реализация веб-сервиса управления отелями на Django</h1>
+<h2 id="1">1. Задача</h2>
+<p>Целью было создать клиентскую часть средствами Vue.js - в моем случае это было реализовано с помощью React.</p>
+<h2 id="2">2. Как выполнялась работа</h2>
+<p>Были добавлены новые эндпоинты, отвечающие за работу с аккаунтом юзера - Для этого сперва пришлось сделать кастомную модель юзера - была произведена нехитрая настройка корсов и с помощью vite был создан темплейта для клиенской части. На фронт-энде я реализовал обращения к моему django серверу и добавил немного ui библиотек для лучшей отзывчивости и приятной работы с сайтом - например был использован react-toastify для уведомлений пользователя об усмешности его дейстий. Также были использованы такие бибиотеки как react-router-dom и redux - первая для навигации по страницам, а вторая для хранения глобального стейта приложения, в моем случае это данные залогиненного юзера.</p>
+<h2 id="3">3. Фрагменты кода</h2>
+<h3 id="_1">Фрагмент раутинга:</h3>
+<pre><code>&lt;&gt;
+      &lt;Router&gt;
+        &lt;Nav /&gt;
+        &lt;Routes&gt;
+          &lt;Route path='/' element={&lt;HomePage /&gt;} /&gt;
+          &lt;Route path='/login' element={&lt;LoginPage /&gt;} /&gt;
+          &lt;Route path='/register' element={&lt;RegisterPage /&gt;} /&gt;
+          &lt;Route path='/reset-password' element={&lt;ResetPasswordPage /&gt;} /&gt;
+          &lt;Route path='/activate/:uid/:token' element={&lt;ActivatePage /&gt;} /&gt;
+          &lt;Route
+            path='/password/reset/confirm/:uid/:token'
+            element={&lt;ResetPasswordPageConfirm /&gt;}
+          /&gt;
+          &lt;Route path='/dashboard' element={&lt;Dashboard /&gt;} /&gt;
+          &lt;Route path='*' element={&lt;NotFoundPage /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/Router&gt;
+      &lt;ToastContainer /&gt;
+    &lt;/&gt;
+</code></pre>
+<h3 id="_2">Фрагменты регистрации:</h3>
+<pre><code>const register = async (userData) =&gt; {
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  }
+
+  const response = await axios.post(REGISTER_URL, userData, config)
+
+  return response.data
+}
+
+
+export const register = createAsyncThunk(
+  'auth/register',
+  async (userData, thunkAPI) =&gt; {
+    try {
+      return await authService.register(userData)
+    } catch (error) {
+      const message =
+        (error.response &amp;&amp;
+          error.response.data &amp;&amp;
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+</code></pre>
+<h3 id="_3">Фрагменты авторизации:</h3>
+<pre><code>const login = async (userData) =&gt; {
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  }
+
+  const response = await axios.post(LOGIN_URL, userData, config)
+
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
+  return response.data
+}
+
+export const login = createAsyncThunk(
+  'auth/login',
+  async (userData, thunkAPI) =&gt; {
+    try {
+      return await authService.login(userData)
+    } catch (error) {
+      const message =
+        (error.response &amp;&amp;
+          error.response.data &amp;&amp;
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+</code></pre>
+<h3 id="_4">Фрагмент отправки запроса на создание нового пользователя:</h3>
+<pre><code>const handleSubmit = (e) =&gt; {
+    e.preventDefault()
+
+    if (password !== re_password) {
+      toast.error('Passwords do not match')
+    } else {
+      const userData = {
+        first_name,
+        last_name,
+        email,
+        password,
+        re_password,
+      }
+      dispatch(register(userData))
+    }
+  }
+</code></pre>
+<h2 id="4">4. Скриншоты работы</h2>
+<h3 id="_5">Регистрация + авторизация</h3>
+<p><img alt="Главная страница" src="../assets/MainPage.png" /></p>
+<p><img alt="Дэшборд до логина" src="../assets/DashboardInActive.png" /></p>
+<p><img alt="Главная Страница регистрации" src="../assets/RegistrationPage.png" /></p>
+<p><img alt="Загрузка на каждой странице" src="../assets/RegLoading.png" /></p>
+<p><img alt="Удачный запрос на создание нового аккаунта" src="../assets/RegSuccessful.png" /></p>
+<p><img alt="Письмо активации аккаунта" src="../assets/ActivationEmail.png" /></p>
+<p><img alt="Страница активации аккаунта" src="../assets/ActivatePage.png" /></p>
+<p><img alt="Страница авторизации в аккаунт" src="../assets/LogInPage.png" /></p>
+<p><img alt="Дэшборд после логина" src="../assets/DashboardActive.png" /></p>
+<h3 id="_6">Смена пароля</h3>
+<p><img alt="Запрос на смену пароля" src="../assets/ResetPassPage.png" /></p>
+<p><img alt="Письмо с ссылкой на смену пароля" src="../assets/ResetPasEmail.png" /></p>
+<p><img alt="Страница со сменой пароля" src="../assets/ConfirmResetPassPage.png" /></p>
+<p><img alt="Успешная смена пароля" src="../assets/ResetSuccessful.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

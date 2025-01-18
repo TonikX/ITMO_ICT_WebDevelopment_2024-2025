@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+
+    <title>Reserve a Room</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styling/style.css' %}">
+</head>
+<body>
+    <h1>Reserve a Room</h1>
+    <h2>Use MM/DD/YYYY format</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Reserve</button>
+    </form>
+</body>
+</html>
