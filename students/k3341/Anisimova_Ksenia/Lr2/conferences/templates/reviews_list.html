@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отзывы конференции {{ conference.title }}</title>
+</head>
+<body>
+    <h1>Отзывы конференции {{ conference.title }}</h1>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <strong>{{ review.author.username }}</strong> ({{ review.comment_date }}): 
+            Оценка: {{ review.rating }}<br>
+            {{ review.text }}
+        </li>
+        {% empty %}
+        <li>Отзывов пока нет.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'list_conferences' %}">Конференции</a>
+</body>
+</html>

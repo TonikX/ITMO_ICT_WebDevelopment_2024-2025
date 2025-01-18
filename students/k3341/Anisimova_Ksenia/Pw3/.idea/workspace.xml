@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7dca46fe-98fa-41e0-a6b7-b89f04f2e7f9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/simple_django_web_project/django_project_anisimova/django_project_anisimova/wsgi.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2rl233YrF6183FRtjXygg6hSg0I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "ellomacaug-lr-3",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Pw3" type="Python.DjangoServer" factoryName="Django server">
+      <module name="Pw3" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-PY-243.22562.220" />
+        <option value="bundled-python-sdk-0fc6c617c4bd-9a18a617cbe4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7dca46fe-98fa-41e0-a6b7-b89f04f2e7f9" name="Changes" comment="" />
+      <created>1737119139269</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737119139269</updated>
+      <workItem from="1737119140657" duration="47000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

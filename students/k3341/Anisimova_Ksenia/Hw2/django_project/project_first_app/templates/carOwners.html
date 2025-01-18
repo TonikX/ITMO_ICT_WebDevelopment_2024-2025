@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Владельцы</title>
+</head>
+<body>
+    <h1>Владельцы</h1>
+    <a href="/owner/create">Добавить</a>
+    <ul>
+        {% for carOwner in carOwners %}
+        <li>
+            <strong>Id:</strong> {{ carOwner.pk }}
+            <p><strong>Имя:</strong> {{ carOwner.name }}</p>
+            <p><strong>Фамилия:</strong> {{ carOwner.surname }}</p>
+            <p><strong>День рождения:</strong> {{ carOwner.date_Birth }}</p>
+            <p><strong>Паспорт:</strong> {{ carOwner.passport }}</p>
+            <p><strong>Адресс:</strong> {{ carOwner.address }}</p>
+            <p><strong>Национальность:</strong> {{ carOwner.nationality }}</p>
+    </li>
+    {% empty %}
+    <li>Владельцев еще нет</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

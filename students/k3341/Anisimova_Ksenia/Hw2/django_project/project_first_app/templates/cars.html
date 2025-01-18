@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Машины</title>
+</head>
+<body>
+<h1>Машины</h1>
+<a href="/car/create">Добавить новую</a>
+<ul>
+    {% for car in cars %}
+    <li>
+        <strong>Id:</strong> {{ car.id }}
+        <p><strong>Государственный номер:</strong> {{ car.state_number }}</p>
+        <p><strong>Марка:</strong> {{ car.brand }}</p>
+        <p><strong>Модель:</strong> {{ car.model }}</p>
+        <p><strong>Цвет:</strong> {{ car.color }}</p>
+        <p>Действия:
+        <a href="/car/{{ car.id }}/update">Изменить</a> |
+        <a href="/car/{{ car.id }}/delete">Удалить</a> |
+        <a href="/car/{{ car.id }}">Подробности</a>
+        <p></p>
+        </p>
+
+
+
+    </li>
+    {% empty %}
+    <li>Машин еще нет</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

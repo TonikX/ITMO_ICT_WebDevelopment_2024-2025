@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои регистрации</title>
+</head>
+<body>
+    <h1>Мои регистрации на конференции</h1>
+    <table>
+        <tr>
+            <th>Конференция</th>
+            <th>Дата регистрации</th>
+            <th>Действия</th>
+        </tr>
+        {% for registration in registrations %}
+        <tr>
+            <td>{{ registration.conference.title }}</td>
+            <td>{{ registration.date_registered }}</td>
+            <td>
+                <a href="{% url 'edit_registration' registration.id %}">Редактировать</a>
+                <a href="{% url 'delete_registration' registration.id %}" onclick="return confirm('Вы уверены, что хотите удалить регистрацию?');">Удалить</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">Регистрации отсутствуют.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'index' %}">Вернуться на главную страницу</a>
+</body>
+</html>
