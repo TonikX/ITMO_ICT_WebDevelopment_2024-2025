@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Создать/Редактировать Автомобиль</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Редактировать{% else %}Создать{% endif %} Автомобиль</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Обновить{% else %}Создать{% endif %}</button>
+    </form>
+    <a href="{% url 'car_list' %}">Назад к списку автомобилей</a>
+</body>
+</html>
