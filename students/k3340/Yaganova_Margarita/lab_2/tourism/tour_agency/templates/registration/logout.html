@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1 class="text-center mt-5">Вы вышли из личного кабинета</h1>
+<p class="text-center mt-3">Спасибо за использование нашего турагенства. До скорой встречи!</p>
+<a href="{% url 'login' %}" class="btn btn-primary d-block mx-auto mt-4" style="width: 200px;">Войти снова</a>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        li:last-child {
+            border-bottom: none; /* Убираем границу у последнего элемента */
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .back-link:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Owner:</h1>
+    <ul>
+        <li>Name: {{ owner.first_name }}</li>
+        <li>Surname: {{ owner.last_name }}</li>
+        <li>Email: {{ owner.email }}</li>
+        <li>Date of Birth: {{ owner.date_of_birth }}</li>
+        <li>Passport Number: {{ owner.passport_number }}</li>
+        <li>Address: {{ owner.address }}</li>
+        <li>Nationality: {{ owner.nationality }}</li>
+    </ul>
+    <a class="back-link" href="/owner/list">Back to Owners List</a>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценки по дисциплинам</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #005f73;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e0fbfc;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #05668d;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0284a5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оценки по дисциплинам</h1>
+    <ul>
+        <!-- Здесь заполняется список дисциплин с оценками -->
+    </ul>
+    <h2>Добавить новую оценку</h2>
+    <form method="POST" action="/">
+        <label for="discipline">Дисциплина:</label>
+        <input type="text" id="discipline" name="discipline">
+        <label for="grade">Оценка:</label>
+        <input type="text" id="grade" name="grade">
+        <input type="submit" value="Добавить">
+    </form>
+</body>
+</html>

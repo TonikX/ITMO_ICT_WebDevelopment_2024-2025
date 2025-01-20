@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #2980b9;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .actions {
+            font-size: 0.9em;
+            color: #888;
+        }
+        .add-car {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .add-car:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cars:</h1>
+    <a class="add-car" href="/car/create">Add Car</a>
+    <ul>
+        {% for object in object_list %}
+        <li>
+            <a href="/car/{{ object.pk }}">Number: {{ object.number }}</a>
+            <div class="actions">
+                Actions:
+                <a href="/car/{{ object.pk }}/edit">Edit</a> |
+                <a href="/car/{{ object.pk }}/delete">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
