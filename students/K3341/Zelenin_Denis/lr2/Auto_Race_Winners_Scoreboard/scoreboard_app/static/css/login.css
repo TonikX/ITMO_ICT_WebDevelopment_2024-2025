@@ -1,0 +1,94 @@
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Контейнер формы */
+form {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 2em;
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Поля формы */
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border 0.3s;
+}
+
+form input:focus {
+    border: 1px solid #ffcc00;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+}
+
+/* Кнопка */
+form button {
+    width: 100%;
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    background: #d4a900;
+    transform: translateY(0);
+}
+
+/* Ссылка на регистрацию */
+a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e6b800;
+    text-decoration: underline;
+}

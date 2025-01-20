@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.navbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Растягиваем меню на всю ширину */
+    z-index: 1000;
+
+}
+.details-container {
+    margin-top: 70px; /* Опустит контент на 70px ниже меню */
+    width: 80%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.details-container h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.detail-card {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.detail-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #ff6666;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-item span:first-child {
+    font-weight: bold;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,215 @@
+/* Общие настройки */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+html {
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку на уровне HTML */
+    height: 100%; /* Убедимся, что высота страницы занимает весь экран */
+}
+
+/* Фиксированное меню */
+.navbar {
+    background-color: #d91212 !important; /* Цвет фона меню */
+    position: fixed; /* Фиксируем меню наверху */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Основной контейнер для содержимого */
+.results-container {
+    margin: 0 auto; /* Центровка контейнера */
+    width: 80%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    /* Исправляем отступ сверху */
+    margin-top: 120px;
+}
+
+.results-container h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.results-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+/* Стили таблицы */
+.table-header, .table-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    /* Убираем переполнение */
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+.table-header {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    color: white;
+}
+
+.table-cell {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-row:nth-child(even) {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.table-row:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Ссылка "Go back to homepage" */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Глобальная проверка на переполнение */
+* {
+    box-sizing: border-box;
+}
+
+/* Убедимся, что страница не разделена */
+.container {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.race-item {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+/* Заголовок "Комментарии" */
+h2.COм {
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h2.addCom{
+    color: #ffcc00;
+
+
+}
+/* Список комментариев */
+.list-group {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.list-group-item {
+    background-color: #1a1a1a !important; /* Темный фон */
+
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Границы */
+    border-radius: 5px; /* Скругление углов */
+    margin-bottom: 10px; /* Отступ */
+    padding: 15px; /* Внутренние отступы */
+    word-wrap: break-word; /* Перенос текста */
+}
+
+/* Имя автора комментария */
+.comment-author {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Текст комментария */
+.comment-text {
+    display: block;
+    color: white; /* Белый текст для видимости */
+    margin-top: 5px;
+    font-style: italic;
+    font-size: 1em;
+}
+
+/* Метаинформация о комментарии */
+ul.list-group .list-group-item .text-muted {
+    color: #ffffff !important; /* Белый текст */
+    font-size: 0.9em;
+    display: block;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* Форма добавления комментария */
+form {
+    background: rgba(50, 50, 50, 0.9); /* Тёмный фон формы */
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    color: white; /* Белый текст */
+}
+
+/* Поля формы */
+form input, form select, form textarea {
+    background: rgba(0, 0, 0, 0.8); /* Тёмный фон для полей */
+    color: white; /* Белый текст */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Лёгкая граница */
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%; /* Ширина поля */
+    margin-bottom: 15px;
+}
+
+/* Кнопка отправки */
+form .btn {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+form .btn:hover {
+    background: #e6b800;
+    color: black;
+    cursor: pointer;
+}

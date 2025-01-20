@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New object</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/new_object.css' %}">
+</head>
+<body>
+    <div class="container-fluid p-5 bg-dark text-light">
+        <h1 class="text-center text-warning mb-4">Add new</h1>
+        <div class="results-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-warning mt-3">Add</button>
+            </form>
+        </div>
+         <a class="link_drivers" href="{% url 'races' %}">back to races</a>
+    </div>
+</body>
+</html>
