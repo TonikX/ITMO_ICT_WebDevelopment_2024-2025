@@ -1,0 +1,36 @@
+.drivers-container h2,
+.drivers-container h3 {
+    color: #cc0000;
+}
+
+.drivers-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.drivers-container th,
+.drivers-container td {
+    border: 1px solid #cc0000;
+    padding: 10px;
+    text-align: left; }
+
+.drivers-container th {
+    background-color: #ffcccc;
+}
+
+.drivers-container tr:hover {
+    background-color: #ffe6e6;
+}
+
+.drivers-container button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.drivers-container button:hover {
+    background-color: #ff6666;
+}

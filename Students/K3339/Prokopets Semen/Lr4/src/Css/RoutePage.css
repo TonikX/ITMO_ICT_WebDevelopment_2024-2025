@@ -1,0 +1,37 @@
+.routes-container h2,
+.routes-container h3 {
+    color: #cc0000;
+}
+
+.routes-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.routes-container th,
+.routes-container td {
+    border: 1px solid #cc0000;
+    padding: 10px;
+    text-align: left;
+}
+
+.routes-container th {
+    background-color: #ffcccc;
+}
+
+.routes-container tr:hover {
+    background-color: #ffe6e6;
+}
+
+.routes-container button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.routes-container button:hover {
+    background-color: #ff6666;
+}

@@ -1,0 +1,49 @@
+/* Header.css */
+header {
+    display: flex; /* Используем Flexbox для размещения элементов */
+    justify-content: space-between; /* Размещаем элементы по краям */
+    align-items: center; /* Центрируем по вертикали */
+    background-color: #ffcccc; /* Светлый красный фон */
+    border-bottom: 2px solid #cc0000; /* Темно-красная граница снизу */
+    font-family: 'Courier New', Courier, monospace; /* Тетрадный стиль */
+    padding: 10px 20px; /* Отступы вокруг содержимого */
+}
+
+.logo img {
+    height: 50px; /* Установите нужные размеры */
+}
+
+nav {
+    flex-grow: 1; /* Заставляем навигацию занимать доступное пространство */
+    text-align: right; /* Выравниваем текст вправо */
+}
+
+nav ul {
+    display: flex; /* Располагаем элементы списка в одну строку */
+    list-style: none; /* Убираем точки списка */
+    margin: 0; /* Убираем отступы сверху и снизу */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+nav ul li {
+    margin: 0 15px; /* Отступы между элементами списка */
+}
+
+nav ul li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #cc0000; /* Темно-красный цвет текста */
+    font-weight: bold; /* Жирный текст */
+    transition: color 0.3s ease; /* Плавный переход цвета при наведении */
+}
+
+nav ul li a:hover {
+    color: #ff6666; /* Светло-красный цвет при наведении */
+}
+
+/* Дополнительные стили для кнопок (если нужно) */
+.btn-link {
+    padding: 5px 10px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Скругленные углы */
+    background-color: white; /* Белый фон кнопки */
+    color: #cc0000; /* Темно-красный цвет текста на кнопке */
+}

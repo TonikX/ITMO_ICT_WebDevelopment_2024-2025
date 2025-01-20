@@ -1,0 +1,37 @@
+.bus-types-container h2,
+.bus-types-container h3 {
+    color: #cc0000;
+}
+
+.bus-types-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bus-types-container th,
+.bus-types-container td {
+    border: 1px solid #cc0000;
+    padding: 10px;
+    text-align: left;
+}
+
+.bus-types-container th {
+    background-color: #ffcccc;
+}
+
+.bus-types-container tr:hover {
+    background-color: #ffe6e6;
+}
+
+.bus-types-container button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bus-types-container button:hover {
+    background-color: #ff6666;
+}

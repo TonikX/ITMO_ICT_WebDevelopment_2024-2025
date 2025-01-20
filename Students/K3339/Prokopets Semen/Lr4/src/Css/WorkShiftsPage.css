@@ -1,0 +1,39 @@
+
+
+.work-shifts-container h2,
+.work-shifts-container h3 {
+    color: #cc0000;
+}
+
+.work-shifts-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.work-shifts-container th,
+.work-shifts-container td {
+    border: 1px solid #cc0000;
+    padding: 10px;
+    text-align: left;
+}
+
+.work-shifts-container th {
+    background-color: #ffcccc;
+}
+
+.work-shifts-container tr:hover {
+    background-color: #ffe6e6;
+}
+
+.work-shifts-container button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.work-shifts-container button:hover {
+    background-color: #ff6666;
+}

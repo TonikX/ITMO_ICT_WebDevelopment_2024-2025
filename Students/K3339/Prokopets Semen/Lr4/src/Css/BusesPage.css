@@ -1,0 +1,37 @@
+.buses-container h2,
+.buses-container h3 {
+    color: #cc0000;
+}
+
+.buses-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.buses-container th,
+.buses-container td {
+    border: 1px solid #cc0000;
+    padding: 10px;
+    text-align: left;
+}
+
+.buses-container th {
+    background-color: #ffcccc;
+}
+
+.buses-container tr:hover {
+    background-color: #ffe6e6;
+}
+
+.buses-container button {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buses-container button:hover {
+    background-color: #ff6666;
+}
