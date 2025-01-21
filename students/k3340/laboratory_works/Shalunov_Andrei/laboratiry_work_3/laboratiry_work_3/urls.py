@@ -35,7 +35,7 @@ urlpatterns = [
     path('', include('AutorepairShop.urls')),
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
-    path('auth/token/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.authtoken')),
     path('doc/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('doc/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

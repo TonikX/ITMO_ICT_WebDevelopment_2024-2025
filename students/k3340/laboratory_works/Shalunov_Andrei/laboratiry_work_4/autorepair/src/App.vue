@@ -1,16 +1,36 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title>Auto Repair Shop</v-toolbar-title>
+      <Navbar />
     </v-app-bar>
+
     <v-main>
       <router-view />
     </v-main>
+
+    <v-footer app>
+      <v-container>
+        <p>AutoRepair Shop</p>
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
+
+import Navbar from './components/tools/Navbar.vue';
+
 export default {
-  name: "App",
+  components: {
+    Navbar: Navbar,
+  },
 };
 </script>
+
+<style>
+#app {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+}
+</style>

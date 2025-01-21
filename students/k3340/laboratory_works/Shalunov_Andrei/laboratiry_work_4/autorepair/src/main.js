@@ -1,35 +1,29 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import axios from "axios";
-import { createVuetify } from "vuetify";
-import "vuetify/styles";
-import "@mdi/font/css/materialdesignicons.css";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router/index';
+import { createVuetify } from 'vuetify';
+import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
+import { authState } from './store/auth';
+import axios from 'axios';
 
+
+
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 
 const vuetify = createVuetify({
-  theme: {
-    defaultTheme: "light",
-    themes: {
-      light: {
-        colors: {
-          primary: "#1976D2",
-          secondary: "#424242",
-          accent: "#82B1FF",
-          error: "#FF5252",
-          info: "#2196F3",
-          success: "#4CAF50",
-          warning: "#FFC107",
-        },
-      },
-    },
-  },
+  components,
+  directives,
 });
 
+axios.defaults.baseURL = 'http://127.0.0.1:8000';
 const app = createApp(App);
 
+app.config.globalProperties.$axios = axios;
+app.config.globalProperties.$token = localStorage.getItem('token') || null;
+app.config.globalProperties.$authState = authState;
+
 app.use(router);
-app.use(store);
 app.use(vuetify);
-app.mount("#app");
+app.mount('#app');

@@ -738,18 +738,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#loginviewvue" class="md-nav__link">
+  <a href="#loginvue" class="md-nav__link">
     <span class="md-ellipsis">
-      LoginView.vue
+      Login.vue
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#registerviewvue" class="md-nav__link">
+  <a href="#registervue" class="md-nav__link">
     <span class="md-ellipsis">
-      RegisterView.vue
+      Register.vue
     </span>
   </a>
   
@@ -900,18 +900,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#loginviewvue" class="md-nav__link">
+  <a href="#loginvue" class="md-nav__link">
     <span class="md-ellipsis">
-      LoginView.vue
+      Login.vue
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#registerviewvue" class="md-nav__link">
+  <a href="#registervue" class="md-nav__link">
     <span class="md-ellipsis">
-      RegisterView.vue
+      Register.vue
     </span>
   </a>
   
@@ -994,7 +994,7 @@
 <h2 id="_2"><strong>Ход работы</strong></h2>
 <h2 id="_3">** Реализация компонентов**</h2>
 <h3 id="_4">** Основные компоненты**</h3>
-<h4 id="loginviewvue"><strong>LoginView.vue</strong></h4>
+<h4 id="loginvue"><strong>Login.vue</strong></h4>
 <ul>
 <li><strong>Назначение</strong>: Позволяет пользователю авторизоваться в системе.</li>
 <li><strong>Логика обработки</strong>:</li>
@@ -1002,7 +1002,7 @@
 <li>Сохраняет токен авторизации в <code>localStorage</code> и Vuex.</li>
 <li>Перенаправляет пользователя на главную страницу.</li>
 </ul>
-<h4 id="registerviewvue"><strong>RegisterView.vue</strong></h4>
+<h4 id="registervue"><strong>Register.vue</strong></h4>
 <ul>
 <li><strong>Назначение</strong>: Позволяет зарегистрировать нового пользователя.</li>
 <li><strong>Логика обработки</strong>:</li>
@@ -1017,9 +1017,8 @@
 <li>Клиенты.</li>
 <li>Сотрудники.</li>
 <li>Автомобили.</li>
-<li>Контракты.</li>
 <li>
-<p>Услуги.</p>
+<p>Контракты.</p>
 </li>
 <li>
 <p><strong>Особенности</strong>:</p>
@@ -1030,81 +1029,88 @@
 <h3 id="_6">Маршрутизация</h3>
 <p>Реализован файл <code>router/index.js</code> для настройки маршрутов в приложении:</p>
 <pre><code class="language-javascript">import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import { isAuthenticated } from '@/composables/useAuth.js';
+import Home from '@/views/Home.vue';
+import Register from '@/views/Register.vue';
+import Login from '@/views/Login.vue';
+import Profile from '@/views/Profile.vue';
+import Contracts from '@/views/Contracts.vue';
+import CreateContract from '@/views/CreateContract.vue';
+import EditContract from '@/views/EditContract.vue';
+import ContractDetails from '@/views/ContractDetails.vue';
+import Cars from '@/views/Cars.vue';
+import CarDetails from '@/views/CarDetails.vue';
+import CreateCar from '@/views/CreateCar.vue';
+import EditCar from '@/views/EditCar.vue';
+import Clients from '@/views/Clients.vue';
+import CreateClient from '@/views/CreateClient.vue';
+import EditClient from '@/views/EditClient.vue';
+import ClientDetails from '@/views/ClientDetails.vue';
+import Employees from '@/views/Employees.vue';
+import EmployeeDetails from '@/views/EmployeeDetails.vue';
+import EditEmployee from '@/views/EditEmployee.vue';
+import CreateEmployee from '@/views/CreateEmployee.vue';
+
+const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/register', name: 'Register', component: Register },
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/profile', name: 'Profile', component: Profile },
+  { path: '/contracts', name: 'Contracts', component: Contracts },
+  { path: '/contracts/create', name: 'CreateContract', component: CreateContract },
+  { path: '/contracts/:id/edit', name: 'EditContract', component: EditContract, props: true },
+  { path: '/contracts/:id', name: 'ContractDetails', component: ContractDetails, props: true },
+  { path: '/cars', name: 'Cars', component: Cars },
+  { path: '/cars/:id', name: 'CarDetails', component: CarDetails, props: true },
+  { path: '/cars/create', name: 'CreateCar', component: CreateCar },
+  { path: '/cars/edit/:id', name: 'EditCar', component: EditCar },
+  { path: '/clients', name: 'Clients', component: Clients },
+  { path: '/clients/create', name: 'CreateClient', component: CreateClient },
+  { path: '/clients/edit/:id', name: 'EditClient', component: EditClient, props: true },
+  { path: '/clients/:id', name: 'ClientDetails', component: ClientDetails, props: true },
+  { path: '/employees', name: 'Employees', component: Employees },
+  { path: '/employees/:id', name: 'EmployeeDetails', component: EmployeeDetails, props: true },
+  { path: '/employees/create', name: 'CreateEmployee', component: CreateEmployee },
+  { path: '/employees/edit/:id', name: 'EditEmployee', component: EditEmployee, props: true },
+];
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        // Главная страница
-        { path: '/', name: 'Home', component: HomeView },
-
-        // Страница входа
-        {
-            path: '/login',
-            name: 'Login',
-            component: () =&gt; import('../views/LoginView.vue'),
-            beforeEnter: (to, from, next) =&gt; {
-                isAuthenticated.value ? next('/') : next();
-            },
-        },
-
-        // Страница регистрации
-        {
-            path: '/register',
-            name: 'Register',
-            component: () =&gt; import('../views/RegisterView.vue'),
-            beforeEnter: (to, from, next) =&gt; {
-                isAuthenticated.value ? next('/') : next();
-            },
-        },
-    ],
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
 </code></pre>
 <h3 id="_7">Настройка авторизации</h3>
 <p>В папке <code>composables</code> созданы вспомогательные файлы для обработки авторизации.</p>
-<p>Файл <code>useAuth.js</code>:
+<p>Файл <code>token.js</code>:
 Хранение токена авторизации.
 Проверка, авторизован ли пользователь.</p>
-<pre><code class="language-javascript">import { ref, computed } from 'vue';
+<pre><code class="language-javascript">import {ref, computed} from 'vue';
 
-export const authToken = ref(localStorage.getItem('authToken'));
-export const isAuthenticated = computed(() =&gt; !!authToken.value);
+export const TokenRef = ref(localStorage.getItem('AuthToken'));
 
-export const setAuthToken = (token) =&gt; {
-    authToken.value = token;
-    localStorage.setItem('authToken', token);
+export const IsAuthenticated = computed(() =&gt; !!TokenRef.value);
+
+export const SetAuthToken = (token) =&gt; {
+    TokenRef.value = token;
+    localStorage.setItem('AuthToken', token);
 };
 
-export const clearAuthToken = () =&gt; {
-    authToken.value = null;
-    localStorage.removeItem('authToken');
+export const ClearAuthToken = () =&gt; {
+    TokenRef.value = null;
+    localStorage.removeItem('AuthToken');
 };
-
 </code></pre>
-<p>Файл <code>axios.js</code>:
+<p>Файл <code>AxiosInstance.js</code>:
 Настроены перехватчики для автоматического добавления токена в запросы:</p>
-<pre><code class="language-javascript">import axios from 'axios';
+<pre><code class="language-javascript">import axios from &quot;axios&quot;;
 
-const axiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api/',
+const instance = axios.create({
+    baseURL: 'http://127.0.0.1:8000/',
     timeout: 5000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
 
-axiosInstance.interceptors.request.use((config) =&gt; {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-        config.headers.Authorization = `Token ${token}`;
-    }
-    return config;
-});
-
-export default axiosInstance;
+export default instance
 </code></pre>
 <h3 id="_8">Интеграция с серверной частью</h3>
 <p>Настройка CORS в Django (<code>settings.py</code>):
