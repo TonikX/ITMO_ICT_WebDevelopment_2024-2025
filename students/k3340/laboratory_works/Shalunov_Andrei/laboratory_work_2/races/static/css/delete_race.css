@@ -1,0 +1,33 @@
+.delete-race-container {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.delete-race-container h2 {
+    font-size: 2em;
+    color: #c00;
+}
+
+.delete-race-container p {
+    color: #444;
+}
+
+.button-danger {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button-danger:hover {
+    background-color: #c82333;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car List</title>
+</head>
+<body>
+  <span><h1>Cars</h1><a href="{% url 'car_create' %}">Add new car</a></span>
+  <ul>
+    {% for car in cars %}
+    <li>
+      <strong>Name:</strong> {{ car.brand }} {{ car.model }}:
+      <a href="/cars/{{car.id}}/update/">Edit</a> |
+      <a href="/cars/{{car.id}}/delete/">Delete</a> |
+      <a href="/cars/{{car.id}}/">Detail</a>
+    </li>
+    {% empty %}
+    <li>No cars yet.</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

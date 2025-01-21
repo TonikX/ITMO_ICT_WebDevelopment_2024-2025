@@ -1,0 +1,63 @@
+/* race_list.css */
+
+/* Основные стили для разделов */
+.race-section {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.race-section h2 {
+    font-size: 2em;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Карточка гонки */
+.race-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+.race-card:hover {
+    transform: scale(1.02);
+    border-color: #4CAF50;
+}
+
+.race-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin: 0;
+}
+
+.race-card p {
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Ссылки на гонки */
+.race-card h3 a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.race-card h3 a:hover {
+    text-decoration: underline;
+}
+
+/* Для текста «Нет предстоящих гонок» и т.п. */
+.no-races-message {
+    color: #777;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}

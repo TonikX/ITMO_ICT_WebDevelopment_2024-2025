@@ -1,0 +1,1269 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../models/">
+      
+      
+        <link rel="next" href="../forms/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.37">
+    
+    
+      
+        <title>Представления - Shalunov Andrei WebDevelopment</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8c3ca2c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#no2" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Shalunov Andrei WebDevelopment" class="md-header__button md-logo" aria-label="Shalunov Andrei WebDevelopment" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Shalunov Andrei WebDevelopment
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Представления
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Shalunov Andrei WebDevelopment" class="md-nav__button md-logo" aria-label="Shalunov Andrei WebDevelopment" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Shalunov Andrei WebDevelopment
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная №1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная №1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/zad1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/zad2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/zad3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/zad4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr1/zad5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Задание 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная №2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная №2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Описание
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Модели
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Представления
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Представления
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание представлений
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание представлений">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-userregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. UserRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-logoutuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. LogoutUser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-racelistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RaceListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-racedetailview" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. RaceDetailView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-raceregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. RaceRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-raceunregisterview" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. RaceUnregisterView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-racerprofilecreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. RacerProfileCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-racerprofileview" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. RacerProfileView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-commentcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CommentCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-editraceview" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. EditRaceView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-deleteraceview" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. DeleteRaceView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deletecommentview" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. DeleteCommentView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Формы
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../urls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URLs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная №3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная №3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr3/description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Описание
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr3/api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr3/practical/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Практическая работа
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная №4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная №4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Lr4/description/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Описание
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание представлений
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание представлений">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-userregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. UserRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-logoutuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. LogoutUser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-racelistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. RaceListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-racedetailview" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. RaceDetailView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-raceregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. RaceRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-raceunregisterview" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. RaceUnregisterView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-racerprofilecreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. RacerProfileCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-racerprofileview" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. RacerProfileView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-commentcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CommentCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-editraceview" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. EditRaceView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-deleteraceview" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. DeleteRaceView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-deletecommentview" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. DeleteCommentView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="no2">Лабораторная работа №2 – Табло победителей автогонок</h1>
+<h2 id="_1">Описание представлений</h2>
+<p>В данном проекте реализованы представления, обеспечивающие взаимодействие с пользователями, регистрацию на гонки, добавление комментариев и управление профилем. Ниже приведены основные классовые представления, используемые в приложении.</p>
+<hr />
+<h3 id="1-userregistrationview">1. <code>UserRegistrationView</code></h3>
+<p>Представление для регистрации нового пользователя.</p>
+<pre><code class="language-python">from django.contrib.auth import login
+from django.views.generic import CreateView
+from .forms import UserRegistrationForm
+from django.urls import reverse_lazy
+
+class UserRegistrationView(CreateView):
+    form_class = UserRegistrationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('race_list')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.save()
+        login(self.request, user)
+        return response
+</code></pre>
+<p>Описание: Используется для создания нового пользователя. При успешной регистрации пользователь сразу авторизуется в системе.</p>
+<p>Шаблон: registration/register.html</p>
+<h3 id="2-logoutuser">2. LogoutUser</h3>
+<p>Представление для выхода пользователя из системы.</p>
+<pre><code class="language-python">from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.views import View
+
+class LogoutUser(View):
+    def get(self, request):
+        logout(request)
+        return redirect('race_list')
+</code></pre>
+<p>Описание: Завершает сеанс пользователя и перенаправляет его на список гонок.</p>
+<p>Маршрут: race_list</p>
+<h3 id="3-racelistview">3. RaceListView</h3>
+<p>Представление для отображения списка предстоящих и прошедших гонок.</p>
+<pre><code class="language-python">from django.utils import timezone
+from django.views.generic import ListView
+from .models import Race
+
+class RaceListView(ListView):
+    model = Race
+    template_name = 'race_list.html'
+    context_object_name = 'races'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['upcoming_races'] = Race.objects.filter(date__gte=now).order_by('-date')
+        context['past_races'] = Race.objects.filter(date__lt=now).exclude(result=&quot;&quot;).order_by('-date')
+        return context
+</code></pre>
+<p>Описание: Отображает две категории гонок — предстоящие и прошедшие.</p>
+<p>Шаблон: race_list.html</p>
+<h3 id="4-racedetailview">4. RaceDetailView</h3>
+<p>Представление для отображения деталей конкретной гонки.</p>
+<pre><code class="language-python">from django.views.generic import DetailView
+from .models import Race, RaceResult, Registration
+from .forms import UnregisterForm
+
+class RaceDetailView(DetailView):
+    model = Race
+    template_name = 'race_detail.html'
+    context_object_name = 'race'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['is_upcoming'] = self.object.date &gt;= now
+        if context['is_upcoming']:
+            context['registered_racers'] = self.object.registrations.all()
+        else:
+            context['race_results'] = RaceResult.objects.filter(race=self.object).order_by('place')
+        context['unregister_form'] = UnregisterForm()
+        return context
+</code></pre>
+<p>Описание: Показывает информацию о гонке, включая зарегистрированных участников и результаты.</p>
+<p>Шаблон: race_detail.html</p>
+<h3 id="5-raceregistrationview">5. RaceRegistrationView</h3>
+<p>Представление для регистрации гонщика на гонку.</p>
+<pre><code class="language-python">from django.views.generic import CreateView
+from .forms import RegistrationForm
+from django.shortcuts import get_object_or_404, reverse
+from .models import Race, Registration
+
+class RaceRegistrationView(CreateView):
+    model = Registration
+    form_class = RegistrationForm
+    template_name = 'register_race.html'
+
+    def form_valid(self, form):
+        race = get_object_or_404(Race, id=self.kwargs['race_id'])
+        form.instance.race = race
+        form.instance.racer = self.request.user.racer
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('race_detail', args=[self.kwargs['race_id']])
+</code></pre>
+<p>Описание: Позволяет гонщику зарегистрироваться на конкретную гонку.</p>
+<p>Шаблон: register_race.html</p>
+<h3 id="6-raceunregisterview">6. RaceUnregisterView</h3>
+<p>Представление для отмены регистрации гонщика на гонку.</p>
+<pre><code class="language-python">from django.views import View
+from django.shortcuts import get_object_or_404, redirect
+from .models import Race, Registration
+
+class RaceUnregisterView(View):
+    def post(self, request, *args, **kwargs):
+        race = get_object_or_404(Race, id=self.kwargs['race_id'])
+        registration = Registration.objects.filter(race=race, racer=request.user.racer).first()
+        if registration:
+            registration.delete()
+        return redirect('race_detail', pk=race.id)
+</code></pre>
+<p>Описание: Позволяет пользователю отменить свою регистрацию на гонку.</p>
+<p>Маршрут: race_detail</p>
+<h3 id="7-racerprofilecreateview">7. RacerProfileCreateView</h3>
+<p>Представление для создания профиля гонщика.</p>
+<pre><code class="language-python">from django.views.generic import CreateView
+from .forms import RacerProfileForm
+
+class RacerProfileCreateView(CreateView):
+    model = Racer
+    template_name = 'create_racer_profile.html'
+    form_class = RacerProfileForm
+    success_url = reverse_lazy('race_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+</code></pre>
+<p>Описание: Позволяет пользователю создать профиль гонщика.</p>
+<p>Шаблон: create_racer_profile.html</p>
+<h3 id="8-racerprofileview">8. RacerProfileView</h3>
+<p>Представление для отображения профиля гонщика.</p>
+<pre><code class="language-python">from django.views.generic import DetailView
+from .models import Racer
+
+class RacerProfileView(DetailView):
+    model = Racer
+    template_name = 'racer_profile.html'
+    context_object_name = 'racer'
+
+    def get_object(self):
+        return get_object_or_404(Racer, user=self.request.user)
+</code></pre>
+<p>Описание: Показывает информацию о профиле гонщика, включая список его автомобилей.</p>
+<p>Шаблон: racer_profile.html</p>
+<h3 id="9-commentcreateview">9. CommentCreateView</h3>
+<p>Представление для добавления комментария к гонке.</p>
+<pre><code class="language-python">from django.views.generic import CreateView
+from .forms import CommentForm
+from django.shortcuts import get_object_or_404, reverse
+from .models import Race, Comment
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.race = get_object_or_404(Race, id=self.kwargs['race_id'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('race_detail', args=[self.kwargs['race_id']])
+</code></pre>
+<p>Описание: Позволяет пользователю оставить комментарий к гонке.</p>
+<p>Шаблон: add_comment.html</p>
+<h3 id="10-editraceview">10. EditRaceView</h3>
+<p>Представление для редактирования информации о гонке (только для администраторов).</p>
+<pre><code class="language-python">from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import UpdateView
+from .models import Race
+
+class EditRaceView(UserPassesTestMixin, UpdateView):
+    model = Race
+    fields = ['name', 'date', 'result']
+    template_name = 'edit_race.html'
+    success_url = reverse_lazy('race_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
+</code></pre>
+<p>Описание: Позволяет администратору редактировать информацию о гонке.</p>
+<p>Шаблон: edit_race.html</p>
+<h3 id="11-deleteraceview">11. DeleteRaceView</h3>
+<p>Представление для удаления гонки (только для администраторов).</p>
+<pre><code class="language-python">class DeleteRaceView(UserPassesTestMixin, DeleteView):
+    model = Race
+    template_name = 'delete_race.html'
+    success_url = reverse_lazy('race_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
+</code></pre>
+<p>Описание: Позволяет администратору удалить гонку.</p>
+<p>Шаблон: delete_race.html</p>
+<h3 id="12-deletecommentview">12. DeleteCommentView</h3>
+<p>Представление для удаления комментария (только для администраторов).</p>
+<pre><code class="language-python">class DeleteCommentView(UserPassesTestMixin, View):
+    def post(self, request, *args, **kwargs):
+        comment = Comment.objects.get(pk=kwargs['pk'])
+        race_id = comment.race.id
+        if request.user.is_staff:
+            comment.delete()
+        return redirect('race_detail', pk=race_id)
+
+    def test_func(self):
+        return self.request.user.is_staff
+</code></pre>
+<p>Описание: Позволяет администратору удалить комментарий к гонке.</p>
+<p>Маршрут: race_detail</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d6f25eb3.min.js"></script>
+      
+    
+  </body>
+</html>
