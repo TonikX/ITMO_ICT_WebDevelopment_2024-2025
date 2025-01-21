@@ -1,0 +1,158 @@
+@import url('./themes.css');
+
+* {
+  box-sizing: border-box;
+}
+
+.index-background{
+    position: fixed;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/index/brooklyn.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.form-container {
+    position: fixed;
+    max-width: 320px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    transform: translate(-50%, -50%) scale(1.2);
+    background: var(--primary-color);
+    padding: 25px;
+}
+
+.form-container .button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.form-container .button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color); 
+}
+
+.form-container h2 {
+    font-size: 22px;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.form-container a {
+    color: var(--secondary-color);
+    font-size: 12px;
+}
+
+.form-container a:hover {
+    text-decoration: underline;
+}
+
+/* option field with checkbox */
+.option-field {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkbox {
+    display: flex;
+    column-gap: 8px;
+    white-space: nowrap;
+}
+
+.checkbox input {
+    accent-color: var(--secondary-color);
+}
+
+.checkbox label {
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--secondary-color);
+}
+
+.signup-form {
+    display: none;
+}
+
+.form-container .signup-form {
+    display: block;
+}
+
+.form-container .login-form {
+    display: block;
+}
+
+.form-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--secondary-color);
+    font-size: 22px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+.login-signup {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.input-box {
+    position: relative;
+    margin-top: 30px;
+    width: 100%;
+    height: 40px;
+}
+
+.input-box input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0 30px;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    border-bottom: 1.5px solid var(--hover-color);
+}
+
+.input-box input:focus {
+    border-color: var(--secondary-color);
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--accent-color);
+}
+
+.input-box i.email,
+.input-box i.password {
+    left: 0;
+}
+
+.input-box input:focus ~ i.email,
+.input-box input:focus ~ i.password {
+    color: var(--secondary-color);
+}
+
+.input-box i.pw_hide {
+    right: 0;
+    font-size: 18px;
+    cursor: pointer;
+}

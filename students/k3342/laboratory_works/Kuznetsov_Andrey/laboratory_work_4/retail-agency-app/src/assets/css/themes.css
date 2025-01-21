@@ -1,0 +1,21 @@
+/* default theme in dark/white colors */
+:root {
+    --primary-color: white;
+    --secondary-color: black;
+    --background-color: #dcdada; 
+    --text-color: #333333;
+    --accent-color: #555555; 
+    --hover-color: #dddddd;
+    --messages-color: #3585d1;
+  }
+
+  
+  [data-theme="vanilla-dark"] {
+    --primary-color: #f0e6d6;
+    --secondary-color: #202124; 
+    --background-color: #2c2f33; 
+    --text-color: black; 
+    --accent-color: black;
+    --hover-color: #3c4043;
+    --messages-color: hsl(194, 25%, 47%); 
+}

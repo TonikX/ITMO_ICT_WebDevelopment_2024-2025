@@ -1,0 +1,393 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "password": "$2a$10$7h5gNlzQK4aeKdd8BAx2Ne2A4o1FtmdfTJc.p23rM.UvNI3W.Nd0K",
+      "name": "Andrew",
+      "status": "ITMO student",
+      "email": "andrew@example.com",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "2",
+      "password": "$2a$10$7h5gNlzQK4aeKdd8BAx2Ne2A4o1FtmdfTJc.p23rM.UvNI3W.Nd0K",
+      "name": "Maria",
+      "status": "Freelancer",
+      "email": "maria@example.com",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    },
+    {
+      "id": "3",
+      "password": "$2a$10$7h5gNlzQK4aeKdd8BAx2Ne2A4o1FtmdfTJc.p23rM.UvNI3W.Nd0K",
+      "name": "John",
+      "status": "Photographer",
+      "email": "john@example.com",
+      "profilePicture": "../mock_data/users/profile-picture3.jpg"
+    },
+    {
+      "id": "a895",
+      "email": "example@example.com",
+      "password": "$2a$10$7h5gNlzQK4aeKdd8BAx2Ne2A4o1FtmdfTJc.p23rM.UvNI3W.Nd0K",
+      "name": "andrey",
+      "status": "student"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student 2",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "1",
+      "email": "andrew@example.com",
+      "status": "ITMO student",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    }
+  ],
+  "rentalHistory": [
+    {
+      "id": "1",
+      "userId": 1,
+      "startDate": "2022-11-20",
+      "endDate": "current",
+      "shortDescription": "A spacious 2-bedroom flat located in the heart of the city center, offering easy access to local shops, restaurants, and public transport. The flat features large windows, a modern kitchen, and a cozy living room perfect for relaxing after a long day. It's an ideal choice for anyone seeking comfort and convenience in a bustling urban environment.",
+      "propertyLink": "/property/1",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg",
+      "data": {
+        "id": "1",
+        "password": "$2a$10$7h5gNlzQK4aeKdd8BAx2Ne2A4o1FtmdfTJc.p23rM.UvNI3W.Nd0K",
+        "name": "Andrew",
+        "status": "ITMO student",
+        "email": "andrew@example.com",
+        "profilePicture": "../mock_data/users/profile-picture2.jpg"
+      }
+    },
+    {
+      "id": "2",
+      "userId": 2,
+      "startDate": "2023-01-15",
+      "endDate": "2023-12-01",
+      "shortDescription": "This cozy studio apartment is nestled near a beautiful park, providing a peaceful retreat while still being close to city amenities. With an open-plan living space, modern appliances, and a large window with a view of lush greenery, it’s the perfect spot for those who enjoy a quiet, nature-filled environment without sacrificing proximity to the city.",
+      "propertyLink": "/property/2",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    },
+    {
+      "id": "3",
+      "userId": 3,
+      "startDate": "2021-06-10",
+      "endDate": "2023-03-25",
+      "shortDescription": "A modern loft with high ceilings, offering an open-concept design and sleek finishes. The space is filled with natural light and includes a spacious kitchen with state-of-the-art appliances, a comfortable living area, and a cozy bedroom. Located in a trendy neighborhood, this loft is perfect for those who appreciate contemporary living and a vibrant urban lifestyle.",
+      "propertyLink": "/property/3",
+      "profilePicture": "../mock_data/users/profile-picture3.jpg"
+    },
+    {
+      "id": "4",
+      "userId": 1,
+      "startDate": "2020-09-01",
+      "endDate": "current",
+      "shortDescription": "A quiet suburban house with a beautiful garden, perfect for families or anyone seeking peace and tranquility. The house features multiple bedrooms, a spacious living room, and a modern kitchen, all with a homely and warm atmosphere. The outdoor garden is perfect for relaxation, gardening, or enjoying family time during the sunny days.",
+      "propertyLink": "/property/4",
+      "profilePicture": "../mock_data/users/profile-picture1.jpg"
+    },
+    {
+      "id": "5",
+      "userId": 2,
+      "startDate": "2022-02-14",
+      "endDate": "2023-06-30",
+      "shortDescription": "This stunning apartment boasts a spectacular sea view, ideal for those who want to wake up to breathtaking sunrises and enjoy the calming sound of the waves. The apartment features a spacious living area with floor-to-ceiling windows, a fully equipped kitchen, and a cozy bedroom with ocean views. A perfect home for those who value both luxury and tranquility by the sea.",
+      "propertyLink": "/property/1",
+      "profilePicture": "../mock_data/users/profile-picture2.jpg"
+    },
+    {
+      "id": "6",
+      "userId": 3,
+      "startDate": "2023-04-01",
+      "endDate": "current",
+      "shortDescription": "A bright and airy 3-bedroom flat with a spacious living room, perfect for family living. The flat features large windows that allow natural light to flood the space, giving it a warm and welcoming atmosphere. The modern kitchen is fully equipped, and the bedrooms offer comfort and privacy. Situated in a vibrant area with easy access to shops and parks, it’s the perfect home for active individuals and families alike.",
+      "propertyLink": "/property/3",
+      "profilePicture": "../mock_data/users/profile-picture3.jpg"
+    }
+  ],
+  "properties": [
+    {
+      "id": "1",
+      "propertyType": "apartment",
+      "transactionType": "buy",
+      "location": "Downtown",
+      "rooms": 2,
+      "area": 85,
+      "floor": 5,
+      "amenities": [
+        "Swimming Pool",
+        "Gym",
+        "Garage"
+      ],
+      "price": 250000,
+      "description": "Эти прекрасно оформленные двухкомнатные апартаменты предлагают идеальное сочетание комфорта и стиля.",
+      "photos": [
+        "../mock_data/properties/property1/room-1.jpg",
+        "../mock_data/properties/property1/room-2.jpg",
+        "../mock_data/properties/property1/room-3.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "propertyType": "apartment",
+      "transactionType": "rent",
+      "location": "Los Angeles",
+      "rooms": 3,
+      "area": 95,
+      "floor": 3,
+      "amenities": [
+        "Swimming Pool",
+        "Gym"
+      ],
+      "price": 3000,
+      "description": "Просторные апартаменты с видом на океан, идеально подходящие для комфортного проживания.",
+      "photos": [
+        "../mock_data/properties/property2/room-1.jpg",
+        "../mock_data/properties/property2/room-2.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "propertyType": "house",
+      "transactionType": "buy",
+      "location": "San Diego",
+      "rooms": 4,
+      "area": 150,
+      "floor": 1,
+      "amenities": [
+        "Garden",
+        "Garage"
+      ],
+      "price": 500000,
+      "description": "Уютный дом с большим садом в тихом районе Сан-Диего, идеально подходит для семьи.",
+      "photos": [
+        "../mock_data/properties/property3/room-1.jpg",
+        "../mock_data/properties/property3/room-2.jpg",
+        "../mock_data/properties/property3/room-3.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "propertyType": "condo",
+      "transactionType": "rent",
+      "location": "Chicago",
+      "rooms": 1,
+      "area": 60,
+      "floor": 10,
+      "amenities": [
+        "Gym",
+        "Swimming Pool"
+      ],
+      "price": 1800,
+      "description": "Современные кондоминиумы с потрясающим видом на город, идеальные для студентов или молодых специалистов.",
+      "photos": [
+        "../mock_data/properties/property4/room-1.jpg",
+        "../mock_data/properties/property4/room-2.jpg",
+        "../mock_data/properties/property4/room-3.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "propertyType": "house",
+      "transactionType": "buy",
+      "location": "San Francisco",
+      "rooms": 4,
+      "area": 180,
+      "floor": 2,
+      "amenities": [
+        "Garden",
+        "Garage",
+        "Fireplace"
+      ],
+      "price": 950000,
+      "description": "Современный двухэтажный дом с просторным садом и великолепным видом на город.",
+      "photos": [
+        "../mock_data/properties/property5/room-1.jpg",
+        "../mock_data/properties/property5/room-2.jpg"
+      ]
+    },
+    {
+      "id": "6",
+      "propertyType": "house",
+      "transactionType": "rent",
+      "location": "New York",
+      "rooms": 1,
+      "area": 45,
+      "floor": 10,
+      "amenities": [
+        "Elevator",
+        "Laundry Room"
+      ],
+      "price": 1800,
+      "description": "Уютная студия с современным интерьером в центре Нью-Йорка, идеально подходит для студента или пары.",
+      "photos": [
+        "../mock_data/properties/property6/room-1.jpg",
+        "../mock_data/properties/property6/room-2.jpg"
+      ]
+    },
+    {
+      "id": "7",
+      "propertyType": "land",
+      "transactionType": "buy",
+      "location": "Miami Beach",
+      "rooms": 6,
+      "area": 320,
+      "floor": 2,
+      "amenities": [
+        "Private Pool",
+        "Terrace",
+        "Home Theater",
+        "Gym"
+      ],
+      "price": 3500000,
+      "description": "Роскошная вилла с бассейном и террасой, идеально подходит для наслаждения жизнью на побережье.",
+      "photos": [
+        "../mock_data/properties/property7/room-1.jpg",
+        "../mock_data/properties/property7/room-2.jpg"
+      ]
+    }
+  ],
+  "dialogs": [
+    {
+      "id": "1",
+      "owner": "Owner 1"
+    },
+    {
+      "id": "2",
+      "owner": "Owner 2"
+    },
+    {
+      "id": "3",
+      "owner": "Owner 3"
+    },
+    {
+      "id": "4",
+      "owner": "Owner 4"
+    }
+  ],
+  "messages": [
+    {
+      "id": "1",
+      "dialogId": 1,
+      "sender": "owner",
+      "text": "Здравствуйте! Как ваши дела?"
+    },
+    {
+      "id": "2",
+      "dialogId": 1,
+      "sender": "user",
+      "text": "Привет! У меня всё хорошо, спасибо. Как насчет квартиры?"
+    },
+    {
+      "id": "3",
+      "dialogId": 1,
+      "sender": "owner",
+      "text": "Квартира все еще доступна. Хотите назначить просмотр?"
+    },
+    {
+      "id": "bb81",
+      "dialogId": 1,
+      "sender": "user",
+      "text": "sdf"
+    },
+    {
+      "id": "58c0",
+      "dialogId": 4,
+      "sender": "user",
+      "text": "hi"
+    },
+    {
+      "id": "cc6d",
+      "dialogId": 4,
+      "sender": "user",
+      "text": "test message"
+    },
+    {
+      "id": "b1e8",
+      "dialogId": 4,
+      "sender": "user",
+      "text": "test message 2"
+    },
+    {
+      "id": "ff2c",
+      "dialogId": 4,
+      "sender": "user",
+      "text": "test message 3"
+    },
+    {
+      "id": "f163",
+      "dialogId": 4,
+      "sender": "user",
+      "text": "test message 4"
+    },
+    {
+      "id": "4c57",
+      "dialogId": 1,
+      "sender": "user",
+      "text": "hi"
+    },
+    {
+      "id": "87ea",
+      "dialogId": "1",
+      "sender": "user",
+      "text": "привет! "
+    },
+    {
+      "id": "edd9",
+      "dialogId": "3",
+      "sender": "user",
+      "text": "hi!"
+    },
+    {
+      "id": "db73",
+      "dialogId": "3",
+      "sender": "user",
+      "text": "hi!"
+    },
+    {
+      "id": "cfca",
+      "dialogId": "3",
+      "sender": "user",
+      "text": "hiiiii"
+    },
+    {
+      "id": "fd55",
+      "dialogId": "1",
+      "sender": "user",
+      "text": "hi bro"
+    }
+  ]
+}
