@@ -1,0 +1,156 @@
+@import url('./themes.css');
+
+.profile-header {
+    position: relative;
+    height: 210px;
+    margin-bottom: 70px;
+}
+
+.profile-header-cover {
+    background: url("../images/profile/brooklyn.jpg") center / cover no-repeat;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-header-cover:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.profile-header-content {
+    color: var(--primary-back);
+    position: absolute;
+    display: flex;
+    align-items: center; 
+    top: 45px; 
+    left: 10%; 
+}
+
+.profile-header-img {
+    display: flex;
+    width: 120px;
+    height: 120px;
+    background: var(--primary-back);
+    padding: 1px;
+    overflow: hidden;
+}
+
+.profile-header-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.profile-header-info {
+    margin-left: 20px; 
+}
+
+.profile-header-info h4,
+.profile-header-info p {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    padding-inline: 10px;
+}
+
+.profile-header-info button {
+    padding-inline: 10px;
+    background-color: transparent;
+    color: var(--primary-color);
+    text-transform: lowercase;
+    border: 0px solid;
+}
+
+.profile-header-info button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* profile history */ 
+.profile-content {
+    padding: 20px;
+    background-color: var(--primary-color);
+}
+
+.timeline {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline li {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.timeline-time {
+    width: 150px;
+    font-size: 0.9em;
+    color: var(--accent-color);
+    text-align: right;
+    margin-right: 15px;
+}
+
+.start-time, .end-time {
+    display: block;
+    font-weight: bold;
+}
+
+.timeline-body {
+    flex: 1;
+    background-color: var(--primary-color);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.userimage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.userimage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.text-muted {
+    margin-left: auto;
+    font-size: 0.85em;
+    color: var(--accent-color);
+}
+
+.timeline-content p {
+    margin: 0;
+    color: var(--accent-color);
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.timeline-content a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.timeline-content a:hover {
+    text-decoration: underline;
+}

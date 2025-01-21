@@ -1,0 +1,188 @@
+@import url('./themes.css');
+
+.search-sidebar {
+    background-color: var(--primary-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.search-sidebar:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-sidebar .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--text-color); 
+    background-color: transparent; 
+    padding: 0;
+    text-align: left;
+    font-size: 1em;
+}
+
+#searchForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Устанавливаем две колонки одинаковой ширины */
+    gap: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0; /* Убираем дополнительное пространство между строками */
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-select,
+.form-control {
+    padding: 8px;
+    border: 1px solid var(--hover-color);
+    border-radius: 5px;
+    margin-bottom: 0; /* Убираем дополнительное пространство снизу */
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.range-container .range {
+    margin-block: 15px;
+}
+
+.form-control:focus, 
+.form-select:focus {
+    border-color: var(--text-color);
+    outline: none; 
+    box-shadow: 0 0 5px rgba(51, 51, 51, 0.2); 
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    margin-block: 20px;
+}
+
+.search-sidebar .checkbox-group div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-sidebar input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#searchForm .btn {
+    grid-column: span 2; /* Кнопка занимает всю ширину формы */
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+}
+
+#searchForm .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+.results-container {
+    margin-top: 30px;
+}
+
+.results-container #searchResults {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.property-item {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.property-item:hover {
+    transform: translateY(-5px);
+}
+
+.property-image {
+    position: relative;
+    width: 100%;
+    padding-top: 60%;
+    background-color: var(--hover-color);
+}
+
+.property-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-bottom: 2px solid var(--hover-color);
+}
+
+.property-details {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.property-details h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.property-details p {
+    font-size: 1em;
+    margin-bottom: 8px;
+    text-align: left;
+    color: var(--accent-color);
+}
+
+.property-details button.view-details {
+    padding: 10px 15px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.property-details button.view-details:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
