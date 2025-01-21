@@ -6,6 +6,9 @@ class InsuranceAgent(models.Model):
     passport_details = models.CharField(max_length=255)
     contact_details = models.TextField()
 
+    def __str__(self):
+        return f"{self.full_name}"
+
 
 class Organization(models.Model):
     code = models.CharField(max_length=50, unique=True)
@@ -15,11 +18,17 @@ class Organization(models.Model):
     bank_details = models.CharField(max_length=255)
     specialization = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f"{self.short_name}"
+
 
 class Employee(models.Model):
     full_name = models.CharField(max_length=255)
     age = models.IntegerField()
     risk_category = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.full_name}"
 
 
 class CollectiveContract(models.Model):
@@ -34,6 +43,8 @@ class CollectiveContract(models.Model):
     end_date = models.DateField()
     total_payout = models.DecimalField(max_digits=10, decimal_places=2)
     employees = models.ManyToManyField(Employee)
+    def __str__(self):
+        return f"{self.organization} {self.start_date}-{self.end_date} сумма={self.total_payout}"
 
 
 class IndividualContract(models.Model):
@@ -50,6 +61,8 @@ class InsuranceCase(models.Model):
     reason = models.TextField()
     decision = models.BooleanField()
     payout_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    emp = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True)
+
 
 
 class EmploymentContract(models.Model):

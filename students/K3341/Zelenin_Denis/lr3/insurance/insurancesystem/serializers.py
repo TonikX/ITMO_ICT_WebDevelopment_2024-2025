@@ -18,13 +18,14 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CollectiveContractSerializer(serializers.ModelSerializer):
-    employees = EmployeeSerializer(many=True)
     class Meta:
         model = CollectiveContract
         fields = '__all__'
 
+
+
+
 class InsuranceCaseSerializer(serializers.ModelSerializer):
-    contract = CollectiveContractSerializer()
     class Meta:
         model = InsuranceCase
         fields = '__all__'

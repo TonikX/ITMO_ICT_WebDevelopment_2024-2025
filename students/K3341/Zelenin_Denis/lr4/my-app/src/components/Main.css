@@ -1,0 +1,38 @@
+.main-container {
+    padding: 20px;
+}
+
+.main-menu {
+    background-color: #007bff; /* Синий цвет */
+    padding: 10px;
+    border-radius: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+}
+
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-menu li {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 15px;
+}
+.main-menu a {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Унаследовать цвет текста от родителя */
+}
+
+.main-menu a:hover {
+    color: #0056b3; /* Можно задать цвет при наведении */
+}
