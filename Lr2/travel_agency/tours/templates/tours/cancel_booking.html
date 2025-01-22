@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Отказ от бронирования</h2>
+      <p class="card-text">Вы точно хотите удалить резервирование тура "<strong>{{ reservation.tour.name }}</strong>"?</p>
+      <form method="post" class="d-flex gap-2">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Подтвердить удаление</button>
+        <a href="{% url 'tours:my_reservations' %}" class="btn btn-secondary">Отмена</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

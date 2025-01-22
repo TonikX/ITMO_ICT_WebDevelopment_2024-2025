@@ -1,0 +1,65 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="hero mb-5 text-center">
+    <h1 class="display-4">TripWise</h1>
+    <p>Мудрый выбор туров для Вас и Ваших близких!</p>
+  </div>
+
+  <h2 class="mb-4 text-center">
+    Доступные туры:
+  </h2>
+
+  {% if tours %}
+    <div class="tour-cards-grid">
+      {% for tour in tours %}
+        <div class="tour-card">
+          <div class="tour-header">
+            <h3>{{ tour.name }}</h3>
+            <p><i class="bi bi-building"></i> {{ tour.agency.name }}</p>
+          </div>
+          <div class="tour-details">
+            <p>
+              <strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}
+            </p>
+            <p>
+              <strong>Страна:</strong> {{ tour.country }}
+            </p>
+            <p>
+              <strong>Рейтинг:</strong> {{ tour.average_rating }}/10
+            </p>
+          </div>
+          <div class="tour-actions text-center mt-3">
+            <a href="{% url 'tours:tour_detail' tour.id %}" class="btn btn-primary">
+              Подробнее
+            </a>
+            {% if user.is_authenticated %}
+                {% if tour.id in reserved_tours %}
+                    <button class="btn btn-secondary" disabled>
+                      Забронировано
+                    </button>
+                {% else %}
+                    <form action="{% url 'tours:reserve_tour' tour.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">
+                          Забронировать
+                        </button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <p class="mt-3">
+                  <a href="{% url 'login' %}?next={% url 'tours:tour_list' %}" class="btn btn-secondary">
+                    Войдите, чтобы забронировать
+                  </a>
+                </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-warning text-center">
+      Нет доступных туров на данный момент.
+    </div>
+  {% endif %}
+{% endblock %}

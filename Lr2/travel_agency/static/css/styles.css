@@ -1,0 +1,277 @@
+/* Цветовая палитра */
+:root {
+    --primary-color: #b88b4a; /* Золотистый */
+    --secondary-color: #3a3a3a; /* Темно-серый */
+    --background-color: #fdfcf9; /* Теплый белый */
+    --text-color: #2c2c2c; /* Насыщенный черный */
+    --accent-color: #e6c17c; /* Мягкий золотистый для акцентов */
+}
+
+/* Общие стили */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Lora', serif; /* Элегантный шрифт */
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Навигационная панель */
+.navbar {
+    background-color: var(--secondary-color) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.navbar .nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+/* Кнопки */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #a47a3c;
+    border-color: #8e6933;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #a47a3c;
+}
+
+/* Таблицы */
+table {
+    background-color: #ffffff;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+table th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #f8f4ec;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Карточки туров */
+.tour-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.tour-card h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.tour-card p {
+    font-size: 16px;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.tour-card-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.tour-card-actions .btn {
+    flex-grow: 1;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+}
+
+.tour-card-actions .btn:hover {
+    background-color: #a47a3c;
+}
+
+/* Сетка карточек туров */
+.tour-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Стилизация текста описания */
+.tour-details {
+    font-size: 18px;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.tour-details p {
+    margin: 10px 0;
+}
+
+/* Карточки стран */
+.country-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.country-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.country-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.country-card p {
+    font-size: 16px;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Отзывы */
+.review-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.review-card .rating {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.review-card .review-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-card .review-details .name-date {
+    font-size: 14px;
+    color: var(--secondary-color);
+}
+
+.review-card .review-details .review-text {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.review-card .btn {
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.review-card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .tour-card h2 {
+        font-size: 22px;
+    }
+
+    .tour-details {
+        font-size: 16px;
+    }
+
+    .tour-card-actions .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .review-card .rating {
+        font-size: 18px;
+    }
+
+    .review-card .review-details .name-date,
+    .review-card .review-details .review-text {
+        font-size: 14px;
+    }
+}
