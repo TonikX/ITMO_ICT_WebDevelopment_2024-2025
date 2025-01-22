@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All CarOwners</title>
+</head>
+<body>
+    All CarOwners<br/>
+    <hr/>
+    {% for сar_owner in owners %}
+    First_name: {{ сar_owner.first_name }}<br/>
+    Second_name: {{ сar_owner.last_name }}<br/>
+    <hr/>
+    {% empty %}
+	No owners found.
+    {% endfor %}
+
+</body>
+</html>
