@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import api from './api';
 import './InsuranceCases.css';
 import Main from './Main';
+import Footer from "./Footer";
 
 function InsuranceCases() {
     const [cases, setCases] = useState([]);
@@ -176,6 +177,7 @@ function InsuranceCases() {
                 </button>
                 {editingCase && <button onClick={resetForm}>Отмена</button>}
             </div>
+            <Footer />
         </div>
     );
 }

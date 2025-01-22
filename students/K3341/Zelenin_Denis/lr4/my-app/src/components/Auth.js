@@ -21,10 +21,10 @@ function Auth() {
         try {
             const response = await api.post(endpoint, data);
             if (isLogin) {
-                const token = response.data.auth_token; // Получаем токен
-                localStorage.setItem('authToken', token); // Сохраняем токен в localStorage
-                api.defaults.headers.common['Authorization'] = `Token ${token}`; // Устанавливаем заголовок авторизации
-                navigate('/main');
+                const token = response.data.auth_token;
+                localStorage.setItem('authToken', token);
+                api.defaults.headers.common['Authorization'] = `Token ${token}`;
+                navigate('/collective-contracts');
             } else {
                 alert('Registration successful!');
             }
@@ -79,6 +79,7 @@ function Auth() {
                     {isLogin ? 'Switch to Register' : 'Switch to Login'}
                 </button>
             </form>
+
         </div>
     );
 }

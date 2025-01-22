@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from './api'; // Предполагается, что здесь настроен axios экземпляр
 import './Employees.css';
-import Main from "./Main"; // Стили для компонента
+import Main from "./Main";
+import Footer from "./Footer"; // Стили для компонента
 
 function Employees() {
     const [employees, setEmployees] = useState([]);
@@ -111,6 +112,7 @@ function Employees() {
                 </button>
                 {editingEmployee && <button onClick={resetForm}>Отмена</button>}
             </div>
+            <Footer />
         </div>
     );
 }

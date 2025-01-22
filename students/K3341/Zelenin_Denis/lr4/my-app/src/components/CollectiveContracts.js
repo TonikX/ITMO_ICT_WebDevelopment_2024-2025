@@ -1,8 +1,9 @@
 // src/pages/CollectiveContracts.jsx
 import React, { useState, useEffect } from 'react';
-import api from './api'; // Настроенный экземпляр axios
+import api from './api';
 import './CollectiveContracts.css';
-import Main from "./Main"; // Импортируем стили
+import Main from "./Main";
+import Footer from "./Footer";
 
 function CollectiveContracts() {
     const [contracts, setContracts] = useState([]);
@@ -172,6 +173,7 @@ function CollectiveContracts() {
                 </button>
                 {editingContract && <button onClick={resetForm}>Отмена</button>}
             </div>
+            <Footer />
         </div>
     );
 }

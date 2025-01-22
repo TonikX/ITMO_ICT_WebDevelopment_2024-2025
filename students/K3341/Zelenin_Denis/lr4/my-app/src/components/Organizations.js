@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import api from './api'; // Настроенный экземпляр axios
+import api from './api';
 import './Organizations.css';
 import Main from "./Main";
+import Footer from "./Footer";
 
 function Organizations() {
     const [organizations, setOrganizations] = useState([]);
@@ -217,6 +218,7 @@ function Organizations() {
                     )}
                 </div>
             ))}
+            <Footer />
         </div>
     );
 }

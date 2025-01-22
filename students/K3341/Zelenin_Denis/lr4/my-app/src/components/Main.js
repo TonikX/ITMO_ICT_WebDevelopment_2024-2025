@@ -19,7 +19,6 @@ function MainMenu() {
     return (
         <nav className="main-menu">
             <ul>
-                <li><Link to="/">Главная</Link></li>
                 <li><Link to="/agents">Агенты</Link></li>
                 <li><Link to="/collective-contracts">Контракты</Link></li>
                 <li><Link to="/organizations">Организации</Link></li>
