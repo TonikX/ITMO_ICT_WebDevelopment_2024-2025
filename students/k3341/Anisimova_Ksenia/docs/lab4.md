@@ -125,16 +125,16 @@ Located at `src/pages/distributions`
 
 
 ## Running the Project
-0. Run the django project from the previos lab work at `http://localhost:8000`.
-1. Install dependencies:
+1. Run the django project from the previos lab work at `http://localhost:8000`.
+2. Install dependencies:
 ```bash
 npm install
 ```
-2. Start the development server:
+3. Start the development server:
 ```bash
 npm start
 ```
-3. Access the app at `http://localhost:3000`.
+4. Access the app at `http://localhost:3000`.
 
 ## Interface
 ![](images/l4.png)

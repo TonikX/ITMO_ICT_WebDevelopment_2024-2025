@@ -10,15 +10,15 @@
 from project_first_app.models import CustomUser, Car, Ownership
 from datetime import date
 
-owner1 = CustomUser.objects.create_user(username="ivan_petrov", password="password123", passport_number="123987456")
-owner2 = CustomUser.objects.create_user(username="olga_ivanova", password="password123", passport_number="456123789")
-owner3 = CustomUser.objects.create_user(username="pavel_sidorov", password="password123", passport_number="789456123")
-owner4 = CustomUser.objects.create_user(username="anna_kuznetsova", password="password123", passport_number="321654987")
-owner5 = CustomUser.objects.create_user(username="sergey_volkov", password="password123", passport_number="654789321")
-owner6 = CustomUser.objects.create_user(username="elena_rogozina", password="password123", passport_number="987321654")
+owner1 = CustomUser.objects.create_user(username="ello", password="password123", passport_number="123987456")
+owner2 = CustomUser.objects.create_user(username="allo", password="password123", passport_number="456123789")
+owner3 = CustomUser.objects.create_user(username="olla", password="password123", passport_number="789456123")
+owner4 = CustomUser.objects.create_user(username="illi", password="password123", passport_number="321654987")
+owner5 = CustomUser.objects.create_user(username="alla", password="password123", passport_number="654789321")
+owner6 = CustomUser.objects.create_user(username="elle", password="password123", passport_number="987321654")
 
 car1 = Car.objects.create(make="Honda", model="Civic", color="Black", state_number="AAA123")
-car2 = Car.objects.create(make="Hyundai", model="Elantra", color="Blue", state_number="BBB234")
+car2 = Car.objects.create(make="Hyundai", model="Solaris", color="Blue", state_number="BBB234")
 car3 = Car.objects.create(make="Tesla", model="Model 3", color="White", state_number="CCC345")
 car4 = Car.objects.create(make="Honda", model="Accord", color="Red", state_number="DDD456")
 car5 = Car.objects.create(make="Hyundai", model="Santa Fe", color="Green", state_number="EEE567")
@@ -37,12 +37,12 @@ Ownership.objects.create(owner=owner6, car=car4, start_date=date(2024, 7, 1))
 
 - Владельцы
 ```python
-ivan_petrov, olga_ivanova, pavel_sidorov, anna_kuznetsova, sergey_volkov, elena_rogozina
+ello, allo, olla, illi, alla, elle
 ```
 
 - Машины
 ```python
-Honda Civic, Hyundai Elantra, Tesla Model 3, Honda Accord, Hyundai Santa Fe
+Honda Civic, Hyundai Solaris, Tesla Model 3, Honda Accord, Hyundai Santa Fe
 ```
 
 ## Задание 2
@@ -73,7 +73,7 @@ for owner in elena_owners:
 
 ### Результат
 ```python
-elena_rogozina
+elle
 ```
 
 3. Случайный автомобиль и его владелец:
@@ -86,7 +86,7 @@ print(f"Car: {random_car}, Owner: {owner.username}")
 
 ### Результат
 ```python
-Car: Tesla Model 3, Owner: olga_ivanova
+Car: Tesla Model 3, Owner: allo
 ```
 
 4. Все владельцы машин красного цвета:
@@ -99,8 +99,8 @@ for owner in red_car_owners:
 
 ### Результат
 ```python
-pavel_sidorov
-elena_rogozina
+olla
+elle
 ```
 
 5. Владельцы машин с 2024 года:
@@ -113,12 +113,12 @@ for owner in owners_from_2024:
 ### Результат
 
 ```python
-ivan_petrov
-olga_ivanova
-pavel_sidorov
-anna_kuznetsova
-sergey_volkov
-elena_rogozina
+ello
+allo
+olla
+illi
+alla
+elle
 ```
 
 ## Задание 3
@@ -148,12 +148,12 @@ for owner in owners_with_car_count:
 
 ### Результат
 ```python
-ivan_petrov owns 2 cars
-olga_ivanova owns 1 cars
-pavel_sidorov owns 1 cars
-anna_kuznetsova owns 1 cars
-sergey_volkov owns 1 cars
-elena_rogozina owns 2 cars
+ello owns 2 cars
+allo owns 1 cars
+olla owns 1 cars
+illi owns 1 cars
+alla owns 1 cars
+elle owns 2 cars
 ```
 
 3. Количество машин каждой марки:
@@ -179,10 +179,10 @@ for user in sorted_users:
 
 ### Результат
 ```python
-anna_kuznetsova
-elena_rogozina
-ivan_petrov
-olga_ivanova
-pavel_sidorov
-sergey_volkov
+illi
+elle
+ello
+allo
+olla
+alla
 ```
