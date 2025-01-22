@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to My Hotel App</title>
+    <style>
+        /* Add your custom CSS styles here */
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+
+/* Навигационное меню */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: lightgray;
+}
+
+/* Главная часть страницы */
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+h2 {
+    margin-bottom: 20px;
+}
+
+/* Список резервирований */
+ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/hotels/all">Hotel List</a></li>
+            {% if user.is_superuser %}
+            <li><a href="/hotels/create_hotel">Create hotel</a></li>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <!-- Display logout button or other authenticated content -->
+            <a href="/logout">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <!-- Add other navigation links as needed -->
+        </ul>
+    </nav>
+    <div> Main page</div>
+    <main>
+        {% block content %}
+        
+        <h2>Your Reservations:</h2>
+        <ul>
+            {% for reservation in reservations %}
+                <li>Room: {{ reservation.room }}</li>
+                <li>Start Date: {{ reservation.start_date }}</li>
+                <li>End Date: {{ reservation.end_date }}</li>
+            {% empty %}
+                <li>You don't have any reservations.</li>
+            {% endfor %}
+        </ul>
+        
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>

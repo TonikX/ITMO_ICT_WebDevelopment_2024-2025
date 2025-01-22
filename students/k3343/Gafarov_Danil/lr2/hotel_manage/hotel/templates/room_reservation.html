@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+/* Общие стили для всей страницы */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Основная часть страницы */
+main {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Форма бронирования */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+}
+
+form input,
+form select {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    width: 25%;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+  </style>
+</head>
+
+<h1>Room Reservation</h1>
+
+<form method="POST" action="{% url 'book_room' hotel_pk=hotel.pk %}">
+  {% csrf_token %}
+
+  <label for="start_date">Start Date:</label>
+  <input type="date" id="start_date" name="start_date">
+
+  <label for="end_date">End Date:</label>
+  <input type="date" id="end_date" name="end_date">
+
+  <label for="room_id">Room:</label>
+  <select id="room_id" name="room_id">
+    {% for room in rooms %}
+
+    <option value="{{ room.id }}">{{ room.room_type }}</option>
+
+    {% endfor %}
+  </select>
+
+  <input type="submit" value="Book">
+</form>

@@ -1,0 +1,8 @@
+site_name: My Documentation for lab 2
+nav:
+  - Home: index.md
+  - Models: models.md
+  - Urls: urls.md
+  - Views: views.md
+
+theme: readthedocs

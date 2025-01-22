@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Add Review for Room {{ room.id }}</h1>
+<form method="POST" action="{% url 'add_review' room_id=room.id %}">
+  {% csrf_token %}
+  <label for="stay_period">Stay Period:</label>
+  <input type="number" id="stay_period" name="stay_period">
+  <br>
+  <label for="comment">Comment:</label>
+  <textarea id="comment" name="comment"></textarea>
+  <br>
+  <label for="rating">Rating:</label>
+  <input type="number" id="rating" name="rating">
+  <br>
+  <input type="submit" value="Submit Review">
+</form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ room.room_type }} Reviews</h1>
+<ul>
+  {% for review in reviews %}
+  <li>
+    <div>Review by: {{ review.user.username }}</div> <!-- Fetch username directly from the User model -->
+    <div>Rating: {{ review.rating }}</div>
+    <div>Comment: {{ review.comment }}</div>
+  </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'add_review' room_id=room.id %}">Write a Review</a>
+
+{% endblock %}

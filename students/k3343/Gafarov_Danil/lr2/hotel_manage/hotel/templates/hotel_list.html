@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Hotels</h1>
+  
+  {% for hotel in hotels %}
+    <h2><a href="{% url 'view_hotel' pk=hotel.pk %}">{{ hotel.name }}</a></h2>
+    <p>{{ hotel.description }}</p>
+    <!-- Add other hotel details as needed -->
+  {% empty %}
+    <p>No hotels available.</p>
+  {% endfor %}
+
+{% endblock %}

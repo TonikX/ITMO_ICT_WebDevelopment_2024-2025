@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    form {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+form div {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form span {
+    margin-right: 10px;
+}
+
+form a {
+    color: #007bff;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+form a:hover {
+    color: #0056b3;
+}
+  </style>
+</head>
+
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="Username"><br>
+  <input type="password" name="password" placeholder="Password"><br>
+  <button type="submit">Login</button>
+  <div>
+    <span>Or sign up here</span>
+    <a href="{% url 'register' %}">Register</a>
+  </div>
+</form>
