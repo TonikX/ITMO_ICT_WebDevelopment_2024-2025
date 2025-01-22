@@ -1,0 +1,60 @@
+<!-- templates/tours/tour_detail.html -->
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+    <!-- Карточка описания тура -->
+    <div class="tour-card">
+        <h2>{{ tour.name }}</h2>
+        <div class="tour-details">
+            <p><strong>Агентство:</strong> {{ tour.agency.name }}</p>
+            <p><strong>Описание:</strong> {{ tour.description }}</p>
+            <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+            <p><strong>Условия оплаты:</strong> {{ tour.payment_terms }}</p>
+            <p><strong>Страна:</strong> {{ tour.country }}</p>
+            <p><strong>Средний рейтинг:</strong> {{ tour.average_rating }}/10</p>
+        </div>
+
+    <!-- Кнопка "Зарезервировать" -->
+    {% if user.is_authenticated %}
+        {% if reservation_exists %}
+            <button class="btn btn-secondary" disabled>Зарезервировано</button>
+        {% else %}
+            <form action="{% url 'tours:reserve_tour' tour.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Зарезервировать</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p><a href="{% url 'login' %}?next={% url 'tours:tour_detail' tour.id %}">Войдите</a>, чтобы зарезервировать этот тур.</p>
+    {% endif %}
+
+    <!-- Отзывы -->
+    <h3 class="mt-5">Отзывы</h3>
+    {% if user.is_authenticated %}
+        <a href="{% url 'tours:add_review' tour.id %}" class="btn btn-outline-primary mb-3">Добавить отзыв</a>
+    {% else %}
+        <p><a href="{% url 'login' %}?next={% url 'tours:tour_detail' tour.id %}">Войдите</a>, чтобы добавить отзыв.</p>
+    {% endif %}
+    {% if reviews %}
+        <div class="reviews-container">
+            {% for review in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>{{ review.user.username }}</strong>
+                        <span class="review-date">{{ review.review_date|date:"d.m.Y H:i" }}</span>
+                    </div>
+                    <div class="review-body">
+                        <p>{{ review.comment }}</p>
+                    </div>
+                    <div class="review-footer">
+                        <span>Рейтинг: {{ review.rating }}/10</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Отзывов пока нет.</p>
+    {% endif %}
+
+    <a href="{% url 'tours:tour_list' %}" class="btn btn-outline-secondary mt-3 back-button">Назад к списку туров</a>
+{% endblock %}

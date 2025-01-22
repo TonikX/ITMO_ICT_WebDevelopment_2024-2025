@@ -1,0 +1,76 @@
+.services-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.services-list {
+    margin-bottom: 20px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.service-details {
+    max-width: 70%;
+}
+
+.service-name {
+    font-weight: bold;
+    display: block;
+}
+
+.service-description {
+    margin: 5px 0 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.input-field,
+.textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.textarea-field {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.add-button,
+.delete-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #dc3545;
+}
+
+.add-button:hover,
+.delete-button:hover {
+    opacity: 0.9;
+}

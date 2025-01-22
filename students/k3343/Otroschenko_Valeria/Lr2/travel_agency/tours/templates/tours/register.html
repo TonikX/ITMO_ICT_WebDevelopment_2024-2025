@@ -1,0 +1,35 @@
+<!-- tours/templates/tours/register.html -->
+{% extends "base_generic.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="mb-4">Регистрация</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">
+          <label for="id_username" class="form-label">Имя пользователя</label>
+          {{ form.username|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+          <label for="id_email" class="form-label">Email</label>
+          {{ form.email|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+          <label for="id_password1" class="form-label">Пароль</label>
+          {{ form.password1|add_class:"form-control" }}
+        </div>
+        <div class="mb-3">
+          <label for="id_password2" class="form-label">Подтверждение пароля</label>
+          {{ form.password2|add_class:"form-control" }}
+        </div>
+        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+      </form>
+        {% if form.errors %}
+            <div style="color: red">{{ form.errors }}</div>
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}

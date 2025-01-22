@@ -1,0 +1,20 @@
+<!-- templates/tours/sold_tours_by_country.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2 class="mb-4">Продажи по странам</h2>
+  {% if data %}
+    <div class="country-cards-container">
+      {% for item in data %}
+        <div class="country-card">
+          <h3>{{ item.country }}</h3>
+          <p><strong>Продано туров:</strong> {{ item.total_sold }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-warning" role="alert">
+      Нет данных о продажах по странам.
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,113 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3% 5%;
+    background: linear-gradient(135deg, #333333, #444444);
+    color: #e0e0e0;
+    border-bottom: 5px solid #e91e63;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4081;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.logo a {
+    text-decoration: none;
+    color: #ff4081;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #e91e63;
+    color: #fff;
+    border: 2px solid #ff4081;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.signup {
+    background: #e91e63;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: 2px solid #ff4081;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.signup:hover {
+    background: #ff4081;
+    color: #fff;
+}
+
+.login {
+    background: #444;
+    color: #e0e0e0;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: 2px solid #e91e63;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.login:hover {
+    background: #e91e63;
+    color: #fff;
+    border: 2px solid #ff4081;
+}
+
+.username {
+    font-size: 1.5rem;
+    color: #ff4081;
+    font-weight: bold;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.exit {
+    background: #444;
+    color: #e0e0e0;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    border: 2px solid #e91e63;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.exit:hover {
+    background: #e91e63;
+    color: #fff;
+    border: 2px solid #ff4081;
+}

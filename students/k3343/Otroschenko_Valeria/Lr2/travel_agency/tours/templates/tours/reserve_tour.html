@@ -1,0 +1,18 @@
+<!-- tours/templates/tours/reserve_tour.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Резервирование тура: {{ tour.name }}</h2>
+      <p class="card-text">{{ tour.description }}</p>
+      <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+      <p><strong>Условия оплаты:</strong> {{ tour.payment_terms }}</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Зарезервировать</button>
+        <a href="{% url 'tours:tour_list' %}" class="btn btn-secondary">Отмена</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

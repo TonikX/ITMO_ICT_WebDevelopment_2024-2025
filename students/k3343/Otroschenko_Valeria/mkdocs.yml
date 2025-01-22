@@ -1,0 +1,30 @@
+site_name: WEB documentation
+nav:
+  - Home: docs/index.md
+  - Lab 1:
+      - "Task 1": Lr1/task-1/Readme.md
+      - "Task 2": Lr1/task-2/Readme.md
+      - "Task 3": Lr1/task-3/Readme.md
+      - "Task 4": Lr1/task-4/Readme.md
+      - "Task 5": Lr1/task-5/Readme.md
+  - Lab 2:
+      - "Task": Lr2/README.md
+  - Lab 3:
+      - "Task": Lr3/README.md
+  - Leetcode:
+      - "Task 1": Leetcode/task-1/README.md
+      - "Task 2": Leetcode/task-2/README.md
+      - "Task 3": Leetcode/task-3/README.md
+      - "Task 4": Leetcode/task-4/README.md
+      - "Task 5": Leetcode/task-5/README.md
+      - "Task 6": Leetcode/task-6/README.md
+      - "Task 7": Leetcode/task-7/README.md
+      - "Task 8": Leetcode/task-8/README.md
+      - "Task 9": Leetcode/task-9/README.md
+      - "Task 10": Leetcode/task-10/README.md
+      - "Task 11": Leetcode/task-11/README.md
+      - "Task 12": Leetcode/task-12/README.md
+      - "Task 13": Leetcode/task-13/README.md
+      - "Task 14": Leetcode/task-14/README.md
+      - "Task 15": Leetcode/task-15/README.md
+

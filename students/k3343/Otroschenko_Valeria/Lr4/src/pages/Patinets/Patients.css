@@ -1,0 +1,115 @@
+.patients-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #272727;
+    color: #333;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    color: #e91e63;
+}
+
+.add-patient-section {
+    margin-bottom: 30px;
+}
+
+.form-container h2 {
+    font-size: 20px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.form-container input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #8a8a8a;
+    background: #333;
+    color: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-container button:hover {
+    background: #d81b60;
+}
+
+.list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.patient-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #e91e63;
+    font-size: 18px;
+}
+
+.card-body p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-button, .delete-button {
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background: #007bff;
+    color: white;
+}
+
+.edit-button:hover {
+    background: #0056b3;
+}
+
+.delete-button {
+    background: #f44336;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #d32f2f;
+}

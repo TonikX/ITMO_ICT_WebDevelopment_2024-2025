@@ -1,0 +1,42 @@
+<!-- templates/tours/tour_list.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="hero mb-4">
+    <h1>Добро пожаловать в нашу Туристическую фирму!</h1>
+    <p>Выберите свой идеальный тур и начните своё путешествие сегодня.</p>
+  </div>
+  <h2 class="mb-4">Список туров</h2>
+  {% if tours %}
+    <div class="tour-cards-container">
+      {% for tour in tours %}
+        <div class="tour-card">
+          <h3>{{ tour.name }}</h3>
+          <p><strong>Агентство:</strong> {{ tour.agency.name }}</p>
+          <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+          <p><strong>Страна:</strong> {{ tour.country }}</p>
+          <p><strong>Средний рейтинг:</strong> {{ tour.average_rating }}/10</p>
+          <div class="tour-card-actions">
+            <a href="{% url 'tours:tour_detail' tour.id %}" class="btn btn-info btn-sm">Подробнее</a>
+            {% if user.is_authenticated %}
+                {% if tour.id in reserved_tours %}
+                    <button class="btn btn-secondary btn-sm" disabled>Зарезервировано</button>
+                {% else %}
+                    <form action="{% url 'tours:reserve_tour' tour.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm">Зарезервировать</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <p><a href="{% url 'login' %}?next={% url 'tours:tour_list' %}">Войдите</a>, чтобы зарезервировать тур.</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-warning" role="alert">
+      Нет доступных туров на данный момент.
+    </div>
+  {% endif %}
+{% endblock %}
