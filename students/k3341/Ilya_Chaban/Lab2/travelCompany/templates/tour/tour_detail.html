@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Детали тура: {{ tour.name }}{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/tour_detail.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="tour-detail-container">
+        <!-- Tour Info -->
+        <div class="tour-info">
+            <h1 class="tour-title">{{ tour.name }}</h1>
+            <p class="tour-description">{{ tour.description }}</p>
+            <p class="tour-dates">Дата начала: {{ tour.start_date }} | Дата окончания: {{ tour.end_date }}</p>
+            <p class="tour-country">Страна: {{ tour.country }}</p>
+            <p class="tour-payment-conditions">Условия оплаты: {{ tour.payment_conditions }}</p>
+
+            {% if user_has_reserved %}
+                <p class="reservation-status">Вы уже забронировали этот тур!</p>
+                {% if reservation %}
+                    <a href="{% url 'cancel_reservation' reservation.id %}" class="cancel-btn">Отменить бронь</a>
+                {% endif %}
+                    <a href="{% url 'tour_update' tour_id=tour.id %}" class="cancel-btn">Обновить тур</a>
+            {% else %}
+                <a href="{% url 'book_tour' tour.id %}" class="book-btn">Забронировать тур</a>
+            {% endif %}
+        </div>
+
+        <div class="tour-reviews">
+            <!-- Button to navigate to the reviews page -->
+            <div class="reviews-button-container">
+                <a href="{% url 'tour_reviews' tour.id %}" class="reviews-btn">Посмотреть все отзывы</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

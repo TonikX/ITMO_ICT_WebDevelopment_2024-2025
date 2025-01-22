@@ -1,0 +1,76 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2% 5%;
+    background: #00c2d6;
+    color: #fff;
+}
+
+.logo {
+    font-size: 1.8vw;
+    font-weight: bold;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2vw;
+    margin: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2vw;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.signup {
+    background: #fff;
+    color: #00c2d6;
+    padding: 0.8vw 1.5vw;
+    border-radius: 2vw;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+.login {
+    background: #fff;
+    color: #00c2d6;
+    padding: 0.8vw 1.5vw;
+    border-radius: 2vw;
+    border: none;
+    font-size: 1vw;
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    cursor: pointer;
+}
+
+.username {
+    font-size: 1.5vw;
+    color: #fff;
+    font-weight: bold;
+}
+
+.exit {
+    background: #fff;
+    color: #00c2d6;
+    padding: 0.8vw 1.5vw;
+    border-radius: 2vw;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+}

@@ -1,0 +1,113 @@
+/* MedicalCard.css */
+
+/* Basic Page Layout */
+.medical-cards-page {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Filter Section */
+.filters {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filters input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 250px;
+}
+
+.filters input:focus {
+    outline: none;
+    border-color: #6c8f8e;
+}
+
+/* Table Styling */
+.medical-cards-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.medical-cards-table th,
+.medical-cards-table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.medical-cards-table th {
+    background-color: #6c8f8e;
+    color: #fff;
+    font-weight: bold;
+}
+
+.medical-cards-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.medical-cards-table tbody tr:hover {
+    background-color: #e9f7f1;
+}
+
+/* Action Buttons (only for medical cards page) */
+.medical-cards-table .medical-card-button {
+    padding: 8px 15px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.medical-cards-table .medical-card-button:hover {
+    opacity: 0.8;
+}
+
+.medical-cards-table .medical-card-button:first-child {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.medical-cards-table .medical-card-button:first-child:hover {
+    background-color: #45a049;
+}
+
+.medical-cards-table .medical-card-button:nth-child(2) {
+    background-color: #f44336;
+    color: white;
+}
+
+.medical-cards-table .medical-card-button:nth-child(2):hover {
+    background-color: #e53935;
+}
+
+.medical-cards-table .medical-card-button:last-child {
+    background-color: #f7b731;
+    color: white;
+}
+
+.medical-cards-table .medical-card-button:last-child:hover {
+    background-color: #f5a623;
+}
+
+/* No Data Message */
+.medical-cards-table td[colspan="4"] {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+}

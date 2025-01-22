@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Проданные туры{% endblock %}
+
+{% block content %}
+    <h2>Проданные туры по странам</h2>
+    {% for country, tours in tours_by_country.items %}
+        <h3>{{ country }}</h3>
+        <ul>
+            {% for sold_tour in tours %}
+                <li>{{ sold_tour.tour.name }} (Дата продажи: {{ sold_tour.sold_date }})</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

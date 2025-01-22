@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/add_new.css' %}">
+{% endblock %}
+{% block content %}
+    <h2>Добавить новый тур</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить тур</button>
+    </form>
+{% endblock %}

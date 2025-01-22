@@ -1,0 +1,205 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Навигация */
+.header {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 0;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+.nav-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.nav-menu a:hover {
+    color: #f1f1f1;
+}
+
+
+.hero {
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    text-align: center;
+    color: #333;
+    padding: 60px 0;
+}
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+.hero .btn-primary {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background 0.3s;
+}
+.hero .btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Popular Destinations */
+.destinations {
+    padding: 40px 0;
+    text-align: center;
+    background: #fff;
+}
+.destinations h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    width: 300px;
+}
+.card img {
+    width: 100%;
+    height: auto;
+}
+.card-content {
+    padding: 20px;
+    text-align: left;
+}
+.card-content h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+.card-content p {
+    font-size: 1em;
+    color: #555;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* About Section */
+.about {
+    background: #f9f9f9;
+    padding: 40px 0;
+}
+.features {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.feature {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.feature i {
+    font-size: 2.5em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.feature h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.feature p {
+    font-size: 1em;
+    color: #555;
+}
+.feature:hover {
+    transform: scale(1.05);
+}
+
+/* Contact Section */
+.contact {
+    background: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+.contact h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.contact-form button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.contact-form button:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+.footer {
+    background: #007bff;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}

@@ -1,0 +1,147 @@
+/* General Styling for Tour List */
+.tour-list-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.tour-list-title {
+    font-size: 2.5em;
+    margin-bottom: 30px;  /* Added margin to create space between title and the tour list */
+    color: #333;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.back-btn:hover {
+    color: #0056b3;
+}
+
+/* Tour Card Grid */
+.tour-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.tour-card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: left;
+}
+
+.tour-card:hover {
+    transform: translateY(-8px);
+}
+
+.tour-title {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.tour-description {
+    color: #666;
+    font-size: 1em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.tour-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.tour-link {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.tour-link:hover {
+    color: #0056b3;
+}
+
+/* No Tours Found */
+.no-tours {
+    font-size: 1.2em;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* Pagination Styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.pagination a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.page-current {
+    font-size: 1.1em;
+    color: #555;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .tour-list-title {
+        font-size: 2em;
+    }
+
+    .tour-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .tour-card {
+        padding: 15px;
+    }
+
+    .pagination a {
+        padding: 8px 12px;
+    }
+}
+.add-tour-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.add-tour-btn:hover {
+    background-color: #45a049;
+}

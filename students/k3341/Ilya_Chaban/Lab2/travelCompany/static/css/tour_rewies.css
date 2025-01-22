@@ -1,0 +1,69 @@
+/* Стиль для контейнера отзывов */
+.tour-reviews-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tour-reviews-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.reviews-list {
+    margin-top: 20px;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.review-comment {
+    font-style: italic;
+    font-size: 1.2rem;
+}
+
+.review-rating {
+    font-weight: bold;
+    color: #ff9900;
+}
+
+.review-author {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Кнопка для добавления отзыва */
+.add-review-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.add-review-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для ссылки на страницу с отзывами */
+.view-reviews-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.view-reviews-btn:hover {
+    background-color: #218838;
+}

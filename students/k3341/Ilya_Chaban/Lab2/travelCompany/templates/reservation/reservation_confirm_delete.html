@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Подтвердите удаление{% endblock %}
+
+{% block content %}
+<h2>Вы уверены, что хотите удалить это бронирование?</h2>
+<p>Тур: {{ reservation.tour.name }}</p>
+<p>Дата начала: {{ reservation.tour.start_date }}</p>
+<p>Дата окончания: {{ reservation.tour.end_date }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a href="{% url 'my_reservations' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

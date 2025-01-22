@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная страница{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>Путешествуйте легко</h1>
+            <p>Исследуйте мир с лучшими турами и выгодными предложениями.</p>
+            <a href="{% url 'tour_firm_list' %}" class="btn btn-primary">Смотреть туры</a>
+
+            {% if user.is_staff %}
+            <a href="{% url 'all_reservations' %}" class="btn btn-secondary">Смотреть все туры</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="destinations" id="destinations">
+        <div class="container">
+            <h2>Популярные Отели</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="{% static 'image/1.jpeg' %}" alt="Париж">
+                    <div class="card-content">
+                        <h3>Москва</h3>
+                        <p>Hotelc#, лучший отель для разработчиков</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static 'image/2.jpeg' %}" alt="Бали">
+                    <div class="card-content">
+                        <h3>СПБ</h3>
+                        <p>SBPHotel, культура и красота</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="{% static 'image/3.jpeg' %}" alt="Нью-Йорк">
+                    <div class="card-content">
+                        <h3>Кубань</h3>
+                        <p>Kaban, самые вкусное вино в мире!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <p>Есть вопросы? Мы готовы помочь!</p>
+            <form class="contact-form">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="email" placeholder="Ваш email" required>
+                <textarea placeholder="Ваше сообщение" required></textarea>
+                <button type="submit" class="btn btn-primary">Отправить</button>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
