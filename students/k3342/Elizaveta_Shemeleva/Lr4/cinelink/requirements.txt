@@ -1,0 +1,24 @@
+# Core Django dependencies
+django
+
+# Django Rest Framework
+djangorestframework
+djangorestframework-simplejwt
+
+# Token-based authentication
+djoser
+
+# CORS headers
+django-cors-headers
+
+# Django Filters
+django-filter
+
+# Django Extensions
+django-extensions
+
+# Database backend (SQLite is default)
+psycopg2-binary
+
+# Other dependencies
+coreapi

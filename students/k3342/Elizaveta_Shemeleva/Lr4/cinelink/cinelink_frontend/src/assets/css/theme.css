@@ -1,0 +1,27 @@
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #252525;
+        --text-color: #FFECC9;
+        --primary-color: #3B3935;
+        --blue-color: #97C0D7;
+        --secondary-color: #363C40;
+        --green-color: #4F9D68;
+        --red-color: #EE6C4D;
+        --shadow-color: rgba(59, 57, 53, 0.7);
+    }
+}
+
+/* Светлая тема */
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: #FFECC9;
+        --text-color: #252525;
+        --primary-color: #e1d1b4;
+        --blue-color: #2a7098;
+        --secondary-color: #C9CBBF;
+        --green-color: #269449;
+        --red-color: #DC4E2C;
+        --shadow-color: rgba(106, 102, 93, 0.7);
+    }
+}

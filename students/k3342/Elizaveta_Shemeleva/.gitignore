@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Директории виртуального окружения
+venv/
+env/
+.venv/
+.env/
+
+# Папки и файлы для тестирования
+.test/
+coverage/
+*.cover
+*.py,cover
+
+# Логи
+*.log
+
+# Файлы и папки для IDE
+.idea/
+.vscode/
+*.swp
+
+# Другие временные файлы
+*.tmp
+*.bak
+*.orig

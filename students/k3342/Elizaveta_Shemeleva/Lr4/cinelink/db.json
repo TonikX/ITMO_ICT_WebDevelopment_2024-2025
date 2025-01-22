@@ -1,0 +1,2359 @@
+{
+  "movies": [
+    {
+      "title": "8½",
+      "id": "tt0056801",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmI4YWJlYzAtNGU5MS00NTljLThhN2QtNzMwMWM4NTA0ODNlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1963",
+      "rating": 8
+    },
+    {
+      "title": "Stalker",
+      "id": "tt0079944",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDIzMDRiYjgtM2U1Yy00MjlhLTliODMtM2E5NDI5Njc3YmZkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "1979",
+      "rating": 8
+    },
+    {
+      "title": "Persona",
+      "id": "tt0060827",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTRhNzkzMDktZDNlNi00MDIwLWFiNjAtNTlmYjZjYWZlMTEzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1966",
+      "rating": 8
+    },
+    {
+      "title": "Melancholia",
+      "id": "tt1527186",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTk4NjM0MjI3MV5BMl5BanBnXkFtZTcwNjcxMDYzNg@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "2011",
+      "rating": 7.1
+    },
+    {
+      "title": "Breathless",
+      "id": "tt0053472",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGI5MWNjYmEtNzUxZC00YTI3LWE5MzctZTdhYjJkMGMxYzI3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1960",
+      "rating": 7.7
+    },
+    {
+      "title": "Barry Lyndon",
+      "id": "tt0072684",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmM2MGQ5Y2UtYzA3ZC00ZDJlLTkwNDYtMjBmZGExZDJiN2RlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "War"
+      ],
+      "year": "1975",
+      "rating": 8.1
+    },
+    {
+      "title": "Solaris",
+      "id": "tt0069293",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTYyMjU4MjItYzZkNy00NmIyLTg1ZGEtYTY5ZTEyM2U2NDM2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "year": "1972",
+      "rating": 7.9
+    },
+    {
+      "title": "Chungking Express",
+      "id": "tt0109424",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDQ4ZmYxODctZDVlZC00OTcxLWJjOGItZjRlMzk4MDA1Yjg1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Drama"
+      ],
+      "year": "1994",
+      "rating": 8
+    },
+    {
+      "title": "Blue Velvet",
+      "id": "tt0090756",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzkwZGUyYjQtM2QyOC00MTBjLWE0NGYtMTZmOGM5MjI0Mzg0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "year": "1986",
+      "rating": 7.7
+    },
+    {
+      "title": "Andrei Rublev",
+      "id": "tt0060107",
+      "poster": "https://m.media-amazon.com/images/M/MV5BY2I4YzZjZDgtNWQzNC00MDdhLWFiZTItZTAwODY2ZmQzMDQwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "year": "1966",
+      "rating": 8
+    },
+    {
+      "title": "In the Mood for Love",
+      "id": "tt0118694",
+      "poster": "https://m.media-amazon.com/images/M/MV5BN2Q4NjllMDgtOTk2Zi00YzM1LWJmOTMtNmRiZDgyZGJmMjQzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "2000",
+      "rating": 8.1
+    },
+    {
+      "title": "Mirror",
+      "id": "tt0072443",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzM3YjcxOGMtOGRmNi00ODMwLTgzNzQtMzE0NzEzZTQ3NzVkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Drama"
+      ],
+      "year": "1975",
+      "rating": 7.9
+    },
+    {
+      "title": "2001: A Space Odyssey",
+      "id": "tt0062622",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjU0NDFkMTQtZWY5OS00MmZhLTg3Y2QtZmJhMzMzMWYyYjc2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Adventure",
+        "Sci-Fi"
+      ],
+      "year": "1968",
+      "rating": 8.3
+    },
+    {
+      "title": "Wild Strawberries",
+      "id": "tt0050986",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWQ5MDllM2EtZWRmNS00MmZiLWI4ZWQtMjRiY2Q5MTAxODY4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1957",
+      "rating": 8.1
+    },
+    {
+      "title": "Tokyo Story",
+      "id": "tt0046438",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODdkNzcxZjItMDU2Yy00Y2JlLWFkYTQtNzIwM2Q4MWU5MTU2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1953",
+      "rating": 8.1
+    },
+    {
+      "title": "Mulholland Drive",
+      "id": "tt0166924",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjliY2UwMjQtYjVlNi00NzExLTg1MDMtMjE2OTYwYjI0NTcxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "year": "2001",
+      "rating": 7.9
+    },
+    {
+      "title": "Blade Runner",
+      "id": "tt0083658",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOWQ4YTBmNTQtMDYxMC00NGFjLTkwOGQtNzdhNmY1Nzc1MzUxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Action",
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "1982",
+      "rating": 8.1
+    },
+    {
+      "title": "City Lights",
+      "id": "tt0021749",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2U4NjgzODUtODkyOC00YTE2LTlhNTItYzFlYmM1NTEzZDA2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "year": "1931",
+      "rating": 8.5
+    },
+    {
+      "title": "A Brighter Summer Day",
+      "id": "tt0101985",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGRkNGQwOTktNWQxOS00ZDRjLThmODktNWY4NThjNDU2MjM5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Romance"
+      ],
+      "year": "1991",
+      "rating": 8.2
+    },
+    {
+      "title": "Days of Heaven",
+      "id": "tt0077405",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOWM5OTcwMjMtMDk0OC00N2M3LTlmYzQtY2Q5ZmZmNjIyOGViXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1978",
+      "rating": 7.7
+    },
+    {
+      "title": "Come and See",
+      "id": "tt0091251",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDlkZmVkZDAtZGFmMS00OWIzLWJkY2YtNWE5NjNhNjhiZGE3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller",
+        "War"
+      ],
+      "year": "1985",
+      "rating": 8.4
+    },
+    {
+      "title": "La Haine",
+      "id": "tt0113247",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMThlMDA3NDYtZGM2Zi00NmJhLThlYWItZjViZTkzZWU1ZWRiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1995",
+      "rating": 8.1
+    },
+    {
+      "title": "The Piano",
+      "id": "tt0107822",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGZiYTQ0MmEtY2RmYy00ZjRkLWI3NTctYTRhMGJlMzA4ZDg0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance"
+      ],
+      "year": "1993",
+      "rating": 7.5
+    },
+    {
+      "title": "Playtime",
+      "id": "tt0062136",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDA4NTU0YzItNjc0MS00ODE2LWE1MDYtMWY3ZTk3MWE2N2M5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy"
+      ],
+      "year": "1967",
+      "rating": 7.8
+    },
+    {
+      "title": "Fanny and Alexander",
+      "id": "tt0083922",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjIwMzRhZWUtOTA0YS00MmFmLWI4ZjgtNjNlZmU3M2Q1Y2NhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1982",
+      "rating": 8.1
+    },
+    {
+      "title": "Antichrist",
+      "id": "tt0870984",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjE3MjQ2ODc1N15BMl5BanBnXkFtZTcwNjYyMzI5Mg@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ],
+      "year": "2009",
+      "rating": 6.5
+    },
+    {
+      "title": "Sansho the Bailiff",
+      "id": "tt0047445",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODAxZDk2YjctYTE0Ny00MzBjLWJlOWEtNjhkMWQ2NmU4ZTY3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1954",
+      "rating": 8.4
+    },
+    {
+      "title": "The Seventh Seal",
+      "id": "tt0050976",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDlmYTkzOWUtODQ0MS00MmM4LWE3ZjMtYTEwNGUwMmJkYzIxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "1957",
+      "rating": 8.1
+    },
+    {
+      "title": "The Leopard",
+      "id": "tt0057091",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODNiYThjOGMtOTZlYy00Y2Q0LTk5MjQtYTRkNzU2OTA2OWQ1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "History"
+      ],
+      "year": "1963",
+      "rating": 7.9
+    },
+    {
+      "title": "Ran",
+      "id": "tt0089881",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDk2NDY5YjktMjEyMC00OTJhLTkzM2EtY2Q4Y2RjYzc2Yjk4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Action",
+        "Drama",
+        "War"
+      ],
+      "year": "1985",
+      "rating": 8.2
+    },
+    {
+      "title": "Close-Up",
+      "id": "tt0100234",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTNlNWFiNTAtZTMxYS00NzgxLTlmOGYtZjY4NWVlNDlmZDJlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Crime",
+        "Drama"
+      ],
+      "year": "1990",
+      "rating": 8.2
+    },
+    {
+      "title": "The Red Shoes",
+      "id": "tt0040725",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjRjMzAxMmMtMTkzNS00ZGIyLTgzM2UtODgyYjI5NGEwZDhjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance"
+      ],
+      "year": "1948",
+      "rating": 8.1
+    },
+    {
+      "title": "The Rules of the Game",
+      "id": "tt0031885",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzlmNmM0MGMtNzlkYS00OTMzLTgwMTktZTA3ZWMyYWFlYmQ3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1939",
+      "rating": 7.9
+    },
+    {
+      "title": "Metropolis",
+      "id": "tt0017136",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjhjMGYyMjAtMzJkYy00NzhlLWIwY2MtMWQ2ODIxZDUyOGYyXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "1927",
+      "rating": 8.3
+    },
+    {
+      "title": "Wings of Desire",
+      "id": "tt0093191",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTUwY2EyMDktMGI0Ny00MDNlLWE0ODMtZWIwOGNhNmY1OWIwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "year": "1987",
+      "rating": 7.9
+    },
+    {
+      "title": "The Spirit of the Beehive",
+      "id": "tt0070040",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzQ1ZmQ4OTEtZGUyZi00MThiLWJhMTUtYmFlODM0NmVjNmI2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "1973",
+      "rating": 7.8
+    },
+    {
+      "title": "Pierrot le Fou",
+      "id": "tt0059592",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTQ0OTc4MDcxMl5BMl5BanBnXkFtZTgwNjIzMjA0NzE@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Romance"
+      ],
+      "year": "1965",
+      "rating": 7.4
+    },
+    {
+      "title": "Hiroshima Mon Amour",
+      "id": "tt0052893",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzY2NTA1MzUwN15BMl5BanBnXkFtZTgwOTc4NTU4MjE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1959",
+      "rating": 7.8
+    },
+    {
+      "title": "Faces",
+      "id": "tt0062952",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmNlOTk1ZmYtZmNiMi00NzZkLWFhY2EtNWE2YTkyZDhkYjg5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1968",
+      "rating": 7.4
+    },
+    {
+      "title": "Le Samouraï",
+      "id": "tt0062229",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODZkMWZlYzktNDQ0Ny00NjFkLWFmMjEtM2NmNzQyMWY3M2QwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1967",
+      "rating": 8
+    },
+    {
+      "title": "Elevator to the Gallows",
+      "id": "tt0051378",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODk4MTkxMDE1Ml5BMl5BanBnXkFtZTgwNjE0NjEzOTE@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1958",
+      "rating": 7.9
+    },
+    {
+      "title": "Yi Yi",
+      "id": "tt0244316",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTAyMDQ5Y2MtZDk0NC00N2IyLWE5OTgtZjJkZWNlMDBhMDhlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "2000",
+      "rating": 8.1
+    },
+    {
+      "title": "Autumn Sonata",
+      "id": "tt0077711",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTg1MzJiNTYtZjcyNS00NDE5LWE0N2ItMGIxM2Y2ZDMyYjJjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "year": "1978",
+      "rating": 8.1
+    },
+    {
+      "title": "Ivan's Childhood",
+      "id": "tt0056111",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGZjMDJkZTgtOThmYy00Mjk2LWFkMWMtMGY1YTRhZDdmMjI5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1962",
+      "rating": 8
+    },
+    {
+      "title": "The Travelling Players",
+      "id": "tt0073800",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWI2NDg0YjAtODgwYS00YmUxLThjYzAtNjUxYTUwYzQ3NjU0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "History",
+        "Music"
+      ],
+      "year": "1975",
+      "rating": 7.8
+    },
+    {
+      "title": "The Passion of Joan of Arc",
+      "id": "tt0019254",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTE1MDliZjgtYTU2Yy00YjAxLTljYTItNDE2ZGYwYTY1MGQ1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "year": "1928",
+      "rating": 8.1
+    },
+    {
+      "title": "The Conformist",
+      "id": "tt0065571",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjBjNTYyOTYtZDIxOS00ZDdjLTg2NWMtMWE0NThjYjIxMDU0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1970",
+      "rating": 7.9
+    },
+    {
+      "title": "Sunset Boulevard",
+      "id": "tt0043014",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTU0NTkyNzYwMF5BMl5BanBnXkFtZTgwMDU0NDk5MTI@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Film-Noir"
+      ],
+      "year": "1950",
+      "rating": 8.4
+    },
+    {
+      "title": "Citizen Kane",
+      "id": "tt0033467",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjk1ZDJlMmUtOWQ0Zi00MDM5LTk1OGYtODczNjFmMGYwZGVkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "year": "1941",
+      "rating": 8.3
+    },
+    {
+      "title": "The 400 Blows",
+      "id": "tt0053198",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTU3YTM0YzQtMmFlOS00OTIxLWFmZjctMDJkOGQxNTVhODM3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1959",
+      "rating": 8
+    },
+    {
+      "title": "Wild at Heart",
+      "id": "tt0100935",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMmUyNjMzMjEtMGFkNy00MDA1LWI0NGEtMDY5OGU1N2NmNDg1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1990",
+      "rating": 7.2
+    },
+    {
+      "title": "The Double Life of Veronique",
+      "id": "tt30581561",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDRlOGE5NzYtN2JjMC00NTNmLWFjMzMtODJkODMxYmFhOGYwXkEyXkFqcGdeQXVyNjg0OTk1NTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2015",
+      "rating": null
+    },
+    {
+      "title": "The Man Who Fell to Earth",
+      "id": "tt0074851",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzNlOTNiNTEtMmU2Zi00Y2M5LWE2OWMtNGRlOWJkNjZmMWExXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "1976",
+      "rating": 6.6
+    },
+    {
+      "title": "Nostalghia",
+      "id": "tt0086022",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWFjMGFhYzEtODZkZS00MDRjLWE2NGEtMWRhODcwMzNiN2I1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1983",
+      "rating": 7.9
+    },
+    {
+      "title": "A Man Escaped",
+      "id": "tt0049902",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDE3MjdlZDEtYmJiZi00YmE1LWJkOTMtYTMzZGYwOWU4MjYzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller",
+        "War"
+      ],
+      "year": "1956",
+      "rating": 8.2
+    },
+    {
+      "title": "Ordet",
+      "id": "tt0048452",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTVjOGExYjItYzBhMS00N2I3LWI3Y2MtNmRlMzZiNTJhMTcyXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1955",
+      "rating": 8.2
+    },
+    {
+      "title": "Breathless",
+      "id": "tt0053472",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGI5MWNjYmEtNzUxZC00YTI3LWE5MzctZTdhYjJkMGMxYzI3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1960",
+      "rating": 7.7
+    },
+    {
+      "title": "The Tree of Life",
+      "id": "tt0478304",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTMwNjQ0NjMzN15BMl5BanBnXkFtZTcwNjMxMTkyNA@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "2011",
+      "rating": 6.8
+    },
+    {
+      "title": "Poor Things",
+      "id": "tt14230458",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWU2MjRjZTYtMjVkMS00MTBjLWFiMTAtYmZlYTk1YjkyMWFkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "year": "2023",
+      "rating": 7.8
+    },
+    {
+      "title": "Paris, Texas",
+      "id": "tt0087884",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWY5YzE4YmUtZWFhMS00YjYxLWI5ZGUtNDEyNmMzNDVjMGEwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1984",
+      "rating": 8.1
+    },
+    {
+      "title": "L'Avventura",
+      "id": "tt0053619",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWExNWNkZTUtZjYzNi00NTAyLTk3YzAtNzcxNTRmZDExZTljXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Romance"
+      ],
+      "year": "1960",
+      "rating": 7.7
+    },
+    {
+      "title": "Au Hasard Balthazar",
+      "id": "tt0060138",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZTE0OGQyNjQtYTQ2MC00Y2FjLWFmNTMtODRkMmRmYmM4MTM5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1966",
+      "rating": 7.7
+    },
+    {
+      "title": "Sansho the Bailiff",
+      "id": "tt0047445",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODAxZDk2YjctYTE0Ny00MzBjLWJlOWEtNjhkMWQ2NmU4ZTY3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1954",
+      "rating": 8.4
+    },
+    {
+      "title": "Hunger",
+      "id": "tt0986233",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDMwMWZmZjMtZmZkMS00MzNmLTlmNTUtY2MyYTdkYzRiZDg0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Crime",
+        "Drama"
+      ],
+      "year": "2008",
+      "rating": 7.5
+    },
+    {
+      "title": "My Winnipeg",
+      "id": "tt1093842",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjE2Nzk1MjE4OV5BMl5BanBnXkFtZTcwNjk2ODA3MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Documentary",
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2007",
+      "rating": 7.5
+    },
+    {
+      "title": "Eraserhead",
+      "id": "tt0074486",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGYxNzZkYzAtMDExMS00MzE1LTg5ZGItMTgzMzJhZWMyNTBjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Fantasy",
+        "Horror"
+      ],
+      "year": "1977",
+      "rating": 7.3
+    },
+    {
+      "title": "The Holy Mountain",
+      "id": "tt0071615",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDU4ZTNiYTMtNDFkYS00ZmJhLWFmOWItYTExMTllMmNiMTRlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Adventure",
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "1973",
+      "rating": 7.7
+    },
+    {
+      "title": "The Act of Killing",
+      "id": "tt2375605",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDg1NDMwMGQtMmFkZS00NTQwLTkxYjktMTlhNjI2NzNlYTQ1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Documentary",
+        "Biography",
+        "Crime"
+      ],
+      "year": "2012",
+      "rating": 8.2
+    },
+    {
+      "title": "Waltz with Bashir",
+      "id": "tt1185616",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjM2OTI3NzQyNl5BMl5BanBnXkFtZTcwNjkzNzQ5MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Documentary",
+        "Animation",
+        "Biography"
+      ],
+      "year": "2008",
+      "rating": 8
+    },
+    {
+      "title": "Cleo from 5 to 7",
+      "id": "tt0055852",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjVhMzAyY2YtMmNmMS00YzQ0LTllM2EtNWJjNDhiODNmNjBjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Music"
+      ],
+      "year": "1962",
+      "rating": 7.8
+    },
+    {
+      "title": "Amour",
+      "id": "tt1602620",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTk1NTc3NDc4MF5BMl5BanBnXkFtZTcwNjYwNDk0OA@@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2012",
+      "rating": 7.9
+    },
+    {
+      "title": "The Handmaiden",
+      "id": "tt4016934",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTllZDI1OGItOGUxNS00OGZhLWIzMjAtYzllZTY1YTA0ZmYwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Thriller"
+      ],
+      "year": "2016",
+      "rating": 8.1
+    },
+    {
+      "title": "Portrait of a Lady on Fire",
+      "id": "tt8613070",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjJlYWJlYmMtNjMyMS00ZDgxLTlmNjAtOTJhMzBiZWM5N2VmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "2019",
+      "rating": 8.1
+    },
+    {
+      "title": "Shoplifters",
+      "id": "tt8075192",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjY2NGZlZDUtMDUwMi00YTUxLTljNzEtZTE3YjAyNTQyNzU5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "2018",
+      "rating": 7.9
+    },
+    {
+      "title": "The Florida Project",
+      "id": "tt5649144",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDBhM2MxYjAtMWFiYy00MWMwLThkMDYtN2M1ZWY3NjkxNGExXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2017",
+      "rating": 7.6
+    },
+    {
+      "title": "Moonlight",
+      "id": "tt4975722",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzQxNTIyODAxMV5BMl5BanBnXkFtZTgwNzQyMDA3OTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2016",
+      "rating": 7.4
+    },
+    {
+      "title": "Boyhood",
+      "id": "tt1065073",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTYzNDc2MDc0N15BMl5BanBnXkFtZTgwOTcwMDQ5MTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2014",
+      "rating": 7.9
+    },
+    {
+      "title": "Her",
+      "id": "tt1798709",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA1Nzk0OTM2OF5BMl5BanBnXkFtZTgwNjU2NjEwMDE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "year": "2013",
+      "rating": 8
+    },
+    {
+      "title": "The Lighthouse",
+      "id": "tt7984734",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTI4MjFhMjAtNmQxYi00N2IxLWJjMGEtYWY1YmU3OTQ0Zjk3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "year": "2019",
+      "rating": 7.4
+    },
+    {
+      "title": "Under the Skin",
+      "id": "tt1441395",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTU1MDEwMDg4Nl5BMl5BanBnXkFtZTgwOTk3NTcxMTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery"
+      ],
+      "year": "2013",
+      "rating": 6.3
+    },
+    {
+      "title": "Dogtooth",
+      "id": "tt1379182",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjIyOTkyMDE5N15BMl5BanBnXkFtZTcwNjIwNzQwMw@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "year": "2009",
+      "rating": 7.1
+    },
+    {
+      "title": "The Lobster",
+      "id": "tt3464902",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDQ1NDE5NzQ1NF5BMl5BanBnXkFtZTgwNzA5OTM2NTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "year": "2015",
+      "rating": 7.1
+    },
+    {
+      "title": "The Killing of a Sacred Deer",
+      "id": "tt5715874",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjU4NDcwOTA2NF5BMl5BanBnXkFtZTgwMjE2OTg4MzI@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery"
+      ],
+      "year": "2017",
+      "rating": 7
+    },
+    {
+      "title": "The Virgin Spring",
+      "id": "tt0053976",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWM2NzYyOGItZTU1Ni00MWY1LTlkZTMtZmI4MzZlYjdjNzc5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1960",
+      "rating": 8
+    },
+    {
+      "title": "The Silence",
+      "id": "tt7315484",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYzY2ZjM0NTgtNDc3OS00YmQwLTlkN2YtMmRmMDAxMmM0NTliXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Sci-Fi"
+      ],
+      "year": "2019",
+      "rating": 5.4
+    },
+    {
+      "title": "The Sacrifice",
+      "id": "tt0091670",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWQ5ODRjNzktOTI2OC00ZGFhLWE1MGMtYjEyNTNjODA3NmNlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1986",
+      "rating": 7.9
+    },
+    {
+      "title": "Toni Erdmann",
+      "id": "tt4048272",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODNiNmE5OWMtNDAxMy00YTQzLThjMGItMTAwOTNlNGM2ZDlhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2016",
+      "rating": 7.3
+    },
+    {
+      "title": "A Separation",
+      "id": "tt1832382",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDM0ZWRmMzctM2M5ZS00ZjU0LWIxN2MtNWNlNGY1ZDhjMDVhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2011",
+      "rating": 8.3
+    },
+    {
+      "title": "Leviathan",
+      "id": "tt2802154",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjAwMTY3MTU0Ml5BMl5BanBnXkFtZTgwNzE0ODAwMzE@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "2014",
+      "rating": 7.6
+    },
+    {
+      "title": "Loveless",
+      "id": "tt6304162",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzU3ODQ3MzQ5Nl5BMl5BanBnXkFtZTgwMDQwMDIzNDM@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2017",
+      "rating": 7.6
+    },
+    {
+      "title": "Burning",
+      "id": "tt7282468",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGU0YzFmZDYtODgxMC00NmQ0LTg0MjQtZDJlNzcwZDU5ZjFkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "year": "2018",
+      "rating": 7.4
+    },
+    {
+      "title": "Drive My Car",
+      "id": "tt14039582",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGE5ZWRhYjYtNzVkMS00ZGU3LTg2MTMtODYyMmJlMDMyZjU0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2021",
+      "rating": 7.5
+    },
+    {
+      "title": "The Farewell",
+      "id": "tt8637428",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjdlZDI1OWYtZWU4MC00NDhkLThmOWEtMTZiODFhZThkMjA4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2019",
+      "rating": 7.5
+    },
+    {
+      "title": "Another Round",
+      "id": "tt10288566",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjYxN2EwYjUtNzdiOS00NTgwLTgwNzMtZmE1NGMzYTYxNzBjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2020",
+      "rating": 7.7
+    },
+    {
+      "title": "The Great Beauty",
+      "id": "tt2358891",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTQ0ODg1OTQ2Nl5BMl5BanBnXkFtZTgwNTc2MDY1MDE@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2013",
+      "rating": 7.7
+    },
+    {
+      "title": "Roma",
+      "id": "tt6155172",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTU0OTc3ODk4Ml5BMl5BanBnXkFtZTgwMzM4NzI5NjM@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2018",
+      "rating": 7.7
+    },
+    {
+      "title": "The Square",
+      "id": "tt4995790",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTQ3NzJhYjktYmRkYy00ODMxLThhMGItYWQyODJmZjEyMTgzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2017",
+      "rating": 7.1
+    },
+    {
+      "title": "Aguirre, the Wrath of God",
+      "id": "tt0068182",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGYyMDRhYTgtMjIzNy00OGQyLTk4MTEtZTM2ODlmNjc0NTlhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Biography"
+      ],
+      "year": "1972",
+      "rating": 7.8
+    },
+    {
+      "title": "Z",
+      "id": "tt0065234",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDRkZGI0YTctNWRiNy00MTFhLWE2NTQtM2Y3YTY0MTM0MGE0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1969",
+      "rating": 8.1
+    },
+    {
+      "title": "Dekalog",
+      "id": "tt0092337",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZmUzZjk0NjEtOTFjMC00NDI2LTkwZmEtZWIxYjVjNDEwNWZiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1989–1990",
+      "rating": 8.9
+    },
+    {
+      "title": "The Ascent",
+      "id": "tt0075404",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDIwYjY1ZDUtYzc4Yi00OGMzLTkzMjMtZTMxNDhiMmM0OTljXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1977",
+      "rating": 8.2
+    },
+    {
+      "title": "The Life of Oharu",
+      "id": "tt0045112",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2IwNjZjNDgtODE4Yy00OGZkLThiOTMtODk1ODEzNDE1MGNmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1952",
+      "rating": 8.1
+    },
+    {
+      "title": "Ugetsu",
+      "id": "tt0046478",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjk2NmRiMWItOTNlOS00OTgyLWE4NWItZGM0Mjk1YmE5ZTg4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "War"
+      ],
+      "year": "1953",
+      "rating": 8.1
+    },
+    {
+      "title": "Harakiri",
+      "id": "tt0056058",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZThiZjU5ZDQtZDI4Mi00ZGYyLTkzOTktYmIzZTFlZTkxYzg5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Action",
+        "Drama",
+        "Mystery"
+      ],
+      "year": "1962",
+      "rating": 8.6
+    },
+    {
+      "title": "Kwaidan",
+      "id": "tt0058279",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTYwYmVkNzktMzA0My00NmYyLTg3ZjktYjFlMDVlNzEwN2I0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "year": "1964",
+      "rating": 7.9
+    },
+    {
+      "title": "Sans Soleil",
+      "id": "tt0084628",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjNhOTg4YjQtNDVkYi00MWQxLTg5NzQtNjk4MmJhZWIzMmM0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Documentary",
+        "Drama"
+      ],
+      "year": "1983",
+      "rating": 7.7
+    },
+    {
+      "title": "The Gospel According to St. Matthew",
+      "id": "tt0058715",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGY5N2Q5MDgtNGZkNi00NjNhLTg5Y2UtNmE4MDdkYTY4OWQ4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Drama",
+        "History"
+      ],
+      "year": "1964",
+      "rating": 7.6
+    },
+    {
+      "title": "The Battle of Algiers",
+      "id": "tt0058946",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY2Mjk0OGEtYTM3Yy00ZWZiLWFhNjAtNGExMjEzNGVmMDMxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1966",
+      "rating": 8.1
+    },
+    {
+      "title": "La Dolce Vita",
+      "id": "tt0053779",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZTMwMzZiM2QtNzVmNi00MWYzLTk0NWItYmFkMDA5MGViMWFhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1960",
+      "rating": 8
+    },
+    {
+      "title": "Nights of Cabiria",
+      "id": "tt0050783",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYmM0NDA3MzUtYzA1OC00ZDc0LWFlNWUtYjJmOTIxYjkyNGY4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1957",
+      "rating": 8.1
+    },
+    {
+      "title": "Amarcord",
+      "id": "tt0071129",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDFiMDIwMjQtNGFjYS00YTNiLTk5MjctZDYxMmRiNDUyNDZjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1973",
+      "rating": 7.8
+    },
+    {
+      "title": "Shoeshine",
+      "id": "tt0038913",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzNmOTIzMzYtYjBhZS00NTBiLTgxNmQtZDUzMmI4ZmU1NWVhXkEyXkFqcGdeQXVyMTIyNzY1NzM@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1946",
+      "rating": 8
+    },
+    {
+      "title": "Umberto D.",
+      "id": "tt0045274",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWRkY2VmOTEtMTk5My00OWZmLWFmYWMtODE3ZmYyZTBhNTE0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1952",
+      "rating": 8.2
+    },
+    {
+      "title": "Roma, Open City",
+      "id": null,
+      "poster": null,
+      "genres": [],
+      "year": null,
+      "rating": null
+    },
+    {
+      "title": "The Flowers of St. Francis",
+      "id": "tt0042477",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjE0YjI2YjYtMjdlMC00NDEzLWE1YTctYWFlZDg5OTRlYTc2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Biography",
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1950",
+      "rating": 7.3
+    },
+    {
+      "title": "Germany Year Zero",
+      "id": "tt0039417",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzBjZmUxNWQtMjkyMS00YWFhLWFjODUtNTk3ZjllMWE3NjgwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1948",
+      "rating": 7.8
+    },
+    {
+      "title": "Sátántangó",
+      "id": "tt0111341",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2U1ZGYwNTItMjcwMS00ZTdjLWE2OWUtNDI5M2JlNjdmMTZlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1994",
+      "rating": 8.2
+    },
+    {
+      "title": "Werckmeister Harmonies",
+      "id": "tt0249241",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTdlOWFlMjYtOWFlNy00Nzk5LTljZDAtMDBmYTNjMWIxZTRmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "year": "2000",
+      "rating": 8
+    },
+    {
+      "title": "The Turin Horse",
+      "id": "tt1316540",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTMyNzg1MzM2Ml5BMl5BanBnXkFtZTcwMzQ5NjcxNw@@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2011",
+      "rating": 7.7
+    },
+    {
+      "title": "Damnation",
+      "id": "tt6106704",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWRjMTdkYTktNjI0ZS00N2YzLTliMzktNTc3ODhjYzQxMmE2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Western"
+      ],
+      "year": "2017–2018",
+      "rating": 7.6
+    },
+    {
+      "title": "Ashes and Diamonds",
+      "id": "tt0052080",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjc4ZGEwMmItZGI3OS00Y2NiLWFlMDUtNmIwY2NhZGFmNjAxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance",
+        "War"
+      ],
+      "year": "1958",
+      "rating": 7.7
+    },
+    {
+      "title": "Man of Marble",
+      "id": "tt0075902",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMmU3ODY5MGUtYmU4Ni00YWNiLWJkMjgtNjVmZjBiMzI2ZGMxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1977",
+      "rating": 7.7
+    },
+    {
+      "title": "Man of Iron",
+      "id": "tt0082222",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZmE4N2Q0ZWItNjRiNC00YzkyLWE2MmYtNzdhYjQ2YWVkZGQ5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "History"
+      ],
+      "year": "1981",
+      "rating": 7.3
+    },
+    {
+      "title": "A Short Film About Love",
+      "id": "tt0095467",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMzkwYjBlMzktNGJiNi00OTk4LTlkMDYtOGQ5MjBkNmFhMzY4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1988",
+      "rating": 8.1
+    },
+    {
+      "title": "A Short Film About Killing",
+      "id": "tt0095468",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2YwNzQyMWItZjliNC00YmQzLWFkZjktYWY5ODExMGNkOTEzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1988",
+      "rating": 8
+    },
+    {
+      "title": "Knife in the Water",
+      "id": "tt0056291",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZDQ1ODZkNDItNWU4MC00NDhmLTliNWItMzYxYTlmMDMyZmU5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1962",
+      "rating": 7.4
+    },
+    {
+      "title": "The Tenant",
+      "id": "tt0074811",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGJhMzIzZWItOWRhOC00NzY0LTg4N2UtNDkxNTQ4NGNmZWNkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1976",
+      "rating": 7.6
+    },
+    {
+      "title": "Repulsion",
+      "id": "tt0059646",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTE0YzBjNWEtZTE4NC00ZmM5LTllZmUtZGYwOGFlYWVjOGU2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Thriller"
+      ],
+      "year": "1965",
+      "rating": 7.6
+    },
+    {
+      "title": "Cul-de-Sac",
+      "id": "tt0060268",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGFiYTVhMDItZWZhMi00NmY4LWE2YjEtYzU4NmVjZDRhMDA1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1966",
+      "rating": 7
+    },
+    {
+      "title": "Tess",
+      "id": "tt0080009",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYjEyZDk4MDMtNzZhMy00MDY1LTk3YTEtZmM0NTAwMjMyMmIzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1979",
+      "rating": 7.3
+    },
+    {
+      "title": "The Saragossa Manuscript",
+      "id": "tt0059643",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmNjN2Y3NTYtZTkzMy00ODJkLWIxYjUtMmQwOTVlZWRkOTc0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Adventure",
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1965",
+      "rating": 7.8
+    },
+    {
+      "title": "A Generation",
+      "id": "tt0048500",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNzIyOTQ5YjUtZWE2Ny00YzMyLTgxNTQtNzY1M2UwZTE1MmY3XkEyXkFqcGdeQXVyNzgzODI1OTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1955",
+      "rating": 7.1
+    },
+    {
+      "title": "Canal",
+      "id": "tt2517658",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTg2MTQ0MDIxNV5BMl5BanBnXkFtZTgwODM5NTg2NTE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror",
+        "Mystery"
+      ],
+      "year": "2014",
+      "rating": 5.8
+    },
+    {
+      "title": "Sweet Movie",
+      "id": "tt0072235",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTEwMTIxNDM4OTVeQTJeQWpwZ15BbWU3MDQyMjE2NDE@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Mystery"
+      ],
+      "year": "1974",
+      "rating": 6
+    },
+    {
+      "title": "Three Colors: Blue",
+      "id": "tt0108394",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNWMxNWE2NGYtMzYwOS00NmJhLTgwNjAtNGM3ODIwNjU5MTZiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music",
+        "Mystery"
+      ],
+      "year": "1993",
+      "rating": 7.8
+    },
+    {
+      "title": "Three Colors: White",
+      "id": "tt0111507",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWUyMWJiYTEtNmIzYi00OTYxLTlkYjEtMGFjMjY3NDc5Mjk0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Romance"
+      ],
+      "year": "1994",
+      "rating": 7.6
+    },
+    {
+      "title": "Three Colors: Red",
+      "id": "tt0111495",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTQ0YTQyYzItNGEzMi00NmI4LWJkOTMtOWMyMjAwMWEzYTZhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Romance"
+      ],
+      "year": "1994",
+      "rating": 8.1
+    },
+    {
+      "title": "Blow-Up",
+      "id": "tt0060176",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGFlNzlhYWMtZmZkZi00YmYyLWJiZjgtNmQ1MzkyOGQ5NDdjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "year": "1966",
+      "rating": 7.4
+    },
+    {
+      "title": "The Passenger",
+      "id": "tt0073580",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTgwMWUxYWEtZDA3NC00Y2I4LTgzMGEtMTkwYTE5YzI2ODlmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1975",
+      "rating": 7.5
+    },
+    {
+      "title": "The Night",
+      "id": "tt8102806",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTdiN2ZmMmUtMGJhYi00NWNmLThlNmMtOWIxM2ZmNTdhNDhkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Horror",
+        "Mystery",
+        "Thriller"
+      ],
+      "year": "2020",
+      "rating": 5.5
+    },
+    {
+      "title": "L'Eclisse",
+      "id": "tt0056736",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGFhOWE1NzAtZjVlMC00YTA5LWE5ZjYtNTUxNGU2MGQ1ODQ1XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1962",
+      "rating": 7.7
+    },
+    {
+      "title": "Red Desert",
+      "id": "tt0058003",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGI2YzgyNjgtNDcxZi00ZTVjLThhMDAtMTdlYTBlNmIxYzExXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1964",
+      "rating": 7.4
+    },
+    {
+      "title": "Journey to Italy",
+      "id": "tt0046511",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTkwZjdlMjMtYTM5MC00NjhlLWJkOTgtNDVlOWRhY2M0ODRhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1954",
+      "rating": 7.3
+    },
+    {
+      "title": "Europe '51",
+      "id": "tt0043511",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTRiZTkzNDYtMmI1Yi00ODY0LThiNTQtNmRjMmI1YmY3YzlkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1952",
+      "rating": 7.4
+    },
+    {
+      "title": "Stromboli",
+      "id": "tt0041931",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY0NzcwNmEtMmE5My00ZWUwLWEyYWItM2NiMWZmNWIyNzFiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1950",
+      "rating": 7.2
+    },
+    {
+      "title": "Eternal Sunshine of the Spotless Mind",
+      "id": "tt0338013",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY4NzcwODg3Nl5BMl5BanBnXkFtZTcwNTEwOTMyMw@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance",
+        "Sci-Fi"
+      ],
+      "year": "2004",
+      "rating": 8.3
+    },
+    {
+      "title": "Synecdoche, New York",
+      "id": "tt0383028",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA0MjIyOTI3MF5BMl5BanBnXkFtZTcwODM5NTY5MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2008",
+      "rating": 7.5
+    },
+    {
+      "title": "Adaptation",
+      "id": "tt16977500",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNGM0MjhkMjctZWQ0MS00MjNhLTllOTMtOWQyOTQ1NjU0NDczXkEyXkFqcGdeQXVyMjg0NzU0ODQ@._V1_SX300.jpg",
+      "genres": [
+        "Documentary",
+        "Action"
+      ],
+      "year": "2023",
+      "rating": null
+    },
+    {
+      "title": "Being John Malkovich",
+      "id": "tt0120601",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNDExODk1MTktNzRiYS00MWEyLTgyOWItYTI1OWY4NzI1NDM2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "1999",
+      "rating": 7.7
+    },
+    {
+      "title": "Lost in Translation",
+      "id": "tt0335266",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTUxMzk0NDg1MV5BMl5BanBnXkFtZTgwNDg0NjkxMDI@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2003",
+      "rating": 7.7
+    },
+    {
+      "title": "There Will Be Blood",
+      "id": "tt0469494",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjAxODQ4MDU5NV5BMl5BanBnXkFtZTcwMDU4MjU1MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2007",
+      "rating": 8.2
+    },
+    {
+      "title": "No Country for Old Men",
+      "id": "tt0477348",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "2007",
+      "rating": 8.2
+    },
+    {
+      "title": "Fargo",
+      "id": "tt0116282",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjg4MWE0MjEtODFhNy00MjA5LTg5ODktMzgwNWFmZTAwNjBlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1996",
+      "rating": 8.1
+    },
+    {
+      "title": "The Big Lebowski",
+      "id": "tt0118715",
+      "poster": "https://m.media-amazon.com/images/M/MV5BY2E3OWQ5OWYtYTRkMC00NjVjLWIzZDQtNmRmM2ZiYTIyYmYxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Crime"
+      ],
+      "year": "1998",
+      "rating": 8.1
+    },
+    {
+      "title": "A Serious Man",
+      "id": "tt1019452",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTQ0MWU5ODItMmY0Yy00NTM1LWJjMmItMjg4MDgwMTE5YmY5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "2009",
+      "rating": 7
+    },
+    {
+      "title": "Inside Llewyn Davis",
+      "id": "tt2042568",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjAxNjcyNDQxM15BMl5BanBnXkFtZTgwNzU2NDA0MDE@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "year": "2013",
+      "rating": 7.4
+    },
+    {
+      "title": "Uncle Boonmee Who Can Recall His Past Lives",
+      "id": "tt1588895",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTc2MjAxMzI3NV5BMl5BanBnXkFtZTcwMDE3MDU0NA@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "2010",
+      "rating": 6.7
+    },
+    {
+      "title": "Memoria",
+      "id": "tt8399288",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTFkZjU3MGUtM2MxNS00MzM5LTg3NGQtMTFkYWViNWFiNmVlXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Sci-Fi"
+      ],
+      "year": "2021",
+      "rating": 6.4
+    },
+    {
+      "title": "Tropical Malady",
+      "id": "tt0381668",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNjQxMWM3NjMtNmQ4Mi00YjIzLTgyMGUtZGFjNDk4NTY3YWFkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Romance"
+      ],
+      "year": "2004",
+      "rating": 7.1
+    },
+    {
+      "title": "Blissfully Yours",
+      "id": "tt0317171",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODAxMDllZTItM2RlYy00MmQwLWFiZDItYjg5YWUzMDhlZjhmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "2002",
+      "rating": 6.9
+    },
+    {
+      "title": "Syndromes and a Century",
+      "id": "tt0477731",
+      "poster": "https://m.media-amazon.com/images/M/MV5BM2JmYTVlYWQtOTc0Yi00ZjNlLWIzNjMtYzc5ZTA3ZjkzMTMxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2006",
+      "rating": 7.3
+    },
+    {
+      "title": "Cemetery of Splendour",
+      "id": null,
+      "poster": null,
+      "genres": [],
+      "year": null,
+      "rating": null
+    },
+    {
+      "title": "The Killing of a Chinese Bookie",
+      "id": "tt0074749",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTFjOWYxZDctOGFkNS00OTljLTkxOGMtNzgwOGVkNTkzOWJjXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "1976",
+      "rating": 7.3
+    },
+    {
+      "title": "Opening Night",
+      "id": "tt0079672",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDVlYjdiZDctMzQwMi00YTE4LTlmZTItZGUyNDQ5MjA1ODgwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1977",
+      "rating": 7.9
+    },
+    {
+      "title": "Love Streams",
+      "id": "tt0087644",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYmMxYzJmOTQtMTc2NS00Njg2LTk5OTItNDUxNWMzMjQyODhhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1984",
+      "rating": 7.6
+    },
+    {
+      "title": "A Woman Under the Influence",
+      "id": "tt0072417",
+      "poster": "https://m.media-amazon.com/images/M/MV5BODk2MWJmN2MtYmVhMi00MjZjLTlhZTMtMmM2ZWRjZDc2ZjQ2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "year": "1974",
+      "rating": 8
+    },
+    {
+      "title": "Husbands",
+      "id": "tt0065867",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGM4YzI5YjQtZWNmMC00YTEyLWIxNTAtMWE2ODUxZWQwYjQxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama"
+      ],
+      "year": "1970",
+      "rating": 7.1
+    },
+    {
+      "title": "The Long Goodbye",
+      "id": "tt0070334",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMGQwZTBjMGQtNjUzMy00Zjg1LWE5OTktNmM4MjNhZmUxZjk4XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Drama"
+      ],
+      "year": "1973",
+      "rating": 7.5
+    },
+    {
+      "title": "The Killing",
+      "id": "tt1637727",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTQ5MTUxMzU3Ml5BMl5BanBnXkFtZTgwMDU3NDYxMjE@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Mystery"
+      ],
+      "year": "2011–2014",
+      "rating": 8.3
+    },
+    {
+      "title": "Paths of Glory",
+      "id": "tt0050825",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmQ2NmI2ODYtMDQzNS00NzQyLTkzZjgtZmZlYTQ5MTc1OWU3XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1957",
+      "rating": 8.4
+    },
+    {
+      "title": "Lolita",
+      "id": "tt0056193",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWViYzBiNDgtNmUyZC00MDIxLTg1ZmQtNjNkZjRkZjcwZmEzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Romance"
+      ],
+      "year": "1962",
+      "rating": 7.5
+    },
+    {
+      "title": "A Clockwork Orange",
+      "id": "tt0066921",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTY3MjM1Mzc4N15BMl5BanBnXkFtZTgwODM0NzAxMDE@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Sci-Fi"
+      ],
+      "year": "1971",
+      "rating": 8.2
+    },
+    {
+      "title": "Full Metal Jacket",
+      "id": "tt0093058",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYWUzNzZkNzUtNDdiYy00Nzk5LTgxMmItNTk0MjRjNjdjNDA0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "year": "1987",
+      "rating": 8.2
+    },
+    {
+      "title": "Eyes Wide Shut",
+      "id": "tt0120663",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZTQ0MmM5MDAtYmYyZS00MzlmLTlhZTAtZDJlZWY5ZTZkZjZmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Mystery",
+        "Thriller"
+      ],
+      "year": "1999",
+      "rating": 7.5
+    },
+    {
+      "title": "The Shining",
+      "id": "tt0081505",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmM5ZThhY2ItOGRjOS00NzZiLWEwYTItNDgyMjFkOTgxMmRiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Horror"
+      ],
+      "year": "1980",
+      "rating": 8.4
+    },
+    {
+      "title": "Spartacus",
+      "id": "tt1442449",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNTc4ZjlkNjUtOWZlMS00ODQ0LTg2MWUtMjBkNjMwOTJkOWZmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Action",
+        "Adventure",
+        "Biography"
+      ],
+      "year": "2010–2013",
+      "rating": 8.5
+    },
+    {
+      "title": "La Haine",
+      "id": "tt0113247",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMThlMDA3NDYtZGM2Zi00NmJhLThlYWItZjViZTkzZWU1ZWRiXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "year": "1995",
+      "rating": 8.1
+    },
+    {
+      "title": "The Piano Teacher",
+      "id": "tt0254686",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOGE3ZjE2NjItMGIyZi00NjMxLWJiZWItMWJmMzZjOTgzZjJhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music"
+      ],
+      "year": "2001",
+      "rating": 7.5
+    },
+    {
+      "title": "Funny Games",
+      "id": "tt0808279",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTg4OTExNTYzMV5BMl5BanBnXkFtZTcwOTg1MDU1MQ@@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+      ],
+      "year": "2007",
+      "rating": 6.5
+    },
+    {
+      "title": "Cache",
+      "id": "tt0191859",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNmRlM2EwYWQtMGRhMy00Zjg0LTgzNDItMTA1NDgyODY5ZTIxXkEyXkFqcGdeQXVyNTg3OTAwODA@._V1_SX300.jpg",
+      "genres": [
+        "Short"
+      ],
+      "year": "1998",
+      "rating": 6.2
+    },
+    {
+      "title": "Happy End",
+      "id": "tt5304464",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGIyNDcxNzQtZTI2Yi00OTYxLTg2ZTAtYmM3NjY5MjU5ZDc5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2017",
+      "rating": 6.6
+    },
+    {
+      "title": "The Seventh Continent",
+      "id": "tt0098327",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjdkMmMzYzMtMzMwOC00ODMwLTk0MzctYmNkMjY5MTMyNTY2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1989",
+      "rating": 7.6
+    },
+    {
+      "title": "Time of the Gypsies",
+      "id": "tt0097223",
+      "poster": "https://m.media-amazon.com/images/M/MV5BOTRkOTAzMzQtN2JjYi00YmQzLTg1YTYtMzk0ZWQ5N2Q3MDIzXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Drama"
+      ],
+      "year": "1988",
+      "rating": 8.1
+    },
+    {
+      "title": "Black Cat, White Cat",
+      "id": "tt0118843",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZjdmNzIwYzEtMGZhNi00OTVmLWJmZGItOTNlZTkzZDA1OWY0XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Crime",
+        "Romance"
+      ],
+      "year": "1998",
+      "rating": 8
+    },
+    {
+      "title": "Underground",
+      "id": "tt0114787",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZGI3MGFhMTgtMDJjOC00ODU1LTlhMTQtZmYyZDQ3YWQxYjc5XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Comedy",
+        "Drama",
+        "Fantasy"
+      ],
+      "year": "1995",
+      "rating": 8
+    },
+    {
+      "title": "Dancer in the Dark",
+      "id": "tt0168629",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMDg3NWFlYWEtZjQ3Ny00Y2ZjLWI3ZWYtN2ZmMDA4MThkZTg2XkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Musical"
+      ],
+      "year": "2000",
+      "rating": 7.9
+    },
+    {
+      "title": "Breaking the Waves",
+      "id": "tt0115751",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTdjYjg4MTAtMzU4Ny00ODVkLTlhZDItOThiMDBhODI4MTVhXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "1996",
+      "rating": 7.8
+    },
+    {
+      "title": "Melancholia",
+      "id": "tt1527186",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMTk4NjM0MjI3MV5BMl5BanBnXkFtZTcwNjcxMDYzNg@@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Sci-Fi"
+      ],
+      "year": "2011",
+      "rating": 7.1
+    },
+    {
+      "title": "The House That Jack Built",
+      "id": "tt4003440",
+      "poster": "https://m.media-amazon.com/images/M/MV5BY2Q3MDFiZGQtMjc4NS00MDJiLWFmYjgtNmI0MTQwMzUyOWNmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Crime",
+        "Drama",
+        "Horror"
+      ],
+      "year": "2018",
+      "rating": 6.8
+    },
+    {
+      "title": "Ida",
+      "id": "tt2718492",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMjI1ODAyN2EtYzg3Mi00OWY5LWI2MzgtMmVlNGRjZmNjMDgxXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2013",
+      "rating": 7.4
+    },
+    {
+      "title": "Cold War",
+      "id": "tt6543652",
+      "poster": "https://m.media-amazon.com/images/M/MV5BMWQ5ZjYyMjAtNzBkMS00ZDJkLThmMmQtYTBjOTRiMjhkNGNkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama",
+        "Music",
+        "Romance"
+      ],
+      "year": "2018",
+      "rating": 7.5
+    },
+    {
+      "title": "Corpus Christi",
+      "id": "tt8649186",
+      "poster": "https://m.media-amazon.com/images/M/MV5BZWRmNDM1ZTEtNjE1ZC00MGJkLWJhNzYtYWFiNTIwNjdjN2VmXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2019",
+      "rating": 7.7
+    },
+    {
+      "title": "The Last Black Man in San Francisco",
+      "id": "tt4353250",
+      "poster": "https://m.media-amazon.com/images/M/MV5BYTUyNTdhNmUtYzU5Zi00ZTI0LTg3NzQtNjM5ZmFkZWNiOTYwXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2019",
+      "rating": 7.3
+    },
+    {
+      "title": "Minari",
+      "id": "tt10633456",
+      "poster": "https://m.media-amazon.com/images/M/MV5BNWVmNDE3YzMtZWQ3Ny00YjhkLWEzN2QtZjNhYWNlMGI2N2NkXkEyXkFqcGc@._V1_SX300.jpg",
+      "genres": [
+        "Drama"
+      ],
+      "year": "2020",
+      "rating": 7.4
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "liza_shem",
+      "email": "test@test.com",
+      "password": "markmark",
+      "avatar": "images/default-avatar.png",
+      "favorites": [
+        "tt0056801",
+        "tt0060827",
+        "tt1527186",
+        "tt0069293",
+        "tt0060107"
+      ],
+      "friends": [
+        2,
+        5545
+      ]
+    },
+    {
+      "id": "2",
+      "username": "rami",
+      "email": "friend@test.com",
+      "password": "ramipruz",
+      "avatar": "images/default-avatar.png",
+      "favorites": [
+        "tt0079944",
+        "tt1527186",
+        "tt0033467",
+        "tt19770238",
+        "tt14230458"
+      ],
+      "friends": [
+        1,
+        5545
+      ]
+    },
+    {
+      "id": "5545",
+      "username": "markusha",
+      "email": "mark1@mail.ru",
+      "password": "MarkHello",
+      "avatar": "images/default-avatar.png",
+      "favorites": [
+        "tt5040012",
+        "tt5727208",
+        "tt8772262",
+        "tt23468450",
+        "tt17526714"
+      ],
+      "friends": [
+        2,
+        1
+      ]
+    }
+  ],
+  "ratings": [
+    {
+      "userId": 1,
+      "movieId": "tt0056801",
+      "rate": 9,
+      "id": "ecc0",
+      "timestamp": "2025-01-04T12:35:59.892Z"
+    },
+    {
+      "userId": 2,
+      "movieId": "tt1527186",
+      "rate": 10,
+      "id": "813f",
+      "timestamp": "2025-01-05T12:35:59.892Z"
+    },
+    {
+      "id": "5ee5",
+      "userId": 1,
+      "movieId": "tt0079944",
+      "rate": 9,
+      "timestamp": "2025-01-06T12:35:59.892Z"
+    },
+    {
+      "id": "d715",
+      "userId": 5545,
+      "movieId": "tt0062622",
+      "rate": 8,
+      "timestamp": "2025-01-07T12:35:59.892Z"
+    },
+    {
+      "id": "7a5f",
+      "userId": 1,
+      "movieId": "tt19770238",
+      "rate": 10,
+      "timestamp": "2025-01-09T12:30:59.892Z"
+    },
+    {
+      "id": "6192",
+      "userId": 5545,
+      "movieId": "tt1262426",
+      "rate": 7,
+      "timestamp": "2025-01-09T12:37:58.406Z"
+    },
+    {
+      "id": "a714",
+      "userId": 5545,
+      "movieId": "tt0079944",
+      "rate": 8,
+      "timestamp": "2025-01-09T20:10:07.491Z"
+    },
+    {
+      "id": "8259",
+      "userId": 5545,
+      "movieId": "tt7322224",
+      "rate": 7,
+      "timestamp": "2025-01-11T11:13:28.982Z"
+    }
+  ],
+  "lists": [
+    {
+      "id": "1",
+      "userId": "1",
+      "name": "favourites",
+      "movies": [
+        "tt0072443",
+        "tt0083658",
+        "tt2358891",
+        "tt4003440",
+        "tt0066921",
+        "tt0079944",
+        "tt7984734",
+        "tt0062622",
+        "tt0870984",
+        "tt0043014",
+        "tt1527186"
+      ]
+    },
+    {
+      "id": "2",
+      "userId": "1",
+      "name": "watch later",
+      "movies": [
+        "tt0062229"
+      ]
+    },
+    {
+      "id": "4d248c9ea9468",
+      "userId": "1",
+      "name": "series",
+      "movies": []
+    },
+    {
+      "id": "0a074b7b09fe8",
+      "userId": "1",
+      "name": "comfort movies",
+      "movies": []
+    },
+    {
+      "id": "0090b6a5b6f64",
+      "userId": "1",
+      "name": "good horrors",
+      "movies": []
+    },
+    {
+      "id": "3",
+      "userId": "2",
+      "name": "favourites",
+      "movies": []
+    },
+    {
+      "id": "4",
+      "userId": "2",
+      "name": "watch later",
+      "movies": []
+    },
+    {
+      "id": "5",
+      "userId": "5545",
+      "name": "favourites",
+      "movies": [
+        "tt5040012",
+        "tt5727208",
+        "tt8772262",
+        "tt23468450",
+        "tt17526714",
+        "tt1527186",
+        "tt0870984"
+      ]
+    },
+    {
+      "id": "6",
+      "userId": "5545",
+      "name": "watch later",
+      "movies": [
+        "tt0870984"
+      ]
+    },
+    {
+      "id": "e0a424839cded",
+      "userId": "5545",
+      "name": "really bad movies",
+      "movies": []
+    }
+  ]
+}
