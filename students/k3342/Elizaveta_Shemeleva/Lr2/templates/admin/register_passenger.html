@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>Register Passenger(s) to a Flight</h1>
+  <p>Provide the ticket number for the selected passengers:</p>
+
+  <form method="POST">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="default">Register Passengers</button>
+      <a href="{% url 'admin:flights_app_reservation_changelist' %}" class="button">Cancel</a>
+  </form>
+{% endblock %}

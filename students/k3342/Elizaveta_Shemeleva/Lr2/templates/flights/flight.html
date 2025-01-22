@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flight.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>Flight Details</h1>
+
+  <div class="container">
+    
+    <!-- Информация о рейсе -->
+    {% include 'flights/flight_details.html' with flight=flight %}
+
+    <!-- Доступные места -->
+    <div class="available-seats">
+      <h2>Available Seats</h2>
+      <ul>
+        {% for seat in available_seats %}
+          <li><a href="{% url 'submit_reservation' flight.pk seat.pk %}" class="seat-number">{{ seat.seat_number }}</a></li>
+        {% empty %}
+          <li>No available seats.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Нижняя часть: пассажиры и отзывы -->
+    <div class="lower-section">
+      
+      <!-- Пассажиры -->
+      <div class="passenger-list">
+        <h2>Passengers</h2>
+        <ul>
+          {% for passenger in passengers %}
+            <li class="passenger-item">{{ passenger.first_name }} {{ passenger.last_name }}</li>
+          {% empty %}
+            <li>No passengers for this flight.</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Отзывы -->
+      <div class="reviews">
+        <h2>Reviews</h2>
+        <div class="reviews-container">
+            {% for review in reviews %}
+              <div class="review">
+                <p><strong>{{ review.user.username }}</strong> {{ review.rating }}/10</p>
+                <p class="review-text">{{ review.comment_text }}</p> 
+              </div>
+            {% empty %}
+              <p>No reviews yet.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'submit_review' flight.pk %}" class="leave-comment">Leave a Comment</a>
+      </div>
+
+    </div>
+
+  </div>
+  <a href="{% url 'flights' %}" class="back-link">Back to Flights</a>
+
+{% endblock %}

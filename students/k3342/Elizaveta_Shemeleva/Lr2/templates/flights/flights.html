@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/flights.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="flights-title">Available Flights</h1>
+
+<div class="search-container">
+    <form method="get" action="{% url 'flights' %}" class="search-form">
+        <label>
+            <input type="text" name="q" value="{{ query }}" class="search-input" placeholder="Search flights...">
+        </label>
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <a href="{% url 'flights' %}" class="all-flights-button">All Flights</a>
+</div>
+
+<div class="flights-grid">
+    {% for flight in flights %}
+        <a href="{% url 'flight_detail' flight.pk %}" class="flight-card">
+            <h3 class="flight-number">{{ flight.flight_number }}</h3>
+            <div class="flight-info">
+                <p><strong>Airline:</strong> {{ flight.airline }}</p>
+                <p><strong>Origin:</strong> {{ flight.origin }}</p>
+                <p><strong>Destination:</strong> {{ flight.destination }}</p>
+                <p><strong>Departure:</strong> {{ flight.departure }}</p>
+                <p><strong>Arrival:</strong> {{ flight.arrival }}</p>
+                <p><strong>Type:</strong> {{ flight.type }}</p>
+                <p><strong>Gate Number:</strong> {{ flight.gate_number }}</p>
+            </div>
+        </a>
+    {% empty %}
+        <p class="no-flights">No flights found.</p>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+<div class="pagination">
+    {% if flights.has_previous %}
+        <a href="?q={{ query }}&page=1" class="page-link">First</a>
+        <a href="?q={{ query }}&page={{ flights.previous_page_number }}" class="page-link">Previous</a>
+    {% endif %}
+
+    <span class="page-info">Page {{ flights.number }} of {{ flights.paginator.num_pages }}</span>
+
+    {% if flights.has_next %}
+        <a href="?q={{ query }}&page={{ flights.next_page_number }}" class="page-link">Next</a>
+        <a href="?q={{ query }}&page={{ flights.paginator.num_pages }}" class="page-link">Last</a>
+    {% endif %}
+</div>
+
+{% endblock %}

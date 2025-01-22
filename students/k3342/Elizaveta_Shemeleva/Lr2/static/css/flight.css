@@ -1,0 +1,158 @@
+main {
+    margin-top: 120px;
+    width: 80%;
+    text-align: center;
+}
+
+/* Основная сетка */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+/* Информация о рейсе */
+.flight-details {
+    background-color: #364CA5;
+    color: white;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.flight-number a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Доступные места */
+.available-seats {
+    background-color: #AEBDF9;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+    height: 350px;
+}
+
+.available-seats ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Нижняя сетка: пассажиры и отзывы */
+.lower-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    grid-column: span 2;
+}
+
+/* Пассажиры */
+.passenger-list {
+    background-color: #DADADA;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+    height: 300px;
+}
+
+.passenger-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Отзывы */
+.reviews {
+    background-color: #DADADA;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Контейнер с прокруткой */
+.reviews-container {
+    max-height: 220px; /* Высота блока отзывов */
+    overflow-y: auto; /* Вертикальная прокрутка */
+    padding-right: 10px;
+}
+
+.review {
+    background-color: white;
+    padding: 15px;
+    border-radius: 24px;
+    margin-bottom: 15px;
+}
+
+.review-text {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.review-date {
+    font-size: 14px;
+    color: #777;
+    margin-top: 5px;
+}
+/* Кнопки */
+.styled-button, .leave-comment {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #364CA5;
+    color: white;
+    text-decoration: none;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.styled-button:hover, .leave-comment:hover {
+    background: #2B3F85;
+}
+
+/* Ссылка назад */
+.back-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.back-link::before {
+    content: "←";
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .lower-section {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews {
+        grid-column: span 1;
+    }
+}

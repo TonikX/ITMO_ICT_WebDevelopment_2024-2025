@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - JetSet</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/auth-style.css' %}">
+</head>
+<body>
+    <div class="auth-container">
+        <h1 class="logo">JetSet</h1>
+        <div class="auth-box-login">
+            <h2 class="auth-title">Welcome Back!</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="id_username">Username:</label>
+                    <input type="text" id="id_username" name="username" autocomplete="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="id_password">Password:</label>
+                    <input type="password" id="id_password" name="password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p class="auth-link">Don’t have an account? <a href="/register/">Sign Up!</a></p>
+        </div>
+    </div>
+</body>
+</html>

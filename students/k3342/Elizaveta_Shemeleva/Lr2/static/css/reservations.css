@@ -1,0 +1,108 @@
+main {
+    margin-top: 120px;
+    width: 80%;
+    text-align: center;
+}
+
+/* Заголовок страницы */
+.reservations-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Контейнер всех бронирований */
+.reservations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Карточка бронирования */
+.reservation-card {
+    background-color: #DADADA;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+}
+
+.reservation-card h3 {
+    font-size: 20px;
+    color: #364CA5;
+    margin-bottom: 10px;
+}
+
+.reservation-card p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Кнопки "Edit" и "Delete" */
+.reservation-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.edit-button {
+    background-color: white;
+    color: black;
+    border: 2px solid #ccc;
+    padding: 8px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.delete-button {
+    background-color: #AEBDF9;
+    color: black;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    background-color: #8FA6E6;
+}
+
+/* Сообщение "You don't have any reservations yet." */
+.no-reservations {
+    font-size: 24px;
+    color: #777;
+    margin-top: 20px;
+}
+
+/* Кнопка "Back to Flight Details" */
+.admin-button {
+    display: inline-block;
+    background-color: #364CA5;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 30px;
+}
+
+.admin-button:hover {
+    background-color: #2B3F85;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .reservations {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    .reservations-title {
+        font-size: 36px;
+    }
+}

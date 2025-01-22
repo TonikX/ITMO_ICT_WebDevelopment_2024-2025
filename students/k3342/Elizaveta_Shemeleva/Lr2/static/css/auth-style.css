@@ -1,0 +1,162 @@
+/* Общие стили */
+body {
+    font-family: "Trebuchet MS", sans-serif;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Логотип */
+.logo {
+    display: flex;
+    width: 328px;
+    height: 91px;
+    flex-direction: column;
+    justify-content: center;
+    color: #364CA5;
+    text-align: center;
+    font-family: "Radio Canada Big", sans-serif;
+    font-size: 90px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Общий контейнер */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+    margin-top: 0;
+}
+
+/* Оформление форм логина и регистрации */
+.auth-box-login {
+    background: #364CA5;
+    border-radius: 35px;
+    width: 548px;
+    height: 544px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box-login form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-box-register {
+    background: #364CA5;
+    border-radius: 35px;
+    width: 990px;
+    height: 760px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box-register form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Размеры форм */
+.login-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.register-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+}
+
+/* Заголовки */
+.auth-title {
+    font-size: 45px;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Поля ввода */
+.input-group {
+    width: 80%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 16px;
+    background: #F2F2F2;
+}
+
+/* Кнопки */
+.btn {
+    width: 80%;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: 500;
+    background: #AEBDF9;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #91A8E8;
+}
+
+/* Ссылки */
+.auth-link {
+    font-size: 18px;
+    color: #AEBDF9;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+.auth-link a {
+    color: #F2F2F2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}

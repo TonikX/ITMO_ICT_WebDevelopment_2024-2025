@@ -1,0 +1,55 @@
+/* Общие стили */
+body {
+    font-family: "Trebuchet MS", sans-serif;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* Хедер */
+header {
+    width: 100%;
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 70px;
+    font-family: "Radio Canada Big", sans-serif;
+    color: #364CA5;
+    text-decoration: none;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+    padding-right: 400px;
+}
+
+.navbar a {
+    font-size: 27px;
+    font-family: "Trebuchet MS", sans-serif;
+    text-decoration: none;
+    color: #000;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #364CA5;
+}
+
+.navbar a.active {
+    color: #364CA5;
+}

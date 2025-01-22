@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reservations.css' %}">
+{% endblock %}
+
+{% block title %}
+    My Reservations
+{% endblock %}
+
+{% block content %}
+    <h1 class="reservations-title">Reservations</h1>
+    <div class="reservations">
+        {% if reservations %}
+            {% for reservation in reservations %}
+                <div class="reservation-card"> <!-- Добавили правильный класс -->
+                    <h3>Reservation №{{ reservation.id }}</h3>
+                    <p><strong>Flight number:</strong> {{ reservation.flight.flight_number }}</p>
+                    <p><strong>Seat:</strong> {{ reservation.seat }}</p>
+                    <p><strong>First name:</strong> {{ reservation.first_name }}</p>
+                    <p><strong>Last name:</strong> {{ reservation.last_name }}</p>
+
+                    <div class="reservation-actions"> <!-- Блок с кнопками -->
+                        <a href="{% url 'edit_reservation' reservation.pk %}" class="edit-button">Edit</a>
+                        <a href="{% url 'delete_reservation' reservation.pk %}" class="delete-button">Delete</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3 class="no-reservations">You don't have any reservations yet.</h3>
+        {% endif %}
+    </div>
+
+{% endblock %}

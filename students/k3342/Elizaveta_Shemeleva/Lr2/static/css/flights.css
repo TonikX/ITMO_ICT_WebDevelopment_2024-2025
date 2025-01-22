@@ -1,0 +1,80 @@
+main {
+    margin-top: 120px;
+    width: 80%;
+    text-align: center;
+}
+
+.flights-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Поисковая строка */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 450px;
+    height: 40px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 24px;
+    border: 1px solid #ccc;
+}
+
+.search-button {
+    background: #364CA5;
+    color: #F2F2F2;
+    height: 40px;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.search-button:hover {
+    background: #2B3F85;
+}
+
+/* Сетка полетов */
+.flights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Карточка полета */
+.flight-card {
+    background-color: #DADADA;
+    text-decoration: none;
+    padding: 20px;
+    border-radius: 35px;
+    text-align: left;
+}
+
+.flight-card:hover {
+    transform: scale(1.03);
+}
+
+.flight-card h3 {
+    font-size: 20px;
+    text-decoration: none;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.flight-card p {
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+    margin: 5px 0;
+}

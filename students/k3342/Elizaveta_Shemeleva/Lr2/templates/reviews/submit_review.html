@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/submit_review.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    Submit Review for {{ flight.flight_number }}
+{% endblock %}
+
+{% block content %}
+    <div class="review-container">
+        <h1 class="highlight">Submit Review for Flight {{ flight.flight_number }}</h1>
+
+        <form method="post" class="review-form"> 
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="submit-button">Submit Review</button>
+        </form>
+
+        {% if form.errors %}
+        <div>
+            <p style="color:red;">Please correct the errors below:</p>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <a href="{% url 'flight_detail' flight.pk %}" class="back-link">Back to Flight Details</a>
+    </div>
+{% endblock %}

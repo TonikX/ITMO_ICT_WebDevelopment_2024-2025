@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JetSet</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <div class="logo">JetSet</div>
+    <div class="nav-container">
+        <nav>
+            <ul class="navbar">
+                <a href="{% url 'flights' %}" class="{% if request.resolver_match.url_name == 'flights' %}active{% endif %}">Flights</a>
+                <a href="{% url 'user_reservations' %}" class="{% if request.resolver_match.url_name == 'user_reservations' %}active{% endif %}">My Reservations</a>
+                <a href="{% url 'profile' %}" class="{% if request.path == '/profile/' %}active{% endif %}">Profile</a>
+                <a href="{% url 'logout' %}">Log Out</a>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
