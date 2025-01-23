@@ -1,0 +1,97 @@
+.body, .html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #F6F6F6;
+}
+.main {
+  flex: 1;
+  min-height: 100vh;
+}
+
+/* Начало хедера */
+.header {
+  color: #1D1D1D;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand{
+  color: #1D1D1D;
+}
+.navbar-brand:hover{
+  color: #FF7E61;
+}
+.logo {
+  max-width: 100px;
+  height: auto;
+}
+.nav-item{
+  padding-left: 10px;
+}
+/* Конец хедера */
+
+/* Начало кнопок */
+.btn:focus,.btn:active {
+  outline: none;
+  box-shadow: none;
+}
+.btn-custom{
+  display: flex;
+  align-items: center; /* Вертикальное выравнивание текста внутри кнопки */
+  justify-content: center;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #1b1f15;
+  border-radius: 7px;
+  background-color: #F6F6F6;
+}
+.btn-custom:hover {
+  background-color: #FF7E61;
+}
+.btn-custom-primary{
+  background-color: #FF7E61;
+  outline-width: 1px;
+  outline-style: solid;
+  border-color: #1b1f15;
+  border-radius: 7px;
+}
+
+/* Конец кнопок */
+
+.form-control, .form-select{
+  background-color: #F6F6F6;
+  border-radius: 7px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+.form-control:focus, .form-select:focus, .form-control:active, .form-select:active {
+  border-color: #1b1f15;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.card-body, .vacancy-container, .login-container, .signup-container, .user-container, .employeraccount-container{
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  width: 100%;
+  background-color: #1b1f15;
+  color: white;
+  padding: 10px 0;
+}
+
+svg {
+  stroke: none;
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  fill: currentColor;
+}
+
+th, td {
+  padding: 8px; /* Добавляем отступы для ячеек */
+}
