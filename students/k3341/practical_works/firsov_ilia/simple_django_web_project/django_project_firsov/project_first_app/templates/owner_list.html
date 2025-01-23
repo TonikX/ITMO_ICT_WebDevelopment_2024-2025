@@ -1,0 +1,9 @@
+<h1>Owners</h1>
+<ul>
+    {% for owner in owners %}
+        <li>
+            {{ owner.user.first_name }} {{ owner.user.last_name }} -
+            <a href="{% url 'owner_detail' owner.pk %}">{{ owner.user.username }}</a>
+        </li>
+    {% endfor %}
+</ul>

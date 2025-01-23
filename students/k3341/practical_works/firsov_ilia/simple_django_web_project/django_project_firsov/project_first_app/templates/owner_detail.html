@@ -1,0 +1,9 @@
+<h1>{{ owner.user.username }}'s Details</h1>
+<p><strong>Full Name:</strong> {{ owner.user.first_name }} {{ owner.user.last_name }}</p>
+<p><strong>Email:</strong> {{ owner.user.email }}</p>
+<p><strong>Passport Number:</strong> {{ owner.user.passport_id }}</p>
+<p><strong>Home Address:</strong> {{ owner.address }}</p>
+<p><strong>Nationality:</strong> {{ owner.country }}</p>
+<p><strong>Birth Date:</strong> {{ owner.date_of_birth }}</p>
+
+<a href="{% url 'owner_list' %}">Back to Owners List</a>

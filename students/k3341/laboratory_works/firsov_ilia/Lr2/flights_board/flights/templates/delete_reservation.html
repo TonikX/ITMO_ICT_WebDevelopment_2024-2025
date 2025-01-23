@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Reservation{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Delete Reservation for Flight {{ reservation.flight.flight_number }}</h2>
+    <p>Are you sure you want to delete your reservation for seat {{ reservation.seat_number }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #d9534f;">Confirm Deletion</button>
+    </form>
+    <p><a href="{% url 'my_reservations' %}">Cancel</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flight Board{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1><a href="{% url 'flight_list' %}">Flight Board</a></h1>
+        <nav class="main-nav">
+            <ul class="navbar-left">
+                <li><a href="{% url 'flight_list' %}">Flight List</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'my_reservations' %}">My Reservations</a></li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-right">
+                {% if user.is_authenticated %}
+                    <li>
+                        <form action="{% url 'logout' %}" method="post" class="logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-button">Log Out</button>
+                        </form>
+                    </li>                    {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <p>&copy; 2024 Flight Board</p>
+</footer>
+</body>
+</html>

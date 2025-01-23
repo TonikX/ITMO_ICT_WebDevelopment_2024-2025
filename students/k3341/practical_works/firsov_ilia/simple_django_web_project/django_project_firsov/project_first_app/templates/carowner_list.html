@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Owners List</title>
+</head>
+<body>
+    <h1>Owners</h1>
+    <ul>
+        {% for owner in object_list %}
+            <li>{{ owner.first_name }} {{ owner.last_name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

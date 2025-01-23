@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Flight {{ flight.flight_number }} Details{% endblock %}
+
+{% block content %}
+    <div class="flight-details-container">
+        <h2>Flight {{ flight.flight_number }} Details</h2>
+
+        <!-- Flight Information Section -->
+        <div class="info-section">
+            <p><strong>Airline:</strong> {{ flight.airline }}</p>
+            <p><strong>Departure:</strong> {{ flight.departure }}</p>
+            <p><strong>Arrival:</strong> {{ flight.arrival }}</p>
+            <p><strong>Gate:</strong> {{ flight.gate_number }}</p>
+        </div>
+
+        <!-- Passengers Table -->
+        {% if is_staff %}
+            <h3>Passengers</h3>
+            {% if passengers %}
+                <table class="passenger-table">
+                    <thead>
+                    <tr>
+                        <th>Passenger</th>
+                        <th>Seat Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for passenger in passengers %}
+                        <tr>
+                            <td>{{ passenger.user.username }}</td>
+                            <td>{{ passenger.seat_number }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No passengers registered for this flight yet.</p>
+            {% endif %}
+        {% endif %}
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <h3>Reviews</h3>
+            {% if reviews %}
+                <ul>
+                    {% for review in reviews %}
+                        <li><strong>{{ review.user.username }}</strong>
+                            ({{ review.comment_date|date:"F j, Y" }}): {{ review.comment_text }} - {{ review.rating }}/10
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews for this flight yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Reservation Section (Authenticated Users Only) -->
+        {% if user.is_authenticated %}
+            <div class="reservation-section">
+                <h3>Your Reservation</h3>
+                {% if user_reservation %}
+                    <p>You have reserved seat {{ user_reservation.seat_number }}.</p>
+                    <p>
+                        <a href="{% url 'edit_reservation' user_reservation.id %}" class="action-link">Edit</a> |
+                        <a href="{% url 'delete_reservation' user_reservation.id %}" class="action-link delete-link">Delete</a>
+                    </p>
+                {% else %}
+                    <form method="post" action="{% url 'reserve_seat' flight.id %}">
+                        {% csrf_token %}
+                        <label for="seat_number">Reserve Seat Number:</label>
+                        <input type="text" id="seat_number" name="seat_number" required>
+                        <button type="submit">Reserve Seat</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% else %}
+            <p><a href="{% url 'login' %}">Log in</a> to reserve a seat.</p>
+        {% endif %}
+    </div>
+{% endblock %}

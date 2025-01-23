@@ -1,0 +1,6 @@
+<h1>Driving Licenses</h1>
+<ul>
+    {% for license in licenses %}
+        <li>{{ license.license_num }} - {{ license.category }} for {{ license.owner }}</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,7 @@
+<h1>Car Details</h1>
+<p><strong>Registration Number:</strong> {{ car.reg_number }}</p>
+<p><strong>Make:</strong> {{ car.brand }}</p>
+<p><strong>Model:</strong> {{ car.model_name }}</p>
+<p><strong>Color:</strong> {{ car.color_desc }}</p>
+<a href="{% url 'car_update' car.pk %}">Edit</a>
+<a href="{% url 'car_delete' car.pk %}">Delete</a>

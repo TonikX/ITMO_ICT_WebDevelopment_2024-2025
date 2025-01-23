@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Reserve Seat{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Reserve a Seat on Flight {{ flight.flight_number }}</h2>
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="seat_number">Seat Number:</label>
+        <input type="text" id="seat_number" name="seat_number" required>
+        <button type="submit">Reserve Seat</button>
+    </form>
+    <p><a href="{% url 'flight_details' flight.id %}">Back to Flight Details</a></p>
+</div>
+{% endblock %}

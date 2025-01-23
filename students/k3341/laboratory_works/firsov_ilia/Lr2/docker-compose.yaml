@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:15
+    container_name: flights_db
+    restart: unless-stopped
+    volumes:
+      - flights_data:/var/lib/postgresql/data/
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    ports:
+      - "5431:5432"
+    env_file:
+      - .env
+
+
+volumes:
+  flights_data:

@@ -1,0 +1,13 @@
+site_name: Описание лабораторных работ
+nav:
+  - Home: index.md
+  - Lab1:
+      - Task 1: lab1/1.md
+      - Task 2: lab1/2.md
+      - Task 3: lab1/3.md
+      - Task 4: lab1/4.md
+      - Task 5: lab1/5.md
+  - Lab 2: lab2/index.md
+  - Lab 4: lab4/index.md
+theme:
+  name: dracula
