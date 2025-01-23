@@ -1,0 +1,12 @@
+site_name: 'Отчёт Web-программирование Лабораторная №3'
+theme:
+  name: 'material'
+nav:
+  - Home: docs/index.md
+  - Overview: docs/overview.md
+  - Models: docs/models.md
+  - Views: docs/views.md
+  - Forms: docs/serializers.md
+  - Admin: docs/admin.md
+  - Urls: docs/urls.md
+  - Practical Work: docs/pr_work.md

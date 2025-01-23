@@ -1,0 +1,11 @@
+site_name: Tour Management System
+nav:
+  - Home: docs/index.md
+  - Overview: docs/overview.md
+  - Endpoints: docs/api_reference/models.md
+  - Development:
+      - Models: docs/development/models.md
+      - Views: docs/development/views.md
+      - Templates: docs/development/templates.md
+      - Forms: docs/development/forms.md
+      - Static Files: docs/development/static_files.md

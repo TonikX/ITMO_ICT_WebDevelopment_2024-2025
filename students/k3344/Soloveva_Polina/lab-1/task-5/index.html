@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Оценки по дисциплинам</title>
+    <style>
+        body {
+            font-family: "SF Pro Text", sans-serif;
+            background-color: #e3efef;
+            color: #000000;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #000000;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 50%;
+            background-color: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin: 5px 0;
+            border-radius: 10px;
+            border: 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            width: 200px;
+            margin: 5px 0;
+            border-radius: 10px;
+            border: 0;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #68b5ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #007bff;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Оценки по дисциплинам</h1>
+    <table>
+        <tr><th>Дисциплина</th><th>Оценка</th></tr>
+        <!-- Таблица оценок будет динамически добавляться сервером -->
+    </table>
+    <form method="POST">
+        <input type="text" name="subject" placeholder="Дисциплина" required><br>
+        <input type="number" name="grade" placeholder="Оценка" min="1" max="100" required><br>
+        <input type="submit" value="Добавить">
+    </form>
+
+</body>
+</html>

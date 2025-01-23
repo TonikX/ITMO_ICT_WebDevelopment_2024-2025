@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Booking Information for {{ booking.tour.hotel }}</h1>
+
+    <div class="booking-info">
+        <h2>Tour Details</h2>
+        <p><strong>Agency:</strong> {{ booking.tour.agency.name }}</p>
+        <p><strong>Country:</strong> {{ booking.tour.country }}</p>
+        <p><strong>City:</strong> {{ booking.tour.city }}</p>
+        <p><strong>Description:</strong> {{ booking.tour.description }}</p>
+        <p><strong>Start Date:</strong> {{ booking.tour.start_date|date:"M. j, Y" }}</p>
+        <p><strong>End Date:</strong> {{ booking.tour.end_date|date:"M. j, Y" }}</p>
+        <p><strong>Price:</strong> {{ booking.total_price }} ₽</p>
+
+        <h2>Booking Details</h2>
+        <p><strong>{{ booking.num_people }} person{{ booking.num_people|pluralize }}</strong></p>
+        <p><strong>Booking Date:</strong> {{ booking.created}}</p>
+
+        <p><strong>Tariff:</strong> {{ booking.tariff.name }}</p>
+        <p><strong>Meal option:</strong> {{ booking.meal_option.name }}</p>
+
+        <p><strong>Status:</strong> {{ booking.is_confirmed|yesno:"Confirmed,Not confirmed" }}</p>
+        <p><strong>Booking Made By:</strong> {{ booking.user.username }}</p>
+
+        {% if user.is_staff %}
+            <a href="{% url 'view_bookings' %}">Back to User Bookings</a>
+        {% else %}
+            <a href="{% url 'my_bookings' %}">Back to My Bookings</a>
+        {% endif %}
+    </div>
+{% endblock %}

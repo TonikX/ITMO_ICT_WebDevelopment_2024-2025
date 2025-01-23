@@ -1,0 +1,32 @@
+site_name: 'Отчёт Web-программирование'
+theme:
+  name: 'material'
+nav:
+  - Home: lr3/index.md
+  - Лабораторная работа №1:
+    - Leetcode: lr1/leetcode.md
+    - Задание 1: lr1/task1.md
+    - Задание 2: lr1/task2.md
+    - Задание 3: lr1/task3.md
+    - Задание 4: lr1/task4.md
+    - Задание 5: lr1/task5.md
+  - Лабораторная работа №2:
+    - Overview: lr2/overview.md
+    - Models: lr2/models.md
+    - Views: lr2/views.md
+    - Forms: lr2/forms.md
+    - Admin: lr2/admin.md
+    - Urls: lr2/urls.md
+    - Leetcode: lr2/leetcode.md
+  - Лабораторная работа №3:
+    - Models: lr3/models.md
+    - Views: lr3/views.md
+    - Forms: lr3/serializers.md
+    - Admin: lr3/admin.md
+    - Urls: lr3/urls.md
+    - Practical Work: lr3/pr_work.md
+    - Leetcode: lr3/leetcode.md
+  - Лабораторная работа №4:
+    - Pages: lr4/pages.md
+    - Components: lr4/components.md
+    - Leetcode: lr4/leetcode.md

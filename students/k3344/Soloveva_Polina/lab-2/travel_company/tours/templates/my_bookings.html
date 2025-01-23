@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Bookings</h1>
+    <ul class="booking_list">
+        {% for booking in bookings %}
+        <li>
+            <div>
+                {{ booking.tour.hotel }} - {{ booking.tour.country }}, {{ booking.tour.city }}
+                <span class="{% if booking.is_confirmed %} status-confirmed {% else %} status-pending {% endif %}">
+                    {% if booking.is_confirmed %}
+                        (Confirmed)
+                    {% else %}
+                        (Pending Confirmation)
+                    {% endif %}
+                </span>
+            </div>
+            <div class="booking-buttons">
+                <a href="{% url 'booking_detail' booking.id %}">View Booking Information</a>
+                {% if not booking.is_confirmed %}
+                    <a href="{% url 'edit_booking' booking.id %}">Edit</a>
+                {% endif %}
+                <a href="{% url 'delete_booking' booking.id %}">Cancel</a>
+                {% if booking.is_confirmed %}
+                    <a href="{% url 'add_review' booking.tour.id %}" class="btn-add-review">Add Review</a>
+                {% endif %}
+            </div>
+
+        </li>
+        {% empty %}
+        <li>No bookings found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

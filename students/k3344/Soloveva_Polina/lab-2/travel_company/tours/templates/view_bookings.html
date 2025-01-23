@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>All Bookings</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>User</th>
+                <th>Tour</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.user.username }}</td>
+                    <td><a href="{% url 'booking_detail' booking.id %}">{{ booking.tour.hotel }}</a></td>
+                    <td>{{ booking.is_confirmed|yesno:"Confirmed,Not Confirmed" }}</td>
+                    <td>
+                        {% if not booking.is_confirmed %}
+                            <a href="{% url 'confirm_booking' booking.id %}">Confirm</a>
+                        {% else %}
+                            <span>Already Confirmed</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

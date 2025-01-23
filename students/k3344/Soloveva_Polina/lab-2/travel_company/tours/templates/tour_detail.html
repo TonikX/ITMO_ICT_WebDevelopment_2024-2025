@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ tour.hotel }}</h1>
+    <p><strong>Agency:</strong> {{ tour.agency.name }}</p>
+    <p><strong>Country:</strong> {{ tour.country }}</p>
+    <p><strong>City:</strong> {{ tour.city }}</p>
+    <p><strong>Description:</strong> {{ tour.description }}</p>
+    <p><strong>Dates:</strong> {{ tour.start_date|date:"M. d, Y" }} - {{ tour.end_date|date:"M. d, Y" }} ({{ nights }} nights)<p>
+</p>
+    <p><strong>Payment Conditions:</strong> {{ tour.payment_conditions }}</p>
+    <p><strong>Price:</strong> from {{ tour.get_base_price }} ₽</p>
+
+    {% if user.is_staff %}
+        <a class="booking-button" href="{% url 'edit_tour' tour.id %}">Edit</a>
+    {% else %}
+        <a class="booking-button" href="{% url 'book_tour' tour.id %}">Book This Tour</a>
+    {% endif %}
+
+    <h2>Reviews</h2>
+    <ul class="reviews">
+        {% for review in tour.reviews.all %}
+            <li>
+                <p class="user">
+                    <strong class="username">{{ review.user.username }}</strong>: {{ review.rating }}/10
+                </p>
+                <p>{{ review.text }}</p>
+                <p>
+                    <em class="date">Tour Dates:
+                        {% for booking in review.user.bookings.all %}
+                            {% if booking.tour == tour %}
+                                {{ booking.tour.start_date|date:"M. d, Y" }} - {{ booking.tour.end_date|date:"M. d, Y" }}
+                            {% endif %}
+                        {% endfor %}
+                    </em>
+                </p>
+            </li>
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

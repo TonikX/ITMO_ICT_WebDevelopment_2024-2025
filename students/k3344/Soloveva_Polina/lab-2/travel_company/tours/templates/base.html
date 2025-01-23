@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tour List{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_list.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tour_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/book_tour.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/my_bookings.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/booking_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/update_booking.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_review.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sold_tours.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_tour.css' %}">
+    <script type="text/javascript" src="{% static 'js/booking.js' %}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+</head>
+<body>
+    <!-- Меню для всех страниц -->
+    {% include 'menu.html' %}
+
+    <!-- Контент страницы -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

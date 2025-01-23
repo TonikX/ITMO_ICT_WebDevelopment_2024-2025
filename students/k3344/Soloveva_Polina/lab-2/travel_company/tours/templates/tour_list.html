@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Tour List</h1>
+
+    <!-- Форма поиска -->
+    <form class="tour-search" method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+<ul class="tour">
+    {% for tour in page_obj %}
+        <li>
+            <a href="{% url 'tour_detail' tour.id %}">{{ tour.hotel }}</a>
+            <p class="place"> {{ tour.country }} ({{ tour.city }})</p>
+            <p>
+                <span class="stars" id="stars-container-{{ tour.id }}" style="color: gold"></span> <!-- Уникальный id для каждого отеля -->
+            </p>
+            <script>
+                var stars = {{ tour.stars }};
+                var starsContainer = document.getElementById('stars-container-{{ tour.id }}');
+
+                for (var i = 1; i <= stars; i++) {
+                    starsContainer.innerHTML += "★";
+                }
+            </script>
+            <p>{{ tour.description }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

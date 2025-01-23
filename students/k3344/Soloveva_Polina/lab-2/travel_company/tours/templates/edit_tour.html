@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content">
+    <h2>Edit Tour: {{ tour.hotel }}</h2>
+    <form class="add-edit-tour-form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <h3>Tariffs</h3>
+        {{ tariff_formset.management_form }}
+        <div id="tariffs">
+            {% for form in tariff_formset %}
+                <div>
+                    {{ form.as_p }}
+                    <input type="checkbox" name="{{ form.DELETE.name }}" value="on"> Delete
+                    <button type="button" class="remove-tariff">Delete</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-tariff">Add tariff</button>
+
+        <h3>Meal Options</h3>
+        {{ meal_option_formset.management_form }}
+        <div id="meal-options">
+            {% for form in meal_option_formset %}
+                <div>
+                    {{ form.as_p }}
+                    <input type="checkbox" name="{{ form.DELETE.name }}" value="on"> Delete
+                    <button type="button" class="remove-meal">Delete</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-meal">Add meal option</button>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Добавление и удаление тарифов
+            document.getElementById('add-tariff').addEventListener('click', function () {
+                const tariffs = document.getElementById('tariffs');
+                const newForm = tariffs.children[0].cloneNode(true);
+                const totalForms = document.getElementById('id_tariff_form-TOTAL_FORMS');
+                newForm.querySelectorAll('input').forEach(input => {
+                    input.name = input.name.replace(/-\d+-/, `-${totalForms.value}-`);
+                });
+                totalForms.value = parseInt(totalForms.value) + 1;
+                tariffs.appendChild(newForm);
+            });
+
+            document.getElementById('tariffs').addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-tariff')) {
+                    const form = e.target.closest('div');
+                    form.querySelector('input[type="checkbox"]').checked = true;
+                    form.style.display = 'none';
+                }
+            });
+
+            // Добавление и удаление вариантов питания
+            document.getElementById('add-meal').addEventListener('click', function () {
+                const meals = document.getElementById('meal-options');
+                const newForm = meals.children[0].cloneNode(true);
+                const totalForms = document.getElementById('id_meal_option_form-TOTAL_FORMS');
+                newForm.querySelectorAll('input').forEach(input => {
+                    input.name = input.name.replace(/-\d+-/, `-${totalForms.value}-`);
+                });
+                totalForms.value = parseInt(totalForms.value) + 1;
+                meals.appendChild(newForm);
+            });
+
+            document.getElementById('meal-options').addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-meal')) {
+                    const form = e.target.closest('div');
+                    form.querySelector('input[type="checkbox"]').checked = true;
+                    form.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</div>
+{% endblock %}

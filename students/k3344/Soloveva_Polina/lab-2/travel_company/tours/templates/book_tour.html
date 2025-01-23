@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Book {{ tour.name }}</h1>
+    <form class="booking-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <p>
+            <strong>Total Price:</strong>
+            <span id="totalPrice" data-base-price="{{ total_price }}">
+                {% if booking %}
+                    {{ booking.total_price|floatformat:2 }} ₽
+                {% else %}
+                    0 ₽
+                {% endif %}
+            </span>
+        </p>
+
+        <button type="submit">Submit</button>
+    </form>
+    <a class="booking-form-button" href="{% url 'tour_detail' tour.id %}">Back to Tour Details</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+<nav>
+    <div class="brand">TravelC</div>
+    <ul>
+        <li><a href="{% url 'tour_list' %}">Tour List</a></li>
+
+        {% if user.is_authenticated %}
+            {% if not user.is_staff %}
+                <!-- Показываем только если пользователь не админ -->
+                <li><a href="{% url 'my_bookings' %}">My Bookings</a></li>
+                <li class="logout-button"><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+
+
+            {% if user.is_staff %}
+                <!-- Меню для администраторов -->
+                <li><a href="{% url 'add_tour' %}">Add Tour</a></li>
+                <li><a href="{% url 'view_bookings' %}">View All Bookings</a></li>
+                <li><a href="{% url 'tour_sales_statistics' %}">Tour Statistics</a></li>
+                <li class="logout-button"><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+        {% else %}
+            <!-- Меню для неавторизованных пользователей -->
+            <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+    </ul>
+</nav>

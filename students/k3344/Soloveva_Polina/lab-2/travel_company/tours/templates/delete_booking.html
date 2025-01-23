@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Are you sure you want to cancel this booking?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Cancel</button>
+        <a href="{% url 'my_bookings' %}">No, Go Back</a>
+    </form>
+
+{% endblock %}

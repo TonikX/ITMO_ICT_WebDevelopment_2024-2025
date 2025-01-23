@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Add Review for {{ tour.name }}</h1>
+    <form class="add-review-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'my_bookings'%}">Back to My Bookings</a>
+{% endblock %}
