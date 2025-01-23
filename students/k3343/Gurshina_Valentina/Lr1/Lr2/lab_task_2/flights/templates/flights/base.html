@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Авиаперелёты✈️{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        nav {
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        .messages div {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #badbcc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{% url 'view_flights' %}">Авиаперелёты</a>
+    <div>
+        {% if user.is_authenticated %}
+            <a href="{% url 'view_bookings' 'upcoming' %}">Мои рейсы</a>
+            <a href="{% url 'logout' %}">Выход из системы😫({{ user.first_name }} {{ user.last_name }})</a>
+        {% else %}
+            <a href="{% url 'login' %}">Войти в систему😎</a>
+        {% endif %}
+    </div>
+</nav>
+{% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>
+
+

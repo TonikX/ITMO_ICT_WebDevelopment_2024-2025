@@ -1,0 +1,19 @@
+{% extends "flights/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Вход в систему😎{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <h2 class="mb-3">Вход в систему😎</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form login_form %}
+            {% bootstrap_button button_type="submit" content="Войти в систему😎" %}
+        </form>
+        <p class="mt-3">
+            Не зарегистрированы? <a href="{% url "register" %}">Регистрация👥</a>
+        </p>
+    </div>
+{% endblock %}
+ 

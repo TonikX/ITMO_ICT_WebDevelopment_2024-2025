@@ -1,0 +1,35 @@
+{% extends "flights/base.html" %}
+
+{% block title %}Информация о рейсе и брони{% endblock %}
+
+{% block content %}
+    <h1>Пассажиры на {{ flight }}</h1>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Фамилия и имя</th>
+            <th>Зарегистрирован ли пользователь в системе?</th>
+            <th>Номер брони</th>
+        </tr>
+        {% for booking in flight.bookings.all %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ booking.user.last_name }} {{ booking.user.first_name }}</td>
+            <td>{{ booking.registered|yesno:"🥳,😭" }}</td>
+            <td>{{ booking.ticket|default:"-" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Обратная связь о рейсе</h2>
+    {% for feedback in flight.feedbacks.all %}
+        <div>
+            <strong>{{ feedback.user.last_name }} {{ feedback.user.first_name }}</strong>
+            (Рейтинг: {{ feedback.rating }})
+            <p>{{ feedback.text }}</p>
+        </div>
+    {% empty %}
+        <p>Пока нет отзывов</p>
+    {% endfor %}
+{% endblock %}
