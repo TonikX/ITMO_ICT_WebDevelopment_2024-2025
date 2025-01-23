@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Available Tours</h1>
+
+    <!-- Search Form -->
+    <form method="get" action="" class="input-group mb-4" style="max-width: 600px; margin: auto;">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Search by title or agency" 
+            value="{{ query }}" 
+            class="form-control" 
+            aria-label="Search"
+        >
+        <button type="submit" class="btn btn-outline-secondary">Search</button>
+    </form>
+
+    <!-- Tour List with Border and Padding -->
+    <div class="list-group mb-4" style="max-width: 800px; margin: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        {% for tour in tours %}
+            <a 
+                href="{% url 'tour_detail' tour.pk %}" 
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center py-3"
+            >
+                <span class="fw-bold">{{ tour.title }}</span>
+                <span class="text-muted">{{ tour.agency.name }}</span>
+            </a>
+        {% empty %}
+            <p class="text-center text-muted p-3">No tours found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls Centered and Spaced -->
+    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link btn-outline-secondary" href="?q={{ query }}&page=1" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link btn-outline-secondary" href="?q={{ query }}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link btn-outline-secondary">&laquo;&laquo;</span></li>
+                <li class="page-item disabled"><span class="page-link btn-outline-secondary">&laquo;</span></li>
+            {% endif %}
+
+            <li class="page-item active">
+                <span class="page-link btn-outline-secondary">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link btn-outline-secondary" href="?q={{ query }}&page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link btn-outline-secondary" href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link btn-outline-secondary">&raquo;</span></li>
+                <li class="page-item disabled"><span class="page-link btn-outline-secondary">&raquo;&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

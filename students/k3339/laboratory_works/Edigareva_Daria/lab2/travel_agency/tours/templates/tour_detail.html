@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">{{ tour.title }}</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <p class="card-text">{{ tour.description }}</p>
+            <p><strong>Турагентство:</strong> {{ tour.agency.name }}</p>
+            <p><strong>Условия оплаты:</strong> {{ tour.payment_terms }}</p>
+            
+            {% if user.is_authenticated %}
+                <div class="d-flex mt-3">
+                    {% if user_reservation %}
+                        <a href="{% url 'edit_reservation' user_reservation.pk %}" class="btn btn-primary me-2">Редактировать бронирование</a>
+                        <a href="{% url 'delete_reservation' user_reservation.pk %}" class="btn btn-danger me-2">Удалить бронирование</a>
+                    {% else %}
+                        <a href="{% url 'reserve_tour' tour.pk %}" class="btn btn-success me-2">Забронировать тур</a>
+                    {% endif %}
+                    <a href="{% url 'add_review' tour.pk %}" class="btn btn-secondary">Оставить отзыв</a>
+                </div>
+            {% else %}
+                <div class="mt-3">
+                    <p class="text-center">Пожалуйста, <a href="{% url 'login' %}">войдите</a> в систему, чтобы забронировать или оставить отзыв.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2 class="mb-3">Отзывы</h2>
+    <ul class="list-group mb-4">
+        {% for review in tour.reviews.all %}
+            <li class="list-group-item">
+                <strong>{{ review.user.username }}:</strong> {{ review.rating }}/10 - {{ review.text }}
+            </li>
+        {% empty %}
+            <li class="list-group-item">Отзывов пока нет.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

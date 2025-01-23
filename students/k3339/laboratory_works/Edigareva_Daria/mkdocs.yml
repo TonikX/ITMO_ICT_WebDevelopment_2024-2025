@@ -1,0 +1,22 @@
+site_name: My Docs
+nav:
+  - Home: index.md
+  - Lab 1:
+      - task 1: lab1/1.md
+      - task 2: lab1/2.md
+      - task 3: lab1/3.md
+      - task 4: lab1/4.md
+      - task 5: lab1/5.md
+  - Lab 2: lab2/index.md
+  - Lab 3:
+    - Практическая часть 3.1: lab3/practical_work/3.1/index.md
+    - Практическая часть 3.2 - Обзор проекта: lab3/practical_work/3.2/index.md
+    - Лабораторная часть: lab3/laboratory_works/index.md
+  - Lab 4:
+    - Лабораторная часть (коммерческий проект): lab4/index.md
+
+
+theme:
+  name: dracula
+
+

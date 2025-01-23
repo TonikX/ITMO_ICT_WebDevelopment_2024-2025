@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center text-danger mb-4">Удалить бронирование для тура: {{ reservation.tour.title }}</h1>
+
+    {% if user.is_authenticated %}
+        <p class="text-center">Вы уверены, что хотите удалить это бронирование?</p>
+        <form method="post" class="text-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-3">Удалить</button>
+            <a href="{% url 'tour_detail' reservation.tour.pk %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    {% else %}
+        <p class="text-center">Пожалуйста, <a href="{% url 'login' %}">войдите</a> в систему, чтобы удалить бронирование.</p>
+    {% endif %}
+</div>
+{% endblock %}

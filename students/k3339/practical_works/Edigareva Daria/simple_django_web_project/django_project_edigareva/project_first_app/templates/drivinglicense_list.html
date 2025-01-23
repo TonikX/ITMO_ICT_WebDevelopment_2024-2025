@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Driving Licenses</title>
+</head>
+<body>
+    <h1>Driving Licenses</h1>
+    <ul>
+        {% for license in object_list %}
+            <li>{{ license.license_number }} - {{ license.license_type }} for {{ license.owner }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

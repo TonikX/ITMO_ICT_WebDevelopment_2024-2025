@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Войти в аккаунт</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+            </form>
+            
+            <div class="text-center mt-3">
+                <p>Нет аккаунта? <a href="{% url 'signup' %}">Зарегистрироваться</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

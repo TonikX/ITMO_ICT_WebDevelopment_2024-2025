@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Редактировать бронирование для тура: {{ reservation.tour.title }}</h1>
+
+    {% if user.is_authenticated %}
+        <form method="post" class="mx-auto" style="max-width: 600px;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary w-100">Сохранить изменения</button>
+        </form>
+    {% else %}
+        <p class="text-center">Пожалуйста, <a href="{% url 'login' %}">войдите</a> в систему, чтобы редактировать бронирование.</p>
+    {% endif %}
+    
+    <div class="text-center mt-3">
+        <a href="{% url 'tour_detail' reservation.tour.pk %}" class="btn btn-secondary">Назад к описанию тура</a>
+    </div>
+</div>
+{% endblock %}
