@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Car Details{% endblock %}
+
+{% block content %}
+    <h1>{{ car.brand }} {{ car.model }}</h1>
+    <p>State Number: {{ car.state_num }}</p>
+    <p>Color: {{ car.color }}</p>
+    <a href="{% url 'car_update' car.id %}" class="btn btn-primary">Edit</a>
+{% endblock %}

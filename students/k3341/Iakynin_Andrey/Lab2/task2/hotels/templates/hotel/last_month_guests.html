@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Все бронирования{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/bookings_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Список всех бронирований</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Имя пользователя</th>
+                    <th>Комната</th>
+                    <th>Дата заезда</th>
+                    <th>Дата выезда</th>
+                    {% if user.is_superuser %}
+                    <th>Действия</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in month_bookings %}
+                    <tr>
+                        <td>{{ booking.user.username }}</td>
+                        <td>{{ booking.room.type }}</td>
+                        <td>{{ booking.check_in }}</td>
+                        <td>{{ booking.check_out }}</td>
+                        {% if user.is_superuser %}
+                        <td>
+                            <a href="{% url 'check_out_user' booking.id %}" class="btn btn-danger">Удалить</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-message">Нет данных о бронированиях.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

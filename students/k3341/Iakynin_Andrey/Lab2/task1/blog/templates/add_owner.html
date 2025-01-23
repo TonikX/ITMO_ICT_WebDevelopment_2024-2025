@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Add New Owner{% endblock %}
+
+{% block content %}
+    <h1>Add New Owner</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Owner</button>
+    </form>
+{% endblock %}

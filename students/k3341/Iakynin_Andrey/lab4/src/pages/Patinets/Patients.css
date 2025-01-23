@@ -1,0 +1,47 @@
+.patients-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.add-patient {
+    margin-bottom: 20px;
+}
+
+.add-patient h1 {
+    margin-bottom: 10px;
+}
+
+.patients-list h2 {
+    margin-bottom: 10px;
+}
+
+.patients-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patients-list table, th, td {
+    border: 1px solid #ddd;
+}
+
+.patients-list th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.patients-list th {
+    background-color: #f2f2f2;
+}
+
+.patients-list button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.patients-list button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Список отелей{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/hotels.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Список отелей</h1>
+
+<form method="GET" action="{% url 'hotel_list' %}" class="search-form mb-4">
+    <input type="text" name="q" placeholder="Поиск отелей" value="{{ request.GET.q }}" class="form-control" />
+    <button type="submit" class="btn btn-primary mt-2">Искать</button>
+</form>
+{% if user.is_superuser %}
+    <a href="{% url 'add_hotel' %}" class="btn btn-success mb-3">Добавить новый отель</a>
+{% endif %}
+
+<div class="row">
+    {% for hotel in page_obj %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ hotel.name }}</h5>
+                    <a href="{% url 'hotel_rooms' hotel.id %}" class="btn btn-primary">Перейти к номерам</a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'delete_hotel' hotel.id %}" class="btn btn-danger"
+                           onclick="return confirm('Вы уверены, что хотите удалить этот отель?');">Удалить отель</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>Нет доступных отелей.</p>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

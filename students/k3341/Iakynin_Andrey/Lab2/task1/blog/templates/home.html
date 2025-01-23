@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Car Management System{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Car Management System</h1>
+    <p>Made by Andrey Iakynin</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'car_list' %}" class="btn btn-primary btn-lg w-100">Cars</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'owner_list' %}" class="btn btn-secondary btn-lg w-100">Owners</a>
+        </div>
+    </div>
+{% endblock %}

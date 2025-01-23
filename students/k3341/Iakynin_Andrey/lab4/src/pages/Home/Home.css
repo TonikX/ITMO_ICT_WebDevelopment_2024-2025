@@ -1,0 +1,133 @@
+.home {
+    display: flex;
+    height: 100%;
+    padding: 5% 10%;
+    background: #f0fcff;
+    gap: 5%; /* Отступ между левым и правым элементами */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.home-left {
+    width: 50%;
+    animation: slideInFromLeft 1.2s ease-in-out;
+}
+
+.home-left h1 {
+    font-size: 3vw;
+    color: #00c2d6;
+    margin-bottom: 1%;
+    animation: fadeInUp 1s ease-in-out 0.3s; /* Задержка 0.3s */
+}
+
+.home-left h2 {
+    font-size: 2.5vw;
+    color: #333;
+    margin-bottom: 2%;
+    animation: fadeInUp 1s ease-in-out 0.5s; /* Задержка 0.5s */
+}
+
+.home-left p {
+    font-size: 1.2vw;
+    color: #666;
+    margin-bottom: 4%;
+    animation: fadeInUp 1s ease-in-out 0.7s; /* Задержка 0.7s */
+}
+
+.buttons {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 1s ease-in-out 0.9s; /* Задержка 0.9s */
+}
+
+.btn-book, .btn-info {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    background-color: #0dcaf0;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    animation: zoomIn 1s ease-in-out 1.1s; /* Задержка 1.1s */
+}
+
+.btn-info {
+    background-color: white;
+    color: #0dcaf0;
+    border: 2px solid #0dcaf0;
+}
+
+.btn-book:hover, .btn-info:hover {
+    background-color: #0bb3d6;
+    color: white;
+}
+
+.home-right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideInFromRight 1.2s ease-in-out;
+}
+
+.home-right img {
+    max-width: 100%;
+    border-radius: 1vw;
+    animation: zoomIn 1.5s ease-in-out;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
