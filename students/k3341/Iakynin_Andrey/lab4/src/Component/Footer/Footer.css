@@ -1,0 +1,130 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Заставляем обертку занимать всю высоту окна */
+}
+
+.main-content {
+    flex: 1; /* Основной контент растягивается, чтобы заполнить пространство */
+    padding: 20px; /* Даем небольшой отступ */
+    box-sizing: border-box;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #0dcaf0;
+    padding: 2% 5%;
+    color: white;
+    gap: 2%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.footer-left {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Чтобы padding учитывался в размере */
+}
+
+.footer-left form {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    column-gap: 4%;
+    row-gap: 1.5rem;
+}
+
+.footer-left .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-left label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.footer-left input {
+    padding: 0.8rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Поля будут адаптироваться к ширине формы */
+    max-width: 300px; /* Ограничиваем максимальную ширину для читаемости */
+}
+
+.footer-left input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Правый блок футера */
+.footer-right {
+    flex: 1 1 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box; /* Чтобы padding учитывался в размере */
+}
+
+.footer-right h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid white;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+
+.footer-right .hours {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    color: #0dcaf0;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+}
+
+.footer-right .hours p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.footer-right .hours:hover {
+    transform: scale(1.05);
+    color: #0288a9;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+    }
+
+    .footer-left, .footer-right {
+        flex: 1 1 100%;
+    }
+}
+
+
