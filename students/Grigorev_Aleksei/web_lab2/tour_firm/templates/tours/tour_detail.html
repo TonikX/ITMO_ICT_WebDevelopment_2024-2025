@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ tour.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'tour_list' %}">Туристическая фирма</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text me-2">Привет, {{ user.username }}!</span>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link" style="padding: 0; border: none; background: none;">Выйти</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'register' %}" class="nav-link">Зарегистрироваться</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Содержимое -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">{{ tour.name }}</h1>
+        <div>
+            <p><strong>Описание:</strong> {{ tour.description }}</p>
+            <p><strong>Цена:</strong> {{ tour.price }} руб.</p>
+            <p><strong>Продолжительность:</strong> {{ tour.duration_days }} дней</p>
+        </div>
+
+        <!-- Кнопка бронирования -->
+        {% if user.is_authenticated %}
+            {% if is_reserved %}
+                <a href="{% url 'cancel_reservation' tour.id %}" class="btn btn-danger">Отменить бронирование</a>
+            {% else %}
+                <a href="{% url 'reserve_tour' tour.id %}" class="btn btn-success">Забронировать</a>
+            {% endif %}
+        {% else %}
+            <p class="text-center">Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы забронировать этот тур.</p>
+        {% endif %}
+
+        <hr>
+
+        <!-- Список отзывов -->
+        <h3>Отзывы:</h3>
+        <ul class="list-group">
+            {% for review in reviews %}
+            <li class="list-group-item">
+                <strong>{{ review.user.username }}</strong>: {{ review.text }} ({{ review.rating }}/10)
+            </li>
+            {% empty %}
+            <p>Пока нет отзывов.</p>
+            {% endfor %}
+        </ul>
+
+        <!-- Кнопка добавления отзыва -->
+        {% if user.is_authenticated %}
+            <div class="mt-4">
+                <a href="{% url 'add_review' tour.id %}" class="btn btn-primary">Добавить отзыв</a>
+            </div>
+        {% else %}
+            <p class="text-center mt-4">Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы оставить отзыв.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

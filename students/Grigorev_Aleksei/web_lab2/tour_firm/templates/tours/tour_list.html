@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список туров</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Список туров</h1>
+        <div class="row">
+            {% for tour in tours %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tour.name }}</h5>
+                        <p class="card-text"><strong>Описание:</strong> {{ tour.description }}</p>
+                        <p class="card-text"><strong>Цена:</strong> {{ tour.price }}</p>
+                        <p class="card-text"><strong>Период:</strong> {{ tour.period }}</p>
+                        <p class="card-text"><strong>Условия оплаты:</strong> {{ tour.payment_conditions }}</p>
+                        <a href="{% url 'tour_detail' tour.id %}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center">Туры не найдены.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
