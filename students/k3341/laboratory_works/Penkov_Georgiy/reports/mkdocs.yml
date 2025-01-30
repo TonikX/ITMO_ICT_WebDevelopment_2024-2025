@@ -10,3 +10,7 @@ nav:
       - "Задание 4": lab1/task4.md
       - "Задание 5": lab1/task5.md
   - "Лаборатораная 2": lab2/index.md  
+  - "Лаборатораная 3":
+      - "README": lab3/README.md
+      - "Эндпоинты": lab3/endpoints.md
+      - "Авторизация": lab3/auth_endpoints.md
