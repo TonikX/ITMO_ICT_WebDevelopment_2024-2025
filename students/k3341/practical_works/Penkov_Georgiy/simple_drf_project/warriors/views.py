@@ -9,11 +9,13 @@ from warriors.serializers import (
 )
 
 
-class WarriorListView(APIView):
-    def get(self, request):
-        warriors = Warrior.objects.all()
-        serializer = WarriorSerializer(warriors, many=True)
-        return Response({"Warriors": serializer.data})
+class WarriorListView(generics.ListCreateAPIView):
+    # def get(self, request):
+    #     warriors = Warrior.objects.all()
+    #     serializer = WarriorSerializer(warriors, many=True)
+    #     return Response({"Warriors": serializer.data})
+    serializer_class = WarriorSerializer
+    queryset = Warrior.objects.all()
 
 
 class WarriorDetailView(generics.RetrieveUpdateDestroyAPIView):

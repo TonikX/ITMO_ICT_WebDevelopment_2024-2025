@@ -15,8 +15,8 @@ class SkillSerializer(serializers.ModelSerializer):
 
 
 class WarriorSerializer(serializers.ModelSerializer):
-    profession = ProfessionSerializer()
-    skills = SkillSerializer(many=True)
+    profession = ProfessionSerializer(read_only=True)
+    skills = SkillSerializer(many=True, read_only=True)
 
     class Meta:
         model = Warrior

@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = ("http://localhost:5173",)
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     "cars",
     "warriors",
     "drf_spectacular",
+    "corsheaders",
 ]
 
 REST_FRAMEWORK = {
@@ -55,6 +59,7 @@ SPECTACULAR_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
