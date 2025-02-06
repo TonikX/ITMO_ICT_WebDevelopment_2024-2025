@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car</title>
+</head>
+
+<body>
+    <h1>Car {{car.id}}</h1>
+    <p>Марка: {{car.brand}}<br>
+        Модель: {{car.model}}<br>
+        Цвет: {{car.color}}
+    </p>
+    <hr>
+    <a href="/cars/{{car.id}}/update">Edit</a> | <a href="/cars/{{car.id}}/delete">Delete</a>
+</body>
+
+</html>
