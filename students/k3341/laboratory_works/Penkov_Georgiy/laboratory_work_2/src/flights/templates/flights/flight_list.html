@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Flight list{% endblock title %}
+
+{% block content %}
+    <h1>Flights✈️</h1>
+    <form class="row" action="{% url 'flights:flight-list' %}" method="get">
+        <div class="col-auto">
+            <input class="form-control " type="text" name="q" placeholder="Search flights..." value="{{ request.GET.q }}">
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-primary col-auto" type="submit">Search</button>
+        </div>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Airline</th>
+                <th>Flight Number</th>
+                <th>Direction</th>
+                <th>Gate</th>
+                <th>Type</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if flights %}
+                {% for flight in flights %}
+                <tr>
+                    <td>{{ flight.datetime|date:"d F" }}</td>
+                    <td>{{ flight.datetime|date:"H:i" }}</td>
+                    <td>{{ flight.airline.name }}</td>
+                    <td>{{ flight.number }}</td>
+                    <td>{{ flight.direction }}</td>
+                    <td>{{ flight.gate }}</td>
+                    <td>{{ flight.get_flight_type_display }}</td>
+                    <td><a href="{% url 'flights:flight-detail' flight.pk %}">Details</a></td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8">No flights available.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" 
+                    href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Previous</a>
+                </li>
+            {% endif %}
+            {% for page_number in page_obj.paginator.page_range %}
+                <li class="page-item">
+                    <a href="?page={{ page_number }}{% if q %}&q={{ q }}{% endif %}" 
+                       class="page-link {% if page_number == page_obj.number %}active{% endif %}">       
+                        {{page_number}}
+                    </a>
+                </li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock content %}

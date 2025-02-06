@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Owners</title>
+</head>
+
+<body>
+    <h2>Car owners</h2>
+    {% if owners %}
+    <ul>
+        {% for owner in owners %}
+        <li><a href="/owners/{{ owner.id }}/">{{ owner }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No owners are available.</p>
+    {% endif %}
+    <hr>
+    <a href="/owners/create/">Add</a>
+</body>
+
+</html>
