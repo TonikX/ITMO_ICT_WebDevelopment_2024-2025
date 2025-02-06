@@ -14,3 +14,5 @@ nav:
       - "README": lab3/README.md
       - "Эндпоинты": lab3/endpoints.md
       - "Авторизация": lab3/auth_endpoints.md
+  - "Лаборатораная 4":
+      - "Интерфейсы": lab4/index.md
