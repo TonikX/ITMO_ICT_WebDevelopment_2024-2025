@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = ("http://localhost:5173",)
 
 # Application definition
 
@@ -44,6 +47,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "alpine_clubs_app",
     "users",
+    "corsheaders",
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -66,6 +70,7 @@ DJOSER = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

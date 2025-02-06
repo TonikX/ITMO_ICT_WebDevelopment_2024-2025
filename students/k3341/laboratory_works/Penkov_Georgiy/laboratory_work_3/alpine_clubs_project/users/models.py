@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    phone_number = models.CharField(max_length=10, null=True, blank=True)
+    phone_number = models.CharField(max_length=30, null=True, blank=True)
     city = models.ForeignKey(
         "alpine_clubs_app.City", on_delete=models.SET_NULL, null=True, blank=True
     )

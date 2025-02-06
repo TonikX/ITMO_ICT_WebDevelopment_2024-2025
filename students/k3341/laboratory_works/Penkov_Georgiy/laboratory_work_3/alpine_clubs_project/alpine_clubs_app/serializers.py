@@ -142,10 +142,17 @@ class RouteDetailSerializer(serializers.ModelSerializer):
 
 
 class ClubMembershipSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField()
+
     class Meta:
         model = ClubMembership
         fields = "__all__"
         read_only_fields = ("user", "club")
+
+    def get_user(self, obj):
+        from users.serializers import UserSerializer
+
+        return UserSerializer(obj.user).data
 
     def validate(self, data):
         if self.instance:
@@ -175,7 +182,13 @@ class ClubDetailSerializer(serializers.ModelSerializer):
     members = ClubMembershipSerializer(read_only=True, many=True)
     country = CountrySerializer(read_only=True)
     city = CitySerializer(read_only=True)
+    contact_user = serializers.SerializerMethodField()
 
     class Meta:
         model = Club
         fields = "__all__"
+
+    def get_contact_user(self, obj):
+        from users.serializers import UserSerializer
+
+        return UserSerializer(obj.contact_user).data

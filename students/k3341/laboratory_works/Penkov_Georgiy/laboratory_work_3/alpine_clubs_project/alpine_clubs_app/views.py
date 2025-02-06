@@ -193,7 +193,7 @@ class AscentParticipationListView(generics.ListCreateAPIView):
 
 
 class AscentParticipationDetailView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = AscentParticipationSerializer
 
     def get_object(self):
@@ -211,6 +211,11 @@ class ClubListView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ["country"]
     ordering_fields = ["id", "name"]
+
+    def get_serializer_class(self):
+        if self.request.method in SAFE_METHODS:
+            return ClubDetailSerializer
+        return ClubSerializer
 
 
 class ClubDetailView(generics.RetrieveUpdateDestroyAPIView):
