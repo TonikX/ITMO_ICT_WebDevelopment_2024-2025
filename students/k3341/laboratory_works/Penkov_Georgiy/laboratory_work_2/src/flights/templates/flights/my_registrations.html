@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}My registrations{% endblock title %}
+
+{% block content %}
+
+    <h1>My registrations📋</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Flight</th>
+                <th>Ticket</th>
+                <th>Seat</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if registrations %}
+                {% for registration in registrations %}
+                    <tr>
+                        <td><a href="{% url 'flights:flight-detail' registration.flight.id %}">{{registration.flight}}</a></td>
+                        <td>{{registration.ticket}}</td>
+                        <td>{{registration.seat}}</td>
+                        <td>{{registration.get_status_display}}</td>
+                        <td><a href="{% url 'flights:delete-registration' registration.flight.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan=5>You don't have any registrations.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+{% endblock content %}
