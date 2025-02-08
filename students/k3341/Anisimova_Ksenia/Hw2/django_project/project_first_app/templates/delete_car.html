@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить машину</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <p>Вы уверены, что хотите удалить"{{ object }}"?</p>
+    <input type="submit" value="Подтвердить">
+</form>
+<br>
+<br>
+<a href="/cars/">Вернуться</a>
+</body>
+</html>

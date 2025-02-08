@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список конференций</title>
+</head>
+<body>
+    <h1>Конференции</h1>
+    <ul>
+        {% for conference in conferences %}
+            <li>{{ conference.title }} - {{ conference.venue }} ({{ conference.start_date }} - {{ conference.end_date }})</li>
+            <a href="{% url 'add_review' conference.id %}">Добавить отзыв</a>
+        {% endfor %}
+    </ul>
+
+    <h2>Регистрации на конференции</h2>
+    <ul>
+        {% for registration in registrations %}
+            <li>{{ registration.user.username }} зарегистрирован на конференцию "{{ registration.conference.title }}" (Дата регистрации: {{ registration.date_registered }})</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Список участников</h2>
+    <table border="1">
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Зарегистрированные конференции</th>
+            <th>Дата регистрации</th>
+            <th>Рекомендовано к публикации</th>
+        </tr>
+        {% for registration in registrations %}
+            <tr>
+                <td>{{ registration.user.username }}</td>
+                <td>{{ registration.conference.title }}</td>
+                <td>{{ registration.date_registered }}</td>
+                <td>{{ registration.recommended_for_publication|yesno:"Да,Нет" }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <a href="{% url 'index' %}">Главная</a>
+</body>
+</html>

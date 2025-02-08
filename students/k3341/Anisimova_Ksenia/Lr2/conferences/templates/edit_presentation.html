@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование презентации</title>
+</head>
+<body>
+    <h1>Редактирование презентации</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить изменения <a href="{% url 'list_conferences' %}"></a></button>
+        
+    </form>
+</body>
+</html>
