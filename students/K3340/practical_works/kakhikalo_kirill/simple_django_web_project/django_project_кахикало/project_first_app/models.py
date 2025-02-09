@@ -5,6 +5,7 @@ class AutoOwner(models.Model):
     surname = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     date_of_birth = models.DateField(null=True)
+    autos = models.ManyToManyField('Auto', through='Ownership')
 
 class Auto(models.Model):
     id_auto = models.IntegerField(primary_key=True)
@@ -12,6 +13,9 @@ class Auto(models.Model):
     brand = models.CharField(max_length=20)
     model = models.CharField(max_length=20)
     color = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.brand + ' ' + self.model
 
 class Ownership(models.Model):
     id_ownership = models.IntegerField(primary_key=True)
