@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Задание 1 - Мои лабы</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Мои лабы</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Welcome to Мои лабораторные работы</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab1</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Задание 1</a>
+</li>
+                                    
+<li>
+    <a href="../task2/" class="dropdown-item">Задание 2</a>
+</li>
+                                    
+<li>
+    <a href="../task3/" class="dropdown-item">Задание 3</a>
+</li>
+                                    
+<li>
+    <a href="../task4/" class="dropdown-item">Задание 4</a>
+</li>
+                                    
+<li>
+    <a href="../task5/" class="dropdown-item">Задание 5</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../.." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../task2/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#1" class="nav-link">Задание 1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Требования</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_2" class="nav-link">Ход работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_3" class="nav-link">Листинг кода</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="1">Задание 1</h1>
+<p>Реализовать клиентскую и серверную часть приложения. Клиент отправляет серверу сообщение «Hello, server»,
+и оно должно отобразиться на стороне сервера. В ответ сервер отправляет клиенту сообщение «Hello, client»,
+которое должно отобразиться у клиента.</p>
+<h1 id="_1">Требования</h1>
+<ul>
+<li>Обязательно использовать библиотеку socket.</li>
+<li>Реализовать с помощью протокола UDP.</li>
+</ul>
+<h1 id="_2">Ход работы</h1>
+<p>Сделан клиентский и серверный проект на C#, каждый из которых используют сокеты напрямую,
+без каких-либо надстроек, чтобы это совпадало с тем, что есть в socket в Python.</p>
+<p>Сервер поднимает UDP сокет, слушает от всех кто и что ему отправит и как только получит полноценное
+сообщение "Hello, server" - отправляет обратно "Hello, client".
+Учтено, что сообщение может прийти не целиком и уйти тоже не целиком.
+Дропы пакетов не учитываются, потому что было разрешено так.</p>
+<h1 id="_3">Листинг кода</h1>
+<h4 id="_4">Сервер</h4>
+<pre><code class="language-csharp">using System.Collections.Concurrent;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+namespace Server;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var listenPort = 22102;
+        var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        socket.Bind(new IPEndPoint(IPAddress.Any, listenPort));
+
+        // https://stackoverflow.com/questions/38191968/c-sharp-udp-an-existing-connection-was-forcibly-closed-by-the-remote-host
+        const int SIO_UDP_CONNRESET = -1744830452;
+        socket.IOControl((IOControlCode)SIO_UDP_CONNRESET, new byte[] { 0, 0, 0, 0 }, null);
+        socket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.PacketInformation, true);
+
+        EndPoint client = new IPEndPoint(IPAddress.Any, listenPort);
+
+        var clients = new ConcurrentDictionary&lt;EndPoint, Connection&gt;();
+        var buffer = new byte[1024];
+        while (true)
+        {
+            var received = await socket.ReceiveFromAsync(buffer, client);
+            if (!clients.TryGetValue(received.RemoteEndPoint, out var connection))
+            {
+                connection = new Connection(received.RemoteEndPoint);
+                clients.TryAdd(received.RemoteEndPoint, connection);
+            }
+
+            var isTargetKeysFound = Receive(connection, buffer.AsSpan(0, received.ReceivedBytes));
+            if (!isTargetKeysFound)
+                continue;
+
+            Console.WriteLine($&quot;Received: {connection.ReceivedData} from {connection.Client}&quot;);
+            var dataToSend = Encoding.UTF8.GetBytes(&quot;Hello, client&quot;);
+            connection.SendingData = dataToSend;
+            connection.SentBytes = 0;
+            await Send(socket, connection);
+        }
+    }
+
+    private static async Task Send(Socket socket, Connection connection)
+    {
+        var bufferToSend = connection.SendingData.AsMemory(connection.SentBytes,
+            connection.SendingData.Length - connection.SentBytes);
+        connection.SentBytes += await socket.SendToAsync(bufferToSend, connection.Client);
+    }
+
+    private static bool Receive(Connection connection, ReadOnlySpan&lt;byte&gt; receivedBytes)
+    {
+        connection.ReceivedData.Append(Encoding.UTF8.GetString(receivedBytes));
+
+        const string target = &quot;Hello, server&quot;;
+        if (connection.ReceivedData.Length &lt; target.Length)
+            return false;
+
+        var receivedString = connection.ReceivedData.ToString();
+        return receivedString.Contains(target);
+    }
+
+    private class Connection
+    {
+        public readonly EndPoint Client;
+        public readonly StringBuilder ReceivedData = new();
+        public int SentBytes;
+        public byte[]? SendingData;
+
+        public Connection(EndPoint client)
+        {
+            Client = client;
+        }
+    }
+}
+</code></pre>
+<h4 id="_5">Клиент</h4>
+<pre><code class="language-csharp">using System.Net;
+using System.Net.Sockets;
+using System.Text;
+
+namespace Client;
+
+class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var targetPort = 22102;
+        var targetAddress = IPAddress.Parse(&quot;127.0.0.1&quot;);
+        var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        var targetEndPoint = new IPEndPoint(targetAddress, targetPort);
+
+        var dataToSend = Encoding.UTF8.GetBytes(&quot;Hello, server&quot;);
+        var sentBytes = 0;
+        var receivedBytes = new byte[1024];
+        var receivedBytesCount = 0;
+
+        while (true)
+        {
+            try
+            {
+                // Пока нет никакого ответа от сервера шлём сообщения снова
+                if (receivedBytesCount == 0)
+                {
+                    sentBytes += await socket.SendToAsync(dataToSend.AsMemory(sentBytes, dataToSend.Length - sentBytes), targetEndPoint);
+                    if (sentBytes == dataToSend.Length)
+                        sentBytes = 0;
+                }
+
+                try
+                {
+                    var newlyReceived = await socket.ReceiveAsync(receivedBytes);
+                    Console.WriteLine(&quot;Received from server:&quot;);
+                    Console.Write(Encoding.UTF8.GetString(receivedBytes, receivedBytesCount, newlyReceived));
+                    receivedBytesCount += newlyReceived;
+                }
+                catch (SocketException e)
+                {
+                    if (e.SocketErrorCode == SocketError.TimedOut)
+                    {
+                        Console.WriteLine(&quot;Server is not responding, trying to send message again.&quot;);
+                    }
+                    else
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+    }
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
