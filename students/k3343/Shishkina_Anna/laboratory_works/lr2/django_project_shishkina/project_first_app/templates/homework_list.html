@@ -1,0 +1,69 @@
+{% extends 'menu.html' %}
+
+{% block title %}Список домашних заданий{% endblock %}
+
+{% block content %}
+    <h2>Список домашних заданий</h2>
+
+    <form method="get" action="{% url 'homework_list' %}" style="margin-bottom: 20px;">
+        <input type="text" name="search" placeholder="Поиск по домашним заданиям" value="{{ request.GET.search }}" style="padding: 10px; width: 80%; margin-right: 10px;">
+        <button type="submit" style="padding: 10px;">Поиск</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Преподаватель</th>
+                <th>Дата выдачи</th>
+                <th>Срок выполнения</th>
+                <th>Описание</th>
+                <th>Информация о штрафах</th>
+                <th>Сдать</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for homework in homeworks %}
+            <tr>
+                <td>{{ homework.subject }}</td>
+                <td>{{ homework.teacher }}</td>
+                <td>{{ homework.issue_date }}</td>
+                <td>{{ homework.due_date }}</td>
+                <td>{{ homework.description }}</td>
+                <td>{{ homework.penalty_info }}</td>
+                <td><a href="{% url 'submit_hw' homework.id %}">Сдать</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7">Домашних заданий пока нет.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        h2 {
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%; 
+            margin-bottom: 20px;
+        }
+    
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #DCDCDC;
+        }
+    
+        th {
+            background-color: #DCDCDC;
+            font-weight: bold;
+        }
+    
+        tbody tr:hover {
+            background-color: #F5F5F5;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'menu.html' %}
+
+{% block title %}Сданные домашние задания{% endblock %}
+
+{% block content %}
+    <h2>Список сданных домашних заданий</h2>
+
+    <form method="get" action="{% url 'submissions_list' %}" style="margin-bottom: 20px; display: flex; gap: 10px;">
+        <input type="text" name="search" placeholder="Поиск по домашним заданиям" value="{{ request.GET.search }}" style="padding: 10px; flex: 1;">
+        <input type="number" name="grade" placeholder="Поиск по оценке" value="{{ request.GET.grade }}" style="padding: 10px; flex: 1;">
+        <button type="submit" style="padding: 10px;">Поиск</button>
+    </form>    
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Студент</th>
+                <th>Ответ</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in page_obj %}
+                <tr>
+                    <td>{{ submission.hw.subject }}</td>
+                    <td>{{ submission.student }}</td>
+                    <td>{{ submission.submission_text }}</td>
+                    <td>{{ submission.grade }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Никто не сдал работы</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Пагинация -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&{% endif %}page={{ page_obj.previous_page_number }}"> < </a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.grade %}grade={{ request.GET.grade }}&{% endif %}page={{ page_obj.next_page_number }}"> > </a>
+            {% endif %}
+        </span>
+    </div>
+
+    <style>
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%; 
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #DCDCDC;
+        }
+
+        th {
+            background-color: #DCDCDC;
+            font-weight: bold;
+        }
+
+        tbody tr:hover {
+            background-color: #F5F5F5;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination .step-links a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .pagination .step-links .current {
+            margin: 0 5px;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

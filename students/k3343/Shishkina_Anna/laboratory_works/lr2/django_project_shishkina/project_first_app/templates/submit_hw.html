@@ -1,0 +1,18 @@
+{% extends 'menu.html' %}
+
+{% block title %}Сдать домашнее задание{% endblock %}
+
+{% block content %}
+<h2>Сдать домашнее задание: {{ hw.subject }}</h2>
+<p>Описание задания: {{ hw.description }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сдать</button>
+</form>
+
+<p style="margin-top: 20px;">
+    <a href="{% url 'homework_list' %}" style="text-decoration: none; padding: 10px 15px; background-color: #F5F5F5; border: 1px solid #DCDCDC; border-radius: 5px;">Назад</a>
+</p>
+{% endblock %}

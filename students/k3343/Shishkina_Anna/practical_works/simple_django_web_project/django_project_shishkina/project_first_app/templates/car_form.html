@@ -1,0 +1,7 @@
+<h2>Автомобиль</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить</button>
+</form>
+<a href="{% url 'car_list' %}">Назад к списку автомобилей</a>
