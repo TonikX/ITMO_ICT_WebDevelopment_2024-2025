@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* overflow: hidden; */ /* Удалено */
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Используем min-height вместо height */
+    /* overflow-y: auto; */ /* Удалено */
+}
+
+.main-page {
+    padding: 20px;
+}
+
+/* Кнопка выхода */
+.logout-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    /* float: right; */ /* Удалено */
+    align-self: flex-end; /* Используем flexbox для выравнивания */
+}
+
+/* Основной контент */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+    /* max-height: 80vh; */ /* Удалено */
+    /* overflow-y: auto; */ /* Удалено */
+    padding: 10px;
+    flex-grow: 1; /* Позволяет содержимому занимать доступное пространство */
+}
+
+/* Стили для формы */
+.point-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Отступ снизу */
+    width: 100%; /* Сделать форму адаптивной */
+    max-width: 400px; /* Ограничить максимальную ширину */
+    /* flex-shrink: 0; */ /* Удалено */
+}
+
+.point-form div {
+    margin-bottom: 15px;
+}
+
+.point-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.point-form input[type="text"],
+.point-form input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.point-form button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.point-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Стили для таблицы */
+.results-table {
+    width: 100%;
+    max-width: 100%; /* Убедитесь, что таблица занимает всю доступную ширину */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    overflow-x: auto;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    word-wrap: break-word; /* Перенос слов при необходимости */
+}
+
+.results-table th {
+    background-color: #f0f0f0;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+/* Адаптивные стили для .content */
+@media (max-width: 768px) {
+    .content {
+        margin-top: 20px; /* Уменьшаем отступ сверху */
+    }
+
+    .point-form {
+        width: 100%; /* Сделать форму на всю ширину на маленьких экранах */
+        max-width: none; /* Убираем ограничение максимальной ширины */
+    }
+
+    .results-table th,
+    .results-table td {
+        padding: 6px; /* Уменьшаем отступы для маленьких экранов */
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+}
+
+
+
