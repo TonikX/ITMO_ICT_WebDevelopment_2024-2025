@@ -1,0 +1,39 @@
+{% extends "flights/../base.html" %}
+{% block title %}Список рейсов{% endblock %}
+{% block content %}
+<h1>Список рейсов</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Номер рейса</th>
+      <th>Авиакомпания</th>
+      <th>Вылет</th>
+      <th>Прилёт</th>
+      <th>Гейт</th>
+      <th>Отправление IATA</th>
+      <th>Прибытие IATA</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flight in flights %}
+    <tr>
+      <td>{{ flight.flight_number }}</td>
+      <td>{{ flight.airline }}</td>
+      <td>{{ flight.departure_datetime }}</td>
+      <td>{{ flight.arrival_datetime }}</td>
+      <td>{{ flight.gate }}</td>
+      <td>{{ flight.departure_iata }}</td>
+      <td>{{ flight.arrival_iata }}</td>
+      <td>
+        <a href="{% url 'flight_detail' flight.pk %}">Подробнее</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="8">Нет рейсов.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

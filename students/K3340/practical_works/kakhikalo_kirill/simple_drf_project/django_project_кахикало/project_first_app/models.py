@@ -1,0 +1,42 @@
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+from django_project_кахикало import settings
+
+
+class AutoOwner(AbstractUser):
+    id_owner = models.AutoField(primary_key=True)
+    surname = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
+    date_of_birth = models.DateField(null=True)
+    passport_number = models.CharField(max_length=10, null=True)
+    address = models.CharField(max_length=50, null=True)
+    nationality = models.CharField(max_length=30, null=True)
+    autos = models.ManyToManyField('Auto', through='Ownership')
+
+class Auto(models.Model):
+    id_auto = models.AutoField(primary_key=True)
+    state_number = models.CharField(max_length=15)
+    brand = models.CharField(max_length=20)
+    model = models.CharField(max_length=20)
+    color = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.brand + ' ' + self.model
+
+class Ownership(models.Model):
+    id_ownership = models.AutoField(primary_key=True)
+    id_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    id_auto = models.ForeignKey(Auto, on_delete=models.CASCADE, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True)
+
+class DriverLicense(models.Model):
+    id_license = models.AutoField(primary_key=True)
+    id_owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    license_number = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
+    date_of_issue = models.DateField()
+
+    def __str__(self):
+        return self.id_owner.username + ' ' + self.license_number

@@ -1,0 +1,11 @@
+{% extends "flights/../base.html" %}
+{% block title %}Форма бронирования{% endblock %}
+{% block content %}
+<h1>Бронирование для рейса {{ flight.flight_number }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'flight_detail' flight.pk %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
