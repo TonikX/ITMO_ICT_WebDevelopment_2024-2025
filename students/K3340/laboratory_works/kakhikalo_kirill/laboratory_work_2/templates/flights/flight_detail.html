@@ -1,0 +1,82 @@
+{% extends "flights/../base.html" %}
+{% block title %}Детали рейса{% endblock %}
+{% block content %}
+    <h1>Рейс {{ flight.flight_number }} ({{ flight.airline }})</h1>
+    <p><strong>Вылет:</strong> {{ flight.departure_datetime }} ({{ flight.departure_iata }})</p>
+    <p><strong>Прилёт:</strong> {{ flight.arrival_datetime }} ({{ flight.arrival_iata }})</p>
+    <p><strong>Гейт:</strong> {{ flight.gate }}</p>
+
+    <hr>
+
+    <h2>Бронирования</h2>
+    {% if user.is_authenticated %}
+        <a href="{% url 'create_reservation' flight.pk %}" class="btn btn-primary mb-3">Забронировать место</a>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войдите</a>, чтобы забронировать место.</p>
+    {% endif %}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Пользователь</th>
+            <th>Место</th>
+            <th>Класс</th>
+            {% if user.is_authenticated %}
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Действия</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.user.username }}</td>
+                <td>{{ reservation.seat }}</td>
+                <td>{{ reservation.service_class }}</td>
+                {% if user == reservation.user %}
+                    <td>{{ reservation.name }}</td>
+                    <td>{{ reservation.surname }}</td>
+                    <td>
+                        <a href="{% url 'reservation_edit' reservation.pk %}">Редактировать</a> |
+                        <a href="{% url 'reservation_delete' reservation.pk %}">Удалить</a>
+                    </td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">Нет бронирований.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Отзывы</h2>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'create_comment' flight.pk %}">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit" class="btn btn-primary">Добавить отзыв</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить отзыв.</p>
+    {% endif %}
+
+    <ul class="list-group mt-3">
+        {% for comment in comments %}
+            <li class="list-group-item">
+                <strong>{{ comment.user.username }}</strong> ({{ comment.created_at|date:"d.m.Y H:i" }}):<br>
+                Отзыв о рейсе {{ comment.flight.flight_number }} с датой
+                вылета {{ comment.flight.departure_datetime|date:"d.m.Y H:i" }}
+                <br>
+                Рейтинг: {{ comment.rating }}<br>
+                {{ comment.text }}
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет отзывов.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

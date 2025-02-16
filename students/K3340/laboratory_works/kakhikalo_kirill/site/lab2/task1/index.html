@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Task1 - Мои лабы</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Мои лабы</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Welcome to Мои лабораторные работы</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab1</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../lab1/task1/" class="dropdown-item">Задание 1</a>
+</li>
+                                    
+<li>
+    <a href="../../lab1/task2/" class="dropdown-item">Задание 2</a>
+</li>
+                                    
+<li>
+    <a href="../../lab1/task3/" class="dropdown-item">Задание 3</a>
+</li>
+                                    
+<li>
+    <a href="../../lab1/task4/" class="dropdown-item">Задание 4</a>
+</li>
+                                    
+<li>
+    <a href="../../lab1/task5/" class="dropdown-item">Задание 5</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab2</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Task1</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab3</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../lab3/task1/" class="dropdown-item">Task1</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab4</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../lab4/task1/" class="dropdown-item">Task1</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../lab1/task5/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../lab3/task1/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>Номер в журнале: 21
+Вариант 3</p>
+<p>Табло отображения информации об авиаперелетах.
+Хранится информация о номере рейса, авиакомпании, отлете, прилете, типе
+(прилет, отлет), номере гейта.</p>
+<p>Необходимо реализовать следующий функционал:
+- Регистрация новых пользователей.
+- Просмотр и резервирование мест на рейсах. Пользователь должен иметь
+возможность редактирования и удаления своих резервирований.
+- Администратор должен иметь возможность зарегистрировать на рейс
+пассажира и вписать в систему номер его билета средствами Django-admin.
+- В клиентской части должна формироваться таблица, отображающая всех
+пассажиров рейса.
+- Написание отзывов к рейсам. При добавлении комментариев, должны
+сохраняться дата рейса, текст комментария, рейтинг (1-10), информация о
+комментаторе.</p>
+<h3 id="_1">Ход работы</h3>
+<p>В первую очередь я заполнил модель данных создав сущности:
+- Flight
+- Reservation
+- Comment</p>
+<pre><code class="language-python">class Flight(models.Model):
+    flight_number = models.CharField(max_length=10, unique=True)
+    airline = models.CharField(max_length=50)
+    departure_datetime = models.DateTimeField()
+    arrival_datetime = models.DateTimeField()
+    gate = models.CharField(max_length=10)
+    arrival_iata = models.CharField(max_length=3)
+    departure_iata = models.CharField(max_length=3)
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    seat = models.CharField(max_length=5)
+    service_class = models.CharField(max_length=10)
+    ticket_number = models.CharField(max_length=20, blank=True, null=True)
+
+class Comment(models.Model):
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    rating = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+</code></pre>
+<p>Позже, когда проверял работу на соответствование требованиям работу решил добавить в бронирования
+информацию об имени и фамилии пассажира. Эта информация не в пользователей,
+так как имеет смысл создавать брони разным людям от лица одного пользователя.</p>
+<p>Потом по примеру из практической работы я добавил функционал администраторской панели,
+внеся нужные изменения в settings и добавив все модели в admin.py</p>
+<p>Для того чтобы пользователи могли логиниться я использовал встроенный в Django функционал.
+Мне пришлось достать template для окон логина и регистрации. Чтобы не делать их самому
+я взял готовые <a href="https://github.com/macdhuibh/django-registration-templates/tree/master">отсюда</a></p>
+<p>Потом я донастроил эти template немного под себя. Установил django-registration и
+по гайду с официальной страницы документации настроил его. Был использован one-step регистрация, без какой либо активации почты.</p>
+<p>Некоторое время боролся с возникающими проблемами. Пришлось в settings.py настроить LOGIN_REDIRECT_URL
+и ACCOUNT_ACTIVATION_DAYS. После этого все заработало.</p>
+<p>Потом я начал делать все view для реализации требуемого функционала.
+Для отображения полётов на главной странице использовал ListView.</p>
+<pre><code class="language-python">class FlightListView(ListView):
+    model = Flight
+    template_name = 'flights/flight_list.html'
+    context_object_name = 'flights'
+</code></pre>
+<p>Для отображения деталей полёта использовал DetailView. Чтобы не делать много отдельных страничек
+я прямо на этой странице решил отображать и бронирования, и комментарии.</p>
+<pre><code class="language-python">class FlightDetailView(DetailView):
+    model = Flight
+    template_name = 'flights/flight_detail.html'
+    context_object_name = 'flight'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        flight = self.get_object()
+        context['reservations'] = Reservation.objects.filter(flight=flight)
+        context['comments'] = Comment.objects.filter(flight=flight).order_by('-created_at')
+        context['comment_form'] = CommentForm()
+        return context
+</code></pre>
+<p>Для бронирования мест создал view:</p>
+<pre><code class="language-python">@login_required
+def create_reservation(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            reservation.user = request.user
+            reservation.flight = flight
+            reservation.save()
+            messages.success(request, 'Бронирование успешно создано.')
+            return redirect('flight_detail', pk=flight.id)
+    else:
+        form = ReservationForm()
+    return render(request, 'flights/reservation_form.html', {'form': form, 'flight': flight})
+
+
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationForm
+    template_name = 'flights/reservation_form.html'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[&quot;flight&quot;] = self.object.flight
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('flight_detail', kwargs={'pk': self.object.flight.id})
+
+
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Reservation
+    template_name = 'flights/reservation_confirm_delete.html'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('flight_detail', kwargs={'pk': self.object.flight.id})
+</code></pre>
+<p>Здесь долго боролся с тем, чтобы пользователь мог удалять только свои брони и редактировать тоже только свои,
+добавил для этого везде.</p>
+<pre><code class="language-python">def get_queryset(self):
+    return Reservation.objects.filter(user=self.request.user)
+</code></pre>
+<p>Потом долго разбирался с тем, что почему-то не раотало окно редактирования брони. Оказалось,
+что там не было объекта полёта и из-за этого не работало. Добавил его в контекст.</p>
+<p>Для создания комментариев использовал:</p>
+<pre><code class="language-python">@login_required
+def create_comment(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.flight = flight
+            comment.user = request.user
+            comment.save()
+            messages.success(request, 'Отзыв успешно добавлен.')
+        else:
+            messages.error(request, 'Ошибка при заполнении формы отзыва.')
+    return redirect('flight_detail', pk=flight.id)
+</code></pre>
+<p>Не мог разобраться как не заставлять юзера указывать полёт и самого себя, раз информация об этом есть.
+Узнал о form.save(commit=False) и добавил это в код.</p>
+<p>Потом я долго делал шаблоны. Базовый шаблон с шапкой и шаблон для информации о полёте
+пришлось сгенерировать через LLM, потому что мои выглядели очень плохо.</p>
+<p>Тут я вспомнил об именах и фамилиях для бронирования и начал всё это добавлять.
+Решил, что имя и фамилия отображаются только владельцу бронирования. Потом всё проверил, 
+сделал тестовый полёт, пользователей, создал бронирование и убедился, что всё работает.</p>
+<h3 id="_2">Листинг кода</h3>
+<p>models.py</p>
+<pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import User
+
+class Flight(models.Model):
+    flight_number = models.CharField(max_length=10, unique=True)
+    airline = models.CharField(max_length=50)
+    departure_datetime = models.DateTimeField()
+    arrival_datetime = models.DateTimeField()
+    gate = models.CharField(max_length=10)
+    arrival_iata = models.CharField(max_length=3)
+    departure_iata = models.CharField(max_length=3)
+
+    def __str__(self):
+        return f&quot;{self.flight_number} ({self.airline})&quot;
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    seat = models.CharField(max_length=5)
+    service_class = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100)
+    ticket_number = models.CharField(max_length=20, blank=True, null=True)
+
+    def __str__(self):
+        return f&quot;Бронирование пользователя {self.user.username} на рейс {self.flight.flight_number}&quot;
+
+class Comment(models.Model):
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    rating = models.PositiveSmallIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f&quot;Отзыв {self.rating} от {self.user.username} к рейсу {self.flight.flight_number}&quot;
+</code></pre>
+<p>views.py</p>
+<pre><code class="language-python">from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.contrib import messages
+from .models import Flight, Reservation, Comment
+from .forms import ReservationForm, CommentForm
+
+
+class FlightListView(ListView):
+    model = Flight
+    template_name = 'flights/flight_list.html'
+    context_object_name = 'flights'
+
+
+class FlightDetailView(DetailView):
+    model = Flight
+    template_name = 'flights/flight_detail.html'
+    context_object_name = 'flight'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        flight = self.get_object()
+        context['reservations'] = Reservation.objects.filter(flight=flight)
+        context['comments'] = Comment.objects.filter(flight=flight).order_by('-created_at')
+        context['comment_form'] = CommentForm()
+        return context
+
+
+@login_required
+def create_reservation(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST)
+        if form.is_valid():
+            reservation = form.save(commit=False)
+            reservation.user = request.user
+            reservation.flight = flight
+            reservation.save()
+            messages.success(request, 'Бронирование успешно создано.')
+            return redirect('flight_detail', pk=flight.id)
+    else:
+        form = ReservationForm()
+    return render(request, 'flights/reservation_form.html', {'form': form, 'flight': flight})
+
+
+class ReservationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationForm
+    template_name = 'flights/reservation_form.html'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[&quot;flight&quot;] = self.object.flight  # Ensure flight is passed
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('flight_detail', kwargs={'pk': self.object.flight.id})
+
+
+class ReservationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Reservation
+    template_name = 'flights/reservation_confirm_delete.html'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('flight_detail', kwargs={'pk': self.object.flight.id})
+
+
+@login_required
+def create_comment(request, flight_id):
+    flight = get_object_or_404(Flight, id=flight_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.flight = flight
+            comment.user = request.user
+            comment.save()
+            messages.success(request, 'Отзыв успешно добавлен.')
+        else:
+            messages.error(request, 'Ошибка при заполнении формы отзыва.')
+    return redirect('flight_detail', pk=flight.id)
+</code></pre>
+<p>forms.py</p>
+<pre><code class="language-python">from django import forms
+from .models import Reservation, Comment
+
+
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['seat', 'service_class', 'name', 'surname']
+        widgets = {
+            'seat': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер места'}),
+            'service_class': forms.Select(attrs={'class': 'form-control'}, choices=(
+                ('economy', 'Эконом'),
+                ('business', 'Бизнес'),
+                ('first', 'Первый'),
+            )),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    rating = forms.IntegerField(
+        min_value=1,
+        max_value=10,
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Рейтинг от 1 до 10'})
+    )
+
+    class Meta:
+        model = Comment
+        fields = ['text', 'rating']
+        widgets = {
+            'text': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ваш отзыв'}),
+        }
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
