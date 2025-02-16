@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'rest_framework',
     'warriors_app',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
