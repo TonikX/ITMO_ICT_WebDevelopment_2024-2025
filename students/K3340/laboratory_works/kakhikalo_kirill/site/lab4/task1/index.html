@@ -72,20 +72,20 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab3</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab3</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Task1</a>
+    <a href="../../lab3/task1/" class="dropdown-item">Task1</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab4</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Lab4</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../lab4/task1/" class="dropdown-item">Task1</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Task1</a>
 </li>
                                 </ul>
                             </li>
@@ -98,12 +98,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../../lab2/task1/" class="nav-link">
+                                <a rel="prev" href="../../lab3/task1/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../lab4/task1/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -124,7 +124,6 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
-            
         </ul>
     </div>
 </div></div>
@@ -144,71 +143,34 @@
 колледжа студенте, внести изменения в данные об преподавателях и студентах, в том
 числе поменять оценку студента по той или иной дисциплине.</p>
 <p>В задачу диспетчера учебной части входит составление расписания.</p>
-<h3 id="_1">Ход работы</h3>
-<p>Вариант выбрал тот, модель для которого составлял на соответствующем предмете.
-Схема:
-<img alt="img.png" src="../img.png" /></p>
-<p>Для лабораторной работы схему немного упростил, заменив zachot_result и differential_result
-на одну таблицу result.</p>
-<p>В первую очередь создал модель, перенёс туда все атрибуты и связи, которые были в схеме.
-Потому настроил корректное M2M отношения для programm_element и teaching_permit.</p>
-<p>После создал миграции.</p>
-<p>Для view для всех сущностей использовал стандартный ModelViewSet,
-а для сериализоваторов использовал ModelSerializer.</p>
-<p>Когда начал настраивать urls, понял, что должен быть более простой способ указать все нужные
-urls, погуглил, нашёл https://www.django-rest-framework.org/api-guide/routers/</p>
-<p>Указал urls так:</p>
-<pre><code class="language-python">router = DefaultRouter()
-router.register('educationprograms', EducationProgramViewSet)
-router.register('academicdisciplines', AcademicDisciplineViewSet)
-router.register('programelements', ProgramElementViewSet)
-router.register('groups', GroupViewSet)
-router.register('students', StudentViewSet)
-router.register('classrooms', ClassroomViewSet)
-router.register('teachers', TeacherViewSet)
-router.register('classsessions', ClassSessionViewSet)
-router.register('teachingpermits', TeachingPermitViewSet)
-router.register('results', ResultViewSet)
+<p>В начале по документации https://vuejs.org/guide/quick-start.html
+разобрался как создать проект.</p>
+<p>На стандартную home страницу добавил кнопки для логина и логаута.
+Чтобы логин корректно работал, при успешном логине токен записывается в localStorage.
+После этого в api.js я добавляю токен в заголовок запроса.
+В router/index.js добавил проверку на наличие токена в localStorage, если его нет,
+то пользователь перенаправляется на страницу логина.</p>
+<p>Во время проверки понял, что не был настроен CORS, добавил в settings.py третьей лабы:</p>
+<pre><code class="language-python">CORS_ORIGIN_ALLOW_ALL = False
 
-urlpatterns = [
-    path('api/', include(router.urls)),
-]
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:5173',
+)
 </code></pre>
-<p>Проверил что всё работает и создал пару сущностей.
-Добавил в проект djoser, в settings добавил настройки:</p>
-<pre><code class="language-python">REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-}
-</code></pre>
-<p>После этого всё эндпоинты доступные только для авторизованных пользователей.</p>
-<p>В urls добавил по документации djoser:</p>
-<pre><code class="language-python">re_path(r'^auth/', include('djoser.urls')),
-re_path(r'^auth/', include('djoser.urls.authtoken')),
-</code></pre>
-<p>Проверил как работает djoser, понял, что из браузера работать неудобно, так как
-нет возможности вводить токен. Чтобы решить проблему, подключил swagger,
-потому что знал, что там можно указывать токены и что его всё равно нужно будет подключить.</p>
-<p>Подключил swagger по инструкции из практического задания.
-Случайно удалил permission_classes=(AllowAny,), из-за этого эндпоинт сваггера тоже был недоступен,
-пока не добавил его обратно.</p>
-<p>По умолчанию не выходило указывать токен. Чтобы это исправить добавил в settings.py:</p>
-<pre><code class="language-python">SWAGGER_SETTINGS = {
-    'SECURITY_DEFINITIONS': {
-        'Token': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-        }
-    },
-}
-</code></pre>
-<p>После этого ввёл туда Token {тут токен от djoser} и всё заработало.
-Потом написал readme file.</p></div>
+<p>После этого всё заработало.
+Потом добавил страницу для преподователей, дал возможность их создавать и давать им права на преподавание.
+Сделал отображение для дисциплин и программ обучения, с возможностью их редактирования.</p>
+<p>Потом делал страницу групп, на которой было отображение студентов и расписание этой группы.
+<img alt="img.png" src="../img.png" /></p>
+<p>Это было сложно, так как нужно было отправлять много запросов для составления одной такой таблички,
+так как для занятий отдавались ID учителей и аудиторий и их ещё нужно было преобразовать в нормальные данные.</p>
+<p>Дальше я добавил такое же раписание на страницу к преподавателям, так как это требовалось по заданию.</p>
+<p>После сделал отдельную страницу с расписанием на вообще всех.
+<img alt="img_1.png" src="../img_1.png" /></p>
+<p>Потом занялся сводной ведомостью. Тут было не до конца понятно что делать,
+так как требовалось вычислять среднюю оценку на группу, а при этом оценка могла быть
+даже не числом (зачтено/не зачтено). Решил для упрощения игнорировать нечисловые оценки.</p>
+<p><img alt="img_2.png" src="../img_2.png" /></p></div>
             </div>
         </div>
 
