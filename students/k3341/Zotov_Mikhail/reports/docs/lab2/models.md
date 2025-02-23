@@ -1,9 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser, Group
-from django.core.exceptions import ValidationError
-from django.conf import settings
+# Модели
 
+![img.png](img.png)
 
+```python
 class StudyGroup(models.Model):
     LETTER_CHOICES = [
         ('A', 'A'),
@@ -109,3 +108,4 @@ class GradeHomework(models.Model):
 
     def __str__(self):
         return f"{self.submitted_homework} - {self.grade} - {self.penalty}"
+```

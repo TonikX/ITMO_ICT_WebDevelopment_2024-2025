@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Домашние задания{% endblock %}
 
 {% block content %}
 <h2>Домашние задания</h2>
-<ul>
-    {% for homework in homeworks %}
-    <p><strong></strong>{{ homework }}</p>
+
+{% if homeworks %}
+<div class="row">
+    {% for hw in homeworks %}
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ hw.subject }}</h5>
+                <p class="card-text">{{ hw.text }}</p>
+                <p><strong>Срок сдачи:</strong> {{ hw.deadline }}</p>
+
+                {% with submissions|get_item:hw.id as submission %}
+                    {% if submission %}
+                        {% with submission.gradehomework_set.first as grade %}
+                            {% if grade %}
+                                <p><strong>Оценка:</strong> {{ grade.grade }}</p>
+                                <p><strong>Штраф:</strong> {{ grade.penalty }}</p>
+                                <p><strong>Итог:</strong> {{ grade.grade|subtract:grade.penalty }}</p>
+                            {% else %}
+                                <p class="text-warning">Оценка пока не выставлена</p>
+                                <a href="{% url 'submit_homework' hw.id %}" class="btn btn-warning">Редактировать</a>
+                            {% endif %}
+                        {% endwith %}
+                    {% else %}
+                        <a href="{% url 'submit_homework' hw.id %}" class="btn btn-success">Сдать задание</a>
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
+{% else %}
+<p>Нет заданных домашних работ.</p>
+{% endif %}
+
 {% endblock %}

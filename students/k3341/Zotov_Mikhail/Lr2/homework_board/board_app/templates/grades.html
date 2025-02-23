@@ -1,7 +1,87 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load custom_filters %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Оценки{% endblock %}
 
 {% block content %}
-<h2>Тут будут оценки</h2>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Оценки</h2>
+
+    <form method="GET" class="mb-3 text-center">
+        <label for="subject" class="me-2 fw-bold">Выберите предмет:</label>
+        <select name="subject" id="subject" class="form-select d-inline-block w-auto">
+            <option value="">Все предметы</option>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}" {% if subject.id == selected_subject_id %}selected{% endif %}>
+                    {{ subject.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="student_name" class="ms-3 me-2 fw-bold">Имя студента:</label>
+        <input type="text" name="student_name" id="student_name" value="{{ student_name|default:'' }}"
+               class="form-control d-inline-block w-auto" placeholder="Введите имя">
+
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Ученик</th>
+                    <th>Предмет</th>
+                    <th>Задание</th>
+                    <th>Оценка</th>
+                    <th>Штраф</th>
+                    <th>Результат</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in page_obj %}
+                <tr>
+                    <td>{{ grade.submitted_homework.student }}</td>
+                    <td>{{ grade.submitted_homework.homework.subject.name }}</td>
+                    <td class="text-start">{{ grade.submitted_homework.homework.text }}</td>
+                    <td>{{ grade.grade|default:"-" }}</td>
+                    <td class="text-danger">{{ grade.penalty|default:"-" }}</td>
+                    <td class="fw-bold {% if grade.grade and grade.penalty and grade.grade|subtract:grade.penalty < 3 %}text-danger{% else %}text-success{% endif %}">
+                        {{ grade.grade|subtract:grade.penalty }}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="text-muted">Нет данных об оценках.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?subject={{ selected_subject_id }}&student_name={{ student_name }}&page=1">Первая</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?subject={{ selected_subject_id }}&student_name={{ student_name }}&page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?subject={{ selected_subject_id }}&student_name={{ student_name }}&page={{ page_obj.next_page_number }}">Следующая</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?subject={{ selected_subject_id }}&student_name={{ student_name }}&page={{ page_obj.paginator.num_pages }}">Последняя</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
 {% endblock %}

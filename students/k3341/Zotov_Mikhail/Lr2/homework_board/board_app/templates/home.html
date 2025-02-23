@@ -3,6 +3,9 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
-<h2>Добро пожаловать!</h2>
-<p>Это главная страница доски домашних заданий.</p>
+{% if first_name %}
+<h2>Здравствуйте, {{ first_name }} {{ last_name }}!</h2>
+{% else %}
+<h2>Здравствуйте!</h2>
+{% endif %}
 {% endblock %}

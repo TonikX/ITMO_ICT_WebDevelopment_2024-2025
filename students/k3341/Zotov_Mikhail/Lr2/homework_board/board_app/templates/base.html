@@ -20,12 +20,12 @@
                     <ul class="navbar-nav me-auto">
                         {% if user.is_authenticated %}
                             {% if user.role == 'student' %}
-                                <!-- Меню для студентов -->
                                 <li class="nav-item"><a class="nav-link" href="/subjects/">Предметы</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/grades/">Оценки</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/homeworks/">Домашние задания</a></li>
                             {% elif user.role == 'teacher' %}
-                                <!-- Меню для учителей -->
                                 <li class="nav-item"><a class="nav-link" href="/groups/">Группы</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/view_submissions/">Домашние задания</a></li>
                             {% endif %}
                         {% endif %}
                     </ul>
@@ -38,7 +38,6 @@
                                 <a class="nav-link" href="/logout/">Выход</a>
                             </li>
                         {% else %}
-                            <!-- Меню для неавторизованных пользователей -->
                             <li class="nav-item"><a class="nav-link" href="/login/">Вход</a></li>
                             <li class="nav-item"><a class="nav-link" href="/register/">Регистрация</a></li>
                         {% endif %}

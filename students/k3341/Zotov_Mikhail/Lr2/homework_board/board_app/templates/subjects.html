@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Предметы{% endblock %}
 
 {% block content %}
-<h1>Предметы для группы {{ request.user.group }}</h1>
-    <ul>
-        {% for subject in subjects %}
-            <li>{{ subject.name }}</li>
-        {% empty %}
-            <li>Нет предметов для вашей группы.</li>
-        {% endfor %}
-    </ul>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Предметы для группы {{ request.user.group }}</h1>
+
+    {% if subjects %}
+        <div class="row">
+            {% for subject in subjects %}
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ subject.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            Нет предметов для вашей группы.
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

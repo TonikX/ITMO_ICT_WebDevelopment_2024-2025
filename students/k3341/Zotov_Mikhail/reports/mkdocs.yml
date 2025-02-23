@@ -7,6 +7,10 @@ nav:
      - Задание 3: lab1/task3
      - Задание 4: lab1/task4
      - Задание 5: lab1/task5
+ - Лабораторная 2:
+     - Введение: lab2/main
+     - Модели: lab2/models
+     - Запросы: lab2/views
 
 
 

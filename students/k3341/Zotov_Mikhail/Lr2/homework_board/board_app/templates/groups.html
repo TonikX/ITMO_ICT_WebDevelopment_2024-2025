@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Группы{% endblock %}
 
 {% block content %}
-{% for group in groups %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Учебные группы</h2>
 
-<ul>
-    <li><a href="/groups/{{group.id}}/">{{ group }}<br/></a></li>
-</ul>
-
-{% endfor %}
+    {% if groups %}
+        <div class="row justify-content-center">
+            {% for group in groups %}
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="card shadow-sm w-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ group }}</h5>
+                            <a href="/groups/{{ group.id }}/" class="btn btn-primary">Перейти в группу</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            Группы не найдены.
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
