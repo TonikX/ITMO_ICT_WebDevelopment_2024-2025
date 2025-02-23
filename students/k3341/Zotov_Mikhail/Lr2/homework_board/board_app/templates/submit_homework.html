@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Отправка решения{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center">Отправка решения</h2>
+
+            {% if submission %}
+                <div class="alert alert-info">
+                    <p><strong>Ваше отправленное решение:</strong></p>
+                    <pre class="bg-light p-3 rounded border">{{ submission.solution_text }}</pre>
+
+                    <p><strong>Дата и время отправки:</strong> {{ submission.submitted_at }}</p>
+                </div>
+            {% else %}
+                <div class="alert alert-warning">
+                    <p>Вы еще не отправляли решение.</p>
+                </div>
+            {% endif %}
+
+            <h3 class="mt-4">Отправьте решение</h3>
+            <form method="post" class="mt-3">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

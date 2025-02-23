@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of users</title>
+</head>
+<body>
+<span><h1>Users</h1><a href="/owners/create/">Add new one</a></span>
+<ul>
+    {% for owner in owners %}
+
+    <li><a href="/owners/{{owner.id}}/">{{ owner }}<br/></a></li>
+
+    {% endfor %}
+</ul>
+
+</body>
+</html>
