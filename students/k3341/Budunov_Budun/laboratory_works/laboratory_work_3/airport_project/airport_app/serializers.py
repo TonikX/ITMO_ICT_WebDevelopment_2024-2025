@@ -1,5 +1,21 @@
 from rest_framework import serializers
+from django.contrib.auth import get_user_model
 from .models import *
+
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = '__all__'
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        user = get_user_model().objects.create_user(**validated_data)
+        return user
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
 
 class AirlineSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,6 +53,7 @@ class AirplaneMaintenanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    user = CustomUserSerializer(read_only=True)
     class Meta:
         model = Employee
         fields = '__all__'

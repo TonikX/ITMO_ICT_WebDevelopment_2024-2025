@@ -14,4 +14,5 @@ urlpatterns = [
     path('race/<int:race_id>/register/', views.register_for_race, name='register_for_race'),
     path('race/<int:race_id>/cancel_register/', views.cancel_register_for_race, name='cancel_register_for_race'),
     path('race/<int:race_id>/comment/', views.add_comment, name='add_comment'),
+
 ]
