@@ -1,0 +1,20 @@
+{% block content %}
+  <h1>Reservation Details</h1>
+  <p>User: {{ reservation.user.username }}</p>
+  <p>Flight: <a href="{% url 'flight_detail' reservation.flight.pk %}">{{ reservation.flight.flight_number }}</a></p>
+  <p>Seat: {{ reservation.seat.seat_number }}</p>
+  <p>First Name: {{ reservation.first_name }}</p>
+  <p>Last Name: {{ reservation.last_name }}</p>
+
+  {% if user.is_staff %}
+    <form method="post" action="{% url 'register_passenger' reservation.pk %}">
+      {% csrf_token %}
+      <button type="submit">Register</button>
+    </form>
+  {% endif %}
+
+  <a href="{% url 'edit_reservation' reservation.pk %}" class="btn btn-primary">Edit Reservation</a>
+  <a href="{% url 'delete_reservation' reservation.pk %}" class="btn btn-primary">Delete Reservation</a>
+
+
+{% endblock %}

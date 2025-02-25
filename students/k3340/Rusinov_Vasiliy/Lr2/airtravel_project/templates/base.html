@@ -1,0 +1,42 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Air Travel{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">  <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Flight Information System</h1>  <!-- Site Name -->
+            <nav>
+                <ul>
+                    <li><a href="{% url 'flights' %}">Flights</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'user_reservations' %}">My Reservations</a></li>
+                        <li><a href="{% url 'user_profile' %}">Profile</a></li>
+                        <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Sign In</a></li>
+                        <li><a href="{% url 'register' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Default content can go here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Flight Information System</p>
+    </footer>
+
+    </body>
+</html>
