@@ -1,0 +1,16 @@
+site_name: WEB-programming
+nav:
+  - Home: index.md
+  - 1 lab:
+      - Task 1: docs/LR1/task1.md
+      - Task 2: docs/LR1/task2.md
+      - Task 3: docs/LR1/task3.md
+      - Task 4: docs/LR1/task4.md
+      - Task 5: docs/LR1/task5.md
+  - 2 lab:
+    - "Лабораторная работа": docs/LR2/lr2.md
+  - 3 lab:
+    - "Практическая работа": docs/pr/pr1.md
+    - "Лабораторная работа": docs/LR3/lab3.md
+theme:
+  name: readthedocs
