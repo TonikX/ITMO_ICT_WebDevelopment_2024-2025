@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Зарегистрировать выступление{% endblock %}
+
+{% block body %}
+
+
+    <h2 class="text-center mb-4">Предложите выступление на конференцию: {{ conference.title }}</h2>
+
+    <div>
+        <strong>Условия участия</strong>:
+        <p>{{ conference.participation_condition }}
+    </div>
+
+    <div class="card shadow-lg p-4">
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_topic">Topic</label>
+                <input type="text" name="topic" id="id_topic" class="form-control" placeholder="Enter your topic">
+            </div>
+
+            <div class="form-group">
+                <label for="id_description">Description</label>
+                <textarea name="description" id="id_description" class="form-control" rows="4"
+                          placeholder="Describe your topic"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Submit Registration</button>
+        </form>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'conference_detail' pk=conference.pk %}" class="btn btn-secondary">Back to Conference</a>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Зарегистрироваться на конференцию{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h2 class="mb-4">Зарегистрироваться на конференцию {{ conference.title }}</h2>
+
+        <form method="POST" class="card p-4 shadow-lg">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+        </form>
+
+        <a href="{% url 'conference_detail' pk=conference.id %}" class="btn btn-secondary mt-3">Назад к конференциям</a>
+    </div>
+{% endblock %}

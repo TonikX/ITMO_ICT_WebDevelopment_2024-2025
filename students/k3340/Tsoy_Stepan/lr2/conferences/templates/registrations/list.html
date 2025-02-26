@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Ваши регистрации{% endblock %}
+
+{% block body %}
+    <h2 class="text-center mb-4">Ваши регистрации</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped shadow-lg">
+            <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Конференция</th>
+                <th>Дата конференции</th>
+                <th>Дата регистрации</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for registration in registration_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="{% url 'conference_detail' pk=registration.conference.pk %}">
+                            {{ registration.conference.title }}
+                        </a>
+                    </td>
+                    <td>{{ registration.conference.event_date }}</td>
+                    <td>{{ registration.dt_register }}</td>
+                    <td>
+                        {% if registration.conference.due_register > today %}
+                            <a href="{% url 'cancel_registration' pk=registration.pk %}" class="btn btn-danger btn-sm">
+                                Отменить
+                            </a>
+                        {% elif not registration.review %}
+                            <a href="{% url 'comment_conference' pk=registration.pk %}" class="btn btn-outline-warning btn-sm">
+                                Оставить комментарий
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">Никаких регистраций.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'conference_list' %}" class="btn btn-primary">Посмотреть конференции</a>
+    </div>
+
+{% endblock %}

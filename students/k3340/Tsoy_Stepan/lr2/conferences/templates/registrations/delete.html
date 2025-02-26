@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Отменить регистрацию{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 text-center">
+        <h2 class="text-danger">Отменить регистрацию</h2>
+        <p class="lead">
+            Вы уверены, что хотите отменить регистрацию на конференцию
+            <strong>{{ registration.conference.title }}</strong>?
+        </p>
+        <p class="text-muted">Вы не сможете отменить это действие.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Да, отменить регистрацию</button>
+            <a href="{% url 'registrations' %}" class="btn btn-secondary">Нет, вернуться назад</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
