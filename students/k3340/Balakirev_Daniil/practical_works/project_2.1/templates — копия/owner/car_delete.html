@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete Car</title>
+</head>
+<body>
+    <h1>Confirm Delete Car</h1>
+    <p>Are you sure you want to delete car:</p>
+    <p>
+    <b>Brand:</b> {{ object.mark }} <br>
+    <b>Model:</b> {{ object.model }} <br>
+    <b>Car Number:</b> {{ object.car_number }}
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Confirm Delete">
+        <a href="{% url 'all_cars' %}">Cancel</a>
+    </form>
+</body>
+</html>

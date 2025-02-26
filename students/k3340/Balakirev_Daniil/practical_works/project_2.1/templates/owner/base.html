@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>{% block title %}My Django App{% endblock %}</title>
+ </head>
+ <body>
+     <nav>
+         <a href="/">Главная</a>
+         <a href="{% url 'all_cars' %}">Автомобили</a>
+         <a href="{% url 'all_car_owners' %}">Владельцы</a>
+     </nav>
+     <div class="content">
+         {% block content %}
+         {% endblock %}
+     </div>
+ </body>
+ </html>

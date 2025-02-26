@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Добавить отзыв{% endblock %}
+{% block content %}
+  <h2>Добавить отзыв для {{ room.room_type.name }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить</button>
+  </form>
+{% endblock %}

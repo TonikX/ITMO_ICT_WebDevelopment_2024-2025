@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <p><strong>Номер:</strong> {{ car.car_number }}</p>
+    <p><strong>Марка:</strong> {{ car.mark }}</p>
+    <p><strong>Модель:</strong> {{ car.model }}</p>
+    <p><strong>Цвет:</strong> {{ car.colour }}</p>
+    <p><a href="{% url 'car_update' pk=car.id %}">Edit Car</a></p>
+    <p><a href="{% url 'car_delete' pk=car.id %}">Delete Car</a></p>
+</body>
+</html>

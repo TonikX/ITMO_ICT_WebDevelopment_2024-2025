@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+</head>
+<body>
+  <h1>{{ title }}</h1>
+  <ul>
+    {% for owner in owners %}
+      <li>
+        <a href="/owner/{{ owner.id }}/">
+          {{ owner.first_name }} {{ owner.last_name }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+    <br>
+    <a href="{% url 'car_owner_create' %}">Create New Owner</a>
+</body>
+</html>

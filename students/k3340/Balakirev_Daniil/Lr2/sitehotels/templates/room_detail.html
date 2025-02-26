@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>{{ room.room_type.name }}</h2>
+    <p><strong>Отель:</strong> {{ room.hotel.name }}</p>
+    <p><strong>Цена:</strong> {{ room.price }}</p>
+    <p><strong>Вместимость:</strong> {{ room.capacity }}</p>
+    <p><strong>Удобства:</strong> {{ room.amenities }}</p>
+
+    <h3>Забронировать номер</h3>
+    <form method="post" action="{% url 'booking_create' room.id %}">
+        {% csrf_token %}
+        {{ booking_form.as_p }}
+        {% for field in booking_form %}
+            {% if field.errors %}
+                <span style="color:red;">{{ field.errors }}</span>
+            {% endif %}
+        {% endfor %}
+        <button type="submit">Забронировать</button>
+    </form>
+
+    <h3>Оставить отзыв</h3>
+    <form method="post" action="{% url 'review_create' room.id %}">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        {% for field in review_form %}
+            {% if field.errors %}
+                <span style="color:red;">{{ field.errors }}</span>
+            {% endif %}
+        {% endfor %}
+        <button type="submit">Отправить</button>
+    </form>
+
+    <h3>Ваши бронирования</h3>
+    {% if bookings %}
+        <ul>
+            {% for booking in bookings %}
+                <li>
+                    Заезд: {{booking.check_in_date}}, выезд: {{booking.check_out_date}}
+                    <a href="{% url 'booking_update' booking.id %}">Редактировать</a>
+                    <a href="{% url 'booking_delete' booking.id %}">Удалить</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У вас нет бронирований для этого номера.</p>
+    {% endif %}
+
+    <h3>Отзывы</h3>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <p><strong>{{ review.user.username }}:</strong> {{ review.text }}</p>
+                    <p>Рейтинг: {{ review.rating }} (Заезд: {{ review.check_in_date|date:'d.m.Y' }}, Выезд: {{ review.check_out_date|date:'d.m.Y' }})</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Для этого номера пока нет отзывов.</p>
+    {% endif %}
+{% endblock %}

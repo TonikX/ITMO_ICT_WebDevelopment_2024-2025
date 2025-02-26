@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 class="text-center mb-4">Список отелей</h2>
+    {% if hotels %}
+        <ul class="list-group">
+            {% for hotel in hotels.object_list %}
+                <li class="list-group-item">
+                    <h3>{{ hotel.name }}</h3>
+                    <p><strong>Адрес:</strong> {{ hotel.address }}</p>
+                    <p><strong>Описание:</strong> {{ hotel.description }}</p>
+                    <a href="{% url 'room_list' hotel.id %}" class="btn btn-primary">Смотреть номера</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+       <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if hotels.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">Первая страница</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ hotels.previous_page_number }}">Далее</a></li>
+                {% endif %}
+                {% for page_num in hotels.paginator.page_range %}
+                    <li class="page-item {% if page_num == hotels.number %}active{% endif %}">
+                        <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                    </li>
+                {% endfor %}
+                {% if hotels.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ hotels.next_page_number }}">Далее</a></li>
+                     <li class="page-item"><a class="page-link" href="?page={{ hotels.paginator.num_pages }}">Назад</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% else %}
+        <p class="text-center">Нет доступных отелей.</p>
+    {% endif %}
+{% endblock %}

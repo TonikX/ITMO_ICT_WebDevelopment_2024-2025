@@ -1,0 +1,1173 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../lab1/task5/">
+      
+      
+        <link rel="next" href="../practical3_1/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Лабораторная 2 - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Лабораторная 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторная 1
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторная 1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/task1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/task2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/task3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/task4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/task5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    task5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Лабораторная 2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Лабораторная 2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Список отелей
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Список отелей">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необходимо учитывать название отеля, владельца отеля, адрес, описание, типы номеров, стоимость, вместимость, удобства.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необходимо реализовать следующий функционал:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модели
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Представления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Представления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      UserRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loginview" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logoutview" class="md-nav__link">
+    <span class="md-ellipsis">
+      LogoutView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotellistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      HotelListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roomlistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoomListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roomdetailview" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoomDetailView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingupdateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingUpdateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingdeleteview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingDeleteView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookinglistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reviewcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReviewCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monthlyguestlistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      MonthlyGuestListView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пути
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practical3_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Практическая 3.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Лабораторная 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Лабораторная 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Список отелей
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Список отелей">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необходимо учитывать название отеля, владельца отеля, адрес, описание, типы номеров, стоимость, вместимость, удобства.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Необходимо реализовать следующий функционал:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модели
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Представления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Представления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userregistrationview" class="md-nav__link">
+    <span class="md-ellipsis">
+      UserRegistrationView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loginview" class="md-nav__link">
+    <span class="md-ellipsis">
+      LoginView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logoutview" class="md-nav__link">
+    <span class="md-ellipsis">
+      LogoutView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotellistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      HotelListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roomlistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoomListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roomdetailview" class="md-nav__link">
+    <span class="md-ellipsis">
+      RoomDetailView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingupdateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingUpdateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookingdeleteview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingDeleteView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bookinglistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      BookingListView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reviewcreateview" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReviewCreateView
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monthlyguestlistview" class="md-nav__link">
+    <span class="md-ellipsis">
+      MonthlyGuestListView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Пути
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2">Лабораторная работа 2</h1>
+<h2 id="_1">Список отелей</h2>
+<h3 id="_2">Необходимо учитывать название отеля, владельца отеля, адрес, описание, типы номеров, стоимость, вместимость, удобства.</h3>
+<h3 id="_3">Необходимо реализовать следующий функционал:</h3>
+<p>Регистрация новых пользователей.</p>
+<p>Просмотр и резервирование номеров. </p>
+<p>Пользователь должен иметь возможность редактирования и удаления своих резервирований.</p>
+<p>Написание отзывов к номерам. При добавлении комментариев, должны сохраняться период проживания, текст комментария, рейтинг (1-10), информация о комментаторе.</p>
+<p>Администратор должен иметь возможность заселить пользователя в отель и выселить из отеля средствами Django-admin.</p>
+<p>В клиентской части должна формироваться таблица, отображающая постояльцев отеля за последний месяц.</p>
+<h2 id="_4">Модели</h2>
+<pre><code>class User(AbstractUser):
+    pass
+
+class Hotel(models.Model):
+    name = models.CharField(max_length=100)
+    owner = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    description = models.TextField()
+
+
+class RoomType(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Room(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    capacity = models.IntegerField()
+    amenities = models.TextField()
+
+
+class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    text = models.TextField()
+    rating = models.IntegerField()
+</code></pre>
+<h2 id="_5">Представления</h2>
+<h3 id="userregistrationview">UserRegistrationView</h3>
+<pre><code>class UserRegistrationView(TemplateView):
+    template_name = 'register.html'
+
+    def get(self, request):
+        form = RegistrationForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Регистрация прошла успешно!')
+            return redirect('home')
+        return render(request, self.template_name, {'form': form})
+</code></pre>
+<h3 id="loginview">LoginView</h3>
+<pre><code>class LoginView(TemplateView):
+    template_name = 'login.html'
+
+    def get(self, request):
+        form = LoginForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = LoginForm(request, data=request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+            if user is not None:
+               login(request, user)
+               messages.success(request, 'Вы успешно вошли!')
+               return redirect('home')
+        return render(request, self.template_name, {'form': form})
+</code></pre>
+<h3 id="logoutview">LogoutView</h3>
+<pre><code>class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'Вы успешно вышли!')
+        return HttpResponseRedirect(reverse_lazy('home'))
+</code></pre>
+<h3 id="hotellistview">HotelListView</h3>
+<pre><code>class HotelListView(ListView):
+    model = Hotel
+    template_name = 'hotel_list.html'
+    context_object_name = 'hotels'
+    paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        hotels = self.get_queryset()
+        paginator = Paginator(hotels, self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            hotels_page = paginator.page(page)
+        except PageNotAnInteger:
+            hotels_page = paginator.page(1)
+        except EmptyPage:
+            hotels_page = paginator.page(paginator.num_pages)
+
+        context['hotels'] = hotels_page
+        return context
+</code></pre>
+<h3 id="roomlistview">RoomListView</h3>
+<pre><code>class RoomListView(ListView):
+    model = Room
+    template_name = 'room_list.html'
+    context_object_name = 'rooms'
+
+    def get_queryset(self):
+        hotel_id = self.kwargs.get('hotel_id')
+        return Room.objects.filter(hotel_id=hotel_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hotel'] = get_object_or_404(Hotel, pk=self.kwargs.get('hotel_id'))
+        return context
+</code></pre>
+<h3 id="roomdetailview">RoomDetailView</h3>
+<pre><code>class RoomDetailView(DetailView):
+    model = Room
+    template_name = 'room_detail.html'
+    context_object_name = 'room'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['booking_form'] = BookingForm()
+        context['review_form'] = ReviewForm()
+        context['bookings'] = Booking.objects.filter(room=self.object, user=self.request.user)
+        context['reviews'] = Review.objects.filter(room=self.object)
+        return context
+</code></pre>
+<h3 id="bookingcreateview">BookingCreateView</h3>
+<pre><code>class BookingCreateView(LoginRequiredMixin, View):
+    def post(self, request, room_id):
+        room = get_object_or_404(Room, pk=room_id)
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.room = room
+            booking.user = request.user
+            booking.save()
+            messages.success(request, 'Бронирование успешно сохранено!')
+            return redirect(reverse_lazy('room_detail', kwargs={'pk': room_id}))
+        return render(request, 'room_detail.html', {'room': room, 'booking_form': form})
+</code></pre>
+<h3 id="bookingupdateview">BookingUpdateView</h3>
+<pre><code>class BookingUpdateView(LoginRequiredMixin, UpdateView):
+    model = Booking
+    form_class = BookingForm
+    template_name = 'booking_update.html'
+    context_object_name = 'booking'
+
+    def get_success_url(self):
+        return reverse_lazy('room_detail', kwargs={'pk': self.object.room.id})
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user)
+</code></pre>
+<h3 id="bookingdeleteview">BookingDeleteView</h3>
+<pre><code>class BookingDeleteView(LoginRequiredMixin, DeleteView):
+    model = Booking
+    template_name = 'booking_delete.html'
+    context_object_name = 'booking'
+
+    def get_success_url(self):
+       return reverse_lazy('room_detail', kwargs={'pk': self.object.room.id})
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user)
+</code></pre>
+<h3 id="bookinglistview">BookingListView</h3>
+<pre><code>class BookingListView(LoginRequiredMixin, ListView):
+    model = Booking
+    template_name = 'booking_list.html'
+    context_object_name = 'bookings'
+
+    def get_queryset(self):
+        return Booking.objects.filter(user=self.request.user).order_by('-check_in_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+</code></pre>
+<h3 id="reviewcreateview">ReviewCreateView</h3>
+<pre><code>class ReviewCreateView(LoginRequiredMixin, CreateView):
+    model = Review
+    form_class = ReviewForm
+    template_name = 'review_create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['room'] = get_object_or_404(Room, pk=self.kwargs['room_id'])
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('room_detail', kwargs={'pk': self.kwargs['room_id']})
+
+    def form_valid(self, form):
+        review = form.save(commit=False)
+        review.user = self.request.user
+        review.room = get_object_or_404(Room, pk=self.kwargs['room_id'])
+        review.save()
+        messages.success(self.request, 'Отзыв успешно добавлен!')
+        return super().form_valid(form)
+</code></pre>
+<h3 id="monthlyguestlistview">MonthlyGuestListView</h3>
+<pre><code>class MonthlyGuestListView(LoginRequiredMixin, ListView):
+    model = Booking
+    template_name = 'monthly_guests.html'
+    context_object_name = 'bookings'
+
+    def get_queryset(self):
+        today = timezone.now().date()
+        last_month = today - timedelta(days=30)
+        return Booking.objects.filter(check_in_date__gte=last_month).order_by('-check_in_date')
+</code></pre>
+<h2 id="_6">Пути</h2>
+<pre><code>urlpatterns = [
+    path('', views.HomeView.as_view(), name='home'),
+    path('register/', views.UserRegistrationView.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('hotels/', views.HotelListView.as_view(), name='hotel_list'),
+    path('hotel/&lt;int:hotel_id&gt;/rooms/', views.RoomListView.as_view(), name='room_list'),
+    path('room/&lt;int:pk&gt;/', views.RoomDetailView.as_view(), name='room_detail'),
+    path('room/&lt;int:room_id&gt;/booking/', views.BookingCreateView.as_view(), name='booking_create'),
+    path('booking/&lt;int:pk&gt;/update/', views.BookingUpdateView.as_view(), name='booking_update'),
+    path('booking/&lt;int:pk&gt;/delete/', views.BookingDeleteView.as_view(), name='booking_delete'),
+    path('room/&lt;int:room_id&gt;/review/', views.ReviewCreateView.as_view(), name='review_create'),
+    path('bookings/', views.BookingListView.as_view(), name='bookings_list'),
+    path('monthly-guests/', views.MonthlyGuestListView.as_view(), name='monthly_guests'),
+]
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
