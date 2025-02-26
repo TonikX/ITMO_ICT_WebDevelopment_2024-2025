@@ -1,0 +1,55 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}{{ conference.name }}{% endblock %}
+
+{% block content %}
+  <h2>{{ conference.name }}</h2>
+  <p><strong>Тематики:</strong> {{ conference.topics }}</p>
+  <p><strong>Место проведения:</strong> {{ conference.location }}</p>
+  <p><strong>Период:</strong> {{ conference.start_date }} - {{ conference.end_date }}</p>
+  <p><strong>Описание конференции:</strong> {{ conference.description }}</p>
+  <p><strong>Описание места проведения:</strong> {{ conference.location_description }}</p>
+  <p><strong>Условия участия:</strong> {{ conference.participation_conditions }}</p>
+
+  <h3>Отзывы</h3>
+  {% for review in reviews %}
+    <p><strong>{{ review.user.username }}</strong> ({{ review.comment_date }}):</p>
+    <p>Рейтинг: {{ review.rating }}/10</p>
+    <p>{{ review.comment_text }}</p>
+  {% empty %}
+    <p>Отзывов пока нет.</p>
+  {% endfor %}
+
+  {% if user.is_authenticated %}
+    <p><a href="{% url 'add_review' conference_id=conference.id %}">Добавить отзыв</a></p>
+  {% endif %}
+
+  <h3>Авторы</h3>
+  <ul>
+    {% for reg in registrations %}
+      <li>
+        {{ reg.user.username }} - {{ reg.presentation_title }}
+        {% if reg.user == user %}
+          <a href="{% url 'edit_registration' reg_id=reg.id %}">Редактировать</a>
+          <a href="{% url 'delete_registration' reg_id=reg.id %}" onclick="return confirm('Вы уверены, что хотите удалить регистрацию?');">Удалить</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>Нет зарегистрированных авторов.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+    {% if not user_registration %}
+      <form method="post">
+        {% csrf_token %}
+        {{ reg_form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+      </form>
+    {% else %}
+      <p>Вы уже зарегистрированы на эту конференцию.</p>
+    {% endif %}
+  {% else %}
+    <p><a href="{% url 'login' %}?next={{ request.path }}">Войдите</a> для регистрации.</p>
+  {% endif %}
+{% endblock %}

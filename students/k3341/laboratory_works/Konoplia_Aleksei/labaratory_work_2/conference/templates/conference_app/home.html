@@ -1,0 +1,18 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}Список конференций{% endblock %}
+
+{% block content %}
+  <h2>Список конференций</h2>
+  <ul>
+    {% for conf in conferences %}
+      <li>
+        <a href="{% url 'conference_detail' conference_id=conf.id %}">
+          {{ conf.name }} ({{ conf.start_date }} - {{ conf.end_date }})
+        </a>
+      </li>
+    {% empty %}
+      <li>Конференции не найдены.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
