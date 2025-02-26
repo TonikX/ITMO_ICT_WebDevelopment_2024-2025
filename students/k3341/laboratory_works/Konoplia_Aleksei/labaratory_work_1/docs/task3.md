@@ -1,3 +1,13 @@
+# Задание 3
+
+## HTTP Сервер для выдачи HTML страницы
+
+### Краткое описание задания
+
+Реализовать серверную часть приложения, которая отвечает HTTP-сообщением, содержащим HTML-страницу из файла `index.html`.
+### Сервер
+
+```python
 import socket
 
 # Настройки сервера
@@ -29,7 +39,7 @@ def start_server():
                 print(f"Запрос от клиента:\n{request}")
 
                 # Загружаем HTML-страницу
-                response_body = load_html_file(r'C:\code\ITMO_ICT_WebDevelopment_2024-2025\students\k3341\laboratory_works\Konoplia_Aleksei\labaratory_work_1\task3\index.html')
+                response_body = load_html_file('index.html')
 
                 # Формируем HTTP-ответ
                 response = (
@@ -46,3 +56,16 @@ def start_server():
 
 if __name__ == "__main__":
     start_server()
+```
+### html файл
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Моя HTML-страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать на мой сервер!</h1>
+</body>
+</html>
+```
