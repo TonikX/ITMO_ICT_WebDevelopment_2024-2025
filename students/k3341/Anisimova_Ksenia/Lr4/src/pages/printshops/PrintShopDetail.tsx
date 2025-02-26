@@ -1,0 +1,74 @@
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, Button, Box } from '@mui/material';
+import { useParams, useNavigate } from 'react-router-dom';
+import api from '../../services/api';
+
+interface PrintShop {
+    id: string;
+    name: string;
+    address: string;
+    is_closed: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+const PrintShopDetail: React.FC = () => {
+    const { printshopId } = useParams();
+    const navigate = useNavigate();
+    const [printshop, setPrintshop] = useState<PrintShop | null>(null);
+
+    useEffect(() => {
+        if (printshopId) {
+            api.get<PrintShop>(`/printshops/${printshopId}/`)
+                .then((res) => setPrintshop(res.data))
+                .catch((err) => console.error('Ошибка при загрузке типографии:', err));
+        }
+    }, [printshopId]);
+
+    const handleDelete = async () => {
+        if (!printshopId) return;
+        try {
+            await api.delete(`/printshops/${printshopId}/`);
+            navigate('/printshops');
+        } catch (err) {
+            console.error('Ошибка при удалении типографии:', err);
+        }
+    };
+
+    if (!printshop) {
+        return (
+            <Container sx={{ mt: 4 }}>
+                <Typography>Loading...</Typography>
+            </Container>
+        );
+    }
+
+    return (
+        <Container sx={{ mt: 4 }}>
+            <Typography variant="h4" gutterBottom>
+                Print shop details
+            </Typography>
+            <Box sx={{ mb: 2 }}>
+                <Typography variant="body1"><b>ID:</b> {printshop.id}</Typography>
+                <Typography variant="body1"><b>Name:</b> {printshop.name}</Typography>
+                <Typography variant="body1"><b>Address:</b> {printshop.address}</Typography>
+                <Typography variant="body1"><b>Status:</b> {printshop.is_closed ? 'Closed' : 'Open'}</Typography>
+                <Typography variant="body1"><b>Created:</b> {new Date(printshop.created_at).toLocaleString()}</Typography>
+                <Typography variant="body1"><b>Updated:</b> {new Date(printshop.updated_at).toLocaleString()}</Typography>
+            </Box>
+            <Button
+                variant="contained"
+                color="primary"
+                sx={{ mr: 2 }}
+                onClick={() => navigate(`/printshops/${printshopId}/edit`)}
+            >
+                Edit
+            </Button>
+            <Button variant="outlined" color="error" onClick={handleDelete}>
+                Delete
+            </Button>
+        </Container>
+    );
+};
+
+export default PrintShopDetail;

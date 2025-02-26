@@ -1,0 +1,1290 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ellomacaug.github.io/ITMO_ICT_WebDevelopment_2024-2025/lab2/">
+      
+      
+        <link rel="prev" href="../task5/">
+      
+      
+        <link rel="next" href="../lab3/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Main functionality - WEB-labs documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#no2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="WEB-labs documentation" class="md-header__button md-logo" aria-label="WEB-labs documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WEB-labs documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Main functionality
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="WEB-labs documentation" class="md-nav__button md-logo" aria-label="WEB-labs documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    WEB-labs documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab №1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab №1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab №2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Lab №2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Main functionality
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Main functionality
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант: Конференции
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Вариант: Конференции">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Реализация:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab №3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lab №3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main functionality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pra3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical work 3.1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Lab №4
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Lab №4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main functionality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Вариант: Конференции
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Вариант: Конференции">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Реализация:
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="no2">Лабораторная работа №2</h1>
+<h2 id="_1">Вариант: Конференции</h2>
+<h3 id="_2">Описание</h3>
+<p>Интерфейс описывает названия конференций, список тематик, место проведения,
+период проведения, описание конференций, описание место проведения, условия участия.
+Необходимо реализовать следующий функционал:</p>
+<ul>
+<li>Регистрация новых пользователей.</li>
+<li>Просмотр конференций и регистрацию авторов для выступлений.</li>
+<li>Пользователь должен иметь возможность редактирования и удаления своих
+регистраций.</li>
+<li>Написание отзывов к конференциям. При добавлении комментариев,
+должны сохраняться даты конференции, текст комментария, рейтинг (1-10),
+информация о комментаторе.</li>
+<li>Администратор должен иметь возможность указания результатов
+выступления (рекомендован к публикации или нет) средствами Django-
+admin.</li>
+<li>В клиентской части должна формироваться таблица, отображающая всех
+участников по конференциям.</li>
+</ul>
+<h2 id="_3">Реализация:</h2>
+<p><img alt="" src="../images/0.png" />
+<img alt="" src="../images/1.png" />
+<img alt="" src="../images/2.png" />
+<img alt="" src="../images/3.png" />
+<img alt="" src="../images/4.png" />
+<img alt="" src="../images/5.png" />
+<img alt="" src="../images/6.png" />
+<img alt="" src="../images/7.png" />
+<img alt="" src="../images/8.png" /> 
+<img alt="" src="../images/9.png" />
+<img alt="" src="../images/10.png" /></p>
+<h1 id="realization-html">Realization html</h1>
+<h3 id="add_reviewhtml">add_review.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Добавить отзыв&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Добавить отзыв для конференции &quot;{{ conference.title }}&quot;&lt;/h1&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        &lt;button type=&quot;submit&quot;&gt;Отправить отзыв&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;a href=&quot;{% url 'review_list' conference.id %}&quot;&gt;Посмотреть отзывы&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<h3 id="create_registrationhtml">create_registration.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Регистрация на конференцию&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Регистрация на конференцию&lt;/h1&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        &lt;button type=&quot;submit&quot;&gt;Зарегистрироваться&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;button type=&quot;submit&quot;&gt; &lt;a href=&quot;{% url 'index' %}&quot;&gt;Назад к главной странице&lt;/a&gt;&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="delete_registrationhtml">delete_registration.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Удаление регистрации&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Вы действительно хотите удалить регистрацию &quot;{{ registration.conference.title }}&quot;?&lt;/h1&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        {% csrf_token %}
+        &lt;button type=&quot;submit&quot;&gt;Удалить&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="edit_registrationhtml">edit_registration.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Редактирование регистрации&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Редактирование регистрации&lt;/h1&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        {% csrf_token %}
+        {{ form.as_p }}
+        &lt;button type=&quot;submit&quot;&gt;Сохранить изменения&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="indexhtml">index.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Главная страница конференции&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Добро пожаловать на сайт конференций!&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href=&quot;{% url 'index' %}&quot;&gt;Главная&lt;/a&gt; |
+        &lt;a href=&quot;{% url 'list_conferences' %}&quot;&gt;Конференции&lt;/a&gt; |
+        &lt;a href=&quot;{% url 'my_registrations' %}&quot;&gt;Мои регистрации&lt;/a&gt; |
+        &lt;a href=&quot;{% url 'create_registration' %}&quot;&gt;Добавить регистрацию&lt;/a&gt;
+    &lt;/nav&gt;
+    {% if user.is_authenticated %}
+        &lt;p&gt;Привет, {{ user.username }}!&lt;/p&gt;
+        &lt;a href=&quot;{% url 'logout' %}&quot;&gt;Выйти&lt;/a&gt;
+    {% else %}
+        &lt;a href=&quot;{% url 'register' %}&quot;&gt;Регистрация&lt;/a&gt; |
+        &lt;a href=&quot;{% url 'login' %}&quot;&gt;Вход&lt;/a&gt;
+    {% endif %}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="listhtml">list.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Список конференций&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Конференции&lt;/h1&gt;
+    &lt;ul&gt;
+        {% for conference in conferences %}
+            &lt;li&gt;{{ conference.title }} - {{ conference.venue }} ({{ conference.start_date }} - {{ conference.end_date }})&lt;/li&gt;
+            &lt;a href=&quot;{% url 'add_review' conference.id %}&quot;&gt;Добавить отзыв&lt;/a&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Регистрации на конференции&lt;/h2&gt;
+    &lt;ul&gt;
+        {% for registration in registrations %}
+            &lt;li&gt;{{ registration.user.username }} зарегистрирован на конференцию &quot;{{ registration.conference.title }}&quot; (Дата регистрации: {{ registration.date_registered }})&lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+
+    &lt;h2&gt;Список участников&lt;/h2&gt;
+    &lt;table border=&quot;1&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Имя пользователя&lt;/th&gt;
+            &lt;th&gt;Зарегистрированные конференции&lt;/th&gt;
+            &lt;th&gt;Дата регистрации&lt;/th&gt;
+            &lt;th&gt;Рекомендовано к публикации&lt;/th&gt;
+        &lt;/tr&gt;
+        {% for registration in registrations %}
+            &lt;tr&gt;
+                &lt;td&gt;{{ registration.user.username }}&lt;/td&gt;
+                &lt;td&gt;{{ registration.conference.title }}&lt;/td&gt;
+                &lt;td&gt;{{ registration.date_registered }}&lt;/td&gt;
+                &lt;td&gt;{{ registration.recommended_for_publication|yesno:&quot;Да,Нет&quot; }}&lt;/td&gt;
+            &lt;/tr&gt;
+        {% endfor %}
+    &lt;/table&gt;
+
+    &lt;a href=&quot;{% url 'index' %}&quot;&gt;Главная&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="my_registrationshtml">my_registrations.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Мои регистрации&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Мои регистрации на конференции&lt;/h1&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Конференция&lt;/th&gt;
+            &lt;th&gt;Дата регистрации&lt;/th&gt;
+            &lt;th&gt;Действия&lt;/th&gt;
+        &lt;/tr&gt;
+        {% for registration in registrations %}
+        &lt;tr&gt;
+            &lt;td&gt;{{ registration.conference.title }}&lt;/td&gt;
+            &lt;td&gt;{{ registration.date_registered }}&lt;/td&gt;
+            &lt;td&gt;
+                &lt;a href=&quot;{% url 'edit_registration' registration.id %}&quot;&gt;Редактировать&lt;/a&gt;
+                &lt;a href=&quot;{% url 'delete_registration' registration.id %}&quot; onclick=&quot;return confirm('Вы уверены, что хотите удалить регистрацию?');&quot;&gt;Удалить&lt;/a&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        {% empty %}
+        &lt;tr&gt;
+            &lt;td colspan=&quot;3&quot;&gt;Регистрации отсутствуют.&lt;/td&gt;
+        &lt;/tr&gt;
+        {% endfor %}
+    &lt;/table&gt;
+    &lt;a href=&quot;{% url 'index' %}&quot;&gt;Вернуться на главную страницу&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3 id="registerhtml">register.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Регистрация&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Регистрация&lt;/h2&gt;
+  &lt;form method=&quot;post&quot;&gt;
+    {% csrf_token %}
+    {{ form.as_p }}
+    &lt;button type=&quot;submit&quot;&gt;Зарегистрироваться&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;button type=&quot;submit&quot;&gt;&lt;a href=&quot;{% url 'login' %}&quot;&gt;Войти&lt;/a&gt;&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<h3 id="reviews_listhtml">reviews_list.html</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Отзывы конференции {{ conference.title }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Отзывы конференции {{ conference.title }}&lt;/h1&gt;
+    &lt;ul&gt;
+        {% for review in reviews %}
+        &lt;li&gt;
+            &lt;strong&gt;{{ review.author.username }}&lt;/strong&gt; ({{ review.comment_date }}): 
+            Оценка: {{ review.rating }}&lt;br&gt;
+            {{ review.text }}
+        &lt;/li&gt;
+        {% empty %}
+        &lt;li&gt;Отзывов пока нет.&lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+    &lt;a href=&quot;{% url 'list_conferences' %}&quot;&gt;Конференции&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h1 id="realization-python">Realization python</h1>
+<h3 id="modelspy">models.py</h3>
+<pre><code class="language-python">from django.db import models
+from django.contrib.auth.models import User
+
+class Conference(models.Model):
+    title = models.CharField(max_length=200)
+    topics = models.TextField()
+    location_description = models.TextField()
+    venue = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    participation_conditions = models.TextField()
+
+class Author(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    biography = models.TextField()
+
+class Registration(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
+    date_registered = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=200, default='') 
+    recommended_for_publication = models.BooleanField(default=False) 
+
+class Presentation(models.Model):
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    abstract = models.TextField()
+    recommended_for_publication = models.BooleanField(default=False)
+
+class Review(models.Model):
+    conference = models.ForeignKey(Conference, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 11)])
+
+</code></pre>
+<h3 id="adminpy">admin.py</h3>
+<pre><code class="language-python">from django.contrib import admin
+from .models import Conference, Author, Presentation, Review, Registration
+
+@admin.register(Conference)
+class ConferenceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'venue', 'start_date', 'end_date')
+    search_fields = ('title', 'venue')
+    list_filter = ('start_date', 'end_date')
+    ordering = ('start_date',)
+
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('user', 'biography')
+    search_fields = ('user__username', 'user__email')
+
+@admin.register(Registration)
+class RegistrationAdmin(admin.ModelAdmin):
+    list_display = ('user', 'conference', 'date_registered', 'title')
+    list_filter = ('conference',)
+    search_fields = ('user__username', 'conference__title')
+    raw_id_fields = ('user', 'conference')
+
+@admin.register(Presentation)
+class PresentationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'conference', 'author', 'recommended_for_publication')
+    search_fields = ('title', 'conference__title', 'author__user__username')
+    list_filter = ('recommended_for_publication', 'conference')
+    ordering = ('conference', 'author')
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('conference', 'author', 'rating', 'comment_date')
+    search_fields = ('conference__title', 'author__username', 'text')
+    list_filter = ('rating', 'comment_date')
+    ordering = ('comment_date', 'rating')
+</code></pre>
+<h3 id="formspy">forms.py</h3>
+<pre><code class="language-python">from django import forms
+from .models import Presentation, Registration, Review, Conference
+
+class PresentationForm(forms.ModelForm):
+    class Meta:
+        model = Presentation
+        fields = ['title', 'abstract']  
+
+    def __init__(self, *args, **kwargs):
+        super(PresentationForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class': 'form-control'})
+        self.fields['abstract'].widget.attrs.update({'class': 'form-control'})
+
+class RegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Registration
+        fields = ['conference', 'title'] 
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['conference', 'text', 'rating']
+        widgets = {
+            'text': forms.Textarea(attrs={'cols': 40, 'rows': 5}),
+            'rating': forms.Select(choices=Review._meta.get_field('rating').choices),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['conference'].queryset = Conference.objects.all()
+        self.fields['conference'].label_from_instance = lambda obj: f&quot;{obj.title} - {obj.start_date} to {obj.end_date}&quot;
+</code></pre>
+<h3 id="urlspy">urls.py</h3>
+<pre><code class="language-python">from django.urls import path
+from .views import register
+from . import views
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('registrations/edit/&lt;int:registration_id&gt;/', views.edit_registration, name='edit_registration'),
+    path('registrations/delete/&lt;int:registration_id&gt;/', views.delete_registration, name='delete_registration'),
+    path('conferences/&lt;int:conference_id&gt;/add_review/', views.add_review, name='add_review'),
+    path('register/', views.register, name='register'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(next_page='index'), name='login'),
+    path('my_registrations/', views.my_registrations_view, name='my_registrations'),
+    path('edit_registration/&lt;int:registration_id&gt;/', views.edit_registration, name='edit_registration'),
+    path('delete_registration/&lt;int:registration_id&gt;/', views.delete_registration, name='delete_registration'),
+    path('conferences/register/', views.create_registration, name='create_registration'),
+    path('reviews/', views.review_list, name='review_list'),
+    path('conferences/', views.list_conferences),
+    path('conferences/', views.list_conferences, name='list_conferences'),
+    path('register/&lt;int:conference_id&gt;/', views.register_presentation),
+    path('presentations/edit/&lt;int:presentation_id&gt;/', views.edit_presentation),
+    path('presentations/delete/&lt;int:presentation_id&gt;/', views.delete_presentation),
+    path('conferences/&lt;int:conference_id&gt;/add_review/', views.add_review, name='add_review'),
+    path('conferences/&lt;int:conference_id&gt;/reviews/', views.review_list, name='review_list'),
+]
+</code></pre>
+<h3 id="viewpy">view.py</h3>
+<pre><code class="language-python">from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from .models import Conference, Presentation, Registration, Review
+from .forms import PresentationForm, RegistrationForm
+from .forms import ReviewForm
+
+@login_required
+def edit_registration(request, registration_id):
+    registration = get_object_or_404(Registration, id=registration_id, user=request.user)
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST, instance=registration)
+        if form.is_valid():
+            form.save()
+            return redirect('my_registrations') 
+    else:
+        form = RegistrationForm(instance=registration)
+
+    return render(request, 'edit_registration.html', {'form': form})
+
+@login_required
+def delete_registration(request, registration_id):
+    registration = get_object_or_404(Registration, id=registration_id, user=request.user)
+    if request.method == 'POST':
+        registration.delete()
+        return redirect('my_registrations') 
+    return render(request, 'delete_registration.html', {'registration': registration})
+
+
+@login_required
+def my_registrations_view(request):
+    registrations = Registration.objects.filter(user=request.user)
+    return render(request, 'my_registrations.html', {'registrations': registrations})
+
+@login_required
+def add_review(request, conference_id):
+    conference = get_object_or_404(Conference, pk=conference_id)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.author = request.user
+            review.conference = conference
+            review.save()
+            return redirect('review_list', conference_id=conference_id)
+    else:
+        form = ReviewForm()
+    return render(request, 'add_review.html', {'form': form, 'conference': conference})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return render(request, 'index.html')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+def index(request):
+    return render(request, 'index.html')
+
+
+def list_conferences(request):
+    conferences = Conference.objects.all()
+    registrations = Registration.objects.select_related('conference', 'user').all()
+    return render(request, 'list.html', {
+        'conferences': conferences,
+        'registrations': registrations
+    })
+
+@login_required
+def register_presentation(request, conference_id):
+    conference = get_object_or_404(Conference, id=conference_id)
+    if request.method == 'POST':
+        form = PresentationForm(request.POST)
+        if form.is_valid():
+            presentation = form.save(commit=False)
+            presentation.author = request.user.author
+            presentation.conference = conference
+            presentation.save()
+            return redirect('list_conferences')
+    else:
+        form = PresentationForm()
+    return render(request, 'register_presentation.html', {'form': form, 'conference': conference})
+
+@login_required
+def edit_presentation(request, presentation_id):
+    presentation = get_object_or_404(Presentation, id=presentation_id, author__user=request.user)
+    if request.method == 'POST':
+        form = PresentationForm(request.POST, instance=presentation)
+        if form.is_valid():
+            form.save()
+            return redirect('list_conferences')
+    else:
+        form = PresentationForm(instance=presentation)
+    return render(request, 'edit_presentation.html', {'form': form, 'presentation': presentation})
+
+@login_required
+def delete_presentation(request, presentation_id):
+    presentation = get_object_or_404(Presentation, id=presentation_id, author__user=request.user)
+    if request.method == 'POST':
+        presentation.delete()
+        return redirect('list_conferences')
+    return render(request, 'delete_presentation.html', {'presentation': presentation})
+
+
+def review_list(request, conference_id):
+    reviews = Review.objects.filter(conference_id=conference_id).order_by('-comment_date')
+    conference = Conference.objects.get(pk=conference_id)
+    return render(request, 'reviews_list.html', {'reviews': reviews, 'conference': conference})
+
+
+@login_required
+def create_registration(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            registration = form.save(commit=False)
+            registration.user = request.user
+            registration.save()
+            return redirect('my_registrations')
+    else:
+        form = RegistrationForm()
+    return render(request, 'create_registration.html', {'form': form})
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

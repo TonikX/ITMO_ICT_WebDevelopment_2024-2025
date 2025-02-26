@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Cars</title>
+</head>
+<body>
+<h2>Список автомобилей:</h2>
+<ul>
+    {% for car in object_list %}
+    <li>Марка: {{ car.brand }}, Модель: {{ car.model }} - <a href="{{ car.id_car }}/">Подробнее</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

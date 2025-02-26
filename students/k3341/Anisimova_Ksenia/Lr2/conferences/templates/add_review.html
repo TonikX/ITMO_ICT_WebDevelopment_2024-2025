@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавить отзыв</title>
+</head>
+<body>
+    <h1>Добавить отзыв для конференции "{{ conference.title }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить отзыв</button>
+    </form>
+    <a href="{% url 'review_list' conference.id %}">Посмотреть отзывы</a>
+</body>
+</html>
