@@ -1,0 +1,19 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}Участники конференций{% endblock %}
+
+{% block content %}
+  <h2>Участники конференций</h2>
+  {% for conf in conferences %}
+    <h3>{{ conf.name }}</h3>
+    <ul>
+      {% for reg in conf.registrations.all %}
+        <li>{{ reg.user.username }} - "{{ reg.presentation_title }}"</li>
+      {% empty %}
+        <li>Нет зарегистрированных участников.</li>
+      {% endfor %}
+    </ul>
+  {% empty %}
+    <p>Конференций не найдено.</p>
+  {% endfor %}
+{% endblock %}

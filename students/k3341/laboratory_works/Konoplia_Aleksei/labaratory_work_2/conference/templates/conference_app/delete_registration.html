@@ -1,0 +1,14 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}Удаление регистрации{% endblock %}
+
+{% block content %}
+  <h2>Удаление регистрации на конференцию "{{ registration.conference.name }}"</h2>
+  <p>Вы уверены, что хотите удалить регистрацию для выступления "{{ registration.presentation_title }}"?</p>
+  
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+    <a href="{% url 'conference_detail' conference_id=registration.conference.id %}">Отмена</a>
+  </form>
+{% endblock %}
