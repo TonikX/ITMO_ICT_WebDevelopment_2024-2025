@@ -1,0 +1,54 @@
+<!-- publisher_form.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание персонажа</title>
+</head>
+
+<body>
+
+  {% load custom_filters %}
+
+  <h1>Создайте персонажа</h1>
+
+  <form method="POST">
+      {% csrf_token %}
+
+        {% for field in form %}
+
+          <div>
+            {% if field.name|startswith:"attribute_value" %}
+
+              <h3>{{ field.name|getSkillAndAttributesName }}</h3>
+              {{ field.label_tag }} {{ field }}
+
+            {% elif field.name|startswith:"skill_value"%}
+              <h4>{{ field.name|getSkillAndAttributesName }}</h4>
+              {{ field.label_tag }} {{ field }}
+
+            {% else %}
+
+              {{ field.label_tag }} {{ field }}<br/>
+
+            {% endif %}
+          </div>
+
+        {% endfor %}
+        
+        <div style="padding-top: 10px;">
+          <input type="submit" value="Создать" />
+        </div>
+  </form>
+
+  <form method="get" action="{% url 'characters_list' %}">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+  </form>
+
+
+</body>
+
+</html>

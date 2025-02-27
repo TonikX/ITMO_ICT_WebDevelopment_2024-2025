@@ -1,0 +1,45 @@
+<!-- publisher_form.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Скилы</title>
+</head>
+
+<body>
+
+  {% for object in object_list %}
+  <div>
+        {{ object.name }} ({{ object.attribute }}) <br/>
+
+        <form method="get" action="{% url 'skill_update' object.id %}">
+            {% csrf_token %}
+            <button type="submit">Редактировать</button>
+        </form>
+
+        <form method="get" action="{% url 'skill_delete' object.id %}">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+        </form>
+
+        <hr/>
+  </div>
+
+  {% endfor %}
+
+  <form method="get" action="{% url 'skill_create' %}">
+    {% csrf_token %}
+    <button type="submit">Создать новый</button>
+  </form>
+  <hr/>
+  
+  <form method="get" action="{% url 'characters_list' %}">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+  </form>
+
+</body>
+
+</html>

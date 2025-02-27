@@ -1,0 +1,24 @@
+<!-- publisher_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Удалить навык</title>
+</head>
+
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <p>Выхотите удалить этот навык? "{{ object }}"</p>
+    <input type="submit" value="Подтвердить">
+  </form>
+  <br>
+  <br>
+  <form method="get" action="{% url 'skills_list' %}">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+  </form>
+</body>
+</html>
