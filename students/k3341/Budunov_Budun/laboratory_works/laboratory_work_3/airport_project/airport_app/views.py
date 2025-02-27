@@ -23,10 +23,6 @@ class UserAvatarUpdateView(generics.UpdateAPIView):
         return Response(serializer.data)
 
 
-class RegisterUserView(generics.CreateAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = CustomUserSerializer
-
 class LoginUserView(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
@@ -97,9 +93,16 @@ class AirportViewSet(viewsets.ModelViewSet):
 # PUT /airplane/{id}/ - Обновить самолет
 # DELETE /airplane/{id}/ - Удалить самолет
 class AirplaneViewSet(viewsets.ModelViewSet):
-    queryset = Airplane.objects.all()
+    queryset = Airplane.objects.all().select_related('airplane_model', 'airline')
     serializer_class = AirplaneSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
     # GET /airplane/{id}/maintenance/ - Получить историю технического обслуживания самолета
@@ -110,16 +113,23 @@ class AirplaneViewSet(viewsets.ModelViewSet):
         serializer = AirplaneMaintenanceSerializer(maintenance_records, many=True)
         return Response(serializer.data)
 
+
 # GET /route/ - Получить список маршрутов
 # POST /route/ - Создать маршрут
 # GET /route/{id}/ - Получить маршрут
 # PUT /route/{id}/ - Обновить маршрут
 # DELETE /route/{id}/ - Удалить маршрут
 class RouteViewSet(viewsets.ModelViewSet):
-    queryset = Route.objects.all()
+    queryset = Route.objects.all().select_related('departure_airport', 'arrival_airport', 'airline')
     serializer_class = RouteSerializer
     permission_classes = [IsAdminOrReadOnly]
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     # GET /route/{id}/flights/ - Получить список рейсов по этому маршруту
     @action(detail=True, methods=['get'], permission_classes = [IsAdminUser])
@@ -136,6 +146,13 @@ class RouteViewSet(viewsets.ModelViewSet):
         routes = Route.objects.filter(airline_id=airline_id)
         serializer = RouteSerializer(routes, many=True)
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['get'])
+    def transits(self, request, pk=None):
+        route = self.get_object()
+        transits = Transit.objects.filter(route = route)
+        serializer = TransitSerializer(transits, many=True)
+        return Response(serializer.data)
 
 # GET /flight/ - Получить список рейсов
 # POST /flight/ - Создать рейс
@@ -146,6 +163,13 @@ class FlightViewSet(viewsets.ModelViewSet):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
     # GET /flight/by_airport/?departure={id}&arrival={id} - Поиск рейсов по аэропорту
@@ -193,6 +217,15 @@ class FlightViewSet(viewsets.ModelViewSet):
         transits = Transit.objects.filter(route=route)
         serializer = TransitSerializer(transits, many=True)
         return Response({'flight': FlightSerializer(flight).data, 'transits': serializer.data})
+    
+    # GET /flight/by_crew/ - Получить список рейсов по экипажу
+    @action(detail=False, methods=['get'], permission_classes = [IsCrewUser])
+    def by_crew(self, request):
+        employee = Employee.objects.get(user = request.user)
+        crews = Crew.objects.filter(members__employee=employee)
+        flights = Flight.objects.filter(crew__in=crews)
+        serializer = FlightSerializer(flights, many=True)
+        return Response(serializer.data)
 
 
 # GET /employee/ - Получить список сотрудников
@@ -201,18 +234,69 @@ class FlightViewSet(viewsets.ModelViewSet):
 # PUT /employee/{id}/ - Обновить сотрудника
 # DELETE /employee/{id}/ - Удалить сотрудника
 class EmployeeViewSet(viewsets.ModelViewSet):
-    queryset = Employee.objects.all()
+    queryset = Employee.objects.all().select_related('user', 'airline')
     serializer_class = EmployeeSerializer
     permission_classes = [IsAdminOrReadOnly]
 
+    def create(self, request, *args, **kwargs):
+        print("Received data:", request.data)  # Debug print
+        serializer = self.get_serializer(data=request.data)
+        print("Is valid:", serializer.is_valid())  # Debug print
+        print("Validation errors:", serializer.errors)  # Debug print
+        employee = serializer.save()
+        return Response(serializer.data)
 
-    # GET /employee/by_position/?position={name} - Получить список сотрудников по должности
+    def update(self, request, *args, **kwargs):
+        print("Received data:", request.data)  # Debug incoming data
+        instance = self.get_object()
+        print("Found instance:", instance)  # Debug instance
+        
+        serializer = self.get_serializer(
+            instance, 
+            data=request.data, 
+            partial=kwargs.pop('partial', False)
+        )
+        print("Serializer valid:", serializer.is_valid())  # Debug validation
+        print("Validation errors:", serializer.errors)  # Debug any validation errors
+        
+        updated_employee = serializer.save()
+        print("Updated employee:", updated_employee)  # Debug saved instance
+        
+        return Response(self.get_serializer(updated_employee).data)
+    
+    # DELETE `/api/employee/delete_by_username/${username}/`
+    @action(detail=False, methods=['delete'])
+    def delete_by_username(self, request):
+        username = request.data.get('username')
+        try:
+            user = get_user_model().objects.get(username=username)
+            employee = Employee.objects.get(user=user)
+            employee.delete()
+            user.delete()
+            return Response({"message": "User and employee deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+        except (get_user_model().DoesNotExist, Employee.DoesNotExist):
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
+    # GET /employee/by_role/?role={name} - Получить список сотрудников по должности
     @action(detail=False, methods=['get'], permission_classes = [IsAdminUser])
-    def by_position(self, request):
-        position = request.query_params.get('position')
-        employees = Employee.objects.filter(position=position)
+    def by_role(self, request):
+        role = request.query_params.get('role')
+        employees = Employee.objects.filter(role=role)
         serializer = EmployeeSerializer(employees, many=True)
         return Response(serializer.data)
+
+    def get_object(self):
+        if self.request.user.is_authenticated:
+            try:
+                user_id = self.kwargs.get("pk")
+                user = get_user_model().objects.get(pk=user_id)
+                employee = Employee.objects.get(user=user)
+                return employee
+            except (Employee.DoesNotExist, get_user_model().DoesNotExist):
+                return super().get_object()
+        else:
+            return super().get_object()
 
 # GET /crew/ - Получить список экипажей
 # POST /crew/ - Создать экипаж
@@ -220,9 +304,38 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 # PUT /crew/{id}/ - Обновить экипаж
 # DELETE /crew/{id}/ - Удалить экипаж
 class CrewViewSet(viewsets.ModelViewSet):
-    queryset = Crew.objects.all()
+    queryset = Crew.objects.all().prefetch_related('members', 'members__employee', 'members__employee__user', 'members__employee__airline')
     serializer_class = CrewSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        members_data = request.data.get('members', [])
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        validated_members_data = []
+        for member_data in members_data:
+            employee_id = member_data.get('employee')
+            role = member_data.get('role')
+
+            try:
+                employee = Employee.objects.get(pk=employee_id)
+            except Employee.DoesNotExist:
+                return Response({"error": f"Employee with id {employee_id} not found"}, status=status.HTTP_400_BAD_REQUEST)
+
+            validated_members_data.append({'employee': employee.id, 'role': role})
+
+        crew_data = {'members': validated_members_data}
+        crew = serializer.create(crew_data)
+
+        return Response(CrewSerializer(crew).data, status=status.HTTP_201_CREATED)
+
+    @action(detail=True, methods=['get'], permission_classes = [IsAdminUser])
+    def flights(self, request, pk=None):
+        crew = self.get_object()
+        flights = Flight.objects.filter(crew=crew)
+        serializer = FlightSerializer(flights, many=True)
+        return Response(serializer.data)
 
 
 # GET /crew_member/ - Получить список членов экипажей
@@ -255,11 +368,11 @@ class AirplaneMaintenanceViewSet(viewsets.ModelViewSet):
         serializer = AirplaneMaintenanceSerializer(maintenance_records, many=True)
         return Response(serializer.data)
     
-    # GET /airplane_maintenance/history/?airplane_id={id} - Получить историю ТО самолета
-    @action(detail=False, methods=['get'], permission_classes = [IsAdminUser])
-    def history(self, request):
-        airplane_id = request.query_params.get('airplane_id')
-        maintenance_records = AirplaneMaintenance.objects.filter(airplane_id=airplane_id)
+    # GET /airplane/{id}/maintenance/ - Получить историю технического обслуживания самолета
+    @action(detail=True, methods=['get'], permission_classes = [IsAdminUser])
+    def maintenance(self, request, pk=None):
+        airplane = self.get_object()
+        maintenance_records = AirplaneMaintenance.objects.filter(airplane=airplane).order_by('maintenance_date')
         serializer = AirplaneMaintenanceSerializer(maintenance_records, many=True)
         return Response(serializer.data)
 
@@ -279,6 +392,13 @@ class AirplaneModelViewSet(viewsets.ModelViewSet):
 # PUT /transit/{id}/
 # DELETE /transit/{id}/
 class TransitViewSet(viewsets.ModelViewSet):
-    queryset = Transit.objects.all()
+    queryset = Transit.objects.all().select_related('route', 'departure_airport', 'arrival_airport', 'route__airline')
     serializer_class = TransitSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

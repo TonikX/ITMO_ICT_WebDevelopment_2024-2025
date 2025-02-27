@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 class CustomUser(AbstractUser):
-    registered_by = models.ForeignKey("self", on_delete=models.SET_NULL, null=True, blank=True, related_name="registered_users")
+    # created_by = models.ForeignKey("self", on_delete=models.SET_NULL, null=True, blank=True, related_name="created_users")
+    # modified_by = models.ManyToManyField("self", blank=True, related_name="modified_users")
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, default='avatars/default.jpg')
@@ -42,15 +43,15 @@ class Employee(models.Model):
     full_name = models.CharField(max_length=255)
     passport_data = models.CharField(max_length=255)
 
-    # Дополнительные поля для отслеживания изменений
-    pending_role = models.CharField(max_length=50, null=True, blank=True)
-    pending_birth_date = models.DateField(null=True, blank=True)
-    pending_full_name = models.CharField(max_length=255, null=True, blank=True)
-    pending_passport_data = models.CharField(max_length=255, null=True, blank=True)
+    # # Дополнительные поля для отслеживания изменений
+    # pending_role = models.CharField(max_length=50, null=True, blank=True)
+    # pending_birth_date = models.DateField(null=True, blank=True)
+    # pending_full_name = models.CharField(max_length=255, null=True, blank=True)
+    # pending_passport_data = models.CharField(max_length=255, null=True, blank=True)
 
-    # Поле для отслеживания статуса запроса
-    change_requested = models.BooleanField(default=False)
-    request_date = models.DateTimeField(blank=True, null=True)
+    # # Поле для отслеживания статуса запроса
+    # change_requested = models.BooleanField(default=False)
+    # request_date = models.DateTimeField(blank=True, null=True)
     
     def __str__(self):
         return f"{self.full_name} ({self.role})"

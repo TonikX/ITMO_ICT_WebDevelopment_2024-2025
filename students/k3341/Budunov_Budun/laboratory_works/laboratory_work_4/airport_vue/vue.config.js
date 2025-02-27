@@ -1,10 +1,5 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true
-})
-
 module.exports = {
   devServer: {
-    proxy: 'http://localhost:8000',  // Адрес Django сервера
-  },
-};
+    proxy: 'http://localhost:8000' // Replace with your Django backend URL
+  }
+}

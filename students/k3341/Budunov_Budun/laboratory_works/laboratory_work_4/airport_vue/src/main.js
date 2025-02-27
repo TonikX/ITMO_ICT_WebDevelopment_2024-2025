@@ -1,14 +1,26 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import vuetify from './plugins/vuetify'; // Import vuetify from plugins
-import store from './store'; // Import Vuex store
+// import Vue from 'vue'
+import App from './App.vue'
+import 'vuetify/styles'
+// import { createVuetify } from 'vuetify'
+import { createApp } from 'vue'
+import router from './router'
+import store from './store'
+import vuetify from './plugins/vuetify'
 
-Vue.config.productionTip = false;
+// const vuetify = createVuetify()
 
-new Vue({
-  router,
-  vuetify,
-  store, // Use store here
-  render: (h) => h(App),
-}).$mount('#app');
+// Vue.config.productionTip = false
+
+// new Vue({
+//   vuetify,
+//   router,
+//   store,
+//   render: h => h(App)
+// }).$mount('#app')
+const app = createApp(App)
+app.use(vuetify)
+app.use(router)
+app.use(store)
+app.mount('#app')
+
+// export default vuetify

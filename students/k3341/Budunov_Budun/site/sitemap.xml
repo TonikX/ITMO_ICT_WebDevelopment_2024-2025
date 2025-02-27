@@ -1,3 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw1/report_1/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw2/report_2/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw3/report_3/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw4/report_4/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/pw3_1/report_3_1/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/pw3_2/report_3_2/</loc>
+         <lastmod>2025-02-27</lastmod>
+    </url>
 </urlset>

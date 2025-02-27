@@ -1,14 +1,26 @@
 site_name: WEB-programming Documentation
+site_url: https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/
+repo_url: https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025
 nav:
   - Home: index.md
   - Лабораторные:
       - №1: lw1/report_1.md
       - №2: lw2/report_2.md
       - №3: lw3/report_3.md
+      - №4: lw4/report_4.md
   - Практики:
       - №3.1: pw3_1/report_3_1.md
       - №3.2: pw3_2/report_3_2.md
 theme:
-  name: mkdocs
-  color_mode: dark
-  user_color_mode_toggle: true
+  name: material
+  palette:
+    scheme: slate
+    primary: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition

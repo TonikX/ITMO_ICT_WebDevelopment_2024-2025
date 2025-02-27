@@ -121,11 +121,17 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Время жизни токена доступа (можно изменить)
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=600),  # Время жизни токена доступа (можно изменить)
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1), # Время жизни токена обновления (можно изменить)
     'ROTATE_REFRESH_TOKENS': True, # Включает вращение токенов обновления для безопасности
     'BLACKLIST_AFTER_ROTATION': True,  # Блокировка старых токенов обновления
     'AUTH_HEADER_TYPES': ('Bearer',),  # Тип заголовка авторизации
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'current_user': 'airport_app.serializers.CustomUserSerializer',
+    }
 }
 
 
