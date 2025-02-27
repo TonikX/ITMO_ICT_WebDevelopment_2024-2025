@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16ad43db-c374-4bae-b0d9-bb6347d1ebf2" name="Changes" comment="add laba4">
+      <change afterPath="$PROJECT_DIR$/students/k3343/Mordovkin_Maxim/Lr1/docs/Lr2/leetcode.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/students/k3343/Mordovkin_Maxim/Lr1/docs/Lr2/task1_2.md" beforeDir="false" afterPath="$PROJECT_DIR$/students/k3343/Mordovkin_Maxim/Lr1/docs/Lr2/task1_2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/students/k3343/Mordovkin_Maxim/Lr1/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/students/k3343/Mordovkin_Maxim/Lr1/mkdocs.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -363,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1740570649847</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add laba4">
+      <created>1740616011066</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1740616011066</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -419,6 +429,7 @@
     <MESSAGE value="change report" />
     <MESSAGE value="change report1" />
     <MESSAGE value="add laba2" />
-    <option name="LAST_COMMIT_MESSAGE" value="add laba2" />
+    <MESSAGE value="add laba4" />
+    <option name="LAST_COMMIT_MESSAGE" value="add laba4" />
   </component>
 </project>
