@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Написать отзыв</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        h2 + ul {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        ul li:first-child {
+            font-weight: bold;
+        }
+
+        ul li a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        .review {
+            margin: 10px 0;
+        }
+
+        .review-frame {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Написать отзыв о конференции "{{ conference.name }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить отзыв</button>
+    </form>
+
+    <h2>Отзывы о конференции: "{{ conference.name }}"</h2>
+    <ul>
+        {% for review in reviews %}
+            <li class="review">
+                <div class="review-frame">
+                    <strong>Комментатор:</strong> {{ review.user.username }}<br>
+                    <strong>Дата конференции:</strong> {{ review.conference.start_date }} - {{ review.conference.end_date }}<br>
+                    <strong>Текст комментария:</strong> {{ review.text }}<br>
+                    <strong>Рейтинг:</strong> {{ review.rating }}<br>
+
+                </div>
+            </li>
+        {% empty %}
+            <li>Пока нет отзывов</li>
+        {% endfor %}
+    </ul>
+ </body>
+</html>
