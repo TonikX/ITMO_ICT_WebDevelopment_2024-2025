@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация о конференции: {{ conference.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .conference-info {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="conference-info">
+        <h2>{{ conference.name }}</h2>
+        <p><strong>Тематики:</strong> {{ conference.topics }}</p>
+        <p><strong>Место проведения:</strong> {{ conference.location }}</p>
+        <p><strong>Период проведения:</strong> {{ conference.start_date }} - {{ conference.end_date }}</p>
+        <p><strong>Описание конференции:</strong> {{ conference.description }}</p>
+        <p><strong>Описание места проведения:</strong> {{ conference.venue_description }}</p>
+        <p><strong>Условия участия:</strong> {{ conference.participation_conditions }}</p>
+    </div>
+</body>
+</html>

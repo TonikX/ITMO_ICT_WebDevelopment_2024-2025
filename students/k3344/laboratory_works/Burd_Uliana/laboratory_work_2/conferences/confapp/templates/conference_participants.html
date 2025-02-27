@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Участники конференции "{{ conference.name }}"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Участники конференции "{{ conference.name }}"</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Электронная почта</th>
+                <th>Тема</th>
+                <th>Рекомендован к публикации</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for participant in participants %}
+                <tr>
+                    <td>{{ participant.user.first_name }}</td>
+                    <td>{{ participant.user.last_name }}</td>
+                    <td>{{ participant.user.email }}</td>
+                    <td>{{ participant.topic }}</td>
+                    <td>{% if participant.is_published %}Да{% else %}Нет{% endif %}</td>
+
+
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Пока нет участников</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

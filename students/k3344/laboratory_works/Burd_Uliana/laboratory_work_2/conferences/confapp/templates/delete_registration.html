@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление регистрации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        button {
+            background-color: #FF0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FF3333;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>Удаление регистрации</h2>
+    <p>Вы уверены, что хотите удалить эту регистрацию?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да, удалить</button>
+    </form>
+    <a href="{% url 'confapp:user_registrations' %}">Отмена</a>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ваши регистрации</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Стили для кнопки "Вернуться на главную" */
+        .return-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .return-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ваши регистрации</h2>
+    <ul>
+        {% for registration in registrations %}
+            <li>
+                <h3>{{ registration.conference.name }}</h3>
+                <p>Тема выступления: {{ registration.topic }}</p>
+                <!-- Другие поля регистрации -->
+                <a href="{% url 'confapp:edit_registration' registration.id %}">Редактировать</a><br>
+                <a href="{% url 'confapp:delete_registration' registration.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <!-- Кнопка возврата на главную страницу -->
+    <a href="{% url 'confapp:home' %}" class="return-button">Вернуться на главную</a>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список конференций</h1>
+
+    <!-- Ссылка на страницу "Мои регистрации" -->
+    <a href="{% url 'confapp:user_registrations' %}">Мои регистрации</a><br>
+
+    <ul>
+        {% for conference in conferences %}
+            <li>
+                <h2><a href="{% url 'confapp:conference_detail' conference.id %}">{{ conference.name }}</a></h2>
+                <p>Тематики: {{ conference.topics }}</p>
+                <p>Место проведения: {{ conference.location }}</p>
+                <p>Период проведения: {{ conference.start_date }} - {{ conference.end_date }}</p>
+                <p>Описание конференции: {{ conference.description }}</p>
+                <a href="{% url 'confapp:register_for_conference' conference.id %}">Регистрация для выступления</a><br>
+                <a href="{% url 'confapp:conference_participants' conference.id %}">Просмотр участников</a><br>
+                <a href="{% url 'confapp:write_review' conference.id %}">Написать отзыв</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

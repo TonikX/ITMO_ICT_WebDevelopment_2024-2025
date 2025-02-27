@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация на конференцию</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Регистрация на конференцию "{{ conference.name }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p><strong>Конференция:</strong> {{ conference.name }}</p>
+        <p>Дата начала конференции: {{ conference.start_date }}</p>
+        <p>Дата окончания конференции: {{ conference.end_date }}</p>
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</body>
+</html>
