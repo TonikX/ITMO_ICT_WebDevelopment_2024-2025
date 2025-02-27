@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой сайт{% endblock %}</title> <!-- Заголовок страницы, который можно переопределить -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> <!-- Подключение CSS -->
+    {% load static %} <!-- Загрузка статических файлов -->
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать на мой сайт!</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Главная</a></li> <!-- Ссылка на главную страницу -->
+                <li><a href="{% url 'register' %}">Регистрация</a></li> <!-- Ссылка на страницу регистрации -->
+                <li><a href="{% url 'login' %}">Вход</a></li> <!-- Ссылка на страницу входа -->
+                <!-- Добавьте другие ссылки если необходимо -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} <!-- Блок для контента страниц, который будет переопределен -->
+        {% endblock %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>© 2023 Мой сайт. Все права защищены.</p>
+    </footer>
+</body>
+</html>

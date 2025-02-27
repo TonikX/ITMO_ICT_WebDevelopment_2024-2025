@@ -1,0 +1,46 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h4 class="text-primary">Оценки по классам и предметам</h4>
+
+        {% for class_name, subjects in data.items %}
+            <h5 class="mt-4">Класс: <span class="text-secondary">{{ class_name }}</span></h5>
+            {% for subject, submissions in subjects.items %}
+                <h6>Предмет: <span class="text-secondary">{{ subject }}</span></h6>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Студент</th>
+                            <th>ДЗ</th>
+                            <th>Дата сдачи</th>
+                            <th>Оценка</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for submission in submissions %}
+                            <tr>
+                                <td>{{ submission.student }}</td>
+                                <td>{{ submission.description }}</td>
+                                <td>{{ submission.submitted_at|date:"Y-m-d H:i" }}</td>
+                                <td>{{ submission.grade }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">Нет оценок для данного предмета.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% empty %}
+                <p>Нет оценок для данного класса.</p>
+            {% endfor %}
+        {% empty %}
+            <p>Нет классов.</p>
+        {% endfor %}
+
+        <a href="/home/" class="btn btn-link">Назад</a>
+    </div>
+{% endblock %}

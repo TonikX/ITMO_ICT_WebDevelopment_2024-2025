@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% block content %}
+    <div class="container my-4 p-4 bg-light rounded">
+        <h4 class="text-primary">Подробнее о сделанном ДЗ</h4>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Предмет:</h6>
+            <p class="text-dark">{{ submission_info.homework.subject }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Условие дз:</h6>
+            <p class="text-dark">{{ submission_info.homework.description }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Отправленное дз:</h6>
+            <p class="text-dark">{{ submission_info.submitted_text }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Отправлено в:</h6>
+            <p class="text-dark">{{ submission_info.submitted_at }}</p>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <h6 class="font-weight-bold">Оценка:</h6>
+            <p class="text-dark">{{ submission_info.grade }}</p>
+        </div>
+
+        <a href="/home" class="btn btn-secondary">Назад</a>
+    </div>
+{% endblock %}
