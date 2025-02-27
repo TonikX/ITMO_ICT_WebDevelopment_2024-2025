@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Журнал оценок</title>
+    <script>
+        function validateGradeInput(){
+            let grade = document.getElementById('grade');
+            if (grade.value < 1) {
+                grade.value = 1;
+            } else if (grade.value > 5) {
+                grade.value = 5;
+            }
+        }
+
+        function sendPostRequest(event) {
+            event.preventDefault();
+            let discipline = document.getElementById('discipline').value;
+            let grade = document.getElementById('grade').value;
+
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ discipline: discipline, grade: grade }),
+            })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    location.reload();
+                })
+                .catch((error) => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+GRADES
+<form onsubmit="sendPostRequest(event)">
+    <input type="text" id="discipline" name="discipline" placeholder="Дисциплина" required>
+    <input type="number" id="grade" name="grade" min="1" max="5" placeholder="Оценка" onchange="validateGradeInput()" style="width: 60px;" required>
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>
