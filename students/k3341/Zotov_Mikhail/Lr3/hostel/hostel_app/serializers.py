@@ -82,10 +82,11 @@ class ClientSerializer(serializers.ModelSerializer):
 
 class ClientRoomSerializer(serializers.ModelSerializer):
     client = ClientSerializer()
+    room_number = serializers.SerializerMethodField()
 
     class Meta:
         model = ClientRoom
-        fields = ['id', 'client', 'room', 'check_in_date', 'check_out_date', 'count_of_clients']
+        fields = ['id', 'client', 'room', 'room_number', 'check_in_date', 'check_out_date', 'count_of_clients']
 
     def create(self, validated_data):
         client_data = validated_data.pop('client')
@@ -108,3 +109,7 @@ class ClientRoomSerializer(serializers.ModelSerializer):
             setattr(instance, attr, value)
         instance.save()
         return instance
+
+    @classmethod
+    def get_room_number(cls, obj):
+        return obj.room.number if obj.room else None

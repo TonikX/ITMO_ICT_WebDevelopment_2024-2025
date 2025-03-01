@@ -12,4 +12,5 @@ urlpatterns = [
     path('check-ins/', ClientRoomList.as_view(), name='check_in'),
     path('check-ins/<pk>/', ClientRoomDetail.as_view(), name='check_in_detail'),
     path('reports/', ReportList.as_view(), name='report_list'),
+    path('floors/', FloorList.as_view(), name='floor_list'),
 ]

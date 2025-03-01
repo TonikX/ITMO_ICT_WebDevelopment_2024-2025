@@ -5,7 +5,7 @@ from datetime import date
 from rest_framework.views import APIView
 
 from .models import *
-from .serializers import EmployeeSerializer, RoomSerializer, ClientSerializer, ClientRoomSerializer
+from .serializers import EmployeeSerializer, RoomSerializer, ClientSerializer, ClientRoomSerializer, FloorSerializer
 
 
 class EmployeeList(generics.ListCreateAPIView):
@@ -127,3 +127,8 @@ class ReportList(APIView):
             "total_income": total_income
         }
         return Response(report)
+
+
+class FloorList(generics.ListAPIView):
+    serializer_class = FloorSerializer
+    queryset = Floor.objects.all()
