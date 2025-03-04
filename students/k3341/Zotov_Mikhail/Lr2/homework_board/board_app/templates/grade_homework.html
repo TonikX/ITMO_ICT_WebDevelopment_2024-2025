@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Оценка работы{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h2 class="card-title text-center">Оценка работы</h2>
+
+            <div class="mb-3">
+                <p><strong>Студент:</strong> {{ submission.student }}</p>
+                <p><strong>Задание:</strong> {{ submission.homework.subject.name }} - {{ submission.homework.text }}</p>
+            </div>
+
+            <div class="alert alert-light" role="alert">
+                <h5>Решение:</h5>
+                <pre class="bg-light p-3 rounded border">{{ submission.solution_text }}</pre>
+            </div>
+
+            <h3 class="mt-4">Оценить решение</h3>
+            <form method="post" class="mt-3">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-success w-100">Оценить</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block title %}Работы для оценки{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Работы для оценки</h2>
+
+    {% if submissions %}
+        <div class="row justify-content-center">
+            {% for submission in submissions %}
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="card shadow-sm mb-4 w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Студент: {{ submission.student }}
+                                {% if submission.student.group %} ({{ submission.student.group }}){% endif %}
+                            </h5>
+                            <h6 class="card-subtitle text-muted mb-2">{{ submission.homework.subject.name }}</h6>
+                            <p><strong>Задание:</strong> {{ submission.homework.text }}</p>
+
+                            <div class="bg-light p-3 rounded">
+                                <strong>Решение:</strong>
+                                <pre class="mb-0">{{ submission.solution_text }}</pre>
+                            </div>
+
+                            {% if submission.gradehomework_set.all %}
+                                {% with grade=submission.gradehomework_set.all.0.grade penalty=submission.gradehomework_set.all.0.penalty %}
+                                    <p class="mt-2"><strong class="text-success">Оценка: {{ grade }}</strong></p>
+                                    <p><strong class="text-danger">Штраф: {{ penalty }}</strong></p>
+                                    <p><strong class="text-primary">Результат: {{ grade|subtract:penalty }}</strong></p>
+                                {% endwith %}
+                            {% else %}
+                                <p class="text-danger">Не оценена</p>
+                            {% endif %}
+
+                            <a href="{% url 'grade_homework' submission.id %}" class="btn btn-primary">Оценить работу</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning text-center" role="alert">
+            Нет работ для оценки.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
