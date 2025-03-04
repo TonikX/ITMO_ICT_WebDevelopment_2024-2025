@@ -15,7 +15,8 @@ nav:
      - Введение: lab3/main
      - Модели: lab3/models
      - Эндпоинты: lab3/endpoints
-
+ - Лабораторная 4:
+     - Интерфейсы: lab4/main
 
 theme:
  name: dracula
