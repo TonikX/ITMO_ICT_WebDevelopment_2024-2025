@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Информация о конференции{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg">
+                <div class="card-header text-white bg-primary">
+                    <h3 class="card-title">{{ conference.title }}</h3>
+                    <p class="card-subtitle mb-2">{{ conference.event_date|date:"F d, Y" }}</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Описание</h5>
+                    <p class="card-text">{{ conference.description }}</p>
+
+                    <div class="mt-4">
+                        <h5>Детали</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Дата:</strong> {{ conference.event_date|date:"F d, Y" }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="{% url 'conference_list' %}" class="btn btn-secondary mt-4">К конференциям</a>
+                    {% if can_register %}
+                        <a href="{% url 'conference_create_registration' pk=conference.pk %}" class="btn btn-outline-primary mt-4">Зарегистрироваться на
+                            мероприятие</a>{% endif %}
+                    <hr>
+                    {% if can_propose %}<p>Хотите выступить на конференции?</p>
+                        <p><a href="{% url 'conference_propose_speach' pk=conference.pk %}" class="btn btn-outline-warning mt-4">Заполните
+                        форму</a>{% endif %}
+
+
+
+                    <h1 class="text-center mb-4">Выступающие</h1>
+
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Тема</th>
+                            <th scope="col">Описание</th>
+                            <th scope="col">Рекомендован к публикации</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for speaker in speakers %}
+                            <tr>
+                                <td>{{ speaker.speaker.username }}</td>
+                                <td>{{ speaker.topic }}</td>
+                                <td>{{ speaker.description|truncatewords:10 }}</td>
+                                <td>
+                                    {% if speaker.approved is None %}
+                                        <span class="badge text-bg-info">Pending</span>
+                                    {% elif speaker.approved %}
+                                        <span class="badge text-bg-success">Approved</span>
+                                    {% else %}
+                                        <span class="badge text-bg-warning">Not Approved</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">No speakers available at the moment.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Ваш аккаунт{% endblock %}
+
+{% block body %}
+    <div class="card shadow-lg p-4 text-center">
+        <h1 class="text-primary">Добро пожаловать, {{ user.first_name }}! 👋</h1>
+        <p class="lead text-muted">Ваш личный кабинет</p>
+
+        <div class="list-group mt-4">
+            <a href="/performances/" class="list-group-item list-group-item-action">
+                🎤 Ваши выступления
+            </a>
+            <a href="/registrations/" class="list-group-item list-group-item-action">
+                📝 Ваши регистрации
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <a href="{% url 'logout' %}" class="btn btn-danger">Выйти</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2 class="text-center mb-4">Напишите отзыв</h2>
+
+    <div class="card shadow-lg p-4">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_rating">Оценка (1-10)</label>
+                <input type="number" name="rating" id="id_rating" class="form-control" min="1" max="10">
+            </div>
+
+            <div class="form-group">
+                <label for="id_text">Отзыв</label>
+                <textarea name="text" id="id_text" class="form-control" rows="4"
+                          placeholder="Write your review..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Опубликовать</button>
+        </form>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'registrations' %}" class="btn btn-secondary">Назад к регистрациям</a>
+    </div>
+{% endblock %}

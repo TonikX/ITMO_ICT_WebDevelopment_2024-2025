@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} title {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<header class="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            Конференции
+        </a>
+    </div>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/" class="nav-link px-2 link-secondary">Домой</a></li>
+        <li><a href="/conferences" class="nav-link px-2">Конференции</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="/registrations" class="nav-link px-2">Ваши регистрации</a></li>
+            <li><a href="/performances" class="nav-link px-2">Ваши выступления</a></li>
+        {% endif %}
+        <li><a href="/admin" class="nav-link px-2">Админ</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+        {% if user.is_authenticated %}
+            <a href='/account' class="btn btn-outline-primary me-2">Аккаунт</a>
+            <a href='/logout' class="btn btn-primary">Выйти</a>
+        {% else %}
+            <a href='/login' class="btn btn-outline-primary me-2">Войти</a>
+            <a href='/register' class="btn btn-primary">Зарегистрироваться</a>
+        {% endif %}
+    </div>
+</header>
+<div class="container">
+    {% block body %} You should not see this {% endblock %}
+</div>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
