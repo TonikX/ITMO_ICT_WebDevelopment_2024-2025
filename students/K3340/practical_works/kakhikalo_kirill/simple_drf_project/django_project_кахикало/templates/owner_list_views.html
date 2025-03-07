@@ -1,0 +1,14 @@
+<div class="main">
+
+    <h1>Owner List</h1>
+    <hr/>
+    {% for data in dataset %}
+        {{ data.name }}<br/>
+        {{ data.surname }}<br/>
+        {{ data.date_of_birth }}<br/>
+        {{ data.password }}<br/>
+        {{ data.username }}<br/>
+        <hr/>
+    {% endfor %}
+
+</div>
