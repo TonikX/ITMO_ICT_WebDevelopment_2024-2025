@@ -1,0 +1,15 @@
+<!-- templates/owner.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Details</title>
+</head>
+<body>
+    <h1>Owner Details</h1>
+    <p>Name: {{ owner.first_name }} {{ owner.last_name }}</p>
+    <p>Passport Number: {{ owner.passport_number }}</p>
+    <p>Home Address: {{ owner.home_address }}</p>
+    <a href="{% url 'owners-list' %}">Back to Owners List</a>
+</body>
+</html>

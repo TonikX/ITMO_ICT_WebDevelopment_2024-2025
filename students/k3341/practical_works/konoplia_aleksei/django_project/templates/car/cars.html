@@ -1,0 +1,17 @@
+<!-- templates/cars.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars List</title>
+</head>
+<body>
+    <h1>Cars List</h1>
+    <ul>
+        {% for car in cars %}
+            <li><a href="{% url 'car-detail' car.id %}">{{ car.brand }} {{ car.model }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'car-create' %}">Create New Car</a>
+</body>
+</html>

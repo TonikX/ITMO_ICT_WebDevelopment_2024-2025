@@ -1,0 +1,17 @@
+<!-- templates/cars_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Cars</title>
+</head>
+<body>
+    <h1>Delete Cars</h1>
+    <p>Are you sure you want to delete selected cars?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'cars-list' %}">Cancel</a>
+</body>
+</html>
