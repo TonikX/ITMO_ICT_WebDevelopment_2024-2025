@@ -1,0 +1,9 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/students/k3343/Rakhmanov_Vladislav/Lr2/homework_system/homework_desk_project/venv/Lib/site-packages
+/students/k3343/Rakhmanov_Vladislav/Lr3/fitness_platform_web/myenv
+/students/k3343/Rakhmanov_Vladislav/Lr4/fitness_platform_web/.venv
+/students/k3343/Rakhmanov_Vladislav/Lr4/fitness_platform_web/.env
+/.vs
