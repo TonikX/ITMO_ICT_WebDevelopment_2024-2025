@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Конференции
+{% endblock %}
+
+{% block body %}
+
+    {% if archive %}
+        <h1 class="text-center mb-4">Past Conferences</h1>
+        <a class="button btn btn-outline-warning my-2" href="/conferences/">See all conferences</a>
+    {% else %}
+        <h1 class="text-center mb-4">Upcoming Conferences</h1>
+        <a class="button btn btn-primary my-2" href="/conferences/?archive=true">See past conferences</a>
+    {% endif %}
+    <hr>
+    <div class="row">
+        {% for conference in conference_list %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ conference.title }}</h5>
+                        <h6 class="card-subtitle text-muted mb-2">{{ conference.event_date|date:"F d, Y" }}</h6>
+                        <p class="card-text">{{ conference.description|truncatewords:30 }}</p>
+                        <ul class="list-unstyled">
+                            <li><strong>Registration Due:</strong> {{ conference.due_register|date:"F d, Y" }}</li>
+                            <li><strong>Participation
+                                Condition:</strong> {{ conference.participation_condition|truncatewords:10 }}</li>
+                        </ul>
+                        <a href="{% url 'conference_detail' conference.id %}" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No upcoming conferences at the moment.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

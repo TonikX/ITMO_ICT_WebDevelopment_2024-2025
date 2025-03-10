@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Ваши выступления{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Ваши выступления</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped shadow-lg">
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Конференция</th>
+                    <th>Тема</th>
+                    <th>Описание</th>
+                    <th>Статус</th>
+                    <th>Рекомендация</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for speaker in speaker_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            {% if speaker.conference %}
+                                <a href="{% url 'conference_detail' pk=speaker.conference.pk %}">
+                                    {{ speaker.conference.title }}
+                                </a>
+                            {% else %}
+                                <span class="text-muted">N/A</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ speaker.topic }}</td>
+                        <td>{{ speaker.description }}</td>
+                        <td>
+                            {% if speaker.confirmed %}
+                                <span class="badge text-bg-primary">Подтвержден</span>
+                            {% else %}
+                                <span class="badge text-bg-warning">Не подтвержден</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if speaker.approved is None %}
+                                <span class="badge text-bg-secondary">В обработке</span>
+                            {% elif speaker.approved %}
+                                <span class="badge text-bg-success">Рекомендован</span>
+                            {% else %}
+                                <span class="badge text-bg-danger">Отклонен</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Никаких выступлений.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{% url 'conference_list' %}" class="btn btn-primary">Посмотреть конференции</a>
+        </div>
+    </div>
+{% endblock %}

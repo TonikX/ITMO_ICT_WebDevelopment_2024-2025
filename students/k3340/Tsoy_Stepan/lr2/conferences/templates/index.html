@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Список научных конференций{% endblock %}
+
+{% block body %}
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{% static 'img.png' %}" alt="conference logo" width="72" height="57">
+        <h1 class="display-5 fw-bold text-body-emphasis">Добро пожаловать</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Мы рады представить вам наш сервис для организации и участия в научных конференциях. На
+                нашем сайте вы можете ознакомиться с актуальными событиями в различных областях науки,
+                зарегистрироваться для участия, просматривать детали конференций, а также оставить отзывы и
+                комментарии.</p>
+        </div>
+    </div>
+{% endblock %}
