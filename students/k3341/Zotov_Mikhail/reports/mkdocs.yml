@@ -17,6 +17,7 @@ nav:
      - Эндпоинты: lab3/endpoints
  - Лабораторная 4:
      - Интерфейсы: lab4/main
+ - Литкоды: leetcodes/main
 
 theme:
  name: dracula
