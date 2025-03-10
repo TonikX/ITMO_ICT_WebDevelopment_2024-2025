@@ -1,0 +1,8 @@
+site_name: Отчеты по лабораторным работам
+docs_dir: docs
+nav:
+  - Home: index.md
+  - LAB 1: report_lr1.md
+  - LAB 2: report_lr2.md
+  - LAB 3: report_lr3.md
+  - LAB 4: report_lr4.md
