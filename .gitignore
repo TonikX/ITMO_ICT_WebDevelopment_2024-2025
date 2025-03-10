@@ -1,0 +1,28 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+/students/k3343/Rakhmanov Vladislav/WebLabTask5Server/obj
+/students/k3343/Rakhmanov Vladislav/WebLabTask4Server/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/WebLabTask4Server/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/ClientUdp/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/ClientUdp/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/web-lab-1/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/web-lab-1/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask2TrapezoidArea/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask2TrapezoidArea/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask2TrapezoidData/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask2TrapezoidData/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask3Client/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask3Client/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask3Server/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask3Server/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask4Client/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask4Client/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask4Server/bin/Debug/net8.0
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask4Server/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/WebLabTask5Server/obj
+/students/k3343/Rakhmanov Vladislav/Lr1/doc_s/site/assets
+/students/k3343/Rakhmanov Vladislav/Lr1/.vs
+/.vs/ITMO_ICT_WebDevelopment_2024-2025
+/.vs
