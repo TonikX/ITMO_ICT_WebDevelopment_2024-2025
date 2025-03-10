@@ -1,0 +1,147 @@
+/* Light Theme (Default) */
+:root {
+  --v-dialog-bg: #ffffff; /* Dialog background */
+  --v-card-bg: #f8f9fa; /* Card background */
+  --v-card-title: #212529; /* Card title text */
+  --v-btn-cancel: #ff8a80; /* Light red for cancel button */
+  --v-btn-confirm: #8c9eff; /* Light indigo for confirm button */
+  --v-btn-text: #424242; /* Button text */
+  --v-navigation-drawer-bg: #ffffff; /* Light background for the drawer */
+  --v-navigation-drawer-text: #212529; /* Dark text for drawer items */
+  --v-list-item-bg: #f8f9fa; /* Light background for list items */
+  --v-list-item-hover-bg: #e0e0e0; /* Hover effect for list items */
+  --v-divider-bg: #dcdcdc; /* Light divider */
+  --v-container-bg: #ffffff; /* Light background for container */
+  --v-text-color: #212529; /* Dark text color */
+  --v-avatar-bg: #f0f0f0; /* Avatar background */
+  --v-card-hover-bg: #e9ecef; /* Hover effect for cards */
+  --v-header-text-color: #333333; /* Dark text color for headers */
+    --v-main-bg: #ffffff;
+}
+
+/* Dark Theme */
+[data-bs-theme="dark"] {
+  --v-dialog-bg: #1e1e1e; /* Dark dialog background */
+  --v-card-bg: #2c2c2c; /* Dark card background */
+  --v-card-title: #f5f5f5; /* Light card title */
+  --v-btn-cancel: #d32f2f; /* Dark red for cancel */
+  --v-btn-confirm: #3f51b5; /* Dark indigo for confirm */
+  --v-btn-text: #e0e0e0; /* Light button text */
+   --v-navigation-drawer-bg: #333333; /* Dark background for the drawer */
+  --v-navigation-drawer-text: #f8f9fa; /* Light text for drawer items */
+  --v-list-item-bg: #444444; /* Dark background for list items */
+  --v-list-item-hover-bg: #555555; /* Hover effect for list items */
+  --v-divider-bg: #666666; /* Dark divider */
+  --v-container-bg: #121212; /* Dark background for container */
+  --v-text-color: #f8f9fa; /* Light text color */
+  --v-avatar-bg: #333333; /* Avatar background */
+  --v-card-hover-bg: #555555; /* Hover effect for cards */
+  --v-header-text-color: #f8f9fa; /* Light text color for headers */
+  --v-main-bg: #121212;
+}
+
+/* v-dialog */
+.v-dialog {
+  background-color: var(--v-dialog-bg) !important;
+}
+
+/* v-card */
+.v-card {
+  background-color: var(--v-card-bg) !important;
+  color: var(--v-card-title) !important;
+}
+
+/* v-card-title */
+.v-card-title {
+  color: var(--v-card-title) !important;
+}
+
+/* v-btn (Cancel) */
+.v-btn.cancel {
+  background-color: var(--v-btn-cancel) !important;
+  color: var(--v-btn-text) !important;
+}
+
+/* v-btn (Confirm) */
+.v-btn.confirm {
+  background-color: var(--v-btn-confirm) !important;
+  color: var(--v-btn-text) !important;
+}
+/* v-navigation-drawer */
+.v-navigation-drawer {
+  background-color: var(--v-navigation-drawer-bg) !important;
+  color: var(--v-navigation-drawer-text) !important;
+}
+
+/* v-list-item */
+.v-list-item {
+  background-color: var(--v-list-item-bg) !important;
+    display: inline-block;
+  vertical-align: middle;
+}
+
+.v-list-item:hover {
+  background-color: var(--v-list-item-hover-bg) !important;
+}
+
+/* v-divider */
+.v-divider {
+  border-top: 1px solid var(--v-divider-bg) !important;
+}
+
+/* v-container */
+.v-container {
+  background-color: var(--v-container-bg) !important;
+  color: var(--v-text-color) !important;
+  padding: 0 !important;  /* Remove default padding */
+
+}
+
+/* v-avatar */
+.v-avatar {
+  background-color: var(--v-avatar-bg) !important;
+}
+
+/* v-card (for UserWorkoutCard) */
+.v-card {
+  background-color: var(--v-card-bg) !important;
+}
+
+.v-card:hover {
+  background-color: var(--v-card-hover-bg) !important;
+}
+
+/* v-row and v-col */
+.v-row, .v-col {
+  color: var(--v-text-color) !important;
+}
+
+/* v-divider */
+.v-divider {
+  border-top: 1px solid var(--v-divider-bg) !important;
+}
+
+/* Heading Styles */
+h1, h2 {
+  color: var(--v-header-text-color) !important;
+}
+.v-main {
+  background-color: var(--v-main-bg) !important;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  margin-left: 10px; /* Ensure some space between the text and icon */
+  vertical-align: middle; /* Align vertically with text */
+  padding-top: 7px;
+}
+
+.v-list-item span {
+  display: inline-block;
+  vertical-align: middle; /* Align the text vertically with the icon */
+}
+.workout-progress {
+  font-size: 1.5em;
+  padding-bottom: 1em;
+}

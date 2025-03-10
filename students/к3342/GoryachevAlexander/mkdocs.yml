@@ -1,8 +1,50 @@
-site_name: LAB1
+site_name: WEB
+docs_dir: site  # Ensure this is the correct directory
 nav:
     - Home: index.md
-    - Task1: task1.md
-    - Task2: task2.md
-    - Task3: task3.md
-    - Task4: task4.md
-    - Task5: task5.md
+    - Lab 1:
+      - "Task 1" : lr_1/task1.md
+      - "Task 2" : lr_1/task2.md
+      - "Task 3" : lr_1/task3.md
+      - "Task 4" : lr_1/task4.md
+      - "Task 5" : lr_1/task5.md
+    - Lab 2:
+      - "Review": lr_2/task.md
+    - Lab 3:
+      - "Practice": lr_3/practice.md
+      - "Lab": lr_3/lab.md
+    - Lab 4:
+        - "Lab": lr_4/lab.md
+    - Leetcode:
+        - "Task 1": leetcode/task1.md
+        - "Task 2": leetcode/task2.md
+        - "Task 3": leetcode/task3.md
+        - "Task 4": leetcode/task4.md
+        - "Task 5": leetcode/task5.md
+        - "Task 6": leetcode/task6.md
+        - "Task 7": leetcode/task7.md
+        - "Task 8": leetcode/task8.md
+        - "Task 9": leetcode/task9.md
+        - "Task 10": leetcode/task10.md
+        - "Task 11": leetcode/task11.md
+        - "Task 12": leetcode/task12.md
+        - "Task 13": leetcode/task13.md
+        - "Task 14": leetcode/task14.md
+        - "Task 15": leetcode/task15.md
+        - "Task 16": leetcode/task16.md
+        - "Task 17": leetcode/task17.md
+        - "Task 18": leetcode/task18.md
+        - "Task 19": leetcode/task19.md
+        - "Task 20": leetcode/task20.md
+        - "Task 21": leetcode/task21.md
+        - "Task 22": leetcode/task22.md
+        - "Task 23": leetcode/task23.md
+        - "Task 24": leetcode/task24.md
+        - "Task 25": leetcode/task25.md
+        - "Task 27": leetcode/task27.md
+        - "Task 28": leetcode/task28.md
+        - "Task 29": leetcode/task29.md
+        - "Task 30": leetcode/task30.md
+
+
+
