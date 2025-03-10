@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Список отелей{% endblock %}
+
+{% block content %}
+        {% if hotels %}
+            <section>
+                <ul class="hotel-list">
+                    {% for hotel in hotels %}
+                        <li class="hotel-item">
+                            <article>
+                                <h2 class="hotel-name">
+                                    <a href="{% url 'hotel_detail' hotel.id %}">{{ hotel.name }}</a>
+                                </h2>
+                                <p class="hotel-address">{{ hotel.address }}</p>
+                            </article>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% else %}
+            <p>Отели не найдены.</p>
+        {% endif %}
+{% endblock %}

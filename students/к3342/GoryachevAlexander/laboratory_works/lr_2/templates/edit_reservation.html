@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Редактировать бронирование{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Редактировать бронирование</h1>
+    </header>
+
+    <main>
+        <section class="reservation-details">
+            <h2>Детали текущего бронирования</h2>
+            <p><strong>Номер:</strong> {{ reservation.room }}</p>
+            <p><strong>Дата заезда:</strong> {{ reservation.check_in_date }}</p>
+            <p><strong>Дата выезда:</strong> {{ reservation.check_out_date }}</p>
+        </section>
+
+        <section class="edit-form" >
+            <h2>Изменить даты бронирования</h2>
+            <form method="POST" class="edit-reservation-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="submit-button">Сохранить изменения</button>
+            </form>
+        </section>
+
+        <footer>
+            <a href="{% url 'reservation_list' %}" class="cancel-button">Отмена</a>
+        </footer>
+    </main>
+{% endblock %}
+

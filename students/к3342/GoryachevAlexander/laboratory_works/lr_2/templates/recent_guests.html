@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Постояльцы за последний месяц{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Постояльцы за последний месяц</h1>
+    </header>
+
+    <main>
+
+        <section class="recent-guests-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Имя пользователя</th>
+                        <th>Отель</th>
+                        <th>Номер</th>
+                        <th>Дата заезда</th>
+                        <th>Дата выезда</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.client.username }}</td>
+                            <td>{{ reservation.room.hotel.name }}</td>
+                            <td>{{ reservation.room.room_type.name }}</td>
+                            <td>{{ reservation.check_in_date }}</td>
+                            <td>{{ reservation.check_out_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        {% if reservations|length == 0 %}
+        <section class="no-guests">
+            <p>За последний месяц не было постояльцев.</p>
+        </section>
+        {% endif %}
+
+        <section class="back-link">
+            <a href="{% url 'hotel_list' %}" class="back-button">Вернуться к списку отелей</a>
+        </section>
+
+    </main>
+{% endblock %}
+
