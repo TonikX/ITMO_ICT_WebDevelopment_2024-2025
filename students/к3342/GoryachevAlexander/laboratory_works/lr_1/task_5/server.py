@@ -1,5 +1,5 @@
 import socket
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs
 
 class MyHTTPServer:
     def __init__(self, host, port, name):
@@ -86,8 +86,19 @@ class MyHTTPServer:
         grade = params.get("grade", [""])[0]
 
         if discipline and grade:
-            self.data[discipline] = grade
-            return self.send_response(200, "OK", "Данные успешно добавлены")
+            try:
+                grade = int(grade)
+            except ValueError:
+                return self.send_response(400, "Bad Request", "Некорректный формат оценки")
+
+            if discipline in self.data:
+                self.data[discipline] += grade
+                return self.send_response(200, "OK",
+                                          f"Оценка добавлена. Новая оценка для {discipline}: {self.data[discipline]}")
+            else:
+                self.data[discipline] = grade
+                return self.send_response(200, "OK", f"Данные успешно добавлены для {discipline}")
+
         else:
             return self.send_response(400, "Bad Request", "Некорректные данные")
 
@@ -102,10 +113,10 @@ class MyHTTPServer:
 
 if __name__ == "__main__":
     host = "127.0.0.1"
-    port = 8080
+    port = 9090
     name = "WebServer"
-    print("""Default post: curl -X POST -d "discipline=Math&grade=5" http://127.0.0.1:8080/add """)
-    print("""Default get: curl http://127.0.0.1:8080""")
+    print("""Default post: curl -X POST -d "discipline=Math&grade=5" http://127.0.0.1:9090/add """)
+    print("""Default get: curl http://127.0.0.1:9090""")
 
     server = MyHTTPServer(host, port, name)
     try:
