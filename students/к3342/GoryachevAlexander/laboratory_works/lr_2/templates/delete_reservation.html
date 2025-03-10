@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Удалить бронирование{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Удаление бронирования</h1>
+    </header>
+
+    <main>
+        <section class="reservation-details">
+            <p>Вы уверены, что хотите удалить бронирование?</p>
+            <p><strong>Номер:</strong> {{ reservation.room.room_type }}</p>
+            <p><strong>Отель:</strong> {{ reservation.room.hotel.name }}</p>
+            <p><strong>Период:</strong> с {{ reservation.check_in_date }} по {{ reservation.check_out_date }}</p>
+        </section>
+
+        <section class="confirmation-form">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Удалить</button>
+                <a href="{% url 'reservation_list' %}" class="cancel-button">Отмена</a>
+            </form>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,8 @@
+site_name: LAB1
+nav:
+    - Home: index.md
+    - Task1: task1.md
+    - Task2: task2.md
+    - Task3: task3.md
+    - Task4: task4.md
+    - Task5: task5.md

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Детали отеля: {{ hotel.name }}{% endblock %}
+
+{% block content %}
+<header>
+    <h1 class="hotel-name">{{ hotel.name }}</h1>
+</header>
+
+<main>
+    <section class="hotel-details">
+        <h2>Информация об отеле</h2>
+        <p><strong>Адрес:</strong> {{ hotel.address }}</p>
+        <p><strong>Описание:</strong> {{ hotel.description|default:"Описание не предоставлено." }}</p>
+    </section>
+
+    <section class="hotel-rooms">
+        <h2>Доступные номера</h2>
+        {% if hotel.rooms.exists %}
+            <ul class="room-list">
+                {% for room in hotel.rooms.all %}
+                    <li class="room-item">
+                        <article>
+                            <h3 class="room-type">
+                                <a href="{% url 'reserve_room' room.id %}">{{ room.room_type }}</a>
+                            </h3>
+                            <p><strong>Вместимость:</strong> {{ room.capacity }} гостей</p>
+                            <p><strong>Цена за ночь:</strong> {{ room.price }} ₽</p>
+                        </article>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Номера отсутствуют.</p>
+        {% endif %}
+    </section>
+
+    <section class="hotel-reservations">
+        <h2>Резервации</h2>
+
+        <!-- Форма фильтрации -->
+        <form method="get" class="reservation-filter-form">
+            <label for="check_in_date">Фильтровать по дате заселения:</label>
+            <input type="date" name="check_in_date" id="check_in_date" value="{{ check_in_date }}">
+            <button type="submit" class="submit-button">Применить</button>
+        </form>
+
+        {% if reservations %}
+            <ul class="reservation-list">
+                {% for reservation in reservations %}
+                    <li class="reservation-item">
+                        <div class="reservation-details">
+                            <p><strong>Клиент:</strong> {{ reservation.client.username }}</p>
+                            <p><strong>Номер:</strong> {{ reservation.room.room_type.name }}</p>
+                            <p><strong>Дата заселения:</strong> {{ reservation.check_in_date }}</p>
+                            <p><strong>Дата выселения:</strong> {{ reservation.check_out_date }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Резервации отсутствуют для данного отеля.</p>
+        {% endif %}
+
+        <!-- Пагинация -->
+        {% if reservations.has_other_pages %}
+            <div class="pagination">
+                {% if reservations.has_previous %}
+                    <a href="?page=1{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">&laquo; Первая</a>
+                    <a href="?page={{ reservations.previous_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">« Назад</a>
+                {% endif %}
+
+                <span>Страница {{ reservations.number }} из {{ reservations.paginator.num_pages }}</span>
+
+                {% if reservations.has_next %}
+                    <a href="?page={{ reservations.next_page_number }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">Далее »</a>
+                    <a href="?page={{ reservations.paginator.num_pages }}{% if check_in_date %}&check_in_date={{ check_in_date }}{% endif %}">Последняя &raquo;</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="hotel-reviews">
+        <h2>Отзывы</h2>
+        <ul class="reservation-list">
+            {% for room in hotel.rooms.all %}
+                {% for reservation in room.reservations.all %}
+                    {% if reservation.review %}
+                        <li class="reservation-item">
+                            <div class="review-item">
+                                <p><strong>Период проживания:</strong> {{ reservation.review.reservation.check_in_date }} - {{ reservation.review.reservation.check_out_date }}</p>
+                                <p><strong>Тип номера:</strong> {{ reservation.review.reservation.room.room_type }}</p>
+                                <p><strong>Рейтинг:</strong> {{ reservation.review.rating }}/10</p>
+                                <p><strong>Комментарий:</strong> {{ reservation.review.comment }}</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+        {% if not hotel.rooms.all|yesno:"True,," %}
+            <p>Отзывы отсутствуют.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <a href="{% url 'add_review' hotel.rooms.first.id %}" class="cancel-button">Добавить отзыв</a>
+    </footer>
+</main>
+{% endblock %}

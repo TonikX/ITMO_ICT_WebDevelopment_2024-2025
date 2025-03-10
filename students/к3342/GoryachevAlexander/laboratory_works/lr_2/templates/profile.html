@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Мой профиль</h1>
+    </header>
+
+    <main>
+        <section class="profile-info">
+            <h2>Информация о пользователе</h2>
+            <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Дата регистрации:</strong> {{ user.date_joined }}</p>
+        </section>
+    </main>
+{% endblock %}
