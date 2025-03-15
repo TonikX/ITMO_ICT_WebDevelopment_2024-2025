@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">Отменить бронирование номера</h5>
+      <p class="card-text mb-2">Отель: {{ object.room.hotel.name }}</p>
+      <p class="card-text mb-2">
+        Номер: {{ object.room.room_type.name }} #{{ object.room.pk }}
+      </p>
+      <p class="card-text mb-2">
+        Дата начала: {{ object.start_date|date:"d.m.Y" }}
+      </p>
+      <p class="card-text mb-3">
+        Дата окончания: {{ object.end_date|date:"d.m.Y" }}
+      </p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'reservations' %}" class="btn btn-secondary">Назад</a>
+            <button type="submit" class="btn btn-danger">Отменить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

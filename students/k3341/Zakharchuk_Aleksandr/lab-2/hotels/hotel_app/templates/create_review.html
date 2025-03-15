@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-4">
+        Оцените ваше пребывание в отеле
+      </h5>
+      <p class="card-text mb-2">Отель: {{ reservation.room.hotel.name }}</p>
+      <p class="card-text mb-2">
+        Номер: {{ reservation.room.room_type.name }} #{{ reservation.room.id }}
+      </p>
+      <p class="card-text mb-2">
+        Начало пребывания: {{ reservation.start_date|date:"d.m.Y" }}
+      </p>
+      <p class="card-text">
+        Окончание пребывания: {{ reservation.end_date|date:"d.m.Y" }}
+      </p>
+      <form method="post">
+        {% csrf_token %} {{ form|crispy }}
+        <div class="d-flex justify-content-between">
+          <a href="{% url 'reservations' %}" class="btn btn-secondary">Назад</a>
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mt-3">Доступные номера</h2>
+<div class="container mt-3">
+  {% for room in rooms %}
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ room.room_type.name }}</h5>
+      <p class="card-text mb-2">
+        Количество гостей: {{ room.room_type.capacity }}
+      </p>
+      <p class="card-text mb-2">Удобства: {{ room.room_type.amenities }}</p>
+      <p class="card-text mb-3">Цена: {{ room.price }} рублей</p>
+      <a href="{% url 'create_reservation' room_id=room.id %}" class="btn btn-primary me-2">Забронировать</a>
+      <a href="{% url 'room_reviews' room_id=room.id %}" class="btn btn-secondary">Отзывы</a>
+    </div>
+  </div>
+  {% endfor %}
+  <a href="{% url 'hotels' %}" class="btn btn-secondary mt-3 mb-3">Назад</a>
+</div>
+{% endblock content %}

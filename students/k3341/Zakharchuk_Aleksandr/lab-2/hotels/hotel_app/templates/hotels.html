@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block content %}
+<h2 class="mt-3">Доступные отели</h2>
+<div class="container mt-3">
+  {% for hotel in hotels %}
+  <div class="card shadow-sm mt-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ hotel.name }}</h5>
+      <p class="card-text mb-2">{{ hotel.address }}</p>
+      <p class="card-text">{{ hotel.description }}</p>
+      <a href="{% url 'hotel_rooms' hotel_id=hotel.id %}" class="btn btn-primary">Выбрать номер</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

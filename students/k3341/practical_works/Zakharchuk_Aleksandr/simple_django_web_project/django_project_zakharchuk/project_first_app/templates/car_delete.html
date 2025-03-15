@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Удалить автомобиль</title>
+</head>
+
+<body>
+  <form method="post">
+    {% csrf_token %}
+    <p>Вы точно хотите удалить автомобиль "{{ object.brand }} {{ object.model }} {{ object.number }} {{ object.color }}"?</p>
+    <input type="submit" value="Да">
+  </form>
+  <a href="/cars/">Вернуться</a>
+</body>
+</html>
