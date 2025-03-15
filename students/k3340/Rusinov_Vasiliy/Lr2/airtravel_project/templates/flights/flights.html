@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Flights</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Flight Number</th>
+        <th>Airline</th>
+        <th>Origin - Destination</th>
+        <th>Departure - Arrival</th>
+        <th>Type</th>
+        <th>Gate Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for flight in flights %}
+        <tr>
+          {% include 'flights/flight_details.html' with flight=flight %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

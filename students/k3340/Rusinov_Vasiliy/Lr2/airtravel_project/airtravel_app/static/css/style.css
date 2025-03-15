@@ -1,0 +1,54 @@
+/* static/css/style.css */
+
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Header styles */
+header {
+    background-color: #000080; /* Bootstrap primary color */
+    color: white;
+    padding: 10px 20px;
+}
+
+/* Navigation menu styles */
+nav ul {
+    list-style-type: none; /* Remove bullets from list */
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items in a row */
+    margin-right: 15px; /* Space between menu items */
+}
+
+nav ul li a {
+    color: white; /* White text color for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline links on hover */
+}
+
+/* Main content styles */
+main {
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #0000CD; /* Dark background for footer */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+

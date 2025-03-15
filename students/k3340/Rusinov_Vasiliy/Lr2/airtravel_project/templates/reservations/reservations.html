@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Reservations</h1>
+  {% block reservations %}
+  <div class="reservations">
+    {% for reservation in reservations %}
+      {% include 'reservations/reservation.html' with reservation=reservation %}
+    {% endfor %}
+  </div>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Flight Details</h1>
+  {% include 'flights/flight_details.html' with flight=flight %}
+
+  <h2>Available Seats</h2>
+  <ul>
+    {% for seat in available_seats %}
+      <li><a href="{% url 'submit_reservation' flight.pk seat.pk %}">{{ seat.seat_number }}</a></li>
+    {% empty %}
+            <li>No available seats.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_staff %}
+    <a href="{% url 'reservations_list' flight.pk %}">Reserved seats</a>
+    <a href="{% url 'passengers_list' flight.pk %}">Passengers</a>
+  {% endif %}
+
+  <h2>Reviews</h2>
+  <table>
+    {% for review in reviews %}
+      <tr>
+        <td>{{ review.comment_text }}</td>
+        <td>{{ review.rating }}</td>
+        <td>{{ review.user.first_name }} {{ review.user.last_name }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <button><a href="{% url 'submit_review' flight.pk %}">Leave a Review</a></button>
+{% endblock %}

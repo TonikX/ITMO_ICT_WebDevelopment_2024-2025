@@ -1,0 +1,11 @@
+<ul>
+    <li><a href="{% url 'flights' %}">Flights</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'user_reservations' %}">My Reservations</a></li>
+      <li><a href="{% url 'reviews' %}">My Reviews</a></li>
+      <li><a href="{% url 'user' %}">Profile</a></li>
+      <li><a href="{% url 'logout' %}">Log Out</a></li>
+    {% else %}
+      <li><a href="{% url 'login' %}">Sign In</a></li>
+    {% endif %}
+  </ul>
