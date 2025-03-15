@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавить отзыв{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Добавить отзыв для номера: {{ room.room_type }}</h1>
+        <form method="post" class="mb-3">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+        </form>
+        <a href="{% url 'room_list' hotel_id=reservation.room.hotel.id %}" class="btn btn-secondary">Назад к списку
+            номеров</a>
+    </div>
+{% endblock %}

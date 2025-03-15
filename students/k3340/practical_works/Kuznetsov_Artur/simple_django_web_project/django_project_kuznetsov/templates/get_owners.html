@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owners</title>
+</head>
+<body>
+<h1>List of owners</h1>
+<ul>
+    {% for owner in owners %}
+        <li>
+            <h2>Information about the car owner</h2>
+            <p>First name: {{ owner.first_name }}</p>
+            <p>Last name: {{ owner.last_name }}</p>
+            <p>Birth date: {{ owner.birth_date }}</p>
+            <p>Passport number: {{ owner.passport_number }}</p>
+            <p>Home address: {{ owner.home_address }}</p>
+            <p>Nationality: {{ owner.nationality }}</p>
+        </li>
+        <hr>
+    {% empty %}
+        <li>There are no owners yet.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

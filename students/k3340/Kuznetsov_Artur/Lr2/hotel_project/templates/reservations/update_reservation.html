@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать бронирование{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Редактировать бронирование для номера: {{ reservation.room.room_type }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Обновить бронирование</button>
+        </form>
+        <a href="{% url 'reservation_list' %}" class="btn btn-secondary mt-3">Назад к бронированиям</a>
+    </div>
+{% endblock %}
