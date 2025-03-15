@@ -1,0 +1,30 @@
+.profile-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f0f0f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-form-container h2 {
+    text-align: center;
+    color: #444;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.profile-form-container form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3367D6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.profile-form-container form button:hover {
+    background-color: #2851A3;
+}
