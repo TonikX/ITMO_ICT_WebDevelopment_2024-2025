@@ -1,0 +1,21 @@
+site_name: WEB documentation
+nav:
+  - Home: index.md
+  - Lab 1:
+      - "Task 1": lr1/task1.md
+      - "Task 2": lr1/task2.md
+      - "Task 3": lr1/task3.md
+      - "Task 4": lr1/task4.md
+      - "Task 5": lr1/task5.md
+
+theme:
+  name: material
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
