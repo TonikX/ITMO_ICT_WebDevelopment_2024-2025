@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Журнал оценок</title>
+    <style>
+        body {
+            font-family:  "Gill Sans", sans-serif;
+            background-color: #D7ABFFFF;
+            margin: 0;
+            padding: 5%;
+            text-align: center;
+            color: #00032c;
+        }
+        h1 {
+            color: #2c2c2c;
+        }
+        form {
+            background: floralwhite;
+            padding: 30px;
+            border-radius: 4px;
+            margin-bottom: 10%;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: mediumseagreen;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: springgreen;
+        }
+        table {
+            width: 60%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+
+        }
+        th {
+            background-color: mediumseagreen;
+            color: floralwhite;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ввод в журнал дисциплин</h1>
+    <form method="POST" action="/">
+        Дисциплина: <input type="text" name="subject" required><br>
+        Оценка: <input type="text" name="grade" required><br>
+        <input type="submit" value="+">
+    </form>
+
+    <h2>Список оценок:</h2>
+    <table>
+        <tr>
+            <th>Дисциплина</th>
+            <th>Оценка</th>
+            <!-- Таблица -->
+        </tr>
+    </table>
+</body>
+</html>
