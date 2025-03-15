@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+    <style>
+        .header {
+            background-color: #333;
+            padding: 1em;
+            margin-bottom: 2em;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+        .header a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'homework:task_list' %}">Tasks</a>
+        <a href="#">Grades</a>
+        <a href="{% url 'homework:account_info' %}">Profile</a>
+        <a href="{% url 'homework:logout' %}">Logout</a>
+    </div>
+    <h1>My Grades</h1>
+    <ul>
+        {% for assignment in graded_assignments %}
+            <li>{{ assignment.task.title }} - Grade: {{ assignment.grade }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

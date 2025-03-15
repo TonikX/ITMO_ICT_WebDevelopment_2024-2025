@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        .header {
+            background-color: #333;
+            padding: 1em;
+            margin-bottom: 2em;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+        .header a:hover {
+            color: #ddd;
+        }
+        .grade-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 2em;
+        }
+        .grade-table th, .grade-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .grade-table th {
+            background-color: #f5f5f5;
+        }
+        .grade-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1em;
+            margin-bottom: 2em;
+        }
+        .stat-card {
+            background-color: #f5f5f5;
+            padding: 1em;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    {% load grade_filters %}
+
+    <div class="header">
+        <a href="{% url 'homework:logout' %}">Logout</a>
+    </div>
+    <h1>Admin Dashboard</h1>
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Students: {{ total_students }}</h3>
+            </div>
+            <div class="stat-card">
+                <h3>Total Tasks: {{ total_tasks }}</h3>
+            </div>
+            <div class="stat-card">
+                <h3>Pending Assignments: {{ pending_assignments }}</h3>
+            </div>
+            <div class="stat-card">
+                <h3>Graded Assignments: {{ graded_assignments }}</h3>
+            </div>
+        </div>
+
+        <table class="grade-table">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    {% for task in tasks %}
+                    <th>{{ task.title }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    {% for task in tasks %}
+                        <td>
+                            {% with grade=grades|get_grade:student.id|get_task_grade:task.id %}
+                                {{ grade|default:"-" }}
+                            {% endwith %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

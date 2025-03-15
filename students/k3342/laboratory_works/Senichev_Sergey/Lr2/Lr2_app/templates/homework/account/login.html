@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+    <style>
+        .header {
+            background-color: #333;
+            padding: 1em;
+            margin-bottom: 2em;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1em;
+        }
+        .header a:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'homework:register' %}">Register</a>
+    </div>
+    <h1>Login</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
