@@ -1,0 +1,14 @@
+<!-- templates/reviews/add_review.html -->
+{% extends "base.html" %}
+
+{% block title %}Добавить отзыв{% endblock %}
+
+{% block content %}
+<h2>Добавить отзыв для номера {{ room.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+    <a href="{% url 'hotel_rooms' room.hotel.id %}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

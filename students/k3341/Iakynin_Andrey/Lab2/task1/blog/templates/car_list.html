@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Car List{% endblock %}
+
+{% block content %}
+    <h1>List of Cars</h1>
+
+
+    <ul class="list-group">
+        {% for car in cars %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'car_detail' car.id %}">{{ car.brand }} {{ car.model }}</a>
+            <div>
+                <a href="{% url 'car_update' car.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'car_delete' car.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No cars available</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'car_add' %}" class="btn btn-primary mb-3">Add New Car</a>
+{% endblock %}

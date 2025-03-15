@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Owner Details{% endblock %}
+
+{% block content %}
+    <h1>{{ owner.first_name }} {{ owner.last_name }}</h1>
+    <p>Birth Date: {{ owner.birth_date }}</p>
+    <p>Email: {{ owner.email }}</p>
+    <p>Nationality {{ owner.nationality }}</p>
+    <h3>Cars owned:</h3>
+    <ul class="list-group">
+        {% for car in owner.cars.all %}
+        <li class="list-group-item">{{ car.brand }} {{ car.model }} ({{ car.state_num }})</li>
+        {% empty %}
+        <li class="list-group-item">No cars associated with this owner</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
