@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Задание 5 - Web Docs</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../../css/brands.min.css" rel="stylesheet">
+        <link href="../../css/solid.min.css" rel="stylesheet">
+        <link href="../../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Web Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Labs</a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Лабораторная работа №1</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../task_1/" class="dropdown-item">Задание 1</a>
+</li>
+            
+<li>
+    <a href="../task_2/" class="dropdown-item">Задание 2</a>
+</li>
+            
+<li>
+    <a href="../task_3/" class="dropdown-item">Задание 3</a>
+</li>
+            
+<li>
+    <a href="../task_4/" class="dropdown-item">Задание 4</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Задание 5</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Лабораторная работа №2</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../lab2/" class="dropdown-item">Задание</a>
+</li>
+            
+<li>
+    <a href="../../lab2/models/" class="dropdown-item">Модели</a>
+</li>
+            
+<li>
+    <a href="../../lab2/view/" class="dropdown-item">Представления</a>
+</li>
+            
+<li>
+    <a href="../../lab2/forms/" class="dropdown-item">Формы</a>
+</li>
+            
+<li>
+    <a href="../../lab2/result/" class="dropdown-item">Итоговый результат</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../task_4/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../lab2/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h3 id="5">Задание 5:</h3>
+<p>Написать простой веб-сервер для обработки GET и POST HTTP-запросов с помощью библиотеки socket в Python.</p>
+<p>Сервер должен:
+- Принять и записать информацию о дисциплине и оценке по дисциплине.
+- Отдать информацию обо всех оценках по дисциплинам в виде HTML-страницы.</p>
+<h3 id="_1">Ход работы:</h3>
+<h4 id="serverpy">server.py</h4>
+<pre><code>import socket
+
+
+def parse_request(data):
+    data_split = data.split('\r\n')
+    print(f&quot;data split : {data_split}&quot;)
+    headers = data_split[0].split()
+    print(f&quot;Headers : {headers}&quot;)
+    body = data_split[-1]
+    request = dict()
+
+    if len(headers) == 3:
+
+        request.update(
+            {&quot;method&quot;: headers[0], &quot;url&quot;: headers[1], &quot;version&quot;: headers[2]})
+
+        if &quot;&amp;&quot; in body:
+            parametre = body.split(&quot;&amp;&quot;)
+            request.update({&quot;parametrs&quot;: parametre})
+            return request
+        else:
+            request.update({&quot;parametrs&quot;: {}})
+            return request
+    else:
+        raise Exception(&quot;Malformed request line&quot;)
+
+
+class MyHTTPServer:
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.grade = []
+
+    def serve_forever(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.bind((self.host, self.port))
+        sock.listen()
+        while True:
+            client_socket, _ = sock.accept()
+            self.serve_client(client_socket)
+
+    def serve_client(self, client_socket):
+        data = client_socket.recv(4096).decode('utf-8')
+        request = parse_request(data)
+        response = self.handle_request(request)
+        if response:
+            client_socket.send(response.encode('utf-8'))
+            client_socket.close()
+
+    def handle_request(self, request):
+        print(request)
+        response = f&quot;{request['version']} 200 OK\n\n&quot;
+        if request[&quot;url&quot;] == &quot;/&quot;:
+            if request[&quot;method&quot;] == &quot;POST&quot;:
+                self.grade.extend(request[&quot;parametrs&quot;])
+            if request[&quot;method&quot;] == &quot;GET&quot; or &quot;POST&quot;:
+                with open('index.html', encoding='utf-8') as f:
+                    response += f.read()
+                    return response
+        if request[&quot;url&quot;] == &quot;/journal&quot;:
+            response += &quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;List grades&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&quot;
+            for s in self.grade:
+                response += f&quot;&lt;p&gt;{s} &lt;/p&gt;&quot;
+            response += &quot;&lt;/body&gt;&lt;/html&gt;&quot;
+            return response
+
+
+if __name__ == &quot;__main__&quot;:
+    host = 'localhost'
+    port = 8080
+    myserver = MyHTTPServer(host, port)
+    try:
+        myserver.serve_forever()
+    except KeyboardInterrupt:
+        pass
+</code></pre>
+<p>В данном задании объединяем знания работы с html-структурой из 3 задания и внедрения библиотека 
+threading из 4 задания.</p>
+<p>После успешной настройки сокета и соединения хоста настраиваем прослушивание запросов. Пока 
+программа работает, сервер принимает запросы клиентов, сообщая об их активной работе, и 
+запускает потоки для работы многих клиентов одновременно. Потоки работают на основе функции 
+<code>client_handler</code>, обрабатывая запросы. При методе GET сервер формирует таблицу с записанными 
+оценками, при методе POST записывает новые пары предмет-оценка в список отметок.</p>
+<p>Чтобы убедиться в работе сайта, переходим по заданному адресу <code>http://localhost:8080</code></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js"></script>
+        <script src="../../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал оценок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+        }
+        form {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Учебные дисциплины и оценки</h1>
+    </header>
+
+    <form id="gradeForm" method="POST" action="/">
+        <h2>Добавить дисциплину и оценку</h2>
+        <label for="subject"></label><input type="text" id="subject" name="subject" placeholder="Название дисциплины" required>
+        <label for="grade"></label><input type="number" id="grade" name="grade" placeholder="Оценка" min="1" max="5" required>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <h2>Список оценок</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Дисциплина</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody id="gradesList">
+            <!-- Здесь будут отображаться данные -->
+        </tbody>
+    </table>
+
+    <script>
+        async function loadGrades() {
+            const gradesList = document.getElementById('gradesList');
+            const response = await fetch('/journal');
+
+            if (response.ok) {
+                gradesList.innerHTML = await response.text();
+            } else {
+                gradesList.innerHTML = '<tr><td colspan="2">Не удалось загрузить данные</td></tr>';
+            }
+        }
+
+        loadGrades();
+    </script>
+</body>
+</html>
