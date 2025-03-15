@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css">
+  <style>
+    .avatar {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="{% url 'home' %}">Educational YouTube</a></h1>
+    <a href="{% url 'home' %}">Home</a> / 
+    <a href="{% url 'top' %}">Top</a> / 
+    <a href="{% url 'add-channel' %}">Add Channel</a> / 
+    {% if user.is_authenticated %}
+    <a href="{% url 'users:logout' %}">Log out</a> / {{ user.username }} 
+    {% else %}
+    <a href="{% url 'users:login' %}">Log in</a> / <a href="{% url 'users:register' %}">Register</a>
+    {% endif %}
+  </header>
+{% block content %} {% endblock %}
+</body>
+</html>

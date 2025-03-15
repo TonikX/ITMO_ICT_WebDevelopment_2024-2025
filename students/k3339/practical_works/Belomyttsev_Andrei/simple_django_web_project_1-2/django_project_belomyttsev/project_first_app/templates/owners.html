@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owners</title>
+</head>
+<body>
+  {% for owner in owners %}
+  First name: {{ owner.first_name }} <br>
+  Last name: {{ owner.last_name }} <br>
+  Date of birth: {{ owner.date_of_birth }}
+  {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
+</body>
+</html>
