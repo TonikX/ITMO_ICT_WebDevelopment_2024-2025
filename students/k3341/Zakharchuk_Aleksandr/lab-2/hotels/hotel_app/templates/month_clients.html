@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-3">
+  <h2 class="mt-3">Клиенты за месяц</h2>
+  <table class="table table-striped-columns table-hover table-bordered mt-3 mb-3">
+    <thead>
+      <tr>
+        <th scope="col">Отель</th>
+        <th scope="col">Тип номера</th>
+        <th scope="col">Id номера</th>
+        <th scope="col">Клиент</th>
+        <th scope="col">Дата заселения</th>
+        <th scope="col">Дата выселения</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for reservation in reservations %}
+      <tr>
+        <th scope="row">{{ reservation.room.hotel.name }}</th>
+        <td>{{ reservation.room.room_type.name }}</td>
+        <td>{{ reservation.room.id }}</td>
+        <td>{{ reservation.user.username }}</td>
+        <td>{{ reservation.start_date|date:"d.m.Y" }}</td>
+        <td>{{ reservation.end_date|date:"d.m.Y" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
