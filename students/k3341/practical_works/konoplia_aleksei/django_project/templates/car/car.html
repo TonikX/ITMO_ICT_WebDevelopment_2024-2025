@@ -1,0 +1,18 @@
+<!-- templates/car.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Details</title>
+</head>
+<body>
+    <h1>Car Details</h1>
+    <p>License Plate: {{ car.license_plate }}</p>
+    <p>Brand: {{ car.brand }}</p>
+    <p>Model: {{ car.model }}</p>
+    <p>Color: {{ car.color }}</p>
+    <a href="{% url 'cars-list' %}">Back to Cars List</a>
+    <a href="{% url 'car-update' car.id %}">Edit Car</a>
+    <a href="{% url 'car-delete' car.id %}">Delete Car</a>
+</body>
+</html>

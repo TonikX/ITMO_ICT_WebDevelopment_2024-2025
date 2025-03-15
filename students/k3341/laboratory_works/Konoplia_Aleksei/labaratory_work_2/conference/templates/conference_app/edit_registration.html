@@ -1,0 +1,13 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}Редактировать регистрацию на "{{ conference.name }}"{% endblock %}
+
+{% block content %}
+  <h2>Редактировать регистрацию на "{{ conference.name }}"</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+  </form>
+{% endblock %}

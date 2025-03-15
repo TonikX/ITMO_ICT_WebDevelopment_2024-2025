@@ -1,0 +1,28 @@
+{% extends "conference_app/base.html" %}
+
+{% block title %}Добавить отзыв{% endblock %}
+
+{% block content %}
+  <h2>Добавить отзыв для "{{ conference.name }}"</h2>
+  {% if review_exists %}
+    <p>Вы уже оставили отзыв для этой конференции.</p>
+    <a href="{% url 'conference_detail' conference_id=conference.id %}" class="btn btn-secondary">Вернуться к конференции</a>
+
+  {% else %}
+    <form method="post">
+      {% csrf_token %}
+      <form method="post">
+        {% csrf_token %}
+        <p>
+          {{ form.comment_text.label_tag }}
+          {{ form.comment_text }}
+        </p>
+        <p>
+          {{ form.rating.label_tag }}
+          {{ form.rating }}
+        </p>
+        <button type="submit">Отправить отзыв</button>
+      </form>
+    </form>
+  {% endif %}
+{% endblock %}

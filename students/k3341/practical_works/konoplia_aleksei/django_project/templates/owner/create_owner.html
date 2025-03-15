@@ -1,0 +1,17 @@
+<!-- templates/create_owner.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Owner</title>
+</head>
+<body>
+    <h1>Create New Owner</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+    <a href="{% url 'owners-list' %}">Back to Owners List</a>
+</body>
+</html>
