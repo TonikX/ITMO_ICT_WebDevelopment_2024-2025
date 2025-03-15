@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <title>Science Conf</title> 
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-left">
+      <a class="nav-link" href="/conference">All conferences</a>
+      {% if request.user.is_authenticated %}
+      <a class="nav-link" href="/conference/create">Create conference</a>
+      {% endif %}
+    </div>
+    
+    {% if request.user.is_authenticated %}
+    <div>
+      <a class="nav-link" href="/logout">Logout ({{ request.user }})</a>
+    </div>
+    {% else %}
+    <div class="nav-left">
+      <a class="nav-link" href="/register">Sign Up</a>
+      <a class="nav-link" href="/login">Sign In</a>
+    </div>
+    {% endif %}
+  </div>
+    <span><h1>Conferences</h1></span>
+    <ul>
+    {% for conf in object_list  %}
+    <li><strong>{{ conf.name }}</strong>,
+      {% if request.user == conf.creator.user or request.user.username == 'admin' %}
+        <a href="/conference/{{ conf.id }}/update/">Edit</a> |
+        <a href="/conference/{{ conf.id }}/delete/">Delete</a> |
+      {% endif %}
+        <a href="/conference/{{ conf.id }}/"> Detail </a>
+        <p><strong>Location:</strong> {{ conf.location }}</p>
+        <p><strong>Starts: </strong>{{ conf.date_of_start }}</p>
+    </li>
+    {% empty %}
+    <li>Not conferences yet.</li>
+    {% endfor %}
+    </ul>
+    <div class="pagination">
+      {% for page_number in paginator.page_range %} 
+          {% if page_obj.number == page_number %}
+              <div style="background-color: aquamarine;">{{ page_number }}</div>
+          {% else %}
+              <div><a style="text-decoration: none;" href="?page={{ page_number }}">{{ page_number }}</a></div>
+          {% endif %} 
+      {% endfor %}
+  </div>
+</body>
+</html>
+
