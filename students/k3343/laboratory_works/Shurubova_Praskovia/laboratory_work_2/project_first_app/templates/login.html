@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    {% load static %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'earth.png' %}" alt="Иконка" style="height: 50px; margin-right: 16px;">
+        Вокруг света за 80 дней
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'tour_list' %}">Туры</a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_reservations' %}">Мои туры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                </li>
+
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_reservations' %}" style="margin-right: 10px;">Бронирование</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/" style="margin-right: 10px;">Создать тур</a>
+                    </li>
+                {% endif %}
+
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_register' %}">Регистрация</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+    <h1 class="text-center"  style="margin-bottom: 120px;">Вход</h1>
+    <form method="post" action="{% url 'login' %}" class="w-100" style="max-width: 300px; margin-top: -110px;">
+        {% csrf_token %}
+        <style>
+            input[type="text"], input[type="password"] {
+                background-color: white;
+                border: 1px solid #FFFFFF;
+                border-radius: 8px;
+                padding: 10px;
+                width: 100%;
+                margin-bottom: 10px;
+                box-shadow: none;
+                font-size: 1rem;
+            }
+            input[type="text"]:focus, input[type="password"]:focus {
+                border-color: #FFFFFF;
+                outline: none;
+                box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            }
+        </style>
+        {{ form.as_p }}
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="button-uni" style="width: 40%;">Войти</button>
+        </div>
+    </form>
+
+    {% if form.errors %}
+        <div class="errors mt-3">
+            <h2>Ошибки:</h2>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+
+
+<section class="footer py-4" id="footer3-r">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <div class="footer-line"></div>
+                <p class="m-0 text-dark">
+                    © Copyright 2024 Вокруг света за 80 дней. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

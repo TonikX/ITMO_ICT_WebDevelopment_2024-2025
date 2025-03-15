@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали автомобиля</title>
+</head>
+<body>
+<h1><strong>Детали автомобиля</strong></h1>
+    <p>Марка: {{ car.brand }}</p>
+    <p>Модель: {{ car.model }}</p>
+    <p>Номер: {{ car.state_number }}</p>
+    <p>Цвет: {{ car.colour }}</p>
+    <a href="{% url 'car_data' car.id %}">Обновить данные об автомобиле</a>
+</body>
+</html>

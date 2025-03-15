@@ -1,0 +1,40 @@
+{% extends "template.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="text-center">Мои подтвержденные туры по странам</h1>
+    {% if countries %}
+        {% for country, tours in countries.items %}
+            <h2>{{ country }}</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center">Название тура</th>
+                        <th class="text-center">Дата начала</th>
+                        <th class="text-center">Дата окончания</th>
+                        <th class="text-center">Условия оплаты</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tour in tours %}
+                        <tr class="bg-white">
+                            <td class="text-center">
+                                <a href="{% url 'tour_detail' tour.id %}" class="link-color">{{ tour.title }}</a>
+                            </td>
+                            <td class="text-center">{{ tour.start_date }}</td>
+                            <td class="text-center">{{ tour.end_date }}</td>
+                            <td class="text-center">{{ tour.payment_terms }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    {% else %}
+        <p>У вас нет подтвержденных туров.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

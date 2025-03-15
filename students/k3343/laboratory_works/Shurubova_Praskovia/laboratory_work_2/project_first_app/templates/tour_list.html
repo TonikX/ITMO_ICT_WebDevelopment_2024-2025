@@ -1,0 +1,77 @@
+{% extends "template.html" %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="container my-4">
+
+
+    <form method="get" action="{% url 'tour_list' %}" class="mb-4 d-flex">
+        <div class="row g-3 w-100">
+            <div class="col">
+                <input type="text" name="title" value="{{ title_query }}" class="form-control" placeholder="Название тура">
+            </div>
+            <div class="col">
+                <input type="text" name="agency" value="{{ agency_query }}" class="form-control" placeholder="Агентство">
+            </div>
+            <div class="col">
+                <input type="date" name="start_date" value="{{ start_date }}" class="form-control">
+            </div>
+            <div class="col">
+                <input type="date" name="end_date" value="{{ end_date }}" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="button-uni ms-2">Поиск</button>
+    </form>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center">Название тура</th>
+                <th class="text-center">Агентство</th>
+                <th class="text-center">Период</th>
+                <th class="text-center">Детали</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tour in tours %}
+                <tr class="bg-white">
+                    <td class="text-center">{{ tour.title }}</td>
+                    <td class="text-center">{{ tour.agency }}</td>
+                    <td class="text-center">{{ tour.start_date }} - {{ tour.end_date }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'tour_detail' tour.id %}" class="link-color">Подробнее</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div class="custom-pagination d-flex justify-content-center my-4">
+        {% if page_obj.has_previous %}
+            <a href="?page=1{% if last_question %}&{{ last_question }}{% endif %}" class="custom-page-link">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}{% if last_question %}&{{ last_question }}{% endif %}" class="custom-page-link">‹</a>
+        {% endif %}
+
+        <span class="page-numbers d-flex align-items-center">
+            {% for num in paginator.page_range %}
+                {% if num == page_obj.number %}
+                    <span class="page-circle active">{{ num }}</span>
+                {% else %}
+                    <a href="?page={{ num }}{% if last_question %}&{{ last_question }}{% endif %}" class="page-circle">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if last_question %}&{{ last_question }}{% endif %}" class="custom-page-link">›</a>
+            <a href="?page={{ paginator.num_pages }}{% if last_question %}&{{ last_question }}{% endif %}" class="custom-page-link">Последняя</a>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

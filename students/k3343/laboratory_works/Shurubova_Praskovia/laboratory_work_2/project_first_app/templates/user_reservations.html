@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <title>Зарезервированные туры</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'earth.png' %}" alt="Иконка" style="height: 50px; margin-right: 16px;">
+        Вокруг света за 80 дней
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'tour_list' %}">Туры</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'confirmed_tours_by_country' %}" style="margin-left: 10px;">Все подтвержденные туры</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_confirmed_tours_by_country' %}" style="margin-left: 10px;">
+                    Мои подтвержденные туры
+                </a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_reservations' %}">Мои туры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                </li>
+
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_reservations' %}" style="margin-right: 10px;">Бронирование</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/" style="margin-right: 10px;">Создать тур</a>
+                    </li>
+                {% endif %}
+
+
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'user_register' %}">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 class="text-center">Мои бронирования</h1>
+
+    {% if reservations %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Название тура</th>
+                    <th>Дата начала</th>
+                    <th>Дата окончания</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'tour_detail' reservation.tour.id %}" class="text-dark">
+                                {{ reservation.tour.title }}
+                            </a>
+                        </td>
+                        <td>{{ reservation.tour.start_date }}</td>
+                        <td>{{ reservation.tour.end_date }}</td>
+                        <td>
+                            {% if reservation.is_confirmed %}
+                                Подтверждено
+                            {% else %}
+                                Не подтверждено
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="button-uni">Отменить бронирование</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>У вас нет бронирований.</p>
+    {% endif %}
+</div>
+
+
+<section class="footer py-4" id="footer3-r">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col text-center">
+                <div class="footer-line"></div>
+                <p class="m-0 text-dark">
+                    © Copyright 2024 Вокруг света за 80 дней. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
