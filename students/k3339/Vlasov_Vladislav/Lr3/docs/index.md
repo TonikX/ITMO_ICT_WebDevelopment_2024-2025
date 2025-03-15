@@ -1,0 +1,1 @@
+Лабораторная работа №3: Django Rest Framework

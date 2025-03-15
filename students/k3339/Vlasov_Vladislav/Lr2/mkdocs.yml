@@ -1,0 +1,20 @@
+site_name: Web lab 2
+nav:
+ - Home: index.md
+ - registration:
+     - login: registration/login/README.md
+     - singup: registration/singup/README.md
+     - logout: registration/logout/README.md
+ - character:
+     - list: character/list/README.md
+     - create: character/create/README.md
+     - update: character/update/README.md
+     - delete: character/delete/README.md
+     - get: character/get/README.md
+ - skill:
+     - list: skill/list/README.md
+     - create: skill/create/README.md
+     - update: skill/update/README.md
+     - delete: skill/delete/README.md
+theme:
+  name: material

@@ -1,0 +1,82 @@
+<!-- publisher_form.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание персонажа</title>
+</head>
+
+<body>
+
+  {% load custom_filters %}
+
+  <form method="get" action="{% url 'character_update' char.id %}">
+    {% csrf_token %}
+    <button type="submit">Редактировать</button>
+  </form>
+
+  <h1>{{ char.name }}</h1>
+
+  <div>Фишки: {{ char.bennies }}</div>
+  <div>Раны: {{ char.bennies }}</div>
+  <div>Усталость: {{ char.fatigue }}</div>
+
+  <div>Внешность: {{ char.appearance }}</div>
+  <div>Девиз: {{ char.slogan }}</div>
+
+  {% for attribute in attributes %}
+      <div>
+        {{ attribute.attribute }} 
+        Кость:
+        {% if attribute.value == 1 %}
+            d4
+        {% elif attribute.value == 2 %}
+            d6
+        {% elif attribute.value == 3 %}
+            d8
+        {% elif attribute.value == 4 %}
+            d10
+        {% elif attribute.value == 5 %}
+            d12
+        {% endif %}
+        Бонус: {% if attribute.bonus > 0 %}+{% endif %}{{ attribute.bonus }}
+      </div>
+
+        {% for skill in skills_by_attribute|getSkillByAttribute:attribute.attribute %}
+          <div style="padding-left: 10px;">
+            Навык: 
+            {{ skill.skill }} 
+            Кость:
+            {% if skill.value == 0 %}
+                нет
+            {% elif skill.value == 1 %}
+                d4
+            {% elif skill.value == 2 %}
+                d6
+            {% elif skill.value == 3 %}
+                d8
+            {% elif skill.value == 4 %}
+                d10
+            {% elif skill.value == 5 %}
+                d12
+            {% endif %}
+            Бонус: {% if skill.bonus > 0 %}+{% endif %}{{ skill.bonus }}
+          </div>
+        {% endfor %}
+  {% endfor %}
+
+  <form method="get" action="{% url 'characters_list' %}">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+  </form>
+
+  <form method="get" action="{% url 'character_delete' char.id %}", style="padding-top: 50px;">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+  </form>
+  
+</body>
+
+</html>

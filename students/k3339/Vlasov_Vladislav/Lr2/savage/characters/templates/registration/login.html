@@ -1,0 +1,42 @@
+<!-- publisher_form.html -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Авторизация</title>
+</head>
+
+<body>
+
+    {% if form.errors %}
+    <p>Неверные имя пользователя или пароль. Пожалуйста, войдите снова</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+        
+            <tr>
+            <td>Логин: </td>
+            <td>{{ form.username }}</td>
+            </tr>
+            
+            <tr>
+            <td>Пароль: </td>
+            <td>{{ form.password }}</td>
+            </tr>
+        </table>
+        
+        <input type="submit" value="Войти" />
+    </form>
+
+    <form method="get" action="{% url 'user_registration' %}">
+        {% csrf_token %}
+        <p><button type="submit">Регистрация</button></p>
+    </form>
+
+</body>
+
+</html>

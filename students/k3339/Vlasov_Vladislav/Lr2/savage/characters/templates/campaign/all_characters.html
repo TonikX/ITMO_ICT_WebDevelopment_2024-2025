@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Персонажи</title>
+</head>
+
+<body>
+    
+    {% load custom_filters %}
+
+    {% if user|in_group:"Мастера" %}
+        <p>Вы вошли как Мастер.</p>
+    {% else %}
+        <p>Вы вошли как игрок.</p>
+    {% endif %}
+
+    {% if user|in_group:"Мастера" %}
+        
+    <form method="get" action="{% url 'skills_list' %}">
+        {% csrf_token %}
+        <p><button type="submit">Навыки кампании</button></p>
+    </form>
+
+    {% endif %}
+
+    <form method="post" action="{% url 'my_logout' %}">
+        {% csrf_token %}
+        <button type="submit">Выйти из профиля</button>
+    </form>
+
+    <h1>Ваши персонажи:</h1><br/>
+
+    {% if not own_char %}
+        <p>У вас нет персонажей
+    {% else %}
+        <div>
+            {% for char in own_char %}
+        
+            Имя персонажа: <a href="{% url 'character' char.id %}">{{char.name}}</a><br/>
+            <hr/>
+        
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="get" action="{% url 'character_create' %}">
+        {% csrf_token %}
+        <button type="submit">Создать нового персонажа</button>
+    </form>
+
+    <h1>Другие персонажи:</h1><br/>
+    
+    {% if not other_char %}
+        <p>У других игроков нет персонажей
+    {% else %}
+
+    <div>
+        {% for char in other_char %}
+        
+            {% if user|in_group:"Мастера" %}
+
+                Имя персонажа: <a href="{% url 'character' char.id %}">{{char.name}}</a><br/>
+                <hr/>
+
+            {% else %}
+
+                Имя персонажа: {{char.name}}<br/>
+                <hr/>
+
+            {% endif %}
+      
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+
+</html>
