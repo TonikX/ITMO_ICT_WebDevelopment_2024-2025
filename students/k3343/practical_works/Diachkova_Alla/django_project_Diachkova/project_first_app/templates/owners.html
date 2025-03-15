@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner list</title>
+</head>
+<body>
+<a href="{% url 'owner_create' %}">Add new owner info</a>
+{% for owner in owners %}
+    <ul>
+        <a href="{% url 'owner' owner.pk %}">Owner {{owner.pk}}</a>
+        <li>First name: {{owner.first_name}}</li>
+        <li>Last name: {{owner.last_name}}</li>
+        <li>Birthday: {{owner.birth_date}}</li>
+    </ul>
+    <hr>
+{% endfor %}
+</body>
+</html>

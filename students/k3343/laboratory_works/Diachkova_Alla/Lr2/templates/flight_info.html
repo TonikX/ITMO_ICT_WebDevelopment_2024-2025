@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Flight {{ flight.flight_number }}{% endblock %}
+
+{% block content %}
+<h2>Flight {{ flight.flight_number }} - {{ flight.airline }}</h2>
+<p>Departs at: {{ flight.departure_datetime|date:"d.m.Y H:i" }}</p>
+<p>Arrives at: {{ flight.arrival_datetime|date:"d.m.Y H:i" }}</p>
+<p>Airport gate: {{ flight.gate_number }}</p>
+
+{% if user.is_authenticated %}
+    <form action="{% url 'make_booking' flight.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Book</button>
+    </form>
+{% else %}
+    <p><a href="{% url 'login' %}">Log In</a> or <a href="{% url 'register' %}">register</a> to book with us.</p>
+{% endif %}
+
+<h3>Passengers booked for flight {{ flight.flight_number }}:</h3>
+<ul>
+    {% for booking in passengers %}
+        <li>{{ booking.user.full_name }}</li>
+    {% empty %}
+        <li>No passengers yet</li>
+    {% endfor %}
+</ul>
+
+<h3>Reviews:</h3>
+<ul>
+    <h3>Mean rating for current flight: {{ mean_rating|floatformat:1 }} / 10</h3>
+    {% for booking in passengers %}
+        {% for review in booking.review_set.all %}
+            <li>
+                <strong>{{ review.booking.user.full_name }}</strong> ({{ review.rating }}/10): {{ review.text }}
+            </li>
+        {% empty %}
+            <li>No reviews yet</li>
+        {% endfor %}
+    {% empty %}
+        <li>No reviews yet</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
