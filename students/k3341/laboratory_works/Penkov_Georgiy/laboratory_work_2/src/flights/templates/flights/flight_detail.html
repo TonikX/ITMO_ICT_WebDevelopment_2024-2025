@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}{{flight}}{% endblock title %}
+
+{% block content %}
+    <h1>Flight {{flight}}</h1>
+    <table>
+        <tr>
+            <td>Date</td>
+            <td>{{flight.datetime|date:"d F, H:i"}}</td>
+        </tr>
+        <tr>
+            <td>Flight number</td>
+            <td>{{flight.number}}</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>{{flight.get_flight_type_display}}</td>
+        </tr>
+        <tr>
+            <td>Direction</td>
+            <td>{{flight.direction}}</td>
+        </tr>
+        <tr>
+            <td>Airline</td>
+            <td>{{flight.airline.name}}</td>
+        </tr>
+        <tr>
+            <td>Gate</td>
+            <td>{{flight.gate}}</td>
+        </tr>
+    </table>
+    <h2>Reserve a seat</h2>
+    {% if user.is_authenticated %}
+        {% if user_registration_status == "RESERVED" %}
+            <p>You reserved the seat. Wait for staff to register you.</p>
+        {% elif user_registration_status == "REGISTERED" %}
+            <p>Staff registered you. You can see your registration in the table below.</p>
+        {% else %}
+            <form action="{% url 'flights:reserve-seat' flight.id %}" method="post">
+                {% csrf_token %}
+                {{ reserve_seat_form.as_p }}
+                <button class="btn btn-primary" type="submit">Reserve</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <p>You need to log in to reserve a seat.</p>
+    {% endif %}
+    <h2>Passengers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Passenger</th>
+                <th>Ticket</th>
+                <th>Seat</th>
+                <th>Registration status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if registrations %}
+                {% for registration in registrations %}
+                <tr>
+                    <td>{{registration.passenger}}</td>
+                    <td>{{registration.ticket}}</td>
+                    <td>{{registration.seat}}</td>
+                    <td>{{registration.get_status_display}}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan=4>
+                        Nobody is registered on this flight.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <h2>Feedbacks</h2>
+    {% if user.is_authenticated %}
+        {% if user_registration_status == "REGISTERED" %}
+            <form action="{% url 'flights:leave-feedback' flight.id %}" method="post">
+                {% csrf_token %}
+                {{ feedback_form.as_p }}
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        {% else %}
+            <p>You need to be registered on a flight to leave a feedback.</p>
+        {% endif %}
+    {% else %}
+        <p>You need to log in to leave a feedback.</p>
+    {% endif %}
+    {% if feedbacks %}
+        {% for feedback in feedbacks %}
+            <p>[{{ feedback.created_at|date:"d M" }}] 
+                <strong>{{ feedback.author }}</strong>
+                {{ feedback.rating }}/10:
+            </p>
+            <p>{{ feedback.text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>There is no feedback for this flight.</p>    
+    {% endif %}
+    
+{% endblock content %}
