@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <form class="modal fade" tabindex="-1" id="changeSitting" method="post">
+    {% csrf_token %}
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Выбор места</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Выберите место</p>
+          <select class="form-select form-select-sm" aria-label="Small select example" name="place">
+          {% for place in places %}
+            <option value="{{place.id}}" {% if place.id == booking.place.id %} selected {% endif %}
+            {% if place.booked == True %} disabled {% endif %}>{{place.row}}-{{place.col}}</option>
+          {% endfor %}
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+    <div class="container-fluid mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h2>Рейс {{race.race_code}}</h2>
+        </div>
+        <div class="card-body">
+          <table class="table">
+          <tbody>
+            <tr>
+              <th width="10%">Перевозчик</th>
+              <td>{{race.airline}}</td>
+            </tr>
+            <tr>
+              <th width="10%">Судно</th>
+              <td>{{race.aircraft}}</td>
+            </tr>
+            <tr>
+              <th width="10%">
+                {% if race.is_departure %}
+                  Отправление
+                {% else %}
+                  Прибытие
+                {% endif %}
+              </th>
+              <td>{{race.date}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="card-footer">
+          {% if ticket is None %}
+            <div class="alert alert-danger m-2">Вы не зарегистрированы на этот рейс! Операции недоступны.</div>
+          {% else %}
+            {% if booking is None %}
+              Вы ещё не выбрали место!
+              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeSitting">Выбрать</a>
+            {% else %}
+              Ваше место: {{ booking.place }}
+              <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeSitting">Изменить</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h6>Зарегистрированные пассажиры</h6>
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <thead>
+                  <th>Пассажир</th>
+                  <th>Место</th>
+                </thead>
+                <tbody>
+                  {% for booking in all_bookings %}
+                    <tr>
+                      <td>{{booking.ticket.user.first_name}} {{booking.ticket.user.last_name}}</td>
+                      <td>{{booking.place}}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-header">
+              <h6>Комментарии к рейсу</h6>
+            </div>
+            <div class="card-body">
+              <form></form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

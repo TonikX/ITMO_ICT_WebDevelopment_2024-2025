@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="card mt-4 w-25">
+        <div class="card-header">
+            <h3>
+                Вход
+            </h3>
+            <span>
+                Рады снова вас видеть!
+            </span>
+        </div>
+        <div class="card-body">
+            <form action="." method="post">
+                {{ user_form.as_p }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

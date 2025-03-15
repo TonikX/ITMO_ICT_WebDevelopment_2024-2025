@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container-fluid mt-4">
+        <h2>Ваши рейсы</h2>
+        <p>Для регистрации на рейс обратитесь к администратору</p>
+        <div class="row">
+            {% for ticket in tickets %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{ticket.race.race_code}}</h4>
+                        </div>
+                        <div class="card-body">
+                            Перевозчик: {{ticket.race.airline}}<br>
+                            Дата отправления: {{ticket.race.date}}<br>
+                            Судно: {{ticket.race.aircraft}}
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary" href="/race/{{ticket.race.id}}">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
