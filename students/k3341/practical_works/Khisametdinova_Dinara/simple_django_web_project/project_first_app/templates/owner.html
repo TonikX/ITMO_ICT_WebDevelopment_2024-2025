@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner</title>
+</head>
+<body>
+    <ul>
+        <li>First name: {{owner.first_name}}</li>
+        <li>Last name: {{owner.last_name}}</li>
+        <li>Birth date: {{owner.birth_date}}</li>
+        <li>Passport: {{owner.passport_number}}</li>
+        <li>Address: {{owner.home_address}}</li>
+        <li>Nationality: {{owner.nationality}}</li>
+    </ul>
+    <a href="{% url 'update_owner' owner.id %}">Редактировать</a> |
+    <a href="{% url 'delete_owner' owner.id %}">Удалить</a> |
+    <a href="{% url 'owner_list' %}">Назад к списку пользователей</a>
+</body>
+</html>

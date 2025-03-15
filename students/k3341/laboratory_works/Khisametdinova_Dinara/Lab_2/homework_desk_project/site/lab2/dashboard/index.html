@@ -1,0 +1,1217 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../authorization/">
+      
+      
+        <link rel="next" href="../menu/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
+    
+    
+      
+        <title>Dashboard - dinarasaurae's webdev</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dashboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="dinarasaurae&#39;s webdev" class="md-header__button md-logo" aria-label="dinarasaurae's webdev" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            dinarasaurae's webdev
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dashboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="dinarasaurae&#39;s webdev" class="md-nav__button md-logo" aria-label="dinarasaurae's webdev" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    dinarasaurae's webdev
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LAB №1
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            LAB №1
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Base classes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/task1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/task2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/task3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/task4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab1/task5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task 5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LAB №2
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            LAB №2
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../registration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Registration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authorization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dashboard
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Dashboard
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#url-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      URL-маршруты для Dashboard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание функций и классов, используемых в панели управления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание функций и классов, используемых в панели управления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции панели управления для студента
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции панели управления для преподавателя
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#userdashboardview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Класс UserDashboardView для панели управления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Класс UserDashboardView для панели управления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userdashboardview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ключевые функции UserDashboardView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboardhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаблон dashboard.html
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Шаблон dashboard.html">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаблон
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршрутизация и взаимодействие
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../menu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Menu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../submission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Submission
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../homeworks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homework
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LAB №3
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            LAB №3
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/practical_work_3_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical work 3.1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/practical_work_3_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical work 3.2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/practical_work_3_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Practical work 3.3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/desc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Laboratory work. Description
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lab3/api.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Laboratory work. Description. API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#url-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      URL-маршруты для Dashboard
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание функций и классов, используемых в панели управления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание функций и классов, используемых в панели управления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции панели управления для студента
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции панели управления для преподавателя
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#userdashboardview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Класс UserDashboardView для панели управления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Класс UserDashboardView для панели управления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#userdashboardview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ключевые функции UserDashboardView
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboardhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаблон dashboard.html
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Шаблон dashboard.html">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Шаблон
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Маршрутизация и взаимодействие
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<p>Документация: Панель управления (Dashboard)</p>
+<h1 id="dashboard">Панель управления (Dashboard)</h1>
+<p>Панель управления зависит от роли пользователя: студента или преподавателя. Каждый из них имеет доступ к отдельным функциям и данным в системе. В этой документации описано, как происходит авторизация и маршрутизация для обоих типов пользователей.</p>
+<h2 id="url-dashboard">URL-маршруты для Dashboard</h2>
+<p>Маршруты для страницы <code>dashboard</code> и других связанных разделов настроены в файле <code>urls.py</code>.</p>
+<pre><code>from django.urls import path
+from django.contrib.auth.views import LogoutView
+from . import views
+
+urlpatterns = [
+    path('dashboard/', views.UserDashboardView.as_view(), name='dashboard'),
+    path('homeworks/', views.HomeworkListView.as_view(), name='homework_list'),
+    path('student/homeworks/', views.StudentHomeworkListView.as_view(), name='student_homeworks'),
+    path('homeworks/create/', views.HomeworkCreateView.as_view(), name='homework_create'),
+    path('homeworks//submit/', views.SubmissionCreateView.as_view(), name='submit_homework'),
+    path('homeworks/list/submissions/', views.SubmissionListView.as_view(), name='submission_list'),
+    path('homeworks/submission//grade/', views.SubmissionGradeView.as_view(), name='grade_submission'),
+    path('grades/admin/', views.AdminGradeTableView.as_view(), name='admin_grade_table'),
+    path('grades/student/', views.StudentGradeTableView.as_view(), name='student_grade_table')
+]
+</code></pre>
+<h2 id="_1">Описание функций и классов, используемых в панели управления</h2>
+<h3 id="_2">Функции панели управления для студента</h3>
+<ul>
+<li><strong>Просмотр заданий</strong>: Студенты могут увидеть все домашние задания, доступные для выполнения, через маршрут <code>student/homeworks/</code> и <code>StudentHomeworkListView</code> в <code>views.py</code>.</li>
+<li><strong>Отправка выполненного задания</strong>: Студенты могут прикрепить выполнение задания через маршрут <code>homeworks/&lt;int:homework_id&gt;/submit/</code>, который связан с <code>SubmissionCreateView</code>.</li>
+<li><strong>Просмотр оценок</strong>: Через маршрут <code>grades/student/</code> и <code>StudentGradeTableView</code>, студенты могут просматривать свои оценки.</li>
+</ul>
+<h3 id="_3">Функции панели управления для преподавателя</h3>
+<ul>
+<li><strong>Добавление нового задания</strong>: Преподаватели могут создавать новые задания через маршрут <code>homeworks/create/</code> и <code>HomeworkCreateView</code>.</li>
+<li><strong>Проверка и оценка выполнения заданий</strong>: Через маршрут <code>homeworks/list/submissions/</code> преподаватели могут видеть выполненные студентами задания и выставлять оценки с помощью <code>SubmissionGradeView</code>.</li>
+<li><strong>Управление предметами</strong>: Преподаватели могут добавлять и редактировать предметы через маршруты <code>subjects/add/</code> и <code>subjects/&lt;int:pk&gt;/edit/</code>.</li>
+<li><strong>Просмотр оценок всех студентов</strong>: Через маршрут <code>grades/admin/</code> преподаватели могут просматривать таблицу с оценками всех студентов.</li>
+</ul>
+<h2 id="userdashboardview">Класс <code>UserDashboardView</code> для панели управления</h2>
+<p>Класс <code>UserDashboardView</code> реализует общую панель для студентов и преподавателей. Он отображает только те элементы, которые доступны по роли пользователя, проверяя <code>role</code> пользователя в базе данных.</p>
+<pre><code>from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
+from .models import Submission
+
+class UserDashboardView(LoginRequiredMixin, ListView):
+    template_name = 'dashboard.html'
+    context_object_name = 'submissions'
+
+    def get_queryset(self): 
+        user = self.request.user
+        if user.role == 'student':
+            return Submission.objects.filter(student=user).select_related('homework')
+        return Submission.objects.filter(homework__subject__teachers=user).select_related('homework', 'student')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context['is_student'] = user.role == 'student'
+        return context
+</code></pre>
+<h3 id="userdashboardview_1">Ключевые функции <code>UserDashboardView</code></h3>
+<ul>
+<li><strong><code>get_queryset</code></strong>: Метод возвращает список заданий для студента или преподавателя в зависимости от роли. Если авторизован студент, отображаются только его задания. Если преподаватель, то задания всех студентов, проходящих его курсы.</li>
+<li><strong><code>get_context_data</code></strong>: Метод добавляет дополнительный контекст <code>is_student</code> для проверки в шаблоне, чтобы различать отображаемые функции для студентов и преподавателей.</li>
+</ul>
+<h2 id="dashboardhtml">Шаблон <code>dashboard.html</code></h2>
+<p>Шаблон <code>dashboard.html</code> проверяет роль пользователя через <code>is_student</code> и отображает соответствующие функции в зависимости от роли. Например, кнопка "Добавить задание" отображается только преподавателям, а студентам доступны кнопки для отправки выполненного задания.</p>
+<h3 id="_4">Шаблон</h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Панель управления&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    {% include 'navbar.html' %}
+    &lt;div class=&quot;container mt-5&quot;&gt;
+        &lt;h2 class=&quot;mb-4 text-center&quot;&gt;Панель управления&lt;/h2&gt;
+
+        &lt;div class=&quot;card mb-4&quot;&gt;
+            &lt;div class=&quot;card-body&quot;&gt;
+                &lt;h4 class=&quot;card-title&quot;&gt;Профиль пользователя&lt;/h4&gt;
+                &lt;p&gt;&lt;strong&gt;Имя пользователя:&lt;/strong&gt; {{ user.username }}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; {{ user.email }}&lt;/p&gt;
+                &lt;p&gt;&lt;strong&gt;Роль:&lt;/strong&gt; {{ user.role }}&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        {% if is_student %}
+            &lt;h4&gt;Ваши домашние задания и оценки:&lt;/h4&gt;
+
+            &lt;a href=&quot;{% url 'student_grade_table' %}&quot; class=&quot;btn btn-primary mb-3&quot;&gt;Мои оценки&lt;/a&gt;
+
+            &lt;a href=&quot;{% url 'student_homeworks' %}&quot; class=&quot;btn btn-info mb-3&quot;&gt;Просмотр заданий&lt;/a&gt;
+
+            &lt;a href=&quot;{% url 'submit_homework' homework_id=1 %}&quot; class=&quot;btn btn-success mb-3&quot;&gt;Прикрепить задание&lt;/a&gt; 
+
+        {% else %}
+            &lt;h4&gt;Оценки всех студентов:&lt;/h4&gt;
+
+            &lt;a href=&quot;{% url 'admin_grade_table' %}&quot; class=&quot;btn btn-primary mb-3&quot;&gt;Оценки всех студентов&lt;/a&gt;
+
+            &lt;a href=&quot;{% url 'submission_list' %}&quot; class=&quot;btn btn-info mb-3&quot;&gt;Управление заданиями&lt;/a&gt;
+        {% endif %}
+
+        {% if submissions %}
+            &lt;table class=&quot;table table-striped&quot;&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;Ученик&lt;/th&gt;
+                        {% if not is_student %}
+                            &lt;th&gt;Класс&lt;/th&gt;
+                        {% endif %}
+                        &lt;th&gt;Задание&lt;/th&gt;
+                        &lt;th&gt;Дата сдачи&lt;/th&gt;
+                        &lt;th&gt;Оценка&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    {% for submission in submissions %}
+                        &lt;tr&gt;
+                            &lt;td&gt;{{ submission.student.username }}&lt;/td&gt;
+                            {% if not is_student %}
+                                &lt;td&gt;{{ submission.student.student_class.name }}&lt;/td&gt;
+                            {% endif %}
+                            &lt;td&gt;{{ submission.homework.subject.name }}&lt;/td&gt;
+                            &lt;td&gt;{{ submission.submitted_at|date:&quot;d.m.Y H:i&quot; }}&lt;/td&gt;
+                            &lt;td&gt;{{ submission.grade|default:&quot;Не оценено&quot; }}&lt;/td&gt;
+                        &lt;/tr&gt;
+                    {% endfor %}
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        {% else %}
+            &lt;p class=&quot;alert alert-warning&quot;&gt;Нет данных о сдачах заданий.&lt;/p&gt;
+        {% endif %}
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="_5">Маршрутизация и взаимодействие</h2>
+<ul>
+<li>После входа пользователя через <code>login</code> он перенаправляется на <code>dashboard</code>, где доступные функции зависят от роли.</li>
+<li>Каждый маршрут, относящийся к панели управления, имеет соответствующее представление и шаблон, определяющий, какие функции доступны.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
