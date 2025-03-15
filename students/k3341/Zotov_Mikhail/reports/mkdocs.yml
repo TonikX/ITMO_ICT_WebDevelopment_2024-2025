@@ -1,0 +1,23 @@
+site_name: Зотов Михаил Дмитриевич 2.2
+nav:
+ - Home: index.md
+ - Лабораторная 1:
+     - Задание 1: lab1/task1
+     - Задание 2: lab1/task2
+     - Задание 3: lab1/task3
+     - Задание 4: lab1/task4
+     - Задание 5: lab1/task5
+ - Лабораторная 2:
+     - Введение: lab2/main
+     - Модели: lab2/models
+     - Запросы: lab2/views
+ - Лабораторная 3:
+     - Введение: lab3/main
+     - Модели: lab3/models
+     - Эндпоинты: lab3/endpoints
+ - Лабораторная 4:
+     - Интерфейсы: lab4/main
+ - Литкоды: leetcodes/main
+
+theme:
+ name: dracula

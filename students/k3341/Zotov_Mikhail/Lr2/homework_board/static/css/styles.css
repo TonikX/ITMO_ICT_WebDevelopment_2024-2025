@@ -1,0 +1,57 @@
+/* Сбрасываем базовые стили для всех элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Устанавливаем базовую высоту html и body */
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Основная структура для фиксации футера внизу */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Центрирование основного контента на главной странице */
+main.container {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    text-align: center; /* Центровка текста внутри контейнера */
+    flex-direction: column; /* Размещаем элементы друг под другом */
+}
+
+/* Стили для заголовков и текста */
+h1 {
+    font-size: 48px; /* Увеличиваем заголовок */
+    color: #343a40;
+    margin-bottom: 20px; /* Расстояние под заголовком */
+}
+
+p {
+    font-size: 20px;
+    color: #6c757d;
+    margin-bottom: 10px; /* Добавляем отступ между параграфами (если их больше одного) */
+}
+
+/* Стили для футера */
+footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+    text-align: center;
+}

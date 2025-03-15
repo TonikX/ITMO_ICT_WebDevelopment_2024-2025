@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ура!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) fixed;
+            animation: gradientAnimation 5s ease infinite;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Indie Flower', cursive;
+            font-size: 100px;
+            color: #ff4500;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            opacity: 0.7;
+            animation: confettiAnimation 2s linear infinite;
+        }
+
+        @keyframes confettiAnimation {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(800px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Ура!</h1>
+    <script>
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.top = -10 + 'px';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff0a0a', '#ff7600', '#ffd700', '#0cff0c', '#00d4ff', '#8400ff'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        for (let i = 0; i < 100; i++) {
+            setTimeout(createConfetti, i * 30);
+        }
+    </script>
+</body>
+</html>
