@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Удалить резервирование{% endblock %}
+
+{% block content %}
+<h2>Вы уверены, что хотите удалить это резервирование?</h2>
+<p>Рейс: {{ reservation.flight.flight_number }} - Место: {{ reservation.seat_number }}</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Подтвердить удаление</button>
+</form>
+<a href="{% url 'profile' %}">Отменить</a>
+{% endblock %}

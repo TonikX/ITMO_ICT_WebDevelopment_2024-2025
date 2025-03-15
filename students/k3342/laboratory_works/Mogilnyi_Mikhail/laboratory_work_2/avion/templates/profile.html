@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<h2>Добро пожаловать, {{ user.username }}!</h2>
+<h3>Ваши резервирования:</h3>
+{% if reservations %}
+    <ul>
+        {% for reservation in reservations %}
+            <li>
+                Рейс: {{ reservation.flight.flight_number }}<br>
+                Авиакомпания: {{ reservation.flight.airline }}<br>
+                Место: {{ reservation.seat_number }}<br>
+                Дата резервирования: {{ reservation.reservation_date|date:"D d M Y H:i" }}<br>
+                <a href="{% url 'edit_reservation' reservation.id %}">Редактировать</a>
+                <a href="{% url 'delete_reservation' reservation.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас нет резервирований на данный момент.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваши бронирования</title>
+</head>
+<body>
+    <h2>Ваши бронирования</h2>
+<ul>
+    {% for reservation in reservations %}
+    <li>{{ reservation.flight.flight_number }} - место {{ reservation.seat_number }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>

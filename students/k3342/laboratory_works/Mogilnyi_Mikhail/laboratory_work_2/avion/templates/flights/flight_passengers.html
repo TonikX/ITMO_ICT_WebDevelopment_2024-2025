@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Пассажиры рейса{% endblock %}
+
+{% block content %}
+<h2>Пассажиры рейса {{ flight.flight_number }}</h2>
+<ul>
+    {% for passenger in passengers %}
+        <li>{{ passenger.passengers.first_name }} {{ passenger.passengers.last_name }} - Номер билета: {{ passenger.passengers.ticket_number }}</li>
+    {% empty %}
+        <li>Пассажиров на данном рейсе не найдено.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

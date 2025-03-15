@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать резервирование{% endblock %}
+
+{% block content %}
+<h2>Редактировать резервирование</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Обновить резервирование</button>
+</form>
+{% endblock %}

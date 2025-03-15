@@ -1,0 +1,7 @@
+<!-- car_confirm_delete.html -->
+<h2>Удалить автомобиль</h2>
+<p>Вы уверены, что хотите удалить автомобиль "{{ object }}"?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Подтвердить</button>
+</form>

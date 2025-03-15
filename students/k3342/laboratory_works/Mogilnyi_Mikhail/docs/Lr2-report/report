@@ -1,0 +1,55 @@
+# Отчет по реализации системы бронирования авиабилетов
+
+## Задание
+Реализовать функционал для системы бронирования авиабилетов с возможностью:
+- регистрации и авторизации пользователей;
+- просмотра и бронирования мест на рейсы;
+- управления бронированиями, включая редактирование и удаление;
+- добавления и просмотра отзывов к рейсам;
+- отображения пассажиров на каждом рейсе для администратора.
+
+## Структура проекта
+
+### Модели
+
+1. **Flight** - Модель для хранения данных о рейсе.
+    - Поля: `airline`, `flight_number`, `departure_city`, `arrival_city`, `departure_time`, `arrival_time`, `gate_number`, `flight_type`.
+  
+2. **Reservation** - Модель для хранения данных о бронировании.
+    - Поля: `user`, `flight`, `seat_number`, `reservation_date`.
+    - Связи: внешний ключ `user` связывает бронирование с пользователем, `flight` указывает на рейс.
+
+3. **Passenger** - Модель для хранения данных о пассажирах.
+    - Поля: `reservation`, `first_name`, `last_name`, `ticket_number`.
+
+4. **Review** - Модель для хранения отзывов о рейсе.
+    - Поля: `flight`, `user`, `review_date`, `comment`, `rating`.
+
+### Формы
+
+1. **UserRegistrationForm** - форма регистрации нового пользователя с использованием `UserCreationForm`.
+2. **ReservationForm** - форма для бронирования места на рейсе.
+3. **ReviewForm** - форма для добавления отзыва.
+
+### Представления
+
+1. **register** - Регистрация пользователя.
+2. **profile** - Отображение профиля пользователя, где видны его бронирования.
+3. **flight_list** - Отображение доступных рейсов.
+4. **reserve_seat** - Бронирование места на рейс.
+5. **edit_reservation** - Редактирование бронирования.
+6. **delete_reservation** - Удаление бронирования.
+7. **flight_passengers** - Отображение списка пассажиров на рейсе.
+8. **add_review** - Добавление отзыва к рейсу.
+
+### URL-маршруты
+
+```python
+urlpatterns = [
+    path('', home, name='home'),  # Домашняя страница
+    path('register/', register, name='register'),
+    path('flights/', flight_list, name='flight_list'),
+    path('flights/<int:flight_id>/reserve/', reserve_seat, name='reserve_seat'),
+    path('reservations/<int:reservation_id>/edit/', edit_reservation, name='edit_reservation'),
+    path('reservations/<int:reservation_id>/delete/', delete_reservation, name='delete_reservation'),
+    path('flights/<int:flight_id>/
