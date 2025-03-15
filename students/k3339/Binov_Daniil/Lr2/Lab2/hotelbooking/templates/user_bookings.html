@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Мои бронирования</h2>
+<ul>
+    {% for booking in bookings %}
+    <li>
+        {{ booking.room.name }} - {{ booking.start_date }} по {{ booking.end_date }}
+        <a href="{% url 'booking_update' booking.id %}">Изменить</a> |
+        <a href="{% url 'booking_delete' booking.id %}">Удалить</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

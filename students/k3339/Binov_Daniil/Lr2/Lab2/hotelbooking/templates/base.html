@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'signup' %}">Регистрация</a> |
+        <a href="{% url 'signin' %}">Вход</a> |
+        <a href="{% url 'rooms_list' %}">Комнаты</a> |
+        <a href="{% url 'user_bookings' %}">Мои бронирования</a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'signout' %}">Выход</a>
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

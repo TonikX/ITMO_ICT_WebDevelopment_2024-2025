@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Список комнат</h2>
+<ul>
+    {% for room in rooms %}
+    <li>
+        <a href="{% url 'room_reviews' room.id %}">{{ room.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Owner Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .info {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Car Owner Details</h1>
+    <div class="info">
+        <strong>First Name:</strong> {{ owner.first_name }}
+    </div>
+    <div class="info">
+        <strong>Last name:</strong> {{ owner.last_name }}
+    </div>
+    <div class="info">
+        <strong>Date of birth:</strong> {{ owner.birth_date }}
+    </div>
+
+</div>
+
+</body>
+</html>
