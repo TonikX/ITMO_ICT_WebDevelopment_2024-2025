@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="70bf30a8-b365-4153-bd98-21af279a8ea4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/ITMO_ICT_WebDevelopment_2024-2025.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/121.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/169.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt121.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt169.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt27.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt28.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/img/lt88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/docs/docs/leetcodes_lr2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/.idea/lab2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/board/migrations/0002.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/board/migrations/0003.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/add_homework.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/delete_homework.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/delete_submission.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/edit_homework.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/edit_submission.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/student_grade_table.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/student_submission_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../laboratory_work_2/lab2/templates/submission_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sales_agency_app/permissions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sales_agency_app/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sales_agency_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../practical_works/Sofya_Melnik/django_project_Melnik/.idea/django_project_Melnik.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../practical_works/Sofya_Melnik/django_project_Melnik/project_first_app/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../practical_works/Sofya_Melnik/django_project_Melnik/templates/carowner.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task1/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task1/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task1/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task1/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task3/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task3/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task4/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task4/client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task4/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task4/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task5/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../Sofya_Melnik/Lr1/task5/server.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2tnkfndm6kCHsJhSg8XODy85CQC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Notification.DisplayName-DoNotAsk-Database detector": "Database detector",
+    "Notification.DoNotAsk-Database detector": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "lab2",
+    "last_opened_file_path": "C:/Users/user/ITMO_ICT_WebDevelopment_2024-2025",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="sales_agency" type="Python.DjangoServer" factoryName="Django server">
+      <module name="sales_agency" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70bf30a8-b365-4153-bd98-21af279a8ea4" name="Changes" comment="" />
+      <created>1740995332128</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740995332128</updated>
+      <workItem from="1740995333538" duration="21516000" />
+      <workItem from="1741078407441" duration="295000" />
+      <workItem from="1741079192625" duration="6227000" />
+      <workItem from="1741098403258" duration="4511000" />
+      <workItem from="1741271554504" duration="3308000" />
+      <workItem from="1741278133824" duration="3468000" />
+      <workItem from="1741567323130" duration="484000" />
+      <workItem from="1741591750889" duration="371000" />
+      <workItem from="1741601090567" duration="340000" />
+      <workItem from="1741607257676" duration="1056000" />
+      <workItem from="1742198219941" duration="269000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
