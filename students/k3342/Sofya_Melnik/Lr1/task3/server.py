@@ -5,7 +5,7 @@ def encode_args(*args) -> bytes:
     return (''.join(args) + '\r\n').encode('utf-8')
 
 
-def server(address: tuple[str, int] = ('localhost', 2027)) -> None:
+def server(address: tuple[str, int] = ('localhost', 2024)) -> None:
     server = socket(AF_INET, SOCK_STREAM)
     server.bind(address)
     server.listen(7)

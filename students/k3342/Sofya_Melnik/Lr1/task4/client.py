@@ -1,5 +1,6 @@
 from socket import socket, AF_INET, SOCK_STREAM
 import threading
+import sys
 
 active = True
 
@@ -12,9 +13,10 @@ def receive_messages(client_socket: socket) -> None:
             if message:
                 print(message)
             else:
-                break
+                continue
         except (ConnectionResetError, KeyboardInterrupt):
             active = False
+            break
 
 
 def send_messages(client_socket: socket) -> None:
@@ -23,8 +25,10 @@ def send_messages(client_socket: socket) -> None:
         try:
             message = input()
             client_socket.send(message.encode('utf-8'))
-        except (ConnectionResetError, KeyboardInterrupt):
+        except (ConnectionResetError, KeyboardInterrupt, EOFError):
+            print('connection lost')
             active = False
+            break
 
 
 def start(socket_address: tuple[str, int] = ('localhost', 2024)) -> None:
@@ -40,12 +44,21 @@ def start(socket_address: tuple[str, int] = ('localhost', 2024)) -> None:
     send_thread = threading.Thread(target=send_messages, args=(client_socket,))
     send_thread.start()
 
-    receive_thread.join()
-    send_thread.join()
+    try:
+        receive_thread.join()
+        send_thread.join()
+    except KeyboardInterrupt:
+        global active
+        active = False
+        print("Program interrupted. Exiting...")
+        receive_thread.join()
+        send_thread.join()
+        client_socket.close()
+        sys.exit(0)
 
 
 if __name__ == "__main__":
     try:
         start()
-    except:
-        pass
+    except KeyboardInterrupt:
+        print("Program interrupted. Exiting...")

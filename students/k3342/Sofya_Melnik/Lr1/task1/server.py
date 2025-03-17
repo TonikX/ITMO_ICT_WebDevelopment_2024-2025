@@ -8,8 +8,8 @@ def server():
 
    print(f'Message from client: {message.decode()}')
 
-   server.sendto(b'Hello, client', client_port)
+   server.sendto(b'\nHello, client', client_port)
    server.close()
 
 if __name__ == "__main__":
-    task1_server()
+    server()

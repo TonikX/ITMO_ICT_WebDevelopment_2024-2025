@@ -1,10 +1,11 @@
 from socket import socket, AF_INET, SOCK_STREAM
 import threading
+import sys
 
 clients = {}
 lock_clients = threading.Lock()
 
-def broadcast(message: str, current_client: [socket, None]) -> None:
+def broadcast(message: str, current_client: socket = None) -> None:
     for client in clients.keys():
         if current_client is None:
             output = f'system: {message}'
@@ -13,7 +14,10 @@ def broadcast(message: str, current_client: [socket, None]) -> None:
         else:
             continue
         with lock_clients:
-            client.send(output.encode())
+            try:
+                client.send(output.encode())
+            except (BrokenPipeError, ConnectionResetError):
+                pass
 
 
 def handle_client(client_socket: socket):
@@ -29,15 +33,19 @@ def handle_client(client_socket: socket):
             if message:
                 broadcast(message, current_client=client_socket)
             else:
-                break
+                continue
+    except (ConnectionResetError, BrokenPipeError, KeyboardInterrupt):
+        pass
     finally:
         with lock_clients:
-            del clients[client_socket]
+            if client_socket in clients:
+                name = clients[client_socket]
+                del clients[client_socket]
         client_socket.close()
         broadcast(f"{name} left :(", current_client=None)
 
 
-def start_server(socket_address: tuple[str, int] = ('localhost', 20777)) -> None:
+def start_server(socket_address: tuple[str, int] = ('localhost', 2024)) -> None:
     server = socket(AF_INET, SOCK_STREAM)
     server.bind(socket_address)
     server.listen()
@@ -46,15 +54,24 @@ def start_server(socket_address: tuple[str, int] = ('localhost', 20777)) -> None
 
     while True:
         try:
+            print("Waiting for a connection...")
             client_socket, client_address = server.accept()
             print(f"New connection: {client_address}")
 
             thread = threading.Thread(target=handle_client, args=(client_socket,))
             thread.start()
         except KeyboardInterrupt:
+            print(f'Server closed')
             server.close()
             break
+        except Exception as e:
+            print(f"Error: {e}")
+            continue
 
 
 if __name__ == "__main__":
-    start_server()
+    try:
+        start_server()
+    except KeyboardInterrupt:
+        print("Server interrupted. Exiting...")
+        sys.exit(0)

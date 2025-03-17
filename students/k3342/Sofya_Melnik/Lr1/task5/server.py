@@ -1,4 +1,4 @@
-import socket
+from socket import socket, AF_INET, SOCK_STREAM
 from collections import defaultdict
 
 
@@ -6,10 +6,10 @@ class MyHTTPServer:
     def __init__(self, host, port):
         self.host = host
         self.port = port
-        self.grades = defaultdict(list)
+        self.scores = defaultdict(list)
 
-    def serve_forever(self):
-        server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    def serve(self):
+        server_socket = socket(AF_INET, SOCK_STREAM)
         server_socket.bind((self.host, self.port))
         server_socket.listen(7)
         print(f"http://{self.host}:{self.port}")
@@ -20,7 +20,7 @@ class MyHTTPServer:
 
     def serve_client(self, client_socket):
         request_data = client_socket.recv(1024).decode('utf-8')
-        method, url, _ = self.parse_request(request_data)
+        method, url, version = self.parse_request(request_data)
 
         if method == 'GET':
             response = self.handle_get_request(url)
@@ -53,11 +53,11 @@ class MyHTTPServer:
         else:
             return "HTTP/1.1 404 Not Found\nContent-Type: text/plain\n\nNot Found"
 
-    def handle_post_request(self, url, grades):
-        if url == '/add_grade':
-            parameters = grades.split('\n')[-1]
-            subject, grade = self.post_parse(parameters)
-            self.grades[subject].append(grade)
+    def handle_post_request(self, url, scores):
+        if url == '/add_score':
+            parameters = scores.split('\n')[-1]
+            subject, score = self.post_parse(parameters)
+            self.scores[subject].append(score)
             return self.subject_html()
         else:
             return "HTTP/1.1 404 Not Found\nContent-Type: text/plain\n\nNot Found"
@@ -65,15 +65,15 @@ class MyHTTPServer:
     def post_parse(self, parameters):
         parameters = parameters.split('&')
         subject = None
-        grade = None
+        score = None
         for param in parameters:
             key, value = param.split('=')
             if key == 'subject':
                 subject = value
-            elif key == 'grade':
-                grade = value
+            elif key == 'score':
+                score = value
 
-        return subject, grade
+        return subject, score
 
     def subject_html(self):
         html = """\
@@ -81,32 +81,58 @@ class MyHTTPServer:
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Grades</title>
+            <title>Scores</title>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    margin: auto;
+                    width: 80%;
+                }
+                th, td {
+                    border: 5px solid red;
+                    text-align: center;
+                    padding: 10px;
+                }
+                th {
+                    background-color: #f8c8dc;
+                }
+            </style>            
         </head>
         <body>
-            <h1>Grades</h1>
+            <h1 style="text-align: center;">Scores</h1>
             <table style="border: solid pink;">
                 <tr>
                     <th>Subject</th>
-                    <th>Grade</th>
-                    <th>Average grade</th>
+                    <th>Score</th>
+                    <th>Average score</th>
                 </tr>
         """
-        for subject, grades in self.grades.items():
-            numeric_grades = [float(grade) for grade in grades]
-            if numeric_grades:
-                average_grade = sum(numeric_grades) / len(numeric_grades)
+        for subject, scores in self.scores.items():
+            scores_values = [float(score) for score in scores]
+            if scores_values:
+                average_score = sum(scores_values) / len(scores_values)
             else:
-                average_grade = 0
+                average_score = 0
 
-            html += f"<tr><td>{subject}</td><td>{', '.join(grades)}</td><td>{average_grade:.2f}</td></tr>"
+            html += f"<tr><td>{subject}</td><td>{', '.join(scores)}</td><td>{average_score:.2f}</td></tr>"
 
         html += """\
             </table>
+            <style>
+                form {
+                    width: 300px;
+                    padding: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    background-color: white;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                }
+            </style>
             <h2>Add grades</h2>
-            <form method="post" action="/add_grade">
+            <form method="post" action="/add_score">
                 <input type="text" id="subject" name="subject", placeholder="Subject"><br>
-                <input type="text" id="grade" name="grade", placeholder="Grade"><br>
+                <input type="text" id="grade" name="score", placeholder="Score"><br>
                 <input type="submit" value="Add">
             </form>
         </body>
@@ -120,6 +146,6 @@ if __name__ == '__main__':
     port = 44444
     serv = MyHTTPServer(host, port)
     try:
-        serv.serve_forever()
+        serv.serve()
     except KeyboardInterrupt:
         pass
