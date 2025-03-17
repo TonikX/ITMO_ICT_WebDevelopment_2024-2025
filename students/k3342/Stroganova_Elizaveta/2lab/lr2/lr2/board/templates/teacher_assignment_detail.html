@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-center text-blue-400 mb-6">Детали задания</h1>
+            
+            <div class="space-y-4">
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Название:</h2>
+                    <p class="text-gray-200">{{ task.title }}</p>
+                </div>
+                
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Описание:</h2>
+                    <p class="text-gray-200">{{ task.description }}</p>
+                </div>
+                
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Дедлайн:</h2>
+                    <p class="text-gray-200">{{ task.expire_at }}</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Студент:</h2>
+                    <p class="text-gray-200">{{ assignment.student.name }}</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Задание сдано:</h2>
+                    <p class="text-gray-200">{{ assignment.received_at }}</p>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-300">Текущая оценка:</h2>
+                    <p class="text-gray-200">
+                        {% if assignment.grade %}
+                            {{ assignment.grade }}
+                        {% else %}
+                            Ожидает оценки
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <form method="post" class="mt-6">
+                {% csrf_token %}
+                <div>
+                    <label for="grade" class="text-xl font-semibold text-gray-300">Выставить оценку:</label>
+                    <input type="number" name="grade" min="1" max="5" value="{{ assignment.grade }}" 
+                           class="px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-1/3 mt-2">
+                </div>
+                <button type="submit" class="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-200">
+                    Сохранить оценку
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="/tasks/teacher/assignments" 
+                   class="inline-block px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md transition duration-200">
+                    Назад к заданиям
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

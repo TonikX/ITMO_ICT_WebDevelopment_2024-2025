@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-center text-blue-400 mb-6">Журнал класса</h2>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-gray-800 rounded-lg shadow-lg">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">Имя ученика</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">Класс</th>
+                        {% for task in tasks %}
+                            <th class="px-6 py-3 border-b-2 border-gray-700 text-left text-sm font-semibold text-gray-300">{{ task.title }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr class="hover:bg-gray-700">
+                            <td class="px-6 py-4 border-b border-gray-700 text-gray-200">{{ row.student.name }}</td>
+                            <td class="px-6 py-4 border-b border-gray-700 text-gray-200">{{ row.student.student_class }}</td>
+                            {% for assignment in row.assignments %}
+                                <td class="px-6 py-4 border-b border-gray-700">
+                                    {% if assignment is None %}
+                                        <span class="text-gray-400">Нет задания</span>
+                                    {% elif assignment.status == 1 %}
+                                        <span class="inline-block px-3 py-1 bg-yellow-500 text-white text-xs font-semibold rounded-full">Ожидает оценки</span>
+                                        <form action="{% url 'grade_assignment' assignment.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <input type="number" name="grade" min="1" max="5" class="mt-2 p-1 rounded border-gray-300" placeholder="Оценка (1-5)">
+                                            <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Выставить оценку</button>
+                                        </form>
+                                    {% elif assignment.status == 2 %}
+                                        <span class="inline-block px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">Оценка: {{ assignment.grade }}</span>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

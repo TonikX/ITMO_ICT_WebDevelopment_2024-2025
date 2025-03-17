@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="flex justify-center items-center pt-10">
+    <div class="w-full max-w-md bg-gray-800 rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-center text-blue-400 mb-6">Создать аккаунт</h2>
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            
+
+            <div>
+                <label for="{{ form.name.id_for_label }}" class="block text-gray-300">Имя</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.name.errors }}</p>
+                {% endif %}
+            </div>
+            
+
+            <div>
+                <label for="{{ form.username.id_for_label }}" class="block text-gray-300">Имя пользователя</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.username.errors }}</p>
+                {% endif %}
+            </div>
+            
+
+            <div>
+                <label for="{{ form.password.id_for_label }}" class="block text-gray-300">Пароль</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.password.errors }}</p>
+                {% endif %}
+            </div>
+            
+
+            <div>
+                <label for="{{ form.confirm_password.id_for_label }}" class="block text-gray-300">Подтверждение пароля</label>
+                {{ form.confirm_password }}
+                {% if form.confirm_password.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ form.confirm_password.errors }}</p>
+                {% endif %}
+            </div>
+            
+
+            <div>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+                    Зарегистрироваться
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
