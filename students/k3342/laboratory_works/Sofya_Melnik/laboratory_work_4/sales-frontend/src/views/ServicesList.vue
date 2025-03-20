@@ -2,10 +2,8 @@
   <div class="services-list-page">
     <h2 class="page-title">Номенклатура услуг</h2>
 
-    <!-- Показать сообщение о загрузке данных -->
     <div v-if="loading" class="loading-message">Загрузка данных...</div>
 
-    <!-- Показать список услуг -->
     <div v-if="services && services.length" class="services-list">
       <ul>
         <li v-for="service in services" :key="service.id" class="service-item">
@@ -14,7 +12,6 @@
             <p><strong>Единица:</strong> {{ service.unit }}</p>
             <p><strong>Материалы:</strong> {{ service.materials }}</p>
 
-            <!-- Показать актуальную цену -->
             <p v-if="service.prices && service.prices.length">
               <strong>Цена:</strong>
               {{ formatCost(service.prices[0].price) }}
@@ -23,7 +20,6 @@
               <strong>Цена:</strong> Не указана
             </p>
 
-            <!-- Показать даты начала и окончания действия цены -->
             <p v-if="service.prices && service.prices.length">
               <strong>Дата начала:</strong> {{ formatDate(service.prices[0].start_price) }}
             </p>
@@ -35,7 +31,6 @@
       </ul>
     </div>
 
-    <!-- Показать ошибку, если не удалось загрузить данные -->
     <div v-if="error" class="error-message">
       Ошибка при загрузке данных. Пожалуйста, попробуйте снова.
     </div>
@@ -44,26 +39,26 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import api from '@/api'; // Импортируем настроенный экземпляр Axios
+import api from '@/api';
 
-const loading = ref(true); // Флаг для отслеживания загрузки данных
-const error = ref(false); // Флаг для отслеживания ошибки при загрузке
-const services = ref([]); // Для хранения данных об услугах
+const loading = ref(true);
+const error = ref(false);
+const services = ref([]);
 
-// Метод для загрузки данных с API
+
 const fetchServicesList = async () => {
   try {
-    const response = await api.get('/service-list/'); // Замените на реальный эндпоинт
-    services.value = response.data; // Сохраняем список услуг
+    const response = await api.get('/service-list/');
+    services.value = response.data;
   } catch (err) {
-    error.value = true; // В случае ошибки загрузки
-    console.error('Ошибка при загрузке данных:', err); // Дополнительная отладочная информация
+    error.value = true;
+    console.error('Ошибка при загрузке данных:', err);
   } finally {
-    loading.value = false; // Загрузка завершена
+    loading.value = false;
   }
 };
 
-// Метод для форматирования стоимости с разделением на тысячи
+
 const formatCost = (cost) => {
   if (!cost) return '0 ₽';
   return new Intl.NumberFormat('ru-RU', {
@@ -72,13 +67,11 @@ const formatCost = (cost) => {
   }).format(cost);
 };
 
-// Метод для форматирования даты
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString('ru-RU'); // Форматирование даты в формате день.месяц.год
+  return date.toLocaleDateString('ru-RU');
 };
 
-// Загружаем данные при монтировании компонента
 onMounted(() => {
   fetchServicesList();
 });

@@ -2,7 +2,6 @@
   <div class="payments-page">
     <h2 class="page-title">Список платежных поручений за период</h2>
 
-    <!-- Форма для выбора периода -->
     <div class="date-range-form">
       <label for="start_date">Дата начала:</label>
       <input type="date" v-model="startDate" />
@@ -13,7 +12,6 @@
       <button @click="fetchPaymentsByPeriod">Показать платежи</button>
     </div>
 
-    <!-- Таблица платежей -->
     <table class="payments-table" v-if="payments.length">
       <thead>
         <tr>
@@ -50,10 +48,8 @@ export default {
     const startDate = ref('');
     const endDate = ref('');
 
-    // Метод для получения платежей за указанный период
     const fetchPaymentsByPeriod = async () => {
       try {
-        // Проверка на пустые поля дат
         if (!startDate.value || !endDate.value) {
           alert("Пожалуйста, выберите обе даты.");
           return;
@@ -74,7 +70,6 @@ export default {
 </script>
 
 <style scoped>
-/* Добавляем стили для страницы */
 .payments-page {
   background-color: #f4f6f9;
   padding: 20px;

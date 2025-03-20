@@ -2,14 +2,12 @@
   <div class="orders-page">
     <h2>Заявки</h2>
 
-    <!-- Кнопка для создания новой заявки -->
     <div class="new-order-btn">
       <router-link to="/admin-orders/new">
         <button class="btn">Создать новую заявку</button>
       </router-link>
     </div>
 
-    <!-- Таблица заявок -->
     <table class="orders-table">
       <thead>
         <tr>
@@ -24,7 +22,7 @@
       <tbody>
         <tr v-for="order in orders" :key="order.id">
           <td>{{ order.id }}</td>
-          <td>{{ order.client.first_name }} {{ order.client.last_name }}</td> <!-- Отображение имени клиента -->
+          <td>{{ order.client.first_name }} {{ order.client.last_name }}</td>
           <td>{{ order.service.name }}</td>
           <td :class="getStatusClass(order.status)">{{ order.status }}</td>
           <td>{{ formatDate(order.order_date) }}</td>
@@ -68,7 +66,6 @@ export default {
       }[status] || '';
     };
 
-    // Метод удаления заявки
     const deleteOrder = async (orderId) => {
       if (!confirm("Вы уверены, что хотите удалить заявку?")) return;
 

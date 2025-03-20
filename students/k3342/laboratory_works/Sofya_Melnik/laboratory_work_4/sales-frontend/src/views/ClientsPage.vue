@@ -1,17 +1,17 @@
 <template>
   <div class="container">
-    <h1>👥 Клиенты</h1>
+    <h1>Клиенты</h1>
 
     <section v-if="clients.length" class="client-list">
       <div v-for="client in clients" :key="client.id" class="client-card">
         <h3>{{ client.first_name }} {{ client.last_name }}</h3>
-        <p><strong>📞 Телефон:</strong> {{ client.phone }}</p>
-        <p><strong>📧 Email:</strong> {{ client.email || "Не указан" }}</p>
-        <p><strong>📍 Контактное лицо:</strong> {{ client.contact_person || "Не указан" }}</p>
+        <p><strong>Телефон:</strong> {{ client.phone }}</p>
+        <p><strong>Email:</strong> {{ client.email || "Не указан" }}</p>
+        <p><strong>Контактное лицо:</strong> {{ client.contact_person || "Не указан" }}</p>
       </div>
     </section>
 
-    <p v-else class="no-data">❌ Клиенты не найдены</p>
+    <p v-else class="no-data">Клиенты не найдены</p>
   </div>
 </template>
 

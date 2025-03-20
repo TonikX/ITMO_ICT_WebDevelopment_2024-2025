@@ -28,11 +28,10 @@ import api from '@/api';
 
 const services = ref([]);
 
-// Загружаем список услуг с ценами
 const fetchServices = async () => {
   try {
     const { data } = await api.get('price-list/');
-    services.value = data;  // Загружаем данные с ценами
+    services.value = data;
   } catch (error) {
     console.error("Ошибка загрузки услуг:", error);
   }

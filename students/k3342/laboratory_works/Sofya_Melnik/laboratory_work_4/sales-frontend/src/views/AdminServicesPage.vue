@@ -2,14 +2,12 @@
   <div class="services-page">
     <h2 class="page-title">Рекламные услуги и прайс-лист</h2>
 
-    <!-- Кнопка для создания услуги доступна только администраторам -->
     <div v-if="isStaff" class="admin-actions">
       <button @click="showCreateForm = !showCreateForm" class="btn-create-service">
         {{ showCreateForm ? 'Отмена' : 'Создать услугу' }}
       </button>
     </div>
 
-    <!-- Форма для создания новой услуги -->
     <div v-if="showCreateForm && isStaff" class="create-service-form">
       <h3>Создать новую услугу</h3>
       <form @submit.prevent="addService">
@@ -32,7 +30,6 @@
       </form>
     </div>
 
-    <!-- Форма для редактирования существующей услуги -->
     <div v-if="editServiceData && isStaff" class="create-service-form">
       <h3>Редактировать услугу</h3>
       <form @submit.prevent="updateService">
@@ -55,7 +52,6 @@
       </form>
     </div>
 
-    <!-- Таблица услуг с ценами -->
     <table class="services-table" v-if="services.length">
       <thead>
         <tr>
@@ -73,7 +69,6 @@
           <td>{{ serviceItem.unit }}</td>
           <td>{{ serviceItem.materials }}</td>
 
-          <!-- Для администратора отображаются кнопки редактирования и удаления -->
           <td v-if="isStaff">
             <button @click="editService(serviceItem)">Редактировать</button>
             <button @click="deleteService(serviceItem.id)">Удалить</button>
@@ -90,9 +85,9 @@ import { ref, onMounted } from 'vue';
 import api from '@/api';
 
 const services = ref([]);
-const priceList = ref([]); // Массив с данными о ценах
-const isStaff = ref(false); // Проверка, является ли пользователь администратором (is_staff)
-const showCreateForm = ref(false); // Показывать форму для создания услуги
+const priceList = ref([]);
+const isStaff = ref(false);
+const showCreateForm = ref(false);
 const newService = ref({
   name: '',
   price: '',
@@ -101,13 +96,12 @@ const newService = ref({
   end_price: ''
 });
 
-const editServiceData = ref(null); // Для хранения данных редактируемой услуги
+const editServiceData = ref(null);
 
-// Загружаем список услуг и прайс-лист
 const fetchServices = async () => {
   try {
     const { data } = await api.get('price-list/');
-    priceList.value = data; // Получаем данные о ценах
+    priceList.value = data;
   } catch (error) {
     console.error("Ошибка загрузки прайс-листа:", error);
   }
@@ -116,21 +110,19 @@ const fetchServices = async () => {
 const fetchServiceDetails = async () => {
   try {
     const { data } = await api.get('services/');
-    services.value = data; // Получаем данные об услугах
+    services.value = data;
   } catch (error) {
     console.error("Ошибка загрузки услуг:", error);
   }
 };
 
-// Проверяем, является ли пользователь администратором
 const checkIfStaff = () => {
-  const user = JSON.parse(localStorage.getItem('user')); // Получаем данные пользователя из localStorage
+  const user = JSON.parse(localStorage.getItem('user'));
   if (user && user.is_staff) {
-    isStaff.value = true; // Проверяем, является ли пользователь администратором
+    isStaff.value = true;
   }
 };
 
-// Получаем цену услуги по ее ID
 const getServicePrice = (serviceId) => {
   const price = priceList.value.find(p => p.service.id === serviceId);
   return price ? price.price : null;
@@ -138,22 +130,18 @@ const getServicePrice = (serviceId) => {
 
 const addService = async () => {
   try {
-    // 1. Отправляем новый сервис и получаем его данные
     const response = await api.post('services/', newService.value);
-    services.value.push(response.data); // Добавляем новую услугу в таблицу
+    services.value.push(response.data);
 
-    // 2. Формируем объект для прайс-листа
     const newPrice = {
-      service_id: response.data.id, // Используем ID, а не объект
-      price: newService.value.price, // Цена, введенная администратором
-      start_price: new Date().toISOString(), // Текущая дата как начало действия цены
-      end_price: newService.value.end_price // Дата окончания, введенная администратором
+      service_id: response.data.id,
+      price: newService.value.price,
+      start_price: new Date().toISOString(),
+      end_price: newService.value.end_price
     };
 
-    // 3. Отправляем прайс-лист
     await api.post('price-list/', newPrice);
 
-    // 4. Сбрасываем форму и закрываем её
     resetForm();
     showCreateForm.value = false;
   } catch (error) {
@@ -162,14 +150,12 @@ const addService = async () => {
 };
 
 
-// Редактирование услуги
 const editService = (serviceItem) => {
-  editServiceData.value = { ...serviceItem }; // Загружаем данные для редактирования
+  editServiceData.value = { ...serviceItem };
 };
 
 const updateService = async () => {
   try {
-    // 1. Обновляем данные услуги (без цены)
     const response = await api.put(`services/${editServiceData.value.id}/`, {
       name: editServiceData.value.name,
       unit: editServiceData.value.unit,
@@ -181,30 +167,27 @@ const updateService = async () => {
       services.value[index] = response.data;
     }
 
-    // 2. Проверяем, есть ли цена в price-list
     let priceToUpdate = priceList.value.find(p => p.service.id === editServiceData.value.id);
 
     if (priceToUpdate) {
-      // 3. Обновляем существующую цену
       priceToUpdate.price = editServiceData.value.price;
       priceToUpdate.end_price = editServiceData.value.end_price;
 
       await api.put(`price-list/${priceToUpdate.id}/`, {
-        service_id: priceToUpdate.service.id, // !! ID как объект
+        service_id: priceToUpdate.service.id,
         price: editServiceData.value.price,
         start_price: priceToUpdate.start_price,
         end_price: editServiceData.value.end_price
       });
     } else {
-      // 4. Создаем новую цену
       const newPriceData = {
-        service_id: editServiceData.value.id, // !! ID как объект
+        service_id: editServiceData.value.id,
         price: editServiceData.value.price,
         start_price: new Date().toISOString().split('T')[0],
         end_price: editServiceData.value.end_price
       };
 
-      console.log("Отправляем в API:", newPriceData); // Отладка
+      console.log("Отправляем в API:", newPriceData);
 
       const { data } = await api.post(`price-list/`, newPriceData);
       priceList.value.push(data);
@@ -218,17 +201,15 @@ const updateService = async () => {
 };
 
 
-// Удаление услуги
 const deleteService = async (id) => {
   try {
     await api.delete(`services/${id}/`);
-    services.value = services.value.filter(service => service.id !== id); // Удаляем услугу из списка
+    services.value = services.value.filter(service => service.id !== id);
   } catch (error) {
     console.error("Ошибка удаления услуги:", error);
   }
 };
 
-// Сброс формы
 const resetForm = () => {
   newService.value = {
     name: '',
@@ -238,11 +219,10 @@ const resetForm = () => {
   };
 };
 
-// Получаем данные при монтировании компонента
 onMounted(() => {
   fetchServices();
   fetchServiceDetails();
-  checkIfStaff(); // Проверка прав пользователя
+  checkIfStaff();
 });
 </script>
 

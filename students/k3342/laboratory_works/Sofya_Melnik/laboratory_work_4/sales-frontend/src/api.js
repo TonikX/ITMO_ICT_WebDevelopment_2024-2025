@@ -1,31 +1,27 @@
 import axios from "axios";
 
-// Создаем экземпляр Axios с базовым URL для вашего API
 const api = axios.create({
-  baseURL: "http://localhost:8000/api/", // Базовый URL для API
-  headers: { "Content-Type": "application/json" }, // Заголовки по умолчанию
+  baseURL: "http://localhost:8000/api/",
+  headers: { "Content-Type": "application/json" },
 });
 
-// Добавляем токен в заголовки перед каждым запросом
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // Получаем токен из localStorage
+  const token = localStorage.getItem("token");
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`; // Добавляем токен в заголовок Authorization
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  return config; // Возвращаем обновленную конфигурацию запроса
+  return config;
 }, (error) => {
-  return Promise.reject(error); // Возвращаем ошибку, если она возникла
+  return Promise.reject(error);
 });
 
-// Обработка ошибок 401: перенаправляем на страницу входа, если токен отсутствует или истек
 api.interceptors.response.use(
-  (response) => response, // Если запрос успешен, возвращаем ответ
+  (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Перенаправляем на страницу входа, например:
       window.location.href = '/login';
     }
-    return Promise.reject(error); // Пробрасываем ошибку дальше
+    return Promise.reject(error);
   }
 );
 

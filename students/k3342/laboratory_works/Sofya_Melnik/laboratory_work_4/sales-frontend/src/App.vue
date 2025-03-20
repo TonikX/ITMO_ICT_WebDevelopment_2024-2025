@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const goBack = () => {
-  router.go(-1); // Возвращаемся на предыдущую страницу
+  router.go(-1);
 };
 </script>
 

@@ -5,16 +5,14 @@ from rest_framework import permissions
 
 class IsClient(permissions.BasePermission):
     def has_permission(self, request, view):
-        # Проверяем, является ли пользователь администратором
         if request.user.is_staff:
-            return False  # Если пользователь администратор, разрешаем доступ только администраторам
-        return True  # Все остальные считаются клиентами
+            return False
+        return True
 
     def has_object_permission(self, request, view, obj):
-        # Для объекта (например, заказов) предоставляем доступ только клиентам
-        if hasattr(request.user, 'client'):  # Проверяем, связан ли пользователь с клиентом
+        if hasattr(request.user, 'client'):
             return obj.client == request.user.client
-        return False  # Если пользователя нет в базе клиентов, доступ запрещен
+        return False
 
 
 class IsAdmin(permissions.BasePermission):

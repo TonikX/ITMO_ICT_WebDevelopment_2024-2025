@@ -7,22 +7,20 @@
 </template>
 
 <script>
-import api from "@/api"; // Axios instance
+import api from "@/api";
 
 export default {
   methods: {
     async logout() {
       try {
-        await api.post("auth/token/logout/"); // Отправляем запрос на logout
+        await api.post("auth/token/logout/");
       } catch (error) {
         console.error("Ошибка при выходе:", error.response.data);
       }
 
-      // Удаляем токены из локального хранилища
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
 
-      // Перенаправляем на страницу входа
       this.$router.push("/login");
     },
   },

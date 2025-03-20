@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import api from "@/api"; // Axios instance
+import api from "@/api";
 
 export default {
   data() {

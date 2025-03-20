@@ -2,16 +2,13 @@
   <div class="quarterly-report-page">
     <h2 class="page-title">Отчёт о стоимости работ за последний квартал</h2>
 
-    <!-- Показать сообщение о загрузке данных -->
     <div v-if="loading" class="loading-message">Загрузка данных...</div>
 
-    <!-- Показать отчет о стоимости работ -->
     <div v-if="reportData" class="report-content">
       <h3>Общая стоимость выполненных работ:</h3>
       <p class="total-cost">{{ formattedTotalCost }}</p>
     </div>
 
-    <!-- Показать ошибку, если не удалось загрузить данные -->
     <div v-if="error" class="error-message">
       Ошибка при загрузке данных. Пожалуйста, попробуйте снова.
     </div>
@@ -20,28 +17,26 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import api from '@/api'; // Импортируем настроенный экземпляр Axios
+import api from '@/api';
 
-const loading = ref(true); // Флаг для отслеживания загрузки данных
-const error = ref(false); // Флаг для отслеживания ошибки при загрузке
-const reportData = ref(null); // Для хранения данных отчета
-const formattedTotalCost = ref(''); // Для форматирования общей стоимости
+const loading = ref(true);
+const error = ref(false);
+const reportData = ref(null);
+const formattedTotalCost = ref('');
 
-// Метод для загрузки данных с API
 const fetchQuarterlyReport = async () => {
   try {
-    const response = await api.get('/quarterly-report/'); // Замените на реальный эндпоинт
+    const response = await api.get('/quarterly-report/');
     reportData.value = response.data;
-    formattedTotalCost.value = formatCost(response.data.total_cost); // Форматируем стоимость
+    formattedTotalCost.value = formatCost(response.data.total_cost);
   } catch (err) {
-    error.value = true; // В случае ошибки загрузки
-    console.error('Ошибка при загрузке данных:', err); // Дополнительная отладочная информация
+    error.value = true;
+    console.error('Ошибка при загрузке данных:', err);
   } finally {
-    loading.value = false; // Загрузка завершена
+    loading.value = false;
   }
 };
 
-// Метод для форматирования стоимости с разделением на тысячи
 const formatCost = (cost) => {
   if (!cost) return '0 ₽';
   return new Intl.NumberFormat('ru-RU', {
@@ -50,7 +45,6 @@ const formatCost = (cost) => {
   }).format(cost);
 };
 
-// Загружаем данные при монтировании компонента
 onMounted(() => {
   fetchQuarterlyReport();
 });

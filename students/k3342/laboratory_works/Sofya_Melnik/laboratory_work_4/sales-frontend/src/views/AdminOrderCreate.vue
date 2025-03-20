@@ -134,7 +134,7 @@ const handleSubmit = async () => {
     order_date: new Date().toISOString(),
     completion_date: new Date().toISOString(),
     total_cost: form.value.total_cost || 0,
-    status: "pending",  // По умолчанию статус "Ожидает"
+    status: "pending",
   };
 
   isSubmitting.value = true;

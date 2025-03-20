@@ -2,19 +2,17 @@
   <div class="orders-page">
     <h2>Мои заявки</h2>
 
-    <!-- Кнопка для создания новой заявки -->
     <div class="new-order-btn">
       <router-link to="/orders/new">
         <button class="btn">Создать новую заявку</button>
       </router-link>
     </div>
 
-    <!-- Таблица заявок -->
     <table class="orders-table">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Услуга</th> <!-- Заменили "Клиент" на "Услуга" -->
+          <th>Услуга</th>
           <th>Статус</th>
           <th>Дата</th>
         </tr>
@@ -22,10 +20,9 @@
       <tbody>
         <tr v-for="order in orders" :key="order.id">
           <td>{{ order.id }}</td>
-          <!-- Заменили client_id на имя услуги -->
-          <td>{{ order.service.name }}</td> <!-- Это будет отображать имя услуги -->
+          <td>{{ order.service.name }}</td>
           <td :class="getStatusClass(order.status)">{{ order.status }}</td>
-          <td>{{ formatDate(order.order_date) }}</td> <!-- Дата заказа -->
+          <td>{{ formatDate(order.order_date) }}</td>
         </tr>
       </tbody>
     </table>

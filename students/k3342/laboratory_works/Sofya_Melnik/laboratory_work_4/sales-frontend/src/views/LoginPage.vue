@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import api from "@/api";  // Axios instance
+import api from "@/api";
 
 export default {
   data() {
@@ -31,29 +31,22 @@ export default {
   methods: {
     async login() {
       try {
-        // Отправляем запрос на получение JWT токенов
         const { data } = await api.post("auth/jwt/create/", {
           username: this.username,
           password: this.password,
         });
 
-        // Сохраняем полученные токены
         localStorage.setItem("token", data.access);
         localStorage.setItem("refreshToken", data.refresh);
 
-        // Устанавливаем токен в заголовок для дальнейших запросов
         api.defaults.headers.common["Authorization"] = `Bearer ${data.access}`;
 
-        // Получаем информацию о текущем пользователе
         const userResponse = await api.get("auth/users/me/");
         localStorage.setItem("user", JSON.stringify(userResponse.data));
 
-        // Проверяем, является ли пользователь администратором
         if (userResponse.data.is_staff) {
-          // Если пользователь администратор, перенаправляем на страницу администратора
           this.$router.push("/admin");
         } else {
-          // Если пользователь не администратор, перенаправляем на главную страницу
           this.$router.push("/");
         }
 

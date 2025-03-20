@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import api from "@/api"; // Axios instance
+import api from "@/api";
 
 export default {
   data() {
@@ -52,17 +52,15 @@ export default {
   methods: {
     async register() {
       try {
-        // Проверяем, совпадают ли пароли
+
         if (this.password !== this.rePassword) {
           alert("Пароли не совпадают!");
           return;
         }
 
-        // Удаляем устаревшие токены, если они есть
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
 
-        // Отправка данных на сервер для регистрации
         const registrationData = {
           first_name: this.first_name,
           last_name: this.last_name,
@@ -74,28 +72,23 @@ export default {
           re_password: this.rePassword
         };
 
-        // Убедитесь, что сервер принимает именно эти поля
         console.log(registrationData)
         await api.post("auth/users/", registrationData);
 
-        // После успешной регистрации, выполняем запрос для получения токенов
         const response = await api.post("auth/jwt/create/", {
           username: this.username,
           password: this.password,
         });
 
-        // Сохраняем токены
         const accessToken = response.data.access;
         const refreshToken = response.data.refresh;
         localStorage.setItem("token", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
 
-        // Устанавливаем авторизацию для дальнейших запросов
         api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
-        // Перенаправляем пользователя на главную страницу
         alert("Регистрация успешна! Вы вошли в систему.");
-        this.$router.push("/"); // Перенаправляем на главную страницу после входа
+        this.$router.push("/");
       } catch (error) {
         console.error(error.response?.data);
         alert("Ошибка регистрации: " + (error.response?.data?.detail || "Неизвестная ошибка"));

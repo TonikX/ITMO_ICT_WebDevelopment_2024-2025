@@ -3,7 +3,6 @@
     <h2>{{ isEdit ? 'Редактировать заявку' : 'Создать заявку' }}</h2>
 
     <form @submit.prevent="handleSubmit">
-      <!-- Услуга -->
       <div class="form-group">
         <label for="service">Услуга:</label>
         <select v-model="form.service" required @change="updateTotalCost">
@@ -14,19 +13,16 @@
         </select>
       </div>
 
-      <!-- Количество -->
       <div class="form-group">
         <label for="quantity">Количество:</label>
         <input id="quantity" type="number" v-model.number="form.quantity" required min="1" @input="updateTotalCost" />
       </div>
 
-      <!-- Стоимость -->
       <div class="form-group">
         <label for="total_cost">Общая стоимость:</label>
         <input id="total_cost" type="text" v-model="form.total_cost" readonly />
       </div>
 
-      <!-- Сотрудник -->
       <div class="form-group">
         <label for="employee">Сотрудник:</label>
         <select v-model="form.employee" required>
@@ -66,7 +62,6 @@ const employees = ref([]);
 const clientData = ref(null);
 const priceList = ref([]);
 
-// Получение списка услуг
 const fetchServices = async () => {
   try {
     const { data } = await api.get('/service-list/');
@@ -76,7 +71,6 @@ const fetchServices = async () => {
   }
 };
 
-// Получение цен из прайс-листа
 const fetchPriceList = async () => {
   try {
     const { data } = await api.get('/price-list/');
@@ -86,7 +80,6 @@ const fetchPriceList = async () => {
   }
 };
 
-// Получение данных клиента
 const fetchClientData = async () => {
   try {
     const { data } = await api.get('/client-info/');
@@ -101,7 +94,6 @@ const fetchClientData = async () => {
   }
 };
 
-// Получение списка сотрудников
 const fetchEmployees = async () => {
   try {
     const { data } = await api.get('/employees/');
@@ -111,7 +103,6 @@ const fetchEmployees = async () => {
   }
 };
 
-// Обновление стоимости заявки
 const updateTotalCost = () => {
   if (!form.value.service) {
     form.value.total_cost = 0;
@@ -127,7 +118,6 @@ const updateTotalCost = () => {
   }
 };
 
-// Получение заявки для редактирования
 const fetchOrder = async (id) => {
   try {
     const { data } = await api.get(`orders/${id}/`);
@@ -142,7 +132,6 @@ const fetchOrder = async (id) => {
   }
 };
 
-// Валидация данных перед отправкой
 const validateOrderData = () => {
   if (!form.value.service || !form.value.quantity || !form.value.employee) {
     alert("Ошибка: все поля обязательны для заполнения.");
@@ -151,18 +140,8 @@ const validateOrderData = () => {
   return true;
 };
 
-// Отправка заявки
 const handleSubmit = async () => {
   if (!validateOrderData()) return;
-
-  // if (!clientData.value) {
-  //   await fetchClientData(); // Повторная загрузка клиента, если не загружен
-  // }
-
-  // if (!clientData.value || !clientData.value.id) {
-  //   alert("Ошибка: данные клиента не загружены.");
-  //   return;
-  // }
 
   const orderData = {
     client_id: clientData.value.id,
@@ -197,7 +176,6 @@ const handleSubmit = async () => {
   }
 };
 
-// Загрузка данных при монтировании
 onMounted(() => {
   fetchServices();
   fetchPriceList();

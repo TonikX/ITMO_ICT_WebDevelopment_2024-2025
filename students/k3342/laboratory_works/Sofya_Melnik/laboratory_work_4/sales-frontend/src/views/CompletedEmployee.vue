@@ -2,7 +2,6 @@
   <div class="employee-orders-page">
     <h2 class="page-title">Сотрудники и выполненные заявки за период</h2>
 
-    <!-- Форма фильтрации по периоду -->
     <div class="filter-form">
       <label for="start_date">Дата начала:</label>
       <input type="date" v-model="startDate" />
@@ -13,7 +12,6 @@
       <button @click="fetchEmployeesOrders">Фильтровать</button>
     </div>
 
-    <!-- Таблица сотрудников -->
     <table class="employees-table" v-if="employees.length">
       <thead>
         <tr>
@@ -51,10 +49,8 @@ const employees = ref([]);
 const startDate = ref('');
 const endDate = ref('');
 
-// Метод для загрузки сотрудников с количеством выполненных заявок за период
 const fetchEmployeesOrders = async () => {
   try {
-    // Формируем URL с параметрами, если даты указаны
     let url = '/employee-orders-count/';
     if (startDate.value && endDate.value) {
       url += `?start_date=${startDate.value}&end_date=${endDate.value}`;

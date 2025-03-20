@@ -2,7 +2,6 @@
   <div class="admin-reports-page">
     <h2 class="page-title">Отчёты</h2>
 
-    <!-- Ссылки на отдельные страницы отчетов -->
     <div class="reports-links">
       <ul>
         <li><router-link to="/reports/completed-orders" class="report-link">Выполненные работы</router-link></li>
@@ -17,7 +16,6 @@
 </template>
 
 <script setup>
-  // Этот компонент остается простым, без логики загрузки данных
 </script>
 
 <style scoped>

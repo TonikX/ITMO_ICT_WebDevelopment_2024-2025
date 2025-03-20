@@ -20,29 +20,26 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from '@/api'; // Axios instance, настроенный для вашего API
+import api from '@/api';
 
 const router = useRouter();
 const user = ref({ username: '', id: '' });
 
-// Функция для загрузки профиля пользователя
 const fetchProfile = async () => {
   try {
     const { data } = await api.get('auth/users/me/');
-    user.value = data; // Загружаем профиль авторизованного пользователя
+    user.value = data;
   } catch (error) {
     console.error('Ошибка загрузки профиля:', error);
-    router.push('/login'); // Редирект на страницу логина, если произошла ошибка
+    router.push('/login');
   }
 };
 
-// Функция выхода
 const logout = () => {
-  localStorage.removeItem('token'); // Очистка токена
-  router.push('/login');            // Перенаправление на страницу входа
+  localStorage.removeItem('token');
+  router.push('/login');
 };
 
-// Загружаем данные при монтировании компонента
 onMounted(() => {
   fetchProfile();
 });

@@ -2,18 +2,14 @@
   <div class="completed-orders-page">
     <h2 class="page-title">Список выполненных работ</h2>
 
-    <!-- Показать сообщение о загрузке данных -->
     <div v-if="loading" class="loading-message">Загрузка данных...</div>
 
-    <!-- Показать список выполненных работ -->
     <div v-if="orders && orders.length" class="orders-list">
       <ul>
         <li v-for="order in orders" :key="order.id" class="order-item">
           <div class="order-details">
             <p><strong>Номер заявки:</strong> {{ order.id }}</p>
-            <!-- <p><strong>Клиент:</strong> {{ order.client.name }}</p> -->
             <p><strong>Услуга:</strong> {{ order.service.name }}</p>
-            <!-- <p><strong>Сотрудник:</strong> {{ order.employee.name }}</p> -->
             <p><strong>Дата выполнения:</strong> {{ order.completion_date }}</p>
             <p><strong>Стоимость:</strong> {{ formatCost(order.total_cost) }}</p>
           </div>
@@ -21,7 +17,6 @@
       </ul>
     </div>
 
-    <!-- Показать ошибку, если не удалось загрузить данные -->
     <div v-if="error" class="error-message">
       Ошибка при загрузке данных. Пожалуйста, попробуйте снова.
     </div>
@@ -30,26 +25,25 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import api from '@/api'; // Импортируем настроенный экземпляр Axios
+import api from '@/api';
 
-const loading = ref(true); // Флаг для отслеживания загрузки данных
-const error = ref(false); // Флаг для отслеживания ошибки при загрузке
-const orders = ref([]); // Для хранения данных о выполненных работах
+const loading = ref(true);
+const error = ref(false);
+const orders = ref([]);
 
-// Метод для загрузки данных с API
+
 const fetchCompletedOrders = async () => {
   try {
-    const response = await api.get('/completed-orders/'); // Замените на реальный эндпоинт
-    orders.value = response.data; // Сохраняем список заказов
+    const response = await api.get('/completed-orders/');
+    orders.value = response.data;
   } catch (err) {
-    error.value = true; // В случае ошибки загрузки
-    console.error('Ошибка при загрузке данных:', err); // Дополнительная отладочная информация
+    error.value = true;
+    console.error('Ошибка при загрузке данных:', err);
   } finally {
-    loading.value = false; // Загрузка завершена
+    loading.value = false;
   }
 };
 
-// Метод для форматирования стоимости с разделением на тысячи
 const formatCost = (cost) => {
   if (!cost) return '0 ₽';
   return new Intl.NumberFormat('ru-RU', {
@@ -58,7 +52,6 @@ const formatCost = (cost) => {
   }).format(cost);
 };
 
-// Загружаем данные при монтировании компонента
 onMounted(() => {
   fetchCompletedOrders();
 });

@@ -7,6 +7,6 @@ const app = createApp(App);
 
 app.use(router);
 
-app.config.globalProperties.$axios = axios;  // Теперь axios доступен в каждом компоненте
+app.config.globalProperties.$axios = axios;
 
 app.mount('#app');

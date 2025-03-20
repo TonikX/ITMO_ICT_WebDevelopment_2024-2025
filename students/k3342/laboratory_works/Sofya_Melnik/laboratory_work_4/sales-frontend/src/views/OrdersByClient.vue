@@ -2,7 +2,6 @@
   <div class="orders-page">
     <h2 class="page-title">Заявки заказчика за период</h2>
 
-    <!-- Форма для выбора клиента и периодов -->
     <div class="filters">
       <label for="client">Выберите клиента:</label>
       <select v-model="selectedClientId" id="client" required>
@@ -20,7 +19,6 @@
       <button @click="fetchOrders">Показать заявки</button>
     </div>
 
-    <!-- Таблица заявок -->
     <table v-if="orders.length > 0" class="orders-table">
       <thead>
         <tr>
@@ -48,13 +46,12 @@ import api from '@/api';
 export default {
   name: "OrdersByClientAndPeriod",
   setup() {
-    const clients = ref([]);  // Массив клиентов
-    const selectedClientId = ref(null);  // ID выбранного клиента
-    const startDate = ref('');  // Дата начала
-    const endDate = ref('');  // Дата окончания
-    const orders = ref([]);  // Массив заявок
+    const clients = ref([]);
+    const selectedClientId = ref(null);
+    const startDate = ref('');
+    const endDate = ref('');
+    const orders = ref([]);
 
-    // Загрузка списка клиентов
     const fetchClients = async () => {
       try {
         const { data } = await api.get('/clients/');
@@ -64,7 +61,6 @@ export default {
       }
     };
 
-    // Загрузка заявок по выбранному клиенту и периодам
     const fetchOrders = async () => {
       if (!selectedClientId.value || !startDate.value || !endDate.value) {
         console.log('Выберите клиента и укажите период');
@@ -85,7 +81,6 @@ export default {
       }
     };
 
-    // Загрузка списка клиентов при монтировании компонента
     onMounted(() => {
       fetchClients();
     });
@@ -96,13 +91,11 @@ export default {
 </script>
 
 <style scoped>
-/* Стиль для страницы заявок */
 .orders-page {
   background-color: #f9f9f9;
   padding: 20px;
 }
 
-/* Стиль для таблицы */
 .orders-table {
   width: 100%;
   margin-top: 20px;
@@ -119,7 +112,6 @@ export default {
   background-color: #f2f2f2;
 }
 
-/* Стили для формы фильтров */
 .filters {
   margin-bottom: 20px;
 }

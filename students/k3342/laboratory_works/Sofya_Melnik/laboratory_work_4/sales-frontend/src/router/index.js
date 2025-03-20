@@ -50,7 +50,6 @@ const routes = [
   { path: '/services', component: ServicesPage },
   { path: '/orders/new', component: OrderFormPage },
   { path: '/orders/edit/:id', component: OrderFormPage, props: true},
-  // { path: '/:pathMatch(.*)*', component: NotFoundPage }
 ];
 
 const router = createRouter({

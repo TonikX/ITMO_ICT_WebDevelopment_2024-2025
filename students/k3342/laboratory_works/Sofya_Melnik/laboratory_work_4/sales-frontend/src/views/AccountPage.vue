@@ -2,7 +2,6 @@
   <div class="profile-page">
     <h2 class="profile-title">Профиль клиента</h2>
 
-    <!-- Отображение данных профиля -->
     <div v-if="!isEditing" class="profile-info">
       <p><strong>Email:</strong> {{ user.email }}</p>
       <p><strong>Имя:</strong> {{ client.first_name }}</p>
@@ -12,7 +11,6 @@
       <button @click="isEditing = true" class="edit-button">Редактировать</button>
     </div>
 
-    <!-- Форма для редактирования данных -->
     <form v-if="isEditing" @sub!mit.prevent="updateProfile" class="profile-form">
       <div class="form-group">
         <label for="email">Email:</label>
@@ -62,11 +60,9 @@ export default {
   },
   async created() {
     try {
-      // Получаем данные пользователя
       const userResponse = await api.get("/auth/users/me/");
       this.user = userResponse.data;
 
-      // Получаем данные клиента, привязанного к пользователю
       const clientResponse = await api.get("/client-info/");
       this.client = clientResponse.data;
     } catch (error) {
@@ -83,12 +79,10 @@ export default {
         }
         const headers = { Authorization: `Bearer ${token}` };
 
-        // Обновляем данные пользователя
         await api.patch("/auth/users/me/", {
           email: this.user.email,
         }, { headers });
 
-        // Обновляем данные клиента
         await api.patch(`/auth/clients/${this.client.id}/`, {
           first_name: this.client.first_name,
           last_name: this.client.last_name,
@@ -106,14 +100,12 @@ export default {
     cancelEdit() {
       this.isEditing = false;
       this.message = "";
-      // Можно добавить перезагрузку данных для отмены изменений
     },
   },
 };
 </script>
 
 <style scoped>
-/* Стили остаются прежними */
 .profile-page {
   max-width: 800px;
   margin: 40px auto;

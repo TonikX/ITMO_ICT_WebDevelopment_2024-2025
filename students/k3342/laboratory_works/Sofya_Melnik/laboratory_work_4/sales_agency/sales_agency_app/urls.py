@@ -38,13 +38,10 @@ router.register(r'orders', OrderViewSet)
 router.register(r'payment-orders', PaymentOrderViewSet)
 
 urlpatterns = [
-    # Основные API-роуты
     path('api/', include(router.urls)),
     path('api/client-info/', UserClientInfo.as_view(), name='user-client-info'),
     path("api/auth/users/", RegisterView.as_view(), name="register"),
 
-
-    # Отдельные вьюхи
     path('api/completed-orders/', CompletedOrdersListView.as_view(), name='completed-orders'),
     path('api/payment-orders-by-period/', PaymentOrdersByPeriodView.as_view(), name='payment-orders-by-period'),
     path('api/service-list/', ServiceListView.as_view(), name='service-list'),

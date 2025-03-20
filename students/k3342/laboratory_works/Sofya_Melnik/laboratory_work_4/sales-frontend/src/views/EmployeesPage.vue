@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <h1>👨‍💼 Сотрудники</h1>
+    <h1>Сотрудники</h1>
 
-    <!-- Форма для добавления/редактирования сотрудника -->
     <section>
       <h2>{{ editMode ? 'Редактировать сотрудника' : 'Добавить сотрудника' }}</h2>
       <form @submit.prevent="editMode ? updateEmployee() : addEmployee">
@@ -36,9 +35,8 @@
       </form>
     </section>
 
-    <!-- Таблица сотрудников -->
     <section>
-      <h2>📋 Список сотрудников</h2>
+      <h2>Список сотрудников</h2>
       <table v-if="employees.length">
         <thead>
           <tr>
@@ -64,7 +62,7 @@
           </tr>
         </tbody>
       </table>
-      <p v-else>❌ Нет данных</p>
+      <p v-else>Нет данных</p>
     </section>
   </div>
 </template>
@@ -80,15 +78,14 @@ const newEmployee = ref({
   last_name: '',
   email: '',
   phone: '',
-  position: { id: null } // Только id для позиции
+  position: { id: null }
 });
 
-const editMode = ref(false);  // Флаг, указывающий на редактирование сотрудника
-const editingEmployeeId = ref(null);  // ID сотрудника для редактирования
+const editMode = ref(false);
+const editingEmployeeId = ref(null);
 
 const loading = ref(false);
 
-// Получение списка сотрудников
 const fetchEmployees = async () => {
   loading.value = true;
   try {
@@ -101,7 +98,6 @@ const fetchEmployees = async () => {
   }
 };
 
-// Получение списка позиций
 const fetchPositions = async () => {
   try {
     const { data } = await api.get('positions/');
@@ -111,14 +107,13 @@ const fetchPositions = async () => {
   }
 };
 
-// Добавление нового сотрудника
 const addEmployee = async () => {
   const newEmployeeData = {
     first_name: newEmployee.value.first_name,
     last_name: newEmployee.value.last_name,
     email: newEmployee.value.email,
     phone: newEmployee.value.phone,
-    position_id: newEmployee.value.position.id  // Отправляем только id позиции
+    position_id: newEmployee.value.position.id
   };
 
   try {
@@ -130,7 +125,6 @@ const addEmployee = async () => {
   }
 };
 
-// Редактирование сотрудника
 const editEmployee = (employee) => {
   editMode.value = true;
   editingEmployeeId.value = employee.id;
@@ -140,24 +134,22 @@ const editEmployee = (employee) => {
     last_name: employee.last_name,
     email: employee.email,
     phone: employee.phone,
-    position: { id: employee.position.id } // Только id
+    position: { id: employee.position.id }
   };
 };
 
-// Обновление данных сотрудника
 const updateEmployee = async () => {
   const updatedEmployeeData = {
     first_name: newEmployee.value.first_name,
     last_name: newEmployee.value.last_name,
     email: newEmployee.value.email,
     phone: newEmployee.value.phone,
-    position_id: newEmployee.value.position.id  // Отправляем только id позиции
+    position_id: newEmployee.value.position.id
   };
 
   try {
     await api.put(`employees/${editingEmployeeId.value}/`, updatedEmployeeData);
 
-    // Обновление списка сотрудников
     const employeeIndex = employees.value.findIndex(employee => employee.id === editingEmployeeId.value);
     employees.value[employeeIndex] = { ...employees.value[employeeIndex], ...updatedEmployeeData };
 
@@ -167,7 +159,6 @@ const updateEmployee = async () => {
   }
 };
 
-// Удаление сотрудника
 const deleteEmployee = async (employeeId) => {
   try {
     await api.delete(`employees/${employeeId}/`);
@@ -177,7 +168,6 @@ const deleteEmployee = async (employeeId) => {
   }
 };
 
-// Сброс формы
 const resetForm = () => {
   newEmployee.value = {
     first_name: '',
@@ -190,7 +180,6 @@ const resetForm = () => {
   editingEmployeeId.value = null;
 };
 
-// Получение данных при монтировании компонента
 onMounted(() => {
   fetchEmployees();
   fetchPositions();

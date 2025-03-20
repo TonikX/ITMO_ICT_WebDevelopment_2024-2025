@@ -27,16 +27,15 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
         contact_person = validated_data.pop('contact_person', None)
         phone = validated_data.pop('phone', None)
-        first_name = validated_data.pop('first_name', None)  # Извлекаем имя (если передано)
-        last_name = validated_data.pop('last_name', None)  # Извлекаем фамилию (если передано)
+        first_name = validated_data.pop('first_name', None)
+        last_name = validated_data.pop('last_name', None)
+        
 
-        # Создаем пользователя
-        password = validated_data.pop('password')  # Обрабатываем пароль отдельно
+        password = validated_data.pop('password')
         user = User.objects.create_user(**validated_data)
-        user.set_password(password)  # Устанавливаем пароль
+        user.set_password(password)
         user.save()
         print("Создан пользователь:", user)
-        # Создаем клиента на основе данных регистрации (связь через email, например)
         client = Client.objects.create(
             first_name=first_name,
             last_name=last_name,
@@ -48,21 +47,21 @@ class RegistrationSerializer(serializers.ModelSerializer):
         print("Создан клиент:", client)
         return user
     
-# --- User ---
+#User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'is_staff')
 
 
-# --- Client ---
+#Client
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
         fields = ['id', 'first_name', 'last_name', 'contact_person', 'email', 'phone']
 
 
-# --- Service ---
+#Service
 class ServiceSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -70,47 +69,44 @@ class ServiceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# --- PriceList ---
+#PriceList
 class PriceListSerializer(serializers.ModelSerializer):
-    service = ServiceSerializer(read_only=True)  # Показываем вложенный объект услуги
+    service = ServiceSerializer(read_only=True)
     service_id = serializers.PrimaryKeyRelatedField(
         queryset=Service.objects.all(), source='service', write_only=True
-    )  # Оставляем возможность передавать ID
+    )
 
     class Meta:
         model = PriceList
         fields = ['id', 'service', 'service_id', 'price', 'start_price', 'end_price']
 
     def validate(self, data):
-        """ Проверяем, что дата начала меньше даты окончания """
         if data['start_price'] >= data['end_price']:
             raise serializers.ValidationError("Дата начала действия цены должна быть раньше даты окончания.")
         return data
     
     def create(self, validated_data):
-        """ Создание объекта PriceList """
         return PriceList.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """ Обновление объекта PriceList """
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
         return instance
 
 
-# --- Position ---
+#Position
 class PositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Position
         fields = '__all__'
 
 
-# --- Employee ---
+#Employee
 class EmployeeSerializer(serializers.ModelSerializer):
-    position = PositionSerializer(read_only=True)  # Для вывода информации о позиции
+    position = PositionSerializer(read_only=True)
     position_id = serializers.PrimaryKeyRelatedField(
-        queryset=Position.objects.all(), write_only=True  # Для получения ID позиции
+        queryset=Position.objects.all(), write_only=True
     )
     order_count = serializers.SerializerMethodField()
 
@@ -119,19 +115,14 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email', 'phone', 'position', 'position_id', 'order_count']
 
     def create(self, validated_data):
-        # Получаем ID позиции и удаляем его из словаря
         position = validated_data.pop('position_id', None)
-        # Создаем сотрудника, передавая ID позиции в нужное поле
         employee = Employee.objects.create(position=position, **validated_data)
         return employee
 
     def update(self, instance, validated_data):
-        # Обновление данных сотрудника
         position = validated_data.pop('position_id', None)
-        # Обновляем поля сотрудника
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
-        # Обновляем позицию сотрудника
         if position is not None:
             instance.position = position
         instance.save()
@@ -139,10 +130,10 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
     
     def get_order_count(self, obj):
-        # Подсчитываем количество заявок у этого сотрудника
+        # Подсчитываем количество заявок у этого сотрудника для отчета
         return Order.objects.filter(employee=obj, status='completed').count()
 
-# --- PositionEmployee ---
+#PositionEmployee
 class PositionEmployeeSerializer(serializers.ModelSerializer):
     employee = EmployeeSerializer(read_only=True)
     position = PositionSerializer(read_only=True)
@@ -158,10 +149,8 @@ class PositionEmployeeSerializer(serializers.ModelSerializer):
         fields = ['id', 'employee', 'employee_id', 'position', 'position_id', 'start_date', 'end_date']
     
     def create(self, validated_data):
-        # Получаем ID позиции и удаляем его из словаря
         employee = validated_data.pop('employee_id', None)
         position = validated_data.pop('position_id')
-        # Создаем сотрудника, передавая ID позиции в нужное поле
         position_employee = PositionEmployee.objects.create(employee=employee, position=position, **validated_data)
         return position_employee
 
@@ -189,7 +178,6 @@ class OrderSerializer(serializers.ModelSerializer):
         ]
 
     def validate(self, data):
-        """ Валидация данных заказа """
         if data.get('completion_date') and data.get('order_date'):
             if data['completion_date'] < data['order_date']:
                 raise serializers.ValidationError("Дата завершения заказа не может быть раньше даты создания.")
@@ -200,18 +188,15 @@ class OrderSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        # Извлекаем данные о client, service и employee по их ID
         client = validated_data.pop('client_id')
         service = validated_data.pop('service_id')
         employee = validated_data.pop('employee_id')
-        # Извлекаем остальные параметры заказа вручную
         order_date = validated_data.get('order_date')
         completion_date = validated_data.get('completion_date')
         quantity = validated_data.get('quantity')
         total_cost = validated_data.get('total_cost')
         status = validated_data.get('status')
 
-        # Создаем заказ с правильными связями
         order = Order.objects.create(
             client=client,
             service=service,
@@ -221,34 +206,22 @@ class OrderSerializer(serializers.ModelSerializer):
             quantity=quantity,
             total_cost=total_cost,
             status=status
-            # **validated_data  # все остальные данные, включая order_date, completion_date и т.д.
         )
         return order
 
     def update(self, instance, validated_data):
-        # Запрещаем изменение client, service и employee
         if 'client_id' in validated_data:
             raise serializers.ValidationError("Client cannot be changed.")
-        # if 'service_id' in validated_data:
-        #     raise serializers.ValidationError("Service cannot be changed.")
-        # if 'employee_id' in validated_data:
-        #     raise serializers.ValidationError("Employee cannot be changed.")
 
-        # Обновляем заказ для остальных полей
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
         instance.save()
         return instance
 
-
-
-# --- PaymentOrder ---
+#PaymentOrder
 class PaymentOrderSerializer(serializers.ModelSerializer):
     order = serializers.PrimaryKeyRelatedField(queryset=Order.objects.all())
-    # order_id = serializers.PrimaryKeyRelatedField(
-    #     queryset=Order.objects.all(), write_only=True
-    # )
 
     class Meta:
         model = PaymentOrder

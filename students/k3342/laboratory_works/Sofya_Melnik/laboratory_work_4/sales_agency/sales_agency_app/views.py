@@ -47,11 +47,9 @@ class RegisterView(APIView):
 class UserClientInfo(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        # Используем request.user, чтобы получить текущего пользователя
+    def get(self, request):        
         user = request.user
         
-        # Пытаемся найти клиента с таким же email, как у пользователя
         try:
             client = Client.objects.get(email=user.email)
             return Response({
@@ -192,45 +190,36 @@ class PositionEmployeeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsAdmin]
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()  # Запрос всех заказов
-    serializer_class = OrderSerializer  # Сериализатор для заказов
-    permission_classes = [IsAuthenticated]  # Требуется аутентификация
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Получаем текущего аутентифицированного пользователя
         user = self.request.user
 
         if not user.is_staff:
-            # Пытаемся найти клиента с таким же email, как у пользователя
             try:
-                client = Client.objects.get(email=user.email)  # Ищем клиента по email
+                client = Client.objects.get(email=user.email)
             except Client.DoesNotExist:
                 raise DRFValidationError({"error": "У пользователя нет привязанного клиента."})
-            # Сохраняем заказ с привязкой к найденному клиенту
             serializer.save(client=client)
         else:
             serializer.save()
 
     def get_queryset(self):
-        # Получаем текущего аутентифицированного пользователя
         user = self.request.user
 
-        # Если пользователь администратор, возвращаем все заказы
         if user.is_staff:
             return Order.objects.all()
-
-        # Ищем клиента по email пользователя
+        
         try:
             client = Client.objects.get(email=user.email)
         except Client.DoesNotExist:
-            # Если клиента не найдено, возвращаем пустой запрос
             return Order.objects.none()
 
-        # Если у пользователя есть клиент, возвращаем только заказы этого клиента
         return Order.objects.filter(client=client)
     
     def perform_update(self, serializer):
-        """Админ может редактировать любые заказы, клиент — нет."""
         user = self.request.user
 
         if user.is_staff:
@@ -239,7 +228,6 @@ class OrderViewSet(viewsets.ModelViewSet):
             raise DRFValidationError({"error": "Редактирование заказа доступно только администратору."})
 
     def perform_destroy(self, instance):
-        """Удалять заказы может только админ."""
         user = self.request.user
 
         if user.is_staff:
@@ -259,31 +247,24 @@ class PaymentOrderViewSet(viewsets.ModelViewSet):
             serializer.save()
             return
 
-        # Получаем клиента, связанного с текущим пользователем
         try:
             client = Client.objects.get(email=user.email)
         except Client.DoesNotExist:
             raise DRFValidationError({"error": "У пользователя нет привязанного клиента."})
 
-        # Получаем ID заказа из запроса
         order_id = self.request.data.get("order")
         if not order_id:
             raise DRFValidationError({"error": "Не указан order_id."})
 
-        # Проверяем, существует ли такой заказ
         try:
             order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
             raise DRFValidationError({"error": "Заказ не найден."})
 
-        # Проверяем, принадлежит ли заказ текущему клиенту
         if order.client != client:
             raise DRFValidationError({"error": "Вы не можете создать платежное поручение для чужого заказа."})
 
-        # Автоматически устанавливаем сумму платежа
         total_amount = order.total_cost
-
-        # Создаём платежное поручение, передавая ID заказа
         serializer.save(client=client, order_id=order.id, total_amount=total_amount)
 
     def get_queryset(self):
@@ -299,22 +280,16 @@ class PaymentOrderViewSet(viewsets.ModelViewSet):
 
         return PaymentOrder.objects.filter(order__client=client)
     
-    # Переопределяем метод для удаления
     def destroy(self, request, *args, **kwargs):
-        # Только администратор может удалять поручения
         if not request.user.is_staff:
             raise DRFValidationError({"error": "Вы не можете удалить это поручение."})
         
-        # Удаление поручения, если пользователь администратор
         return super().destroy(request, *args, **kwargs)
 
-    # Переопределяем метод для редактирования
     def update(self, request, *args, **kwargs):
-        # Только администратор может редактировать поручения
         if not request.user.is_staff:
             raise DRFValidationError({"error": "Вы не можете редактировать это поручение."})
-        
-        # Редактирование поручения, если пользователь администратор
+
         return super().update(request, *args, **kwargs)
 
 
@@ -354,30 +329,20 @@ class ServiceListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsClient | IsAdmin]
 
     def get_queryset(self):
-        """
-        Переопределяем get_queryset, чтобы добавить связанные с услугами цены.
-        """
-        services = Service.objects.all()  # Получаем все услуги
+        services = Service.objects.all()
 
-        # Добавляем цены для каждой услуги
         for service in services:
-            # Получаем цены для каждой услуги из PriceList
-            service.prices = PriceList.objects.filter(service=service)  # Привязываем цены к каждой услуге
+            service.prices = PriceList.objects.filter(service=service)
 
         return services
 
     def list(self, request, *args, **kwargs):
-        """
-        Переопределяем метод list, чтобы добавить цены в ответ.
-        """
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
 
-        # Добавляем в ответ данные о ценах из связанного прайс-листа
         for i, service in enumerate(queryset):
-            # Для каждой услуги добавляем цены в сериализованный ответ
             prices = PriceListSerializer(service.prices, many=True).data
-            serializer.data[i]["prices"] = prices  # Включаем цены в ответ
+            serializer.data[i]["prices"] = prices
 
         return Response(serializer.data)
 
@@ -386,12 +351,10 @@ class OrdersByClientView(generics.ListAPIView):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated, IsAdmin]
     def get_queryset(self):
-        # Получаем start_date, end_date и client_id из параметров запроса
         start_date = self.request.query_params.get('start_date')
         end_date = self.request.query_params.get('end_date')
         client_id = self.request.query_params.get('client_id')
 
-        # Если client_id не указан, администратор не сможет фильтровать по клиенту
         if not client_id:
             raise DRFValidationError({"error": "Не выбран клиент для фильтрации."})
 
@@ -400,7 +363,6 @@ class OrdersByClientView(generics.ListAPIView):
         except Client.DoesNotExist:
             raise DRFValidationError({"error": "Клиент не найден."})
 
-        # Если start_date и end_date заданы, фильтруем заявки по этим датам
         if start_date and end_date:
             try:
                 start_date = parse_date(start_date)
@@ -410,10 +372,8 @@ class OrdersByClientView(generics.ListAPIView):
             except:
                 raise DRFValidationError({"error": "Неверный формат даты. Используйте YYYY-MM-DD."})
 
-            # Возвращаем заявки для выбранного клиента в указанном периоде
             return Order.objects.filter(client=client, order_date__range=[start_date, end_date])
 
-        # Если даты не указаны, возвращаем все заявки для выбранного клиента
         return Order.objects.filter(client=client)
 
 # 5. Список сотрудников с количеством выполненных заявок
@@ -422,17 +382,14 @@ class EmployeeOrdersCountView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsAdmin]
 
     def get_queryset(self):
-        # Получаем параметры для фильтрации по датам
         start_date = self.request.query_params.get('start_date')
         end_date = self.request.query_params.get('end_date')
 
-        # Сначала фильтруем все заявки по датам и статусу
         filtered_orders = Order.objects.filter(
             status='completed',
             order_date__range=[start_date, end_date]
         )
 
-        # Получаем всех сотрудников, которые связаны с этими заявками
         employees = Employee.objects.filter(order__in=filtered_orders).distinct()
 
         return employees

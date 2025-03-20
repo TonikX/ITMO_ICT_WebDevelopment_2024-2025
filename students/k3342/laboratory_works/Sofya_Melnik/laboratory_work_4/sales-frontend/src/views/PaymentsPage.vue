@@ -2,12 +2,10 @@
   <div class="payments-page">
     <h2 class="page-title">Платежи</h2>
 
-    <!-- Кнопка для создания нового платежа (показывается только для администраторов) -->
     <div v-if="isStaff" class="create-payment-button">
       <button @click="showCreateForm = !showCreateForm">{{ showCreateForm ? 'Отменить' : 'Создать новый платеж' }}</button>
     </div>
 
-    <!-- Форма создания нового платежа для администраторов -->
     <div v-if="isStaff && showCreateForm" class="create-payment-form">
       <h3>Создать новый платеж</h3>
       <form @submit.prevent="createPayment">
@@ -34,7 +32,6 @@
       </form>
     </div>
 
-    <!-- Форма редактирования платежа -->
     <div v-if="editingPayment" class="edit-payment-form">
       <h3>Редактировать платеж</h3>
       <form @submit.prevent="updatePayment">
@@ -62,7 +59,6 @@
       <button @click="cancelEdit">Отменить</button>
     </div>
 
-    <!-- Таблица платежей -->
     <table class="payments-table">
       <thead>
         <tr>
@@ -101,23 +97,22 @@ export default {
     const payments = ref([]);
     const orders = ref([]);
     const isStaff = ref(false);
-    const showCreateForm = ref(false);  // Флаг для отображения формы создания платежа
-    const editingPayment = ref(false);  // Флаг для отображения формы редактирования
+    const showCreateForm = ref(false);
+    const editingPayment = ref(false);
     const newPayment = ref({
       order: null,
       payment_order_date: '',
       payment_date: '',
       payment_status: 'waiting'
-    });  // Данные для нового платежа
+    });
     const editedPayment = ref({
       id: null,
       order: null,
       payment_order_date: '',
       payment_date: '',
       payment_status: 'waiting'
-    });  // Данные для редактируемого платежа
+    });
 
-    // Метод для получения текущего пользователя
     const fetchUserInfo = async () => {
       try {
         const { data } = await api.get("auth/users/me/");
@@ -127,7 +122,6 @@ export default {
       }
     };
 
-    // Метод для загрузки заказов
     const fetchOrders = async () => {
       try {
         const { data } = await api.get("orders/");
@@ -137,7 +131,6 @@ export default {
       }
     };
 
-    // Метод для загрузки платежей
     const fetchPayments = async () => {
       try {
         const { data } = await api.get("/payment-orders/");
@@ -147,7 +140,6 @@ export default {
       }
     };
 
-    // Метод для создания нового платежа
     const createPayment = async () => {
       try {
         const { data } = await api.post("/payment-orders/", newPayment.value);
@@ -159,19 +151,16 @@ export default {
       }
     };
 
-    // Метод для редактирования платежа
     const editPayment = (payment) => {
       editingPayment.value = true;
-      editedPayment.value = { ...payment };  // Заполняем форму данными для редактирования
+      editedPayment.value = { ...payment };
     };
 
-    // Метод для отмены редактирования
     const cancelEdit = () => {
       editingPayment.value = false;
       editedPayment.value = { id: null, order: null, payment_order_date: '', payment_date: '', payment_status: 'waiting' };
     };
 
-    // Метод для обновления платежа
     const updatePayment = async () => {
       try {
         const { data } = await api.put(`payment-orders/${editedPayment.value.id}/`, editedPayment.value);
@@ -179,13 +168,12 @@ export default {
         if (index !== -1) {
           payments.value[index] = data;
         }
-        editingPayment.value = false;  // Закрыть форму редактирования
+        editingPayment.value = false;
       } catch (error) {
         console.error("Ошибка обновления платежа:", error.response.data);
       }
     };
 
-    // Метод для удаления платежа
     const deletePayment = async (paymentId) => {
       try {
         await api.delete(`payment-orders/${paymentId}/`);
@@ -195,7 +183,6 @@ export default {
       }
     };
 
-    // Загружаем данные при монтировании компонента
     onMounted(async () => {
       await fetchUserInfo();
       await fetchOrders();
