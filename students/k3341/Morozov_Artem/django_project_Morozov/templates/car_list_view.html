@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список автомобилей</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .list-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .list-container h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            text-align: center;
+        }
+        .actions a {
+            margin: 0 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .actions a:hover {
+            text-decoration: underline;
+        }
+        .add-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+            text-decoration: none;
+        }
+        .add-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="list-container">
+        <h1>Список автомобилей</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Цвет</th>
+                    <th>Марка</th>
+                    <th>Модель</th>
+                    <th class="actions">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in object_list %}
+                    <tr>
+                        <td>{{ car.number }}</td>
+                        <td>{{ car.color }}</td>
+                        <td>{{ car.mark }}</td>
+                        <td>{{ car.model }}</td>
+                        <td class="actions">
+                            <a href="{% url 'car_update' car.pk %}">Редактировать</a>
+                            <a href="{% url 'car_delete' car.pk %}">Удалить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'car_create' %}" class="add-link">Добавить автомобиль</a>
+    </div>
+</body>
+</html>

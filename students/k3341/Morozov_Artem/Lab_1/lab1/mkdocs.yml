@@ -1,0 +1,8 @@
+site_name: Lab 1
+nav:
+  - Задание 1: 1.md
+  - Задание 2: 2.md
+  - Задание 3: 3.md
+  - Задание 4: 4.md
+  - Задание 5: 5.md
+theme: readthedocs

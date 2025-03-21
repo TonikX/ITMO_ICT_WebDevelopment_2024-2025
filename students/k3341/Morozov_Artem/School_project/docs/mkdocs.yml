@@ -1,0 +1,16 @@
+site_name: lab_docs
+nav:
+  - Лабораторная работа 1:
+      - Задание 1: 1.md
+      - Задание 2: 2.md
+      - Задание 3: 3.md
+      - Задание 4: 4.md
+      - Задание 5: 5.md
+  - Лабораторная работа 2:
+      - Модели: models.md
+      - URLs: urls.md
+      - Views: views.md
+      - Forms: forms.md
+  - Лабораторная работа 3:
+      - Docs: lab3.md
+theme: readthedocs

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ conference.title }}</title>
+    <!-- Подключение Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение кастомных стилей (опционально) -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .conference-details {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.3rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        .review-item, .presentation-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+        .review-item:hover, .presentation-item:hover {
+            background-color: #f1f1f1;
+        }
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Конференции</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Профиль</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <div class="conference-details">
+            <h1 class="display-4">{{ conference.title }}</h1>
+            <p class="lead"><strong>Дата:</strong> {{ conference.date }}</p>
+            <p class="lead"><strong>Место проведения:</strong> {{ conference.location }}</p>
+            <p class="lead"><strong>Описание:</strong> {{ conference.description }}</p>
+            <hr class="my-4">
+        
+
+            <!-- Презентации -->
+            <h2>Презентации</h2>
+            <ul class="list-unstyled">
+                {% for presentation in presentations %}
+                    <li class="presentation-item">
+                        <p><strong>{{ presentation.title }}</strong> от {{ presentation.user.first_name }} {{ presentation.user.last_name }}</p>
+                        <p>{{ presentation.abstract }}</p>
+                        <p><strong>Рекомендация к публикации:</strong> {{ presentation.get_recommended_for_publication_display }}</p>
+                        
+                        {% if user.is_authenticated and presentation.user == user %}
+                            <a href="{% url 'edit_presentation' presentation.id %}" class="btn btn-primary btn-sm">Редактировать</a>
+                            <form action="{% url 'delete_presentation' presentation.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                            </form>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                    <li>Пока нет презентаций.</li>
+                {% endfor %}
+            </ul>
+        
+            <!-- Отзывы -->
+            <h2>Отзывы</h2>
+            {% if user.is_authenticated %}
+                <a href="{% url 'add_review' conference.id %}" class="btn btn-success mb-3">Добавить отзыв</a>
+            {% else %}
+                <p><a href="{% url 'login' %}" class="btn btn-primary">Войдите</a>, чтобы оставить отзыв.</p>
+            {% endif %}
+            <ul class="list-unstyled">
+                {% for review in reviews %}
+                    <li class="review-item">
+                        <p><strong>{{ review.user.first_name }} {{ review.user.last_name }}</strong> - {{ review.date }}</p>
+                        <p>Оценка: {{ review.rating }}/10</p>
+                        <p>{{ review.text }}</p>
+                    </li>
+                {% empty %}
+                    <li>Пока нет отзывов.</li>
+                {% endfor %}
+            </ul>
+
+            <!-- Регистрация презентации -->
+            {% if user.is_authenticated %}
+                <a href="{% url 'register_presentation' conference.id %}" class="btn btn-success">Зарегистрировать презентацию</a>
+            {% else %}
+                <p><a href="{% url 'login' %}" class="btn btn-primary">Войдите</a>, чтобы зарегистрировать презентацию.</p>
+            {% endif %}
+
+            <!-- Кнопка возврата -->
+            <a href="{% url 'conference_list' %}" class="btn btn-secondary mt-3">Вернуться к списку конференций</a>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <span>Конференции. Все права защищены.</span>
+        </div>
+    </footer>
+
+    <!-- Подключение Bootstrap JS и зависимостей -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

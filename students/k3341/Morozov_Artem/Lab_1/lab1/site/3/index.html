@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Задание 3 - Lab 1</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u0417\u0430\u0434\u0430\u043d\u0438\u0435 3";
+        var mkdocs_page_input_path = "3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Lab 1
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1/">Задание 1</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2/">Задание 2</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Задание 3</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4/">Задание 4</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5/">Задание 5</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Lab 1</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Задание 3</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="3">Задание 3</h2>
+<p>Реализовать серверную часть приложения. Клиент подключается к серверу, и в ответ получает HTTP-сообщение, содержащее HTML-страницу, которая сервер подгружает из файла index.html.</p>
+<p>Требования:</p>
+<pre><code>Обязательно использовать библиотеку socket.
+</code></pre>
+<p>Реализация сервера:</p>
+<pre><code>import socket
+
+host = 'localhost'
+port = 8080
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server_socket.bind((host, port))
+
+server_socket.listen(5)
+print(f"HTTP-сервер запущен на {host}:{port}")
+
+while True:
+    client_socket, client_address = server_socket.accept()
+    print(f"Новое подключение от {client_address}")
+
+    with open("index.html", "r", encoding="utf-8") as file:
+        html_content = file.read()
+
+    response = (
+        "HTTP/1.1 200 OK\n"
+        "Content-Type: text/html; charset=utf-8\n"
+        "Content-Length: {}\n\n{}".format(len(html_content.encode("utf-8")), html_content)
+    )
+
+    client_socket.sendall(response.encode())
+
+    client_socket.close()
+</code></pre>
+<p>HTML код:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Реквест - респонс&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Реквест - респонс&lt;/h1&gt;
+    &lt;p&gt;
+    &lt;a href="https://www.youtube.com/watch?v=DjVB2P15iUo" target="_blank"&gt;
+        Кликать сюда
+    &lt;/a&gt;
+&lt;/p&gt;
+    &lt;p&gt;
+        Будь то Рыбацкое или Южный Бронкс,&lt;br&gt;
+        Если есть реквест, то я найду респонс.&lt;br&gt;
+        Реквест - респонс.&lt;br&gt;
+        Реквест, реквест - респонс, респонс.&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        100 означает: "Обожди, фраерок".&lt;br&gt;
+        Если я ответил 200, значит, всё ОК.&lt;br&gt;
+        Если в деле братва, но надо мозговать сперва -&lt;br&gt;
+        Качаем головами, отвечаем 202.&lt;br&gt;
+        302, если брат без тормозов&lt;br&gt;
+        Был временно перемещён в СИЗО.&lt;br&gt;
+        301 - баба плачь, малой, пришли открытку -&lt;br&gt;
+        Батяня постоянно перемещён на крытку.&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Будь то Рыбацкое или Южный Бронкс,&lt;br&gt;
+        Если есть реквест, то я найду респонс.&lt;br&gt;
+        Реквест - респонс.&lt;br&gt;
+        Реквест, реквест - респонс, респонс. x2&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Эй? ты! Кто ты? Чё смотришь, пёс?&lt;br&gt;
+        400 - не по понятиям запрос.&lt;br&gt;
+        401 - таков мой ответ&lt;br&gt;
+        Тем, кто не знает, где спрашивать, где нет.&lt;br&gt;
+        403 говорит о том,&lt;br&gt;
+        Что я не стану вести бесед с ментом.&lt;br&gt;
+        Хозяева не нашли вещей в своей квартире?&lt;br&gt;
+        А мы-то тут при чём? 404!&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Будь то Рыбацкое или Южный Бронкс,&lt;br&gt;
+        Если есть реквест, то я найду респонс.&lt;br&gt;
+        Реквест - респонс.&lt;br&gt;
+        Реквест, реквест - респонс, респонс. x2&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Если перекрыт, то "200 ОК" не говори.&lt;br&gt;
+        Отвечай 500, 501, 503. x4&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Будь то Рыбацкое или Южный Бронкс,&lt;br&gt;
+        Если есть реквест, то я найду респонс.&lt;br&gt;
+        Реквест - респонс.&lt;br&gt;
+        Реквест, реквест - респонс, респонс. x2&lt;br&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        Будь то Рыбацкое или Южный Бронкс,&lt;br&gt;
+        Если есть реквест, то я найду респонс. x2&lt;br&gt;
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2/" class="btn btn-neutral float-left" title="Задание 2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../4/" class="btn btn-neutral float-right" title="Задание 4">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../4/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
