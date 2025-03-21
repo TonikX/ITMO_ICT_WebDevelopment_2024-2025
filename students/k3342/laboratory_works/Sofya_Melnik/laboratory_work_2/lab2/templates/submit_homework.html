@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сдать домашнее задание</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Сдать домашнее задание</h1>
+
+    <p><strong>Предмет:</strong> {{ homework.subject }}</p>
+    <p><strong>Дата выдачи:</strong> {{ homework.assigned_date }}</p>
+    <p><strong>Срок выполнения:</strong> {{ homework.due_date }}</p>
+    <p><strong>Описание:</strong> {{ homework.description }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="submission_text">Ваше решение:</label><br>
+        <textarea id="submission_text" name="submission_text" rows="5" cols="50" required></textarea><br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <br>
+    <a href="{% url 'homework_list' %}">Назад к списку заданий</a>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{% load static %}
+{% block title %}Удалить задание{% endblock %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% block content %}
+    <h2>Вы уверены, что хотите удалить "{{ homework.subject }}"?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'homework_list' %}">Отмена</a>
+{% endblock %}

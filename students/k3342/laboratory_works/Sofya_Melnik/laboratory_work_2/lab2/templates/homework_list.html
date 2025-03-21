@@ -1,0 +1,45 @@
+{% load static %}
+<a href="{% url 'main' %}">На главную</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашние задания</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Домашние задания</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Предмет</th>
+                <th>Преподаватель</th>
+                <th>Дата выдачи</th>
+                <th>Срок выполнения</th>
+                <th>Описание</th>
+                <th>Действие</th> <!-- Столбец для кнопок -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for homework in homeworks %}
+            <tr>
+                <td>{{ homework.subject }}</td>
+                <td>{{ homework.teacher.first_name }} {{ homework.teacher.last_name }}</td>
+                <td>{{ homework.assigned_date }}</td>
+                <td>{{ homework.due_date }}</td>
+                <td>{{ homework.description }}</td>
+                <td>
+                    {% if user.role == "student" %}
+                        <a href="{% url 'submit_homework' homework.id %}">Сдать задание</a>
+                    {% elif user.role == "teacher" %}
+                        <a href="{% url 'edit_homework' homework.id %}">Изменить</a>
+                        <a href="{% url 'delete_homework' homework.id %}">Удалить</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
