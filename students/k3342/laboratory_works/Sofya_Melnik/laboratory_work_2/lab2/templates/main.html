@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+    <div class="navbar">
+        {% if user.is_authenticated %}
+            <a href="{% url 'homework_list' %}">Домашние задания</a>
+            <a href="{% url 'account' %}">Личный кабинет</a>
+            <a href="{% url 'logout' %}">Выход</a>
+        {% else %}
+            <a href="{% url 'login' %}">Вход</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <h1>Добро пожаловать в систему домашних заданий!</h1>
+
+        {% if user.is_authenticated %}
+            {% if user.role == 'student' %}
+                <p>Привет, {{ user.first_name }} {{ user.last_name }}! Добро пожаловать в доску домашних заданий.</p>
+                <p>Здесь ты можешь просматривать домашние задания и отправлять решения на проверку. Также ты можешь увидеть оценки.</p>
+                <a href="{% url 'student_submission_list' %}">Мои решения</a>
+                <a href="{% url 'student_grade_table' %}">Таблица оценок</a>
+            {% elif user.role == 'teacher' %}
+                <p>Здравствуйте, {{ user.first_name }} {{ user.last_name }}! Добро пожаловать в доску домашних заданий.</p>
+                <p>Вы можете добавлять и редактировать домашние задания, а также проверять сданные работы студентов.</p>
+                <a href="{% url 'add_homework' %}">Добавить задание</a>
+                <a href="{% url 'submission_list' %}">Решения студентов</a>
+            {% endif %}
+        {% else %}
+            <p>Чтобы начать, пожалуйста, <a href="{% url 'login' %}">войдите</a> или <a href="{% url 'register' %}">зарегистрируйтесь</a>.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

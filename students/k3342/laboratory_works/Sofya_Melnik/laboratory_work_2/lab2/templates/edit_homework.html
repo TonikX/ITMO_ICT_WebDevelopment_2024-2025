@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменить задание</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Изменить домашнее задание</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="subject">Предмет:</label>
+        <input type="text" id="subject" name="subject" value="{{ homework.subject }}" required><br><br>
+
+        <label for="teacher">Преподаватель:</label>
+        <input type="text" id="teacher" name="teacher" value="{{ request.user.username }}" readonly><br><br>
+
+        <label for="assigned_date">Дата выдачи:</label>
+        <input type="date" id="assigned_date" name="assigned_date" value="{{ homework.assigned_date|date:'Y-m-d' }}" required><br><br>
+
+        <label for="due_date">Срок сдачи:</label>
+        <input type="date" id="due_date" name="due_date" value="{{ homework.due_date|date:'Y-m-d' }}" required><br><br>
+
+        <label for="description">Описание задания:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" required>{{ homework.description }}</textarea><br><br>
+
+        <label for="penalties_info">Информация о штрафах:</label><br>
+        <textarea id="penalties_info" name="penalties_info" rows="2" cols="50">{{ homework.penalties_info }}</textarea><br><br>
+
+        <button type="submit">Сохранить изменения</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+
+<a href="{% url 'main' %}">На главную</a>
+
+<h2>Мои выполненные задания</h2>
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Задание</th>
+            <th>Содержание</th>
+            <th>Оценка</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+        <tr>
+            <td>{{ submission.homework.subject }}</td>
+            <td>{{ submission.submission_text|default:"(Нет данных)" }}</td>
+            <td>{{ submission.grade|default:"-" }}</td>
+            <td>
+                <a href="{% url 'edit_submission' submission.id %}">Изменить</a>
+                <a href="{% url 'delete_submission' submission.id %}">Удалить</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Вы ещё не отправляли работы.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

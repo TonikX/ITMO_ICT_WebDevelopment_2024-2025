@@ -1,0 +1,39 @@
+{% load static %}
+<a href="{% url 'main' %}">На главную</a>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценки класса</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Таблица оценок</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Ученик</th>
+                <th>Предмет</th>
+                <th>Описание</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.student.username }}</td>
+                <td>{{ submission.homework.subject }}</td>
+                <td>{{ submission.homework.description }}</td>
+                <td>{{ submission.grade|default:"-" }}</td> <!-- Если нет оценки, ставим "-" -->
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Оценок пока нет.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
