@@ -1,0 +1,113 @@
+    def is_teacher(user):
+        return user.role == 'teacher'
+    
+    def is_student(user):
+        return user.role == 'student'
+    
+    def main(request):
+        return render(request, 'main.html')
+    
+    def register(request):
+        if request.method == 'POST':
+            form = UserRegistrationForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.save()
+                login(request, user)
+                return redirect('main')
+        else:
+            form = UserRegistrationForm()
+        return render(request, 'register.html', {'form': form})
+    
+    def user_login(request):
+        if request.method == 'POST':
+            form = UserLoginForm(request, data=request.POST)
+            if form.is_valid():
+                user = form.get_user()
+                login(request, user)
+                return redirect('main')
+        else:
+            form = UserLoginForm()
+        return render(request, 'login.html', {'form': form})
+    
+    @login_required
+    def account_view(request):
+        if request.method == 'POST':
+            form = UserUpdateForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return redirect('account')
+        else:
+            form = UserUpdateForm(instance=request.user)
+        return render(request, 'account.html', {'form': form})
+    
+    @login_required
+    def logout_view(request):
+        logout(request)
+        return redirect('login')
+    
+    @login_required
+    def homework_list(request):
+        homeworks = Homework.objects.all()
+        return render(request, 'homework_list.html', {'homeworks': homeworks})
+    
+    #teacher
+    @login_required
+    @user_passes_test(is_teacher)
+    def add_homework(request):
+        if request.method == 'POST':
+            form = HomeworkForm(request.POST)
+            if form.is_valid():
+                homework = form.save(commit=False)
+                homework.teacher = request.user
+                homework.save()
+                return redirect('homework_list')
+        else:
+            form = HomeworkForm()
+        return render(request, 'add_homework.html', {'form': form})
+    
+    
+    @login_required
+    @user_passes_test(is_teacher)
+    def edit_homework(request, homework_id):
+        homework = get_object_or_404(Homework, id=homework_id)
+        if request.method == 'POST':
+            form = HomeworkForm(request.POST, instance=homework)
+            if form.is_valid():
+                form.save()
+                return redirect('homework_list')
+        else:
+            form = HomeworkForm(instance=homework)
+        return render(request, 'edit_homework.html', {'form': form, 'homework': homework})
+    
+    
+    @login_required
+    @user_passes_test(is_teacher)
+    def delete_homework(request, homework_id):
+        homework = get_object_or_404(Homework, id=homework_id)
+        if request.method == 'POST':
+            homework.delete()
+            return redirect('homework_list')
+    
+        return render(request, 'delete_homework.html', {'homework': homework})
+    
+    @login_required
+    @user_passes_test(is_teacher)
+    def submission_list(request):
+        submissions = Submission.objects.all()
+        return render(request, 'submission_list.html', {'submissions': submissions})
+    
+    @login_required
+    @user_passes_test(is_teacher)
+    def grade_submission(request, submission_id):
+        submission = get_object_or_404(Submission, id=submission_id)
+        form = GradeSubmissionForm(request.POST or None, instance=submission)
+    
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Оценка сохранена!")
+                return redirect('submission_list')
+            else:
+                messages.error(request, "Некорректная оценка!")
+        return render(request, 'grade_submission.html', {'form': form, 'submission': submission})]()

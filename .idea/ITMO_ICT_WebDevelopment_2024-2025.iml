@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_2/board_djangoProject/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_2/assignments_board/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_2/lab2/.venv/Lib" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_2/lab2/.venv/Scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_3/sales_agency/.venv/Lib" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_3/sales_agency/.venv/Scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_4/sales-frontend/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_4/sales_agency/.venv/Lib" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/laboratory_works/Sofya_Melnik/laboratory_work_4/sales_agency/.venv/Scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/practical_works/Sofya_Melnik/django_project_Melnik/.venv/Lib" />
+      <excludeFolder url="file://$MODULE_DIR$/students/k3342/practical_works/Sofya_Melnik/django_project_Melnik/.venv/Scripts" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
