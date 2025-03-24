@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if is_teacher %}
+    <h2>Оценки учеников</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ученик</th>
+                <th>Задание</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+                <tr>
+                    <td>{{ submission.student.last_name }} {{ submission.student.first_name }}</td>
+                    <td>{{ submission.assignment.subject }} на {{ submission.assignment.due_date|date:"d.m.Y" }}</td>
+                    <td>{{ submission.grade|default:"-" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+<h2 class="text-center mt-4">Домашние задания</h2> <!-- Центрирование заголовка -->
+
+<div class="row justify-content-center"> <!-- Центрируем карточки -->
+    {% for assignment in assignments %}
+        <div class="col-md-12 mb-4"> <!-- Карточки занимают всю ширину -->
+            <div class="card w-100"> <!-- Карточка на всю ширину -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ assignment.subject }}</h5>
+                    <p class="card-text"><small class="text-muted">Преподаватель: {{ assignment.teacher.last_name }} {{ assignment.teacher.first_name }}</small></p>
+                    <p class="card-text">{{ assignment.task_text }}</p>
+                    <p class="card-text"><small class="text-muted">Дата выдачи: {{ assignment.issue_date|date:"d.m.Y, H:i" }}</small></p>
+                    <p class="card-text"><small class="text-muted">Срок сдачи: {{ assignment.due_date|date:"d.m.Y, H:i" }}</small></p>
+                    {% if assignment.penalty_info %}
+                        <p><small><strong>Штрафы:</strong> {{ assignment.penalty_info }}</small></p>
+                    {% endif %}
+                    {% if not is_teacher %}
+                        <a href="{% url 'submit_assignment' assignment.id %}" class="btn btn-primary">Сдать задание</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <p>Нет активных заданий</p>
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+<div>
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-secondary">Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary">Назад</a>
+        {% endif %}
+
+        <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary">Вперед</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary">Последняя</a>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}

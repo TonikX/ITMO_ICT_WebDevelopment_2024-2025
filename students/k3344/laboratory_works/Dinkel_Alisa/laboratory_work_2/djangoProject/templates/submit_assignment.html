@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Сдать задание: <strong>{{ assignment.subject.name }}</strong></h2>
+
+  <div class="card shadow-sm p-4">
+    <h5 class="card-title mb-3">{{ assignment.task_text }}</h5>
+
+    <p><strong>Введите ответ:</strong></p>  <!-- Текст "Введите ответ:" -->
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group mb-3">
+        {% for field in form %}
+          <div class="form-group">
+            <!-- Убираем метку, выводим только поле ввода -->
+            {{ field.errors }}
+            {{ field }} <!-- Отображаем только поле ввода без метки -->
+          </div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Сдать</button>
+    </form>
+  </div>
+
+  <div class="mt-4 text-center">
+    <p><a href="{% url 'assignment_list' %}" class="btn btn-secondary">Назад к заданиям</a></p>
+  </div>
+</div>
+{% endblock %}
