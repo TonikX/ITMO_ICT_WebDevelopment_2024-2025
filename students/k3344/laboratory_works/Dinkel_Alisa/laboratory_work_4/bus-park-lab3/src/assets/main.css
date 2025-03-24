@@ -1,0 +1,98 @@
+/* Улучшаем общий фон */
+body {
+  background-color: #f8f9fa; /* Светло-серый фон */
+  color: #333; /* Темный текст для контраста */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Общие стили для кнопок */
+.btn {
+  border-radius: 8px; /* Закругленные края */
+  font-weight: bold;
+  padding: 10px 16px;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+/* Основная кнопка (например, "Редактировать") */
+.btn-primary {
+  background-color: #AEC6CF; /* Нежно-голубой */
+  color: #2F4F4F; /* Темный текст */
+}
+
+.btn-primary:hover {
+  background-color: #92B6C6; /* Чуть темнее при наведении */
+}
+
+/* Успешная кнопка (например, "Добавить") */
+.btn-success {
+  background-color: #B5EAD7; /* Светло-зеленый */
+  color: #2F4F4F;
+}
+
+.btn-success:hover {
+  background-color: #9ED7C0;
+}
+
+/* Опасная кнопка (например, "Удалить") */
+.btn-danger {
+  background-color: #FFB7B2; /* Светло-красный */
+  color: #2F4F4F;
+}
+
+.btn-danger:hover {
+  background-color: #E6A09B;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Расстояние между кнопками */
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  height: 100%; /* Чтобы контейнер занимал всю высоту ячейки */
+}
+
+/* Улучшаем таблицу */
+.table {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Небольшая тень */
+}
+
+.table th {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+}
+
+.table td {
+  text-align: center;
+}
+
+/* Красивый navbar */
+.navbar {
+  background-color: #212529 !important;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #f8f9fa !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #17a2b8 !important;
+}
+
+/* Контейнер центрируем */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
