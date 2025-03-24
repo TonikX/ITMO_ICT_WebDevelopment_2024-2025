@@ -19,7 +19,7 @@
 </script>
 
 <style scoped>
-  /* Основной контейнер страницы */
+
   .admin-reports-page {
     max-width: 1200px;
     margin: 40px auto;
@@ -29,7 +29,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
-  /* Заголовок страницы */
+
   .page-title {
     font-size: 2.2rem;
     font-weight: 700;
@@ -40,19 +40,19 @@
     padding-bottom: 10px;
   }
 
-  /* Секция с ссылками на отчеты */
+
   .reports-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    text-align: center; /* Центрируем список */
+    text-align: center;
   }
 
   .reports-links li {
     margin: 15px 0;
   }
 
-  /* Стили для каждой ссылки */
+
   .report-link {
     text-decoration: none;
     color: #fff;
@@ -61,19 +61,19 @@
     padding: 12px 25px;
     border-radius: 8px;
     display: inline-block;
-    min-width: 300px;  /* Устанавливаем минимальную ширину для всех кнопок */
-    text-align: center;  /* Центрируем текст внутри кнопок */
-    margin: 5px 0;  /* Добавляем отступы между кнопками */
+    min-width: 300px;
+    text-align: center;
+    margin: 5px 0;
     transition: background-color 0.3s ease, transform 0.3s ease;
   }
 
-  /* Эффект при наведении на ссылку */
+
   .report-link:hover {
     background-color: #45a049;
     transform: translateY(-5px);
   }
 
-  /* Эффект при фокусе (например, при навигации с клавиатуры) */
+
   .report-link:focus {
     outline: none;
     background-color: #388e3c;

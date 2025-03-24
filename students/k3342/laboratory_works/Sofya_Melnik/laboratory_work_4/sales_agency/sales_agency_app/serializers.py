@@ -29,9 +29,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
         phone = validated_data.pop('phone', None)
         first_name = validated_data.pop('first_name', None)
         last_name = validated_data.pop('last_name', None)
-        
-
         password = validated_data.pop('password')
+        validated_data.pop('re_password', None)
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
         user.save()

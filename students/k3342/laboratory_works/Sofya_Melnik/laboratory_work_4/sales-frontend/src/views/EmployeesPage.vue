@@ -4,7 +4,7 @@
 
     <section>
       <h2>{{ editMode ? 'Редактировать сотрудника' : 'Добавить сотрудника' }}</h2>
-      <form @submit.prevent="editMode ? updateEmployee() : addEmployee">
+      <form @submit.prevent="handleSubmit">
         <div>
           <label for="first_name">Имя:</label>
           <input v-model="newEmployee.first_name" id="first_name" type="text" required />
@@ -116,6 +116,8 @@ const addEmployee = async () => {
     position_id: newEmployee.value.position.id
   };
 
+  console.log('Добавляем сотрудника:', newEmployeeData);
+
   try {
     const response = await api.post('employees/', newEmployeeData);
     employees.value.push(response.data);
@@ -178,6 +180,14 @@ const resetForm = () => {
   };
   editMode.value = false;
   editingEmployeeId.value = null;
+};
+
+const handleSubmit = () => {
+  if (editMode.value) {
+    updateEmployee();
+  } else {
+    addEmployee();
+  }
 };
 
 onMounted(() => {

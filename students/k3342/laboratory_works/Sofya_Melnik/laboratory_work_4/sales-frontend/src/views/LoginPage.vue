@@ -60,7 +60,7 @@ export default {
 
 
 <style scoped>
-/* Основной контейнер для страницы логина */
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -69,7 +69,7 @@ export default {
   background-color: #f7f7f7;
 }
 
-/* Окно формы логина */
+
 .login-box {
   width: 350px;
   padding: 30px;
@@ -79,7 +79,7 @@ export default {
   text-align: center;
 }
 
-/* Заголовок */
+
 .login-title {
   font-size: 24px;
   font-weight: bold;
@@ -87,12 +87,12 @@ export default {
   color: #333333;
 }
 
-/* Группа для поля ввода */
+
 .input-group {
   margin-bottom: 15px;
 }
 
-/* Стиль для всех полей ввода */
+
 .input {
   width: 100%;
   padding: 10px;
@@ -102,13 +102,13 @@ export default {
   box-sizing: border-box;
 }
 
-/* Фокус на поле ввода */
+
 .input:focus {
   border-color: #007bff;
   outline: none;
 }
 
-/* Кнопка входа */
+
 .login-button {
   width: 100%;
   padding: 10px;
@@ -120,12 +120,12 @@ export default {
   cursor: pointer;
 }
 
-/* Кнопка при наведении */
+
 .login-button:hover {
   background-color: #0056b3;
 }
 
-/* Добавим небольшой отступ для кнопки */
+
 button[type="submit"] {
   margin-top: 10px;
 }

@@ -3,8 +3,21 @@ theme:
   name: 'material'
 nav:
   - Главная: index.md
-  - Задание 1: task1.md
-  - Задание 2: task2.md
-  - Задание 3: task3.md
-  - Задание 4: task4.md
-  - Задание 5: task5.md
+  - Лабораторная работа 1:
+      - task1.md
+      - task2.md
+      - task3.md
+      - task4.md
+      - task5.md
+  - Лабораторная работа 2:
+      - leetcodes_lr2.md
+      - lab2_urls.md
+      - lab2_models.md
+      - lab2_views.md
+  - Лабораторная работа 3:
+      - leetcodes_lr3.md
+      - task3_1.md
+      - lab3.md
+  - Лабораторная работа 4:
+      - leetcodes_lr4.md
+      - lab4.md

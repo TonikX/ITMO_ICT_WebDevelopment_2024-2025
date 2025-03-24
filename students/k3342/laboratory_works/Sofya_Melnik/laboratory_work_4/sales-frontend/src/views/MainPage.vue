@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Основной контейнер */
+
 .main-page {
   font-family: 'Arial', sans-serif;
   background-color: #f4f6f9;
@@ -57,7 +57,7 @@ onMounted(() => {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок страницы */
+
 header {
   text-align: center;
   margin-bottom: 30px;
@@ -69,7 +69,7 @@ header h1 {
   margin-bottom: 20px;
 }
 
-/* Навигация */
+
 nav {
   display: flex;
   justify-content: center;
@@ -106,7 +106,7 @@ nav {
   transform: translateY(-3px);
 }
 
-/* Основной контент */
+
 .main-content {
   text-align: center;
   margin-top: 40px;

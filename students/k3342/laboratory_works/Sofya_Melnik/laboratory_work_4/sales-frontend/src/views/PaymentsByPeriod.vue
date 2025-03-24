@@ -108,7 +108,7 @@ export default {
   background-color: #45a049;
 }
 
-/* Стили для таблицы */
+
 .payments-table {
   width: 100%;
   border-collapse: collapse;

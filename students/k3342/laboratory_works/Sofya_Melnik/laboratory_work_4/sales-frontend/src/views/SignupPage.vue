@@ -99,7 +99,7 @@ export default {
 </script>
 
 <style scoped>
-/* Стиль для страницы регистрации */
+
 .registration-container {
   display: flex;
   justify-content: center;

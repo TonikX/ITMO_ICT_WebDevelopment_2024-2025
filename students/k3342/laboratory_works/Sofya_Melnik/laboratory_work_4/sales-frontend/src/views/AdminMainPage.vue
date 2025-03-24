@@ -3,7 +3,6 @@
     <header>
       <h1>Добро пожаловать, {{ user.username }}!</h1>
       <nav>
-        <router-link to="/profile" class="nav-link">Профиль</router-link>
         <router-link to="/clients" class="nav-link">Клиенты</router-link>
         <router-link to="/employees" class="nav-link">Сотрудники</router-link>
         <router-link to="/admin-services" class="nav-link">Услуги</router-link>
@@ -23,36 +22,35 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from '@/api'; // Axios instance, настроенный для вашего API
+import api from '@/api';
 
 const router = useRouter();
 const user = ref({ username: '', id: '' });
 
-// Функция для загрузки профиля пользователя
 const fetchProfile = async () => {
   try {
     const { data } = await api.get('auth/users/me/');
-    user.value = data; // Загружаем профиль авторизованного пользователя
+    user.value = data;
   } catch (error) {
     console.error('Ошибка загрузки профиля:', error);
-    router.push('/login'); // Редирект на страницу логина, если произошла ошибка
+    router.push('/login');
   }
 };
 
-// Функция выхода
+
 const logout = () => {
-  localStorage.removeItem('token'); // Очистка токена
-  router.push('/login');            // Перенаправление на страницу входа
+  localStorage.removeItem('token');
+  router.push('/login');
 };
 
-// Загружаем данные при монтировании компонента
+
 onMounted(() => {
   fetchProfile();
 });
 </script>
 
 <style scoped>
-/* Основной контейнер */
+
 .main-page {
   font-family: 'Arial', sans-serif;
   background-color: #f4f6f9;
@@ -63,7 +61,7 @@ onMounted(() => {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок страницы */
+
 header {
   text-align: center;
   margin-bottom: 30px;
@@ -97,7 +95,7 @@ nav {
   transform: translateY(-3px);
 }
 
-/* Кнопка выхода */
+
 .logout-btn {
   background-color: #ff4d4d;
   color: white;
@@ -114,7 +112,7 @@ nav {
   transform: translateY(-3px);
 }
 
-/* Основной контент */
+
 .main-content {
   text-align: center;
   margin-top: 40px;

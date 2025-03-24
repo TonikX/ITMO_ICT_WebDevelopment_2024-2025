@@ -196,7 +196,7 @@ export default {
 
 
 <style scoped>
-/* Добавляем мягкий цвет фона для страницы */
+
 .payments-page {
   background-color: #f4f6f9;
   padding: 20px;
@@ -209,7 +209,7 @@ export default {
   margin-bottom: 20px;
 }
 
-/* Стили для таблицы */
+
 .payments-table {
   width: 100%;
   border-collapse: collapse;
@@ -225,7 +225,7 @@ export default {
   border-bottom: 1px solid #ddd;
 }
 
-/* Добавляем чередующиеся цвета строк */
+
 .payments-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
@@ -236,13 +236,13 @@ export default {
   font-weight: bold;
 }
 
-/* Эффект при наведении на строку */
+
 .payments-table tr:hover {
   background-color: #f1f1f1;
   cursor: pointer;
 }
 
-/* Адаптивный дизайн для маленьких экранов */
+
 @media (max-width: 768px) {
   .payments-table th, .payments-table td {
     font-size: 14px;
@@ -250,7 +250,7 @@ export default {
   }
 }
 
-/* Стили для формы создания платежа */
+
 .create-payment-button {
   margin-bottom: 20px;
 }

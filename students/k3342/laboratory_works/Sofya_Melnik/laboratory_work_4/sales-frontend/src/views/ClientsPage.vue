@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-/* Основной контейнер */
+
 .container {
   max-width: 800px;
   margin: auto;
@@ -42,13 +42,13 @@ export default {
   text-align: center;
 }
 
-/* Заголовок */
+
 h1 {
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Список клиентов */
+
 .client-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -56,7 +56,7 @@ h1 {
   justify-content: center;
 }
 
-/* Карточка клиента */
+
 .client-card {
   background: #ffffff;
   border-radius: 12px;
@@ -69,20 +69,20 @@ h1 {
   transform: scale(1.05);
 }
 
-/* Заголовок карточки */
+
 .client-card h3 {
   margin-bottom: 10px;
   color: #007bff;
 }
 
-/* Текст в карточке */
+
 .client-card p {
   margin: 5px 0;
   font-size: 14px;
   color: #555;
 }
 
-/* Сообщение, если данных нет */
+
 .no-data {
   font-size: 18px;
   color: #888;

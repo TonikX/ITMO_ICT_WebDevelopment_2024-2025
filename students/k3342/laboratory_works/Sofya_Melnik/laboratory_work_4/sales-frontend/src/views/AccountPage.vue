@@ -9,9 +9,10 @@
       <p><strong>Контактное лицо:</strong> {{ client.contact_person }}</p>
       <p><strong>Телефон:</strong> {{ client.phone }}</p>
       <button @click="isEditing = true" class="edit-button">Редактировать</button>
+      <button @click="goToChangePassword" class="password-button">Сменить пароль</button>
     </div>
 
-    <form v-if="isEditing" @sub!mit.prevent="updateProfile" class="profile-form">
+    <form v-if="isEditing" @submit.prevent="updateProfile" class="profile-form">
       <div class="form-group">
         <label for="email">Email:</label>
         <input v-model="user.email" type="email" id="email" required />
@@ -43,6 +44,7 @@
 
     <p v-if="message" class="success-message">{{ message }}</p>
   </div>
+
 </template>
 
 <script>
@@ -83,7 +85,8 @@ export default {
           email: this.user.email,
         }, { headers });
 
-        await api.patch(`/auth/clients/${this.client.id}/`, {
+        await api.patch(`/clients/${this.client.id}/`, {
+          email: this.user.email,
           first_name: this.client.first_name,
           last_name: this.client.last_name,
           contact_person: this.client.contact_person,
@@ -100,6 +103,9 @@ export default {
     cancelEdit() {
       this.isEditing = false;
       this.message = "";
+    },
+    goToChangePassword() {
+      this.$router.push("/change-password");
     },
   },
 };
@@ -204,7 +210,22 @@ input:focus {
   margin-top: 20px;
 }
 
+.password-button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 .edit-button:hover {
+  background-color: #0056b3;
+}
+
+.password-button:hover {
   background-color: #0056b3;
 }
 </style>
