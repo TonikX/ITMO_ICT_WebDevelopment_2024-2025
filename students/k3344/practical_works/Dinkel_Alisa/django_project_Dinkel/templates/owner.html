@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Details</title>
+</head>
+<body>
+    <h1>Информация о владельце</h1>
+    <p><strong>Имя:</strong> {{ owner.first_name }} {{ owner.last_name }}</p>
+    <p><strong>Дата рождения:</strong> {{ owner.birth_date }}</p>
+
+    <h2>Машины:</h2>
+    <ul>
+        {% for ownership in cars %}
+            <li>{{ ownership.car.brand }} {{ ownership.car.model }} (Государственный номер: {{ ownership.car.license_plate }})</li>
+        {% empty %}
+            <li>Машины данного владельца не найдены.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Водительские права:</h2>
+    <ul>
+        {% for license in licenses %}
+            <li>{{ license.license_number }} - Тип: {{ license.license_type }} (Дата выдачи: {{ license.issue_date }})</li>
+        {% empty %}
+            <li>Водительские права данного владельца не найдены.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
