@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ conference }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 60%;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        .link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .link:hover {
+            background-color: #0056b3;
+        }
+        .details p {
+            background: #eef;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+        }
+        .comments {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .comment {
+            background: #dff0d8;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .form-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="link" href="/">Main</a>
+        <a class="link" href="/conferences/">Conferences</a>
+        <br/>
+        {% if user.is_active %}
+            <a class="link" href="{% url 'account_logout' %}">Sign Out</a>
+        {% else %}
+            <a class="link" href="{% url 'account_login' %}">Sign In</a>
+        {% endif %}
+
+        <h2>Conference Info</h2>
+        <h3>{{ conference }}</h3>
+        <div class="details">
+            <p><b>Topic:</b> {{ conference.topic }}</p>
+            <p><b>Speaker:</b> {{ conference.written_by }}</p>
+            <p><b>Location:</b> {{ conference.location }}</p>
+            <p><b>Start Date:</b> {{ conference.start_date }}</p>
+            <p><b>End Date:</b> {{ conference.end_date }}</p>
+            <p><b>Description:</b> {{ conference.description }}</p>
+            <p><b>Location Details:</b> {{ conference.location_description }}</p>
+            <p><b>Terms of Participation:</b> {{ conference.terms }}</p>
+        </div>
+
+        <h2>Comments</h2>
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="comment">
+                    <p>{{ comment.text }}</p>
+                    <p><small><b>Author: {{ comment.author }}</b></small></p>
+                    <p><small><b>Rating: {{ comment.rating }}</b></small></p>
+                    <p><small><b>Conference Dates: {{ conference.start_date }} - {{ conference.end_date }}</b></small></p>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="form-container">
+            <h2>Add Comment</h2>
+            <form action="/conferences/{{conference.id}}/" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="link" type="submit" value="Add Comment"/>
+            </form>
+        </div>
+        {% else %}
+        <p>Sign in to add a comment: <a class="link" href="{% url 'account_login' %}">Sign In</a></p>
+        {% endif %}
+    </div>
+</body>
+</html>
