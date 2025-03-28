@@ -134,9 +134,30 @@ class CrewSerializer(serializers.ModelSerializer):
         return crew
 
 class FlightSerializer(serializers.ModelSerializer):
-    crew = CrewSerializer(read_only=True)
-    airplane = AirplaneSerializer(read_only=True)
-    route = RouteSerializer(read_only=True)
+    airplane = AirplaneSerializer()
+    crew = CrewSerializer()
+    route = RouteSerializer()
+    
     class Meta:
         model = Flight
-        fields = '__all__'
+        fields = ['id', 'airplane', 'crew', 'route', 'sold_tickets', 'flight_number', 'flight_status']
+
+    def create(self, validated_data):
+        # Extract the full objects from validated_data
+        airplane_data = validated_data.pop('airplane')
+        crew_data = validated_data.pop('crew')
+        route_data = validated_data.pop('route')
+        airplane = Airplane.objects.get(id=self.context['request'].data['airplane']['id'])
+        crew = Crew.objects.get(id=self.context['request'].data['crew']['id'])
+        route = Route.objects.get(id=self.context['request'].data['route']['id'])
+        # Create flight with direct references to existing objects
+        flight = Flight.objects.create(
+            airplane=airplane,        
+            crew=crew,
+            route=route,
+            **validated_data
+        )
+        
+        return flight
+
+

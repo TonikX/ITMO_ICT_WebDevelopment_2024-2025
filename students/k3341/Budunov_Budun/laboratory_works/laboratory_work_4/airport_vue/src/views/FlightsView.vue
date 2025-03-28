@@ -48,16 +48,13 @@
       <v-col v-for="flight in paginatedFlights" :key="flight.id" cols="12" md="6">
         <v-card class="flight-card" @click="goToFlightDetail(flight.id)">
           <v-card-title>
-            {{ flight.route.name }} ({{ flight.flight_number }})
+            Flight #{{ flight.flight_number }}
           </v-card-title>
           <v-card-text>
-            <p>Departure: {{ flight.route.departure_time }} - {{ flight.route.departure_airport.name }}</p>
-            <p>Arrival: {{ flight.route.arrival_time }} - {{ flight.route.arrival_airport.name }}</p>
-            <p>Crew:
-              <span v-for="(member, index) in flight.crew.members" :key="index">
-                {{ member.employee.full_name }} ({{member.employee.role}}){{ index < flight.crew.members.length - 1 ? ', ' : ''}}
-              </span>
-            </p>
+            <p><strong>Status:</strong> {{ flight.flight_status }}</p>
+            <p><strong>Route:</strong> {{ flight.route?.name || 'N/A' }}</p>
+            <p><strong>Airplane:</strong> {{ flight.airplane?.serial_number || 'N/A' }}</p>
+            <p><strong>Sold Tickets:</strong> {{ flight.sold_tickets }}</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -100,43 +97,37 @@ export default {
       itemsPerPage: 10,
       sortOptions: [
         { value: 'no_sort', title: 'No Sort' },
-        { value: 'departure_time', title: 'Departure Time' },
-        { value: 'arrival_time', title: 'Arrival Time' },
-        { value: 'flight_number', title: 'Flight Number' }
+        { value: 'flight_number', title: 'Flight Number' },
+        { value: 'flight_status', title: 'Status' }
       ]
     }
   },
   computed: {
     filteredFlights () {
-      let filtered = this.flights
+      let filtered = [...this.flights]
 
-      if (this.isAdmin !== 'true') {
-        filtered = filtered.filter(flight =>
-          flight.crew.members.some(member =>
-            member.employee.user.id === this.currentUserId
+      if (this.search) {
+        const searchLower = this.search.toLowerCase()
+        filtered = filtered.filter(flight => {
+          return (
+            flight.flight_number?.toLowerCase().includes(searchLower) ||
+            flight.flight_status?.toLowerCase().includes(searchLower) ||
+            flight.route?.name?.toLowerCase().includes(searchLower) ||
+            flight.airplane?.serial_number?.toLowerCase().includes(searchLower)
           )
-        )
+        })
       }
 
-      filtered = filtered.filter(flight => {
-        const searchTerm = this.search.toLowerCase()
-        const departureDate = new Date(flight.route.departure_time.split(', ')[0]).toLocaleDateString('ru-RU')
-        const arrivalDate = new Date(flight.route.arrival_time.split(', ')[0]).toLocaleDateString('ru-RU')
-
-        return flight.route.name.toLowerCase().includes(searchTerm) ||
-          flight.flight_number.toLowerCase().includes(searchTerm) ||
-          flight.route.departure_airport.name.toLowerCase().includes(searchTerm) ||
-          flight.route.arrival_airport.name.toLowerCase().includes(searchTerm) ||
-          departureDate.includes(searchTerm) ||
-          arrivalDate.includes(searchTerm)
-      })
-
       if (this.filterAirline) {
-        filtered = filtered.filter(flight => flight.route.airline.id === this.filterAirline)
+        filtered = filtered.filter(flight => flight.route?.airline?.id === this.filterAirline)
       }
 
       if (this.sortBy !== 'no_sort') {
-        filtered = this.sortFlights(filtered)
+        filtered.sort((a, b) => {
+          const aValue = a[this.sortBy] || ''
+          const bValue = b[this.sortBy] || ''
+          return aValue.localeCompare(bValue)
+        })
       }
 
       return filtered
@@ -155,16 +146,12 @@ export default {
       this.loading = true
       try {
         const tokens = JSON.parse(localStorage.getItem('tokens'))
-        const response = await axios.get('/api/flight/', {
+        const response = await axios.get('http://127.0.0.1:8000/api/flight/', {
           headers: {
             Authorization: `Bearer ${tokens.access}`
           }
         })
         this.flights = response.data
-        this.flights.forEach(flight => {
-          flight.route.departure_time = new Date(flight.route.departure_time).toLocaleString('ru-RU')
-          flight.route.arrival_time = new Date(flight.route.arrival_time).toLocaleString('ru-RU')
-        })
       } catch (error) {
         console.error('Error fetching flights:', error)
       } finally {
@@ -174,7 +161,7 @@ export default {
     async fetchAirlines () {
       try {
         const tokens = JSON.parse(localStorage.getItem('tokens'))
-        const response = await axios.get('/api/airline/', {
+        const response = await axios.get('http://127.0.0.1:8000/api/airline/', {
           headers: {
             Authorization: `Bearer ${tokens.access}`
           }
@@ -184,29 +171,6 @@ export default {
         console.error('Error fetching airlines:', error)
       }
     },
-    async getCurrentUserId () {
-      try {
-        const tokens = JSON.parse(localStorage.getItem('tokens'))
-        const response = await axios.get('/api/auth/users/me/', {
-          headers: {
-            Authorization: `Bearer ${tokens.access}`
-          }
-        })
-        this.currentUserId = response.data.id
-      } catch (error) {
-        console.error('Error fetching current user:', error)
-      }
-    },
-    sortFlights (flights) {
-      return flights.slice().sort((a, b) => {
-        if (this.sortBy === 'flight_number') {
-          return a.flight_number.localeCompare(b.flight_number)
-        }
-        const aTime = new Date(a.route[this.sortBy])
-        const bTime = new Date(b.route[this.sortBy])
-        return aTime - bTime
-      })
-    },
     goToFlightDetail (id) {
       this.$router.push(`/flights/${id}`)
     },
@@ -215,8 +179,10 @@ export default {
     }
   },
   async mounted () {
-    await this.getCurrentUserId()
-    await Promise.all([this.fetchFlights(), this.fetchAirlines()])
+    await Promise.all([
+      this.fetchFlights(),
+      this.fetchAirlines()
+    ])
   },
   watch: {
     search () {

@@ -1,83 +1,81 @@
 <template>
-    <v-dialog v-model="dialog" max-width="700px">
-      <v-card>
-        <v-card-title class="text-h5">Add New Flight</v-card-title>
-        <v-card-text>
-          <v-form ref="form" @submit.prevent="submit">
-            <v-select
-              v-model="flight.airplane"
-              :items="airplanes"
-              item-title="serial_number"
-              item-value="id"
-              label="Airplane"
-              required
-              outlined
-              dense
-              :rules="airplaneRules"
-            ></v-select>
+  <v-dialog v-model="dialog" max-width="700px">
+    <v-card>
+      <v-card-title class="text-h5">Add New Flight</v-card-title>
+      <v-card-text>
+        <v-form ref="form" @submit.prevent="submit">
+          <v-select
+            v-model="flight.airplane"
+            :items="airplanes"
+            label="Select Airplane"
+            item-title="display_name"
+            item-value="id"
+            required
+            outlined
+            dense
+            :rules="airplaneRules"
+          ></v-select>
 
-            <v-select
-              v-model="flight.crew"
-              :items="crews"
-              item-title="id"
-              item-value="id"
-              label="Crew"
-              required
-              outlined
-              dense
-              :rules="crewRules"
-            ></v-select>
+          <v-select
+            v-model="flight.crew"
+            :items="crews"
+            label="Select Crew"
+            item-title="display_name"
+            item-value="id"
+            required
+            outlined
+            dense
+            :rules="crewRules"
+          ></v-select>
 
-            <v-select
-              v-model="flight.route"
-              :items="routes"
-              item-title="name"
-              item-value="id"
-              label="Route"
-              required
-              outlined
-              dense
-               :rules="routeRules"
-            ></v-select>
+          <v-select
+            v-model="flight.route"
+            :items="routes"
+            label="Select Route"
+            item-title="display_name"
+            item-value="id"
+            required
+            outlined
+            dense
+            :rules="routeRules"
+          ></v-select>
 
-            <v-text-field
-              v-model="flight.sold_tickets"
-              label="Sold Tickets"
-              type="number"
-              required
-              outlined
-              dense
-              :rules="soldTicketsRules"
-            ></v-text-field>
+          <v-text-field
+            v-model="flight.sold_tickets"
+            label="Sold Tickets"
+            type="number"
+            required
+            outlined
+            dense
+            :rules="soldTicketsRules"
+          ></v-text-field>
 
-            <v-text-field
-              v-model="flight.flight_number"
-              label="Flight Number"
-              required
-              outlined
-              dense
-               :rules="flightNumberRules"
-            ></v-text-field>
+          <v-text-field
+            v-model="flight.flight_number"
+            label="Flight Number"
+            required
+            outlined
+            dense
+            :rules="flightNumberRules"
+          ></v-text-field>
 
-            <v-select
-              v-model="flight.flight_status"
-              :items="flightStatuses"
-              label="Flight Status"
-              required
-              outlined
-              dense
-               :rules="flightStatusRules"
-            ></v-select>
+          <v-select
+            v-model="flight.flight_status"
+            :items="flightStatuses"
+            label="Flight Status"
+            required
+            outlined
+            dense
+            :rules="flightStatusRules"
+          ></v-select>
 
-            <v-btn type="submit" color="primary" class="mr-4">
-              Add
-            </v-btn>
-            <v-btn @click="closeDialog">Cancel</v-btn>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
-  </template>
+          <v-btn type="submit" color="primary" class="mr-4">Add</v-btn>
+          <v-btn @click="closeDialog">Cancel</v-btn>
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
+</template>
 
 <script>
 import axios from 'axios'
@@ -119,58 +117,100 @@ export default {
   methods: {
     async fetchAirplanes () {
       try {
-        const response = await axios.get('/api/airplane/')
-        this.airplanes = response.data
+        const tokens = JSON.parse(localStorage.getItem('tokens'))
+        const response = await axios.get('http://127.0.0.1:8000/api/airplane/', {
+          headers: {
+            Authorization: `Bearer ${tokens.access}`
+          }
+        })
+        this.airplanes = response.data.map(airplane => ({
+          ...airplane,
+          display_name: `#${airplane.id} - ${airplane.serial_number} (${airplane.airplane_model.name})`
+        }))
       } catch (error) {
         console.error('Error fetching airplanes:', error)
       }
     },
     async fetchCrews () {
       try {
-        const response = await axios.get('/api/crew/')
-        this.crews = response.data
+        const tokens = JSON.parse(localStorage.getItem('tokens'))
+        const response = await axios.get('http://127.0.0.1:8000/api/crew/', {
+          headers: {
+            Authorization: `Bearer ${tokens.access}`
+          }
+        })
+        this.crews = response.data.map(crew => ({
+          ...crew,
+          display_name: `#${crew.id} - ${crew.is_approved ? 'Approved' : 'Not Approved'}`
+        }))
       } catch (error) {
         console.error('Error fetching crews:', error)
       }
     },
     async fetchRoutes () {
       try {
-        const response = await axios.get('/api/route/')
-        this.routes = response.data
+        const tokens = JSON.parse(localStorage.getItem('tokens'))
+        const response = await axios.get('http://127.0.0.1:8000/api/route/', {
+          headers: {
+            Authorization: `Bearer ${tokens.access}`
+          }
+        })
+        this.routes = response.data.map(route => ({
+          ...route,
+          display_name: `#${route.id} - ${route.name} (${route.departure_airport.code} → ${route.arrival_airport.code})`
+        }))
       } catch (error) {
         console.error('Error fetching routes:', error)
       }
     },
     openDialog () {
       this.dialog = true
-      Promise.all([
-        this.fetchAirplanes(),
-        this.fetchCrews(),
-        this.fetchRoutes()
-      ])
+      this.fetchAirplanes()
+      this.fetchCrews()
+      this.fetchRoutes()
     },
     closeDialog () {
       this.dialog = false
       this.resetForm()
     },
     resetForm () {
-      this.flight.airplane = null
-      this.flight.crew = null
-      this.flight.route = null
-      this.flight.sold_tickets = null
-      this.flight.flight_number = ''
-      this.flight.flight_status = ''
+      this.flight = {
+        airplane: null,
+        crew: null,
+        route: null,
+        sold_tickets: null,
+        flight_number: '',
+        flight_status: ''
+      }
     },
     async submit () {
       if (this.$refs.form.validate()) {
         try {
-          await axios.post('/api/flight/', this.flight)
+          const tokens = JSON.parse(localStorage.getItem('tokens'))
+          const selectedAirplane = this.airplanes.find(a => a.id === this.flight.airplane)
+          const selectedCrew = this.crews.find(c => c.id === this.flight.crew)
+          const selectedRoute = this.routes.find(r => r.id === this.flight.route)
+
+          const flightData = {
+            airplane: selectedAirplane,
+            crew: selectedCrew,
+            route: selectedRoute,
+            sold_tickets: parseInt(this.flight.sold_tickets),
+            flight_number: this.flight.flight_number,
+            flight_status: this.flight.flight_status
+          }
+
+          await axios.post('http://127.0.0.1:8000/api/flight/', flightData, {
+            headers: {
+              Authorization: `Bearer ${tokens.access}`,
+              'Content-Type': 'application/json'
+            }
+          })
           this.closeDialog()
           this.$emit('flight-added')
-          alert('Flight added successfully!')
         } catch (error) {
           console.error('Error adding flight:', error)
-          alert('Error adding flight.')
+          alert('Error adding flight')
         }
       }
     }
