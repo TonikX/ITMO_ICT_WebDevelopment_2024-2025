@@ -1,6 +1,6 @@
 # Отчет по практической работе №1
 
-## Структура проекта
+## Пункт 1
 
 Проект состоит из трех основных файлов:
 
@@ -128,4 +128,37 @@ def get_users():
 - `DELETE /tasks/{task_id}` - удаление задачи
 - `GET /users/{user_id}/tasks/` - получение списка задач пользователя по его ID
 
-Ссылка на коммит с кодом: 
+Ссылка на коммит с кодом: [.../practical_works/sem2_practice_1](https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025/commit/2ad06b829a74a8fb4b920a780d9e8cefa36dc02e)
+
+## Пункт 2
+
+Подключение к БД:
+
+```python
+from sqlmodel import SQLModel, create_engine, Session
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+db_url = os.getenv('DATABASE_URL')
+engine = create_engine(db_url, echo=True)  # echo=True для логирования SQL-запросов
+
+# Функция для создания таблиц
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
+
+# Функция для получения сессии
+def get_session():
+    with Session(engine) as session:
+        yield session
+```
+
+Создание моделей: 
+
+Итоговые модели можно посмотреть в файле [models.py](https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025/blob/sem2_lw-1/students/k3341/Budunov_Budun/laboratory_works/sem2_laboratory_work_1/models.py) лабораторной работы №1.
+
+Запросы тоже можно посмотреть в файле [main.py](https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025/blob/sem2_lw-1/students/k3341/Budunov_Budun/laboratory_works/sem2_laboratory_work_1/main.py). В них создаем сессии, работаем с данными и указываем схемы для валидации.
+
+## Пункт 3
+
+Читайте пункт `Переменные окружения` в отчете к лабораторной работе №1.
