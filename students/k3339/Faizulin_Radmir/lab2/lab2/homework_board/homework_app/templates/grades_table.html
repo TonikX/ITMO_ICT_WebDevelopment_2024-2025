@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Оценки{% endblock %}
+
+{% block content %}
+    <h2>Таблица оценок</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Выберите предмет:</label>
+        <select name="subject" onchange="this.form.submit()">
+    {% for subject in subjects %}
+        <option value="{{ subject.id }}" {% if subject.id == selected_subject.id %}selected{% endif %}>
+            {{ subject.name }}
+        </option>
+    {% endfor %}
+</select>
+    </form>
+    
+    <table border="1">
+        <tr>
+            <th>Студент</th>
+            <th>Задание</th>
+            <th>Оценка</th>
+        </tr>
+        {% for submission in submissions %}
+        <tr>
+            <td>{{ submission.student }}</td>
+            <td>{{ submission.homework.description }}</td>
+            <td>{{ submission.grade|default:"Не оценено" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

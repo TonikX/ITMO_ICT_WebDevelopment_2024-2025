@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Отправка домашнего задания{% endblock %}
+
+{% block content %}
+    <h2>Отправка домашнего задания</h2>
+    <p><strong>Предмет:</strong> {{ homework.subject.name }}</p>
+    <p><strong>Описание:</strong> {{ homework.description }}</p>
+
+    {% if has_submitted %}
+        <p style="color: green;">Вы уже отправили это задание.</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="text_submission" rows="5" required></textarea><br>
+            <button type="submit">Отправить</button>
+        </form>
+    {% endif %}
+{% endblock %}

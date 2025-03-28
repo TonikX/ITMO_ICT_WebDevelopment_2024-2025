@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мой сайт{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        nav {
+            background: #f4f4f4;
+            padding: 10px;
+        }
+
+        nav a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{% url 'homework_list' %}">Домашние задания</a>
+    <a href="{% url 'grades_table' %}">Оценки</a>
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post" style="display: inline">
+        {%csrf_token%}
+        <button type="submit">Выйти</button>
+    </form>
+    {%else%}
+    <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+</nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

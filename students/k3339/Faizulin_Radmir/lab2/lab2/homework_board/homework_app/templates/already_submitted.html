@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}Уже отправлено{% endblock %}
+
+{% block content %}
+    <h2>Вы уже отправили это задание</h2>
+    <a href="{% url 'homework_list' %}">Вернуться к списку заданий</a>
+{% endblock %}

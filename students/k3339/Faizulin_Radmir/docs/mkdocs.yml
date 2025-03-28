@@ -1,0 +1,10 @@
+site_name: Faizulin's Apps
+nav:
+  - Home: index.md
+  - Page1: Lab1.md
+  - Page2: Lab2.md
+  - Page3: Lab3.md
+  - Page4: Lab4.md
+  - Page5: MyLeetcodes.md
+theme:
+  name: material

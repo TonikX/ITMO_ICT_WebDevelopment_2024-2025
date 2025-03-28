@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Домашние задания{% endblock %}
+
+{% block content %}
+    <h2>Домашние задания</h2>
+    <form method="get">
+        <label>Выберите предмет:</label>
+        <select name="selected_subject" onchange="this.form.submit()">
+    <option value="">Все</option>
+    {% for subject in subjects %}
+        <option value="{{ subject.name }}" {% if subject.name == selected_subject %}selected{% endif %}>
+            {{ subject.name }}
+        </option>
+    {% endfor %}
+</select>
+    </form>
+    <ul>
+    {% for homework in homeworks %}
+        <li>
+            <a href="{% url 'submit_homework' homework.id %}">{{ homework.description }}</a>
+            (Дедлайн: {{ homework.deadline }})
+        </li>
+    {% empty %}
+        <li>Нет домашних заданий для выбранного предмета.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
