@@ -1,7 +1,8 @@
 from contextlib import asynccontextmanager
 from datetime import timedelta, datetime
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, Query
 from typing import List, Optional
+import requests
 from sqlmodel import Session, select
 from database import create_db_and_tables, get_session
 from models import Task, User, Category, Tag, TaskTag, Schedule, ScheduleTask
@@ -16,6 +17,7 @@ from security import (
 )
 import schemas
 from functions import load_task_with_tags
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -33,6 +35,19 @@ app = FastAPI(
 @app.get("/", tags=["Root"])
 def root():
     return {"message": "Welcome to Task Manager API"}
+
+@app.get("/parse")
+async def parse_url(url: str, mode: str = "async"):
+    if mode not in ["async", "threading", "multiprocessing"]:
+        raise HTTPException(status_code=400, detail="Invalid mode. Use 'async', 'threading', or 'multiprocessing'")
+    
+    try:
+        parser_url = f"http://parser:8001/parse/{mode}?url={url}"
+        response = requests.get(parser_url)
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as e:
+        raise HTTPException(status_code=500, detail=f"Error calling parser service: {str(e)}")
 
 # Эндпоинт для авторизации и получения токена
 @app.post("/token", response_model=schemas.Token, tags=["Authentication"])
@@ -261,6 +276,68 @@ def get_tag(
     if not tag:
         raise HTTPException(status_code=404, detail="Tag not found")
     return tag
+
+@app.delete("/tags/range/", tags=["Tags"])
+def delete_tags_by_id_range(
+    min_id: int = Query(..., description="Минимальное значение ID для удаления"),
+    max_id: int = Query(..., description="Максимальное значение ID для удаления"),
+    current_user: User = Depends(get_current_admin),  # Только для администраторов
+    session: Session = Depends(get_session)
+):
+    """
+    Удаляет теги, ID которых находятся в заданном диапазоне.
+    
+    Args:
+        min_id: Минимальное значение ID для удаления (включительно)
+        max_id: Максимальное значение ID для удаления (включительно)
+        
+    Returns:
+        Информацию о количестве удаленных тегов
+    """
+    # Проверка корректности диапазона
+    if min_id > max_id:
+        raise HTTPException(status_code=400, detail="min_id должен быть меньше или равен max_id")
+    
+    # Находим все теги в заданном диапазоне
+    tags_to_delete = session.exec(
+        select(Tag).where(Tag.id >= min_id, Tag.id <= max_id)
+    ).all()
+    
+    # Если теги не найдены, возвращаем соответствующее сообщение
+    if not tags_to_delete:
+        return {"message": "Теги в указанном диапазоне не найдены", "deleted_count": 0}
+    
+    # Получаем список ID тегов для информационных целей
+    deleted_tag_ids = [tag.id for tag in tags_to_delete]
+    deleted_tag_names = [tag.name for tag in tags_to_delete]
+    
+    # Удаляем связи тегов с задачами
+    for tag in tags_to_delete:
+        # Находим все связи TaskTag для данного тега
+        task_tags = session.exec(
+            select(TaskTag).where(TaskTag.tag_id == tag.id)
+        ).all()
+        
+        # Удаляем найденные связи
+        for task_tag in task_tags:
+            session.delete(task_tag)
+    
+    # Удаляем теги
+    delete_count = 0
+    for tag in tags_to_delete:
+        session.delete(tag)
+        delete_count += 1
+    
+    # Сохраняем изменения
+    session.commit()
+    
+    # Возвращаем информацию об удаленных тегах
+    return {
+        "message": f"Успешно удалено {delete_count} тегов",
+        "deleted_count": delete_count,
+        "deleted_tag_ids": deleted_tag_ids,
+        "deleted_tag_names": deleted_tag_names
+    }
 
 # Task endpoints
 @app.post("/tasks/", response_model=schemas.TaskRead, status_code=status.HTTP_201_CREATED, tags=["Tasks"])
@@ -708,5 +785,3 @@ def get_user_schedules(
     schedules = session.exec(query.offset(skip).limit(limit)).all()
     
     return schedules
-
-

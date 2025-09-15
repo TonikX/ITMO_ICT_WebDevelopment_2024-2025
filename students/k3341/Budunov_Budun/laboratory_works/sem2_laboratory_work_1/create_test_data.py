@@ -20,7 +20,7 @@ def create_test_data():
         
         # Создаем пользователей
         new_admin_user = User(
-            username="new_admin",
+            username="new_admin", # new_admin_updated
             hashed_password=get_password_hash("new_adminpass"),
             is_active=True,
             is_admin=True

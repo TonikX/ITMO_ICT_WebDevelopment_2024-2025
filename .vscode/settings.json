@@ -1,0 +1,7 @@
+{
+    "cody.autocomplete.advanced.provider": "experimental-ollama",
+    "python.analysis.extraPaths": [
+        "./students/k3341/Budunov_Budun/laboratory_works/sem2_laboratory_work_1/sem2_",
+        "./students/k3341/Budunov_Budun/laboratory_works/sem2_laboratory_work_1/sem2_"
+    ]
+}

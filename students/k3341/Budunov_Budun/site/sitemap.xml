@@ -2,38 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/2_lw1/report_2_1/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/2_lw2/report_2_2/</loc>
+         <lastmod>2025-09-15</lastmod>
+    </url>
+    <url>
+         <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/2_lw3/report_2_3/</loc>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/2_pw1/report/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw1/report_1/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw2/report_2/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw3/report_3/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/lw4/report_4/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/pw3_1/report_3_1/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
     <url>
          <loc>https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/pw3_2/report_3_2/</loc>
-         <lastmod>2025-03-28</lastmod>
+         <lastmod>2025-09-15</lastmod>
     </url>
 </urlset>

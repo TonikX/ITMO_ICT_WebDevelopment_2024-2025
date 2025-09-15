@@ -1,0 +1,1177 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://budun-ov.github.io/ITMO_ICT_WebDevelopment_2024-2025/2_lw2/report_2_2/">
+      
+      
+        <link rel="prev" href="../../2_lw1/report_2_1/">
+      
+      
+        <link rel="next" href="../../2_lw3/report_2_3/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>№2.2 - WEB-programming Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#no2-python" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="WEB-programming Documentation" class="md-header__button md-logo" aria-label="WEB-programming Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            WEB-programming Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              №2.2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../lw1/report_1/" class="md-tabs__link">
+          
+  
+  Лабораторные
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pw3_1/report_3_1/" class="md-tabs__link">
+          
+  
+  Практики
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="WEB-programming Documentation" class="md-nav__button md-logo" aria-label="WEB-programming Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    WEB-programming Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/budun-ov/ITMO_ICT_WebDevelopment_2024-2025" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Лабораторные
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Лабораторные
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lw1/report_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lw2/report_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lw3/report_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lw4/report_4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_lw1/report_2_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №2.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    №2.2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    №2.2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Введение
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание программ и используемых подходов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание программ и используемых подходов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-task_multiprocessingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. task_multiprocessing.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-task_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. task_threading.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-task_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. task_async.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Результаты времени выполнения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Результаты времени выполнения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 1: CPU-bound задача (Суммирование чисел)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-io-bound-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 2: I/O-bound задача (Парсинг URL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Анализ и сравнение результатов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Анализ и сравнение результатов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      I/O-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_lw3/report_2_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №2.3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Практики
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Практики
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pw3_1/report_3_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.3.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pw3_2/report_3_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №1.3.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_pw1/report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    №2.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Введение
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Описание программ и используемых подходов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Описание программ и используемых подходов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-task_multiprocessingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. task_multiprocessing.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-task_threadingpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. task_threading.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-task_asyncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. task_async.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Результаты времени выполнения
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Результаты времени выполнения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 1: CPU-bound задача (Суммирование чисел)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-io-bound-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      Таблица 2: I/O-bound задача (Парсинг URL)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Анализ и сравнение результатов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Анализ и сравнение результатов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpu-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPU-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      I/O-bound задача
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="no2-python">Отчет по лабораторной работе №2: Сравнение подходов параллельного программированию в Python</h1>
+<h2 id="_1">Введение</h2>
+<p>Целью данной лабораторной работы является исследование и сравнение трех различных подходов к организации параллельного выполнения кода в Python: <code>multiprocessing</code>, <code>threading</code> и <code>asyncio</code>.</p>
+<p>Для анализа были реализованы две типовые задачи:
+1.  <strong>CPU-bound задача</strong>: вычисление суммы чисел от 1 до 1,000,000,000. Эта задача интенсивно использует процессор.
+2.  <strong>I/O-bound задача</strong>: парсинг 20 веб-страниц с использованием API. Эта задача большую часть времени ожидает ответа от сети.</p>
+<p>На основе этих задач мы сравним эффективность каждого подхода и проанализируем полученные результаты времени выполнения.</p>
+<h2 id="_2">Описание программ и используемых подходов</h2>
+<h3 id="1-task_multiprocessingpy">1. <code>task_multiprocessing.py</code></h3>
+<p>Данная программа использует модуль <code>multiprocessing</code> для выполнения задач в нескольких процессах.</p>
+<p><strong>Подход и особенности:</strong>
+*   <strong>Принцип работы</strong>: <code>multiprocessing</code> обходит ограничение глобального интерпретатора (GIL) путем создания отдельных процессов, каждый со своим собственным интерпретатором Python и пространством памяти. Это позволяет достичь настоящего параллелизма на многоядерных системах.
+*   <strong>Реализация <code>task_1</code> (CPU-bound)</strong>: Диапазон чисел делится на части, и каждая часть обрабатывается в отдельном процессе с помощью <code>multiprocessing.Pool</code>. Это идеальный сценарий для <code>multiprocessing</code>, так как вычисления могут выполняться параллельно на разных ядрах CPU.
+*   <strong>Реализация <code>task_2</code> (I/O-bound)</strong>: Список URL-адресов делится между несколькими процессами. Каждый процесс последовательно обрабатывает свою часть URL. Хотя это и работает, создание процессов является ресурсоемкой операцией (по памяти и времени), что может делать этот подход менее эффективным для I/O-задач по сравнению с <code>threading</code> или <code>asyncio</code>.</p>
+<p><strong>Ключевые фрагменты кода:</strong></p>
+<p>Для CPU-bound задач используется <code>Pool</code>, который автоматически распределяет работу между процессами и собирает результаты.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_1</span><span class="p">():</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># Создание пула процессов и выполнение задач</span>
+    <span class="k">with</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">num_processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">calculate_sum</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+    <span class="c1"># Суммирование результатов</span>
+    <span class="n">total_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</code></pre></div>
+<p>Для I/O-bound задач процессы создаются и управляются вручную.
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_2</span><span class="p">(</span><span class="n">tag_name</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># Создаем и запускаем процессы</span>
+    <span class="n">processes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_processes</span><span class="p">):</span>
+        <span class="n">process</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">url_chunks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">tag_name</span><span class="p">,))</span>
+        <span class="n">processes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1"># Ожидаем завершения всех процессов</span>
+    <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
+        <span class="n">process</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="c1"># ...</span>
+</code></pre></div></p>
+<h3 id="2-task_threadingpy">2. <code>task_threading.py</code></h3>
+<p>Программа использует модуль <code>threading</code> для выполнения задач в нескольких потоках в рамках одного процесса.</p>
+<p><strong>Подход и особенности:</strong>
+*   <strong>Принцип работы</strong>: Потоки выполняются в одном процессе и разделяют общее пространство памяти. В CPython из-за наличия GIL (Global Interpreter Lock) только один поток может исполнять Python-байт-код в один момент времени. Однако GIL освобождается во время операций ввода-вывода (I/O), что позволяет другим потокам выполняться, пока один из них ждет ответа от сети или диска.
+*   <strong>Реализация <code>task_1</code> (CPU-bound)</strong>: Задача по суммированию чисел выполняется в нескольких потоках. Из-за GIL потоки не могут выполняться параллельно на разных ядрах. Более того, накладные расходы на переключение контекста между потоками делают итоговое время выполнения даже больше, чем у однопоточной версии.
+*   <strong>Реализация <code>task_2</code> (I/O-bound)</strong>: Каждый поток обрабатывает свою часть URL. Пока один поток ждет ответа от сервера (операция I/O), GIL освобождается, и другой поток может отправить свой запрос. Это обеспечивает эффективное конкурентное выполнение и значительно ускоряет общую обработку.</p>
+<p><strong>Ключевые фрагменты кода:</strong></p>
+<p>Для CPU-bound задач потоки создаются вручную, а результаты суммируются в основном потоке.
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">task_1</span><span class="p">():</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># Создание и запуск потоков</span>
+    <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_threads</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">chunk_size</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">chunk_size</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_threads</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1_000_000_000</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">calculate_sum</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">results</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+        <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="c1"># Ожидание завершения всех потоков</span>
+    <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+    <span class="c1"># Суммирование результатов</span>
+    <span class="n">total_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="c1"># ...</span>
+</code></pre></div></p>
+<h3 id="3-task_asyncpy">3. <code>task_async.py</code></h3>
+<p>Программа использует библиотеку <code>asyncio</code> для асинхронного выполнения кода на основе событийного цикла (event loop).</p>
+<p><strong>Подход и особенности:</strong>
+*   <strong>Принцип работы</strong>: <code>asyncio</code> использует кооперативную многозадачность. Задачи (<code>tasks</code>) явно передают управление обратно в событийный цикл, когда встречают операцию ожидания (например, <code>await</code>). Это происходит в рамках одного потока, что исключает накладные расходы на переключение контекста на уровне ОС и делает <code>asyncio</code> очень эффективным для задач с большим количеством операций ввода-вывода.
+*   <strong>Реализация <code>task_1</code> (CPU-bound)</strong>: Синхронная, блокирующая функция <code>calculate_sum</code> не может быть просто вызвана с <code>await</code>. Чтобы не блокировать весь событийный цикл, она запускается в отдельном пуле потоков с помощью <code>loop.run_in_executor</code>. По сути, это гибрид асинхронного подхода с многопоточностью, и он также упирается в GIL, показывая схожую с <code>threading</code> производительность.
+*   <strong>Реализация <code>task_2</code> (I/O-bound)</strong>: Для обработки блокирующих сетевых запросов также используется <code>run_in_executor</code>. Это позволяет асинхронной программе эффективно обрабатывать множество запросов одновременно. <code>asyncio.gather</code> запускает все задачи конкурентно и ждет их завершения. Этот подход имеет минимальные накладные расходы и является наиболее предпочтительным для I/O-bound задач.</p>
+<p><strong>Ключевые фрагменты кода:</strong></p>
+<p>Для обеих задач используется loop.run_in_executor для запуска синхронного (блокирующего) кода в отдельном потоке, чтобы не останавливать событийный цикл. asyncio.gather используется для конкурентного выполнения всех созданных задач.
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">run_calculate_sum</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Запускает синхронную функцию calculate_sum в отдельном потоке&quot;&quot;&quot;</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">calculate_sum</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">task_1</span><span class="p">():</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># Создание задач</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_tasks</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">chunk_size</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">chunk_size</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_tasks</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1_000_000_000</span>
+        <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run_calculate_sum</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+
+    <span class="c1"># Запуск задач и ожидание результатов</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</code></pre></div></p>
+<p>Аналогичный подход применяется для I/O-bound задачи.
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">task_2</span><span class="p">(</span><span class="n">tag_name</span><span class="p">):</span>
+    <span class="c1"># ...</span>
+    <span class="c1"># Создаем список задач для асинхронного выполнения</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+        <span class="c1"># Используем run_in_executor для запуска синхронной функции parse_and_save</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">run_in_executor</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">))</span>
+        <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+    <span class="c1"># Ожидаем завершения всех задач</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="c1"># ...</span>
+</code></pre></div></p>
+<h2 id="_3">Результаты времени выполнения</h2>
+<h3 id="1-cpu-bound">Таблица 1: CPU-bound задача (Суммирование чисел)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Подход</th>
+<th style="text-align: center;">Время выполнения (сек.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Multiprocessing</strong></td>
+<td style="text-align: center;"><strong>2.97</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Asyncio</td>
+<td style="text-align: center;">15.54</td>
+</tr>
+<tr>
+<td style="text-align: left;">Threading</td>
+<td style="text-align: center;">16.11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-io-bound-url">Таблица 2: I/O-bound задача (Парсинг URL)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Подход</th>
+<th style="text-align: center;">Время выполнения (сек.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Asyncio</strong></td>
+<td style="text-align: center;"><strong>3.70</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Threading</td>
+<td style="text-align: center;">6.67</td>
+</tr>
+<tr>
+<td style="text-align: left;">Multiprocessing</td>
+<td style="text-align: center;">7.63</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">Анализ и сравнение результатов</h2>
+<h3 id="cpu-bound">CPU-bound задача</h3>
+<p>Как и ожидалось, <strong><code>multiprocessing</code> показал наилучший результат (2.97 с)</strong>. Это единственный из трех подходов, который обеспечивает истинный параллелизм, распределяя вычисления по всем доступным ядрам процессора и обходя ограничение GIL.</p>
+<p>Подходы <code>threading</code> (16.11 с) и <code>asyncio</code> (15.54 с) оказались значительно медленнее. В обоих случаях из-за GIL вычисления не могут выполняться параллельно. Более того, накладные расходы на создание потоков и переключение контекста между ними приводят к тому, что производительность оказывается хуже, чем была бы у простого последовательного выполнения в одном потоке. Схожее время у <code>threading</code> и <code>asyncio</code> объясняется тем, что в реализации <code>asyncio</code> для этой задачи использовался <code>ThreadPoolExecutor</code>, который по своей сути является многопоточным исполнителем.</p>
+<p><strong>Вывод</strong>: для задач, интенсивно использующих CPU, <code>multiprocessing</code> является безальтернативным выбором для достижения максимальной производительности в Python.</p>
+<h3 id="io-bound">I/O-bound задача</h3>
+<p>В задаче, где основное время уходит на ожидание сетевого ответа, все три подхода показали значительное ускорение по сравнению с гипотетическим последовательным выполнением.</p>
+<ol>
+<li>
+<p><strong><code>asyncio</code> (3.70 с)</strong> оказался самым быстрым. Это объясняется его архитектурой: событийный цикл и кооперативная многозадачность позволяют переключаться между задачами с минимальными накладными расходами, не прибегая к созданию тяжеловесных потоков или процессов. Это идеальный инструмент для управления тысячами одновременных I/O-операций.</p>
+</li>
+<li>
+<p><strong><code>threading</code> (6.67 с)</strong> занял второе место. Он также очень эффективен для I/O-задач, так как GIL освобождается во время ожидания, позволяя другим потокам работать. Однако создание и управление потоками на уровне операционной системы вносят больше накладных расходов, чем управление задачами в <code>asyncio</code>.</p>
+</li>
+<li>
+<p><strong><code>multiprocessing</code> (7.63 с)</strong> оказался самым медленным из трех. Хотя он и позволяет выполнять запросы конкурентно, издержки на создание и межпроцессное взаимодействие (IPC) слишком высоки для такого типа задач. Этот подход избыточен, когда основной барьер — ожидание, а не вычисления.</p>
+</li>
+</ol>
+<p><strong>Вывод</strong>: для задач, связанных с вводом-выводом, <code>asyncio</code> является наиболее эффективным подходом, за ним следует <code>threading</code>. <code>multiprocessing</code> стоит использовать только в том случае, если обработка полученных данных сама по себе является CPU-bound задачей.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
