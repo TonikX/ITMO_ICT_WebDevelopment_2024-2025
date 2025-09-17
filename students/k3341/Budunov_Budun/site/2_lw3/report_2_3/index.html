@@ -653,6 +653,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#3-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Подзадача 3: Вызов парсера из FastAPI через очередь
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Подзадача 3: Вызов парсера из FastAPI через очередь">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-celery_configpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Код celery_config.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-celery_taskspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Код celery_tasks.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Обновление main.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       Заключение
@@ -937,6 +979,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#3-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Подзадача 3: Вызов парсера из FastAPI через очередь
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Подзадача 3: Вызов парсера из FastAPI через очередь">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-celery_configpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Код celery_config.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-celery_taskspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Код celery_tasks.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Обновление main.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       Заключение
@@ -1136,7 +1220,7 @@ sudo<span class="w"> </span>docker-compose<span class="w"> </span>up<span class=
 </code></pre></div>
 <ul>
 <li><strong>Тестирование endpoint</strong>:
-  <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/parse?url=https://api.openalex.org/works?per-page=50&amp;page=1&amp;mode=async&quot;</span>
+  <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/parse/async?url=https://api.openalex.org/works?per-page=50&amp;page=1&quot;</span>
 </code></pre></div>
   <img alt="alt text" src="../../images/2_lw_3/4.png" /></li>
 </ul>
@@ -1147,10 +1231,65 @@ sudo<span class="w"> </span>docker-compose<span class="w"> </span>up<span class=
 </ul>
 <p><img alt="alt text" src="../../images/2_lw_3/5.png" /></p>
 <hr />
+<h2 id="3-fastapi">Подзадача 3: Вызов парсера из FastAPI через очередь</h2>
+<h3 id="31-celery_configpy">3.1. Код <code>celery_config.py</code></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">celery</span><span class="w"> </span><span class="kn">import</span> <span class="n">Celery</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span>
+    <span class="s1">&#39;task_manager&#39;</span><span class="p">,</span>
+    <span class="n">broker</span><span class="o">=</span><span class="s1">&#39;redis://redis:6379/0&#39;</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;redis://redis:6379/0&#39;</span><span class="p">,</span>
+    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;celery_tasks&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="n">task_serializer</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+    <span class="n">accept_content</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">],</span>
+    <span class="n">result_serializer</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+    <span class="n">timezone</span><span class="o">=</span><span class="s1">&#39;UTC&#39;</span><span class="p">,</span>
+    <span class="n">enable_utc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="32-celery_taskspy">3.2. Код <code>celery_tasks.py</code></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">celery_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">parse_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_and_save</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">task</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_url_task</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">parse_and_save</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="33-mainpy">3.3. Обновление <code>main.py</code></h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/parse/</span><span class="si">{mode}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">parse_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;async&quot;</span><span class="p">,</span> <span class="s2">&quot;threading&quot;</span><span class="p">,</span> <span class="s2">&quot;multiprocessing&quot;</span><span class="p">,</span> <span class="s2">&quot;queue&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Invalid mode. Use &#39;async&#39;, &#39;threading&#39;, &#39;multiprocessing&#39;, or &#39;queue&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;queue&quot;</span><span class="p">:</span> <span class="c1"># добавили это условие</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="n">parse_url_task</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;Task queued for parsing&quot;</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parser_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://parser:8001/parse/</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">?url=</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parser_url</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Error calling parser service: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Также обновили <code>Dockerfile</code> и <code>docker-compose.yml</code> для включения очереди в контейнер</p>
+<ul>
+<li><strong>Тестирование endpoint</strong>:
+  <div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8000/parse/queue?url=https://api.openalex.org/works?per-page=50&amp;page=1&quot;</span>
+</code></pre></div>
+  <img alt="alt text" src="../../images/2_lw_3/6.png" /></li>
+</ul>
+<p><img alt="alt text" src="../../images/2_lw_3/7.png" /></p>
+<hr />
 <h2 id="_3">Заключение</h2>
 <p>В результате выполнения лабораторной работы:
 - Все сервисы (<code>app</code>, <code>parser</code>, <code>db</code>) успешно упакованы в Docker и работают стабильно.
-- Реализован endpoint <code>/parse</code> в <code>main.py</code>, который позволяет клиенту отправлять URL для парсинга и получать результаты от <code>parser</code> сервиса.</p>
+- Реализован endpoint <code>/parse</code> в <code>main.py</code>, который позволяет клиенту отправлять URL для парсинга и получать результаты от <code>parser</code> сервиса.
+- Реализован функционал вызова парсера из FastAPI через очередь в celery</p>
 
 
 

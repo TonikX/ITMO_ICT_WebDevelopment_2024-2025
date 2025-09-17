@@ -193,7 +193,7 @@ async def parse_url(url: str, mode: str = "async"):
 
 - **Тестирование endpoint**:
   ```bash
-  curl "http://localhost:8000/parse?url=https://api.openalex.org/works?per-page=50&page=1&mode=async"
+  curl "http://localhost:8000/parse/async?url=https://api.openalex.org/works?per-page=50&page=1"
   ```
   ![alt text](../images/2_lw_3/4.png)
 
@@ -206,8 +206,79 @@ async def parse_url(url: str, mode: str = "async"):
 
 ---
 
+## Подзадача 3: Вызов парсера из FastAPI через очередь
+
+### 3.1. Код `celery_config.py`
+
+```python
+from celery import Celery
+
+app = Celery(
+    'task_manager',
+    broker='redis://redis:6379/0',
+    backend='redis://redis:6379/0',
+    include=['celery_tasks']
+)
+
+app.conf.update(
+    task_serializer='json',
+    accept_content=['json'],
+    result_serializer='json',
+    timezone='UTC',
+    enable_utc=True,
+)
+```
+
+### 3.2. Код `celery_tasks.py`
+
+```python
+from celery_config import app
+from parse_functions import parse_and_save
+
+@app.task
+def parse_url_task(url: str, tag_name: str):
+    return parse_and_save(url, tag_name)
+```
+
+### 3.3. Обновление `main.py`
+
+```python
+@app.get("/parse/{mode}")
+async def parse_url(url: str, mode: str):
+    if mode not in ["async", "threading", "multiprocessing", "queue"]:
+        raise HTTPException(status_code=400, detail="Invalid mode. Use 'async', 'threading', 'multiprocessing', or 'queue'")
+    
+    try:
+        if mode == "queue": # добавили это условие
+            task = parse_url_task.delay(url, mode)
+            return {"task_id": task.id, "status": "Task queued for parsing"}
+        else:
+            parser_url = f"http://parser:8001/parse/{mode}?url={url}"
+            response = requests.get(parser_url)
+            response.raise_for_status()
+            return response.json()
+    except requests.RequestException as e:
+        raise HTTPException(status_code=500, detail=f"Error calling parser service: {str(e)}")
+```
+
+Также обновили `Dockerfile` и `docker-compose.yml` для включения очереди в контейнер
+
+
+- **Тестирование endpoint**:
+  ```bash
+  curl "http://localhost:8000/parse/queue?url=https://api.openalex.org/works?per-page=50&page=1"
+  ```
+  ![alt text](../images/2_lw_3/6.png)
+
+  ![alt text](../images/2_lw_3/7.png)
+
+---
+
+
+
 ## Заключение
 
 В результате выполнения лабораторной работы:
 - Все сервисы (`app`, `parser`, `db`) успешно упакованы в Docker и работают стабильно.
 - Реализован endpoint `/parse` в `main.py`, который позволяет клиенту отправлять URL для парсинга и получать результаты от `parser` сервиса.
+- Реализован функционал вызова парсера из FastAPI через очередь в celery

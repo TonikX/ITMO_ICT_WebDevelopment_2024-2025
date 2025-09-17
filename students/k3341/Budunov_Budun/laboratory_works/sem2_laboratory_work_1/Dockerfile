@@ -22,6 +22,8 @@ COPY parser_app.py .
 COPY task_async.py .
 COPY task_threading.py .
 COPY task_multiprocessing.py .
+COPY celery_config.py .
+COPY celery_tasks.py .
 
 EXPOSE 8000
 

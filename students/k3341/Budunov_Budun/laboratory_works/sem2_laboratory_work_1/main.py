@@ -17,6 +17,7 @@ from security import (
 )
 import schemas
 from functions import load_task_with_tags
+from celery_tasks import parse_url_task
 
 
 @asynccontextmanager
@@ -36,16 +37,21 @@ app = FastAPI(
 def root():
     return {"message": "Welcome to Task Manager API"}
 
-@app.get("/parse")
-async def parse_url(url: str, mode: str = "async"):
-    if mode not in ["async", "threading", "multiprocessing"]:
-        raise HTTPException(status_code=400, detail="Invalid mode. Use 'async', 'threading', or 'multiprocessing'")
+
+@app.get("/parse/{mode}")
+async def parse_url(url: str, mode: str):
+    if mode not in ["async", "threading", "multiprocessing", "queue"]:
+        raise HTTPException(status_code=400, detail="Invalid mode. Use 'async', 'threading', 'multiprocessing', or 'queue'")
     
     try:
-        parser_url = f"http://parser:8001/parse/{mode}?url={url}"
-        response = requests.get(parser_url)
-        response.raise_for_status()
-        return response.json()
+        if mode == "queue":
+            task = parse_url_task.delay(url, mode)
+            return {"task_id": task.id, "status": "Task queued for parsing"}
+        else:
+            parser_url = f"http://parser:8001/parse/{mode}?url={url}"
+            response = requests.get(parser_url)
+            response.raise_for_status()
+            return response.json()
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Error calling parser service: {str(e)}")
 

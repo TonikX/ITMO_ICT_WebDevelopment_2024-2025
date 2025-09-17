@@ -6,7 +6,7 @@ from task_multiprocessing import task_2 as multiprocessing_parse
 app = FastAPI()
 
 @app.get("/parse/{mode}")
-async def run_parser(mode: str, url: str = "https://api.openalex.org/works?per-page=50&page=1"):
+async def run_parser(mode: str = "async", url: str = "https://api.openalex.org/works?per-page=50&page=1"):
     if mode == "async":
         result = await async_parse(url)
         return {"status": "Async parsing completed", "result": result}

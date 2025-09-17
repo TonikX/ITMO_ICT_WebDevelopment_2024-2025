@@ -98,3 +98,4 @@ watchdog==6.0.0
 watchfiles==1.0.4
 websockets==15.0
 yarl==1.20.0
+celery[redis]

@@ -77,6 +77,6 @@ async def task_2(url: str, tag_name: str = "async"):
     print(f"Async: Время выполнения для {url}: {end_time - start_time:.2f} секунд")
     return result
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # asyncio.run(task_1()) # 15.54 secs
-    asyncio.run(task_2("task_asnc")) # 3.7 секунд
+    # asyncio.run(task_2("task_asnc")) # 3.7 секунд
