@@ -1,0 +1,7 @@
+site_name: WEB-программирование
+nav:
+
+ - Home: index.md
+
+ theme:
+  name: material
