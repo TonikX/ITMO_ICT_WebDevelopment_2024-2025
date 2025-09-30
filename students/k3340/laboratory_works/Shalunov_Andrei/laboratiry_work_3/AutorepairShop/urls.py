@@ -4,7 +4,6 @@ from .views import *
 
 
 router = DefaultRouter()
-router.register(r'users', UserViewSet)
 router.register(r'clients', ClientViewSet)
 router.register(r'employees', EmployeeViewSet)
 router.register(r'workshops', CarWorkshopViewSet)
@@ -21,4 +20,6 @@ router.register(r'detail-in-service', DetailInServiceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
 ]

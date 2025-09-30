@@ -15,19 +15,11 @@ from .models import (
     DistributionOfWork, DetailInService,
 )
 from .serializers import (
-    UserSerializer, ClientSerializer, EmployeeSerializer, CarWorkshopSerializer,
+    ClientSerializer, EmployeeSerializer, CarWorkshopSerializer,
     JobPositionSerializer, AutomobileSerializer, ModelSerializer, ContractSerializer,
     ServiceSerializer, DetailSerializer, CarDetailSerializer, DetailsFromClientSerializer,
     DistributionOfWorkSerializer, DetailInServiceSerializer,
 )
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['username', 'email']
 
 
 class ClientViewSet(viewsets.ModelViewSet):
@@ -321,6 +313,7 @@ class DetailsFromClientViewSet(viewsets.ModelViewSet):
 class DistributionOfWorkViewSet(viewsets.ModelViewSet):
     queryset = DistributionOfWork.objects.all()
     serializer_class = DistributionOfWorkSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class DetailInServiceViewSet(viewsets.ModelViewSet):

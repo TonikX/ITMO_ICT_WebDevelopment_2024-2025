@@ -82,7 +82,7 @@ class ContractSerializer(serializers.ModelSerializer):
     )
     employee = EmployeeSerializer(read_only=True)  # Поле для чтения данных о сотруднике
     employee_id = serializers.PrimaryKeyRelatedField(
-        queryset=Employee.objects.all(), source='employee', write_only=True
+        queryset=Employee.objects.all(), source='employee', write_only=True, allow_null=True, required=False
     )
 
     class Meta:
@@ -144,7 +144,7 @@ class DetailsFromClientSerializer(serializers.ModelSerializer):
     )
     distribution = DistributionOfWorkSerializer(read_only=True)
     distribution_id = serializers.PrimaryKeyRelatedField(
-        queryset=DistributionOfWork.objects.all(), source='distribution', write_only=True, allow_null=True
+        queryset=DistributionOfWork.objects.all(), source='distribution', write_only=True, allow_null=True, required=False
     )
 
     class Meta:

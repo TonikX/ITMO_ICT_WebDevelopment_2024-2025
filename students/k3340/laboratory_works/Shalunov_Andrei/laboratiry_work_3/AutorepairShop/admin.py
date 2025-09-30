@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    User, Client, Employee, CarWorkshop,
+    Client, Employee, CarWorkshop,
     JobPosition, Automobile, Model, Contract,
     Service, Detail, CarDetail, DetailsFromClient,
     DistributionOfWork, DetailInService,

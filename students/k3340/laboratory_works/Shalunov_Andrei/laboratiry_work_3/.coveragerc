@@ -1,0 +1,16 @@
+[run]
+branch = True
+source = AutorepairShop
+omit =
+    */migrations/*
+    */tests/*
+    */manage.py
+    */apps.py
+    */admin.py
+    */__init__.py
+    */urls.py
+
+[report]
+show_missing = True
+skip_covered = True
+fail_under = 75
