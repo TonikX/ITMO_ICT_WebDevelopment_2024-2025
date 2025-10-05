@@ -1,5 +1,6 @@
 site_name: Лабы по вебу
 nav:
+  - home: index.md
   - Лаба 1:
       - Задание 1: lab_1/task1.md
       - Задание 2: lab_1/task2.md
