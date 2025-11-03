@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ hotel.name }}{% endblock %}
+{% block content %}
+<h1>{{ hotel.name }}</h1>
+<p class="text-muted">{{ hotel.address }}</p>
+<p>{{ hotel.description }}</p>
+<h3 class="mt-4">Номера</h3>
+<div class="row g-3">
+    {% for r in rooms %}
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Номер {{ r.id }} — {{ r.room_type.name }}</h5>
+                    <p class="card-text">Вместимость: {{ r.capacity }}<br>Цена за ночь: {{ r.price_per_night }} ₽</p>
+                    <a href="{% url 'room_detail' r.pk %}" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="alert alert-secondary">Нет номеров</div>
+    {% endfor %}
+</div>
+
+
+<h3 class="mt-5">Постояльцы за последний месяц</h3>
+<table class="table table-striped">
+    <thead><tr><th>Гость</th><th>Номер</th><th>Заезд</th><th>Выезд</th><th>Статус</th></tr></thead>
+    <tbody>
+        {% for res in recent_guests %}
+            <tr>
+                <td>{{ res.user.username }}</td>
+                <td>#{{ res.room.id }}</td>
+                <td>{{ res.check_in }}</td>
+                <td>{{ res.check_out }}</td>
+                <td>{{ res.get_status_display }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="5" class="text-muted">Нет записей</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

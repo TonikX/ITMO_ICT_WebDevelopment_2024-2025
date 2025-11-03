@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Бронирование{% endblock %}
+{% block content %}
+<h1>Бронирование</h1>
+<form method="post" class="row g-2">
+    {% csrf_token %}
+    {{ form.room.as_hidden }}
+    <div class="col-md-3">{{ form.check_in }}</div>
+    <div class="col-md-3">{{ form.check_out }}</div>
+    <div class="col-12"><button class="btn btn-success">Сохранить</button></div>
+</form>
+{% endblock %}

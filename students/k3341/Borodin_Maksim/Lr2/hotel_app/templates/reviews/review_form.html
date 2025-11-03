@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Отзыв{% endblock %}
+{% block content %}
+<h1>Добавить отзыв</h1>
+<form method="post" class="row g-2">
+    {% csrf_token %}
+    {{ form.room.as_hidden }}
+    <div class="col-md-3">{{ form.stay_from }}</div>
+    <div class="col-md-3">{{ form.stay_to }}</div>
+    <div class="col-md-2">{{ form.rating }}</div>
+    <div class="col-12">{{ form.text }}</div>
+    <div class="col-12"><button class="btn btn-primary">Сохранить</button></div>
+</form>
+{% endblock %}
