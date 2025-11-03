@@ -1,0 +1,41 @@
+{% extends 'tours/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2 class="text-center mb-4 fw-bold">Мои брони </h2>
+
+  {% if reservations %}
+  <div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm bg-white rounded">
+      <thead class="table-dark">
+        <tr>
+          <th>Тур</th>
+          <th>Дата брони</th>
+          <th>Статус</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reservations %}
+        <tr>
+          <td>{{ r.tour.name }}</td>
+          <td>{{ r.reserved_on|date:"d.m.Y H:i" }}</td>
+          <td>
+            {% if r.confirmed %}
+              <span class="badge bg-success">✅ Подтверждено</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">⏳ В ожидании</span>
+            {% endif %}
+          </td>
+          <td class="text-end">
+            <a href="{% url 'delete_reservation' r.id %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+    <div class="alert alert-info text-center">Пока нет бронирований 😅</div>
+  {% endif %}
+</div>
+{% endblock %}
