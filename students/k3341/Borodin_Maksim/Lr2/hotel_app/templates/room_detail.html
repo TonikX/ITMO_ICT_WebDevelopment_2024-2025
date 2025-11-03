@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Номер {{ room.id }}{% endblock %}
+{% block content %}
+<h1>Номер {{ room.id }} — {{ room.room_type.name }}</h1>
+<p>Отель: <a href="{% url 'hotel_detail' room.hotel.pk %}">{{ room.hotel.name }}</a></p>
+<p>Вместимость: {{ room.capacity }}. Цена: {{ room.price_per_night }} ₽</p>
+
+
+<h3 class="mt-4">Забронировать</h3>
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'reservation_create' %}" class="row g-2">
+        {% csrf_token %}
+        {{ reservation_form.room.as_hidden }}
+        <div class="col-md-3">{{ reservation_form.check_in }}</div>
+        <div class="col-md-3">{{ reservation_form.check_out }}</div>
+        <div class="col-md-3"><button class="btn btn-success" type="submit">Забронировать</button></div>
+    </form>
+{% else %}
+    <div class="alert alert-warning">Войдите, чтобы бронировать</div>
+{% endif %}
+
+
+<h3 class="mt-5">Отзывы</h3>
+<div class="list-group mb-3">
+    {% for rv in reviews %}
+        <div class="list-group-item">
+            <strong>{{ rv.user.username }}</strong> — {{ rv.rating }}/10
+            <div class="text-muted">Период: {{ rv.stay_from }} — {{ rv.stay_to }}</div>
+            <p class="mb-0">{{ rv.text }}</p>
+        </div>
+    {% empty %}
+        <div class="alert alert-secondary">Отзывов пока нет</div>
+    {% endfor %}
+</div>
+
+
+{% if user.is_authenticated %}
+    <h4>Оставить отзыв</h4>
+    <form method="post" action="{% url 'review_create' %}">
+        {% csrf_token %}
+        {{ review_form.room.as_hidden }}
+        <div class="row g-2">
+            <div class="col-md-3">{{ review_form.stay_from }}</div>
+            <div class="col-md-3">{{ review_form.stay_to }}</div>
+            <div class="col-md-2">{{ review_form.rating }}</div>
+            <div class="col-12">{{ review_form.text }}</div>
+        </div>
+        <button class="btn btn-primary mt-2" type="submit">Отправить</button>
+    </form>
+{% endif %}
+{% endblock %}

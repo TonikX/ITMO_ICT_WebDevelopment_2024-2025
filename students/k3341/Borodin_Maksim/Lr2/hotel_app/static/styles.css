@@ -1,0 +1,175 @@
+/* Основные стили */
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+    padding-bottom: 40px;
+}
+
+/* Улучшение внешнего вида карточек */
+.list-group-item {
+    transition: all 0.2s ease-in-out;
+    border-left: 4px solid transparent;
+}
+
+.list-group-item:hover {
+    transform: translateX(5px);
+    border-left: 4px solid #0d6efd;
+    background-color: #f8f9fa;
+}
+
+/* Стили для карточек отелей */
+.hotel-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.hotel-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Стили для отзывов */
+.review-card {
+    border-left: 3px solid #0d6efd;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.review-rating {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+/* Стили для форм */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Стили для навигации */
+.pagination .page-link {
+    color: #0d6efd;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.pagination .page-link:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+/* Стили для таблиц */
+.table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+/* Стили для кнопок */
+.btn {
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transform: translateY(-1px);
+}
+
+/* Стили для сообщений */
+.alert {
+    border-radius: 4px;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+    .hotel-card {
+        margin: 10px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        margin: 2px 0;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Стили для статусов бронирования */
+.reservation-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-checked-in {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.status-checked-out {
+    background-color: #e2e3e5;
+    color: #41464b;
+}
+
+.status-cancelled {
+    background-color: #f8d7da;
+    color: #842029;
+}
