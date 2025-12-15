@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.pytest_cache/
+.mypy_cache/
+
+# Editors
+.vscode/
+.idea/
+
+# MkDocs build dir
+/site/
+
+# Optional: runtime files
+grades.json

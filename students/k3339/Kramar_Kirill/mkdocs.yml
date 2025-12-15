@@ -1,0 +1,31 @@
+
+site_name: ITMO Web Dev — Reports (Your Name)
+site_url: ""
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+    - content.tabs.link
+nav:
+  - Home: index.md
+  - Laboratory Work 1:
+      - Overview: lab1/index.md
+      - Task 1 — UDP Hello: lab1/task1.md
+      - Task 2 — TCP Math: lab1/task2.md
+      - Task 3 — HTTP (index.html): lab1/task3.md
+      - Task 4 — Chat (TCP + threading): lab1/task4.md
+      - Task 5 — HTTP Journal (GET/POST): lab1/task5.md
+      - How to Run & Tests: lab1/run_and_tests.md
+      - Appendix — Screenshots: lab1/appendix_screens.md
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
