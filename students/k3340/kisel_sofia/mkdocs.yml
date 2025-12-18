@@ -1,0 +1,6 @@
+site_name: Лабораторная №1 — Сокеты
+nav:
+  - Главная: index.md
+  - Отчёт по лабораторной: lab1_report.md
+theme:
+  name: mkdocs
