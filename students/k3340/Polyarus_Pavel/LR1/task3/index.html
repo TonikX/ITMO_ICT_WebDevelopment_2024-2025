@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа 1 - HTTP Сервер</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #666;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 HTTP Сервер на Python</h1>
+        
+        <div class="success">
+            <strong>✅ Успешно!</strong> Вы подключились к HTTP-серверу, созданному с использованием библиотеки socket.
+        </div>
+        
+        <h2>О проекте</h2>
+        <p>
+            Это простой HTTP-сервер, реализованный на языке Python с использованием 
+            низкоуровневой библиотеки <code>socket</code>. Сервер принимает HTTP-запросы 
+            от клиентов и возвращает HTML-страницу, загруженную из файла.
+        </p>
+        
+        <div class="info-box">
+            <strong>Основные возможности:</strong>
+            <ul>
+                <li>Обработка HTTP-запросов от браузера</li>
+                <li>Загрузка HTML-контента из файла <code>index.html</code></li>
+                <li>Формирование корректного HTTP-ответа с заголовками</li>
+                <li>Поддержка множественных подключений</li>
+                <li>Обработка ошибок (404 Not Found)</li>
+            </ul>
+        </div>
+        
+        <h2>Технические детали</h2>
+        <p>
+            Сервер использует протокол <strong>TCP</strong> для надежной передачи данных.
+            При подключении клиента сервер:
+        </p>
+        <ul>
+            <li>Принимает входящее соединение</li>
+            <li>Читает HTTP-запрос</li>
+            <li>Загружает содержимое файла index.html</li>
+            <li>Формирует HTTP-ответ со статусом 200 OK</li>
+            <li>Отправляет HTML-страницу клиенту</li>
+            <li>Закрывает соединение</li>
+        </ul>
+        
+        <h2>Протокол HTTP</h2>
+        <p>
+            HTTP (HyperText Transfer Protocol) — это протокол прикладного уровня для передачи 
+            гипертекстовых документов. Основные компоненты HTTP-ответа:
+        </p>
+        <ul>
+            <li><strong>Статус-линия:</strong> HTTP/1.1 200 OK</li>
+            <li><strong>Заголовки:</strong> Content-Type, Content-Length, Connection</li>
+            <li><strong>Тело ответа:</strong> HTML-контент страницы</li>
+        </ul>
+        
+        <div class="footer">
+            <p><strong>Лабораторная работа 1</strong> | Задание 3</p>
+            <p>Работа с сокетами и HTTP-протоколом</p>
+        </div>
+    </div>
+</body>
+</html>
