@@ -12,7 +12,9 @@
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                     <a class="nav-link" href="{% url 'my_reservations' %}">Мои бронирования</a>
-                    <a class="nav-link" href="{% url 'sold_tours' %}">Проданные туры</a>
+                    {% if user.is_staff %}
+                        <a class="nav-link" href="{% url 'sold_tours' %}">Проданные туры</a>
+                    {% endif %}
                     <form method="post" action="{% url 'logout' %}" class="d-inline">
                         {% csrf_token %}
                         <button type="submit" class="nav-link btn btn-link" style="border: none; background: none; color: rgba(255,255,255,.55); padding: 0.5rem 1rem;">

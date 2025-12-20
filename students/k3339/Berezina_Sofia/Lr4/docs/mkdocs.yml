@@ -1,0 +1,5 @@
+site_name: Отчёт по лабораторной работе № 4
+theme:
+  name: material
+nav:
+  - Лабораторная работа: index.md

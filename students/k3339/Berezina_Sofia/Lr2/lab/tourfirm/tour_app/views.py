@@ -2,15 +2,54 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Count, Sum
+from django.db.models import Count, Sum, Q
 from .models import Tour, Reservation, Review
 from django.contrib.auth import login, logout
-from .forms import UserRegistrationForm, ReservationForm, ReviewForm
+from .forms import UserRegistrationForm, ReservationForm, ReviewForm, SearchForm
 from django.views.decorators.csrf import csrf_protect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 def home(request):
-    tours = Tour.objects.all()
-    return render(request, 'home.html', {'tours': tours})
+    tour_list = Tour.objects.all().order_by('-created_at')
+    
+    # Обработка поиска
+    form = SearchForm(request.GET or None)
+    search_query = request.GET.get('query', '')
+    selected_country = request.GET.get('country', '')
+    
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        country = form.cleaned_data.get('country')
+        
+        if query:
+            tour_list = tour_list.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(country__icontains=query) |
+                Q(agency__icontains=query)
+            )
+        
+        if country:
+            tour_list = tour_list.filter(country=country)
+
+    # Пагинация
+    paginator = Paginator(tour_list, 6)
+    page = request.GET.get('page')
+    
+    try:
+        tours = paginator.page(page)
+    except PageNotAnInteger:
+        tours = paginator.page(1)
+    except EmptyPage:
+        tours = paginator.page(paginator.num_pages)
+    
+    return render(request, 'home.html', {
+        'tours': tours,
+        'form': form,
+        'search_query': search_query,
+        'selected_country': selected_country
+    })
 
 def register(request):
     if request.method == 'POST':
