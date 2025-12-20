@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Мои оценки{% endblock %}
+
+{% block content %}
+<h1>Мои оценки</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Предмет</th>
+            <th>Оценки</th>
+            <th>Средний балл</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in subjects_data %}
+        <tr>
+            <td>{{ row.subject.name }}</td>
+            <td>
+                {% for grade in row.grades %}
+                    <span>{{ grade }}</span>
+                {% empty %}
+                    —
+                {% endfor %}
+            </td>
+            <td>
+                {% if row.average %}{{ row.average }}{% else %}—{% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

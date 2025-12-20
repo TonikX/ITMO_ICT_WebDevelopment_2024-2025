@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Сдать задание - {{ homework.title }}{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 1rem;">
+    <a href="{% url 'homework:detail' homework.pk %}" style="color: var(--primary-color); text-decoration: none;">
+        ← Назад к заданию
+    </a>
+</div>
+
+<div class="card" style="max-width: 900px; margin: 0 auto;">
+    <div class="card-header">
+        <h2 class="card-title">📝 Сдать задание</h2>
+        <h3 style="color: var(--primary-color); margin-top: 0.5rem;">{{ homework.title }}</h3>
+    </div>
+    
+    <div class="card-body">
+        <!-- Информация о задании -->
+        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <p><strong>Предмет:</strong> {{ homework.subject.name }}</p>
+                    <p><strong>Преподаватель:</strong> {{ homework.teacher.get_full_name }}</p>
+                </div>
+                <div>
+                    <p><strong>Срок сдачи:</strong> {{ homework.deadline|date:"d.m.Y H:i" }}</p>
+                    <p><strong>Максимальный балл:</strong> {{ homework.max_score }}</p>
+                </div>
+            </div>
+            
+            {% if homework.is_overdue %}
+            <div class="alert alert-warning" style="margin-top: 1rem; margin-bottom: 0;">
+                ⚠️ <strong>Внимание!</strong> Срок сдачи истек {{ homework.days_overdue }} дн. назад.
+                За каждую неделю просрочки будет снято 20 баллов.
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Описание задания -->
+        <div style="margin-bottom: 2rem;">
+            <h3 style="color: var(--dark-color); margin-bottom: 1rem;">Описание задания:</h3>
+            <div style="padding: 1rem; background-color: #fff; border-left: 4px solid var(--primary-color); white-space: pre-wrap;">
+                {{ homework.description }}
+            </div>
+        </div>
+        
+        <!-- Форма ответа -->
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label class="form-label">{{ form.answer_text.label }} *</label>
+                <textarea name="answer_text" class="form-control" rows="15" 
+                          placeholder="Введите ваш ответ на задание..." required></textarea>
+                {% if form.answer_text.errors %}
+                <div style="color: var(--danger-color); margin-top: 0.5rem;">
+                    {{ form.answer_text.errors }}
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="d-flex gap-2 mt-3">
+                <button type="submit" class="btn btn-success">✓ Сдать задание</button>
+                <a href="{% url 'homework:detail' homework.pk %}" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    textarea.form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        resize: vertical;
+    }
+    
+    textarea.form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block title %}Оценить работу - Homework Board{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 1rem;">
+    <a href="{% url 'homework:submission_list' %}" style="color: var(--primary-color); text-decoration: none;">
+        ← Назад к списку работ
+    </a>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+    <!-- Левая колонка - информация о работе -->
+    <div>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">📄 Информация о работе</h2>
+            </div>
+            <div class="card-body">
+                <p><strong>Задание:</strong> {{ submission.homework.title }}</p>
+                <p><strong>Предмет:</strong> {{ submission.homework.subject.name }}</p>
+                <p><strong>Студент:</strong> {{ submission.student.get_full_name|default:submission.student.username }}</p>
+                <p><strong>Сдано:</strong> {{ submission.submitted_at|date:"d.m.Y H:i" }}</p>
+                <p><strong>Срок сдачи был:</strong> {{ submission.homework.deadline|date:"d.m.Y H:i" }}</p>
+                <p><strong>Макс. балл:</strong> {{ submission.homework.max_score }}</p>
+                
+                {% if penalty > 0 %}
+                <div class="alert alert-warning" style="margin-top: 1rem;">
+                    <strong>⚠️ Штраф за просрочку:</strong> {{ penalty }} баллов<br>
+                    <small>Работа просрочена на {{ submission.homework.days_overdue }} дн. 
+                    (20 баллов за каждую неделю)</small>
+                </div>
+                {% else %}
+                <div class="alert alert-success" style="margin-top: 1rem;">
+                    ✓ Работа сдана в срок, штрафов нет
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">📝 Описание задания</h3>
+            </div>
+            <div class="card-body">
+                <div style="white-space: pre-wrap; line-height: 1.6;">
+                    {{ submission.homework.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Правая колонка - ответ и форма оценки -->
+    <div>
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">💬 Ответ студента</h3>
+            </div>
+            <div class="card-body">
+                <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; white-space: pre-wrap; line-height: 1.6; max-height: 400px; overflow-y: auto;">
+                    {{ submission.answer_text }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">✏️ Оценить работу</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label class="form-label">{{ form.grade.label }} *</label>
+                        <input type="number" name="grade" class="form-control" 
+                               min="0" max="{{ submission.homework.max_score }}" 
+                               value="{{ form.grade.value|default:'' }}"
+                               placeholder="От 0 до {{ submission.homework.max_score }}" required>
+                        <small class="text-muted">{{ form.grade.help_text }}</small>
+                        {% if form.grade.errors %}
+                        <div style="color: var(--danger-color); margin-top: 0.5rem;">
+                            {{ form.grade.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">{{ form.status.label }} *</label>
+                        <select name="status" class="form-select" required>
+                            {% for value, label in form.status.field.choices %}
+                            <option value="{{ value }}" {% if form.status.value == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">{{ form.teacher_comment.label }}</label>
+                        <textarea name="teacher_comment" class="form-control" rows="6" 
+                                  placeholder="Оставьте комментарий для студента (необязательно)">{{ form.teacher_comment.value|default:'' }}</textarea>
+                        {% if form.teacher_comment.errors %}
+                        <div style="color: var(--danger-color); margin-top: 0.5rem;">
+                            {{ form.teacher_comment.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if penalty > 0 %}
+                    <div class="alert alert-info">
+                        <strong>ℹ️ Расчет итогового балла:</strong><br>
+                        Оценка - Штраф = Итоговый балл<br>
+                        <span id="calculation">? - {{ penalty }} = ?</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="d-flex gap-2 mt-3">
+                        <button type="submit" class="btn btn-success">✓ Сохранить оценку</button>
+                        <a href="{% url 'homework:submission_list' %}" class="btn btn-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control, .form-select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+    
+    textarea.form-control {
+        resize: vertical;
+    }
+</style>
+
+<script>
+    // Динамический расчет итогового балла
+    const gradeInput = document.querySelector('input[name="grade"]');
+    const penalty = {{ penalty }};
+    const calcSpan = document.getElementById('calculation');
+    
+    if (gradeInput && calcSpan) {
+        gradeInput.addEventListener('input', function() {
+            const grade = parseInt(this.value) || 0;
+            const final = Math.max(0, grade - penalty);
+            calcSpan.textContent = `${grade} - ${penalty} = ${final}`;
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Работы{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 1.5rem;">
+    {% if user.profile.is_teacher %}
+        📥 Работы учеников
+    {% else %}
+        📝 Мои работы
+    {% endif %}
+</h1>
+
+{% if submissions %}
+<div class="card">
+    <div class="card-body" style="padding: 0;">
+        <table>
+            <thead>
+                <tr>
+                    {% if user.profile.is_teacher %}
+                        <th>Ученик</th>
+                    {% endif %}
+                    <th>Задание</th>
+                    <th>Сдано</th>
+                    <th>Статус</th>
+                    <th>Оценка</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for submission in submissions %}
+                <tr>
+                    {% if user.profile.is_teacher %}
+                        <td>
+                            {{ submission.student.get_full_name|default:submission.student.username }}
+                        </td>
+                    {% endif %}
+
+                    <td>{{ submission.homework.title }}</td>
+
+                    <td>
+                        {{ submission.submitted_at|date:"d.m.Y H:i" }}
+                    </td>
+
+                    <td>
+                        {% if submission.status == 'pending' %}
+                            <span class="badge badge-warning">⏳ Не проверено</span>
+                        {% elif submission.status == 'revision' %}
+                            <span class="badge badge-danger">↺ На доработке</span>
+                        {% else %}
+                            <span class="badge badge-success">✓ Проверено</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if submission.grade is not None %}
+                            <strong>{{ submission.final_score }}</strong> / {{ submission.homework.max_score }}
+                            {% if submission.calculate_penalty > 0 %}
+                                <br>
+                                <small style="color: var(--danger-color);">
+                                    ({{ submission.grade }} - {{ submission.calculate_penalty }} штраф)
+                                </small>
+                            {% endif %}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <div class="d-flex gap-1">
+                            {% if user.profile.is_teacher %}
+                                <a href="{% url 'homework:grade_submission' submission.pk %}"
+                                   class="btn btn-primary btn-sm">
+                                    ✏️ Оценить
+                                </a>
+                            {% endif %}
+                            
+                            <a href="{% url 'homework:detail' submission.homework.id %}"
+                               class="btn btn-secondary btn-sm">
+                                📄 Задание
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="card">
+    <div class="card-body" style="text-align: center;">
+        <p>Работ пока нет.</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

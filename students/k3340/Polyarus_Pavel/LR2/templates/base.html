@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Homework Board{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container">
+        <a href="{% url 'home' %}" class="navbar-brand">📚 Homework Board</a>
+
+        {% if user.is_authenticated %}
+        <ul class="navbar-menu">
+            <li><a href="{% url 'homework:list' %}">Домашние задания</a></li>
+
+            {% if user.profile.is_teacher %}
+                <li><a href="{% url 'homework:grades_table' %}">Журнал</a></li>
+            {% else %}
+                <li><a href="{% url 'homework:my_grades' %}">Мои оценки</a></li>
+            {% endif %}
+
+            <li>
+                <a href="{% url 'homework:submission_list' %}">
+                    {% if user.profile.is_teacher %}
+                        Проверить работы
+                    {% else %}
+                        Мои работы
+                    {% endif %}
+                </a>
+            </li>
+        </ul>
+
+        <div class="navbar-user">
+            <span>{{ user.get_full_name|default:user.username }}</span>
+
+            <!-- ТОЛЬКО FORM + POST -->
+            <form method="post" action="{% url 'accounts:logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-sm">
+                    Выйти
+                </button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+</body>
+</html>
