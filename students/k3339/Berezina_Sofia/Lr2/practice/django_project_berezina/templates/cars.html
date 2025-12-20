@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Все автомобили</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+        <a href="{% url 'car_create' %}" class="btn-add">Добавить автомобиль</a>
+    </div>
+
+    <h1>Список всех автомобилей</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Номер</th>
+                <th>Марка</th>
+                <th>Модель</th>
+                <th>Цвет</th>
+                <th>Текущий владелец</th>
+                <th>Все владельцы</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.car_id }}</td>
+                <td>{{ car.number }}</td>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+                <td>
+                    {% with current_owner=car.get_current_owner %}
+                        {% if current_owner %}
+                            <strong>👑 {{ current_owner.first_name }} {{ current_owner.last_name }}</strong>
+                        {% else %}
+                            <span style="color: #999;">Нет владельца</span>
+                        {% endif %}
+                    {% endwith %}
+                </td>
+                <td>
+                    {% for ownership in car.get_all_owners %}
+                        <div style="margin-bottom: 5px;">
+                            {% if ownership.is_current %}
+                                👑 <strong>{{ ownership.owner.first_name }} {{ ownership.owner.last_name }}</strong>
+                                <br><small>с {{ ownership.start_date }} (текущий)</small>
+                            {% else %}
+                                👤 {{ ownership.owner.first_name }} {{ ownership.owner.last_name }}
+                                <br><small>{{ ownership.start_date }} - {{ ownership.end_date }}</small>
+                            {% endif %}
+                        </div>
+                    {% empty %}
+                        <span style="color: #999;">Нет владельцев</span>
+                    {% endfor %}
+                </td>
+                <td class="action-links">
+                    <a href="{% url 'car' car.car_id %}" class="btn-view">Подробнее</a>
+                    <br>
+                    <a href="{% url 'car_form' car.car_id %}" class="btn-edit">Редактировать</a>
+                    <br>
+                    <a href="{% url 'car_delete' car.car_id %}" class="btn-delete">Удалить</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">Нет данных об автомобилях</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

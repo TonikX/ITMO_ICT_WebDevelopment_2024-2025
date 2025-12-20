@@ -1,0 +1,6 @@
+site_name: Отчёт по лабораторной работе № 3
+theme:
+  name: material
+nav:
+  - Лабораторная работа: index.md
+  - Практическая работа: practice.md

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ tour.title }}</h1>
+        <p><strong>Турагенство:</strong> {{ tour.agency }}</p>
+        <p><strong>Страна:</strong> {{ tour.country }}</p>
+        <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+        <p><strong>Цена:</strong> {{ tour.price }} руб.</p>
+        
+        <h3>Описание</h3>
+        <p>{{ tour.description }}</p>
+        
+        <h3>Условия оплаты</h3>
+        <p>{{ tour.payment_conditions }}</p>
+    </div>
+    
+    <div class="col-md-4">
+        {% if user.is_authenticated %}
+            {% if not user_reservation %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Забронировать тур</h5>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ reservation_form.as_p }}
+                            <button type="submit" name="reserve" class="btn btn-success">Забронировать</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Ваше резервирование</h5>
+                        <p><strong>Статус:</strong> {{ user_reservation.get_status_display }}</p>
+                        <p><strong>Дата брони:</strong> {{ user_reservation.reservation_date }}</p>
+                        <a href="{% url 'edit_reservation' user_reservation.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                        <a href="{% url 'delete_reservation' user_reservation.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ваш отзыв</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ review_form.as_p }}
+                        <button type="submit" name="review" class="btn btn-primary">
+                            {% if user_review %}Обновить отзыв{% else %}Добавить отзыв{% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-5">
+    <h3>Отзывы других пользователей</h3>
+    {% for review in reviews %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h6 class="card-title">{{ review.user.username }} (Рейтинг: {{ review.rating }}/10)</h6>
+            <p class="card-text">{{ review.text }}</p>
+            <small class="text-muted">
+                Дата тура: {{ review.tour_start_date }} - {{ review.tour_end_date }} | 
+                Написан: {{ review.created_at }}
+            </small>
+        </div>
+    </div>
+    {% empty %}
+    <p>Пока нет отзывов от других пользователей.</p>
+    {% endfor %}
+</div>
+{% endblock %}

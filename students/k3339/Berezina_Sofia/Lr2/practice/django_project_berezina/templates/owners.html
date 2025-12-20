@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Все владельцы</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+        <a href="{% url 'owner_form' %}" class="btn-add">Добавить владельца</a>
+    </div>
+
+    <h1>Список всех владельцев</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Логин</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Email</th>
+                <th>Номер паспорта</th>
+                <th>Национальность</th>
+                <th>Дата рождения</th>
+                <th>Домашний адрес</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for owner in owners %}
+            <tr>
+                <td>{{ owner.id }}</td>
+                <td>{{ owner.username|default:"-" }}</td>
+                <td>{{ owner.first_name|default:"-" }}</td>
+                <td>{{ owner.last_name|default:"-" }}</td>
+                <td>{{ owner.email|default:"-" }}</td>
+                <td>{{ owner.passport_number|default:"-" }}</td>
+                <td>{{ owner.nationality|default:"-" }}</td>
+                <td>{{ owner.birth_date|default:"-" }}</td>
+                <td>{{ owner.home_address|default:"-"|truncatewords:5 }}</td>
+                <td class="action-links">
+                    <a href="{% url 'owner' owner.id %}" class="btn-view">Подробнее</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10">Нет данных о владельцах</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

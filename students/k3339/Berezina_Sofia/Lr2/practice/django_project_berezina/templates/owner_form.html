@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление владельца</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+    </div>
+
+    <h1>Добавление владельца</h1>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_username">Логин:</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_first_name">Имя:</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                <div class="error">{{ form.first_name.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_last_name">Фамилия:</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                <div class="error">{{ form.last_name.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_passport_number">Номер паспорта:</label>
+                {{ form.passport_number }}
+                {% if form.passport_number.errors %}
+                <div class="error">{{ form.passport_number.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_home_address">Домашний адрес:</label>
+                {{ form.home_address }}
+                {% if form.home_address.errors %}
+                <div class="error">{{ form.home_address.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_nationality">Национальность:</label>
+                {{ form.nationality }}
+                {% if form.nationality.errors %}
+                <div class="error">{{ form.nationality.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_birth_date">Дата рождения:</label>
+                {{ form.birth_date }}
+                {% if form.birth_date.errors %}
+                <div class="error">{{ form.birth_date.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_password1">Пароль:</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <div class="error">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_password2">Подтверждение пароля:</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <div class="error">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Добавить владельца</button>
+            <a href="{% url 'owners' %}" class="btn-cancel">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>

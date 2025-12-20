@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление автомобиля</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+    </div>
+
+    <h1>Добавление автомобиля</h1>
+
+    <div class="form-container">
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_number">Гос номер:</label>
+                {{ form.number }}
+                {% if form.number.errors %}
+                <div class="error">{{ form.number.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_brand">Марка:</label>
+                {{ form.brand }}
+                {% if form.brand.errors %}
+                <div class="error">{{ form.brand.errors }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_model">Модель:</label>
+                {{ form.model }}
+                {% if form.model.errors %}
+                <div class="error">{{ form.model.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_color">Цвет:</label>
+                {{ form.color }}
+                {% if form.color.errors %}
+                <div class="error">{{ form.color.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Добавить автомобиль</button>
+            <a href="{% url 'cars' %}" class="btn-cancel">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>

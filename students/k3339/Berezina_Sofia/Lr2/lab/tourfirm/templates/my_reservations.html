@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Мои резервирования</h1>
+
+{% if reservations %}
+<div class="row">
+    {% for reservation in reservations %}
+    <div class="col-md-6 mb-4">
+        <div class="card {% if reservation.status == 'confirmed' %}border-success{% elif reservation.status == 'cancelled' %}border-danger{% else %}border-warning{% endif %}">
+            <div class="card-body">
+                <h5 class="card-title">{{ reservation.tour.title }}</h5>
+                <p class="card-text">
+                    <strong>Турагенство:</strong> {{ reservation.tour.agency }}<br>
+                    <strong>Страна:</strong> {{ reservation.tour.country }}<br>
+                    <strong>Период:</strong> {{ reservation.tour.start_date }} - {{ reservation.tour.end_date }}<br>
+                    <strong>Цена:</strong> {{ reservation.tour.price }} руб.<br>
+                    <strong>Статус:</strong> 
+                    <span class="badge 
+                        {% if reservation.status == 'confirmed' %}bg-success
+                        {% elif reservation.status == 'cancelled' %}bg-danger
+                        {% else %}bg-warning{% endif %}">
+                        {{ reservation.get_status_display }}
+                    </span><br>
+                    <strong>Дата брони:</strong> {{ reservation.reservation_date|date:"d.m.Y H:i" }}<br>
+                    {% if reservation.notes %}
+                    <strong>Примечания:</strong> {{ reservation.notes }}
+                    {% endif %}
+                </p>
+                
+                <div class="btn-group">
+                    <a href="{% url 'tour_detail' reservation.tour.id %}" class="btn btn-outline-primary btn-sm">Подробнее о туре</a>
+                    <a href="{% url 'edit_reservation' reservation.id %}" class="btn btn-outline-warning btn-sm">Редактировать</a>
+                    <a href="{% url 'delete_reservation' reservation.id %}" class="btn btn-outline-danger btn-sm">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    <h4>У вас пока нет резервирований</h4>
+    <p>Перейдите на <a href="{% url 'home' %}">главную страницу</a>, чтобы выбрать подходящий тур.</p>
+</div>
+{% endif %}
+
+<div class="mt-4">
+    <a href="{% url 'home' %}" class="btn btn-primary">Найти еще туры</a>
+</div>
+{% endblock %}

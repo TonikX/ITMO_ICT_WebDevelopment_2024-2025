@@ -1,0 +1,1191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="practice1/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Отчёт по лабораторной работе № 2</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#no-4" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Отчёт по лабораторной работе № 2" class="md-header__button md-logo" aria-label="Отчёт по лабораторной работе № 2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Отчёт по лабораторной работе № 2
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Главная
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Отчёт по лабораторной работе № 2" class="md-nav__button md-logo" aria-label="Отчёт по лабораторной работе № 2" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Отчёт по лабораторной работе № 2
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание проекта и настройка:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modelspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Создание моделей в файле models.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Создание моделей в файле models.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Tour (Тур)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Reservation (Бронирование)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Review (Отзыв)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adminpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Настройка админ-панели в admin.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Настройка админ-панели в admin.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Tour
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Review
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-viewspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Создаем представления в views.py для обработки запросов и отображения страниц:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Создаем представления в views.py для обработки запросов и отображения страниц:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#home-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция home - Главная страница
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция register - Регистрация пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom_logout-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция custom_logout - Выход из системы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tour_detail-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция tour_detail - Детали тура
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my_reservations-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция my_reservations - Мои бронирования
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit_reservation-delete_reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции edit_reservation и delete_reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sold_tours_by_country-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция sold_tours_by_country - Статистика
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-formspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. В forms.py создадим формы регистрации и логина
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Практическая работа 2.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Практическая работа 2.2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Практическая работа 2.3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Создание проекта и настройка:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-modelspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Создание моделей в файле models.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Создание моделей в файле models.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Tour (Тур)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Reservation (Бронирование)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Review (Отзыв)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adminpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Настройка админ-панели в admin.py
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Настройка админ-панели в admin.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-tour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Tour
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      Админ-класс для Review
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-viewspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Создаем представления в views.py для обработки запросов и отображения страниц:
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Создаем представления в views.py для обработки запросов и отображения страниц:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#home-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция home - Главная страница
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция register - Регистрация пользователя
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom_logout-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция custom_logout - Выход из системы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tour_detail-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция tour_detail - Детали тура
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#my_reservations-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция my_reservations - Мои бронирования
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit_reservation-delete_reservation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функции edit_reservation и delete_reservation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sold_tours_by_country-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Функция sold_tours_by_country - Статистика
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-formspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. В forms.py создадим формы регистрации и логина
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="no-4">Вариант № 4: Список туров туристической фирмы</h1>
+<p><code>Задание</code>: Хранится информация о названии тура, турагенстве, описании тура, периоде
+проведения тура, условиях оплаты.</p>
+<p>Необходимо реализовать следующий функционал:</p>
+<ul>
+<li>Регистрация новых пользователей.</li>
+<li>Просмотр и резервирование туров. Пользователь должен иметь возможность редактирования и удаления своих резервирований.</li>
+<li>Написание отзывов к турам. При добавлении комментариев, должны сохраняться даты тура, текст комментария, рейтинг (1-10), информация о комментаторе.</li>
+<li>Администратор должен иметь возможность подтвердить резервирование тура средствами Django-admin.</li>
+<li>В клиентской части должна формироваться таблица, отображающая все проданные туры по странам.</li>
+</ul>
+<h3 id="1">1. Создание проекта и настройка:</h3>
+<p>Сначала создаем виртуальное окружение для изоляции зависимостей проекта. Открываем терминал и выполняем:</p>
+<pre><code class="language-bash">python -m venv venv
+source venv/bin/activate
+pip install django
+
+django-admin startproject tourfirm
+
+python manage.py startapp tour_app
+</code></pre>
+<p>Открываем файл tourfirm/settings.py и добавляем наше приложение в список INSTALLED_APPS:</p>
+<pre><code class="language-python">INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tour_app',  # добавляем наше приложение
+]
+</code></pre>
+<h3 id="2-modelspy">2. Создание моделей в файле <code>models.py</code></h3>
+<p>Файл <code>models.py</code> определяет структуру базы данных. Каждый класс модели соответствует таблице в БД, а атрибуты класса - столбцам таблицы.</p>
+<p>Объяснение реализованных моделей:</p>
+<ul>
+<li><code>Tour</code>: Модель для хранения информации о турах (название, агентство, описание, страна, даты, цена)</li>
+<li><code>Reservation</code>: Модель для бронирований туров пользователями с различными статусами</li>
+<li><code>Review</code>: Модель для отзывов о турах с рейтингом от 1 до 10</li>
+</ul>
+<h4 id="tour"><code>Модель Tour (Тур)</code></h4>
+<pre><code class="language-python">class Tour(models.Model):
+    title = models.CharField(max_length=200, verbose_name=&quot;Название тура&quot;)
+    agency = models.CharField(max_length=200, verbose_name=&quot;Турагенство&quot;)
+    description = models.TextField(verbose_name=&quot;Описание тура&quot;)
+    country = models.CharField(max_length=100, verbose_name=&quot;Страна&quot;)
+    start_date = models.DateField(verbose_name=&quot;Дата начала&quot;)
+    end_date = models.DateField(verbose_name=&quot;Дата окончания&quot;)
+    payment_conditions = models.TextField(verbose_name=&quot;Условия оплаты&quot;)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=&quot;Цена&quot;)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = &quot;Тур&quot;
+        verbose_name_plural = &quot;Туры&quot;
+        ordering = ['start_date']
+
+    def __str__(self):
+        return f&quot;{self.title} - {self.agency}&quot;
+</code></pre>
+<p>Атрибуты:</p>
+<ul>
+<li><code>title</code> - название тура (CharField, макс. 200 символов)</li>
+<li><code>agency</code> - название турагенства (CharField)</li>
+<li><code>description</code> - подробное описание тура (TextField для длинного текста)</li>
+<li><code>country</code> - страна назначения (CharField)</li>
+<li><code>start_date</code>, <code>end_date</code> - даты начала и окончания тура (DateField)</li>
+<li><code>payment_conditions</code> - условия оплаты (TextField)</li>
+<li><code>price</code> - цена тура (DecimalField для точных денежных расчетов)</li>
+<li><code>created_at</code> - автоматическая дата создания записи (auto_now_add=True)</li>
+</ul>
+<p><code>Meta</code> класс:</p>
+<ul>
+<li><code>verbose_name</code> - человекочитаемое имя в единственном числе для админки</li>
+<li><code>verbose_name_plural</code> - имя во множественном числе</li>
+<li><code>ordering</code> - автоматическая сортировка по дате начала тура</li>
+</ul>
+<p>Метод <code>str</code>: Возвращает строковое представление объекта для удобного отображения в админке и шаблонах.</p>
+<h4 id="reservation"><code>Модель Reservation (Бронирование)</code></h4>
+<pre><code class="language-python">class Reservation(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Ожидает подтверждения'),
+        ('confirmed', 'Подтвержден'),
+        ('cancelled', 'Отменен'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=&quot;Пользователь&quot;)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, verbose_name=&quot;Тур&quot;)
+    reservation_date = models.DateTimeField(auto_now_add=True, verbose_name=&quot;Дата резервирования&quot;)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name=&quot;Статус&quot;)
+    notes = models.TextField(blank=True, verbose_name=&quot;Примечания&quot;)
+
+    class Meta:
+        verbose_name = &quot;Резервирование&quot;
+        verbose_name_plural = &quot;Резервирования&quot;
+        unique_together = ['user', 'tour']
+
+    def __str__(self):
+        return f&quot;{self.user.username} - {self.tour.title}&quot;
+</code></pre>
+<ul>
+<li><code>STATUS_CHOICES</code> - список возможных статусов бронирования с человекочитаемыми названиями</li>
+<li><code>user</code> - связь с моделью User (ForeignKey), каскадное удаление</li>
+<li><code>tour</code> - связь с моделью Tour (ForeignKey)</li>
+<li><code>reservation_date</code> - автоматическая дата бронирования</li>
+<li><code>status</code> - статус брони с выбором из предопределенных значений</li>
+<li><code>notes</code> - примечания пользователя (может быть пустым)</li>
+<li><code>unique_together</code>: Гарантирует, что один пользователь не может забронировать один тур multiple раз.</li>
+</ul>
+<h4 id="review"><code>Модель Review (Отзыв)</code></h4>
+<pre><code class="language-python">class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=&quot;Пользователь&quot;)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE, verbose_name=&quot;Тур&quot;)
+    text = models.TextField(verbose_name=&quot;Текст отзыва&quot;)
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)],
+        verbose_name=&quot;Рейтинг&quot;
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=&quot;Дата создания&quot;)
+    tour_start_date = models.DateField(verbose_name=&quot;Дата начала тура&quot;)
+    tour_end_date = models.DateField(verbose_name=&quot;Дата окончания тура&quot;)
+
+    class Meta:
+        verbose_name = &quot;Отзыв&quot;
+        verbose_name_plural = &quot;Отзывы&quot;
+        unique_together = ['user', 'tour']
+
+    def __str__(self):
+        return f&quot;{self.user.username} - {self.tour.title} - {self.rating}/10&quot;
+</code></pre>
+<ul>
+<li><code>user</code>, <code>tour</code> - связи с пользователем и туром</li>
+<li><code>text</code> - текст отзыва</li>
+<li><code>rating</code> - рейтинг от 1 до 10 с валидаторами минимального и максимального значения</li>
+<li><code>created_at</code> - дата создания отзыва</li>
+<li><code>tour_start_date</code>, <code>tour_end_date</code> - фактические даты поездки пользователя</li>
+</ul>
+<p>ordering: Сортировка от новых к старым отзывам</p>
+<p>Создаем файлы миграций на основе наших моделей и применяем их к базе данных:</p>
+<pre><code class="language-bash">python manage.py makemigrations
+python manage.py migrate
+</code></pre>
+<h3 id="3-adminpy">3. Настройка админ-панели в <code>admin.py</code></h3>
+<p>Файл admin.py настраивает отображение и поведение моделей в административной панели Django.</p>
+<p>Регистрируем наши модели в административной панели Django для удобного управления данными:</p>
+<h4 id="-tour"><code>Админ-класс для Tour</code></h4>
+<pre><code class="language-python">@admin.register(Tour)
+class TourAdmin(admin.ModelAdmin):
+    list_display = ['title', 'agency', 'country', 'start_date', 'end_date', 'price']
+    list_filter = ['agency', 'country', 'start_date']
+    search_fields = ['title', 'description']
+</code></pre>
+<ul>
+<li><code>list_display</code> - какие поля показывать в списке объектов</li>
+<li><code>list_filter</code> - по каким полям можно фильтровать список</li>
+<li><code>search_fields</code> - по каким полям осуществляется поиск</li>
+</ul>
+<h4 id="-reservation"><code>Админ-класс для Reservation</code></h4>
+<pre><code class="language-python">@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['user', 'tour', 'reservation_date', 'status']
+    list_filter = ['status', 'reservation_date']
+    search_fields = ['user__username', 'tour__title']
+    list_editable = ['status']
+    actions = ['confirm_reservations']
+
+    def confirm_reservations(self, request, queryset):
+        queryset.update(status='confirmed')
+        self.message_user(request, f'{queryset.count()} резервирований подтверждено')
+    confirm_reservations.short_description = &quot;Подтвердить выбранные резервирования&quot;
+</code></pre>
+<ul>
+<li><code>list_editable</code> - позволяет редактировать статус прямо из списка</li>
+<li><code>actions</code> - кастомные действия для массового применения</li>
+<li><code>confirm_reservations</code> - метод для массового подтверждения бронирований</li>
+</ul>
+<h4 id="-review"><code>Админ-класс для Review</code></h4>
+<pre><code class="language-python">@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'tour', 'rating', 'created_at']
+    list_filter = ['rating', 'created_at']
+    search_fields = ['user__username', 'tour__title', 'text']
+</code></pre>
+<p>Позволяет администраторам просматривать и управлять отзывами, фильтровать по рейтингу и дате.</p>
+<h3 id="3-viewspy">3. Создаем представления в <code>views.py</code> для обработки запросов и отображения страниц:</h3>
+<p>Файл <code>views.py</code> содержит всю бизнес-логику приложения - обработку запросов, работу с данными, рендеринг шаблонов.</p>
+<h4 id="home-"><code>Функция home - Главная страница</code></h4>
+<pre><code class="language-python">def home(request):
+    tours = Tour.objects.all()
+    return render(request, 'home.html', {'tours': tours})
+</code></pre>
+<p>Получает все туры из БД и передает их в шаблон для отображения.</p>
+<h4 id="register-"><code>Функция register - Регистрация пользователя</code></h4>
+<pre><code class="language-python">def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Регистрация прошла успешно!')
+            return redirect('home')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'register.html', {'form': form})
+</code></pre>
+<p>Логика работы:</p>
+<ul>
+<li>Если POST-запрос - обрабатываем данные формы</li>
+<li>Если форма валидна - сохраняем пользователя, логиним его и показываем сообщение</li>
+<li>Если GET-запрос - показываем пустую форму</li>
+</ul>
+<h4 id="custom_logout-"><code>Функция custom_logout - Выход из системы</code></h4>
+<pre><code class="language-python">@csrf_protect
+def custom_logout(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.success(request, 'Вы успешно вышли из системы.')
+        return redirect('login')
+    else:
+        # Если кто-то попытается выйти через GET, перенаправляем на главную
+        return redirect('home')
+</code></pre>
+<ul>
+<li>Использует @csrf_protect для защиты от CSRF-атак</li>
+<li>Принимает только POST-запросы для безопасности</li>
+<li>Показывает сообщение об успешном выходе</li>
+</ul>
+<h4 id="tour_detail-"><code>Функция tour_detail - Детали тура</code></h4>
+<pre><code class="language-python">@login_required
+def tour_detail(request, tour_id):
+    tour = get_object_or_404(Tour, id=tour_id)
+    user_reservation = None
+    user_review = None
+
+    if request.user.is_authenticated:
+        user_reservation = Reservation.objects.filter(user=request.user, tour=tour).first()
+        user_review = Review.objects.filter(user=request.user, tour=tour).first()
+
+    reviews = Review.objects.filter(tour=tour).exclude(user=request.user)
+
+    if request.method == 'POST':
+        if 'reserve' in request.POST:
+            reservation_form = ReservationForm(request.POST)
+            if reservation_form.is_valid() and not user_reservation:
+                reservation = reservation_form.save(commit=False)
+                reservation.user = request.user
+                reservation.tour = tour
+                reservation.save()
+                messages.success(request, 'Тур успешно забронирован!')
+                return redirect('tour_detail', tour_id=tour_id)
+
+        elif 'review' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                if user_review:
+                    review_form = ReviewForm(request.POST, instance=user_review)
+                    review = review_form.save()
+                    messages.success(request, 'Отзыв обновлен!')
+                else:
+                    review = review_form.save(commit=False)
+                    review.user = request.user
+                    review.tour = tour
+                    review.save()
+                    messages.success(request, 'Отзыв добавлен!')
+                return redirect('tour_detail', tour_id=tour_id)
+    else:
+        reservation_form = ReservationForm(instance=user_reservation)
+        review_form = ReviewForm(instance=user_review)
+
+    return render(request, 'tour_detail.html', {
+        'tour': tour,
+        'reservation_form': reservation_form,
+        'review_form': review_form,
+        'user_reservation': user_reservation,
+        'user_review': user_review,
+        'reviews': reviews,
+    })
+</code></pre>
+<p>Логика обработки:</p>
+<ol>
+<li>
+<p>Получение данных:</p>
+</li>
+<li>
+<p>Тур по ID (с обработкой 404 ошибки)</p>
+</li>
+<li>Бронирование и отзыв текущего пользователя для этого тура</li>
+<li>
+<p>Все отзывы о туре</p>
+</li>
+<li>
+<p>Обработка POST-запросов:</p>
+</li>
+<li>
+<p>Разделение на бронирование и отзыв по имени кнопки</p>
+</li>
+<li>Для бронирования: проверка, что пользователь еще не бронировал этот тур</li>
+<li>
+<p>Для отзыва: обновление существующего или создание нового</p>
+</li>
+<li>
+<p>Использование commit=False: Позволяет установить дополнительные поля перед сохранением</p>
+</li>
+<li>Перенаправление: После успешных операций - редирект на эту же страницу для предотвращения повторной отправки формы</li>
+</ol>
+<h4 id="my_reservations-"><code>Функция my_reservations - Мои бронирования</code></h4>
+<pre><code class="language-python">@login_required
+def my_reservations(request):
+    reservations = Reservation.objects.filter(user=request.user)
+    return render(request, 'my_reservations.html', {'reservations': reservations})
+</code></pre>
+<p>Показывает бронирования текущего пользователя.</p>
+<h4 id="edit_reservation-delete_reservation"><code>Функции edit_reservation и delete_reservation</code></h4>
+<pre><code class="language-python">@login_required
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Резервирование обновлено!')
+            return redirect('my_reservations')
+    else:
+        form = ReservationForm(instance=reservation)
+
+    return render(request, 'edit_reservation.html', {'form': form, 'reservation': reservation})
+</code></pre>
+<pre><code class="language-python">@login_required
+def delete_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id, user=request.user)
+
+    if request.method == 'POST':
+        reservation.delete()
+        messages.success(request, 'Резервирование удалено!')
+        return redirect('my_reservations')
+
+    return render(request, 'delete_reservation.html', {'reservation': reservation})
+</code></pre>
+<p><code>get_object_or_404(Reservation, id=reservation_id, user=request.user)</code> гарантирует, что пользователь может редактировать/удалять только свои бронирования.</p>
+<h4 id="sold_tours_by_country-"><code>Функция sold_tours_by_country - Статистика</code></h4>
+<pre><code class="language-python">def sold_tours_by_country(request):
+    # Туры с подтвержденными резервированиями
+    sold_tours = Tour.objects.filter(
+        reservation__status='confirmed'
+    ).annotate(
+        reservations_count=Count('reservation'),
+        total_sold=Sum('reservation__tour__price')
+    ).order_by('country')
+
+    return render(request, 'sold_tours.html', {'sold_tours': sold_tours})
+</code></pre>
+<p>Запросы к БД:</p>
+<ul>
+<li><code>filter(reservation__status='confirmed')</code> - только туры с подтвержденными бронированиями</li>
+<li><code>annotate()</code> - добавляет вычисляемые поля:</li>
+<li><code>reservations_count</code> - количество бронирований</li>
+<li><code>total_sold</code> - общая сумма продаж</li>
+<li>
+<p><code>order_by('country')</code> - сортировка по странам</p>
+</li>
+<li>
+<p>Создаем файл <code>urls.py</code> для маршрутизации внутри приложения:</p>
+</li>
+</ul>
+<pre><code class="language-python">from django.urls import path
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from tour_app import views
+
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', views.custom_logout, name='logout'),
+    path('tour/&lt;int:tour_id&gt;/', views.tour_detail, name='tour_detail'),
+    path('my-reservations/', views.my_reservations, name='my_reservations'),
+    path('reservation/edit/&lt;int:reservation_id&gt;/', views.edit_reservation, name='edit_reservation'),
+    path('reservation/delete/&lt;int:reservation_id&gt;/', views.delete_reservation, name='delete_reservation'),
+    path('sold-tours/', views.sold_tours_by_country, name='sold_tours'),
+]
+</code></pre>
+<h3 id="3-formspy">3. В <code>forms.py</code> создадим формы регистрации и логина</h3>
+<pre><code class="language-python">from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .models import Reservation, Review
+
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['notes']
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+        }
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['text', 'rating', 'tour_start_date', 'tour_end_date']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
+            'rating': forms.NumberInput(attrs={'min': 1, 'max': 10, 'class': 'form-control'}),
+            'tour_start_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'tour_end_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        }
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

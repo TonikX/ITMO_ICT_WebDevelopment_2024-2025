@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление автомобиля</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+    </div>
+
+    <h1>Удаление автомобиля</h1>
+
+    <div class="delete-container">
+        <div class="warning-message">
+            <strong>⚠️ Внимание!</strong> Вы собираетесь удалить автомобиль. Это действие нельзя отменить.
+        </div>
+
+        <div class="car-info">
+            <p><strong>Автомобиль для удаления:</strong></p>
+            <p><strong>ID:</strong> {{ car.car_id }}</p>
+            <p><strong>Номер:</strong> {{ car.number }}</p>
+            <p><strong>Марка:</strong> {{ car.brand }}</p>
+            <p><strong>Модель:</strong> {{ car.model }}</p>
+            <p><strong>Цвет:</strong> {{ car.color }}</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <p>Вы уверены, что хотите удалить этот автомобиль?</p>
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'car' car.car_id %}" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+</body>
+</html>

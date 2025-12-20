@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Проданные туры по странам</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Страна</th>
+            <th>Название тура</th>
+            <th>Турагенство</th>
+            <th>Количество продаж</th>
+            <th>Общая выручка</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tour in sold_tours %}
+        <tr>
+            <td>{{ tour.country }}</td>
+            <td>{{ tour.title }}</td>
+            <td>{{ tour.agency }}</td>
+            <td>{{ tour.reservations_count }}</td>
+            <td>{{ tour.total_sold }} руб.</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">Нет данных о проданных турах</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

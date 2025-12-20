@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Владелец {{ owner.first_name }} {{ owner.last_name }}</title>
+    {% load static %}
+    <link href="{% static 'project_first_app/css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'owners' %}" class="btns">Все владельцы</a>
+        <a href="{% url 'cars' %}" class="btns">Все автомобили</a>
+        <a href="{% url 'owner_form' %}" class="btn-add">Добавить владельца</a>
+        <a href="{% url 'car_create' %}" class="btn-add">Добавить автомобиль</a>
+    </div>
+
+    <div class="info-card">
+        <h1>Информация о владельце</h1>
+        
+        <div class="owner-details">
+            <div class="detail-item">
+                <span class="detail-label">Логин:</span>
+                <span class="detail-value">{{ owner.username }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Имя:</span>
+                <span class="detail-value">{{ owner.first_name|default:"Не указан"  }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Фамилия:</span>
+                <span class="detail-value">{{ owner.last_name|default:"Не указан"  }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">{{ owner.email|default:"Не указан" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Номер паспорта:</span>
+                <span class="detail-value">{{ owner.passport_number|default:"Не указан" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Домашний адрес:</span>
+                <span class="detail-value">{{ owner.home_address|default:"Не указан" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Национальность:</span>
+                <span class="detail-value">{{ owner.nationality|default:"Не указана" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Дата рождения:</span>
+                <span class="detail-value">{{ owner.birth_date|default:"Не указана" }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-links" style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'owners' %}" class="btn-edit">← Назад</a>
+    </div>
+</body>
+</html>

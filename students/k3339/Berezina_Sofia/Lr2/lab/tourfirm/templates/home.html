@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Доступные туры</h1>
+
+<!-- Форма поиска -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-6">
+                {{ form.query }}
+            </div>
+            <div class="col-md-4">
+                {{ form.country }}
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Найти</button>
+            </div>
+        </form>
+
+        {% if search_query or selected_country %}
+        <div class="mt-2">
+            <small class="text-muted">
+                {% if search_query %}Поиск: "{{ search_query }}"{% endif %}
+                {% if selected_country and selected_country != '' %} | Страна: {{
+                form.country.field.choices|dictsort:0|listget:selected_country }}{% endif %}
+                <a href="{% url 'home' %}" class="text-danger ms-2">✕ Сбросить</a>
+            </small>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Информация о результатах -->
+<div class="mb-3">
+    <p class="text-muted">
+        Найдено туров: {{ tours.paginator.count }}
+        {% if tours.paginator.count > 0 %}
+        | Показаны с {{ tours.start_index }} по {{ tours.end_index }}
+        {% endif %}
+    </p>
+</div>
+
+{% if tours.paginator.count > 0 %}
+<div class="row">
+    {% for tour in tours %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ tour.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ tour.agency }}</h6>
+                <p class="card-text">{{ tour.description|truncatewords:30 }}</p>
+                <p><strong>Страна:</strong> {{ tour.country }}</p>
+                <p><strong>Период:</strong> {{ tour.start_date }} - {{ tour.end_date }}</p>
+                <p><strong>Цена:</strong> {{ tour.price }} руб.</p>
+                <a href="{% url 'tour_detail' tour.id %}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="alert alert-info">
+    <h4>Туры не найдены</h4>
+    <p>Попробуйте изменить параметры поиска или <a href="{% url 'home' %}">сбросить фильтры</a>.</p>
+</div>
+{% endif %}
+
+
+<!-- Навигация по страницам с учетом параметров поиска -->
+{% if tours.has_other_pages %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if tours.has_previous %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?{% if search_query %}query={{ search_query }}&{% endif %}{% if selected_country %}country={{ selected_country }}&{% endif %}page={{ tours.previous_page_number }}"
+                aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+        </li>
+        {% endif %}
+
+        {% for i in tours.paginator.page_range %}
+        {% if tours.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?{% if search_query %}query={{ search_query }}&{% endif %}{% if selected_country %}country={{ selected_country }}&{% endif %}page={{ i }}">{{ i }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+
+        {% if tours.has_next %}
+        <li class="page-item">
+            <a class="page-link"
+                href="?{% if search_query %}query={{ search_query }}&{% endif %}{% if selected_country %}country={{ selected_country }}&{% endif %}page={{ tours.next_page_number }}"
+                aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">&raquo;</span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}
