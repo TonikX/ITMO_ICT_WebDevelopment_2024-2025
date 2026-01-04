@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="title-container">
+  <h2 class="section-title">✨{{ hotel.name }}</h2>
+</div>
+<div class="title-container">
+  <p class="third_title">{{ hotel.description }}</p>
+</div>
+<h3 class="mt-4">Номера:</h3>
+
+<div class="row">
+  {% for room in rooms %}
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ room.name }}</h5>
+          <p class="card-text">
+            Тип: {{ room.room_type }}<br>
+            Цена: {{ room.price }} ₽ / ночь
+          </p>
+
+          <!-- Кнопка для раскрытия -->
+          <button class="btn btn-outline-secondary toggle-details"
+                  data-room-id="{{ room.id }}">
+            Подробнее
+          </button>
+
+          {% if user.is_authenticated %}
+            <a href="{% url 'hotels:booking_create' room.id %}" class="btn btn-primary">Забронировать</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Войти, чтобы забронировать</a>
+          {% endif %}
+          <a href="{% url 'hotels:room_review' room.id %}" class="btn btn-outline-secondary toggle-details">
+              💬 Отзывы гостей
+          </a>
+        </div>
+
+        <!-- Скрытая часть с подробностями -->
+        <div class="card-footer bg-light p-3 room-details" id="details-{{ room.id }}" style="display:none;">
+          <p><strong>Удобства:</strong>
+            {% if room.amenities.exists %}
+              <ul>
+                {% for amenity in room.amenities.all %}
+                  <li>{{ amenity.name }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              Нет удобств
+            {% endif %}
+          </p>
+          <button class="btn btn-sm btn-link hide-details" data-room-id="{{ room.id }}">Скрыть</button>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>В этом отеле пока нет доступных номеров.</p>
+  {% endfor %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.toggle-details').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const roomId = this.dataset.roomId;
+      const details = document.getElementById(`details-${roomId}`);
+      details.style.display = 'block';
+      this.style.display = 'none';
+    });
+  });
+
+  document.querySelectorAll('.hide-details').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const roomId = this.dataset.roomId;
+      const details = document.getElementById(`details-${roomId}`);
+      const toggleBtn = document.querySelector(`.toggle-details[data-room-id="${roomId}"]`);
+      details.style.display = 'none';
+      toggleBtn.style.display = 'inline-block';
+    });
+  });
+});
+</script>
+
+{% endblock %}

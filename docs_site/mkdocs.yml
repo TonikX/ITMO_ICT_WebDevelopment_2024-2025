@@ -1,0 +1,18 @@
+site_name: Laboratory Works
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Лабораторные:
+      - "ЛР1 — Работа с сокетами":
+          - "1 задание: UDP": 1_task.md
+          - "2 задание: Математическая задача": 2_task.md
+          - "3 задание: HTML-страница": 3_task.md
+          - "4 задание: Многопользовательский чат": 4_task.md
+          - "5 задание: Веб-сервис": 5_task.md
+      - "ЛР2 — Простой сайт на Django":
+          - "Техническое задание": Tech Points.md
+          - "Проектирование базы данных и моделей Django": DB_and_models.md
+          - "Логика и связи": views_and_urls.md
+          - "HTML шаблоны": base.md

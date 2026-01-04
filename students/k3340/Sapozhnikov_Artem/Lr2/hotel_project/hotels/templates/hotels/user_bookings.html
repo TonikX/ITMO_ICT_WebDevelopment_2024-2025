@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}Мои бронирования{% endblock %}
+
+{% block content %}
+<div class="title-container">
+    <h2 class="section-title">📝 Мои бронирования</h2>
+</div>
+
+
+{% if bookings %}
+  <div class="row">
+    {% for booking in bookings %}
+      <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ booking.room.hotel.name }}</h5>
+            <p class="card-text">
+              Номер: {{ booking.room.number }} <br>
+              Заезд: {{ booking.check_in }} <br>
+              Выезд: {{ booking.check_out }} <br>
+              Статус: {{ booking.get_status_display }}
+            </p>
+
+            <button class="btn btn-sm btn-warning"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editModal{{ booking.id }}">
+              ✏️ Редактировать
+            </button>
+
+            <button class="btn btn-sm btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteModal{{ booking.id }}">
+              🗑 Удалить
+            </button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% for booking in bookings %}
+    <!-- Модалка редактирования -->
+    <div class="modal fade" id="editModal{{ booking.id }}" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Редактировать бронирование</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="{% url 'hotels:booking_edit' booking.id %}">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label for="check_in_{{ booking.id }}" class="form-label">Дата заезда</label>
+                <input type="date" name="check_in" id="check_in_{{ booking.id }}" class="form-control"
+                       value="{{ booking.check_in|date:'Y-m-d' }}">
+              </div>
+              <div class="mb-3">
+                <label for="check_out_{{ booking.id }}" class="form-label">Дата выезда</label>
+                <input type="date" name="check_out" id="check_out_{{ booking.id }}" class="form-control"
+                       value="{{ booking.check_out|date:'Y-m-d' }}">
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary">💾 Сохранить</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модалка удаления -->
+    <div class="modal fade" id="deleteModal{{ booking.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ booking.id }}" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel{{ booking.id }}">Подтверждение удаления</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Вы действительно хотите удалить бронирование от {{ booking.check_in }} до {{ booking.check_out }}?
+          </div>
+          <div class="modal-footer">
+            <form method="post" action="{% url 'hotels:booking_delete' booking.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>У вас пока нет бронирований.</p>
+{% endif %}
+{% endblock %}

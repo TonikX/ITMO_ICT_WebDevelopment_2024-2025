@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Школьный портал</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 12px 0;
+        }
+
+        a {
+            display: block;
+            padding: 12px 18px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background 0.2s ease;
+        }
+
+        a:hover {
+            background: #1e40af;
+        }
+
+        p {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 15px;
+            color: #555;
+        }
+
+        .api-section-title {
+            font-weight: bold;
+            margin: 25px 0 10px 0;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .docs-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .docs-links a {
+            background: #10b981;
+        }
+
+        .docs-links a:hover {
+            background: #065f46;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Школьный портал</h1>
+
+        <div class="docs-links">
+            <a href="/swagger/" target="_blank">Swagger UI</a>
+        </div>
+
+        <div class="api-section-title">Разделы API</div>
+        <ul>
+            <li><a href="/api/teachers/">Учителя</a></li>
+            <li><a href="/api/students/">Ученики</a></li>
+            <li><a href="/api/grades/">Оценки</a></li>
+            <li><a href="/api/classes/">Классы</a></li>
+            <li><a href="/api/lessons/">Расписание</a></li>
+        </ul>
+
+        <p>Для работы с API требуется авторизация через токен.</p>
+    </div>
+</body>
+</html>

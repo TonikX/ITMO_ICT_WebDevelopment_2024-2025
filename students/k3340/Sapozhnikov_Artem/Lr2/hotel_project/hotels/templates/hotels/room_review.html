@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Отзывы о номере{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="title-container">
+        <h2 class="section-title">✨{{ room.hotel.name }} — Номер {{ room.number }}</h2>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Оставить отзыв</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2">💬 Отправить отзыв</button>
+            </form>
+        </div>
+    </div>
+
+    <h4 class="mb-3">Отзывы гостей</h4>
+
+    {% if reviews %}
+        {% for review in reviews %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h6><strong>{{ review.user.username }}</strong> — рейтинг: {{ review.rating }}/10</h6>
+                    <p><small>Проживание с {{ review.stay_from }} по {{ review.stay_to }}</small></p>
+                    <p>{{ review.text }}</p>
+                    <hr>
+                    <p class="text-muted small">{{ review.created_at|date:"d.m.Y H:i" }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет отзывов.</p>
+    {% endif %}
+</div>
+{% endblock %}

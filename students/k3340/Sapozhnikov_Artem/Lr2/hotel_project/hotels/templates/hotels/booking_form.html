@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+<!--  <div class="title-container">-->
+<!--    <h2 class="section-title">🕓 Последние посещения</h2>-->
+<!--  </div>-->
+  <h3 class="section-title">📝 Бронирование номера {{ room.number }} в {{ room.hotel.name }}</h3>
+
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="check_in">Дата заезда:</label>
+      {{ form.check_in }}
+    </div>
+    <div class="mb-3">
+      <label for="check_out">Дата выезда:</label>
+      {{ form.check_out }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Подтвердить бронь</button>
+    <a href="{% url 'hotels:hotel_detail' hotel_id=room.hotel.id %}" class="btn btn-secondary">Отмена</a>
+  </form>
+</div>
+{% endblock %}
