@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ race.name }} - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <!-- Информация о гонке -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title mb-0">{{ race.name }}</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>📍 Место проведения:</strong> {{ race.location }}</p>
+                        <p><strong>📅 Дата начала:</strong> {{ race.start_date|date:"d.m.Y H:i" }}</p>
+                        <p><strong>📅 Дата окончания:</strong> {{ race.end_date|date:"d.m.Y H:i" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>🎯 Тип гонки:</strong> {{ race.get_race_type_display }}</p>
+                        <p><strong>📊 Статус:</strong>
+                            {% if race.is_active %}
+                            <span class="badge bg-success">Активная</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Завершена</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                {% if race.description %}
+                <hr>
+                <h5>Описание гонки:</h5>
+                <p>{{ race.description|linebreaks }}</p>
+                {% endif %}
+
+                <div class="mt-4">
+                    {% if user.is_authenticated and user.racer %}
+                        {% if is_registered %}
+                        <div class="alert alert-success">
+                            ✅ Вы уже зарегистрированы на эту гонку
+                        </div>
+                        {% elif race.is_active %}
+                        <a href="{% url 'race_register' race.id %}" class="btn btn-success">Зарегистрироваться на гонку</a>
+                        {% else %}
+                        <button class="btn btn-secondary" disabled>Регистрация закрыта</button>
+                        {% endif %}
+                    {% elif user.is_authenticated %}
+                        <div class="alert alert-info">
+                            Для регистрации на гонку необходимо создать профиль гонщика.
+                            <a href="{% url 'create_racer_profile' %}" class="alert-link">Создать профиль</a>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            Для регистрации на гонку необходимо <a href="{% url 'login' %}" class="alert-link">войти в систему</a>.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Зарегистрированные участники -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Зарегистрированные участники</h5>
+            </div>
+            <div class="card-body">
+                {% if registrations %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Гонщик</th>
+                                <th>Команда</th>
+                                <th>Автомобиль</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registration in registrations %}
+                            <tr>
+                                <td>{{ registration.racer.user.get_full_name }}</td>
+                                <td>{{ registration.racer.team.name|default:"-" }}</td>
+                                <td>{{ registration.car.model }}</td>
+                                <td>
+                                    {% if registration.is_confirmed %}
+                                    <span class="badge bg-success">Подтвержден</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Ожидает</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">Пока нет зарегистрированных участников</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Результаты гонки -->
+        {% if results %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Результаты гонки</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Позиция</th>
+                                <th>Гонщик</th>
+                                <th>Очки</th>
+                                <th>Лучший круг</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                            <tr>
+                                <td>
+                                    {% if result.position %}
+                                    {{ result.position }}
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>{{ result.race_registration.racer.user.get_full_name }}</td>
+                                <td>{{ result.points }}</td>
+                                <td>
+                                    {% if result.best_lap_time %}
+                                    {{ result.best_lap_time }}
+                                    {% else %}
+                                    -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if result.dnf %}
+                                    <span class="badge bg-danger">DNF</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Финишировал</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-4">
+        <!-- Форма комментария -->
+        {% if user.is_authenticated %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Добавить комментарий</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'add_comment' race.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_text" class="form-label">Текст комментария</label>
+                        <textarea name="text" class="form-control" id="id_text" rows="4" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="id_comment_type" class="form-label">Тип комментария</label>
+                                <select name="comment_type" class="form-select" id="id_comment_type" required>
+                                    {% for value, label in comment_form.fields.comment_type.choices %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="id_rating" class="form-label">Рейтинг (1-10)</label>
+                                <input type="number" name="rating" class="form-control" id="id_rating" min="1" max="10" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Отправить комментарий</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <p>Для добавления комментария необходимо <a href="{% url 'login' %}">войти в систему</a></p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Комментарии -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Комментарии ({{ comments.count }})</h5>
+            </div>
+            <div class="card-body">
+                {% if comments %}
+                    {% for comment in comments %}
+                    <div class="border-bottom pb-3 mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h6 class="mb-1">{{ comment.author.get_full_name }}</h6>
+                            <small class="text-muted">{{ comment.comment_date|date:"d.m.Y H:i" }}</small>
+                        </div>
+                        <p class="mb-1">{{ comment.text }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge bg-secondary">{{ comment.get_comment_type_display }}</span>
+                            <span class="text-warning">★ {{ comment.rating }}/10</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <p class="text-muted text-center">Пока нет комментариев</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

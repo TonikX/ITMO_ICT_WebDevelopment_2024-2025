@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block title %}Управление результатами гонки - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Управление результатами гонки</h1>
+        <a href="{% url 'race_detail' race.id %}" class="btn btn-outline-primary">Вернуться к гонке</a>
+    </div>
+
+    <!-- Информация о гонке -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">{{ race.name }}</h5>
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>📍 Место:</strong> {{ race.location }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>📅 Дата:</strong> {{ race.start_date|date:"d.m.Y H:i" }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>🎯 Тип:</strong> {{ race.get_race_type_display }}</p>
+                </div>
+            </div>
+            <p class="mb-0"><strong>Участников:</strong> {{ registrations|length }}</p>
+        </div>
+    </div>
+
+    <!-- Форма управления результатами -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Результаты участников</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Позиция</th>
+                                <th>Гонщик</th>
+                                <th>Команда</th>
+                                <th>Автомобиль</th>
+                                <th>Время финиша</th>
+                                <th>Лучший круг</th>
+                                <th>Очки</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for registration in registrations %}
+                            {% with result=registration.raceresult %}
+                            <tr>
+                                <td>
+                                    <input type="number" name="position_{{ registration.id }}"
+                                           value="{{ result.position|default:'' }}"
+                                           class="form-control form-control-sm"
+                                           min="1" max="{{ registrations|length }}"
+                                           placeholder="-">
+                                </td>
+                                <td>
+                                    <strong>{{ registration.racer.user.get_full_name }}</strong>
+                                    <br>
+                                    <small class="text-muted">{{ registration.racer.get_racer_class_display }}</small>
+                                </td>
+                                <td>
+                                    {% if registration.racer.team %}
+                                    {{ registration.racer.team.name }}
+                                    {% else %}
+                                    <span class="text-muted">-</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ registration.car.model }}</td>
+                                <td>
+                                    <input type="text" name="finish_time_{{ registration.id }}"
+                                           value="{{ result.finish_time|default:'' }}"
+                                           class="form-control form-control-sm"
+                                           placeholder="HH:MM:SS">
+                                </td>
+                                <td>
+                                    <input type="text" name="best_lap_time_{{ registration.id }}"
+                                           value="{{ result.best_lap_time|default:'' }}"
+                                           class="form-control form-control-sm"
+                                           placeholder="HH:MM:SS">
+                                </td>
+                                <td>
+                                    <input type="number" name="points_{{ registration.id }}"
+                                           value="{{ result.points|default:0 }}"
+                                           class="form-control form-control-sm"
+                                           min="0" max="100">
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox"
+                                               name="dnf_{{ registration.id }}"
+                                               {% if result.dnf %}checked{% endif %}>
+                                        <label class="form-check-label">
+                                            {% if result.dnf %}
+                                            <span class="badge bg-danger">DNF</span>
+                                            {% else %}
+                                            <span class="badge bg-success">Финишировал</span>
+                                            {% endif %}
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endwith %}
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center py-4">
+                                    <p class="text-muted">Нет зарегистрированных участников</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if registrations %}
+                <div class="mt-4">
+                    <div class="alert alert-warning">
+                        <h6>Инструкция по заполнению:</h6>
+                        <ul class="mb-0">
+                            <li><strong>Позиция:</strong> место гонщика в гонке (1 - первое место)</li>
+                            <li><strong>Время финиша:</strong> общее время гонки в формате HH:MM:SS</li>
+                            <li><strong>Лучший круг:</strong> лучшее время круга в формате HH:MM:SS</li>
+                            <li><strong>Очки:</strong> количество набранных очков по системе чемпионата</li>
+                            <li><strong>DNF:</strong> отметьте, если гонщик не финишировал</li>
+                        </ul>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-success">Сохранить результаты</button>
+                    </div>
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Быстрые действия -->
+    {% if registrations %}
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Быстрые действия</h5>
+        </div>
+        <div class="card-body">
+            <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary" onclick="autoFillPositions()">
+                    Авторасстановка позиций
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="clearAllResults()">
+                    Очистить все результаты
+                </button>
+                <a href="{% url 'admin:racing_app_race_change' race.id %}"
+                   class="btn btn-outline-info" target="_blank">
+                    Редактировать гонку в админке
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% if registrations %}
+<script>
+function autoFillPositions() {
+    const positionInputs = document.querySelectorAll('input[name^="position_"]');
+    positionInputs.forEach((input, index) => {
+        if (!input.value) {
+            input.value = index + 1;
+        }
+    });
+}
+
+function clearAllResults() {
+    if (confirm('Вы уверены, что хотите очистить все результаты? Это действие нельзя отменить.')) {
+        const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
+        inputs.forEach(input => {
+            if (input.name !== 'csrfmiddlewaretoken') {
+                input.value = '';
+            }
+        });
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    }
+}
+
+// Автозаполнение очков на основе позиции
+document.addEventListener('DOMContentLoaded', function() {
+    const positionInputs = document.querySelectorAll('input[name^="position_"]');
+    positionInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            const position = parseInt(this.value);
+            if (position && position >= 1 && position <= 10) {
+                // Система начисления очков (можно изменить)
+                const pointsMap = {
+                    1: 25, 2: 18, 3: 15, 4: 12, 5: 10,
+                    6: 8, 7: 6, 8: 4, 9: 2, 10: 1
+                };
+
+                const registrationId = this.name.split('_')[1];
+                const pointsInput = document.querySelector(`input[name="points_${registrationId}"]`);
+                if (pointsInput && !pointsInput.value) {
+                    pointsInput.value = pointsMap[position] || 0;
+                }
+            }
+        });
+    });
+});
+</script>
+{% endif %}
+
+<style>
+.table th {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.form-control-sm {
+    min-width: 80px;
+}
+
+input[type="number"] {
+    text-align: center;
+}
+
+.badge {
+    font-size: 0.75rem;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список пользователей</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:hover { background-color: #f5f5f5; }
+    </style>
+</head>
+<body>
+    <h1>Список пользователей (владельцев автомобилей)</h1>
+
+    {% if user.is_authenticated %}
+        <p>Вы вошли как: {{ user.username }} | <a href="{% url 'logout' %}">Выйти</a></p>
+        <a href="{% url 'create_user' %}">Добавить нового пользователя</a>
+        <a href="{% url 'update_user' user.id %}" style="margin-left: 20px;">Редактировать свой профиль</a>
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+
+    <br><br>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Логин</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Паспорт</th>
+            <th>Действия</th>
+        </tr>
+        {% for user_obj in users %}
+        <tr>
+            <td>{{ user_obj.id }}</td>
+            <td>{{ user_obj.username }}</td>
+            <td>{{ user_obj.first_name }}</td>
+            <td>{{ user_obj.last_name }}</td>
+            <td>{{ user_obj.email }}</td>
+            <td>{{ user_obj.passport }}</td>
+            <td>
+                <a href="{% url 'user_detail' user_obj.id %}">Просмотр</a>
+                {% if user.is_authenticated and user == user_obj or user.is_superuser %}
+                | <a href="{% url 'update_user' user_obj.id %}">Редактировать</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">Нет пользователей</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'car_list' %}">Перейти к списку автомобилей</a>
+</body>
+</html>

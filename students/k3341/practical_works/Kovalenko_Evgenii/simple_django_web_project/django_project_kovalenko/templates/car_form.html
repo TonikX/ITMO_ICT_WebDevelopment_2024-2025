@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Форма автомобиля</title>
+</head>
+<body>
+    <h1>{% if object %}Редактировать автомобиль{% else %}Добавить новый автомобиль{% endif %}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <br>
+    <a href="{% url 'car_list' %}">Назад к списку автомобилей</a>
+</body>
+</html>

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Список гонок - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Список гонок</h1>
+    {% if user.is_authenticated and user.racer %}
+    <a href="{% url 'race_list' %}?type=available" class="btn btn-outline-primary">Доступные для регистрации</a>
+    {% endif %}
+</div>
+
+<!-- Форма поиска -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-4">
+                <label for="id_name" class="form-label">{{ search_form.name.label }}</label>
+                <input type="text" name="name" class="form-control" id="id_name" value="{{ search_form.name.value|default:'' }}" placeholder="Введите название гонки">
+            </div>
+            <div class="col-md-4">
+                <label for="id_location" class="form-label">{{ search_form.location.label }}</label>
+                <input type="text" name="location" class="form-control" id="id_location" value="{{ search_form.location.value|default:'' }}" placeholder="Введите место проведения">
+            </div>
+            <div class="col-md-3">
+                <label for="id_race_type" class="form-label">{{ search_form.race_type.label }}</label>
+                <select name="race_type" class="form-select" id="id_race_type">
+                    {% for value, label in search_form.fields.race_type.choices %}
+                    <option value="{{ value }}" {% if search_form.race_type.value == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Поиск</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Список гонок -->
+<div class="row">
+    {% for race in races %}
+    <div class="col-lg-6 mb-4">
+        <div class="card race-card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ race.name }}</h5>
+                <p class="card-text">
+                    <strong>📍 Место:</strong> {{ race.location }}<br>
+                    <strong>📅 Дата начала:</strong> {{ race.start_date|date:"d.m.Y H:i" }}<br>
+                    <strong>📅 Дата окончания:</strong> {{ race.end_date|date:"d.m.Y H:i" }}<br>
+                    <strong>🎯 Тип:</strong> {{ race.get_race_type_display }}<br>
+                    {% if race.description %}
+                    <strong>📝 Описание:</strong> {{ race.description|truncatewords:20 }}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'race_detail' race.id %}" class="btn btn-primary">Подробнее</a>
+                {% if user.is_authenticated and user.racer %}
+                    {% if race.is_active %}
+                    <a href="{% url 'race_register' race.id %}" class="btn btn-outline-success">Зарегистрироваться</a>
+                    {% else %}
+                    <button class="btn btn-outline-secondary" disabled>Гонка завершена</button>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h5>Гонки не найдены</h5>
+            <p>Попробуйте изменить параметры поиска</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Первая</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Назад</a>
+        </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Вперед</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Последняя</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="text-center text-muted mt-2">
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+</div>
+{% endif %}
+{% endblock %}

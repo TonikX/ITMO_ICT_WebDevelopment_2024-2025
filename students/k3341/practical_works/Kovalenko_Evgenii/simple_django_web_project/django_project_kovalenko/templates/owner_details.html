@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация о владельце</title>
+</head>
+<body>
+    <h1>Информация о владельце</h1>
+    <p><strong>Имя:</strong> {{ owner.first_name }}</p>
+    <p><strong>Фамилия:</strong> {{ owner.last_name }}</p>
+    <p><strong>Дата рождения:</strong> {{ owner.birth_date }}</p>
+    <p><strong>Паспорт:</strong> {{ owner.passport }}</p>
+    <p><strong>Адрес:</strong> {{ owner.address }}</p>
+    <p><strong>Национальность:</strong> {{ owner.nationality }}</p>
+
+    <h2>Водительские удостоверения:</h2>
+    <ul>
+        {% for license in licenses %}
+        <li>{{ license.license_number }} ({{ license.get_type_display }}) - выдано {{ license.issue_date }}</li>
+        {% empty %}
+        <li>Нет водительских удостоверений</li>
+        {% endfor %}
+    </ul>
+
+    <h2>История владения автомобилями:</h2>
+    <ul>
+        {% for ownership in ownerships %}
+        <li>
+            {{ ownership.car.brand }} {{ ownership.car.model }}
+            ({{ ownership.start_date }} - {% if ownership.end_date %}{{ ownership.end_date }}{% else %}по настоящее время{% endif %})
+        </li>
+        {% empty %}
+        <li>Нет автомобилей в владении</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'owners_list' %}">Назад к списку владельцев</a>
+</body>
+</html>

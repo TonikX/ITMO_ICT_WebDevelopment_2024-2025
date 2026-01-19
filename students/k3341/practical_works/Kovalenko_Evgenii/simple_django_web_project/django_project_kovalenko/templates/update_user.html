@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование пользователя</title>
+</head>
+<body>
+    <h1>Редактирование пользователя: {{ user.username }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <br>
+    <a href="{% url 'user_detail' user.id %}">Назад к профилю</a>
+</body>
+</html>

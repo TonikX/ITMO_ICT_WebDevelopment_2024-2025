@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Информация о пользователе</title>
+</head>
+<body>
+    <h1>Информация о пользователе</h1>
+    <p><strong>Логин:</strong> {{ user.username }}</p>
+    <p><strong>Имя:</strong> {{ user.first_name }}</p>
+    <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Дата рождения:</strong> {{ user.birth_date }}</p>
+    <p><strong>Паспорт:</strong> {{ user.passport }}</p>
+    <p><strong>Адрес:</strong> {{ user.address }}</p>
+    <p><strong>Национальность:</strong> {{ user.nationality }}</p>
+    <p><strong>Дата регистрации:</strong> {{ user.date_joined }}</p>
+
+    <h2>Водительские удостоверения:</h2>
+    <ul>
+        {% for license in licenses %}
+        <li>{{ license.license_number }} ({{ license.get_type_display }}) - выдано {{ license.issue_date }}</li>
+        {% empty %}
+        <li>Нет водительских удостоверений</li>
+        {% endfor %}
+    </ul>
+
+    <h2>История владения автомобилями:</h2>
+    <ul>
+        {% for ownership in ownerships %}
+        <li>
+            {{ ownership.car.brand }} {{ ownership.car.model }}
+            ({{ ownership.start_date }} - {% if ownership.end_date %}{{ ownership.end_date }}{% else %}по настоящее время{% endif %})
+        </li>
+        {% empty %}
+        <li>Нет автомобилей в владении</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'users_list' %}">Назад к списку пользователей</a>
+    {% if request.user == user or request.user.is_superuser %}
+    | <a href="{% url 'update_user' user.id %}">Редактировать профиль</a>
+    {% endif %}
+</body>
+</html>

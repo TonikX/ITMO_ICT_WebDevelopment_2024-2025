@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Добро пожаловать в Racing Championship!</h1>
+            <p class="lead">Крупнейшие автогонки с лучшими гонщиками мира.</p>
+            <hr class="my-4">
+            <p>Присоединяйтесь к сообществу гонщиков и болельщиков.</p>
+            {% if not user.is_authenticated %}
+            <a class="btn btn-primary btn-lg" href="{% url 'register' %}" role="button">Начать сейчас</a>
+            {% endif %}
+        </div>
+
+        <h2 class="mt-5">Ближайшие гонки</h2>
+        <div class="row">
+            {% for race in recent_races %}
+            <div class="col-md-6 mb-4">
+                <div class="card race-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ race.name }}</h5>
+                        <p class="card-text">
+                            <strong>Место:</strong> {{ race.location }}<br>
+                            <strong>Дата:</strong> {{ race.start_date|date:"d.m.Y H:i" }}<br>
+                            <strong>Тип:</strong> {{ race.get_race_type_display }}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'race_detail' race.id %}" class="btn btn-primary">Подробнее</a>
+                        {% if user.is_authenticated and user.racer %}
+                        <a href="{% url 'race_register' race.id %}" class="btn btn-outline-success">Зарегистрироваться</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">Нет предстоящих гонок</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card stats-card text-white mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Статистика лиги</h5>
+                <p class="card-text">
+                    🏎️ Активных гонок: {{ recent_races|length }}<br>
+                    👥 Зарегистрированных гонщиков: {{ top_racers|length }}<br>
+                    🏆 Всего проведено гонок: 42
+                </p>
+            </div>
+        </div>
+
+        <h4>Топ гонщики</h4>
+        <div class="list-group">
+            {% for racer in top_racers %}
+            <div class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h6 class="mb-1">{{ racer.user.get_full_name }}</h6>
+                    <small>{{ racer.wins_count }} побед</small>
+                </div>
+                <p class="mb-1">{{ racer.team.name|default:"Без команды" }}</p>
+                <small class="text-muted">{{ racer.get_racer_class_display }}</small>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h4 class="mt-4">Команды</h4>
+        <div class="list-group">
+            {% for team in teams %}
+            <a href="{% url 'team_detail' team.id %}" class="list-group-item list-group-item-action">
+                {{ team.name }} ({{ team.country }})
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="08416b50-f2cb-4ca7-b9e1-fade928832ae" name="Changes" comment="lab3 done">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/students/k3341/laboratory_works/Kovalenko_Evgenii/laboratory_work_3/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/students/k3341/laboratory_works/Kovalenko_Evgenii/laboratory_work_3/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/students/k3341/laboratory_works/Kovalenko_Evgenii/laboratory_work_3/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/students/k3341/laboratory_works/Kovalenko_Evgenii/laboratory_work_3/main/models.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;euuuuuukov&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/euuuuuukov/ITMO_ICT_WebDevelopment_2024-2025&quot;,
+    &quot;accountId&quot;: &quot;6d8353e3-5731-40e6-a46b-1f6e5847af08&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="32h14eJBBwofo7UmxfPO17dWFTm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.pr1.executor": "Run",
+    "Python.udp_client.executor": "Run",
+    "Python.udp_server.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/05kov/PycharmProjects/ITMO_ICT_WebDevelopment_2024-2025",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\t_m_s_o_s_n\PycharmProjects\ITMO_ICT_WebDevelopment_2024-2025\docs\lr3" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\t_m_s_o_s_n\PycharmProjects\ITMO_ICT_WebDevelopment_2024-2025\students\k3341\practical_works\Kovalenko_Evgenii\simple_drf_project" />
+      <recent name="C:\Users\t_m_s_o_s_n\PycharmProjects\ITMO_ICT_WebDevelopment_2024-2025\docs" />
+      <recent name="C:\Users\t_m_s_o_s_n\PycharmProjects\ITMO_ICT_WebDevelopment_2024-2025\students\k3341\laboratory_works\Kovalenko_Evgenii\laboratory_work_2" />
+      <recent name="C:\Users\t_m_s_o_s_n\PycharmProjects\ITMO_ICT_WebDevelopment_2024-2025\students\k3341\laboratory_works\Kovalenko_Evgenii" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-f5635417b835-31b6be0877a2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.18968.29" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="08416b50-f2cb-4ca7-b9e1-fade928832ae" name="Changes" comment="" />
+      <created>1757857799953</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757857799953</updated>
+    </task>
+    <task id="LOCAL-00001" summary="lab2 done">
+      <option name="closed" value="true" />
+      <created>1760989946081</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760989946081</updated>
+    </task>
+    <task id="LOCAL-00002" summary="lab3 done">
+      <option name="closed" value="true" />
+      <created>1766391887308</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766391887308</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lab2 done" />
+    <MESSAGE value="lab3 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="lab3 done" />
+  </component>
+</project>

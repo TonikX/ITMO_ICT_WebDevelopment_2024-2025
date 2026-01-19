@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список автомобилей</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>Список автомобилей</h1>
+    <a href="{% url 'car_create' %}">Добавить новый автомобиль</a>
+    <br><br>
+
+    <table>
+        <tr>
+            <th>Марка</th>
+            <th>Модель</th>
+            <th>Цвет</th>
+            <th>Госномер</th>
+            <th>Действия</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.color }}</td>
+            <td>{{ car.plate_number }}</td>
+            <td>
+                <a href="{% url 'car_detail' car.id %}">Просмотр</a> |
+                <a href="{% url 'car_update' car.id %}">Редактировать</a> |
+                <a href="{% url 'car_delete' car.id %}">Удалить</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Нет автомобилей</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'owners_list' %}">Перейти к списку владельцев</a>
+</body>
+</html>

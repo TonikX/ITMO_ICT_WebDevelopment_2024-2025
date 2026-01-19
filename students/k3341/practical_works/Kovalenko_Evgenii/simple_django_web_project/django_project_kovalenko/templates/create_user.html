@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация пользователя</title>
+</head>
+<body>
+    <h1>Регистрация нового пользователя</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрировать</button>
+    </form>
+    <br>
+    <a href="{% url 'users_list' %}">Назад к списку пользователей</a>
+</body>
+</html>

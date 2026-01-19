@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+{% block title %}Список гонщиков - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Список гонщиков</h1>
+    <div class="btn-group">
+        <a href="?sort=wins" class="btn btn-outline-primary {% if request.GET.sort == 'wins' %}active{% endif %}">По победам</a>
+        <a href="?sort=name" class="btn btn-outline-primary {% if request.GET.sort == 'name' or not request.GET.sort %}active{% endif %}">По имени</a>
+        <a href="?sort=experience" class="btn btn-outline-primary {% if request.GET.sort == 'experience' %}active{% endif %}">По опыту</a>
+    </div>
+</div>
+
+<!-- Статистика -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ racers.paginator.count }}</h4>
+                <p class="card-text">Всего гонщиков</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ total_wins }}</h4>
+                <p class="card-text">Всего побед</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ pro_racers_count }}</h4>
+                <p class="card-text">Профессионалов</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ teams_count }}</h4>
+                <p class="card-text">Команд</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Список гонщиков -->
+<div class="row">
+    {% for racer in racers %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100 race-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width: 60px; height: 60px;">
+                        <span class="text-white fw-bold">
+                            {{ racer.user.first_name|first }}{{ racer.user.last_name|first }}
+                        </span>
+                    </div>
+                    <div>
+                        <h5 class="card-title mb-1">{{ racer.user.get_full_name }}</h5>
+                        <p class="text-muted mb-0">@{{ racer.user.username }}</p>
+                    </div>
+                </div>
+
+                <div class="racer-info">
+                    <p class="mb-2">
+                        <strong>🏆 Побед:</strong>
+                        <span class="badge bg-success">{{ racer.wins_count }}</span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>🎯 Класс:</strong>
+                        <span class="badge
+                            {% if racer.racer_class == 'Pro' %}bg-danger
+                            {% elif racer.racer_class == 'Semi-pro' %}bg-warning
+                            {% elif racer.racer_class == 'Amateur' %}bg-info
+                            {% else %}bg-secondary{% endif %}">
+                            {{ racer.get_racer_class_display }}
+                        </span>
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>🏎️ Команда:</strong>
+                        {% if racer.team %}
+                        <a href="{% url 'team_detail' racer.team.id %}" class="text-decoration-none">
+                            {{ racer.team.name }}
+                        </a>
+                        {% else %}
+                        <span class="text-muted">Не в команде</span>
+                        {% endif %}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>📜 Лицензия:</strong>
+                        <code>{{ racer.license_number }}</code>
+                    </p>
+
+                    {% if racer.user.experience_years %}
+                    <p class="mb-0">
+                        <strong>⏱️ Опыт:</strong>
+                        {{ racer.user.experience_years }} лет
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <div class="btn-group w-100">
+                    <a href="{% url 'race_list' %}?racer={{ racer.id }}" class="btn btn-outline-primary btn-sm">
+                        Участие в гонках
+                    </a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'admin:racing_app_racer_change' racer.id %}" class="btn btn-outline-secondary btn-sm" target="_blank">
+                        Редактировать
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center py-5">
+            <h4>Гонщики не найдены</h4>
+            <p class="mb-0">В системе пока нет зарегистрированных гонщиков.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Первая</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Назад</a>
+        </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Вперед</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Последняя</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="text-center text-muted mt-2">
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+    <br>
+    <small>Показано {{ racers|length }} гонщиков из {{ racers.paginator.count }}</small>
+</div>
+{% endif %}
+
+<style>
+.race-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #e9ecef;
+}
+.race-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.racer-info {
+    font-size: 0.9rem;
+}
+.card-title {
+    font-size: 1.1rem;
+}
+</style>
+{% endblock %}

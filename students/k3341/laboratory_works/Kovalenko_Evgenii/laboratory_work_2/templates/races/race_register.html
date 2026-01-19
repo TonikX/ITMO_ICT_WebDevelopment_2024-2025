@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация на гонку - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Регистрация на гонку</h4>
+            </div>
+            <div class="card-body">
+                <!-- Информация о гонке -->
+                <div class="alert alert-info mb-4">
+                    <h5 class="alert-heading">{{ race.name }}</h5>
+                    <p class="mb-1"><strong>📍 Место:</strong> {{ race.location }}</p>
+                    <p class="mb-1"><strong>📅 Дата:</strong> {{ race.start_date|date:"d.m.Y H:i" }}</p>
+                    <p class="mb-0"><strong>🎯 Тип:</strong> {{ race.get_race_type_display }}</p>
+                </div>
+
+                <!-- Информация о гонщике -->
+                <div class="alert alert-primary mb-4">
+                    <h6 class="alert-heading">Ваш профиль гонщика</h6>
+                    <p class="mb-1"><strong>Гонщик:</strong> {{ user.racer.user.get_full_name }}</p>
+                    <p class="mb-1"><strong>Команда:</strong> {{ user.racer.team.name|default:"Не в команде" }}</p>
+                    <p class="mb-0"><strong>Класс:</strong> {{ user.racer.get_racer_class_display }}</p>
+                </div>
+
+                <!-- Форма регистрации -->
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        <h5>Выберите автомобиль</h5>
+                        <p class="text-muted">Доступные автомобили вашей команды:</p>
+
+                        {% if form.car.field.queryset %}
+                            <div class="row">
+                                {% for car in form.car.field.queryset %}
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio"
+                                                       name="car" id="car_{{ car.id }}"
+                                                       value="{{ car.id }}"
+                                                       {% if forloop.first %}checked{% endif %}>
+                                                <label class="form-check-label w-100" for="car_{{ car.id }}">
+                                                    <strong>{{ car.model }}</strong>
+                                                    <br>
+                                                    <small class="text-muted">
+                                                        Класс: {{ car.get_car_class_display }}<br>
+                                                        Двигатель: {{ car.engine }}<br>
+                                                        Мощность: {{ car.horsepower }} л.с.
+                                                    </small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <p>У вашей команды нет доступных автомобилей для регистрации.</p>
+                                <p class="mb-0">Обратитесь к администратору для добавления автомобилей.</p>
+                            </div>
+                        {% endif %}
+
+                        {% if form.car.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {{ form.car.errors }}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Условия участия -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="card-title mb-0">Условия участия</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agree_terms" required>
+                                <label class="form-check-label" for="agree_terms">
+                                    Я подтверждаю, что ознакомлен с правилами проведения гонки и обязуюсь их соблюдать.
+                                    Я понимаю все риски, связанные с участием в автогонках, и принимаю на себя полную
+                                    ответственность за свою безопасность и безопасность окружающих.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{% url 'race_detail' race.id %}" class="btn btn-outline-secondary me-md-2">Отмена</a>
+                        {% if form.car.field.queryset %}
+                        <button type="submit" class="btn btn-success">Зарегистрироваться на гонку</button>
+                        {% else %}
+                        <button type="button" class="btn btn-secondary" disabled>Нет доступных автомобилей</button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Дополнительная информация -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6>Что происходит после регистрации?</h6>
+                <ul class="mb-0">
+                    <li>Ваша заявка будет отправлена на подтверждение организаторам</li>
+                    <li>После подтверждения вы получите уведомление</li>
+                    <li>Вы сможете отслеживать статус заявки в своем профиле</li>
+                    <li>Отменить регистрацию можно до начала гонки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

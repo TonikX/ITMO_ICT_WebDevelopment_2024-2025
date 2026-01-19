@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Команды - Racing Championship{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Команды автогонок</h1>
+    <div class="btn-group">
+        <a href="?sort=name" class="btn btn-outline-primary {% if request.GET.sort == 'name' or not request.GET.sort %}active{% endif %}">По названию</a>
+        <a href="?sort=country" class="btn btn-outline-primary {% if request.GET.sort == 'country' %}active{% endif %}">По стране</a>
+        <a href="?sort=date" class="btn btn-outline-primary {% if request.GET.sort == 'date' %}active{% endif %}">По дате основания</a>
+    </div>
+</div>
+
+<!-- Статистика -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ teams.paginator.count }}</h4>
+                <p class="card-text">Всего команд</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ total_racers }}</h4>
+                <p class="card-text">Гонщиков в командах</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ total_cars }}</h4>
+                <p class="card-text">Автомобилей</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body text-center">
+                <h4 class="card-title">{{ total_wins }}</h4>
+                <p class="card-text">Всего побед</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Список команд -->
+<div class="row">
+    {% for team in teams %}
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100 team-card">
+            <div class="card-body">
+                <div class="d-flex align-items-start mb-3">
+                    {% if team.logo %}
+                    <img src="{{ team.logo.url }}" alt="{{ team.name }}" class="img-fluid rounded me-3" style="width: 80px; height: 80px; object-fit: contain;">
+                    {% else %}
+                    <div class="bg-secondary rounded d-flex align-items-center justify-content-center me-3" style="width: 80px; height: 80px;">
+                        <span class="text-white fw-bold">{{ team.name|first }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="flex-grow-1">
+                        <h5 class="card-title">{{ team.name }}</h5>
+                        <p class="card-text text-muted mb-1">
+                            <strong>📍 Страна:</strong>
+                            <span class="badge bg-light text-dark">{{ team.country }}</span>
+                        </p>
+                        <p class="card-text text-muted mb-1">
+                            <strong>📅 Основана:</strong> {{ team.founded_date|date:"Y" }} год
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong>👥 Гонщиков:</strong> {{ team.racer_set.count }}
+                            <strong class="ms-2">🏎️ Авто:</strong> {{ team.car_set.count }}
+                        </p>
+                    </div>
+                </div>
+
+                {% if team.description %}
+                <p class="card-text">{{ team.description|truncatewords:30 }}</p>
+                {% endif %}
+
+                <div class="mt-3">
+                    <span class="badge bg-primary">Автомобилей: {{ team.car_set.count }}</span>
+                    <!-- ИСПРАВЛЕННАЯ СТРОКА: убрали get_item фильтр -->
+                    <span class="badge bg-success ms-1">Побед: {{ team.racer_set.all.0.wins_count|default:0 }}</span>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <div class="btn-group w-100">
+                    <a href="{% url 'team_detail' team.id %}" class="btn btn-primary">Подробнее</a>
+                    <a href="{% url 'racer_list' %}?team={{ team.id }}" class="btn btn-outline-secondary">Гонщики команды</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info text-center py-5">
+            <h4>Команды не найдены</h4>
+            <p class="mb-0">В системе пока нет зарегистрированных команд.</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Пагинация -->
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Первая</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Назад</a>
+        </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <li class="page-item active">
+                <span class="page-link">{{ num }}</span>
+            </li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ num }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ num }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Вперед</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Последняя</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class="text-center text-muted mt-2">
+    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+    <br>
+    <small>Показано {{ teams|length }} команд из {{ teams.paginator.count }}</small>
+</div>
+{% endif %}
+
+<style>
+.team-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #e9ecef;
+}
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}
