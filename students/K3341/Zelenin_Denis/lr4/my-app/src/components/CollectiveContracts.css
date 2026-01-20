@@ -1,0 +1,105 @@
+/* CollectiveContracts.css */
+
+.contracts-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contracts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.contracts-table th,
+.contracts-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.contracts-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.contracts-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.contracts-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.add-contract-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.add-contract-form h3 {
+    margin-top: 0;
+}
+
+.add-contract-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.add-contract-form input,
+.add-contract-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.add-contract-form select[multiple] {
+    height: auto;
+}
+
+.add-contract-form button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-contract-form button:hover {
+    background-color: #45a049;
+}
+
+.contracts-table button {
+    padding: 5px 10px;
+    margin: 2px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contracts-table button:hover {
+    background-color: #0056b3;
+}
+
+.contracts-table button.delete {
+    background-color: #f44336;
+}
+
+.contracts-table button.delete:hover {
+    background-color: #d32f2f;
+}

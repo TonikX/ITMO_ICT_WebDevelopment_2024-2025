@@ -1,0 +1,79 @@
+/* Общие настройки */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #2c2c2c, #000);
+    color: white;
+}
+
+/* Центровка контейнера */
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Высота экрана */
+    background: rgba(0, 0, 0, 0.9); /* Тёмный фон */
+    padding: 90px;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 2.5em;
+    color: #ffcc00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Контейнер для формы */
+.results-container {
+    background: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 500px; /* Ограничение по ширине */
+}
+
+/* Поля формы */
+form input, form select, form textarea {
+    background: rgba(0, 0, 0, 0.8); /* Тёмный фон для полей */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Светлая граница */
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1em;
+}
+
+/* Кнопка */
+form .btn {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1.1em;
+    transition: background 0.3s, transform 0.2s;
+}
+
+form .btn:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+    cursor: pointer;
+}
+
+/* Эффект нажатия */
+form .btn:active {
+    background: #d4a900;
+    transform: translateY(0);
+}
+
+

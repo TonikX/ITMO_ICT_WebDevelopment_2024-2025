@@ -1,0 +1,66 @@
+.employees-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.employees-table th, .employees-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.employees-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.employees-table td {
+    background-color: #f9f9f9;
+}
+
+.employee-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.employee-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.employee-form input {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #d6d6d6;
+    cursor: not-allowed;
+}
