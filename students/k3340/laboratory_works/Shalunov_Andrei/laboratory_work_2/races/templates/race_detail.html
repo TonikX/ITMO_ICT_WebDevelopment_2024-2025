@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/race_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="race-detail-container">
+    <h2>Детали гонки: {{ race.name }}</h2>
+    <p>Дата: {{ race.date }}</p>
+    {% if is_upcoming %}
+        <p>Статус: {{ race.result|default:"Регистрация открыта." }}</p>
+    {% else %}
+        <p>Результат: {{ race.result|default:"Гонка окончена." }}</p>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <h3>Действия</h3>
+        {% if user.is_staff %}
+        <!-- Дополнительные действия, доступные только администратору -->
+        <p><a href="{% url 'edit_race' pk=race.id %}" class="button-link">Редактировать гонку</a></p>
+        <p><a href="{% url 'delete_race' pk=race.id %}" class="admin-delete-button">Удалить гонку</a></p>
+        {% else %}
+            {% if is_upcoming %}
+                {% if has_racer_profile %}
+                    {% if is_registered %}
+                        <p>Вы уже зарегистрированы на эту гонку.</p>
+                        <form action="{% url 'unregister_race' race.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="button-link">Отменить регистрацию</button>
+                        </form>
+                    {% else %}
+                        <p><a href="{% url 'register_race' race.id %}" class="button-link">Зарегистрироваться на гонку</a></p>
+                    {% endif %}
+                {% else %}
+                    <p>Чтобы зарегистрироваться на гонку, <a href="{% url 'create_racer_profile' %}" class="action-link">создайте профиль гонщика</a>.</p>
+                {% endif %}
+            {% else %}
+                <p> Регистрация на прошедшие гонки закрыта.</p>
+            {% endif %}
+        {% endif %}
+    {% elif is_upcoming%}
+        <p>Чтобы зарегистрироваться на гонку, <a href="{% url 'login' %}" class="action-link">авторизуйтесь на сайте</a>.</p>
+    {% endif %}
+
+    {% if is_upcoming %}
+        <h3>Зарегистрированные участники</h3>
+        {% if registered_racers %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Команда</th>
+                        <th>Автомобиль</th>
+                        <th>Класс гонщика</th>
+                        <th>Опыт (лет)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for registration in registered_racers %}
+                        <tr>
+                            <td>{{ registration.racer.user.first_name }}</td>
+                            <td>{{ registration.racer.user.last_name }}</td>
+                            <td>{{ registration.racer.team_name }}</td>
+                            <td>
+                                {% if registration.car %}
+                                    {{ registration.car.brand }} {{ registration.car.model }}
+                                {% else %}
+                                    Не указан
+                                {% endif %}
+                            </td>
+                            <td>{{ registration.racer.racer_class }}</td>
+                            <td>{{ registration.racer.experience }}</td>
+                            {% if user.is_authenticated and user.is_staff %}
+                            <td>
+                                <form action="{% url 'delete_racer_from_registration' race_id=race.id registration_id=registration.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="admin-delete-button">Удалить гонщика</button>
+                                </form>
+                            </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Пока нет зарегистрированных участников.</p>
+        {% endif %}
+
+        {% if user.is_authenticated and user.is_staff %}
+            <h3>Добавить нового участника</h3>
+            <form method="post">
+                {% csrf_token %}
+
+                {% if not show_full_form %}
+                    {{ new_racer_reg_form.racer }}
+                    <!-- Скрытое поле для определения действия -->
+                    <input type="hidden" name="action" value="choose_racer">
+                    <!-- Кнопка для выбора гонщика -->
+                    <button type="submit" class="button-link">Выбрать гонщика</button>
+                {% endif %}
+
+                {% if show_full_form %}
+                    {{ new_racer_reg_form.as_p }}
+                    <!-- Скрытое поле для определения действия -->
+                    <input type="hidden" name="action" value="save_registration">
+                    <!-- Кнопка для сохранения регистрации -->
+                    <button type="submit" class="admin-save-button">Сохранить</button>
+                {% endif %}
+
+                {% if new_racer_reg_form.non_field_errors %}
+                    <div class="text-danger">
+                        {% for error in new_racer_reg_form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </form>
+        {% endif %}
+    {% else %}
+        <h3>Результаты гонки</h3>
+        {% if race_results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Место</th>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Команда</th>
+                        <th>Автомобиль</th>
+                        <th>Класс гонщика</th>
+                        <th>Время завершения</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in race_results %}
+                        <tr>
+                            <td>{{ result.place }}</td>
+                            <td>{{ result.racer.user.first_name }}</td>
+                            <td>{{ result.racer.user.last_name }}</td>
+                            <td>{{ result.racer.team_name }}</td>
+                            <td>
+                                {% if result.car %}
+                                    {{ result.car.brand }} {{ result.car.model }}
+                                {% else %}
+                                    Не указан
+                                {% endif %}
+                            </td>
+                            <td>{{ result.racer.racer_class }}</td>
+                            <td>{{ result.finish_time }}</td>
+                                {% if user.is_authenticated and user.is_staff %}
+                            <td>
+                                <form action="{% url 'delete_racer_from_result' race_id=race.id result_id=result.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="admin-delete-button">Удалить</button>
+                                </form>
+                            </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Результаты гонки отсутствуют.</p>
+        {% endif %}
+
+        {% if user.is_authenticated and user.is_staff %}
+            <h3>Добавить новую запись</h3>
+            <form method="post">
+                {% csrf_token %}
+
+                {% if not show_full_form %}
+                    {{ new_racer_result_form.racer }}
+                    <!-- Скрытое поле для определения действия -->
+                    <input type="hidden" name="action" value="choose_racer">
+                    <!-- Кнопка для выбора гонщика -->
+                    <button type="submit" class="button-link">Выбрать гонщика</button>
+                {% endif %}
+
+                {% if show_full_form %}
+                    {{ new_racer_result_form.as_p }}
+                    <!-- Скрытое поле для определения действия -->
+                    <input type="hidden" name="action" value="save_registration">
+                    <!-- Кнопка для сохранения регистрации -->
+                    <button type="submit" class="admin-save-button">Сохранить</button>
+                {% endif %}
+
+                {% if new_racer_result_form.non_field_errors %}
+                    <div class="text-danger">
+                        {% for error in new_racer_result_form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </form>
+        {% endif %}
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'add_comment' race.id %}" class="button-link">Оставить комментарий </a></p>
+    {% endif %}
+
+    <h3>Комментарии</h3>
+    <div class="comments-section">
+        {% if race.comments.exists %}
+            {% for comment in race.comments.all %}
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <span class="comment-author">
+                            {% if comment.user.first_name or comment.user.last_name %}
+                                {{ comment.user.first_name}} {{comment.user.last_name }}
+                            {% else %}
+                                {{ comment.user.username}}
+                            {% endif %}
+                        </span>
+                        <span class="comment-date">{{ comment.create_date|date:"d.m.Y H:i" }}</span>
+                    </div>
+                    <p class="comment-text">{{ comment.text }}</p>
+                    <div class="comment-footer">
+                        <strong>Тип комментария:</strong>
+                        {% if comment.comment_type == 'cooperation' %}
+                            Вопрос о сотрудничестве
+                        {% elif comment.comment_type == 'race' %}
+                            Вопрос о гонках
+                        {% else %}
+                            Иное
+                        {% endif %}
+                        <br>
+                        <strong>Рейтинг:</strong> <span class="comment-rating">{{ comment.rating }} / 10</span>
+                    </div>
+                    {% if user.is_authenticated and user.is_staff %}
+                        <form action="{% url 'delete_comment' race_id=race.id pk=comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="admin-delete-button">Удалить комментарий</button>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Комментариев пока нет.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

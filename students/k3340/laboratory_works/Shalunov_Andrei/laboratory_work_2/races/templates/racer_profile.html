@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>Профиль гонщика: {{ racer.user.username }}</h2>
+
+    <p><strong>Имя:</strong> {{ racer.user.first_name }} {{ racer.user.last_name }}</p>
+    <p><strong>Email:</strong> {{ racer.user.email }}</p>
+    <p><strong>Команда:</strong> {{ racer.team_name }}</p>
+    <p><strong>Класс гонщика:</strong> {{ racer.racer_class }}</p>
+    <p><strong>Опыт:</strong> {{ racer.experience }} лет</p>
+
+    <p><a href="{% url 'edit_racer_profile' pk=racer.pk %}" class="button-link">Редактировать профиль</a></p>
+
+    <h3>Информация об автомобилях</h3>
+    {% if racer.cars.all %}
+        <ul>
+            {% for car in racer.cars.all %}
+                <li>
+                    <p><strong>Марка:</strong> {{ car.brand }}</p>
+                    <p><strong>Модель:</strong> {{ car.model }}</p>
+                    <p><strong>Год выпуска:</strong> {{ car.year }}</p>
+                    <p><strong>Описание:</strong> {{ car.description|default:"Нет описания" }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Информация об автомобилях отсутствует.</p>
+    {% endif %}
+
+    <h3>Добавить автомобиль</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ automobile_form.as_p }}
+        <button type="submit" class="button-link">Добавить автомобиль</button>
+    </form>
+</div>
+{% endblock %}

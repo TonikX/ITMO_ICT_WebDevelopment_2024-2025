@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/register_race.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h2>Регистрация на гонку</h2>
+    <p>Вы собираетесь зарегистрироваться на гонку: {{ race.name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    <p><a href="{% url 'race_detail' race.id %}" class="action-link">Назад к информации о гонке</a></p>
+{% endblock %}

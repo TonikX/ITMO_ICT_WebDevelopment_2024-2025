@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/add_comment.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="comment-form-container">
+    <h2>Добавить комментарий к гонке</h2>
+    <p>Гонка: {{ race.name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Оставить комментарий</button>
+    </form>
+    <p><a href="{% url 'race_detail' race.id %}" class="action-link">Назад к информации о гонке</a></p>
+</div>
+{% endblock %}

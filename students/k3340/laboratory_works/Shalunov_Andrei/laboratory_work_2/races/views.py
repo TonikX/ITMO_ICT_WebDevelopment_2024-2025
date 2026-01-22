@@ -1,0 +1,351 @@
+from django.db.models import Q
+from django.http import HttpResponseRedirect, Http404, HttpResponseForbidden
+from django.shortcuts import render, redirect, get_object_or_404, reverse
+from django.utils import timezone
+from django.urls import reverse_lazy
+from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views import View
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from .models import Race, Racer, Registration, Comment, RaceResult
+from .forms import (
+    RegistrationForm, CommentForm, UserRegistrationForm, RacerProfileForm,
+    AutomobileForm, UnregisterForm, UserUpdateForm, RacerProfileUpdateForm,
+    NewRacerRegistrationForm, NewRacerResultForm
+)
+
+
+class UserRegistrationView(CreateView):
+    form_class = UserRegistrationForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('race_list')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        user = form.save()
+        login(self.request, user)
+        return response
+
+
+class LogoutUser(View):
+
+    def get(self, request):
+        logout(request)
+        return redirect('race_list')
+
+
+class RaceListView(ListView):
+    model = Race
+    template_name = 'race_list.html'
+    context_object_name = 'races'
+    paginate_by = 3
+
+    def get_queryset(self):
+        query = self.request.GET.get('q', '').strip()
+        queryset = Race.objects.all()
+        if query:
+            queryset = queryset.filter(Q(name__icontains=query) | Q(result__icontains=query))
+
+        return queryset.order_by('-date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q', '').strip()
+        search_query = f"&q={query}" if query else ''
+        context['search_query'] = search_query
+        return context
+
+class RaceDetailView(DetailView):
+    model = Race
+    template_name = 'race_detail.html'
+    context_object_name = 'race'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['is_upcoming'] = self.object.date >= now
+        context['show_full_form'] = False
+
+        if context['is_upcoming']:
+            context['registered_racers'] = self.object.registrations.all()
+            context['new_racer_reg_form'] = NewRacerRegistrationForm(race=self.object)
+        else:
+            context['race_results'] = RaceResult.objects.filter(race=self.object).order_by('place')
+            context['new_racer_result_form'] = NewRacerResultForm(race=self.object)
+
+        context['unregister_form'] = UnregisterForm()
+
+        # Проверка, зарегистрирован ли пользователь на гонку
+        if self.request.user.is_authenticated:
+            # Проверка на наличие профиля гонщика
+            context['has_racer_profile'] = hasattr(self.request.user, 'racer')
+            if context['has_racer_profile']:
+            # Выполняем проверку регистрации только если профиль гонщика существует
+                context["is_registered"] = Registration.objects.filter(
+                    race=self.object, racer=self.request.user.racer
+                ).exists()
+            else:
+                context["is_registered"] = False
+        else:
+            context["is_registered"] = False
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return HttpResponseForbidden("Только администраторы могут добавлять участников.")
+
+        self.object = self.get_object()
+        context = self.get_context_data()
+        action = request.POST.get('action')
+
+        # Если гонка еще не состоялась (добавляем нового участника)
+        if context['is_upcoming']:
+            form = NewRacerRegistrationForm(request.POST, race=self.object)
+            if action == "choose_racer" and form.is_valid():
+                # Обновляем форму, чтобы отобразить доступные автомобили для выбранного гонщика
+                context['new_racer_reg_form'] = form
+                context['show_full_form'] = True
+
+                # Устанавливаем значение гонщика и блокируем поле
+                # selected_racer = form.cleaned_data['racer']
+                # form.fields['racer'].initial = selected_racer
+                # form.fields['racer'].disabled = True
+
+                return self.render_to_response(context)
+
+            elif action == "save_registration" and form.is_valid():
+                # Сохраняем нового участника
+                registration = form.save(commit=False)
+                registration.race = self.object
+                registration.save()
+                return redirect('race_detail', pk=self.object.pk)
+            else:
+                context['new_racer_reg_form'] = form
+                context['show_full_form'] = True
+
+        else:
+            form = NewRacerResultForm(request.POST, race=self.object)
+            if action == "choose_racer":
+                # Обновляем форму для отображения автомобилей
+                context['new_racer_result_form'] = form
+                context['show_full_form'] = True
+                return self.render_to_response(context)
+
+            elif action == "save_registration" and form.is_valid():
+                result = form.save(commit=False)
+                result.race = self.object
+                result.save()
+                return redirect('race_detail', pk=self.object.pk)
+            else:
+                context['new_racer_result_form'] = form
+                context['show_full_form'] = True
+
+        return self.render_to_response(context)
+
+
+class RaceRegistrationView(LoginRequiredMixin, CreateView):
+    model = Registration
+    form_class = RegistrationForm
+    template_name = 'register_race.html'
+
+    def form_valid(self, form):
+        # Проверка на наличие профиля гонщика
+        if not hasattr(self.request.user, 'racer'):
+            return HttpResponseRedirect(reverse('create_racer_profile'))
+
+        race = get_object_or_404(Race, id=self.kwargs['race_id'])
+        form.instance.race = race
+        form.instance.racer = self.request.user.racer
+        return super().form_valid(form)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['racer'] = self.request.user.racer  # Передаем профиль гонщика в форму
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('race_detail', args=[self.kwargs['race_id']])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['race'] = get_object_or_404(Race, id=self.kwargs['race_id'])
+        return context
+
+
+class RaceUnregisterView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        race = get_object_or_404(Race, id=self.kwargs['race_id'])
+
+        if not hasattr(request.user, 'racer'):
+            messages.warning(request, "У вас нет профиля гонщика. Сначала создайте его.")
+            return redirect('create_racer_profile')
+
+        registration = Registration.objects.filter(race=race, racer=request.user.racer).first()
+
+        if registration:
+            registration.delete()
+            messages.success(request, "Вы успешно отменили регистрацию на гонку.")
+        else:
+            messages.warning(request, "Вы не зарегистрированы на эту гонку.")
+
+        return redirect('race_detail', pk=race.id)
+
+
+class RacerProfileCreateView(LoginRequiredMixin, CreateView):
+    model = Racer
+    template_name = 'create_racer_profile.html'
+    form_class = RacerProfileForm
+    success_url = reverse_lazy('race_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class RacerProfileView(LoginRequiredMixin, DetailView):
+    model = Racer
+    template_name = 'racer_profile.html'
+    context_object_name = 'racer'
+
+    def get_object(self):
+        return get_object_or_404(Racer, user=self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        automobile_form = AutomobileForm(request.POST)
+        if automobile_form.is_valid():
+            car = automobile_form.save()
+            self.get_object().cars.add(car)
+            messages.success(request, "Автомобиль успешно добавлен к профилю.")
+            return redirect('racer_profile', pk=self.get_object().id)
+        else:
+            messages.error(request, "Ошибка при добавлении автомобиля. Проверьте форму.")
+        return self.get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['automobile_form'] = AutomobileForm()
+        return context
+
+
+class RacerProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Racer
+    template_name = 'edit_racer_profile.html'
+    context_object_name = 'racer'
+    form_class = RacerProfileUpdateForm
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Racer, user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_form'] = UserUpdateForm(instance=self.request.user)
+        return context
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        user_form = UserUpdateForm(self.request.POST, instance=self.request.user)
+        if user_form.is_valid():
+            user_form.save()
+            form.save()
+            return redirect('racer_profile', pk=self.request.user.racer.pk)
+        else:
+            self.form_invalid(form)
+
+
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.race = get_object_or_404(Race, id=self.kwargs['race_id'])
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('race_detail', args=[self.kwargs['race_id']])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['race'] = get_object_or_404(Race, id=self.kwargs['race_id'])
+        return context
+
+
+class EditRaceView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Race
+    fields = ['name', 'date', 'result']
+    template_name = 'edit_race.html'
+    success_url = reverse_lazy('race_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteRaceView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Race
+    template_name = 'delete_race.html'
+    context_object_name = 'race'
+    success_url = reverse_lazy('race_list')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            comment = Comment.objects.get(pk=kwargs['pk'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
+        if not request.user.is_staff:
+            return redirect('race_detail', pk=comment.race.id)
+
+        comment.delete()
+        return redirect('race_detail', pk=comment.race.id)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteRacerFromRegistrationView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            regracer = Registration.objects.get(id=kwargs['registration_id'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
+        if not request.user.is_staff:
+            return redirect('race_detail', pk=regracer.race.id)
+
+        regracer.delete()
+        return redirect('race_detail', pk=regracer.race.id)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class DeleteRacerFromRaceResultView(LoginRequiredMixin, UserPassesTestMixin, View):
+
+    def post(self, request, *args, **kwargs):
+        try:
+            result = RaceResult.objects.get(id=kwargs['result_id'])
+        except:
+            raise Http404("Запись регистрации не найдена")
+
+        if not request.user.is_staff:
+            return redirect('race_detail', pk=result.race.id)
+
+        result.delete()
+        return redirect('race_detail', pk=result.race.id)
+
+    def test_func(self):
+        return self.request.user.is_staff
