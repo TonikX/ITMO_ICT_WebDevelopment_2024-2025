@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-header">
+        <h2 class="card-title">👤 Профиль пользователя</h2>
+    </div>
+
+    <div class="card-body">
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Полное имя:</strong> {{ user.get_full_name|default:"—" }}</p>
+        <p><strong>Email:</strong> {{ user.email|default:"—" }}</p>
+
+        <hr style="margin: 1.5rem 0;">
+
+        <p>
+            <strong>Роль:</strong>
+            <span class="badge {% if user.profile.is_teacher %}badge-primary{% else %}badge-success{% endif %}">
+                {{ user.profile.get_role_display }}
+            </span>
+        </p>
+
+        {% if user.profile.is_teacher %}
+            <p>👨‍🏫 Вы являетесь преподавателем.</p>
+        {% else %}
+            <p>🎓 Вы являетесь учеником.</p>
+        {% endif %}
+    </div>
+
+    <div class="card-footer" style="display: flex; gap: 1rem;">
+        <a href="{% url 'accounts:logout' %}" class="btn btn-danger">Выйти</a>
+        <!-- если будет редактирование -->
+        {# <a href="{% url 'accounts:profile_edit' %}" class="btn btn-secondary">Редактировать</a> #}
+    </div>
+</div>
+{% endblock %}

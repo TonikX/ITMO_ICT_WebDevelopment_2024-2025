@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} - Homework Board{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 1rem;">
+    <a href="{% url 'homework:list' %}" style="color: var(--primary-color); text-decoration: none;">
+        ← Назад к списку
+    </a>
+</div>
+
+<div class="card" style="max-width: 900px; margin: 0 auto;">
+    <div class="card-header">
+        <h2 class="card-title">{{ title }}</h2>
+    </div>
+    
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="form-group">
+                <label class="form-label">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+                
+                {% if field.name == 'classes' %}
+                    <div style="max-height: 200px; overflow-y: auto; border: 2px solid #ddd; padding: 1rem; border-radius: 8px;">
+                        {{ field }}
+                    </div>
+                {% else %}
+                    {{ field }}
+                {% endif %}
+                
+                {% if field.help_text %}
+                <small class="text-muted">{{ field.help_text|safe }}</small>
+                {% endif %}
+                
+                {% if field.errors %}
+                <div style="color: var(--danger-color); margin-top: 0.5rem;">
+                    {{ field.errors }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <div class="d-flex gap-2 mt-3">
+                <button type="submit" class="btn btn-success">
+                    {% if homework %}✏️ Сохранить изменения{% else %}➕ Создать задание{% endif %}
+                </button>
+                <a href="{% url 'homework:list' %}" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-control, .form-select, textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    
+    input[type="checkbox"] {
+        margin-right: 0.5rem;
+        width: auto;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    ul li {
+        margin: 0.5rem 0;
+    }
+</style>
+{% endblock %}

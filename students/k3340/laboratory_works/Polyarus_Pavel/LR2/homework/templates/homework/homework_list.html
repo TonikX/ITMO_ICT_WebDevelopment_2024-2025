@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}Домашние задания{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-between align-center mb-3">
+    <h1>Домашние задания</h1>
+    {% if user.profile.is_teacher %}
+    <a href="{% url 'homework:create' %}" class="btn btn-primary">➕ Создать задание</a>
+    {% endif %}
+</div>
+
+<!-- Поиск и фильтры -->
+<div class="search-filters">
+    <form method="get">
+        <div class="filter-row">
+            <div class="form-group" style="margin-bottom: 0;">
+                <input type="text" name="search" class="form-control" 
+                       placeholder="Поиск по названию или описанию..." 
+                       value="{{ search_query }}">
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 0;">
+                {{ search_form.subject }}
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 0;">
+                {{ search_form.status }}
+            </div>
+            
+            <button type="submit" class="btn btn-primary">🔍 Найти</button>
+        </div>
+    </form>
+</div>
+
+<!-- Список заданий -->
+{% if page_obj %}
+    {% for homework in page_obj %}
+    <div class="card">
+        <div class="card-header d-flex justify-between align-center">
+            <div>
+                <h3 class="card-title">
+                    <a href="{% url 'homework:detail' homework.pk %}" 
+                       style="color: var(--dark-color); text-decoration: none;">
+                        {{ homework.title }}
+                    </a>
+                </h3>
+                <div class="d-flex gap-2 mt-1">
+                    <span class="badge badge-primary">{{ homework.subject.name }}</span>
+                    <span class="badge" style="background-color: {{ homework.subject.color }}20; color: {{ homework.subject.color }};">
+                        {{ homework.teacher.get_full_name }}
+                    </span>
+                    
+                    {% if homework.is_overdue %}
+                    <span class="badge badge-danger">⏰ Просрочено</span>
+                    {% endif %}
+                    
+                    {% if user.profile.is_student and homework.is_submitted %}
+                    <span class="badge badge-success">✓ Сдано</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div style="text-align: right;">
+                <div class="text-muted" style="font-size: 0.9rem;">
+                    Срок: {{ homework.deadline|date:"d.m.Y H:i" }}
+                </div>
+                {% if homework.is_overdue %}
+                <div style="color: var(--danger-color); font-size: 0.85rem; font-weight: 600;">
+                    Просрочено на {{ homework.days_overdue }} дн.
+                </div>
+                {% else %}
+                <div style="color: var(--secondary-color); font-size: 0.85rem;">
+                    Осталось времени
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <p>{{ homework.description|truncatewords:30 }}</p>
+        </div>
+        
+        <div class="card-footer">
+            <div>
+                <span class="text-muted">Макс. балл: <strong>{{ homework.max_score }}</strong></span>
+                <span class="text-muted" style="margin-left: 1rem;">
+                    Классы: 
+                    {% for class in homework.classes.all %}
+                        {{ class.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </span>
+            </div>
+            
+            <div class="d-flex gap-1">
+                <a href="{% url 'homework:detail' homework.pk %}" class="btn btn-primary btn-sm">
+                    Подробнее
+                </a>
+                
+                {% if user.profile.is_teacher and homework.teacher == user %}
+                <a href="{% url 'homework:update' homework.pk %}" class="btn btn-secondary btn-sm">
+                    ✏️ Изменить
+                </a>
+                {% endif %}
+                
+                {% if user.profile.is_student and not homework.is_submitted %}
+                <a href="{% url 'homework:submit' homework.pk %}" class="btn btn-success btn-sm">
+                    📝 Сдать
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <!-- Пагинация -->
+    {% if page_obj.has_other_pages %}
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li><a href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}">« Первая</a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">‹ Пред</a></li>
+            {% endif %}
+            
+            <li><span class="current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span></li>
+            
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}">След ›</a></li>
+            <li><a href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}">Последняя »</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+{% else %}
+    <div class="card text-center">
+        <div class="card-body">
+            <h3>📭 Домашних заданий пока нет</h3>
+            <p class="text-muted">
+                {% if user.profile.is_teacher %}
+                Вы можете создать первое задание, нажав на кнопку выше.
+                {% else %}
+                Преподаватели еще не добавили заданий для вашего класса.
+                {% endif %}
+            </p>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

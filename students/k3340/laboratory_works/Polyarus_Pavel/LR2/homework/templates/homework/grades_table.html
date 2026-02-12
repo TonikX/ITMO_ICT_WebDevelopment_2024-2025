@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+Журнал оценок
+{% endblock %}
+
+{% block content %}
+<h1>Журнал оценок</h1>
+
+<form method="get" class="d-flex gap-2 mb-3">
+
+    <select name="class_id" class="form-select" style="width: auto;" onchange="this.form.submit()">
+        <option value="">Выберите класс</option>
+        {% for c in available_classes %}
+            <option value="{{ c.id }}"
+                {% if student_class and c.id == student_class.id %}selected{% endif %}>
+                {{ c.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <select name="subject_id" class="form-select" style="width: auto;" onchange="this.form.submit()">
+        <option value="">Выберите предмет</option>
+        {% for s in available_subjects %}
+            <option value="{{ s.id }}"
+                {% if subject and s.id == subject.id %}selected{% endif %}>
+                {{ s.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+</form>
+
+{% if student_class and subject %}
+
+<div class="card">
+    <div class="card-body" style="padding: 0; overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th style="position: sticky; left: 0; background-color: var(--primary-color); z-index: 10; min-width: 200px;">
+                        Ученик
+                    </th>
+                    {% for hw in homeworks %}
+                        <th style="min-width: 120px; text-align: center;">
+                            <div style="writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; padding: 1rem 0;">
+                                {{ hw.title|truncatechars:30 }}
+                            </div>
+                            <div style="font-size: 0.8rem; font-weight: normal;">
+                                ({{ hw.max_score }})
+                            </div>
+                        </th>
+                    {% endfor %}
+                    <th style="text-align: center; background-color: var(--primary-color); font-weight: bold;">
+                        Средний балл
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td style="position: sticky; left: 0; background-color: white; font-weight: 600; z-index: 5;">
+                        {{ row.student.get_full_name|default:row.student.username }}
+                        {% if row.student == user %}
+                        <span class="badge badge-primary" style="margin-left: 0.5rem;">Вы</span>
+                        {% endif %}
+                    </td>
+
+                    {% for grade_data in row.grades %}
+                        <td style="text-align: center;">
+                            {% if grade_data %}
+                                {% if grade_data.score is not None %}
+                                    <div style="font-weight: bold; font-size: 1.1rem;
+                                        {% if grade_data.color_class == 'excellent' %}
+                                            color: var(--secondary-color);
+                                        {% elif grade_data.color_class == 'good' %}
+                                            color: var(--warning-color);
+                                        {% elif grade_data.color_class == 'poor' %}
+                                            color: var(--danger-color);
+                                        {% endif %}
+                                    ">
+                                        {{ grade_data.score }}
+                                    </div>
+                                    {% if grade_data.submission.calculate_penalty > 0 %}
+                                    <div style="font-size: 0.75rem; color: var(--danger-color);">
+                                        -{{ grade_data.submission.calculate_penalty }}
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if grade_data.submission.status == 'pending' %}
+                                    <span class="badge badge-warning" style="font-size: 0.7rem;">⏳</span>
+                                    {% elif grade_data.submission.status == 'revision' %}
+                                    <span class="badge badge-danger" style="font-size: 0.7rem;">↺</span>
+                                    {% else %}
+                                    <span class="badge badge-success" style="font-size: 0.7rem;">✓</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="badge badge-warning">Не проверено</span>
+                                {% endif %}
+                            {% else %}
+                                <span style="color: #ccc; font-size: 1.5rem;">—</span>
+                            {% endif %}
+                        </td>
+                    {% endfor %}
+
+                    <td style="text-align: center; font-weight: bold; font-size: 1.2rem; background-color: #f8f9fa;">
+                        {% if row.average > 0 %}
+                            <span style="
+                                {% if row.average >= 80 %}
+                                    color: var(--secondary-color);
+                                {% elif row.average >= 50 %}
+                                    color: var(--warning-color);
+                                {% else %}
+                                    color: var(--danger-color);
+                                {% endif %}
+                            ">
+                                {{ row.average }}
+                            </span>
+                        {% else %}
+                            <span style="color: #ccc;">—</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% else %}
+<div class="card text-center">
+    <div class="card-body">
+        <p class="text-muted" style="font-size: 1.1rem;">
+            ⚠️ Выберите класс и предмет для просмотра журнала оценок
+        </p>
+    </div>
+</div>
+{% endif %}
+
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    
+    th, td {
+        border: 1px solid #ddd;
+        padding: 0.75rem;
+    }
+    
+    tbody tr:hover {
+        background-color: #f0f8ff;
+    }
+    
+    thead th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
+</style>
+
+{% endblock %}

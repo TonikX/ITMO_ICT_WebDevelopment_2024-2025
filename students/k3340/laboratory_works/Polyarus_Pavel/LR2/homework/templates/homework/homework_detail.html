@@ -1,0 +1,114 @@
+homework_detail_template = """{% extends 'base.html' %}
+
+{% block title %}{{ homework.title }} - Homework Board{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 1rem;">
+    <a href="{% url 'homework:list' %}" style="color: var(--primary-color); text-decoration: none;">
+        ← Назад к списку заданий
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-between align-center">
+            <div>
+                <h1 class="card-title">{{ homework.title }}</h1>
+                <div class="d-flex gap-2 mt-2">
+                    <span class="badge badge-primary">{{ homework.subject.name }}</span>
+                    <span class="badge" style="background-color: {{ homework.subject.color }}20; color: {{ homework.subject.color }};">
+                        Преподаватель: {{ homework.teacher.get_full_name }}
+                    </span>
+                    {% if homework.is_overdue %}
+                    <span class="badge badge-danger">⏰ Просрочено на {{ homework.days_overdue }} дн.</span>
+                    {% else %}
+                    <span class="badge badge-success">✓ В срок</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if user.profile.is_teacher and homework.teacher == user %}
+            <div class="d-flex gap-1">
+                <a href="{% url 'homework:update' homework.pk %}" class="btn btn-secondary">✏️ Редактировать</a>
+                <a href="{% url 'homework:delete' homework.pk %}" class="btn btn-danger">🗑️ Удалить</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="card-body">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div>
+                <h3 style="color: var(--dark-color); margin-bottom: 1rem;">📅 Информация о задании</h3>
+                <p><strong>Выдано:</strong> {{ homework.created_at|date:"d.m.Y H:i" }}</p>
+                <p><strong>Срок сдачи:</strong> {{ homework.deadline|date:"d.m.Y H:i" }}</p>
+                <p><strong>Максимальный балл:</strong> {{ homework.max_score }}</p>
+                <p><strong>Классы:</strong> 
+                    {% for class in homework.classes.all %}
+                        <span class="badge badge-primary">{{ class.name }}</span>
+                    {% endfor %}
+                </p>
+            </div>
+            
+            {% if submission %}
+            <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                <h3 style="color: var(--dark-color); margin-bottom: 1rem;">✅ Ваша работа</h3>
+                <p><strong>Сдано:</strong> {{ submission.submitted_at|date:"d.m.Y H:i" }}</p>
+                <p><strong>Статус:</strong> 
+                    {% if submission.status == 'pending' %}
+                        <span class="badge badge-warning">Не проверено</span>
+                    {% elif submission.status == 'graded' %}
+                        <span class="badge badge-success">Проверено</span>
+                    {% else %}
+                        <span class="badge badge-danger">На доработке</span>
+                    {% endif %}
+                </p>
+                
+                {% if submission.grade is not None %}
+                <p><strong>Оценка:</strong> {{ submission.grade }} / {{ homework.max_score }}</p>
+                {% if submission.calculate_penalty > 0 %}
+                <p style="color: var(--danger-color);"><strong>Штраф за просрочку:</strong> -{{ submission.calculate_penalty }} баллов</p>
+                {% endif %}
+                <p style="font-size: 1.2rem; color: var(--primary-color);">
+                    <strong>Итоговый балл: {{ submission.final_score }}</strong>
+                </p>
+                
+                {% if submission.teacher_comment %}
+                <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 6px;">
+                    <strong>Комментарий преподавателя:</strong>
+                    <p style="margin-top: 0.5rem;">{{ submission.teacher_comment }}</p>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% elif user.profile.is_student %}
+            <div style="background-color: #fff3e0; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                <h3 style="color: var(--warning-color);">⚠️ Задание не сдано</h3>
+                <p>Вы еще не сдали это задание</p>
+                <a href="{% url 'homework:submit' homework.pk %}" class="btn btn-success" style="margin-top: 1rem;">
+                    📝 Сдать задание
+                </a>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div style="border-top: 2px solid var(--light-color); padding-top: 1.5rem;">
+            <h3 style="color: var(--dark-color); margin-bottom: 1rem;">📝 Описание задания</h3>
+            <div style="line-height: 1.8; white-space: pre-wrap;">{{ homework.description }}</div>
+        </div>
+    </div>
+</div>
+
+{% if submission and user.profile.is_student %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Ваш ответ</h3>
+    </div>
+    <div class="card-body">
+        <div style="background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; white-space: pre-wrap;">
+            {{ submission.answer_text }}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
