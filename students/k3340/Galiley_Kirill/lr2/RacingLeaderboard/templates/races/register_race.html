@@ -1,0 +1,24 @@
+{% extends 'races/base.html' %}
+
+{% block title %}Регистрация на гонку{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="mb-4">Регистрация на гонку</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ race.name }}</h5>
+                <p><strong>Место:</strong> {{ race.location }}</p>
+                <p><strong>Дата:</strong> {{ race.date|date:"d.m.Y H:i" }}</p>
+                <p><strong>Описание:</strong> {{ race.description }}</p>
+            </div>
+        </div>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+        </form>
+        <a href="{% url 'race_detail' race.id %}" class="btn btn-secondary w-100 mt-2">Отмена</a>
+    </div>
+</div>
+{% endblock %}

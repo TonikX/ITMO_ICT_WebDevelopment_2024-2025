@@ -1,0 +1,88 @@
+{% extends 'races/base.html' %}
+
+{% block title %}{{ race.name }}{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h1>{{ race.name }}</h1>
+        <p><strong>Место:</strong> {{ race.location }}</p>
+        <p><strong>Дата:</strong> {{ race.date|date:"d.m.Y H:i" }}</p>
+        <p><strong>Описание:</strong> {{ race.description }}</p>
+    </div>
+    <div class="col-md-4">
+        {% if user.is_authenticated %}
+            {% if user.driver in registrations %}
+                <a href="{% url 'unregister_race' race.id %}" class="btn btn-danger w-100 mb-2">Отменить регистрацию</a>
+            {% else %}
+                <a href="{% url 'register_race' race.id %}" class="btn btn-success w-100 mb-2">Зарегистрироваться</a>
+            {% endif %}
+        {% else %}
+            <p><a href="{% url 'admin:login' %}" class="btn btn-primary w-100">Войти для регистрации</a></p>
+        {% endif %}
+    </div>
+</div>
+
+<h3>Участники ({{ registrations.count }})</h3>
+<ul class="list-group mb-4">
+    {% for reg in registrations %}
+    <li class="list-group-item">
+        <a href="{% url 'driver_detail' reg.driver.id %}">
+            {{ reg.driver.user.first_name }} {{ reg.driver.user.last_name }}
+        </a>
+        ({{ reg.driver.team.name|default:"Без команды" }})
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Результаты гонки</h3>
+{% if results %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Место</th>
+            <th>Водитель</th>
+            <th>Команда</th>
+            <th>Время</th>
+            <th>Очки</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in results %}
+        <tr>
+            <td><strong>{{ result.position }}</strong></td>
+            <td><a href="{% url 'driver_detail' result.driver.id %}">{{ result.driver.user.first_name }} {{ result.driver.user.last_name }}</a></td>
+            <td>{{ result.driver.team.name|default:"Без команды" }}</td>
+            <td>{{ result.time|default:"—" }}</td>
+            <td>{{ result.points }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Результаты пока не добавлены.</p>
+{% endif %}
+
+<h3>Отзывы ({{ comments.count }})</h3>
+{% if user.is_authenticated %}
+<div class="mb-4">
+    <a href="{% url 'add_comment' race.id %}" class="btn btn-primary">Добавить отзыв</a>
+</div>
+{% endif %}
+
+{% for comment in comments %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ comment.author.first_name }} {{ comment.author.last_name }}</h5>
+        <p class="card-text">{{ comment.text }}</p>
+        <p>
+            <small>
+                <strong>Рейтинг:</strong> {{ comment.rating }}/10 |
+                <strong>Тип:</strong> {{ comment.get_comment_type_display }} |
+                <strong>Дата:</strong> {{ comment.race_date|date:"d.m.Y" }}
+            </small>
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

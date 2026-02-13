@@ -1,0 +1,41 @@
+{% extends 'races/base.html' %}
+
+{% block title %}Добавить отзыв{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="mb-4">Написать отзыв о гонке</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ race.name }}</h5>
+                <p><strong>Место:</strong> {{ race.location }}</p>
+                <p><strong>Дата:</strong> {{ race.date|date:"d.m.Y H:i" }}</p>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="{{ form.text.id_for_label }}" class="form-label">Текст отзыва</label>
+                {{ form.text }}
+                {% if form.text.errors %}<small class="text-danger">{{ form.text.errors }}</small>{% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.comment_type.id_for_label }}" class="form-label">Тип комментария</label>
+                {{ form.comment_type }}
+                {% if form.comment_type.errors %}<small class="text-danger">{{ form.comment_type.errors }}</small>{% endif %}
+            </div>
+            <div class="mb-3">
+                <label for="{{ form.rating.id_for_label }}" class="form-label">Рейтинг (1-10)</label>
+                {{ form.rating }}
+                {% if form.rating.errors %}<small class="text-danger">{{ form.rating.errors }}</small>{% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Отправить отзыв</button>
+        </form>
+        <style>
+            textarea, select, input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; }
+        </style>
+    </div>
+</div>
+{% endblock %}

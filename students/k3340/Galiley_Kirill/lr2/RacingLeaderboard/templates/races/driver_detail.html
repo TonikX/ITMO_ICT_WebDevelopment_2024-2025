@@ -1,0 +1,82 @@
+{% extends 'races/base.html' %}
+
+{% block title %}{{ driver.user.first_name }} {{ driver.user.last_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            {% if driver.user.avatar %}
+                <img src="{{ driver.user.avatar.url }}" class="card-img-top" alt="Avatar">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ driver.user.first_name }} {{ driver.user.last_name }}</h5>
+                <p class="card-text">{{ driver.user.bio }}</p>
+                <hr>
+                <p>
+                    <strong>Опыт:</strong> {{ driver.get_experience_display }}<br>
+                    <strong>Класс:</strong> {{ driver.get_driver_class_display }}<br>
+                    <strong>Команда:</strong> {{ driver.team.name|default:"Без команды" }}<br>
+                    <strong>Email:</strong> {{ driver.user.email }}
+                </p>
+            </div>
+        </div>
+        {% if user.is_authenticated and user == driver.user %}
+            <a href="{% url 'edit_driver_profile' driver.id %}" class="btn btn-warning w-100 mt-3">Редактировать</a>
+        {% endif %}
+    </div>
+
+    <div class="col-md-8">
+        <h3>Информация об автомобиле</h3>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ car.brand }} {{ car.model }}</h5>
+                <p class="card-text">
+                    <strong>Год выпуска:</strong> {{ car.year }}<br>
+                    <strong>Описание:</strong> {{ car.description }}
+                </p>
+            </div>
+        </div>
+
+        <h3>Участие в гонках</h3>
+        {% if results %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Гонка</th>
+                    <th>Дата</th>
+                    <th>Место</th>
+                    <th>Время</th>
+                    <th>Очки</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reg in results %}
+                <tr>
+                    <td><a href="{% url 'race_detail' reg.race.id %}">{{ reg.race.name }}</a></td>
+                    <td>{{ reg.race.date|date:"d.m.Y" }}</td>
+                    <td>
+                        {% with result=reg.race.results.get driver=driver %}
+                            {{ result.position|default:"—" }}
+                        {% endwith %}
+                    </td>
+                    <td>
+                        {% with result=reg.race.results.get driver=driver %}
+                            {{ result.time|default:"—" }}
+                        {% endwith %}
+                    </td>
+                    <td>
+                        {% with result=reg.race.results.get driver=driver %}
+                            {{ result.points|default:"—" }}
+                        {% endwith %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Пока нет участия в гонках.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

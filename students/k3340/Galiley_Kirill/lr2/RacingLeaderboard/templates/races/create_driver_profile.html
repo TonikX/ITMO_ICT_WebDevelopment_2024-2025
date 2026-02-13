@@ -1,0 +1,79 @@
+{% extends 'races/base.html' %}
+
+{% block title %}Создание профиля водителя{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="mb-4">Создание профиля водителя</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Информация о водителе</h3>
+                    <div class="mb-3">
+                        <label for="{{ driver_form.team.id_for_label }}" class="form-label">Команда</label>
+                        {{ driver_form.team }}
+                        {% if driver_form.team.errors %}<small class="text-danger">{{ driver_form.team.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ driver_form.experience.id_for_label }}" class="form-label">Опыт</label>
+                        {{ driver_form.experience }}
+                        {% if driver_form.experience.errors %}<small class="text-danger">{{ driver_form.experience.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ driver_form.driver_class.id_for_label }}" class="form-label">Класс</label>
+                        {{ driver_form.driver_class }}
+                        {% if driver_form.driver_class.errors %}<small class="text-danger">{{ driver_form.driver_class.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ driver_form.description.id_for_label }}" class="form-label">Описание</label>
+                        {{ driver_form.description }}
+                        {% if driver_form.description.errors %}<small class="text-danger">{{ driver_form.description.errors }}</small>{% endif %}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h3>Информация об автомобиле</h3>
+                    <div class="mb-3">
+                        <label for="{{ car_form.brand.id_for_label }}" class="form-label">Марка</label>
+                        {{ car_form.brand }}
+                        {% if car_form.brand.errors %}<small class="text-danger">{{ car_form.brand.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ car_form.model.id_for_label }}" class="form-label">Модель</label>
+                        {{ car_form.model }}
+                        {% if car_form.model.errors %}<small class="text-danger">{{ car_form.model.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ car_form.year.id_for_label }}" class="form-label">Год выпуска</label>
+                        {{ car_form.year }}
+                        {% if car_form.year.errors %}<small class="text-danger">{{ car_form.year.errors }}</small>{% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ car_form.description.id_for_label }}" class="form-label">Описание автомобиля</label>
+                        {{ car_form.description }}
+                        {% if car_form.description.errors %}<small class="text-danger">{{ car_form.description.errors }}</small>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Создать профиль</button>
+                    <a href="{% url 'race_list' %}" class="btn btn-secondary w-100 mt-2">Отмена</a>
+                </div>
+            </div>
+        </form>
+        <style>
+            select, textarea, input[type="text"], input[type="number"] {
+                width: 100%;
+                padding: 8px;
+                margin-top: 5px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+        </style>
+    </div>
+</div>
+{% endblock %}

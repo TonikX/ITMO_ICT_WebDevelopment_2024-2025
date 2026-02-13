@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Отчёт по лабораторной - Лабораторная №1 — Сокеты</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Лабораторная №1 — Сокеты</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Отчёт по лабораторной</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#no1" class="nav-link">Лабораторная работа №1</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#udp-tcp-http" class="nav-link">Тема: Работа с сокетами (UDP, TCP, HTTP)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Цели и задачи работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Теоретические сведения</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#1-udp" class="nav-link">Задание 1. UDP обмен сообщениями</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-tcp-2" class="nav-link">Задание 2. TCP сервис решения квадратного уравнения (вариант 2)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-http" class="nav-link">Задание 3. Простейший HTTP‑сервер</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-tcp" class="nav-link">Задание 4. Многопользовательский чат (TCP + потоки)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-get-post" class="nav-link">Задание 5. Веб‑сервер для работы с оценками (GET и POST)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Тестирование</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_4" class="nav-link">Выводы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="no1">Лабораторная работа №1</h1>
+<h2 id="udp-tcp-http">Тема: Работа с сокетами (UDP, TCP, HTTP)</h2>
+<p><strong>Дисциплина:</strong> Веб-программирование<br />
+<strong>Студент:</strong> <em>Галилей Кирилл К3340</em><br />
+<strong>Вариант:</strong> 2 (решение квадратного уравнения)</p>
+<hr />
+<h2 id="_1">Цели и задачи работы</h2>
+<ul>
+<li>Освоить базовые принципы работы с сокетами в Python (UDP и TCP).[web:22][web:47]  </li>
+<li>Научиться реализовывать клиент–серверное взаимодействие на низком уровне с помощью библиотеки <code>socket</code>.[web:35][web:78]  </li>
+<li>Реализовать простые сетевые приложения: обмен текстовыми сообщениями, математический сервис, HTTP‑сервер и чат, а также веб‑сервер с обработкой форм (GET/POST).[web:21][web:24]  </li>
+</ul>
+<hr />
+<h2 id="_2">Теоретические сведения</h2>
+<p>Сокет — это программный интерфейс для обмена данными между процессами по сети, который связывает IP‑адрес и номер порта.[web:47][web:78]<br />
+В работе используются два типа сокетов:<br />
+- UDP (SOCK_DGRAM) — дейтаграммный, без установления соединения, используется для простого обмена сообщениями.<br />
+- TCP (SOCK_STREAM) — ориентированный на соединение, обеспечивает надежную доставку и упорядоченность байтового потока, используется для чата, математического сервиса и HTTP.[web:22][web:47]  </p>
+<p>HTTP‑сервер реализуется поверх TCP: сервер принимает запрос, читает стартовую строку и заголовки и возвращает ответ с кодом состояния, заголовками и телом в формате HTML.[web:35][web:77]<br />
+Для поддержки нескольких клиентов одновременно в чате применяется многопоточность через модуль <code>threading</code> и общий список активных подключений.[web:52][web:78]  </p>
+<hr />
+<h2 id="1-udp">Задание 1. UDP обмен сообщениями</h2>
+<p><strong>Постановка задачи.</strong><br />
+Реализовать клиентскую и серверную часть приложения на UDP. Клиент отправляет сообщение «Hello, server», сервер выводит его у себя и отправляет клиенту ответ «Hello, client». Клиент выводит ответ на экран.  </p>
+<p><strong>Реализация.</strong><br />
+- <code>server_udp.py</code>: создает UDP‑сокет, биндится на <code>127.0.0.1:5000</code>, в цикле принимает датаграммы через <code>recvfrom</code>, выводит текст и отправляет ответ «Hello, client» тому же адресу.[web:40][web:50]<br />
+- <code>client_udp.py</code>: создает UDP‑сокет, отправляет на сервер строку «Hello, server» с помощью <code>sendto</code>, принимает один ответ и выводит его, после чего закрывает сокет.[web:41][web:43]  </p>
+<p><strong>Результат работы.</strong><br />
+При запущенном сервере и старте клиента на стороне сервера отображается текст клиента, а на стороне клиента — ответ сервера.  </p>
+<hr />
+<h2 id="2-tcp-2">Задание 2. TCP сервис решения квадратного уравнения (вариант 2)</h2>
+<p><strong>Постановка задачи.</strong><br />
+Реализовать TCP‑клиент и сервер. Клиент вводит коэффициенты квадратного уравнения (ax^2 + bx + c = 0), сервер считает корни и возвращает результат. Вариант 2 — решение квадратного уравнения.  </p>
+<p><strong>Реализация.</strong><br />
+- <code>quadratic_server.py</code>:<br />
+  - Создает TCP‑сокет на <code>127.0.0.1:5001</code>, выполняет <code>bind</code>, <code>listen</code>, <code>accept</code>.[web:21][web:24]<br />
+  - Принимает строку вида <code>a b c</code>, парсит числа, вычисляет дискриминант (D = b^2 - 4ac) и в зависимости от знака дискриминанта возвращает: два корня, один корень или сообщение об отсутствии действительных корней.[web:2][web:3]<br />
+  - При <code>a = 0</code> сообщает об ошибке, так как уравнение перестает быть квадратным.<br />
+- <code>quadratic_client.py</code>:<br />
+  - Запрашивает у пользователя <code>a</code>, <code>b</code>, <code>c</code>, соединяется с сервером через TCP и отправляет все три коэффициента одной строкой.<br />
+  - Получает строковый ответ сервера и выводит его пользователю.[web:23][web:32]  </p>
+<p><strong>Результат работы.</strong><br />
+Клиент и сервер успешно обмениваются данными, вычисленные корни корректно отображаются на стороне клиента для разных наборов коэффициентов.  </p>
+<hr />
+<h2 id="3-http">Задание 3. Простейший HTTP‑сервер</h2>
+<p><strong>Постановка задачи.</strong><br />
+Реализовать серверную часть приложения, который по подключению клиента возвращает HTTP‑сообщение с HTML‑страницей, загружаемой из файла <code>index.html</code>.  </p>
+<p><strong>Реализация.</strong><br />
+- Создан файл <code>index.html</code> с простой HTML‑страницей, содержащей заголовок и текст приветствия.<br />
+- <code>http_server.py</code>:<br />
+  - Поднимает TCP‑сервер на <code>127.0.0.1:5002</code>, принимает входящее соединение, читает HTTP‑запрос из сокета.[web:24][web:28]<br />
+  - Считывает содержимое <code>index.html</code> с диска, формирует HTTP‑ответ: строку статуса <code>HTTP/1.1 200 OK</code>, заголовки (<code>Content-Type</code>, <code>Content-Length</code>, <code>Connection</code>) и тело с HTML.[web:35][web:77]<br />
+  - Отправляет ответ клиенту и закрывает соединение.  </p>
+<p><strong>Результат работы.</strong><br />
+При открытии в браузере адреса <code>http://127.0.0.1:5002/</code> отображается содержимое <code>index.html</code>, отданное через самописный HTTP‑сервер на сокетах.  </p>
+<hr />
+<h2 id="4-tcp">Задание 4. Многопользовательский чат (TCP + потоки)</h2>
+<p><strong>Постановка задачи.</strong><br />
+Реализовать чат с поддержкой нескольких пользователей. Сервер должен принимать несколько одновременных подключений, а сообщения от одного клиента пересылать всем остальным. Для максимального количества баллов требуется многопользовательский чат на TCP с использованием <code>threading</code>.  </p>
+<p><strong>Реализация.</strong><br />
+- <code>chat_server.py</code>:<br />
+  - Создает TCP‑сервер на <code>127.0.0.1:5003</code>, слушает порт и при каждом новом подключении создает поток <code>threading.Thread</code> для обработки клиента.[web:44][web:52]<br />
+  - Ведет общий список клиентских сокетов, защищенный блокировкой <code>Lock</code>, и реализует функцию <code>broadcast</code>, рассылающую входящие сообщения всем клиентам, кроме отправителя.<br />
+  - При отключении клиента удаляет его сокет из списка и закрывает соединение.<br />
+- <code>chat_client.py</code>:<br />
+  - Подключается к серверу по TCP и запускает отдельный поток для постоянного чтения входящих сообщений и вывода их на экран.[web:46][web:48]<br />
+  - В основном потоке читает ввод пользователя из консоли и отправляет его на сервер; предусмотрена команда <code>/quit</code> для выхода.  </p>
+<p><strong>Результат работы.</strong><br />
+При запуске нескольких клиентов на одном или разных хостах сообщения, отправленные одним пользователем, отображаются у всех остальных подключенных клиентов, что подтверждает корректную работу многопользовательского чата.  </p>
+<hr />
+<h2 id="5-get-post">Задание 5. Веб‑сервер для работы с оценками (GET и POST)</h2>
+<p><strong>Постановка задачи.</strong><br />
+Реализовать простой веб‑сервер на сокетах, который:<br />
+- Принимает и сохраняет информацию о дисциплине и оценке по дисциплине через HTTP POST‑запрос.<br />
+- Отдает HTML‑страницу со списком всех накопленных оценок по дисциплинам через HTTP GET‑запрос.  </p>
+<p><strong>Реализация.</strong><br />
+- <code>grade_server.py</code>:<br />
+  - Поднимает TCP‑сервер на <code>127.0.0.1:5004</code> и хранит оценки в списке словарей в оперативной памяти.<br />
+  - На <code>GET /</code> формирует HTML‑страницу, содержащую форму с полями для ввода дисциплины и оценки, а также таблицу со всеми уже сохраненными оценками.<br />
+  - На <code>POST /</code> парсит тело запроса как URL‑кодированную форму (<code>application/x-www-form-urlencoded</code>), извлекает поля <code>subject</code> и <code>grade</code>, добавляет новую запись в список и затем возвращает обновленную HTML‑страницу.[web:6][web:10][web:35]<br />
+  - Ответы формируются с корректными HTTP‑заголовками и кодировкой UTF‑8.  </p>
+<p><strong>Результат работы.</strong><br />
+При открытии <code>http://127.0.0.1:5004/</code> в браузере отображается форма и таблица оценок; при отправке формы с новой дисциплиной и оценкой запись добавляется в список и тут же появляется в таблице.  </p>
+<hr />
+<h2 id="_3">Тестирование</h2>
+<p>Для проверки корректной работы всех заданий были выполнены следующие действия:<br />
+- Для задания 1 запускались сервер и клиент, контролировались передаваемые строки в консоли.[web:40][web:43]<br />
+- Для задания 2 тестировались различные наборы коэффициентов: с двумя корнями, с одним корнем (D=0) и с отрицательным дискриминантом, проверялся текст ответа сервера.[web:2][web:3]<br />
+- Для задания 3 и 5 использовался браузер (HTTP GET/POST), проверялась корректность ответов и отображение страниц.<br />
+- Для задания 4 запускались минимум два клиента, проверялась доставка сообщений всем участникам чата.  </p>
+<hr />
+<h2 id="_4">Выводы</h2>
+<p>В ходе лабораторной работы были реализованы несколько типов сетевых приложений на языке Python, использующих UDP‑ и TCP‑сокеты, а также простой HTTP‑сервер и многопользовательский чат.[web:21][web:22]<br />
+Получены практические навыки создания клиент–серверных приложений, обработки текстовых протоколов (HTTP), организации многопоточности на стороне сервера и обработки формальных данных (коэффициенты уравнения, оценки по дисциплинам).[web:24][web:35][web:52]  </p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
