@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Student Reports</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/v4-font-face.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">Student Reports</a>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_1" class="nav-link">Отчёт по лабораторным работам</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#web-" class="nav-link">Дисциплина: Основы Web-программирования</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">📚 Содержание</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#2" class="nav-link">Лабораторная работа 2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#-django" class="nav-link">Разработка веб-приложения средствами Django</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#c" class="nav-link">Cтруктура проекта</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#3" class="nav-link">Лабораторная работа 3</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#django-rest-framework" class="nav-link">Реализация серверной части средствами Django REST Framework</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_11" class="nav-link">Цель работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_12" class="nav-link">Описание работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_13" class="nav-link">Модель базы данных</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#rest-api" class="nav-link">Реализация REST API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#-" class="nav-link">Реализация бизнес-логики</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#api" class="nav-link">Документация и тестирование API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_16" class="nav-link">Авторизация</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_17" class="nav-link">Результаты работы</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#_18" class="nav-link">Вывод</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">Отчёт по лабораторным работам</h1>
+<h2 id="web-">Дисциплина: Основы Web-программирования</h2>
+<hr />
+<h2 id="_2">📚 Содержание</h2>
+<ul>
+<li><a href="#лабораторная-работа-2">Лабораторная работа №2 — РЕАЛИЗАЦИЯ ПРОСТОГО САЙТА СРЕДСТВАМИ DJANGO</a></li>
+<li><a href="#лабораторная-работа-3">Лабораторная работа №3 — РЕАЛИЗАЦИЯ СЕРВЕРНОЙ ЧАСТИ ПРИЛОЖЕНИЯ СРЕДСТВАМИ DJANGO И DJANGORESTFRAMEWORK</a></li>
+</ul>
+<hr />
+<h1 id="2">Лабораторная работа 2</h1>
+<h2 id="-django">Разработка веб-приложения средствами Django</h2>
+<p><a name="лабораторная-работа-2"></a></p>
+<p><strong>Вариант №4 — “Список туров туристической фирмы”</strong></p>
+<hr />
+<h2 id="_3">Цель работы</h2>
+<p>овладеть практическими навыками и умениями реализации web-сервисов
+средствами Django 2.2  </p>
+<p>Создать сайт туристической фирмы, позволяющий пользователям:</p>
+<ol>
+<li>регистрироваться и авторизовываться,</li>
+<li>просматривать туры,</li>
+<li>бронировать туры и управлять своими бронями,</li>
+<li>оставлять отзывы с рейтингом (1–10),</li>
+<li>просматривать статистику проданных туров по странам.</li>
+</ol>
+<h1 id="c">Cтруктура проекта</h1>
+<pre><code class="language-markdown">tour_agency/
+├── manage.py
+├── tour_agency/
+│ ├── settings.py
+│ ├── urls.py
+│ ├── wsgi.py
+│ └── asgi.py
+└── tours/
+├── admin.py
+├── apps.py
+├── models.py
+├── views.py
+├── urls.py
+├── templates/
+│ └── tours/
+│ ├── base.html
+│ ├── tour_list.html
+│ ├── my_reservations.html
+│ ├── add_review.html
+│ ├── tour_detail.html
+│ └── sold_tours.html
+└── migrations/
+└── 0001_initial.py
+</code></pre>
+<h3 id="1">1. Создание и настройка проекта</h3>
+<ol>
+<li>Установлено виртуальное окружение и необходимые пакеты:
+   <code>bash
+   pip install django psycopg2-binary bootstrap5 mkdocs</code></li>
+<li>Создан проект:</li>
+</ol>
+<pre><code class="language-bash">django-admin startproject tour_agency
+python manage.py startapp tours
+</code></pre>
+<p>Добавлено приложение tours в INSTALLED_APPS и настроено подключение к PostgreSQL:</p>
+<pre><code class="language-python">DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tour_db',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+</code></pre>
+<h3 id="_4">Вывод:</h3>
+<p>Базовая структура Django-проекта создана, связь с PostgreSQL установлена.</p>
+<h3 id="2_1">2. Моделирование данных</h3>
+<p>Определены три модели:</p>
+<pre><code class="language-python">class Tour(models.Model):
+    name = models.CharField(max_length=100)
+    agency = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, default='')
+    description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    payment_terms = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    reserved_on = models.DateTimeField(auto_now_add=True)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f&quot;{self.user.username} → {self.tour.name}&quot;
+
+
+class Review(models.Model):
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    rating = models.IntegerField(default=5)
+    date_posted = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f&quot;{self.tour.name} ({self.rating}/10)&quot;
+</code></pre>
+<h3 id="_5">Вывод:</h3>
+<p>Созданы взаимосвязанные модели, реализующие основные сущности предметной области:
+тур, бронирование и отзыв. Связи построены по принципу “один-ко-многим” через ForeignKey.</p>
+<h3 id="3-urlspy">3. Настройка маршрутов (urls.py)</h3>
+<p>Созданы пути для всех функций приложения:</p>
+<pre><code class="language-python">urlpatterns = [
+    path('', views.tour_list, name='tour_list'),
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='tours/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    path('reserve/&lt;int:tour_id&gt;/', views.reserve_tour, name='reserve_tour'),
+    path('my_reservations/', views.my_reservations, name='my_reservations'),
+    path('delete_reservation/&lt;int:res_id&gt;/', views.delete_reservation, name='delete_reservation'),
+    path('tour/&lt;int:tour_id&gt;/', views.tour_detail, name='tour_detail'),
+    path('review/&lt;int:tour_id&gt;/', views.add_review, name='add_review'),
+    path('sold_tours/', views.sold_tours, name='sold_tours'),
+]
+</code></pre>
+<h3 id="_6">Вывод:</h3>
+<p>Маршрутизация реализована в соответствии с архитектурой MVC — каждая страница приложения обрабатывается отдельным view-функцией.</p>
+<h3 id="4-viewspy">4. Реализация представлений (views.py)</h3>
+<p><strong>tour_list</strong> — отображает все туры.</p>
+<p><strong>register, login, logout</strong> — регистрация и аутентификация пользователей.</p>
+<p><strong>reserve_tour, my_reservations, delete_reservation</strong> — операции с бронированиями.</p>
+<p><strong>add_review, tour_detail</strong> — добавление и просмотр отзывов.</p>
+<p><strong>sold_tours</strong> — аналитика продаж по странам.</p>
+<h3 id="5">5. Шаблоны и дизайн</h3>
+<p>Для клиентской части использован Bootstrap 5.
+Создана базовая структура шаблонов:</p>
+<pre><code class="language-markdown">base.html – общая навигация
+tour_list.html – список туров
+my_reservations.html – личные брони
+tour_detail.html – описание тура + отзывы
+add_review.html – форма добавления отзыва
+sold_tours.html – таблица проданных туров
+</code></pre>
+<h3 id="6-django">6. Админ-панель Django</h3>
+<p>Добавлены модели Tour, Reservation, Review.</p>
+<p>Администратор подтверждает бронирования через флаг Confirmed.
+<img alt="img_4.png" src="img_4.png" /></p>
+<h3 id="_7">Вывод:</h3>
+<p>Админ-интерфейс полностью функционален и позволяет управлять всеми данными без прямого доступа к БД.</p>
+<h3 id="7">7. Реализация аналитической таблицы</h3>
+<p>Создан метод sold_tours:</p>
+<pre><code class="language-python">def sold_tours(request):
+    data = (
+        Reservation.objects.filter(confirmed=True)
+        .values('tour__country', 'tour__name', 'tour__agency')
+        .annotate(sold_count=Count('id'))
+        .order_by('tour__country')
+    )
+    return render(request, 'tours/sold_tours.html', {'data': data})
+</code></pre>
+<h3 id="_8">Вывод:</h3>
+<p>Собирается статистика по странам и турам.
+Подтверждённые бронирования отображаются в виде таблицы с количеством продаж.</p>
+<h3 id="8">8. Тестирование работы сайта</h3>
+<table>
+<thead>
+<tr>
+<th>Проверяемый функционал</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Регистрация и вход</td>
+<td>Успешно</td>
+</tr>
+<tr>
+<td>Просмотр туров</td>
+<td>Отображаются все туры</td>
+</tr>
+<tr>
+<td>Бронирование</td>
+<td>Создаётся запись в БД</td>
+</tr>
+<tr>
+<td>Подтверждение админом</td>
+<td>Статус меняется на “Подтверждено”</td>
+</tr>
+<tr>
+<td>Удаление брони</td>
+<td>Успешно</td>
+</tr>
+<tr>
+<td>Добавление отзывов</td>
+<td>Отображаются с именем и рейтингом</td>
+</tr>
+<tr>
+<td>Таблица продаж</td>
+<td>Работает и сортируется по странам</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">Примеры экранов интерфейса</h3>
+<p>Главная страница (список туров):
+<img alt="img.png" src="img.png" /></p>
+<p>Личные брони:
+<img alt="img_1.png" src="img_1.png" /></p>
+<p>Описание тура с отзывами:
+<img alt="img_2.png" src="img_2.png" /></p>
+<p>Проданные туры по странам:
+<img alt="img_3.png" src="img_3.png" /></p>
+<h3 id="_10">Общий вывод</h3>
+<p>В результате выполнения лабораторной работы было создано полноценное веб-приложение туристической фирмы на фреймворке Django с использованием базы данных PostgreSQL.
+Система реализует все основные функции, указанные в задании:</p>
+<ul>
+<li>регистрация и авторизация пользователей;</li>
+<li>просмотр и бронирование туров;</li>
+<li>редактирование и удаление собственных бронирований;</li>
+<li>добавление отзывов и выставление рейтингов;</li>
+<li>подтверждение бронирований администратором через встроенную панель Django-admin;</li>
+<li>формирование таблицы проданных туров по странам.</li>
+</ul>
+<p>В ходе работы были закреплены практические навыки:</p>
+<ul>
+<li>проектирования моделей данных и связей между ними;</li>
+<li>использования ORM Django для взаимодействия с базой данных;</li>
+<li>построения маршрутов и шаблонов;</li>
+<li>организации клиентского интерфейса с помощью Bootstrap 5;</li>
+<li>работы с админ-панелью и системой аутентификации пользователей.</li>
+</ul>
+<p>Итоговый продукт имеет понятный интерфейс, чёткую структуру и легко расширяется.</p>
+<h1 id="3">Лабораторная работа 3</h1>
+<h2 id="django-rest-framework">Реализация серверной части средствами Django REST Framework</h2>
+<p><a name="лабораторная-работа-3"></a></p>
+<h2 id="_11">Цель работы</h2>
+<p>Овладеть практическими навыками разработки серверной части
+web-приложения с использованием:</p>
+<ul>
+<li>Django</li>
+<li>Django REST Framework (DRF)</li>
+<li>Djoser</li>
+<li>Swagger (drf-spectacular)</li>
+</ul>
+<h2 id="_12">Описание работы</h2>
+<p>В рамках лабораторной работы была реализована серверная часть
+информационной системы администратора гостиницы.</p>
+<p>Разработанная серверная часть обеспечивает:</p>
+<ul>
+<li>хранение данных о номерах гостиницы;</li>
+<li>хранение сведений о клиентах;</li>
+<li>регистрацию проживания клиентов;</li>
+<li>хранение данных о сотрудниках;</li>
+<li>формирование расписания уборки;</li>
+<li>выполнение аналитических запросов;</li>
+<li>формирование отчётов.</li>
+</ul>
+<p>Серверная часть разработана средствами Django REST Framework.</p>
+<h2 id="_13">Модель базы данных</h2>
+<p>Для реализации системы была разработана модель базы данных
+с использованием Django ORM.</p>
+<p>В системе используются следующие сущности:</p>
+<ul>
+<li>Room — номер гостиницы;</li>
+<li>Guest — клиент гостиницы;</li>
+<li>Stay — проживание клиента;</li>
+<li>Staff — сотрудник гостиницы;</li>
+<li>CleaningSchedule — расписание уборки.</li>
+</ul>
+<p>Связи между сущностями реализованы средствами ForeignKey.</p>
+<h3 id="_14">Пример реализации модели</h3>
+<pre><code class="language-python">class Room(models.Model):
+    ROOM_TYPES = [
+        ('single', 'Single'),
+        ('double', 'Double'),
+        ('triple', 'Triple'),
+    ]
+
+    number = models.IntegerField(unique=True)
+    floor = models.IntegerField()
+    room_type = models.CharField(max_length=20, choices=ROOM_TYPES)
+    price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
+    phone = models.CharField(max_length=20)
+
+    def __str__(self):
+        return f&quot;Room {self.number}&quot;
+
+
+class Guest(models.Model):
+    passport_number = models.CharField(max_length=50, unique=True)
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True)
+    city_from = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f&quot;{self.last_name} {self.first_name}&quot;
+
+
+class Stay(models.Model):
+    guest = models.ForeignKey(Guest, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.PROTECT)
+    check_in = models.DateField()
+    check_out = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f&quot;{self.guest} -&gt; {self.room}&quot;
+
+
+class Staff(models.Model):
+    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f&quot;{self.last_name} {self.first_name}&quot;
+
+
+class CleaningSchedule(models.Model):
+    WEEKDAYS = [
+        (0, 'Monday'),
+        (1, 'Tuesday'),
+        (2, 'Wednesday'),
+        (3, 'Thursday'),
+        (4, 'Friday'),
+        (5, 'Saturday'),
+        (6, 'Sunday'),
+    ]
+
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    weekday = models.IntegerField(choices=WEEKDAYS)
+    floor = models.IntegerField()
+
+    def __str__(self):
+        return f&quot;{self.staff} - {self.get_weekday_display()} - floor {self.floor}&quot;
+</code></pre>
+<h1 id="rest-api">Реализация REST API</h1>
+<p>REST API реализовано средствами Django REST Framework.</p>
+<p>Для взаимодействия с данными были разработаны:
+- сериализаторы;
+- ViewSet-классы;
+- маршруты.</p>
+<p>Реализованы стандартные CRUD-операции:
+- получение данных (GET);
+- создание записей (POST);
+- изменение данных (PUT / PATCH);
+- удаление записей (DELETE).</p>
+<h3 id="_15">Пример реализации сериализатора</h3>
+<pre><code class="language-python">from rest_framework import serializers
+from .models import Room, Guest, Stay, Staff, CleaningSchedule
+
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = '__all__'
+
+class GuestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Guest
+        fields = '__all__'
+
+class StaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stay
+        fields = '__all__'
+
+    def validate(self, data):
+        room = data.get('room')
+        check_in = data.get('check_in')
+        check_out = data.get('check_out')
+
+        if check_in &gt;= check_out:
+            raise serializers.ValidationError(&quot;check_out must be after check_in&quot;)
+
+        overlapping_stays = Stay.objects.filter(
+            room=room
+        ).filter(
+            Q(check_in__lt=check_out) &amp; Q(check_out__gt=check_in)
+        )
+
+        if self.instance:
+            overlapping_stays = overlapping_stays.exclude(id=self.instance.id)
+
+        if overlapping_stays.exists():
+            raise serializers.ValidationError(&quot;Номер уже занят в этот период 😎&quot;)
+
+        return data
+
+class StaffSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Staff
+        fields = '__all__'
+
+class CleaningScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CleaningSchedule
+        fields = '__all__'
+</code></pre>
+<h3 id="viewset">Пример реализации ViewSet</h3>
+<pre><code class="language-python">class GuestViewSet(viewsets.ModelViewSet):
+    queryset = Guest.objects.all()
+    serializer_class = GuestSerializer
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(name='city', type=str, required=True),
+        ]
+    )
+    @action(detail=False, methods=['get'])
+    def by_city(self, request):
+        city = request.query_params.get('city')
+        count = Guest.objects.filter(city_from=city).count()
+
+        return Response({
+            &quot;city&quot;: city,
+            &quot;count&quot;: count
+        })
+</code></pre>
+<h1 id="-">Реализация бизнес-логики</h1>
+<p>В системе была реализована дополнительная логика обработки данных.</p>
+<p>В частности:
+- получение списка свободных номеров;
+- получение количества клиентов из заданного города;
+- получение клиентов, проживавших в номере за указанный период;
+- определение сотрудника, выполняющего уборку номера;
+- формирование квартального отчёта;
+- проверка пересечения периодов проживания клиентов.
+- Проверка пересечения дат проживания предотвращает возможность двойного бронирования номера.</p>
+<h3 id="-_1">Пример реализации бизнес-логики</h3>
+<pre><code class="language-python">@extend_schema(
+        parameters=[
+            OpenApiParameter(name='guest', type=int, required=True),
+            OpenApiParameter(name='weekday', type=int, required=True),
+        ]
+    )
+    @action(detail=False, methods=['get'])
+    def cleaner(self, request):
+        guest_id = request.query_params.get('guest')
+        weekday = request.query_params.get('weekday')
+
+        if not guest_id or not weekday:
+            return Response({&quot;error&quot;: &quot;guest and weekday are required&quot;}, status=400)
+
+        try:
+            weekday = int(weekday)
+        except ValueError:
+            return Response({&quot;error&quot;: &quot;weekday must be int&quot;}, status=400)
+
+        stay = Stay.objects.filter(
+            guest_id=guest_id,
+            check_out__isnull=True
+        ).select_related('room', 'guest').first()
+
+        if not stay:
+            return Response({&quot;error&quot;: &quot;Guest not staying now&quot;}, status=404)
+
+        floor = stay.room.floor
+
+        schedules = CleaningSchedule.objects.filter(
+            floor=floor,
+            weekday=weekday
+        ).select_related('staff')
+
+        if not schedules.exists():
+            return Response({&quot;message&quot;: &quot;No cleaning scheduled for this floor/day&quot;}, status=200)
+
+        return Response({
+            &quot;guest_id&quot;: stay.guest_id,
+            &quot;room_number&quot;: stay.room.number,
+            &quot;floor&quot;: floor,
+            &quot;weekday&quot;: weekday,
+            &quot;cleaners&quot;: [
+                f&quot;{s.staff.last_name} {s.staff.first_name}&quot; for s in schedules
+            ]
+        })
+</code></pre>
+<h1 id="api">Документация и тестирование API</h1>
+<p>Для документирования и тестирования REST API использовался Swagger UI, реализованный через библиотеку drf-spectacular.</p>
+<p>Swagger UI позволяет:
+- просматривать доступные endpoint-ы;
+- выполнять тестовые запросы;
+- передавать параметры;
+- анализировать ответы сервера.</p>
+<h1 id="_16">Авторизация</h1>
+<p>В системе реализована токенная авторизация средствами Djoser.</p>
+<p>Используемые endpoints:
+- POST /auth/token/login/ — получение токена;
+- POST /auth/token/logout/ — завершение сессии;
+- GET /auth/users/me/ — получение информации о текущем пользователе.
+- Авторизация реализована на основе TokenAuthentication.</p>
+<h1 id="_17">Результаты работы</h1>
+<p>В результате выполнения лабораторной работы была разработана
+серверная часть информационной системы гостиницы.</p>
+<p>Реализованы:
+- ORM-модель базы данных;
+- REST API;
+- бизнес-логика;
+- аналитические запросы;
+- механизм авторизации;
+- документация API.</p>
+<h1 id="_18">Вывод</h1>
+<p>В ходе лабораторной работы были освоены навыки разработки
+REST API средствами Django REST Framework.
+Была реализована модель базы данных средствами Django ORM,
+а также бизнес-логика и аналитические запросы.
+Использование Swagger UI позволило упростить процесс тестирования
+и документирования API.
+Разработанная серверная часть системы является полностью
+функциональной и соответствует требованиям задания.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js"></script>
+        <script src="search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2026-02-16 18:25:35.083423+00:00
+-->

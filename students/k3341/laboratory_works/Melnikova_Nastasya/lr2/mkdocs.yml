@@ -1,0 +1,9 @@
+site_name: Лабораторная работа Django
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.expand
+    - navigation.sections
+    - toc.integrate
+

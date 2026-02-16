@@ -1,0 +1,47 @@
+{% extends 'tours/base.html' %}
+{% block content %}
+<div class="container mt-4">
+
+  <h2 class="text-center mb-4 fw-bold">Проданные туры по странам </h2>
+
+  {% if data %}
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <table class="table table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Страна</th>
+            <th>Название тура</th>
+            <th>Агентство</th>
+            <th>Количество продаж</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in data %}
+          <tr>
+            <td><span class="fw-semibold">{{ item.tour__country }}</span></td>
+            <td>{{ item.tour__name }}</td>
+            <td>{{ item.tour__agency }}</td>
+            <td><span class="badge bg-success fs-6">{{ item.sold_count }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="alert alert-info text-center fs-5">
+    Всего продано туров:
+    <strong>{{ data|length }}</strong>
+  </div>
+
+  {% else %}
+  <div class="alert alert-warning text-center mt-5 fs-5">
+    Пока нет подтверждённых продаж
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+
