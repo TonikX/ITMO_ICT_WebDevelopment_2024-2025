@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Журнал оценок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+            background: #f7f7f7;
+        }
+        
+        header {
+            background: #2d6cdf;
+            color: #fff;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+        
+        .card {
+            background: #fff;
+            padding: 16px;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
+        }
+        
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: #2d6cdf;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .subject {
+            background: #fafafa;
+            padding: 12px;
+            border-left: 4px solid #2d6cdf;
+            border-radius: 4px;
+            margin: 8px 0;
+        }
+        
+        .grades .grade {
+            display: inline-block;
+            background: #2d6cdf;
+            color: #fff;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .avg {
+            font-weight: bold;
+            margin-top: 6px;
+        }
+        
+        .empty {
+            color: #666;
+            text-align: center;
+            font-style: italic;
+            padding: 24px;
+        }
+        
+        footer {
+            color: #666;
+            text-align: center;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Журнал успеваемости</h1>
+        <p>Учет оценок по дисциплинам</p>
+    </header>
+
+    <div class="card">
+        <h2>Добавить новую оценку</h2>
+        <form method="POST" action="/">
+            <input type="text" name="subject" placeholder="Название дисциплины" required>
+            <select name="grade" required>
+                <option value="">Выберите оценку</option>
+                <option value="5">5 - Отлично</option>
+                <option value="4">4 - Хорошо</option>
+                <option value="3">3 - Удовлетворительно</option>
+                <option value="2">2 - Неудовлетворительно</option>
+                <option value="зачет">Зачет</option>
+                <option value="незачет">Незачет</option>
+            </select>
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>Все оценки</h2>
+        <div id="grades">
+            {{GRADES}}
+        </div>
+        <footer>
+            {{FOOTER}}
+        </footer>
+    </div>
+</body>
+
+</html>

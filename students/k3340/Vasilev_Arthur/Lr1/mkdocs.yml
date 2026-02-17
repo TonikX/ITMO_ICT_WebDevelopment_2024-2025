@@ -1,0 +1,55 @@
+site_name: Отчеты по лабораторным работам
+site_url: https://pppestto.github.io/TonikX-ITMO_ICT_WebDevelopment_2025-2026/
+site_description: Сборник отчетов по лабораторным работам по веб-разработке
+site_author: Vasilev Arthur
+
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: blue
+    accent: blue
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - 📋 Задание 1: task1.md
+  - 📋 Задание 2: task2.md
+  - 📋 Задание 3: task3.md
+  - 📋 Задание 4: task4.md
+  - 📋 Задание 5: task5.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.tabbed
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: '© 2025 Vasilev Arthur'
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: '© 2024 Vasilev Arthur'

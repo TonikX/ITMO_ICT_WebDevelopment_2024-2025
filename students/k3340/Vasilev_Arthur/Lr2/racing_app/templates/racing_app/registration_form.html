@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация на гонку</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .race-info { background: #f8f9fa; padding: 15px; margin: 10px 0; }
+        button { background: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        .btn-secondary { background: #6c757d; }
+    </style>
+</head>
+<body>
+    <h1>Регистрация на гонку</h1>
+    
+    <div class="race-info">
+        <h2>{{ view.object.race.name }}</h2>
+        <p><strong>Дата:</strong> {{ view.object.race.date }}</p>
+        <p><strong>Место:</strong> {{ view.object.race.location }}</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Вы уверены, что хотите зарегистрироваться на эту гонку?</p>
+        
+        <button type="submit">✅ Подтвердить регистрацию</button>
+        <a href="/race/{{ view.object.race.id }}/" style="margin-left: 10px;">
+            <button type="button" class="btn-secondary">❌ Отмена</button>
+        </a>
+    </form>
+</body>
+</html>

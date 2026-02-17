@@ -1,0 +1,61 @@
+{% extends 'racing_app/base.html' %}
+
+{% block title %}Мои регистрации - Табло автогонок{% endblock %}
+
+{% block content %}
+<h2>Мои регистрации на гонки</h2>
+
+{% if user_car %}
+<div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 4px; background: #f9f9f9;">
+    <h3>Мой автомобиль</h3>
+    <p><strong>Модель:</strong> {{ user_car.model }}</p>
+    <p><strong>Год:</strong> {{ user_car.year }}</p>
+    <p><strong>Команда:</strong> {{ user_car.team.name|default:"Не указана" }}</p>
+    <p><strong>Описание:</strong> {{ user_car.description }}</p>
+</div>
+{% else %}
+<div style="border: 1px solid #ffd700; padding: 1rem; margin: 1rem 0; border-radius: 4px; background: #fffacd;">
+    <h3>Добавьте информацию об автомобиле</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ car_form.as_p }}
+        <button type="submit" style="background: #27ae60; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px;">
+            Сохранить автомобиль
+        </button>
+    </form>
+</div>
+{% endif %}
+
+<h3>Мои гонки</h3>
+
+{% if registrations %}
+    {% for registration in registrations %}
+    <div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+        <h4><a href="{% url 'race_detail' registration.race.pk %}">{{ registration.race.name }}</a></h4>
+        <p><strong>Дата:</strong> {{ registration.race.date|date:"d.m.Y H:i" }}</p>
+        <p><strong>Место:</strong> {{ registration.race.location|default:"Не указано" }}</p>
+        <p><strong>Статус:</strong> 
+            {% if registration.result %}
+                <span style="color: green;">Завершено - {{ registration.result }}</span>
+            {% else %}
+                <span style="color: orange;">Ожидается</span>
+            {% endif %}
+        </p>
+        {% if registration.final_time %}
+            <p><strong>Время:</strong> {{ registration.final_time }}</p>
+        {% endif %}
+        {% if registration.position %}
+            <p><strong>Позиция:</strong> {{ registration.position }}</p>
+        {% endif %}
+        
+        <div style="margin-top: 0.5rem;">
+            <a href="{% url 'race_detail' registration.race.pk %}">Подробнее о гонке</a>
+            | <a href="{% url 'registration_delete' registration.pk %}" style="color: red;">Отменить регистрацию</a>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>Вы еще не зарегистрированы ни на одну гонку.</p>
+    <p><a href="{% url 'race_list' %}">Посмотреть доступные гонки</a></p>
+{% endif %}
+{% endblock %}

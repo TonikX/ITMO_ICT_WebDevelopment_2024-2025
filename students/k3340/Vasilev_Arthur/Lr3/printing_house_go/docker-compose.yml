@@ -1,0 +1,48 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: printing_house_db
+    environment:
+      POSTGRES_DB: printing_house
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./deployment/migrations/postgres:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d printing_house"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - printing-house-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: printing_house_app
+    environment:
+      PRINTING_HOUSE_POSTGRES_DSN: "postgres://user:password@postgres:5432/printing_house?sslmode=disable"
+      PRINTING_HOUSE_HTTP_ADDR: ":8080"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - printing-house-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  printing-house-network:
+    driver: bridge 

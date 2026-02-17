@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отмена регистрации</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .warning { background: #fff3cd; padding: 15px; margin: 10px 0; }
+        button { padding: 10px 20px; border: none; cursor: pointer; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Отмена регистрации</h1>
+    
+    <div class="warning">
+        <h2>Вы собираетесь отменить регистрацию на гонку:</h2>
+        <h3>"{{ object.race.name }}"</h3>
+        <p><strong>Дата:</strong> {{ view.object.race.date|date:"d.m.Y H:i" }}</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Вы уверены, что хотите отменить регистрацию?</p>
+        
+        <button type="submit" class="btn-danger">🗑️ Да, отменить регистрацию</button>
+        <a href="/race/{{ object.race.id }}/" style="margin-left: 10px;">
+            <button type="button" class="btn-secondary">↩️ Нет, вернуться</button>
+        </a>
+    </form>
+</body>
+</html>

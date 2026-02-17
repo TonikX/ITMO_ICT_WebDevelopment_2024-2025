@@ -1,0 +1,31 @@
+{% extends 'racing_app/base.html' %}
+
+{% block title %}Добавить комментарий - Табло автогонок{% endblock %}
+
+{% block content %}
+<h2>Добавить комментарий к гонке "{{ view.object.race.name }}"</h2>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <div style="margin: 1rem 0;">
+        <label>Текст комментария:</label>
+        {{ form.text }}
+    </div>
+
+    <div style="margin: 1rem 0;">
+        <label>Тип комментария:</label>
+        {{ form.type }}
+    </div>
+
+    <div style="margin: 1rem 0;">
+        <label>Рейтинг (1-10):</label>
+        {{ form.rating }}
+    </div>
+
+    <button type="submit" style="background: #3498db; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; margin-right: 1rem;">
+        Отправить комментарий
+    </button>
+    <a href="{% url 'race_detail' view.object.race.pk %}" style="color: #7f8c8d;">Отмена</a>
+</form>
+{% endblock %}

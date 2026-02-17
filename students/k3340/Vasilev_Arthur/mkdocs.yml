@@ -1,0 +1,81 @@
+site_name: Лабораторные работы - Web Development
+site_description: Портфолио лабораторных работ по веб-разработке (Lr1-Lr4)
+site_author: Vasilev Arthur
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Главная: index.md
+  - Лабораторные работы:
+    - Lr1 - Сокеты:
+      - Обзор: lr1/index.md
+      - Задания: lr1/tasks.md
+    - Lr2 - Django (Гонки):
+      - Обзор: lr2/index.md
+      - Проект: lr2/project.md
+    - Lr3 - API (REST):
+      - Обзор: lr3/index.md
+      - Printing House: lr3/printing_house.md
+    - Lr4 - Full Stack:
+      - Обзор: lr4/index.md
+      - Printing House (Backend): lr4/printing_house.md
+      - Printing House (Frontend): lr4/printing_house_frontend.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.mark
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.details
+  - pymdownx.tasklist
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+      title: Содержание

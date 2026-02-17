@@ -1,0 +1,90 @@
+/* Дополнительные стили для MkDocs Material */
+:root {
+  --md-primary-fg-color: #4caf50;
+  --md-accent-fg-color: #4caf50;
+}
+
+/* Стили для кода */
+.highlight pre, .highlight code {
+  border-radius: 8px;
+}
+
+/* Стили для таблиц */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Анимации для кнопок */
+.md-button {
+  transition: all 0.3s ease;
+}
+
+.md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Стили для навигации */
+.md-nav__link {
+  border-radius: 4px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.md-nav__link:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* Стили для заголовков */
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+  color: #4caf50;
+}
+
+.md-typeset .admonition {
+  border-radius: 8px;
+}
+
+/* Стили для ссылок */
+.md-typeset a {
+  color: #4caf50;
+  transition: color 0.2s ease;
+}
+
+.md-typeset a:hover {
+  color: #2e7d32;
+}
+
+/* Кастомные стили для Django-специфичного контента */
+.django-model {
+  background: #f5f5f5;
+  border-left: 4px solid #4caf50;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.django-view {
+  background: #e8f5e8;
+  border-left: 4px solid #66bb6a;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.code-block {
+  position: relative;
+}
+
+.code-block::before {
+  content: "📋";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.code-block:hover::before {
+  opacity: 1;
+}

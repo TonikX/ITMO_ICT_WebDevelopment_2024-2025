@@ -1,0 +1,54 @@
+site_name: Лабораторная работа 2 - Django приложение для автогонок
+site_description: Веб-приложение для управления автогонками с использованием Django
+site_author: Vasilev Arthur
+
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: green
+    accent: green
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - 🏠 Главная: index.md
+  - 📚 Лабораторные работы:
+    - Лабораторная работа 1 (Сокеты): https://pppestto.github.io/lr1-sockets-report/
+    - Лабораторная работа 2 (Django): index.md
+    - Лабораторная работа 3 (Хакатон): https://pppestto.github.io/lr3-hackathon-report/
+  - Установка: installation.md
+  - Модели: models.md
+  - Представления: views.md
+  - Шаблоны: templates.md
+  - Админка: admin.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.details
+  - pymdownx.tabbed
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/extra.css
+
+copyright: '© 2024 Vasilev Arthur'

@@ -1,0 +1,17 @@
+#django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+media/
+staticfiles/
+
+#env
+venv/
+env/
+ENV/
+
+#ide
+.vscode/
+.idea/

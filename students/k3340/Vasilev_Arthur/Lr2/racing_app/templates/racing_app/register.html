@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация - Табло автогонок</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        .form-group { margin: 10px 0; }
+        label { display: block; margin-bottom: 5px; }
+        input, select, textarea { width: 300px; padding: 8px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Регистрация нового пользователя</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Имя пользователя:</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Имя:</label>
+            <input type="text" name="first_name">
+        </div>
+
+        <div class="form-group">
+            <label>Фамилия:</label>
+            <input type="text" name="last_name">
+        </div>
+
+        <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" name="password1" required>
+        </div>
+
+        <div class="form-group">
+            <label>Подтверждение пароля:</label>
+            <input type="password" name="password2" required>
+        </div>
+
+        <div class="form-group">
+            <label>Уровень опыта:</label>
+            <select name="experience">
+                <option value="NB">Новичок</option>
+                <option value="SP">Любитель</option>
+                <option value="PR">Профессионал</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Класс гонщика:</label>
+            <input type="text" name="driver_class">
+        </div>
+
+        <div class="form-group">
+            <label>Биография:</label>
+            <textarea name="bio" rows="4"></textarea>
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <p><a href="/login/">Уже есть аккаунт? Войдите</a></p>
+</body>
+</html>

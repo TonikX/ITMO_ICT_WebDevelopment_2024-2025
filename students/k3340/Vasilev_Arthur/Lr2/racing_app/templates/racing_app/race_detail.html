@@ -1,0 +1,95 @@
+{% extends 'racing_app/base.html' %}
+
+{% block title %}{{ race.name }} - Табло автогонок{% endblock %}
+
+{% block content %}
+<h2>{{ race.name }}</h2>
+<p><strong>Дата и время:</strong> {{ race.date|date:"d.m.Y H:i" }}</p>
+{% if race.location %}<p><strong>Место проведения:</strong> {{ race.location }}</p>{% endif %}
+{% if race.description %}<p>{{ race.description }}</p>{% endif %}
+
+<div style="margin: 2rem 0;">
+    {% if user.is_authenticated %}
+        {% if user_registered %}
+            <p>✅ Вы зарегистрированы на эту гонку</p>
+            <a href="{% url 'registration_delete' user_registration.pk %}" 
+               style="color: red; text-decoration: none;">
+               Отменить регистрацию
+            </a>
+        {% else %}
+            <a href="{% url 'race_register' race.pk %}" 
+               style="background: #27ae60; color: white; padding: 0.5rem 1rem; text-decoration: none; border-radius: 4px;">
+               Зарегистрироваться на гонку
+            </a>
+        {% endif %}
+    {% else %}
+        <p><a href="{% url 'login' %}">Войдите</a>, чтобы зарегистрироваться на гонку</p>
+    {% endif %}
+</div>
+
+<h3>Таблица результатов</h3>
+{% if registrations %}
+<table>
+    <thead>
+        <tr>
+            <th>Позиция</th>
+            <th>Гонщик</th>
+            <th>Команда</th>
+            <th>Автомобиль</th>
+            <th>Время</th>
+            <th>Результат</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reg in registrations %}
+        <tr>
+            <td>{{ reg.position|default:"-" }}</td>
+            <td>{{ reg.racer.get_full_name|default:reg.racer.username }}</td>
+            <td>{{ reg.racer.car.team.name|default:"-" }}</td>
+            <td>{{ reg.racer.car.model|default:"-" }}</td>
+            <td>{{ reg.final_time|default:"-" }}</td>
+            <td>{{ reg.result|default:"В процессе" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Результаты пока не доступны.</p>
+{% endif %}
+
+<h3>Участники</h3>
+{% if all_registrations %}
+<ul>
+    {% for reg in all_registrations %}
+    <li>{{ reg.racer.get_full_name|default:reg.racer.username }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Пока нет зарегистрированных участников.</p>
+{% endif %}
+
+<h3>Комментарии</h3>
+{% if comments %}
+    {% for comment in comments %}
+    <div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 4px;">
+        <strong>{{ comment.author.get_full_name|default:comment.author.username }}</strong>
+        <small>({{ comment.get_type_display }}) - Рейтинг: {{ comment.rating }}/10</small>
+        <p>{{ comment.text }}</p>
+        <small>{{ comment.created_date|date:"d.m.Y H:i" }}</small>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>Пока нет комментариев.</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+<h4>Добавить комментарий</h4>
+<form method="post" action="{% url 'add_comment' race.pk %}">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Отправить комментарий</button>
+</form>
+{% else %}
+<p><a href="{% url 'login' %}">Войдите</a>, чтобы оставить комментарий.</p>
+{% endif %}
+{% endblock %}

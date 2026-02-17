@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система управления типографией</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .status {
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 4px;
+            background: #f0f0f0;
+            border-left: 4px solid #2196F3;
+        }
+    </style>
+    <script>
+        console.log('Step 1: HTML loaded')
+        window.loadingSteps = []
+        window.addStep = function(step) {
+            window.loadingSteps.push(step)
+            console.log(step)
+            const elem = document.querySelector('#loading-steps')
+            if (elem) {
+                elem.innerHTML += '<div class="status">' + step + '</div>'
+            }
+        }
+        window.addStep('Step 1: HTML document loaded')
+    </script>
+</head>
+
+<body>
+    <div id="loading-steps">
+        <div class="status">🔄 Loading application...</div>
+    </div>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+        window.addEventListener('error', (event) => {
+            window.addStep('ERROR: ' + event.message)
+            console.error('Error:', event)
+        })
+        window.addEventListener('unhandledrejection', (event) => {
+            window.addStep('UNHANDLED REJECTION: ' + event.reason)
+            console.error('Unhandled rejection:', event)
+        })
+        window.addStep('Step 2: Error handlers attached')
+    </script>
+</body>
+
+</html>

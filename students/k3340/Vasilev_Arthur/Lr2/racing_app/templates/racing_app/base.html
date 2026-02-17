@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Табло автогонок{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <div class="nav container">
+            <h1><a href="{% url 'race_list' %}">🏁 Табло автогонок</a></h1>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <span>👋 Привет, {{ user.get_full_name|default:user.username }}!</span>
+                    <a href="{% url 'user_registrations' %}">📋 Мои регистрации</a>
+                    {% if user.is_staff %}
+                        <a href="/admin/">⚙️ Админка</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}">🚪 Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}">🔑 Войти</a>
+                    <a href="{% url 'register' %}">📝 Регистрация</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* Дополнительные стили для MkDocs Material */
+:root {
+  --md-primary-fg-color: #1976d2;
+  --md-accent-fg-color: #1976d2;
+}
+
+/* Стили для кода */
+.highlight pre, .highlight code {
+  border-radius: 8px;
+}
+
+/* Стили для таблиц */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Анимации для кнопок */
+.md-button {
+  transition: all 0.3s ease;
+}
+
+.md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Стили для навигации */
+.md-nav__link {
+  border-radius: 4px;
+  margin: 2px 0;
+  transition: all 0.2s ease;
+}
+
+.md-nav__link:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+/* Кастомные стили для контента */
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+  color: #1976d2;
+}
+
+.md-typeset .admonition {
+  border-radius: 8px;
+}
+
+/* Стили для ссылок */
+.md-typeset a {
+  color: #1976d2;
+  transition: color 0.2s ease;
+}
+
+.md-typeset a:hover {
+  color: #0d47a1;
+}
