@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Постояльцы за месяц</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        th {
+            background: #4f46e5;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f3f4f6;
+        }
+
+        .back {
+            margin-top: 25px;
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: #4338ca;
+        }
+
+        .empty {
+            text-align: center;
+            font-size: 18px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Постояльцы за последний месяц</h1>
+
+    {% if bookings %}
+        <table>
+            <tr>
+                <th>Пользователь</th>
+                <th>Отель</th>
+                <th>Номер</th>
+                <th>Дата заезда</th>
+                <th>Дата выезда</th>
+                <th>Статус</th>
+            </tr>
+
+            {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.user.username }}</td>
+                    <td>{{ booking.room.hotel.name }}</td>
+                    <td>{{ booking.room }}</td>
+                    <td>{{ booking.date_from }}</td>
+                    <td>{{ booking.date_to }}</td>
+                    <td>{{ booking.get_status_display }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="empty">За последний месяц заселений не было</div>
+    {% endif %}
+
+    <a href="/" class="back">← Вернуться</a>
+</div>
+
+</body>
+</html>

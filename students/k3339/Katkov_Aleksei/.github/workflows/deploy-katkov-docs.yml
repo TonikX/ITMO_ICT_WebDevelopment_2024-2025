@@ -1,0 +1,39 @@
+name: Deploy Katkov_Aleksei docs to gh-pages
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "students/k3339/Katkov_Aleksei/**"
+      - ".github/workflows/deploy-katkov-docs.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install MkDocs
+        run: |
+          pip install mkdocs mkdocs-material
+
+      - name: Build MkDocs (Katkov_Aleksei)
+        working-directory: students/k3339/Katkov_Aleksei
+        run: mkdocs build
+
+      - name: Deploy to gh-pages (subfolder)
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: students/k3339/Katkov_Aleksei/site
+          target-folder: students/k3339/Katkov_Aleksei
+          clean: true

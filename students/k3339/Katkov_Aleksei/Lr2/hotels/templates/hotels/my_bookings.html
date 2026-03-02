@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои бронирования</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .bookings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .booking-card {
+            position: relative;
+            background: #f9fafb;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 6px solid #4f46e5;
+        }
+
+        .booking-card p {
+            margin: 6px 0;
+            font-size: 15px;
+        }
+
+        .booking-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .dates {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 12px 20px;
+            background: #4f46e5;
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #4338ca;
+        }
+
+        .empty {
+            text-align: center;
+            font-size: 18px;
+            color: #6b7280;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+    {% if user.is_authenticated %}
+        <a href="/my-bookings/" style="margin-right: 10px;">Мои брони</a>
+        <a href="/logout/">Выйти</a>
+    {% else %}
+        <a href="/login/">Войти</a>
+    {% endif %}
+</div>
+
+
+<div class="container">
+
+    <h1>Мои бронирования</h1>
+
+    {% if bookings %}
+        <div class="bookings-grid">
+            {% for booking in bookings %}
+                <div class="booking-card">
+                    <div class="booking-title">
+                        {{ booking.room.hotel.name }}
+                    </div>
+
+                    <p><b>Номер:</b> {{ booking.room }}</p>
+                    <p><b>Цена за ночь:</b> {{ booking.room.price }} ₽</p>
+                    <p><b>Вместимость:</b> {{ booking.room.capacity }} чел.</p>
+
+                    <div class="dates">
+                        <b>Даты:</b><br>
+                        с {{ booking.date_from }} по {{ booking.date_to }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty">
+            У вас пока нет бронирований
+        </div>
+    {% endif %}
+
+    <a href="/" class="back-btn">← Вернуться к отелям</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Все бронирования</title>
+    <style>
+        body { font-family: Arial; background: #f4f6f8; padding: 30px; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 16px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #4f46e5; color: white; }
+        .back { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4f46e5; color: white; border-radius: 8px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Все бронирования системы</h1>
+
+    <table>
+        <tr>
+            <th>Пользователь</th>
+            <th>Отель</th>
+            <th>Номер</th>
+            <th>Даты</th>
+            <th>Статус</th>
+        </tr>
+
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.user.username }}</td>
+            <td>{{ booking.room.hotel.name }}</td>
+            <td>{{ booking.room }}</td>
+            <td>{{ booking.date_from }} — {{ booking.date_to }}</td>
+            <td>{{ booking.get_status_display }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/" class="back">← Назад</a>
+</div>
+
+</body>
+</html>

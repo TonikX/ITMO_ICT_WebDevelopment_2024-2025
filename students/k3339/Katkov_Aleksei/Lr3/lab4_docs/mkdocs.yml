@@ -1,0 +1,7 @@
+site_name: Лабораторная работа №4
+theme:
+  name: material
+  language: ru
+
+nav:
+  - Документация: index.md
