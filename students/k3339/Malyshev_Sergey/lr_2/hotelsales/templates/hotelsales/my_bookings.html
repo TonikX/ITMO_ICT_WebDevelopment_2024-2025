@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои бронирования</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: white;
+        }
+        .btn-cancel {
+            background: #e74c3c;
+        }
+        .btn-cancel:hover {
+            background: #c0392b;
+        }
+        .btn-edit {
+            background: #f39c12;
+        }
+        .btn-edit:hover {
+            background: #e67e22;
+        }
+        .btn-review {
+            background: #27ae60;
+        }
+        .btn-review:hover {
+            background: #219653;
+        }
+        .status-pending { color: #f39c12; font-weight: bold; }
+        .status-cancelled { color: #e74c3c; }
+        .status-checked_in { color: #2980b9; }
+        .status-checked_out, .status-completed { color: #27ae60; }
+        .message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .success { background: #dff0d8; color: #3c763d; }
+        .error { background: #f2dede; color: #a94442; }
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        .review-cell {
+            max-width: 200px;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Мои бронирования</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {% if message.tags == 'success' %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if bookings %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Отель</th>
+                    <th>Тип номера</th>
+                    <th>Заезд — Выезд</th>
+                    <th>Гости</th>
+                    <th>Стоимость</th>
+                    <th>Статус</th>
+                    <th>Отзыв</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.room_type.hotel.name }}</td>
+                        <td>{{ booking.room_type.name }}</td>
+                        <td>{{ booking.check_in|date:"d.m.Y" }} — {{ booking.check_out|date:"d.m.Y" }}</td>
+                        <td>{{ booking.adults }} + {{ booking.children }} = {{ booking.adults|add:booking.children }}</td>
+                        <td>{{ booking.total_price|floatformat:2 }} ₽</td>
+                        <td class="{% if booking.status == 'pending' %}status-pending{% elif booking.status == 'cancelled' %}status-cancelled{% elif booking.status == 'checked_in' %}status-checked_in{% else %}status-checked_out{% endif %}">
+                            {{ booking.get_status_display }}
+                        </td>
+                        <td class="review-cell">
+                            {% if booking.reviews.exists %}
+                                {% for review in booking.reviews.all %}
+                                    <strong>Рейтинг: {{ review.rating }}/10</strong><br>
+                                    {{ review.comment|truncatewords:20 }}<br>
+                                    <small>{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                                    {% if not forloop.last %}<hr style="margin:8px 0;">{% endif %}
+                                {% endfor %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if booking.status == 'pending' %}
+                                <form method="post" style="display:inline-block; margin-right:10px;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                    <button type="submit" name="cancel_booking" class="btn btn-cancel">
+                                        Отменить
+                                    </button>
+                                </form>
+
+                                <a href="{% url 'hotelsales:edit_booking' booking.id %}" class="btn btn-edit">
+                                    Редактировать
+                                </a>
+                            {% elif booking.status in 'checked_out completed' %}
+                                {% if not booking.reviews.exists %}
+                                    <a href="{% url 'hotelsales:add_review' booking.id %}" class="btn btn-review">
+                                        Оставить отзыв
+                                    </a>
+                                {% else %}
+                                    <span style="color:#7f8c8d;">Отзыв оставлен</span>
+                                {% endif %}
+                            {% else %}
+                                <span style="color:#7f8c8d;">Недоступно</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" style="text-align:center; color:#7f8c8d; padding:40px;">
+                            У вас пока нет бронирований.
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align:center; font-size:1.3em; color:#7f8c8d; margin-top:50px;">
+            У вас пока нет бронирований.
+        </p>
+    {% endif %}
+
+    <a href="{% url 'hotelsales:home' %}" class="back-link">← На главную</a>
+</div>
+
+</body>
+</html>

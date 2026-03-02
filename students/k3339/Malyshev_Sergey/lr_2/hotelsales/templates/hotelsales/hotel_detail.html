@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hotel.name }} — Детали отеля</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .hotel-header {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .hotel-photo {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .hotel-info {
+            padding: 40px;
+        }
+        .hotel-name {
+            font-size: 2.8rem;
+            margin: 0 0 15px;
+            color: #1a3c5e;
+        }
+        .hotel-meta {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        .hotel-meta span {
+            margin-right: 30px;
+        }
+        .hotel-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin: 50px 0 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        .room-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .room-table th, .room-table td {
+            border: 1px solid #eee;
+            padding: 18px;
+            text-align: left;
+        }
+        .room-table th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        .room-table tr:hover {
+            background: #f8f9fa;
+        }
+        .btn-book {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-book:hover {
+            background: #219653;
+            transform: translateY(-2px);
+        }
+        .no-rooms {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.3rem;
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="{% url 'hotelsales:home' %}" class="back-link">← Назад к списку отелей</a>
+
+    <div class="hotel-header">
+        {% if hotel.photo %}
+            <img src="{{ hotel.photo.url }}" alt="{{ hotel.name }}" class="hotel-photo">
+        {% else %}
+            <div class="hotel-photo" style="background:#444; color:#aaa; display:flex; align-items:center; justify-content:center; font-size:2rem;">
+                Фото отеля
+            </div>
+        {% endif %}
+
+        <div class="hotel-info">
+            <h1 class="hotel-name">{{ hotel.name }}</h1>
+            <div class="hotel-meta">
+                <span>Адрес: {{ hotel.address }}</span>
+                <span>Владелец: {{ hotel.owner.username|default:"Не указан" }}</span>
+            </div>
+            <div class="hotel-description">
+                {{ hotel.description|linebreaks }}
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-title">Доступные типы номеров</h2>
+
+    {% if room_types %}
+        <table class="room-table">
+            <thead>
+                <tr>
+                    <th>Тип номера</th>
+                    <th>Вместимость</th>
+                    <th>Цена за ночь</th>
+                    <th>Удобства</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rt in room_types %}
+                    <tr>
+                        <td>{{ rt.name }}</td>
+                        <td>{{ rt.capacity }} чел.</td>
+                        <td>{{ rt.price_per_night|floatformat:2 }} ₽</td>
+                        <td>{{ rt.amenities|default:"—"|linebreaksbr }}</td>
+                        <td>
+                            {% if user.is_authenticated %}
+                                <a href="{% url 'hotelsales:booking_create' rt.id %}" class="btn-book">
+                                    Забронировать
+                                </a>
+                            {% else %}
+                                <a href="{% url 'hotelsales:register' %}" style="color:#e74c3c; font-weight:bold;">
+                                    Зарегистрируйтесь, чтобы бронировать
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="no-rooms">
+            В этом отеле пока нет доступных типов номеров.
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>

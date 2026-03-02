@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронирование номера</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+        .info {
+            padding: 25px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+        .info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        .info strong {
+            color: #2c3e50;
+        }
+        .form-section {
+            padding: 40px;
+        }
+        .form-group {
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s;
+        }
+        input[type="date"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+        }
+        .button-group {
+            text-align: center;
+            margin-top: 40px;
+        }
+        button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 16px 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #219653;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(33,150,83,0.3);
+        }
+        .errorlist {
+            color: #c0392b;
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+        .back {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #2980b9;
+            text-decoration: none;
+        }
+        .back:hover {
+            text-decoration: underline;
+        }
+        .messages {
+            margin-bottom: 30px;
+        }
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .error {
+            background: #f2dede;
+            color: #a94442;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Бронирование номера</h1>
+    </div>
+
+    <div class="info">
+        <p><strong>Отель:</strong> {{ hotel.name }}</p>
+        <p><strong>Тип номера:</strong> {{ room_type.name }}</p>
+        <p><strong>Цена за ночь:</strong> {{ room_type.price_per_night|floatformat:2 }} ₽</p>
+        <p><strong>Макс. вместимость:</strong> {{ room_type.capacity }} чел.</p>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="{% if message.tags == 'success' %}success{% else %}error{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="form-section">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.check_in.id_for_label }}">Заезд:</label>
+                {{ form.check_in }}
+                {{ form.check_in.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.check_out.id_for_label }}">Выезд:</label>
+                {{ form.check_out }}
+                {{ form.check_out.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.adults.id_for_label }}">Взрослые:</label>
+                {{ form.adults }}
+                {{ form.adults.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.children.id_for_label }}">Дети:</label>
+                {{ form.children }}
+                {{ form.children.errors }}
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Изменить детали бронирования</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="{% url 'hotelsales:hotel_detail' hotel.id %}" class="back">← Назад к отелю</a>
+</div>
+
+</body>
+</html>
