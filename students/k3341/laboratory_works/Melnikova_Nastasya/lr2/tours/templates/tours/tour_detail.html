@@ -1,0 +1,39 @@
+{% extends 'tours/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <h3 class="fw-bold mb-3">{{ tour.name }}</h3>
+      <p><strong>Агентство:</strong> {{ tour.agency }}</p>
+      <p><strong>Период:</strong> {{ tour.start_date }} — {{ tour.end_date }}</p>
+      <p class="mb-3"><strong>Описание:</strong><br>{{ tour.description }}</p>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'add_review' tour.id %}" class="btn btn-primary">Оставить отзыв</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-secondary">Войдите, чтобы оставить отзыв</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <h4 class="fw-semibold mb-3">Отзывы </h4>
+
+  {% if reviews %}
+    {% for r in reviews %}
+      <div class="card mb-3 border-0 shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <strong>{{ r.user.username }}</strong>
+            <span class="badge bg-success">⭐ {{ r.rating }}/10</span>
+          </div>
+          <p class="mt-2">{{ r.comment }}</p>
+          <small class="text-muted">{{ r.date_posted|date:"d.m.Y H:i" }}</small>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="alert alert-light text-center border">Пока нет отзывов </div>
+  {% endif %}
+</div>
+{% endblock %}
+
