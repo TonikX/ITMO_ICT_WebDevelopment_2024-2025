@@ -1,0 +1,60 @@
+### Примеры запросов (можно использовать в VSCode REST Client или Postman)
+
+# Регистрация
+POST http://127.0.0.1:8000/auth/users/
+Content-Type: application/json
+
+{
+  "username": "captain1",
+  "password": "Password12345",
+  "re_password": "Password12345"
+}
+
+###
+
+# Логин (получить токен)
+POST http://127.0.0.1:8000/auth/token/login/
+Content-Type: application/json
+
+{
+  "username": "captain1",
+  "password": "Password12345"
+}
+
+###
+
+# Профиль
+GET http://127.0.0.1:8000/api/profiles/me/
+Authorization: Token {{token}}
+
+###
+
+# Создать команду (капитан)
+POST http://127.0.0.1:8000/api/teams/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+  "name": "DreamTeam",
+  "motto": "Ship it!",
+  "selected_task_id": 1,
+  "member_items": [
+    {"full_name": "Иван Иванов", "email": "ivan@example.com", "role_in_team": "Backend"},
+    {"full_name": "Мария Петрова", "email": "maria@example.com", "role_in_team": "ML"}
+  ]
+}
+
+###
+
+# Создать решение (капитан)
+POST http://127.0.0.1:8000/api/solutions/
+Authorization: Token {{token}}
+Content-Type: application/json
+
+{
+  "task_id": 1,
+  "title": "Наше решение",
+  "description": "Описание решения",
+  "repo_url": "https://github.com/example/repo",
+  "submit": true
+}
