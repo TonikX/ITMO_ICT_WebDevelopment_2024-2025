@@ -1,0 +1,10 @@
+site_name: Hackathon API (ЛР3)
+theme:
+  name: readthedocs
+nav:
+  - Главная: index.md
+  - Установка и запуск: setup.md
+  - Роли и права: roles.md
+  - Эндпоинты: endpoints.md
+  - Практика 3.1 — ORM запросы: practice_queries.md
+  - Клиентский интерфейс (Vue.js): frontend.md
