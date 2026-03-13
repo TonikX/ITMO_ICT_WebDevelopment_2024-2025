@@ -1,0 +1,7 @@
+site_name: Laboratory Work 3
+
+nav:
+  - Главная: index.md
+
+theme:
+  name: mkdocs

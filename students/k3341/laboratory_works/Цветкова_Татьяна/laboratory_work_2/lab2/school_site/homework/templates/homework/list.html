@@ -1,0 +1,14 @@
+<h1>Домашние задания</h1>
+
+{% for hw in homeworks %}
+  <div>
+    <h3>{{ hw.subject }}</h3>
+    <p>{{ hw.description }}</p>
+    <a href="/submit/{{ hw.id }}/">Сдать</a>
+  </div>
+{% empty %}
+  <p>Заданий пока нет</p>
+{% endfor %}
+
+<br>
+<a href="/grades/">Таблица оценок</a>

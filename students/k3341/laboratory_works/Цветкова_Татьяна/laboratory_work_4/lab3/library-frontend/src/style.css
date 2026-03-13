@@ -1,0 +1,4 @@
+/* Базовые стили для совместимости с Vuetify */
+* {
+  box-sizing: border-box;
+}

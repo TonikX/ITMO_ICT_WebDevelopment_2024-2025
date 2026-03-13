@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# MkDocs build
+site/
+
+# macOS system files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log

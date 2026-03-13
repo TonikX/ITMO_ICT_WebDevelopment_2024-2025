@@ -1,0 +1,22 @@
+# Python / Django
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+*.sqlite3
+.env
+*.log
+
+# Node.js / Vue
+node_modules/
+dist/
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# MkDocs
+site/

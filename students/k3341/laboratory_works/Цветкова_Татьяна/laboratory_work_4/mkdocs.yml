@@ -1,0 +1,9 @@
+site_name: "Лабораторная работа 4 — Цветкова Татьяна"
+site_author: "Цветкова Татьяна"
+docs_dir: docs
+
+theme:
+  name: readthedocs
+
+nav:
+  - Главная: index.md
