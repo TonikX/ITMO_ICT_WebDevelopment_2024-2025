@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ hotel.name }}</h1>
+<p><strong>Владелец:</strong> {{ hotel.owner }}</p>
+<p><strong>Адрес:</strong> {{ hotel.address }}</p>
+<p><strong>Описание:</strong> {{ hotel.description }}</p>
+
+<h2>Номера</h2>
+<ul>
+    {% for room in hotel.rooms.all %}
+    <li>
+        <a href="{% url 'bookings:room_detail' room.pk %}">{{ room.room_type }}</a> – 
+        {{ room.price }} руб., вместимость: {{ room.capacity }}
+    </li>
+    {% empty %}
+    <li>Нет номеров.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'hotels:index' %}" class="btn btn-secondary">Назад к списку</a>
+{% endblock %}

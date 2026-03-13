@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Постояльцы за последний месяц</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Гость</th>
+            <th>Отель</th>
+            <th>Номер</th>
+            <th>Дата заезда</th>
+            <th>Дата выезда</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in guests %}
+        <tr>
+            <td>{{ booking.user.username }}</td>
+            <td>{{ booking.room.hotel.name }}</td>
+            <td>{{ booking.room.room_type }}</td>
+            <td>{{ booking.check_in }}</td>
+            <td>{{ booking.check_out }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Нет данных за последний месяц.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

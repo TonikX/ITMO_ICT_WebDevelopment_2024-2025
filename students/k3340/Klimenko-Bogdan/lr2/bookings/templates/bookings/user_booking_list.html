@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Мои бронирования</h2>
+<ul class="list-group">
+    {% for booking in bookings %}
+    <li class="list-group-item">
+        <strong>{{ booking.room.hotel.name }}</strong> – {{ booking.room.room_type }}<br>
+        {{ booking.check_in }} - {{ booking.check_out }}<br>
+        Статус: {% if booking.is_checked_in %}Заселён{% else %}Ожидание{% endif %}
+        <a href="{% url 'bookings:booking_edit' booking.pk %}" class="btn btn-sm btn-warning">ред.</a>
+        <a href="{% url 'bookings:booking_delete' booking.pk %}" class="btn btn-sm btn-danger">удалить</a>
+    </li>
+    {% empty %}
+    <li class="list-group-item">У вас пока нет бронирований.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
