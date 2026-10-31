@@ -1,0 +1,123 @@
+﻿{% extends "base.html" %}
+
+{% block title %}{{ tour.title }} | TravelWay{% endblock %}
+
+{% block content %}
+
+<a href="{{ url('tour_list') }}" class="btn btn-outline-secondary mb-3">
+    ← Back to tours
+</a>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body p-4">
+
+        <div class="text-muted mb-2">
+            {{ tour.country }} · {{ tour.agency.name }}
+        </div>
+
+        <h1>{{ tour.title }}</h1>
+
+        <p class="lead">
+            {{ tour.description }}
+        </p>
+
+        <div class="alert alert-light border mt-3">
+            <strong>Payment terms:</strong>
+            <span style="white-space: pre-line">{{ tour.payment_terms }}</span>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-3">
+                <strong>Start</strong><br>
+                {{ tour.start_date }}
+            </div>
+
+            <div class="col-md-3">
+                <strong>End</strong><br>
+                {{ tour.end_date }}
+            </div>
+
+            <div class="col-md-3">
+                <strong>Seats available</strong><br>
+                {{ tour.available_seats }}
+            </div>
+
+            <div class="col-md-3">
+                <strong>Price</strong><br>
+                {{ tour.price }} ₽
+            </div>
+        </div>
+
+        <hr>
+
+        {% if booking_closed_reason %}
+            <span class="badge bg-secondary">{{ booking_closed_reason }}</span>
+        {% elif user.is_authenticated %}
+            <a
+                href="{{ url('create_booking', tour.pk) }}"
+                class="btn btn-primary"
+            >
+                Book this tour
+            </a>
+
+        {% else %}
+            <a href="{{ url('login') }}" class="btn btn-primary">
+                Log in to book
+            </a>
+        {% endif %}
+
+        {% if can_review %}
+            <a href="{{ url('create_review', tour.pk) }}" class="btn btn-outline-primary">
+                Leave review
+            </a>
+        {% endif %}
+
+    </div>
+</div>
+
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+
+        <h3>Reviews</h3>
+
+        {% if average_rating %}
+            <p>
+                Average rating:
+                <strong>{{ '%.1f' % average_rating }}/10</strong>
+            </p>
+        {% endif %}
+
+        {% for review in reviews %}
+
+            <div class="border-top py-3">
+                <strong>{{ review.user.username }}</strong>
+
+                <span class="badge bg-primary ms-2">
+                    {{ review.rating }}/10
+                </span>
+
+                <div class="text-muted small">
+                    Trip: {{ review.tour_start_date }} — {{ review.tour_end_date }}
+                    <div>Published: {{ review.created_at.strftime('%d.%m.%Y %H:%M') }}</div>
+                </div>
+
+                <p class="mb-0 mt-2">
+                    {{ review.text }}
+                </p>
+            </div>
+
+        {% else %}
+
+            <p class="text-muted">
+                No reviews yet.
+            </p>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

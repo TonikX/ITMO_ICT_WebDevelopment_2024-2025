@@ -1,0 +1,184 @@
+[
+  {
+    "model": "tours.country",
+    "pk": 1,
+    "fields": {
+      "name": "Italy"
+    }
+  },
+  {
+    "model": "tours.country",
+    "pk": 2,
+    "fields": {
+      "name": "Japan"
+    }
+  },
+  {
+    "model": "tours.country",
+    "pk": 3,
+    "fields": {
+      "name": "Turkey"
+    }
+  },
+  {
+    "model": "tours.country",
+    "pk": 4,
+    "fields": {
+      "name": "France"
+    }
+  },
+  {
+    "model": "tours.agency",
+    "pk": 1,
+    "fields": {
+      "name": "TravelWay",
+      "address": "Saint Petersburg",
+      "phone": "+7 999 123-45-67",
+      "email": "info@travelway.ru"
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 1,
+    "fields": {
+      "agency": 1,
+      "country": 1,
+      "title": "Rome Weekend",
+      "description": "Four-day sightseeing tour of Rome with accommodation and excursions.",
+      "start_date": "2027-02-12",
+      "end_date": "2027-02-16",
+      "price": "85000.00",
+      "payment_terms": "Full payment before departure.",
+      "available_seats": 12,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 2,
+    "fields": {
+      "agency": 1,
+      "country": 2,
+      "title": "Tokyo Discovery",
+      "description": "Eight-day trip to Tokyo with guided city tours and cultural activities.",
+      "start_date": "2027-03-10",
+      "end_date": "2027-03-18",
+      "price": "165000.00",
+      "payment_terms": "Full payment before departure.",
+      "available_seats": 8,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 3,
+    "fields": {
+      "agency": 1,
+      "country": 3,
+      "title": "Antalya Relax",
+      "description": "Seven-day beach holiday in Antalya with hotel accommodation.",
+      "start_date": "2027-04-05",
+      "end_date": "2027-04-12",
+      "price": "72000.00",
+      "payment_terms": "Full payment before departure.",
+      "available_seats": 20,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 4,
+    "fields": {
+      "agency": 1,
+      "country": 4,
+      "title": "Paris Classic",
+      "description": "Five-day tour of Paris with museums, sightseeing and accommodation.",
+      "start_date": "2027-05-01",
+      "end_date": "2027-05-06",
+      "price": "99000.00",
+      "payment_terms": "Full payment before departure.",
+      "available_seats": 10,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 5,
+    "fields": {
+      "agency": 1,
+      "country": 1,
+      "title": "Venice Heritage",
+      "description": "A guided cultural trip through historic Venice, completed in September 2026.",
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-07",
+      "price": "78000.00",
+      "payment_terms": "A 30% deposit is due at booking; the balance is due before departure.",
+      "available_seats": 14,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 6,
+    "fields": {
+      "agency": 1,
+      "country": 2,
+      "title": "Kyoto Gardens",
+      "description": "Explore Kyoto temples, traditional gardens and Japanese cuisine.",
+      "start_date": "2027-06-05",
+      "end_date": "2027-06-13",
+      "price": "174000.00",
+      "payment_terms": "Payment in two instalments, with the final amount due 30 days before travel.",
+      "available_seats": 9,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 7,
+    "fields": {
+      "agency": 1,
+      "country": 3,
+      "title": "Istanbul Explorer",
+      "description": "Discover Istanbul markets, palaces and the Bosphorus during a five-day trip.",
+      "start_date": "2027-07-10",
+      "end_date": "2027-07-15",
+      "price": "89000.00",
+      "payment_terms": "Full payment is due 14 days before departure.",
+      "available_seats": 16,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 8,
+    "fields": {
+      "agency": 1,
+      "country": 4,
+      "title": "Provence Escape",
+      "description": "Visit the villages, vineyards and lavender fields of Provence.",
+      "start_date": "2027-08-02",
+      "end_date": "2027-08-09",
+      "price": "115000.00",
+      "payment_terms": "A 25% deposit is required; the remaining balance is due before departure.",
+      "available_seats": 12,
+      "is_active": true
+    }
+  },
+  {
+    "model": "tours.tour",
+    "pk": 9,
+    "fields": {
+      "agency": 1,
+      "country": 1,
+      "title": "Amalfi Coast",
+      "description": "A scenic coastal journey with boat excursions and local food tastings.",
+      "start_date": "2027-09-03",
+      "end_date": "2027-09-10",
+      "price": "129000.00",
+      "payment_terms": "A 20% deposit is due on booking and the remainder 21 days before the trip.",
+      "available_seats": 11,
+      "is_active": true
+    }
+  }
+]

@@ -1,0 +1,154 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Tours | TravelWay{% endblock %}
+
+{% block content %}
+
+<div class="hero p-5 mb-4">
+    <h1 class="display-5 fw-bold">Find your next journey</h1>
+    <p class="lead mb-0">
+        Choose a destination and book your tour online.
+    </p>
+</div>
+
+<form method="get" class="card card-body mb-4">
+    <div class="row g-2">
+
+        <div class="col-md-6">
+            <input
+                class="form-control"
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Search tours or countries"
+            >
+        </div>
+
+        <div class="col-md-4">
+            <select class="form-select" name="country">
+                <option value="">All countries</option>
+
+                {% for country in countries %}
+                    <option
+                        value="{{ country.id }}"
+                        {% if selected_country == country.id|string %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ country.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-2 d-grid">
+            <button class="btn btn-primary">
+                Search
+            </button>
+        </div>
+
+    </div>
+</form>
+
+
+<div class="row g-4">
+
+{% for tour in page %}
+
+    <div class="col-md-6 col-lg-4">
+
+        <div class="card tour-card">
+
+            <div class="card-body d-flex flex-column">
+
+                <div class="text-muted small mb-2">
+                    {{ tour.country }}
+                </div>
+
+                <h4 class="card-title">
+                    {{ tour.title }}
+                </h4>
+
+                <p class="card-text">
+                    {{ tour.description|truncate(130) }}
+                </p>
+
+                <div class="mt-auto">
+
+                    <div class="mb-2">
+                        <strong>{{ tour.price }} ₽</strong>
+                    </div>
+
+                    <div class="small text-muted mb-3">
+                        {{ tour.start_date }} — {{ tour.end_date }}
+                        <br>
+                        Seats: {{ tour.available_seats }}
+                    </div>
+
+                    <a
+                        class="btn btn-primary w-100"
+                        href="{{ url('tour_detail', tour.pk) }}"
+                    >
+                        View tour
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% else %}
+
+    <div class="col-12">
+        <div class="alert alert-warning">
+            No tours found.
+        </div>
+    </div>
+
+{% endfor %}
+
+</div>
+
+
+{% if page.paginator.num_pages > 1 %}
+
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+
+        {% if page.has_previous() %}
+            <li class="page-item">
+                <a
+                    class="page-link"
+                    href="?page={{ page.previous_page_number() }}&amp;q={{ query|urlencode }}&amp;country={{ selected_country|urlencode }}"
+                >
+                    Previous
+                </a>
+            </li>
+        {% endif %}
+
+        <li class="page-item active">
+            <span class="page-link">
+                {{ page.number }} / {{ page.paginator.num_pages }}
+            </span>
+        </li>
+
+        {% if page.has_next() %}
+            <li class="page-item">
+                <a
+                    class="page-link"
+                    href="?page={{ page.next_page_number() }}&amp;q={{ query|urlencode }}&amp;country={{ selected_country|urlencode }}"
+                >
+                    Next
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+</nav>
+
+{% endif %}
+
+{% endblock %}

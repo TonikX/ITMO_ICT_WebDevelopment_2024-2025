@@ -1,0 +1,120 @@
+﻿{% extends "base.html" %}
+
+{% block title %}My bookings | TravelWay{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">My bookings</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Tour</th>
+                        <th>Country</th>
+                        <th>Persons</th>
+                        <th>Total price</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for booking in bookings %}
+
+                    <tr>
+
+                        <td>
+                            <a href="{{ url('tour_detail', booking.tour.pk) }}">
+                                {{ booking.tour.title }}
+                            </a>
+                        </td>
+
+                        <td>
+                            {{ booking.tour.country }}
+                        </td>
+
+                        <td>
+                            {{ booking.persons }}
+                        </td>
+
+                        <td>
+                            {{ booking.total_price }} ₽
+                        </td>
+
+                        <td>
+
+                            {% if booking.status == "confirmed" %}
+                                <span class="badge bg-success">
+                                    Confirmed
+                                </span>
+
+                            {% elif booking.status == "cancelled" %}
+                                <span class="badge bg-danger">
+                                    Cancelled
+                                </span>
+
+                            {% else %}
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+                            {% endif %}
+
+                        </td>
+
+                        <td class="text-end">
+
+                            {% if booking.status == "pending" %}
+
+                                <a
+                                    href="{{ url('edit_booking', booking.pk) }}"
+                                    class="btn btn-sm btn-outline-primary"
+                                >
+                                    Edit
+                                </a>
+
+                                <a
+                                    href="{{ url('delete_booking', booking.pk) }}"
+                                    class="btn btn-sm btn-outline-danger"
+                                >
+                                    Delete
+                                </a>
+
+                            {% else %}
+
+                                <span class="text-muted small">
+                                    Processed
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            You have no bookings yet.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

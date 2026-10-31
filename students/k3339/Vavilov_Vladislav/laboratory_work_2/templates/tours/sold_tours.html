@@ -1,0 +1,48 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Sold tours | TravelWay{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Sold tours by country</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Tour</th>
+                        <th>Confirmed bookings</th>
+                        <th>Places sold</th>
+                        <th>Estimated value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for sale in sales %}
+                    <tr>
+                        <td>{{ sale.tour__country__name }}</td>
+                        <td>
+                            <a href="{{ url('tour_detail', sale.tour_id) }}">
+                                {{ sale.tour__title }}
+                            </a>
+                        </td>
+                        <td>{{ sale.bookings_count }}</td>
+                        <td>{{ sale.places_sold }}</td>
+                        <td>{{ '%.2f' % sale.revenue }} ₽</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            No confirmed tours yet.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
