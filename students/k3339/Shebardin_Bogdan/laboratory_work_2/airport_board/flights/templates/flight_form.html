@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card p-4 mx-auto mt-5" style="max-width: 600px;">
+    <h3 class="mb-4">{% if form.instance.pk %}Редактировать рейс{% else %}Добавить рейс{% endif %}</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="text-light">{{ form.as_p }}</div>
+        <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+        <a href="{% url 'flight_list' %}" class="btn btn-secondary mt-3">Отмена</a>
+    </form>
+</div>
+{% endblock %}

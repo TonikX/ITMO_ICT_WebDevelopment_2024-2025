@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEROFLIGHT | Табло перелетов</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Иконки -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #09090b;
+            --bg-card: rgba(24, 24, 27, 0.6);
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --border-glass: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Стеклянная навигация */
+        .navbar {
+            background: rgba(9, 9, 11, 0.7) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--text-main) !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar-brand i { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+        .nav-link { color: var(--text-muted) !important; font-weight: 600; transition: 0.3s; }
+        .nav-link:hover { color: var(--accent) !important; text-shadow: 0 0 8px var(--accent-glow); }
+
+        /* Стеклянные карточки */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover { border-color: rgba(56, 189, 248, 0.3); }
+
+        /* Таблица */
+        .table-custom {
+            color: var(--text-main);
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .table-custom th {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1rem;
+        }
+        .table-custom td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .table-custom tbody tr { transition: background 0.2s; }
+        .table-custom tbody tr:hover { background: rgba(255, 255, 255, 0.03); }
+
+        /* Шрифты для табло */
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .flight-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1.1rem;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Статусы */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            border: 1px solid transparent;
+        }
+        .status-ontime { color: #4ade80; background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); }
+        .status-delayed { color: #fbbf24; background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.2); }
+        .status-cancelled { color: #f87171; background: rgba(248, 113, 113, 0.1); border-color: rgba(248, 113, 113, 0.2); }
+        .status-boarding { color: #60a5fa; background: rgba(96, 165, 250, 0.1); border-color: rgba(96, 165, 250, 0.2); animation: pulse 2s infinite; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.2); }
+            50% { opacity: 0.8; box-shadow: 0 0 12px 4px rgba(96, 165, 250, 0.1); }
+        }
+
+        /* Поля ввода */
+        .form-control, .form-select {
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid var(--border-glass) !important;
+            color: var(--text-main) !important;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 0 4px var(--accent-glow) !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+        }
+
+        /* Кнопки */
+        .btn-primary {
+            background: var(--accent);
+            border: none;
+            color: #000;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 0.6rem 1.5rem;
+            transition: 0.3s;
+        }
+        .btn-primary:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        /* Стилизация ссылок */
+        a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+        a:hover { color: #fff; text-shadow: 0 0 10px var(--accent); }
+
+        /* Живые часы */
+        #clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+        .table-custom,
+        .table-custom td,
+        .table-custom th,
+        .table-custom tbody tr td {
+            color: var(--text-main) !important;
+        }
+
+        .table-custom tbody tr {
+            background-color: transparent !important;
+        }
+                table, th, td, tr {
+            color: #f4f4f5 !important;
+            background-color: transparent !important;
+        }
+        .table-custom th {
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            color: #a1a1aa !important;
+        }
+        .table-custom tr:hover td {
+            background-color: rgba(255, 255, 255, 0.03) !important;
+        }
+
+
+        .table-custom .text-muted {
+            color: #a1a1aa !important;
+        }
+
+        .table-custom,
+        .table-custom th,
+        .table-custom td,
+        .table-custom span,
+        .table-custom a,
+        .table-custom i,
+        .table-custom div {
+            color: #ffffff !important;
+        }
+
+
+        .table-custom .text-muted {
+            color: #a1a1aa !important;
+        }
+
+        .table-custom td {
+            background-color: transparent !important;
+        }
+
+        input, select, textarea {
+            color: #ffffff !important; /* Белый текст */
+            background-color: rgba(0, 0, 0, 0.4) !important; /* Темный фон */
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        /* Цвет плейсхолдера (текста-подсказки) */
+        input::placeholder {
+            color: #a1a1aa !important;
+        }
+
+        /* Цвет иконки лупы */
+        .input-group-text {
+            color: #a1a1aa !important;
+            background-color: transparent !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .text-muted {
+            color: #a1a1aa !important;
+        }
+
+        select option {
+            background-color: #1e293b !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'flight_list' %}">
+                <i class="bi bi-airplane-engines-fill"></i> AEROFLIGHT
+            </a>
+            <div class="ms-auto d-flex align-items-center gap-4">
+                <div id="clock" class="d-none d-md-block">00:00:00</div>
+                <ul class="navbar-nav align-items-center gap-2">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'flight_list' %}">Табло</a></li>
+                                        {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                            <li class="nav-item"><a class="nav-link text-warning" href="/admin/"><i class="bi bi-shield-lock"></i> Админ</a></li>
+                        {% endif %}
+                        <li class="nav-item"><span class="nav-link text-white"><i class="bi bi-person-circle"></i> {{ user.username }}</span></li>
+                        <li class="nav-item"><form action="{% url 'logout' %}" method="post" class="d-inline">
+    {% csrf_token %}
+    <button type="submit" class="nav-link text-danger bg-transparent border-0" style="padding: 8px 16px;">
+        <i class="bi bi-box-arrow-right"></i> Выйти
+    </button>
+</form>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="bi bi-box-arrow-in-right"></i> Войти</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Живые часы
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ru-RU', { hour12: false });
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>

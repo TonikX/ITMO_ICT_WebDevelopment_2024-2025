@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-end mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Онлайн-табло</h2>
+        <p class="text-muted mb-0">Актуальные рейсы в реальном времени</p>
+    </div>
+    {% if user.is_staff %}
+        <a href="{% url 'flight_create' %}" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Добавить рейс</a>
+    {% endif %}
+</div>
+
+<!-- Фильтры в стеклянной карточке -->
+<div class="glass-card p-3 mb-4">
+    <form method="get" class="row g-3">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-text bg-transparent border-secondary text-muted"><i class="bi bi-search"></i></span>
+                <input type="text" name="search" class="form-control" placeholder="Номер рейса..." value="{{ request.GET.search }}">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <select name="airport" class="form-select">
+                <option value="">Все аэропорты</option>
+                {% for airport in airports %}
+                    <option value="{{ airport.id }}" {% if request.GET.airport == airport.id|stringformat:"s" %}selected{% endif %}>{{ airport.city }} ({{ airport.code }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select name="status" class="form-select">
+                <option value="">Все статусы</option>
+                <option value="ontime" {% if request.GET.status == 'ontime' %}selected{% endif %}>По расписанию</option>
+                <option value="delayed" {% if request.GET.status == 'delayed' %}selected{% endif %}>Задержан</option>
+                <option value="cancelled" {% if request.GET.status == 'cancelled' %}selected{% endif %}>Отменен</option>
+                <option value="boarding" {% if request.GET.status == 'boarding' %}selected{% endif %}>Посадка</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Найти</button>
+        </div>
+    </form>
+</div>
+
+<!-- Само табло -->
+<div class="glass-card p-0 overflow-hidden">
+    <table class="table table-dark table-custom mb-0">
+        <thead>
+            <tr>
+                <th>Рейс</th>
+                <th>Авиакомпания</th>
+                <th>Маршрут</th>
+                <th>Вылет</th>
+                <th>Прилет</th>
+                <th>Статус</th>
+                <th>Выход</th>
+                <th class="text-end">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in object_list %}
+            <tr>
+                <td class="flight-number">{{ flight.flight_number }}</td>
+                <td class="text-muted">{{ flight.airline.name }}</td>
+                <td>
+                    <span class="badge bg-dark border border-secondary text-light">{{ flight.departure_airport.code }}</span>
+                    <i class="bi bi-arrow-right text-muted mx-1"></i>
+                    <span class="badge bg-dark border border-secondary text-light">{{ flight.arrival_airport.code }}</span>
+                </td>
+                <td class="font-mono text-white">{{ flight.departure_time|date:"H:i" }}</td>
+                <td class="font-mono text-muted">{{ flight.arrival_time|date:"H:i" }}</td>
+                <td><span class="status-badge status-{{ flight.status }}">{{ flight.get_status_display }}</span></td>
+                <td class="font-mono">{{ flight.gate|default:"-" }}</td>
+                <td class="text-end">
+                    {% if user.is_staff %}
+                        <a href="{% url 'flight_update' flight.pk %}" class="btn btn-sm btn-outline-warning rounded-circle me-1" title="Редактировать"><i class="bi bi-pencil"></i></a>
+                        <a href="{% url 'flight_delete' flight.pk %}" class="btn btn-sm btn-outline-danger rounded-circle" title="Удалить"><i class="bi bi-trash"></i></a>
+                    {% else %}
+                        <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-ticket-perforated"></i> Купить</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8" class="text-center py-5 text-muted"><i class="bi bi-inbox fs-1 d-block mb-2"></i>Рейсы не найдены</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Пагинация -->
+{% if page_obj.has_other_pages %}
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link bg-transparent text-info border-secondary" href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.airport %}&airport={{ request.GET.airport }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                    <i class="bi bi-chevron-left"></i>
+                </a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="page-item active"><span class="page-link bg-info text-dark border-info fw-bold">{{ num }}</span></li>
+            {% else %}
+                <li class="page-item"><a class="page-link bg-transparent text-info border-secondary" href="?page={{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.airport %}&airport={{ request.GET.airport }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link bg-transparent text-info border-secondary" href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.airport %}&airport={{ request.GET.airport }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                    <i class="bi bi-chevron-right"></i>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}

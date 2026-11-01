@@ -1,0 +1,26 @@
+site_name: Лабораторная работа №2 - Табло авиаперелетов
+site_description: Отчет по разработке веб-сайта на Django
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: blue
+    accent: light blue
+  features:
+    - navigation.top
+    - navigation.sections
+
+nav:
+  - Главная: index.md
+  - Описание проекта: description.md
+  - Модели данных: models.md
+  - Интерфейсы и функционал: interfaces.md
+  - Вывод: conclusion.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - tables
