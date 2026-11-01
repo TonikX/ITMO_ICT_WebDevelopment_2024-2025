@@ -1,0 +1,22 @@
+site_name: Отчёт по ЛР1 — Работа с сокетами
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+nav:
+  - Главная: index.md
+  - Задание 1 (UDP): task1.md
+  - Задание 2 (TCP): task2.md
+  - Задание 3 (HTTP): task3.md
+  - Задание 4 (Чат): task4.md
+  - Задание 5 (Web): task5.md
+markdown_extensions:
+  - codehilite
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.superfences
