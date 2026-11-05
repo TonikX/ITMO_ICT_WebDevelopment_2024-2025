@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Agency</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+    {% block menu %}
+    <div class="container container--dark">
+        <div class="horizontal-layout">
+            {% if user.is_staff %} 
+                <a href="{% url 'admin:index' %}" class="menu-item">Админ-панель</a>
+                <a href="{% url 'tours:all' %}" class="menu-item">Туры агентства</a>
+                <a href="{% url 'tours:departures' %}" class="menu-item">Отправления</a>
+            {% else %}
+                <a href="{% url 'tours:available' %}" class="menu-item">Доступные туры</a>
+                <a href="{% url 'tours:upcoming' %}" class="menu-item">Заявки на выезд</a>
+                <a href="{% url 'tours:history' %}" class="menu-item">История поездок</a>
+                <a href="{% url 'reviews:index' %}" class="menu-item">Отзывы</a>
+            {% endif %}
+        
+            <a href="{% url 'users:profile' %}" class="menu-item">Профиль</a>
+        </div>
+    </div>
+    {% endblock %}
+    
+    <div class="container">
+        <div class="vertical-layout large-gap">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+</html>

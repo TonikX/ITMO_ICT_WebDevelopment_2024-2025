@@ -1,0 +1,15 @@
+{% if page_obj.has_other_pages %}
+    <div class="horizontal-layout">
+        <div class="horizontal-layout base-gap fit-content">
+            <a {% if page_obj.has_previous %} href="?{% if request.GET.search %}search={{ request.GET.search|urlencode }}&{% endif %}page=1" {% endif %} class="button">« Первая</a>
+            <a {% if page_obj.has_previous %} href="?{% if request.GET.search %}search={{ request.GET.search|urlencode }}&{% endif %}page={{ page_obj.previous_page_number }}" {% endif %} class="button">‹ Назад</a>
+        </div>
+
+        <p>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</p>
+
+        <div class="horizontal-layout base-gap fit-content">
+            <a {% if page_obj.has_next %} href="?{% if request.GET.search %}search={{ request.GET.search|urlencode }}&{% endif %}page={{ page_obj.next_page_number }}" {% endif %} class="button">Вперёд ›</a>
+            <a {% if page_obj.has_next %} href="?{% if request.GET.search %}search={{ request.GET.search|urlencode }}&{% endif %}page={{ page_obj.paginator.num_pages }}" {% endif %} class="button">Последняя »</a>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Блок ошибки -->
+    {% if error %}
+        <div class="container container--card container--card--error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <!-- Результат -->
+    {% if owner %}
+        <div class="list">
+            <h2>Водитель {{ owner.second_name }} {{ owner.first_name }}</h2>
+            <p class="text-muted">Дата рождения: {{ owner.birth_date|default:"Не указана" }}</p>
+        </div>
+
+
+        <!-- Машины -->
+        <div class="list">
+            <h2>Автомобили во владении</h2>
+            {% if cars %}
+                {% for car in cars %}
+                    <div class="container container--card">
+                        <p><strong>{{ car.make }} {{ car.model }}</strong></p>
+                        <p><strong>Цвет:</strong> {{ car.color|default:"Не указан" }}</p>
+                        <p><strong>Номер:</strong> {{ car.number_plate }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">У владельца нет текущих автомобилей.</p>
+            {% endif %}
+        </div>
+
+
+        <!-- Лицензии -->
+        <div class="list">
+            <h2>Водительские удостоверения</h2>
+            {% if licenses %}
+                {% for license in licenses %}
+                    <div class="container container--card">
+                        <p><strong>Номер:</strong> {{ license.number }}</p>
+                        <p><strong>Категория:</strong> {{ license.get_type_display }}</p>
+                        <p><strong>Выдано:</strong> {{ license.issue_date|date:"d.m.Y" }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="text-muted">У владельца нет водительских удостоверений.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'cars' %}" class="button">К списку</a>
+    
+    <div class="list">
+        <h2>Автомобиль {{ car.make }} {{ car.model }}</h2>
+        <p><strong>Цвет:</strong> {{ car.color|default:"Не указан" }}</p>
+        <p><strong>Номер:</strong> {{ car.number_plate }}</p>
+        <a href="{% url 'car_edit' car.pk %}" class="button">Редактировать</a>
+    </div>
+
+    <!-- Владельцы -->
+    <div class="list">
+        <h2>Владельцы</h2>
+        {% if ownerships %}
+            {% for ownership in ownerships %}
+                <div class="container container--card">
+                    <p><strong>{{ ownership.owner.second_name }} {{ ownership.owner.first_name }}</strong></p>
+                    <p class="text-muted">
+                        Период владения: c {{ ownership.start_date }} по
+                        {% if ownership.end_date %}
+                            {{ ownership.end_date }}
+                        {% else %}
+                            настоящее время
+                        {% endif %}
+                    </p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">Нет владельцев.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Блок ошибки -->
+    {% if error %}
+        <div class="container container--card container--card--error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+
+    <div class="list">
+        <h2>Автомобили</h2>
+        {% if cars %}
+            {% for car in cars %}
+                <div class="container container--card">
+                    <p><strong>{{ car.make }} {{ car.model }}</strong></p>
+                    <p><strong>Цвет:</strong> {{ car.color|default:"Не указан" }}</p>
+                    <p><strong>Номер:</strong> {{ car.number_plate }}</p>
+                    <a href="{% url 'car' car.pk %}" class="button">Подробнее</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">Автомобили не найдены.</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="horizontal-layout">
+        <h1>Все туры агентства</h1>
+        <a href="{% url 'tours:create' %}" class="button">Добавить тур</a>
+    </div>
+
+    <form method="get" class="horizontal-layout base-gap filled">
+        <input type="text" name="search" class="input wide" placeholder="Введите название или описание..."
+               value="{{ request.GET.search }}">
+
+        <button type="submit" class="button button--dark">Найти</button>
+        {% if request.GET.search %}
+            <a href="{% url 'tours:all' %}" class="button">Сброс</a>
+        {% endif %}
+    </form>
+
+    <div class="vertical-layout small-gap">
+        {% for tour in tour_list %}
+            <a href="{% url 'tours:detail' tour.pk %}" class="vertical-layout base-gap filled">
+                <h2>{{ tour.title }}</h2>
+                <p>{{ tour.description }}</p>
+                <p>Страны:
+                    {% for country in tour.countries.all %}
+                        {{ country.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+
+                <div class="vertical-layout small-gap">
+                    {% for dep in tour.departure_set.all %}
+                        <div class="tag start">
+                            <p>{{ dep.start_date|date:"d.m.Y" }} – {{ dep.end_date|date:"d.m.Y" }}</p>
+                        </div>
+                    {% empty %}
+                        <label>На этот тур пока нет назначенных дат выезда.</label>
+                    {% endfor %}
+                </div>
+            </a>
+        {% empty %}
+            <p>Туры не найдены</p>
+        {% endfor %}
+    </div>
+
+    {% include 'pagination.html' %}
+{% endblock %}

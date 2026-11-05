@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="list">
+        <h2>Редактирование автомобиля</h2>
+
+        <form method="post" class="list">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="container container--card container--card--error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="list">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    <div class="container container--card">{{ field }}</div>
+                    {% if field.errors %}
+                        <div class="container container--card container--card--error">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </form>
+    
+        <button type="button" class="button">Сохранить</button>
+        <a href="{% url 'detail' %}" class="button">Отмена</a>
+    </div>
+{% endblock %}

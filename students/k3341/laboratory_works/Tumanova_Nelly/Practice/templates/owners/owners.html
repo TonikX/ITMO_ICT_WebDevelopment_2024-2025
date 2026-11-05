@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Блок ошибки -->
+    {% if error %}
+        <div class="container container--card container--card--error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+
+    <div class="list">
+        <h2>Владельцы автомобилей</h2>
+        {% if owners %}
+            {% for owner in owners %}
+                <div class="container container--card">
+                    <p>{{ owner.second_name }} {{ owner.first_name }}</p>
+                    <p class="text-muted">Дата рождения: {{ owner.birth_date|default:"Не указана" }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted">Владельцы не найдены.</p>
+        {% endif %}
+    </div>
+{% endblock %}

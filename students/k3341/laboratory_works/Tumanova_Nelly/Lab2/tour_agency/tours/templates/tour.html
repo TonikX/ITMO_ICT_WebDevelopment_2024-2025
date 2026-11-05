@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ tour.title }}</h1>
+    {% for country in tour.counties.all %}
+        <p class="tag">{{ country.name }}</p>
+    {% endfor %}
+    <p>{{ tour.description }}</p>
+
+    {% if user.is_staff %}
+        <form method="post" class="vertical-layout base-gap filled">
+            {% csrf_token %}
+
+            <div class="horizontal-layout base-gap">
+                <div class="vertical-layout small-gap wide">
+                    <h3>{{ departure_form.start_date.label }}</h3>
+                    {{ departure_form.start_date }}
+                    {% if departure_form.start_date.errors %}
+                        <div class="filled filled--error">{{ departure_form.start_date.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="vertical-layout small-gap wide">
+                    <h3>{{ departure_form.end_date.label }}</h3>
+                    {{ departure_form.end_date }}
+                    {% if departure_form.end_date.errors %}
+                        <div class="filled filled--error">{{ departure_form.end_date.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <button type="submit" class="button button--dark centered">Добавить новую дату выезда</button>
+        </form>
+    {% endif %}
+
+    <div class="vertical-layout small-gap">
+        {% for dep in upcoming_departures %}
+            <div class="horizontal-layout filled">
+                <p>{{ dep.start_date|date:"d.m.Y" }} – {{ dep.end_date|date:"d.m.Y" }}</p>
+                {% if user.is_staff %}
+                    <a href="{% url 'tours:departure' dep.pk %}" class="button button--dark">Подробнее о выезде</a>
+                {% else %}
+                    <form method="post" action="{% url 'tours:reserve_departure' dep.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button button--dark">Подать заявку</button>
+                    </form>
+                {% endif %}
+            </div>
+        {% empty %}
+            На этот тур пока нет назначенных дат выезда.
+        {% endfor %}
+    </div>
+
+    <h2>Отзывы о туре ({{ reviews.count }})</h2>
+    {% if avg_rating %}
+        <h3>Рейтинг ★ {{ avg_rating }}/10</h3>
+    {% endif %}
+    <div class="vertical-layout small-gap">
+        {% for rev in reviews %}
+            <div class="vertical-layout base-gap filled">
+                <div class="vertical-layout small-gap">
+                    <p>{{ rev.author.username }}</p>
+                    <label>Выезд {{ rev.departure.start_date|date:"d.m.Y" }} – {{ rev.departure.end_date|date:"d.m.Y" }}</label>
+                    <p>★ {{ rev.rating }}/10</p>
+                </div>
+                {% if rev.text %}
+                    <p>{{ rev.text }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Отзывов пока нет</p>
+        {% endfor %}
+    </div>
+{% endblock %}

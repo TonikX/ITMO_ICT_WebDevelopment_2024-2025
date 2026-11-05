@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Заявки на выезды</h1>
+
+    <form method="get" class="horizontal-layout base-gap filled">
+        <input type="text" name="search" class="input wide" placeholder="Введите название или описание..."
+               value="{{ request.GET.search }}">
+
+        <button type="submit" class="button button--dark">Найти</button>
+        {% if request.GET.search %}
+            <a href="{% url 'tours:upcoming' %}" class="button">Сброс</a>
+        {% endif %}
+    </form>
+
+    <div class="vertical-layout small-gap">
+        {% for res in reservation_list %}
+            <a href="{% url 'tours:detail' res.departure.tour.pk %}" class="horizontal-layout filled">
+                <div class="vertical-layout base-gap">
+                    <h2>{{ res.departure.tour.title }}</h2>
+                    <p>Выезд {{ res.departure.start_date|date:"d.m.Y" }} – {{ res.departure.end_date|date:"d.m.Y" }}</p>
+                    <p class="tag start">{{ res.status }}</p>
+                </div>
+                <form method="post" action="{% url 'tours:cancel_reservation' res.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="button button--dark">Отозвать заявку</button>
+                </form>
+            </a>
+        {% empty %}
+            <p>Заявки не найдены</p>
+        {% endfor %}
+    </div>
+{% endblock %}

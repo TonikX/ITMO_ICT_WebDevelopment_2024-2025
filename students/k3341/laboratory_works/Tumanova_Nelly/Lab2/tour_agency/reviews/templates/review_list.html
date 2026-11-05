@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Мои отзывы</h1>
+    {% if review_list %}
+        {% for review in review_list %}
+            <a href="{% url 'tours:detail' review.departure.tour.pk %}" class="vertical-layout base-gap filled">
+                <h2>Отзыв на тур {{ review.departure.tour.title }}</h2>
+                <p>★ {{ review.rating }}/10</p>
+                <p>{{ review.text }}</p>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>Отзывы не найдены</p>
+    {% endif %}
+{% endblock %}

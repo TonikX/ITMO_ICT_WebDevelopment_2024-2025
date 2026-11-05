@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>История путешествий</h1>
+
+    <div class="vertical-layout base-gap">
+        {% for res in completed_reservations %}
+            <a href="{% url 'tours:detail' res.departure.tour.pk %}" class="horizontal-layout filled">
+                <div class="vertical-layout base-gap">
+                    <h2>Тур {{ res.departure.tour.title }}</h2>
+                    <p>Даты поездки: {{ res.departure.start_date|date:"d.m.Y" }} – {{ res.departure.end_date|date:"d.m.Y" }}</p>
+
+                    <p>Страны маршрута:
+                        {% for country in res.departure.tour.countries.all %}
+                            {{ country.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+
+                {% if res.departure.id in user_reviewed_departure_ids %}
+                    <p class="button">Отзыв оставлен</p>
+                {% else %}
+                    <a href="{% url 'reviews:add' res.departure.pk %}" class="button button--dark">Оставить отзыв</a>
+                {% endif %}
+            </a>
+        {% empty %}
+            <p>У вас пока нет завершённых поездок</p>
+        {% endfor %}
+    </div>
+{% endblock %}
