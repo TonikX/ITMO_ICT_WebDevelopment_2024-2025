@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="horizontal-layout">
+        <h1>Пользователь {{ user.username }}</h1>
+        <form method="post" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="button">Выйти</button>
+        </form>
+    </div>
+
+    <form method="post" class="vertical-layout large-gap filled">
+        <h2>Личные данные</h2>
+        <a href="{% url 'users:password_change' %}" class="button start">Сменить пароль</a>
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="vertical-layout small-gap">
+                <h3>{{ field.label }}</h3>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="filled filled--error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="button button--dark centered">Сохранить изменения</button>
+    </form>
+{% endblock %}

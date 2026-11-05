@@ -1,0 +1,43 @@
+# === Виртуальное окружение ===
+.venv/
+venv/
+ENV/
+env/
+
+# === PyCharm / IntelliJ IDEA ===
+.idea/
+*.iws
+out/
+modules.xml
+workspace.xml
+tasks.xml
+
+# === Django (Локальные настройки и секреты) ===
+# Секретные ключи и пароли к базе данных лучше держать в .env
+.env
+*.env
+local_settings.py
+
+# === Django (База данных) ===
+# Исключаем локальную SQLite, чтобы не затереть базу при деплое
+*.sqlite3
+*.sqlite3-journal
+
+# === Django (Медиафайлы) ===
+# Сюда загружаются файлы пользователей, на GitHub им не место
+media/
+# Если вы собираете статику локально:
+staticfiles/
+
+# === Кэш Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# === Системные файлы ===
+.DS_Store
+Thumbs.db

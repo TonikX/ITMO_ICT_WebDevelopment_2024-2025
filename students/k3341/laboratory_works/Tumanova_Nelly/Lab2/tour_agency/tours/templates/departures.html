@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Отправления</h1>
+
+    <form method="get" class="horizontal-layout base-gap filled">
+        <input type="text" name="search" class="input wide" placeholder="Введите название или описание..."
+               value="{{ request.GET.search }}">
+
+        <button type="submit" class="button button--dark">Найти</button>
+        {% if request.GET.search %}
+            <a href="{% url 'tours:departures' %}" class="button">Сброс</a>
+        {% endif %}
+    </form>
+
+    <div class="vertical-layout small-gap">
+        {% for dep in departure_list %}
+            <a href="{% url 'tours:departure' dep.pk %}" class="vertical-layout base-gap filled">
+                <h2>{{ dep.tour.title }}</h2>
+                <p>Даты: {{ dep.start_date|date:"d.m.Y" }} – {{ dep.end_date|date:"d.m.Y" }}</p>
+            </a>
+        {% empty %}
+            <p>Отправления не найдены</p>
+        {% endfor %}
+    </div>
+{% endblock %}

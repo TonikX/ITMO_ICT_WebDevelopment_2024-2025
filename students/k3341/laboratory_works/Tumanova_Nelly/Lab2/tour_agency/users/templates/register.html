@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+    <form method="post" class="vertical-layout large-gap filled">
+        <h1>Регистрация</h1>
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="vertical-layout small-gap">
+                <h3>{{ field.label }}</h3>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="filled filled--error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="button button--dark centered">Зарегистрироваться</button>
+        <p class="centered">Уже есть аккаунт? <a href="{% url 'users:login' %}" class="link">Войти в аккаунт</a></p>
+    </form>
+{% endblock %}

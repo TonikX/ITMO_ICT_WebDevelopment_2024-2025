@@ -1,0 +1,61 @@
+site_name: "Web-программирование: лабораторные работы"
+
+docs_dir: Docs
+
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Тёмная тема
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Светлая тема
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.details
+  - toc:
+      permalink: true
+
+nav:
+  - Лабораторная №1:
+      - Lab1/index.md
+      - Задание 1: Lab1/task1.md
+      - Задание 2: Lab1/task2.md
+      - Задание 3: Lab1/task3.md
+      - Задание 4: Lab1/task4.md
+      - Задание 5: Lab1/task5.md
+  - Лабораторная №2:
+      - Lab2/index.md
+      - Задание 1: Lab2/task1.md
+      - Задание 2: Lab2/task2.md
+      - Задание 3: Lab2/task3.md
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/TumanovaNelly
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/Gr0undCl0ud
+
+copyright: >
+  © 2026 • Туманова Нелли Алексеевна • Группа K3341 • НИУ ИТМО

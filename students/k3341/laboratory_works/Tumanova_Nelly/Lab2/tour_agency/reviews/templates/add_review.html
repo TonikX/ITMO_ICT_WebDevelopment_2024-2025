@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Оставить отзыв о поездке</h1>
+    <h2>Тур {{ departure.tour.title }}</h2>
+    <p>Даты поездки: {{ departure.start_date|date:"d.m.Y" }} – {{ departure.end_date|date:"d.m.Y" }}</p>
+
+    <form method="post" class="vertical-layout large-gap filled">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="vertical-layout small-gap">
+                <h2>{{ field.label }}</h2>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="filled filled--error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="button button--dark centered">Опубликовать отзыв</button>
+    </form>
+{% endblock %}

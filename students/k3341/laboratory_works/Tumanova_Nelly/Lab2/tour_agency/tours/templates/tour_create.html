@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Добавление нового тура</h1>
+
+    <form method="post" class="vertical-layout large-gap filled">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="vertical-layout small-gap">
+                <h2>{{ field.label }}</h2>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="filled filled--error">{{ field.errors }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="button button--dark centered">Создать тур</button>
+    </form>
+{% endblock %}
