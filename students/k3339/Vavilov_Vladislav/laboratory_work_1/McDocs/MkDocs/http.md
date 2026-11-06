@@ -1,0 +1,108 @@
+# 03 · Собственный HTTP-сервер
+
+`HTTP/1.1` · Порт `8080` · Статическая HTML-страница
+
+## Постановка задачи
+
+Написать сервер на низкоуровневых TCP-сокетах, который принимает запрос браузера и отвечает содержимым файла `index.html`, не используя Flask, Django и другие фреймворки.
+
+## Как формируется HTTP-ответ
+
+При обращении к `http://127.0.0.1:8080/` браузер посылает HTTP-запрос. Программа считывает первые байты запроса, загружает `index.html` в бинарном режиме и возвращает статусную строку, заголовки и HTML-тело.
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: <размер файла в байтах>
+Connection: close
+
+<содержимое index.html>
+```
+
+| Заголовок | Зачем нужен |
+|---|---|
+| `200 OK` | Указывает на успешный ответ |
+| `Content-Type` | Сообщает браузеру, что тело содержит HTML в UTF-8 |
+| `Content-Length` | Задаёт точный размер тела в байтах |
+| `Connection: close` | Соединение закрывается после ответа |
+
+## Исходный код
+
+=== "HTTP-сервер · http_server.py"
+
+    ```python
+    import socket
+    
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind(("127.0.0.1", 8080))
+    server.listen(5)
+    
+    print("HTTP-сервер запущен: http://127.0.0.1:8080")
+    
+    while True:
+        conn, address = server.accept()
+    
+        with conn:
+            request = conn.recv(4096).decode("utf-8", errors="replace")
+            print("Запрос:", request.splitlines()[0] if request else "")
+    
+            with open("index.html", "rb") as file:
+                content = file.read()
+    
+            headers = (
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/html; charset=utf-8\r\n"
+                f"Content-Length: {len(content)}\r\n"
+                "Connection: close\r\n"
+                "\r\n"
+            )
+    
+            conn.sendall(headers.encode("utf-8") + content)
+    ```
+
+=== "Страница · index.html"
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Лабораторная работа №1</title>
+    </head>
+    <body>
+        <h1>Лабораторная работа №1</h1>
+        <h2>Практическое задание №3</h2>
+        <p>HTTP-сервер на Python с использованием socket.</p>
+        <p>Страница успешно загружена с сервера!</p>
+    </body>
+    </html>
+    ```
+
+## Запуск
+
+Из каталога `task_3`:
+
+```bash
+python3 http_server.py
+```
+
+Затем откройте в браузере **[http://127.0.0.1:8080/](http://127.0.0.1:8080/)**. В терминале сервер выведет строку первого запроса, например `GET / HTTP/1.1`.
+
+!!! important "Контекст запуска"
+    Код читает `index.html` как относительный путь. При запуске из другого каталога он не найдёт файл. Запускайте программу из `task_3`.
+
+## Результат
+
+![Вывод HTTP-запроса в терминале](task_3_http_terminal.png)
+
+<p class="result-caption">Рисунок 3. Получение HTTP-запроса от браузера.</p>
+
+![HTML-страница на локальном сервере](task_3_http_page.png)
+
+<p class="result-caption">Рисунок 4. Статическая страница, полученная через HTTP.</p>
+
+!!! note "Упрощения"
+    В текущем коде сервер отправляет страницу независимо от метода и пути запроса. Это минимальная учебная реализация: отдельной маршрутизации, обработки ошибок чтения, полного разбора HTTP и устойчивой работы с произвольными запросами нет.
+
+**Вывод:** браузер отображает HTML, полученный по HTTP от собственного TCP-сервера. На практике HTTP — это не отдельный транспорт, а протокол прикладного уровня поверх TCP.
