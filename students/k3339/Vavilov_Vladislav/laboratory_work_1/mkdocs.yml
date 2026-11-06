@@ -2,7 +2,7 @@ site_name: Лабораторная № 1 | Сокеты и HTTP
 site_description: Документация к лабораторной работе по веб-программированию — Вавилов Владислав, К3339
 site_author: Вавилов Владислав
 site_url: "https://vladvavilov.github.io/ITMO_ICT_WebDevelopment_2024-2025/"
-docs_dir: MkDocs
+docs_dir: McDocs/MkDocs
 site_dir: site
 use_directory_urls: true
 
