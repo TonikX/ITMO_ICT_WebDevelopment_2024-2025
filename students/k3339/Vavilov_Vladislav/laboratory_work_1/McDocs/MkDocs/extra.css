@@ -1,0 +1,87 @@
+:root {
+  --md-text-font: "Inter";
+  --md-code-font: "JetBrains Mono";
+}
+
+.md-typeset .lab-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 1.7rem;
+  padding: 2.3rem 2rem;
+  border: 1px solid rgba(102, 188, 255, 0.20);
+  border-radius: 1rem;
+  color: #f6f8ff;
+  background: radial-gradient(circle at 90% 0%, rgba(28, 200, 233, 0.30), transparent 42%),
+              linear-gradient(120deg, #111b36 0%, #172e55 55%, #174461 100%);
+  box-shadow: 0 12px 35px rgba(20, 36, 71, 0.12);
+}
+
+.md-typeset .lab-hero .eyebrow {
+  margin: 0 0 .6rem;
+  color: #9bddff;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.md-typeset .lab-hero h1 {
+  margin: 0 0 .65rem;
+  color: #fff;
+  font-size: clamp(1.7rem, 5vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.14;
+}
+
+.md-typeset .lab-hero p {
+  max-width: 37rem;
+  margin-bottom: 0;
+  color: #d8e8f5;
+  font-size: .94rem;
+}
+
+.md-typeset .lab-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .48rem;
+  margin-top: 1.25rem;
+}
+
+.md-typeset .lab-pills span {
+  padding: .3rem .7rem;
+  border: 1px solid rgba(169, 219, 255, .38);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, .09);
+  color: #eef8ff;
+  font-size: .72rem;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border-radius: .7rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(29, 79, 130, .10);
+}
+
+.md-typeset img {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: .5rem;
+}
+
+.md-typeset .result-caption {
+  margin-top: -.3rem;
+  color: var(--md-default-fg-color--light);
+  font-size: .75rem;
+  text-align: center;
+}
+
+.md-typeset table:not([class]) {
+  border-radius: .35rem;
+}
+
+@media screen and (max-width: 44.984375em) {
+  .md-typeset .lab-hero { padding: 1.55rem 1.2rem; }
+}
