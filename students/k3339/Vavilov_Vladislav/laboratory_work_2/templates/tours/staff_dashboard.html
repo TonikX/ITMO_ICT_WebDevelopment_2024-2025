@@ -1,0 +1,140 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Management | TravelWay{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Travel agency management</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+
+        <h3 class="mb-3">Pending bookings</h3>
+
+        <div class="table-responsive">
+            <table class="table align-middle">
+
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Tour</th>
+                        <th>Country</th>
+                        <th>Persons</th>
+                        <th>Available</th>
+                        <th>Created</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for booking in pending_bookings %}
+
+                    <tr>
+                        <td>{{ booking.user.username }}</td>
+
+                        <td>{{ booking.tour.title }}</td>
+
+                        <td>{{ booking.tour.country }}</td>
+
+                        <td>{{ booking.persons }}</td>
+
+                        <td>{{ booking.tour.available_seats }}</td>
+
+                        <td>{{ booking.created_at.strftime('%d.%m.%Y %H:%M') }}</td>
+
+                        <td class="text-end">
+
+                            <form
+                                method="post"
+                                action="{{ url('confirm_booking', booking.pk) }}"
+                                class="d-inline"
+                            >
+                                {{ csrf_input }}
+                                <button class="btn btn-sm btn-success">
+                                    Confirm
+                                </button>
+                            </form>
+
+                            <form
+                                method="post"
+                                action="{{ url('cancel_booking_staff', booking.pk) }}"
+                                class="d-inline"
+                            >
+                                {{ csrf_input }}
+                                <button class="btn btn-sm btn-outline-danger">
+                                    Cancel
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            No pending bookings.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <h3 class="mb-3">Sales by country</h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Confirmed bookings</th>
+                        <th>Places sold</th>
+                        <th>Estimated value</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                {% for row in sales %}
+
+                    <tr>
+                        <td>{{ row.country__name }}</td>
+                        <td>{{ row.sold_bookings }}</td>
+                        <td>{{ row.sold_places }}</td>
+                        <td>{{ '%.2f' % row.revenue }} ₽</td>
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                            No confirmed sales yet.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

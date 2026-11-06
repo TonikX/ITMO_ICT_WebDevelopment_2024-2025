@@ -1,0 +1,41 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Delete booking | TravelWay{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+
+                <h2>Delete booking</h2>
+
+                <p>
+                    Are you sure you want to delete your booking for
+                    <strong>{{ booking.tour.title }}</strong>?
+                </p>
+
+                <form method="post">
+                    {{ csrf_input }}
+
+                    <button class="btn btn-danger">
+                        Delete
+                    </button>
+
+                    <a
+                        href="{{ url('booking_list') }}"
+                        class="btn btn-outline-secondary"
+                    >
+                        Cancel
+                    </a>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

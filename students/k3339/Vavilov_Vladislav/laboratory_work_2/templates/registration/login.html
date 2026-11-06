@@ -1,0 +1,40 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Log in | TravelWay{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+
+                <h2 class="mb-4">Log in</h2>
+
+                <form method="post">
+                    {{ csrf_input }}
+
+                    {{ form.as_p()|safe }}
+
+                    <button class="btn btn-primary w-100">
+                        Log in
+                    </button>
+                </form>
+
+                <hr>
+
+                <p class="mb-0">
+                    No account?
+                    <a href="{{ url('register') }}">
+                        Register
+                    </a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+﻿site_name: Web Programming — Laboratory Work 2
+
+theme:
+  name: material
+
+nav:
+  - Main: index.md
+  - Data models: models.md
+  - Database: database.md
+  - Routes and functionality: functionality.md
+  - Screenshots: screenshots.md
+
+markdown_extensions:
+  - tables
+  - fenced_code

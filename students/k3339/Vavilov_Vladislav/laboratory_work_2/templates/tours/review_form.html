@@ -1,0 +1,42 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Review | TravelWay{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+
+                <h2>Leave review</h2>
+
+                <p class="text-muted">
+                    {{ tour.title }}
+                </p>
+
+                <form method="post">
+                    {{ csrf_input }}
+
+                    {{ form.as_p()|safe }}
+
+                    <button class="btn btn-primary">
+                        Publish review
+                    </button>
+
+                    <a
+                        href="{{ url('tour_detail', tour.pk) }}"
+                        class="btn btn-outline-secondary"
+                    >
+                        Cancel
+                    </a>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
